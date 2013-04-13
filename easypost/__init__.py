@@ -1,11 +1,9 @@
 # imports
-import logging
 import os
 import platform
 import sys
 import urllib
 import urlparse
-import textwrap
 import time
 import datetime
 import types
@@ -42,14 +40,11 @@ except ImportError:
     if major < 1:
       raise ImportError('EasyPost requires an up to date requests library. Update requests via "pip install -U requests" or contact us at contact@easypost.co.')
 
-
 # config
 api_key = None
 #api_base = 'https://www.geteasypost.com/api/v2'
 #api_base = 'https://easyposttest.herokuapp.com/api/v2'
 api_base = 'http://localhost:5000/api/v2'
-verify_ssl_certs = False
-
 
 # exceptions
 class EasyPostError(Exception):
