@@ -32,7 +32,7 @@ Example
 
     # CURRENTLY WORKS UP TO HERE!
 
-    parcel = easypost.Parcel.create(address=parcel_param)
+    parcel = easypost.Parcel.create(parcel=parcel_param)
 
     shipment = easypost.Shipment.create(
       to_address = to,
