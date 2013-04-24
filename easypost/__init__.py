@@ -78,13 +78,25 @@ def convert_to_easypost_object(response, api_key):
             'Rate' : Rate,
             'PostageLabel': PostageLabel }
 
+  prefixes = { 'adr' : Address,
+            'sf' : ScanForm,
+            'cstitem' : CustomsItem,
+            'cstinfo' : CustomsInfo,
+            'prcl' : Parcel,
+            'shp': Shipment,
+            'rate' : Rate,
+            'pl': PostageLabel }
+
   if isinstance(response, list):
     return [convert_to_easypost_object(i, api_key) for i in response]
   elif isinstance(response, dict):
     response = response.copy()
     cls_name = response.get('object', EasyPostObject)
+    cls_id = response.get('id', None)
     if isinstance(cls_name, basestring):
       cls = types.get(cls_name, EasyPostObject)
+    elif cls_id != None:
+      cls = prefixes.get(cls_id[0:cls_id.find('_')], EasyPostObject)
     else:
       cls = EasyPostObject
     return cls.construct_from(response, api_key)
@@ -117,9 +129,11 @@ class Requestor(object):
 
   @classmethod
   def encode_list(cls, out, key, list_value):
-    for v in list_value:
+    n = {}
+    for k, v in enumerate(list_value):
       v = cls._utf8(v)
-      out.append(("%s[]" % (key), v))
+      n["%s[%s]" % (key, k)] = v
+    out.extend(cls._encode_inner(n))
 
   @classmethod
   def encode_datetime(cls, out, key, dt_value):
@@ -161,6 +175,11 @@ class Requestor(object):
       for k, v in param.iteritems():
         out[k] = cls._objects_to_ids(v)
       return out
+    elif isinstance(param, list):
+      out = []
+      for k, v in enumerate(param):
+        out.append(cls._objects_to_ids(v))
+      return out
     else:
       return param
 
@@ -188,8 +207,8 @@ class Requestor(object):
       raise AuthenticationError('No API key provided. Set your API key via "easypost.api_key = \'APIKEY\'"). Please contact us at contact@easypost.co if you do not know where to find your API key.')
 
     abs_url = self.api_url(url)
-    params = params.copy()
-    self._objects_to_ids(params)
+    #params = params.copy()
+    params = self._objects_to_ids(params)
 
     ua = {
       'client_version' : VERSION,
@@ -212,9 +231,10 @@ class Requestor(object):
       'Authorization' : 'Bearer %s' % (my_api_key, )
       }
     
-    print abs_url
-    print params
-    print "*"*20
+    # TODO: remove
+    # print abs_url
+    # print params
+    # print "*"*20
 
     if request_lib == 'urlfetch':
       http_body, http_status = self.urlfetch_request(method, abs_url, headers, params)
@@ -229,7 +249,7 @@ class Requestor(object):
     try:
       response = json.loads(http_body)
     except Exception:
-      raise APIError("Invalid response body from API: (%d) %s " % (http_body, http_status), http_body, http_status)
+      raise APIError("Invalid response body from API: (%d) %s " % (http_status, http_body), http_body, http_status)
     if not (200 <= http_status < 300):
       self.handle_api_error(http_body, http_status, response)
     return response
@@ -244,6 +264,10 @@ class Requestor(object):
       data = self.encode(params)
     else:
       raise NetworkError("Bug discovered: invalid request method: %s. Please report to contact@easypost.co" % (method))
+
+    # TODO: remove
+    # print data
+    # print "*"*20
 
     try:
       result = requests.request(method, abs_url, headers=headers, data=data, timeout=60, verify=False)
@@ -376,14 +400,15 @@ class EasyPostObject(object):
 
   def __repr__(self):
     type_string = ''
-    if isinstance(self.get('object'), basestring):
-      type_string = ' %s' % self.get('object').encode('utf8')
-
     id_string = ''
+
     if isinstance(self.get('id'), basestring):
       id_string = ' id=%s' % self.get('id').encode('utf8')
 
-    return '<%s%s%s at %s> JSON: %s' % (type(self).__name__, type_string, id_string, hex(id(self)), json.dumps(self.to_dict(), sort_keys=True, indent=2, cls=EasyPostObjectEncoder))
+    if isinstance(self.get('object'), basestring):
+      type_string = ' %s' % self.get('object').encode('utf8')
+
+    return '<%s%s at %s> JSON: %s' % (type(self).__name__, type_string, hex(id(self)), json.dumps(self.to_dict(), sort_keys=True, indent=2, cls=EasyPostObjectEncoder))
 
   def __str__(self):
     return json.dumps(self.to_dict(), sort_keys=True, indent=2, cls=EasyPostObjectEncoder)
@@ -416,6 +441,11 @@ class Resource(EasyPostObject):
 
   @classmethod
   def retrieve(cls, id, api_key=None, **params):
+    try:
+      id = id["id"]
+    except:
+      pass
+
     instance = cls(id, api_key, **params)
     instance.refresh()
     return instance
@@ -433,7 +463,7 @@ class Resource(EasyPostObject):
       raise NotImplementedError('Resource is an abstract class. You should perform actions on its subclasses.')
 
     cls_name = cls.__name__
-    cls_name = cls_name[0:1] + re.sub('([A-Z])', '_\1', cls_name[1:])
+    cls_name = cls_name[0:1] + re.sub(r'([A-Z])', r'_\1', cls_name[1:])
     return "%s" % cls_name.lower()
 
   @classmethod
@@ -467,7 +497,9 @@ class CreateResource(Resource):
   def create(cls, api_key=None, **params):
     requestor = Requestor(api_key)
     url = cls.class_url()
-    response, api_key = requestor.request('post', url, params)
+    wrapped_params = {}
+    wrapped_params[cls.class_name()] = params
+    response, api_key = requestor.request('post', url, wrapped_params)
     return convert_to_easypost_object(response, api_key)
 
 class UpdateResource(Resource):
@@ -493,7 +525,21 @@ class DeleteResource(Resource):
 
 # API resource objects
 class Address(AllResource, CreateResource):
-  pass
+  def verify(self):
+    requestor = Requestor(self.api_key)
+    url = "%s/%s" % (self.instance_url(), "verify")
+    response, api_key = requestor.request('get', url)
+    
+    response_address = response.get('address', None)
+    response_message = response.get('message', None)
+    if response_address != None:
+      verified_address = convert_to_easypost_object(response_address, api_key)
+      if response_message != None:
+        verified_address.message = response_message
+        verified_address._immutable_values.update('message')
+      return verified_address
+    else:
+      return convert_to_easypost_object(response, api_key)
 
 class ScanForm(AllResource, CreateResource):
   pass
@@ -508,7 +554,29 @@ class Parcel(AllResource, CreateResource):
   pass
 
 class Shipment(AllResource, CreateResource):
-  pass
+  def rates(self):
+    requestor = Requestor(self.api_key)
+    url = "%s/%s" % (self.instance_url(), "rates")
+    response, api_key = requestor.request('post', url)
+    self.refresh_from(response, api_key, True)
+    return self
+
+  def buy(self, rate=None, **params):
+    requestor = Requestor(self.api_key)
+    url = "%s/%s" % (self.instance_url(), "buy")
+    # sane default
+    if rate != None:
+      params['rate'] = rate
+    response, api_key = requestor.request('post', url, params)
+    self.refresh_from(response, api_key, True)
+    return self
+  
+  def lowest_rate(self):
+    lowest_rate = False
+    for rate in self.rates:
+      if lowest_rate == False or float(rate.rate) < float(lowest_rate.rate):
+        lowest_rate = rate
+    return lowest_rate
 
 class Rate(AllResource, CreateResource):
   pass
