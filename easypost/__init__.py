@@ -69,22 +69,22 @@ class InvalidRequestError(EasyPostError):
     self.param = param
 
 def convert_to_easypost_object(response, api_key):
-  types = { 'Address' : Address,
-            'ScanForm' : ScanForm,
-            'CustomsItem' : CustomsItem,
-            'CustomsInfo' : CustomsInfo,
-            'Parcel' : Parcel,
+  types = { 'Address': Address,
+            'ScanForm': ScanForm,
+            'CustomsItem': CustomsItem,
+            'CustomsInfo': CustomsInfo,
+            'Parcel': Parcel,
             'Shipment': Shipment,
-            'Rate' : Rate,
+            'Rate': Rate,
             'PostageLabel': PostageLabel }
 
-  prefixes = { 'adr' : Address,
-            'sf' : ScanForm,
-            'cstitem' : CustomsItem,
-            'cstinfo' : CustomsInfo,
-            'prcl' : Parcel,
+  prefixes = { 'adr': Address,
+            'sf': ScanForm,
+            'cstitem': CustomsItem,
+            'cstinfo': CustomsInfo,
+            'prcl': Parcel,
             'shp': Shipment,
-            'rate' : Rate,
+            'rate': Rate,
             'pl': PostageLabel }
 
   if isinstance(response, list):
@@ -554,7 +554,7 @@ class Parcel(AllResource, CreateResource):
   pass
 
 class Shipment(AllResource, CreateResource):
-  def rates(self):
+  def get_rates(self):
     requestor = Requestor(self.api_key)
     url = "%s/%s" % (self.instance_url(), "rates")
     response, api_key = requestor.request('post', url)
