@@ -42,9 +42,9 @@ except ImportError:
 
 # config
 api_key = None
-#api_base = 'https://www.geteasypost.com/api/v2'
+api_base = 'https://www.geteasypost.com/api/v2'
 #api_base = 'https://easyposttest.herokuapp.com/api/v2'
-api_base = 'http://localhost:5000/api/v2'
+#api_base = 'http://localhost:5000/api/v2'
 
 # exceptions
 class EasyPostError(Exception):
