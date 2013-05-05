@@ -43,30 +43,24 @@ except ImportError:
 # config
 api_key = None
 api_base = 'https://www.geteasypost.com/api/v2'
-#api_base = 'https://easyposttest.herokuapp.com/api/v2'
-#api_base = 'http://localhost:5000/api/v2'
+# api_base = 'https://easyposttest.herokuapp.com/api/v2'
+# api_base = 'http://localhost:5000/api/v2'
 
-# exceptions
-class EasyPostError(Exception):
-  def __init__(self, message=None, http_status=None, http_body=None, json_body=None):
-    super(EasyPostError, self).__init__(message)
+class Error(Exception):
+  def __init__(self, message=None, http_status=None, http_body=None):
+    super(Error, self).__init__(message)
     self.http_status = http_status
     self.http_body = http_body
-    self.json_body = json_body
+    try:
+      self.json_body = json.loads(http_body)
+    except:
+      self.json_body = None
 
-class AuthenticationError(EasyPostError):
-  pass
-
-class APIError(EasyPostError):
-  pass
-
-class NetworkError(EasyPostError):
-  pass
-
-class InvalidRequestError(EasyPostError):
-  def __init__(self, message, param, http_status=None, http_body=None, json_body=None):
-    super(InvalidRequestError, self).__init__(message, http_body, http_status, json_body)
-    self.param = param
+    self.param = None
+    try:
+      self.param = self.json_body['error'].get('param', None)
+    except:
+      pass
 
 def convert_to_easypost_object(response, api_key):
   types = { 'Address': Address,
@@ -204,10 +198,9 @@ class Requestor(object):
     my_api_key = self.api_key or api_key
 
     if my_api_key is None:
-      raise AuthenticationError('No API key provided. Set your API key via "easypost.api_key = \'APIKEY\'"). Please contact us at contact@easypost.co if you do not know where to find your API key.')
+      raise Error('No API key provided. Set an API key via "easypost.api_key = \'APIKEY\'. Your API keys can be found in your EasyPost dashboard, or you can contact us at contact@easypost.co for assistance.')
 
     abs_url = self.api_url(url)
-    #params = params.copy()
     params = self._objects_to_ids(params)
 
     ua = {
@@ -215,13 +208,13 @@ class Requestor(object):
       'lang' : 'python',
       'publisher' : 'easypost',
       'request_lib': request_lib,
-      }
+    }
     for attr, func in [['lang_version', platform.python_version],
                        ['platform', platform.platform],
                        ['uname', lambda: ' '.join(platform.uname())]]:
       try:
         val = func()
-      except Exception, e:
+      except Exception as e:
         val = "!! %s" % e
       ua[attr] = val
 
@@ -229,19 +222,14 @@ class Requestor(object):
       'X-EasyPost-Client-User-Agent' : json.dumps(ua),
       'User-Agent' : 'EasyPost/v2 PythonClient/%s' % (VERSION, ),
       'Authorization' : 'Bearer %s' % (my_api_key, )
-      }
+    }
     
-    # TODO: remove
-    # print abs_url
-    # print params
-    # print "*"*20
-
     if request_lib == 'urlfetch':
       http_body, http_status = self.urlfetch_request(method, abs_url, headers, params)
     elif request_lib == 'requests':
       http_body, http_status = self.requests_request(method, abs_url, headers, params)
     else:
-      raise EasyPostError("Bug discovered: invalid request_lib: %s. Please report to contact@easypost.co" % (request_lib))
+      raise Error("Bug discovered: invalid request_lib: %s. Please report to contact@easypost.co." % (request_lib))
 
     return http_body, http_status, my_api_key
 
@@ -249,9 +237,9 @@ class Requestor(object):
     try:
       response = json.loads(http_body)
     except Exception:
-      raise APIError("Invalid response body from API: (%d) %s " % (http_status, http_body), http_body, http_status)
+      raise Error("Invalid response body from API: (%d) %s " % (http_status, http_body), http_status, http_body)
     if not (200 <= http_status < 300):
-      self.handle_api_error(http_body, http_status, response)
+      self.handle_api_error(http_status, http_body, response)
     return response
 
   def requests_request(self, method, abs_url, headers, params):
@@ -263,19 +251,14 @@ class Requestor(object):
     elif method == 'post':
       data = self.encode(params)
     else:
-      raise NetworkError("Bug discovered: invalid request method: %s. Please report to contact@easypost.co" % (method))
-
-    # TODO: remove
-    # print data
-    # print "*"*20
+      raise Error("Bug discovered: invalid request method: %s. Please report to contact@easypost.co." % (method))
 
     try:
       result = requests.request(method, abs_url, headers=headers, data=data, timeout=60, verify=False)
       http_body = result.content
       http_status = result.status_code
     except Exception as e:
-      print e
-      raise NetworkError("Unexpected error communicating with EasyPost.  If this problem persists, let us know at contact@easypost.co.")
+      raise Error("Unexpected error communicating with EasyPost. If this problem persists please let us know at contact@easypost.co.")
     return http_body, http_status
 
   def urlfetch_request(self, method, abs_url, headers, params):
@@ -285,7 +268,7 @@ class Requestor(object):
     elif method == 'get' or method == 'delete':
       abs_url = self.build_url(abs_url, params)
     else:
-      raise NetworkError("Bug discovered: invalid request method: %s. Please report to contact@easypost.co" % (method))
+      raise Error("Bug discovered: invalid request method: %s. Please report to contact@easypost.co." % (method))
 
     args['url'] = abs_url
     args['method'] = method
@@ -296,23 +279,20 @@ class Requestor(object):
     try:
       result = urlfetch.fetch(**args)
     except:
-      raise NetworkError("Unexpected error communicating with EasyPost.  If this problem persists, let us know at contact@easypost.co.")
+      raise Error("Unexpected error communicating with EasyPost. If this problem persists, let us know at contact@easypost.co.")
 
     return result.content, result.status_code
 
-  def handle_api_error(self, http_body, http_status, response):
+  def handle_api_error(self, http_status, http_body, response):
     try:
       error = response['error']
     except (KeyError, TypeError):
-      raise APIError("Invalid response from API: %r (HTTP status code was %d)" % (http_body, http_status), http_body, http_status, response)
+      raise Error("Invalid response from API: (%d) %r " % (http_status, http_body), http_status, http_body)
 
-    if http_status in [400, 404]:
-      raise InvalidRequestError(error.get('message'), error.get('param'), http_body, http_status, response)
-    elif rcode == 401:
-      raise AuthenticationError(error.get('message'), http_body, http_status, response)
-    else:
-      raise APIError(error.get('message'), http_body, http_status, response)
-
+    try:
+      raise Error(error.get('message', ''), http_status, http_body)
+    except AttributeError:
+      raise Error(error, http_status, http_body)
 
 class EasyPostObject(object):
   def __init__(self, id=None, api_key=None, **params):
@@ -477,13 +457,13 @@ class Resource(EasyPostObject):
   def instance_url(self):
     id = self.get('id')
     if not id:
-      raise InvalidRequestError('%s instance has invalid ID: %r' % (type(self).__name__, id), 'id')
+      raise Error('%s instance has invalid ID: %r' % (type(self).__name__, id))
     id = Requestor._utf8(id)
     base = self.class_url()
     param = urllib.quote_plus(id)
     return "%s/%s" % (base, param)
 
-# API resource classes
+# parent resource classes
 class AllResource(Resource):
   @classmethod
   def all(cls, api_key=None, **params):
@@ -523,7 +503,7 @@ class DeleteResource(Resource):
     self.refresh_from(response, api_key)
     return self
 
-# API resource objects
+# specific resources
 class Address(AllResource, CreateResource):
   def verify(self):
     requestor = Requestor(self.api_key)

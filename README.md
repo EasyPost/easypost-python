@@ -45,20 +45,32 @@ from_address = easypost.Address.create(
 # verify address
 try:
   verified_from_address = from_address.verify()
-except Exception:
-  print "Unable to verify from address."
+except easypost.Error as e:
+  raise e
 if hasattr(verified_from_address, 'message'):
   # the from address is not invalid, but it has an issue
   pass
 
 # create parcel
-parcel = easypost.Parcel.create(
-  predefined_package = "Parcel",
-  # length = 10.2,
-  # width = 7.8,
-  # height = 4.3,
-  weight = 21.2
-)
+try:
+  parcel = easypost.Parcel.create(
+    predefined_package = "InvalidPackageName",
+    weight = 21.2
+  )
+except easypost.Error as e:
+  print e.message
+  if e.param != None:
+    print 'Specifically an invalid param: ' + e.param
+
+try:
+  parcel = easypost.Parcel.create(
+    length = 10.2,
+    width = 7.8,
+    height = 4.3,
+    weight = 21.2
+  )
+except easypost.Error as e:
+  raise e
 
 # create customs_info form for intl shipping
 customs_item = easypost.CustomsItem.create(
@@ -74,8 +86,8 @@ customs_info = easypost.CustomsInfo.create(
   customs_certify = 1,
   customs_signer = "Hector Hammerfall",
   contents_type = "gift",
-  contents_explanation = "Two awesome t-shirts!",
-  eel_pfc = "NOEEI 30.37(a).",
+  contents_explanation = "",
+  eel_pfc = "NOEEI 30.37(a)",
   non_delivery_option = "return",
   restriction_type = "none",
   restriction_comments = "",
@@ -90,10 +102,14 @@ shipment = easypost.Shipment.create(
   customs_info = customs_info
 )
 
-# buy postage label with the selected rate
+# buy postage label with one of the rate objects
 shipment.buy(rate = shipment.rates[0])
 # alternatively: shipment.buy(rate = shipment.lowest_rate())
 
+# this is temporarily necessary to be able to access shipment.tracking_code
+shipment.refresh()
+
+print shipment.tracking_code
 print shipment.postage_label.label_url
 ```
 
