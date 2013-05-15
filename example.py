@@ -84,8 +84,5 @@ shipment = easypost.Shipment.create(
 shipment.buy(rate = shipment.rates[0])
 # alternatively: shipment.buy(rate = shipment.lowest_rate())
 
-# this is temporarily necessary to be able to access shipment.tracking_code
-shipment.refresh()
-
 print shipment.tracking_code
 print shipment.postage_label.label_url
