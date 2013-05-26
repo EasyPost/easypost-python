@@ -9,7 +9,8 @@ to_address = easypost.Address.create(
   city = "St. Albert",
   state = "AB",
   zip = "t8n2m4",
-  country = "CA"
+  country = "CA",
+  phone = "780-283-9384"
 )
 from_address = easypost.Address.create(
   name = "Jon Calhoun",
@@ -81,8 +82,12 @@ shipment = easypost.Shipment.create(
 )
 
 # buy postage label with one of the rate objects
-shipment.buy(rate = shipment.rates[0])
-# alternatively: shipment.buy(rate = shipment.lowest_rate())
+# shipment.buy(rate = shipment.rates[0])
+# shipment.buy(rate = shipment.lowest_rate('usps'))
+shipment.buy(rate = shipment.lowest_rate(['usps', 'ups']))
+
+# shipment.refund()
+# print shipment.refund_status
 
 print shipment.tracking_code
 print shipment.postage_label.label_url

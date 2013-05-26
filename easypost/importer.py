@@ -15,5 +15,5 @@ def import_json():
     import simplejson
     return simplejson
   except ImportError:
-    raise ImportError("EasyPost requires a JSON library. Please try installing the python simplejson library via 'pip install simplejson' or 'easy_install simplejson', or contact us at contact@easypost.co.")
+    raise ImportError("EasyPost requires a JSON library. Please try installing the python simplejson library via 'pip install simplejson' or 'easy_install simplejson', or contact us at contact@easypost.com.")
   

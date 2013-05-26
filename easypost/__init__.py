@@ -8,6 +8,7 @@ import time
 import datetime
 import types
 import re
+import string
 
 from version import VERSION
 import importer
@@ -29,16 +30,16 @@ except ImportError:
     import requests
     request_lib = 'requests'
   except ImportError:
-    raise ImportError('EasyPost requires an up to date requests library. Update requests via "pip install -U requests" or contact us at contact@easypost.co.')
+    raise ImportError('EasyPost requires an up to date requests library. Update requests via "pip install -U requests" or contact us at contact@easypost.com.')
 
   try:
     version = requests.__version__
     major, minor, patch = [int(i) for i in version.split('.')]
   except Exception:
-    raise ImportError('EasyPost requires an up to date requests library. Update requests via "pip install -U requests" or contact us at contact@easypost.co.')
+    raise ImportError('EasyPost requires an up to date requests library. Update requests via "pip install -U requests" or contact us at contact@easypost.com.')
   else:
     if major < 1:
-      raise ImportError('EasyPost requires an up to date requests library. Update requests via "pip install -U requests" or contact us at contact@easypost.co.')
+      raise ImportError('EasyPost requires an up to date requests library. Update requests via "pip install -U requests" or contact us at contact@easypost.com.')
 
 # config
 api_key = None
@@ -70,6 +71,7 @@ def convert_to_easypost_object(response, api_key):
             'Parcel': Parcel,
             'Shipment': Shipment,
             'Rate': Rate,
+            'Refund': Refund,
             'PostageLabel': PostageLabel }
 
   prefixes = { 'adr': Address,
@@ -79,6 +81,7 @@ def convert_to_easypost_object(response, api_key):
             'prcl': Parcel,
             'shp': Shipment,
             'rate': Rate,
+            'rfnd': Refund,
             'pl': PostageLabel }
 
   if isinstance(response, list):
@@ -198,7 +201,7 @@ class Requestor(object):
     my_api_key = self.api_key or api_key
 
     if my_api_key is None:
-      raise Error('No API key provided. Set an API key via "easypost.api_key = \'APIKEY\'. Your API keys can be found in your EasyPost dashboard, or you can contact us at contact@easypost.co for assistance.')
+      raise Error('No API key provided. Set an API key via "easypost.api_key = \'APIKEY\'. Your API keys can be found in your EasyPost dashboard, or you can contact us at contact@easypost.com for assistance.')
 
     abs_url = self.api_url(url)
     params = self._objects_to_ids(params)
@@ -229,7 +232,7 @@ class Requestor(object):
     elif request_lib == 'requests':
       http_body, http_status = self.requests_request(method, abs_url, headers, params)
     else:
-      raise Error("Bug discovered: invalid request_lib: %s. Please report to contact@easypost.co." % (request_lib))
+      raise Error("Bug discovered: invalid request_lib: %s. Please report to contact@easypost.com." % (request_lib))
 
     return http_body, http_status, my_api_key
 
@@ -251,14 +254,14 @@ class Requestor(object):
     elif method == 'post':
       data = self.encode(params)
     else:
-      raise Error("Bug discovered: invalid request method: %s. Please report to contact@easypost.co." % (method))
+      raise Error("Bug discovered: invalid request method: %s. Please report to contact@easypost.com." % (method))
 
     try:
       result = requests.request(method, abs_url, headers=headers, data=data, timeout=60, verify=False)
       http_body = result.content
       http_status = result.status_code
     except Exception as e:
-      raise Error("Unexpected error communicating with EasyPost. If this problem persists please let us know at contact@easypost.co.")
+      raise Error("Unexpected error communicating with EasyPost. If this problem persists please let us know at contact@easypost.com.")
     return http_body, http_status
 
   def urlfetch_request(self, method, abs_url, headers, params):
@@ -268,7 +271,7 @@ class Requestor(object):
     elif method == 'get' or method == 'delete':
       abs_url = self.build_url(abs_url, params)
     else:
-      raise Error("Bug discovered: invalid request method: %s. Please report to contact@easypost.co." % (method))
+      raise Error("Bug discovered: invalid request method: %s. Please report to contact@easypost.com." % (method))
 
     args['url'] = abs_url
     args['method'] = method
@@ -279,7 +282,7 @@ class Requestor(object):
     try:
       result = urlfetch.fetch(**args)
     except:
-      raise Error("Unexpected error communicating with EasyPost. If this problem persists, let us know at contact@easypost.co.")
+      raise Error("Unexpected error communicating with EasyPost. If this problem persists, let us know at contact@easypost.com.")
 
     return result.content, result.status_code
 
@@ -550,15 +553,39 @@ class Shipment(AllResource, CreateResource):
     response, api_key = requestor.request('post', url, params)
     self.refresh_from(response, api_key, True)
     return self
+
+  def refund(self, **params):
+    requestor = Requestor(self.api_key)
+    url = "%s/%s" % (self.instance_url(), "refund")
+    
+    response, api_key = requestor.request('get', url, params)
+    self.refresh_from(response, api_key, True)
+    return self
   
-  def lowest_rate(self):
-    lowest_rate = False
+  def lowest_rate(self, carriers=None):
+    lowest_rate = None
+
+    try:
+      carriers = carriers.split(',')
+      map(string.lower, carriers)
+    except AttributeError:
+      pass
+
     for rate in self.rates:
-      if lowest_rate == False or float(rate.rate) < float(lowest_rate.rate):
-        lowest_rate = rate
+      if lowest_rate == None or float(rate.rate) < float(lowest_rate.rate):
+        if not carriers:          
+          lowest_rate = rate
+        else:
+          rate_carrier = rate.carrier.lower()
+          if rate_carrier in carriers:
+            lowest_rate = rate
+            
     return lowest_rate
 
 class Rate(AllResource, CreateResource):
+  pass
+
+class Refund(AllResource, CreateResource):
   pass
 
 class PostageLabel(AllResource, CreateResource):
