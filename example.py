@@ -91,3 +91,20 @@ shipment.buy(rate = shipment.lowest_rate(['usps', 'ups']))
 
 print shipment.tracking_code
 print shipment.postage_label.label_url
+
+# create batch of shipments
+batch = easypost.Batch.create(batch = [
+  {
+    'to_address'   : to_address,
+    'from_address' : from_address,
+    'parcel'       : parcel,
+    'reference'    : 'ordernumber67'
+  },
+  {
+    'to_address'   : to_address,
+    'from_address' : from_address,
+    'parcel'       : parcel,
+    'reference'    : 'ordernumber68'
+  }
+])
+print batch.status.created

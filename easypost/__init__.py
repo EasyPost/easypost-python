@@ -44,7 +44,6 @@ except ImportError:
 # config
 api_key = None
 api_base = 'https://www.geteasypost.com/api/v2'
-# api_base = 'https://easyposttest.herokuapp.com/api/v2'
 # api_base = 'http://localhost:5000/api/v2'
 
 class Error(Exception):
@@ -72,6 +71,7 @@ def convert_to_easypost_object(response, api_key):
             'Shipment': Shipment,
             'Rate': Rate,
             'Refund': Refund,
+            'Batch': Batch,
             'PostageLabel': PostageLabel }
 
   prefixes = { 'adr': Address,
@@ -82,6 +82,7 @@ def convert_to_easypost_object(response, api_key):
             'shp': Shipment,
             'rate': Rate,
             'rfnd': Refund,
+            'batch': Batch,
             'pl': PostageLabel }
 
   if isinstance(response, list):
@@ -223,8 +224,8 @@ class Requestor(object):
 
     headers = {
       'X-EasyPost-Client-User-Agent' : json.dumps(ua),
-      'User-Agent' : 'EasyPost/v2 PythonClient/%s' % (VERSION, ),
-      'Authorization' : 'Bearer %s' % (my_api_key, )
+      'User-Agent' : 'EasyPost/v2 PythonClient/%s' % (VERSION),
+      'Authorization' : 'Bearer %s' % (my_api_key)
     }
     
     if request_lib == 'urlfetch':
@@ -452,7 +453,7 @@ class Resource(EasyPostObject):
   @classmethod
   def class_url(cls):
     cls_name = cls.class_name()
-    if cls_name[-1:] == "s":
+    if cls_name[-1:] == "s" or cls_name[-1:] == "h":
       return "/%ses" % cls_name
     else:
       return "/%ss" % cls_name
@@ -480,8 +481,11 @@ class CreateResource(Resource):
   def create(cls, api_key=None, **params):
     requestor = Requestor(api_key)
     url = cls.class_url()
-    wrapped_params = {}
-    wrapped_params[cls.class_name()] = params
+    if params.get(cls.class_name(), None) != None:
+      wrapped_params = params
+    else:
+      wrapped_params = {}
+      wrapped_params[cls.class_name()] = params
     response, api_key = requestor.request('post', url, wrapped_params)
     return convert_to_easypost_object(response, api_key)
 
@@ -586,6 +590,9 @@ class Rate(AllResource, CreateResource):
   pass
 
 class Refund(AllResource, CreateResource):
+  pass
+
+class Batch(AllResource, CreateResource):
   pass
 
 class PostageLabel(AllResource, CreateResource):
