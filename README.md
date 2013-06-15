@@ -1,8 +1,14 @@
-Installation
-------------------
+# EasyPost Python Client Library
 
-Required Libraries:
-- [Requests](http://docs.python-requests.org/en/latest/) (if not on Google App Engine)
+EasyPost is a simple shipping API. You can sign up for an account at https://easypost.com
+
+Requirements
+------------
+
+* [Requests](http://docs.python-requests.org/en/latest/) (if not on Google App Engine)
+
+Installation
+------------
 
 Clone the EasyPost python client repository:
 
@@ -17,7 +23,7 @@ Import the EasyPost client:
     import easypost
 
 Example
-----------------
+-------
 
 ```python
 import easypost
@@ -106,18 +112,15 @@ shipment = easypost.Shipment.create(
 shipment.buy(rate = shipment.rates[0])
 # alternatively: shipment.buy(rate = shipment.lowest_rate())
 
-# this is temporarily necessary to be able to access shipment.tracking_code
-shipment.refresh()
-
 print shipment.tracking_code
 print shipment.postage_label.label_url
 ```
 
 Documentation
---------------------
+-------------
 
 Up-to-date documentation at: https://www.geteasypost.com/docs/v2
 
 Tests
---------------------
-None yet!
+-----
+Coming soon!

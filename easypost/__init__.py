@@ -43,8 +43,7 @@ except ImportError:
 
 # config
 api_key = None
-api_base = 'https://www.geteasypost.com/api/v2'
-# api_base = 'http://localhost:5000/api/v2'
+api_base = 'https://api.easypost.com/v2'
 
 class Error(Exception):
   def __init__(self, message=None, http_status=None, http_body=None):
@@ -202,7 +201,7 @@ class Requestor(object):
     my_api_key = self.api_key or api_key
 
     if my_api_key is None:
-      raise Error('No API key provided. Set an API key via "easypost.api_key = \'APIKEY\'. Your API keys can be found in your EasyPost dashboard, or you can contact us at contact@easypost.com for assistance.')
+      raise Error('No API key provided. Set an API key via "easypost.api_key = \'APIKEY\'. Your API keys can be found in your EasyPost dashboard, or you can email us at contact@easypost.com for assistance.')
 
     abs_url = self.api_url(url)
     params = self._objects_to_ids(params)
@@ -358,21 +357,8 @@ class EasyPostObject(object):
     instance.refresh_from(values, api_key)
     return instance
 
-  def refresh_from(self, values, api_key, partial=False):
+  def refresh_from(self, values, api_key):
     self.api_key = api_key
-
-    if partial:
-      removed = set()
-    else:
-      removed = self._values - set(values)
-
-    for k in removed:
-      if k in self._immutable_values:
-        continue
-      del self.__dict__[k]
-      self._values.discard(k)
-      self._transient_values.add(k)
-      self._unsaved_values.discard(k)
 
     for k, v in values.iteritems():
       if k in self._immutable_values:
@@ -480,12 +466,9 @@ class CreateResource(Resource):
   @classmethod
   def create(cls, api_key=None, **params):
     requestor = Requestor(api_key)
-    url = cls.class_url()
-    if params.get(cls.class_name(), None) != None:
-      wrapped_params = params
-    else:
-      wrapped_params = {}
-      wrapped_params[cls.class_name()] = params
+    url = cls.class_url()  
+    wrapped_params = {}
+    wrapped_params[cls.class_name()] = params
     response, api_key = requestor.request('post', url, wrapped_params)
     return convert_to_easypost_object(response, api_key)
 
@@ -545,17 +528,14 @@ class Shipment(AllResource, CreateResource):
     requestor = Requestor(self.api_key)
     url = "%s/%s" % (self.instance_url(), "rates")
     response, api_key = requestor.request('post', url)
-    self.refresh_from(response, api_key, True)
+    self.refresh_from(response, api_key)
     return self
 
-  def buy(self, rate=None, **params):
+  def buy(self, **params):
     requestor = Requestor(self.api_key)
     url = "%s/%s" % (self.instance_url(), "buy")
-    # sane default
-    if rate != None:
-      params['rate'] = rate
     response, api_key = requestor.request('post', url, params)
-    self.refresh_from(response, api_key, True)
+    self.refresh_from(response, api_key)
     return self
 
   def refund(self, **params):
@@ -563,27 +543,47 @@ class Shipment(AllResource, CreateResource):
     url = "%s/%s" % (self.instance_url(), "refund")
     
     response, api_key = requestor.request('get', url, params)
-    self.refresh_from(response, api_key, True)
+    self.refresh_from(response, api_key)
+    return self
+
+  def track(self, **params):
+    requestor = Requestor(self.api_key)
+    url = "%s/%s" % (self.instance_url(), "track")
+    
+    response, api_key = requestor.request('get', url, params)
+    self.refresh_from(response, api_key)
     return self
   
-  def lowest_rate(self, carriers=None):
+  def lowest_rate(self, carriers=[], services=[]):
     lowest_rate = None
 
     try:
       carriers = carriers.split(',')
-      map(string.lower, carriers)
     except AttributeError:
       pass
+    carriers = map(string.lower, carriers)
+
+    try:
+      services = services.split(',')
+    except AttributeError:
+      pass
+    services = map(string.lower, services)
 
     for rate in self.rates:
+      rate_carrier = rate.carrier.lower()
+      if len(carriers) > 0 and rate_carrier not in carriers:
+        continue
+
+      rate_service = rate.service.lower()
+      if len(services) > 0 and rate_service not in services:
+        continue      
+
       if lowest_rate == None or float(rate.rate) < float(lowest_rate.rate):
-        if not carriers:          
-          lowest_rate = rate
-        else:
-          rate_carrier = rate.carrier.lower()
-          if rate_carrier in carriers:
-            lowest_rate = rate
-            
+        lowest_rate = rate
+        
+    if lowest_rate == None:
+      raise Error('No rates found.')
+
     return lowest_rate
 
 class Rate(AllResource, CreateResource):
@@ -593,7 +593,21 @@ class Refund(AllResource, CreateResource):
   pass
 
 class Batch(AllResource, CreateResource):
-  pass
+  @classmethod
+  def create_and_buy(cls, api_key=None, **params):
+    requestor = Requestor(api_key)
+    url = "%s/%s" % (cls.class_url(), "create_and_buy")
+    wrapped_params = {}
+    wrapped_params[cls.class_name()] = params
+    response, api_key = requestor.request('post', url, wrapped_params)
+    return convert_to_easypost_object(response, api_key)
+
+  def label(self, **params):
+    requestor = Requestor(self.api_key)
+    url = "%s/%s" % (self.instance_url(), "label")
+    response, api_key = requestor.request('post', url, params)
+    self.refresh_from(response, api_key)
+    return self
 
 class PostageLabel(AllResource, CreateResource):
   pass

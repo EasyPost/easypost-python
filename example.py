@@ -1,5 +1,6 @@
 import easypost
 easypost.api_key = 'cueqNZUb3ldeWTNX7MU3Mel8UXtaAMUi'
+# easypost.api_base = 'http://localhost:5000/v2'
 
 # create addresses
 to_address = easypost.Address.create(
@@ -84,7 +85,7 @@ shipment = easypost.Shipment.create(
 # buy postage label with one of the rate objects
 # shipment.buy(rate = shipment.rates[0])
 # shipment.buy(rate = shipment.lowest_rate('usps'))
-shipment.buy(rate = shipment.lowest_rate(['usps', 'ups']))
+shipment.buy(rate = shipment.lowest_rate(['USPS', 'ups'], 'priorityMAILInternational'))
 
 # shipment.refund()
 # print shipment.refund_status
@@ -93,18 +94,25 @@ print shipment.tracking_code
 print shipment.postage_label.label_url
 
 # create batch of shipments
-batch = easypost.Batch.create(batch = [
-  {
-    'to_address'   : to_address,
-    'from_address' : from_address,
-    'parcel'       : parcel,
-    'reference'    : 'ordernumber67'
-  },
-  {
-    'to_address'   : to_address,
-    'from_address' : from_address,
-    'parcel'       : parcel,
-    'reference'    : 'ordernumber68'
-  }
-])
-print batch.status.created
+# batch = easypost.Batch.create_and_buy(shipment = [
+#   {
+#     'to_address'   : to_address,
+#     'from_address' : from_address,
+#     'parcel'       : parcel,
+#     'customs_info' : customs_info,
+#     'reference'    : 'ordernumber67',
+#     'carrier'      : 'USPS',
+#     'service'      : 'PriorityMailInternational'
+#   },
+#   {
+#     'to_address'   : to_address,
+#     'from_address' : from_address,
+#     'parcel'       : parcel,
+#     'customs_info' : customs_info,
+#     'reference'    : 'ordernumber68',
+#     'carrier'      : 'USPS',
+#     'service'      : 'ExpressMailInternational'
+#   }
+# ])
+# batch = easypost.Batch.retrieve('batch_kjRY9o1M')
+# print batch
