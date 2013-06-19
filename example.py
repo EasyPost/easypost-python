@@ -92,27 +92,3 @@ shipment.buy(rate = shipment.lowest_rate(['USPS', 'ups'], 'priorityMAILInternati
 
 print shipment.tracking_code
 print shipment.postage_label.label_url
-
-# create batch of shipments
-# batch = easypost.Batch.create_and_buy(shipment = [
-#   {
-#     'to_address'   : to_address,
-#     'from_address' : from_address,
-#     'parcel'       : parcel,
-#     'customs_info' : customs_info,
-#     'reference'    : 'ordernumber67',
-#     'carrier'      : 'USPS',
-#     'service'      : 'PriorityMailInternational'
-#   },
-#   {
-#     'to_address'   : to_address,
-#     'from_address' : from_address,
-#     'parcel'       : parcel,
-#     'customs_info' : customs_info,
-#     'reference'    : 'ordernumber68',
-#     'carrier'      : 'USPS',
-#     'service'      : 'ExpressMailInternational'
-#   }
-# ])
-# batch = easypost.Batch.retrieve('batch_kjRY9o1M')
-# print batch
