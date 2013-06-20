@@ -609,5 +609,19 @@ class Batch(AllResource, CreateResource):
     self.refresh_from(response, api_key)
     return self
 
+  def remove_shipments(self, **params):
+    requestor = Requestor(self.api_key)
+    url = "%s/%s" % (self.instance_url(), "remove_shipments")
+    response, api_key = requestor.request('post', url, params)
+    self.refresh_from(response, api_key)
+    return self
+
+  def add_shipments(self, **params):
+    requestor = Requestor(self.api_key)
+    url = "%s/%s" % (self.instance_url(), "add_shipments")
+    response, api_key = requestor.request('post', url, params)
+    self.refresh_from(response, api_key)
+    return self
+
 class PostageLabel(AllResource, CreateResource):
   pass
