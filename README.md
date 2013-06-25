@@ -12,7 +12,7 @@ Installation
 
 Clone the EasyPost python client repository:
 
-    git clone https://github.com/EasyPost/easypost-python-beta
+    git clone https://github.com/EasyPost/easypost-python
 
 Install:
     
@@ -119,7 +119,7 @@ print shipment.postage_label.label_url
 Documentation
 -------------
 
-Up-to-date documentation at: https://www.geteasypost.com/docs/v2
+Up-to-date documentation at: https://www.geteasypost.com/docs
 
 Tests
 -----

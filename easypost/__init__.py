@@ -545,14 +545,6 @@ class Shipment(AllResource, CreateResource):
     response, api_key = requestor.request('get', url, params)
     self.refresh_from(response, api_key)
     return self
-
-  def track(self, **params):
-    requestor = Requestor(self.api_key)
-    url = "%s/%s" % (self.instance_url(), "track")
-    
-    response, api_key = requestor.request('get', url, params)
-    self.refresh_from(response, api_key)
-    return self
   
   def lowest_rate(self, carriers=[], services=[]):
     lowest_rate = None
@@ -586,7 +578,7 @@ class Shipment(AllResource, CreateResource):
 
     return lowest_rate
 
-class Rate(AllResource, CreateResource):
+class Rate():
   pass
 
 class Refund(AllResource, CreateResource):
