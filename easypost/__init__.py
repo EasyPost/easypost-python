@@ -578,7 +578,7 @@ class Shipment(AllResource, CreateResource):
 
     return lowest_rate
 
-class Rate():
+class Rate(CreateResource):
   pass
 
 class Refund(AllResource, CreateResource):
