@@ -62,7 +62,6 @@ customs_item = easypost.CustomsItem.create(
   weight = 21.1
 )
 customs_info = easypost.CustomsInfo.create(
-  integrated_form_type = "form_2976",
   customs_certify = 1,
   customs_signer = "Hector Hammerfall",
   contents_type = "gift",
