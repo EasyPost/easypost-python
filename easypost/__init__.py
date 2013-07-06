@@ -495,6 +495,25 @@ class DeleteResource(Resource):
 
 # specific resources
 class Address(AllResource, CreateResource):
+  def create_and_verify(self):
+    requestor = Requestor(api_key)
+    url = "%s/%s" % (cls.class_url(), "create_and_verify")
+    wrapped_params = {}
+    wrapped_params[cls.class_name()] = params
+    response, api_key = requestor.request('post', url, wrapped_params)
+
+    response_address = response.get('address', None)
+    response_message = response.get('message', None)
+
+    if response_address != None:
+      verified_address = convert_to_easypost_object(response_address, api_key)
+      if response_message != None:
+        verified_address.message = response_message
+        verified_address._immutable_values.update('message')
+      return verified_address
+    else:
+      return convert_to_easypost_object(response, api_key)
+
   def verify(self):
     requestor = Requestor(self.api_key)
     url = "%s/%s" % (self.instance_url(), "verify")
@@ -527,7 +546,7 @@ class Shipment(AllResource, CreateResource):
   def get_rates(self):
     requestor = Requestor(self.api_key)
     url = "%s/%s" % (self.instance_url(), "rates")
-    response, api_key = requestor.request('post', url)
+    response, api_key = requestor.request('get', url)
     self.refresh_from(response, api_key)
     return self
 
@@ -541,6 +560,22 @@ class Shipment(AllResource, CreateResource):
   def refund(self, **params):
     requestor = Requestor(self.api_key)
     url = "%s/%s" % (self.instance_url(), "refund")
+    
+    response, api_key = requestor.request('get', url, params)
+    self.refresh_from(response, api_key)
+    return self
+  
+  def insure(self, **params):
+    requestor = Requestor(self.api_key)
+    url = "%s/%s" % (self.instance_url(), "insure")
+    
+    response, api_key = requestor.request('post', url, params)
+    self.refresh_from(response, api_key)
+    return self
+
+  def label(self, **params):
+    requestor = Requestor(self.api_key)
+    url = "%s/%s" % (self.instance_url(), "label")
     
     response, api_key = requestor.request('get', url, params)
     self.refresh_from(response, api_key)
