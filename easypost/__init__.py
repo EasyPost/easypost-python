@@ -495,6 +495,7 @@ class DeleteResource(Resource):
 
 # specific resources
 class Address(AllResource, CreateResource):
+  @classmethod
   def create_and_verify(self):
     requestor = Requestor(api_key)
     url = "%s/%s" % (cls.class_url(), "create_and_verify")
