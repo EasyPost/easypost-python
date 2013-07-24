@@ -544,6 +544,13 @@ class Parcel(AllResource, CreateResource):
   pass
 
 class Shipment(AllResource, CreateResource):
+  @classmethod
+  def track_with_code(cls, api_key=None, **params):
+    requestor = Requestor(api_key)
+    url = "%s/%s" % (cls.class_url(), "track")
+    response, api_key = requestor.request('get', url, params)
+    return response
+  
   def get_rates(self):
     requestor = Requestor(self.api_key)
     url = "%s/%s" % (self.instance_url(), "rates")
@@ -581,7 +588,7 @@ class Shipment(AllResource, CreateResource):
     response, api_key = requestor.request('get', url, params)
     self.refresh_from(response, api_key)
     return self
-  
+
   def lowest_rate(self, carriers=[], services=[]):
     lowest_rate = None
 
