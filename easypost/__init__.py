@@ -71,6 +71,7 @@ def convert_to_easypost_object(response, api_key):
             'Rate': Rate,
             'Refund': Refund,
             'Batch': Batch,
+            'Tracker': Tracker,
             'PostageLabel': PostageLabel }
 
   prefixes = { 'adr': Address,
@@ -82,6 +83,7 @@ def convert_to_easypost_object(response, api_key):
             'rate': Rate,
             'rfnd': Refund,
             'batch': Batch,
+            'trk': Tracker,
             'pl': PostageLabel }
 
   if isinstance(response, list):
@@ -660,3 +662,7 @@ class Batch(AllResource, CreateResource):
 
 class PostageLabel(AllResource, CreateResource):
   pass
+
+class Tracker(AllResource, CreateResource):
+  pass
+
