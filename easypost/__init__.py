@@ -161,7 +161,11 @@ class Requestor(object):
           encoder(out, key, value)
       except KeyError:
         # don't need special encoding
-        value = unicode(value)
+        try:
+          value = unicode(value)
+        except:
+          pass
+
         out.append((key, value))
     return out
 
@@ -228,7 +232,7 @@ class Requestor(object):
       'User-Agent' : 'EasyPost/v2 PythonClient/%s' % (VERSION),
       'Authorization' : 'Bearer %s' % (my_api_key)
     }
-    
+
     if request_lib == 'urlfetch':
       http_body, http_status = self.urlfetch_request(method, abs_url, headers, params)
     elif request_lib == 'requests':
@@ -468,7 +472,7 @@ class CreateResource(Resource):
   @classmethod
   def create(cls, api_key=None, **params):
     requestor = Requestor(api_key)
-    url = cls.class_url()  
+    url = cls.class_url()
     wrapped_params = {}
     wrapped_params[cls.class_name()] = params
     response, api_key = requestor.request('post', url, wrapped_params)
@@ -521,7 +525,7 @@ class Address(AllResource, CreateResource):
     requestor = Requestor(self.api_key)
     url = "%s/%s" % (self.instance_url(), "verify")
     response, api_key = requestor.request('get', url)
-    
+
     response_address = response.get('address', None)
     response_message = response.get('message', None)
     if response_address != None:
@@ -552,7 +556,7 @@ class Shipment(AllResource, CreateResource):
     url = "%s/%s" % (cls.class_url(), "track")
     response, api_key = requestor.request('get', url, params)
     return response
-  
+
   def get_rates(self):
     requestor = Requestor(self.api_key)
     url = "%s/%s" % (self.instance_url(), "rates")
@@ -570,15 +574,15 @@ class Shipment(AllResource, CreateResource):
   def refund(self, **params):
     requestor = Requestor(self.api_key)
     url = "%s/%s" % (self.instance_url(), "refund")
-    
+
     response, api_key = requestor.request('get', url, params)
     self.refresh_from(response, api_key)
     return self
-  
+
   def insure(self, **params):
     requestor = Requestor(self.api_key)
     url = "%s/%s" % (self.instance_url(), "insure")
-    
+
     response, api_key = requestor.request('post', url, params)
     self.refresh_from(response, api_key)
     return self
@@ -586,7 +590,7 @@ class Shipment(AllResource, CreateResource):
   def label(self, **params):
     requestor = Requestor(self.api_key)
     url = "%s/%s" % (self.instance_url(), "label")
-    
+
     response, api_key = requestor.request('get', url, params)
     self.refresh_from(response, api_key)
     return self
@@ -613,11 +617,11 @@ class Shipment(AllResource, CreateResource):
 
       rate_service = rate.service.lower()
       if len(services) > 0 and rate_service not in services:
-        continue      
+        continue
 
       if lowest_rate == None or float(rate.rate) < float(lowest_rate.rate):
         lowest_rate = rate
-        
+
     if lowest_rate == None:
       raise Error('No rates found.')
 
