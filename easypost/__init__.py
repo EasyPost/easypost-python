@@ -71,11 +71,13 @@ def convert_to_easypost_object(response, api_key):
             'Rate': Rate,
             'Refund': Refund,
             'Batch': Batch,
+            'Event': Event,
             'Tracker': Tracker,
             'PostageLabel': PostageLabel }
 
   prefixes = { 'adr': Address,
             'sf': ScanForm,
+            'evt': Event,
             'cstitem': CustomsItem,
             'cstinfo': CustomsInfo,
             'prcl': Parcel,
@@ -669,4 +671,9 @@ class PostageLabel(AllResource, CreateResource):
 
 class Tracker(AllResource, CreateResource):
   pass
+
+class Event(Resource):
+
+  def receive(self, values):
+    self.refresh_from(values, None)
 
