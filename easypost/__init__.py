@@ -645,6 +645,13 @@ class Batch(AllResource, CreateResource):
     response, api_key = requestor.request('post', url, wrapped_params)
     return convert_to_easypost_object(response, api_key)
 
+  def buy(self, **params):
+    requestor = Requestor(self.api_key)
+    url = "%s/%s" % (self.instance_url(), "buy")
+    response, api_key = requestor.request('post', url, params)
+    self.refresh_from(response, api_key)
+    return self
+
   def label(self, **params):
     requestor = Requestor(self.api_key)
     url = "%s/%s" % (self.instance_url(), "label")
