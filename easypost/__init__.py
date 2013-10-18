@@ -681,6 +681,7 @@ class Tracker(AllResource, CreateResource):
 
 class Event(Resource):
 
+  @classmethod
   def receive(self, values):
-    self.refresh_from(values, None)
+    return convert_to_easypost_object(json.loads(values), api_key)
 
