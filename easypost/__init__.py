@@ -142,7 +142,7 @@ class Requestor(object):
     out.append((key, utc_timestamp))
 
   @classmethod
-  def encode_none(cls, out, key):
+  def encode_none(cls, out, key, none_value):
     pass # do not include None-valued params in request
 
   @classmethod
