@@ -35,5 +35,4 @@ setup(name='easypost',
       packages=['easypost'],
       package_data={'easypost' : ['../VERSION']},
       install_requires=install_requires,
-      test_suite='test',
-)
+      test_suite='test')
