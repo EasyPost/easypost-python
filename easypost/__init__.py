@@ -1,49 +1,25 @@
-# imports
+import datetime
+import httplib
 import os
 import platform
-import sys
-import urllib
-import urlparse
-import time
-import datetime
-import types
 import re
 import string
+import sys
+import time
+import types
+import urllib
+import urlparse
 
+from multiprocessing.pool import ThreadPool as Pool
 from version import VERSION
+
 import importer
 json = importer.import_json()
-
-# cStringIO is faster - use where available!
-try:
-  import cStringIO as StringIO
-except ImportError:
-  import StringIO
-
-# use urlfetch as request_lib on google app engine, otherwise use requests
-request_lib = None
-try:
-  from google.appengine.api import urlfetch
-  request_lib = 'urlfetch'
-except ImportError:
-  try:
-    import requests
-    request_lib = 'requests'
-  except ImportError:
-    raise ImportError('EasyPost requires an up to date requests library. Update requests via "pip install -U requests" or contact us at contact@easypost.com.')
-
-  try:
-    version = requests.__version__
-    major, minor, patch = [int(i) for i in version.split('.')]
-  except Exception:
-    raise ImportError('EasyPost requires an up to date requests library. Update requests via "pip install -U requests" or contact us at contact@easypost.com.')
-  else:
-    if major < 1:
-      raise ImportError('EasyPost requires an up to date requests library. Update requests via "pip install -U requests" or contact us at contact@easypost.com.')
 
 # config
 api_key = None
 api_base = 'https://api.easypost.com/v2'
+pool_size = 20  # pool size for batch creation
 
 class Error(Exception):
   def __init__(self, message=None, http_status=None, http_body=None):
@@ -107,10 +83,12 @@ def convert_to_easypost_object(response, api_key):
 class Requestor(object):
   def __init__(self, local_api_key=None):
     self.api_key = local_api_key
+    self._conn = None
 
   @classmethod
   def api_url(cls, url=''):
-    return '%s%s' % (api_base, url)
+    p = urlparse.urlparse(api_base)
+    return '%s%s' % (p.path, url)
 
   @classmethod
   def _utf8(cls, value):
@@ -218,7 +196,7 @@ class Requestor(object):
       'client_version' : VERSION,
       'lang' : 'python',
       'publisher' : 'easypost',
-      'request_lib': request_lib,
+      'request_lib': 'httplib',
     }
     for attr, func in [['lang_version', platform.python_version],
                        ['platform', platform.platform],
@@ -235,14 +213,41 @@ class Requestor(object):
       'Authorization' : 'Bearer %s' % (my_api_key)
     }
 
-    if request_lib == 'urlfetch':
-      http_body, http_status = self.urlfetch_request(method, abs_url, headers, params)
-    elif request_lib == 'requests':
-      http_body, http_status = self.requests_request(method, abs_url, headers, params)
-    else:
-      raise Error("Bug discovered: invalid request_lib: %s. Please report to contact@easypost.com." % (request_lib))
+    http_body, http_status = self.make_request(method, abs_url, headers, params)
 
     return http_body, http_status, my_api_key
+
+  def make_connection(self):
+    if self._conn:
+      return
+    p = urlparse.urlparse(api_base)
+    if p.scheme == 'https':
+      self._conn = httplib.HTTPSConnection(p.hostname, p.port or 443, timeout=60)
+    elif p.scheme == 'http':
+      self._conn = httplib.HTTPConnection(p.hostname, p.port or 80, timeout=60)
+    else:
+      raise Error("Bug discovered: invalid request scheme: %s. Please report to contact@easypost.com." % (p.scheme))
+
+  def make_request(self, method, abs_url, headers, params):
+    method = method.upper()
+    if method == 'GET' or method == 'DELETE':
+      if params:
+        abs_url = self.build_url(abs_url, params)
+      data = None
+    elif method == 'POST':
+      data = self.encode(params)
+    else:
+      raise Error("Bug discovered: invalid request method: %s. Please report to contact@easypost.com." % (method))
+
+    try:
+      self.make_connection()
+      self._conn.request(method, abs_url, body=data, headers=headers)
+      r = self._conn.getresponse()
+      http_body = r.read()
+      http_status = r.status
+    except Exception as e:
+      raise Error("Unexpected error communicating with EasyPost. If this problem persists please let us know at contact@easypost.com.")
+    return http_body, http_status
 
   def interpret_response(self, http_body, http_status):
     try:
@@ -252,47 +257,6 @@ class Requestor(object):
     if not (200 <= http_status < 300):
       self.handle_api_error(http_status, http_body, response)
     return response
-
-  def requests_request(self, method, abs_url, headers, params):
-    method = method.lower()
-    if method == 'get' or method == 'delete':
-      if params:
-        abs_url = self.build_url(abs_url, params)
-      data = None
-    elif method == 'post':
-      data = self.encode(params)
-    else:
-      raise Error("Bug discovered: invalid request method: %s. Please report to contact@easypost.com." % (method))
-
-    try:
-      result = requests.request(method, abs_url, headers=headers, data=data, timeout=60, verify=False)
-      http_body = result.content
-      http_status = result.status_code
-    except Exception as e:
-      raise Error("Unexpected error communicating with EasyPost. If this problem persists please let us know at contact@easypost.com.")
-    return http_body, http_status
-
-  def urlfetch_request(self, method, abs_url, headers, params):
-    args = {}
-    if method == 'post':
-      args['payload'] = self.encode(params)
-    elif method == 'get' or method == 'delete':
-      abs_url = self.build_url(abs_url, params)
-    else:
-      raise Error("Bug discovered: invalid request method: %s. Please report to contact@easypost.com." % (method))
-
-    args['url'] = abs_url
-    args['method'] = method
-    args['headers'] = headers
-    args['validate_certificate'] = False
-    args['deadline'] = 55 # GAE times out after 60
-
-    try:
-      result = urlfetch.fetch(**args)
-    except:
-      raise Error("Unexpected error communicating with EasyPost. If this problem persists, let us know at contact@easypost.com.")
-
-    return result.content, result.status_code
 
   def handle_api_error(self, http_status, http_body, response):
     try:
@@ -678,6 +642,19 @@ class PostageLabel(AllResource, CreateResource):
 
 class Tracker(AllResource, CreateResource):
   pass
+
+class BatchClient(Batch):
+  @classmethod
+  def create_and_buy(cls, api_key=None, **params):
+    # FIXME - rework the batch api here - this is just a test...
+    shipments = params['shipment']
+    pool = Pool(pool_size)
+    def f(shipment):
+      s = Shipment.create(**shipment)
+      s.buy(rate=s.lowest_rate())
+      return s
+    results = pool.map(f, shipments)
+    return results
 
 class Event(Resource):
 
