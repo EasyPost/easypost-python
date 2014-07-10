@@ -1,7 +1,5 @@
 # imports
-import os
 import platform
-import sys
 import urllib
 import urlparse
 import time
@@ -13,12 +11,6 @@ import string
 from version import VERSION
 import importer
 json = importer.import_json()
-
-# cStringIO is faster - use where available!
-try:
-  import cStringIO as StringIO
-except ImportError:
-  import StringIO
 
 # use urlfetch as request_lib on google app engine, otherwise use requests
 request_lib = None
@@ -62,31 +54,35 @@ class Error(Exception):
       pass
 
 def convert_to_easypost_object(response, api_key):
-  types = { 'Address': Address,
-            'ScanForm': ScanForm,
-            'CustomsItem': CustomsItem,
-            'CustomsInfo': CustomsInfo,
-            'Parcel': Parcel,
-            'Shipment': Shipment,
-            'Rate': Rate,
-            'Refund': Refund,
-            'Batch': Batch,
-            'Event': Event,
-            'Tracker': Tracker,
-            'PostageLabel': PostageLabel }
+  types = {
+    'Address': Address,
+    'ScanForm': ScanForm,
+    'CustomsItem': CustomsItem,
+    'CustomsInfo': CustomsInfo,
+    'Parcel': Parcel,
+    'Shipment': Shipment,
+    'Rate': Rate,
+    'Refund': Refund,
+    'Batch': Batch,
+    'Event': Event,
+    'Tracker': Tracker,
+    'PostageLabel': PostageLabel
+  }
 
-  prefixes = { 'adr': Address,
-            'sf': ScanForm,
-            'evt': Event,
-            'cstitem': CustomsItem,
-            'cstinfo': CustomsInfo,
-            'prcl': Parcel,
-            'shp': Shipment,
-            'rate': Rate,
-            'rfnd': Refund,
-            'batch': Batch,
-            'trk': Tracker,
-            'pl': PostageLabel }
+  prefixes = {
+    'adr': Address,
+    'sf': ScanForm,
+    'evt': Event,
+    'cstitem': CustomsItem,
+    'cstinfo': CustomsInfo,
+    'prcl': Parcel,
+    'shp': Shipment,
+    'rate': Rate,
+    'rfnd': Refund,
+    'batch': Batch,
+    'trk': Tracker,
+    'pl': PostageLabel
+  }
 
   if isinstance(response, list):
     return [convert_to_easypost_object(i, api_key) for i in response]
@@ -504,7 +500,7 @@ class DeleteResource(Resource):
 # specific resources
 class Address(AllResource, CreateResource):
   @classmethod
-  def create_and_verify(self):
+  def create_and_verify(cls, api_key=None, **params):
     requestor = Requestor(api_key)
     url = "%s/%s" % (cls.class_url(), "create_and_verify")
     wrapped_params = {}
