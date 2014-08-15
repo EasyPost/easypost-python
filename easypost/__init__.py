@@ -669,6 +669,13 @@ class Batch(AllResource, CreateResource):
     self.refresh_from(response, api_key)
     return self
 
+  def create_scan_form(self, **params):
+    requestor = Requestor(self.api_key)
+    url = "%s/%s" % (self.instance_url(), "scan_form")
+    response, api_key = requestor.request('post', url, params)
+    self.refresh_from(response, api_key)
+    return self
+
 class PostageLabel(AllResource, CreateResource):
   pass
 
