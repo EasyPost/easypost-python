@@ -500,11 +500,12 @@ class DeleteResource(Resource):
 # specific resources
 class Address(AllResource, CreateResource):
   @classmethod
-  def create_and_verify(cls, api_key=None, **params):
+  def create_and_verify(cls, api_key=None, carrier=None, **params):
     requestor = Requestor(api_key)
     url = "%s/%s" % (cls.class_url(), "create_and_verify")
     wrapped_params = {}
     wrapped_params[cls.class_name()] = params
+    wrapped_params[carrier] = carrier
     response, api_key = requestor.request('post', url, wrapped_params)
 
     response_address = response.get('address', None)
@@ -519,9 +520,9 @@ class Address(AllResource, CreateResource):
     else:
       return convert_to_easypost_object(response, api_key)
 
-  def verify(self):
+  def verify(self, carrier=None):
     requestor = Requestor(self.api_key)
-    url = "%s/%s" % (self.instance_url(), "verify")
+    url = "%s/%s?carrier=%s" % (self.instance_url(), "verify", carrier)
     response, api_key = requestor.request('get', url)
 
     response_address = response.get('address', None)
@@ -686,4 +687,3 @@ class Event(Resource):
 
   def receive(self, values):
     self.refresh_from(values, None)
-
