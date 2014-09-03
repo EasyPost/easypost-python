@@ -66,6 +66,8 @@ def convert_to_easypost_object(response, api_key):
     'Batch': Batch,
     'Event': Event,
     'Tracker': Tracker,
+    'Pickup': Pickup,
+    'PickupRate': PickupRate,
     'PostageLabel': PostageLabel
   }
 
@@ -81,6 +83,8 @@ def convert_to_easypost_object(response, api_key):
     'rfnd': Refund,
     'batch': Batch,
     'trk': Tracker,
+    'pickup': Pickup,
+    'pickuprate': PickupRate,
     'pl': PostageLabel
   }
 
@@ -681,6 +685,17 @@ class PostageLabel(AllResource, CreateResource):
   pass
 
 class Tracker(AllResource, CreateResource):
+  pass
+
+class Pickup(AllResource, CreateResource):
+  def buy(self, **params):
+    requestor = Requestor(self.api_key)
+    url = "%s/%s" % (self.instance_url(), "buy")
+    response, api_key = requestor.request('post', url, params)
+    self.refresh_from(response, api_key)
+    return self
+
+class PickupRate(Resource):
   pass
 
 class Event(Resource):
