@@ -695,6 +695,13 @@ class Pickup(AllResource, CreateResource):
     self.refresh_from(response, api_key)
     return self
 
+  def cancel(self, **params):
+    requestor = Requestor(self.api_key)
+    url = "%s/%s" % (self.instance_url(), "cancel")
+    response, api_key = requestor.request('post', url, params)
+    self.refresh_from(response, api_key)
+    return self
+
 class PickupRate(Resource):
   pass
 
