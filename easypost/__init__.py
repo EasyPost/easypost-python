@@ -67,6 +67,7 @@ def convert_to_easypost_object(response, api_key):
     'Event': Event,
     'Tracker': Tracker,
     'Pickup': Pickup,
+    'Order': Order,
     'PickupRate': PickupRate,
     'PostageLabel': PostageLabel
   }
@@ -83,6 +84,7 @@ def convert_to_easypost_object(response, api_key):
     'rfnd': Refund,
     'batch': Batch,
     'trk': Tracker,
+    'order': Order,
     'pickup': Pickup,
     'pickuprate': PickupRate,
     'pl': PostageLabel
@@ -698,6 +700,14 @@ class Pickup(AllResource, CreateResource):
   def cancel(self, **params):
     requestor = Requestor(self.api_key)
     url = "%s/%s" % (self.instance_url(), "cancel")
+    response, api_key = requestor.request('post', url, params)
+    self.refresh_from(response, api_key)
+    return self
+
+class Order(AllResource, CreateResource):
+  def buy(self, **params):
+    requestor = Requestor(self.api_key)
+    url = "%s/%s" % (self.instance_url(), "buy")
     response, api_key = requestor.request('post', url, params)
     self.refresh_from(response, api_key)
     return self
