@@ -508,7 +508,7 @@ class Address(AllResource, CreateResource):
   @classmethod
   def create_and_verify(cls, api_key=None, carrier=None, **params):
     requestor = Requestor(api_key)
-    url = "%s/%s?carrier=%s" % (cls.class_url(), "create_and_verify", carrier)
+    url = "%s/%s" % (cls.class_url(), "create_and_verify")
     wrapped_params = {}
     wrapped_params[cls.class_name()] = params
     wrapped_params[carrier] = carrier
