@@ -573,7 +573,7 @@ class Shipment(AllResource, CreateResource):
     requestor = Requestor(self.api_key)
     url = "%s/%s" % (self.instance_url(), "buy")
     response, api_key = requestor.request('post', url, params)
-    self.refresh
+    self.refresh_from(response, api_key)
     return self
 
   def refund(self, **params):
