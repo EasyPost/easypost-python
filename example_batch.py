@@ -4,18 +4,18 @@ easypost.api_key = 'cueqNZUb3ldeWTNX7MU3Mel8UXtaAMUi'
 
 # from address and parcel don't change
 from_address = easypost.Address.create(
-  name = "Simpler Postage Inc.",
-  street1 = "388 Townsend St",
-  street2 = "Apt 20",
-  city = "San Francisco",
-  state = "CA",
-  zip = "94107",
-  phone = "415-456-7890"
+    name = "Simpler Postage Inc.",
+    street1 = "388 Townsend St",
+    street2 = "Apt 20",
+    city = "San Francisco",
+    state = "CA",
+    zip = "94107",
+    phone = "415-456-7890"
 )
 
 parcel = easypost.Parcel.create(
-  predefined_package = "RegionalRateBoxA",
-  weight = 64
+    predefined_package = "RegionalRateBoxA",
+    weight = 64
 )
 
 # # populate order_list from db, csv, etc.
@@ -35,22 +35,22 @@ parcel = easypost.Parcel.create(
 shipments = []
 
 for order in order_list:
-  to_address = easypost.Address.create(
-    name = order['customer']['name'],
-    street1 = order['customer']['street1'],
-    city = order['customer']['city'],
-    state = order['customer']['state'],
-    zip = order['customer']['zip']
-  )
+    to_address = easypost.Address.create(
+        name = order['customer']['name'],
+        street1 = order['customer']['street1'],
+        city = order['customer']['city'],
+        state = order['customer']['state'],
+        zip = order['customer']['zip']
+    )
 
-  shipments.append({
-    'to_address': to_address,
-    'from_address': from_address,
-    'parcel': parcel,
-    'reference': order['order_number'],
-    'carrier': 'USPS',
-    'service': 'Priority'
-  })
+    shipments.append({
+        'to_address': to_address,
+        'from_address': from_address,
+        'parcel': parcel,
+        'reference': order['order_number'],
+        'carrier': 'USPS',
+        'service': 'Priority'
+    })
 
 # create batch of shipments
 batch = easypost.Batch.create_and_buy(shipment = shipments)
@@ -75,4 +75,4 @@ batch = easypost.Batch.create_and_buy(shipment = shipments)
 # # later to look for the batch.label_url!
 # batch = easypost.Batch.retrieve('batch_XXXXXXXX')
 
-print batch
+print(batch)

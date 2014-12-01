@@ -41,9 +41,9 @@ order = easypost.Order.create(
             "options": {"label_format": "PDF"}
         }])
 
-print order
+print(order)
 
 order.buy(carrier="DHLExpress", service="DomesticExpress")
 
-print order.shipments[0].postage_label
-print order.shipments[0].tracking_code
+print(order.shipments[0].postage_label)
+print(order.shipments[0].tracking_code)
