@@ -38,9 +38,9 @@ try:
     weight = 21.2
   )
 except easypost.Error as e:
-  print e.message
+  print(e.message)
   if e.param != None:
-    print 'Specifically an invalid param: ' + e.param
+    print('Specifically an invalid param: ' + e.param)
 
 try:
   parcel = easypost.Parcel.create(
@@ -87,7 +87,7 @@ shipment = easypost.Shipment.create(
 shipment.buy(rate = shipment.lowest_rate(['USPS', 'ups'], 'priorityMAILInternational'))
 
 # shipment.refund()
-# print shipment.refund_status
+# print(shipment.refund_status)
 
-print shipment.tracking_code
-print shipment.postage_label.label_url
+print(shipment.tracking_code)
+print(shipment.postage_label.label_url)

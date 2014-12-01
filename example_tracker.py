@@ -6,9 +6,9 @@ tracker = easypost.Tracker.create(
     tracking_code="EZ2000000002",
     carrier="USPS"
 )
-print tracker
+print(tracker)
 
 # retrieve tracker by id
 tracker2 = easypost.Tracker.retrieve(tracker.id)
 
-print tracker2
+print(tracker2)
