@@ -12,6 +12,8 @@ if six.PY2:
 else:
     from urllib.parse import urlencode, quote_plus, urlparse
 
+from version import VERSION
+
 # use urlfetch as request_lib on google app engine, otherwise use requests
 request_lib = None
 try:
