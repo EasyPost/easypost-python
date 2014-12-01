@@ -158,7 +158,7 @@ class Requestor(object):
         }
         if six.PY2:
             ENCODERS[types.NoneType] = cls.encode_none
-        else:
+        if six.PY3:
             ENCODERS[type(None)] = cls.encode_none
 
         out = []
