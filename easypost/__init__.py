@@ -7,12 +7,9 @@ import datetime
 import types
 import re
 import string
-if six.PY2:
-    from urllib import urlencode, quote_plus
-else:
-    from urllib.parse import urlencode, quote_plus, urlparse
+from six.moves.urllib.parse import urlencode, quote_plus, urlparse
 
-from version import VERSION
+from .version import VERSION
 
 # use urlfetch as request_lib on google app engine, otherwise use requests
 request_lib = None
@@ -120,7 +117,7 @@ class Requestor(object):
 
     @classmethod
     def _utf8(cls, value):
-        if isinstance(value, unicode):
+        if isinstance(value, six.text_type):
             return value.encode('utf-8')
         else:
             return value
@@ -128,7 +125,7 @@ class Requestor(object):
     @classmethod
     def encode_dict(cls, out, key, dict_value):
         n = {}
-        for k, v in dict_value.iteritems():
+        for k, v in six.iteritems(dict_value):
             k = cls._utf8(k)
             v = cls._utf8(v)
             n["%s[%s]" % (key, k)] = v
@@ -158,11 +155,14 @@ class Requestor(object):
             list: cls.encode_list,
             dict: cls.encode_dict,
             datetime.datetime: cls.encode_datetime,
-            types.NoneType: cls.encode_none,
         }
+        if six.PY2:
+            ENCODERS[types.NoneType] = cls.encode_none
+        if six.PY3:
+            ENCODERS[type(None)] = cls.encode_none
 
         out = []
-        for key, value in params.iteritems():
+        for key, value in six.iteritems(params):
             key = cls._utf8(key)
             try:
                 encoder = ENCODERS[value.__class__]
@@ -170,7 +170,7 @@ class Requestor(object):
             except KeyError:
                 # don't need special encoding
                 try:
-                    value = unicode(value)
+                    value = six.text_type(value)
                 except:
                     pass
 
@@ -183,7 +183,7 @@ class Requestor(object):
             return {'id': param.id}
         elif isinstance(param, dict):
             out = {}
-            for k, v in param.iteritems():
+            for k, v in six.iteritems(param):
                 out[k] = cls._objects_to_ids(v)
             return out
         elif isinstance(param, list):
@@ -375,7 +375,7 @@ class EasyPostObject(object):
     def refresh_from(self, values, api_key):
         self.api_key = api_key
 
-        for k, v in values.iteritems():
+        for k, v in six.iteritems(values):
             if k in self._immutable_values:
                 continue
             self.__dict__[k] = convert_to_easypost_object(v, api_key)
