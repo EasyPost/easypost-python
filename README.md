@@ -10,7 +10,11 @@ Requirements
 Installation
 ------------
 
-Clone the EasyPost python client repository:
+You can install easypost via pip with:
+
+    pip install easypost
+
+Alternatively, you can clone the EasyPost python client repository:
 
     git clone https://github.com/EasyPost/easypost-python
 
@@ -118,7 +122,7 @@ print shipment.postage_label.label_url
 Documentation
 -------------
 
-Up-to-date documentation at: https://www.geteasypost.com/docs
+Up-to-date documentation at: https://www.easypost.com/docs
 
 Tests
 -----
