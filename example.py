@@ -38,7 +38,7 @@ try:
         weight = 21.2
     )
 except easypost.Error as e:
-    print(e.message)
+    print(e)
     if e.param != None:
         print('Specifically an invalid param: ' + e.param)
 

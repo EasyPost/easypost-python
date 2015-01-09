@@ -5,7 +5,6 @@ import time
 import datetime
 import types
 import re
-import string
 from six.moves.urllib.parse import urlencode, quote_plus, urlparse
 
 from .version import VERSION
@@ -102,7 +101,7 @@ def convert_to_easypost_object(response, api_key):
         response = response.copy()
         cls_name = response.get('object', EasyPostObject)
         cls_id = response.get('id', None)
-        if isinstance(cls_name, basestring):
+        if isinstance(cls_name, six.string_types):
             cls = types.get(cls_name, EasyPostObject)
         elif cls_id is not None:
             cls = prefixes.get(cls_id[0:cls_id.find('_')], EasyPostObject)
@@ -124,8 +123,8 @@ class Requestor(object):
 
     @classmethod
     def _utf8(cls, value):
-        if isinstance(value, six.text_type):
-            return value.encode('utf-8')
+        if hasattr(value, 'decode'):
+            return value.decode('utf-8').encode('utf-8')
         else:
             return value
 
@@ -288,7 +287,7 @@ class Requestor(object):
 
         try:
             result = requests.request(method, abs_url, headers=headers, data=data, timeout=60, verify=False)
-            http_body = result.content
+            http_body = result.text
             http_status = result.status_code
         except Exception as e:
             raise Error("Unexpected error communicating with EasyPost. If this "
@@ -405,7 +404,7 @@ class EasyPostObject(object):
     def __repr__(self):
         type_string = ''
 
-        if isinstance(self.get('object'), basestring):
+        if isinstance(self.get('object'), six.string_types):
             type_string = ' %s' % self.get('object').encode('utf8')
 
         json_string = json.dumps(self.to_dict(), sort_keys=True,
@@ -466,7 +465,7 @@ class Resource(EasyPostObject):
             raise NotImplementedError('Resource is an abstract class. '
                                       'You should perform actions on its subclasses.')
 
-        cls_name = cls.__name__
+        cls_name = six.text_type(cls.__name__)
         cls_name = cls_name[0:1] + re.sub(r'([A-Z])', r'_\1', cls_name[1:])
         return "%s" % cls_name.lower()
 
@@ -645,13 +644,13 @@ class Shipment(AllResource, CreateResource):
             carriers = carriers.split(',')
         except AttributeError:
             pass
-        carriers = map(string.lower, carriers)
+        carriers = [c.lower() for c in carriers]
 
         try:
             services = services.split(',')
         except AttributeError:
             pass
-        services = map(string.lower, services)
+        services = [service.lower() for service in services]
 
         for rate in self.rates:
             rate_carrier = rate.carrier.lower()
