@@ -539,7 +539,7 @@ class Address(AllResource, CreateResource):
 
         wrapped_params = {
             cls.class_name(): params,
-            carrier: carrier
+            "carrier": carrier
         }
         response, api_key = requestor.request('post', url, wrapped_params)
 
