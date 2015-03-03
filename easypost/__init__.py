@@ -557,7 +557,9 @@ class Address(AllResource, CreateResource):
 
     def verify(self, carrier=None):
         requestor = Requestor(self.api_key)
-        url = "%s/%s?carrier=%s" % (self.instance_url(), "verify", carrier)
+        url = "%s/%s" % (self.instance_url(), "verify")
+        if carrier:
+            url += "?carrier=%s" % carrier
         response, api_key = requestor.request('get', url)
 
         response_address = response.get('address', None)
