@@ -123,8 +123,8 @@ class Requestor(object):
 
     @classmethod
     def _utf8(cls, value):
-        if hasattr(value, 'decode'):
-            return value.decode('utf-8').encode('utf-8')
+        if isinstance(value, six.text_type):
+            return value.encode('utf-8')
         else:
             return value
 
