@@ -124,12 +124,16 @@ class Requestor(object):
     @classmethod
     def _utf8(cls, value):
         if six.PY2:
-            if isinstance(value, six.binary_type):
-                return value.decode('utf-8').encode('utf-8')
-            elif isinstance(value, six.text_type):
+            # Python2's urlencode wants bytestrings, not unicode
+            if isinstance(value, six.text_type):
                 return value.encode('utf-8')
             return value
+        elif isinstance(value, six.binary_type):
+            # Python3's six.text_type(bytestring) returns "b'bytestring'"
+            # So, have to decode it to unicode
+            return value.decode('utf-8')
         else:
+            # Python3's urlencode can handle unicode
             return value
 
     @classmethod
@@ -339,7 +343,8 @@ class EasyPostObject(object):
         self.__dict__['_values'] = set()
         self.__dict__['_unsaved_values'] = set()
         self.__dict__['_transient_values'] = set()
-        self.__dict__['_immutable_values'] = {'api_key', 'id'}
+        # python2.6 doesnt have {} syntax for sets
+        self.__dict__['_immutable_values'] = set(['api_key', 'id'])
         self.__dict__['_retrieve_params'] = params
 
         self.__dict__['api_key'] = api_key
