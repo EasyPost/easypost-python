@@ -294,7 +294,7 @@ class Requestor(object):
                         "Please report to contact@easypost.com." % method)
 
         try:
-            result = requests.request(method, abs_url, headers=headers, data=data, timeout=60)
+            result = requests.request(method, abs_url, headers=headers, data=data, timeout=60, verify=True)
             http_body = result.text
             http_status = result.status_code
         except Exception as e:
