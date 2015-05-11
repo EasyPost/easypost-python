@@ -455,7 +455,10 @@ class Resource(EasyPostObject):
 
     @classmethod
     def retrieve(cls, easypost_id, api_key=None, **params):
-        easypost_id = easypost_id["id"] if "id" in easypost_id else easypost_id
+        try:
+            easypost_id = easypost_id['id']
+        except (KeyError, TypeError):
+            pass
 
         instance = cls(easypost_id, api_key, **params)
         instance.refresh()
