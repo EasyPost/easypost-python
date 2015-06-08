@@ -41,7 +41,7 @@ to_address = easypost.Address.create(
   city = "St. Albert",
   state = "AB",
   zip = "t8n2m4",
-  country = "CA"
+  country = "CA",
 )
 from_address = easypost.Address.create(
   name = "Jon Calhoun",
@@ -49,7 +49,7 @@ from_address = easypost.Address.create(
   city = "San Francisco",
   state = "CA",
   zip = "94107",
-  phone = "415-456-7890"
+  phone = "415-456-7890",
 )
 
 # verify address
@@ -65,7 +65,7 @@ if hasattr(verified_from_address, 'message'):
 try:
   parcel = easypost.Parcel.create(
     predefined_package = "InvalidPackageName",
-    weight = 21.2
+    weight = 21.2,
   )
 except easypost.Error as e:
   print e.message
@@ -77,7 +77,7 @@ try:
     length = 10.2,
     width = 7.8,
     height = 4.3,
-    weight = 21.2
+    weight = 21.2,
   )
 except easypost.Error as e:
   raise e
@@ -89,7 +89,7 @@ customs_item = easypost.CustomsItem.create(
   origin_country = "US",
   quantity = 2,
   value = 96.27,
-  weight = 21.1
+  weight = 21.1,
 )
 customs_info = easypost.CustomsInfo.create(
   customs_certify = 1,
@@ -100,7 +100,7 @@ customs_info = easypost.CustomsInfo.create(
   non_delivery_option = "return",
   restriction_type = "none",
   restriction_comments = "",
-  customs_items = [customs_item]
+  customs_items = [customs_item],
 )
 
 # create shipment
@@ -108,7 +108,7 @@ shipment = easypost.Shipment.create(
   to_address = to_address,
   from_address = verified_from_address,
   parcel = parcel,
-  customs_info = customs_info
+  customs_info = customs_info,
 )
 
 # buy postage label with one of the rate objects
