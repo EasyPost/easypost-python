@@ -496,7 +496,7 @@ class Resource(EasyPostObject):
         easypost_id = Requestor._utf8(easypost_id)
         base = self.class_url()
         param = quote_plus(easypost_id)
-        return "{}/{}".format(base, param)
+        return "%s/%s" % (base, param)
 
 
 # parent resource classes
