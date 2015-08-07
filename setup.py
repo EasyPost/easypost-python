@@ -34,7 +34,7 @@ setup(
     author_email='contact@easypost.com',
     url='https://easypost.com/',
     packages=['easypost'],
-    package_data={'easypost' : ['../VERSION']},
+    package_data={'easypost': ['../VERSION']},
     install_requires=install_requires,
     test_suite='test'
 )

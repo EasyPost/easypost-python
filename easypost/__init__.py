@@ -58,7 +58,7 @@ class Error(Exception):
             pass
 
 
-def convert_to_easypost_object(response, api_key):
+def convert_to_easypost_object(response, api_key, parent=None, name=None):
     types = {
         'Address': Address,
         'ScanForm': ScanForm,
@@ -74,7 +74,9 @@ def convert_to_easypost_object(response, api_key):
         'Pickup': Pickup,
         'Order': Order,
         'PickupRate': PickupRate,
-        'PostageLabel': PostageLabel
+        'PostageLabel': PostageLabel,
+        'User': User,
+        'CarrierAccount': CarrierAccount
     }
 
     prefixes = {
@@ -92,11 +94,13 @@ def convert_to_easypost_object(response, api_key):
         'order': Order,
         'pickup': Pickup,
         'pickuprate': PickupRate,
-        'pl': PostageLabel
+        'pl': PostageLabel,
+        'user': User,
+        'ca': CarrierAccount
     }
 
     if isinstance(response, list):
-        return [convert_to_easypost_object(r, api_key) for r in response]
+        return [convert_to_easypost_object(r, api_key, parent) for r in response]
     elif isinstance(response, dict):
         response = response.copy()
         cls_name = response.get('object', EasyPostObject)
@@ -107,7 +111,7 @@ def convert_to_easypost_object(response, api_key):
             cls = prefixes.get(cls_id[0:cls_id.find('_')], EasyPostObject)
         else:
             cls = EasyPostObject
-        return cls.construct_from(response, api_key)
+        return cls.construct_from(response, api_key, parent, name)
     else:
         return response
 
@@ -259,7 +263,8 @@ class Requestor(object):
         headers = {
             'X-EasyPost-Client-User-Agent': json.dumps(ua),
             'User-Agent': 'EasyPost/v2 PythonClient/%s' % VERSION,
-            'Authorization': 'Bearer %s' % my_api_key
+            'Authorization': 'Bearer %s' % my_api_key,
+            'Content-type': 'application/x-www-form-urlencoded'
         }
 
         if request_lib == 'urlfetch':
@@ -287,7 +292,7 @@ class Requestor(object):
             if params:
                 abs_url = self.build_url(abs_url, params)
             data = None
-        elif method == 'post':
+        elif method == 'post' or method == 'put':
             data = self.encode(params)
         else:
             raise Error("Bug discovered: invalid request method: %s. "
@@ -304,7 +309,7 @@ class Requestor(object):
 
     def urlfetch_request(self, method, abs_url, headers, params):
         args = {}
-        if method == 'post':
+        if method == 'post' or method == 'put':
             args['payload'] = self.encode(params)
         elif method == 'get' or method == 'delete':
             abs_url = self.build_url(abs_url, params)
@@ -339,13 +344,16 @@ class Requestor(object):
 
 
 class EasyPostObject(object):
-    def __init__(self, easypost_id=None, api_key=None, **params):
+    def __init__(self, easypost_id=None, api_key=None, parent=None, name=None, **params):
         self.__dict__['_values'] = set()
         self.__dict__['_unsaved_values'] = set()
         self.__dict__['_transient_values'] = set()
         # python2.6 doesnt have {} syntax for sets
         self.__dict__['_immutable_values'] = set(['api_key', 'id'])
         self.__dict__['_retrieve_params'] = params
+
+        self.__dict__['_parent'] = parent
+        self.__dict__['_name'] = name
 
         self.__dict__['api_key'] = api_key
 
@@ -357,6 +365,15 @@ class EasyPostObject(object):
         self._values.add(k)
         if k not in self._immutable_values:
             self._unsaved_values.add(k)
+
+            cur = self
+            cur_parent = self._parent
+            param = {}
+            while cur_parent:
+                if cur._name:
+                    cur_parent._unsaved_values.add(cur._name)
+                cur = cur_parent
+                cur_parent = cur._parent
 
     def __getattr__(self, k):
         try:
@@ -394,8 +411,8 @@ class EasyPostObject(object):
         return self._values.keys()
 
     @classmethod
-    def construct_from(cls, values, api_key):
-        instance = cls(values.get('id'), api_key)
+    def construct_from(cls, values, api_key, parent=None, name=None):
+        instance = cls(values.get('id'), api_key, parent, name)
         instance.refresh_from(values, api_key)
         return instance
 
@@ -405,10 +422,20 @@ class EasyPostObject(object):
         for k, v in six.iteritems(values):
             if k in self._immutable_values:
                 continue
-            self.__dict__[k] = convert_to_easypost_object(v, api_key)
+            self.__dict__[k] = convert_to_easypost_object(v, api_key, self, k)
             self._values.add(k)
             self._transient_values.discard(k)
             self._unsaved_values.discard(k)
+
+    def flatten_unsaved(self):
+        values = {}
+        for key in self._unsaved_values:
+            value = self.get(key)
+            values[key] = value
+
+            if type(value) is EasyPostObject:
+                values[key] = value.flatten_unsaved()
+        return values
 
     def __repr__(self):
         type_string = ''
@@ -526,8 +553,11 @@ class UpdateResource(Resource):
             params = {}
             for k in self._unsaved_values:
                 params[k] = getattr(self, k)
+                if type(params[k]) is EasyPostObject:
+                    params[k] = params[k].flatten_unsaved()
+            params = {self.class_name(): params}
             url = self.instance_url()
-            response, api_key = requestor.request('post', url, params)
+            response, api_key = requestor.request('put', url, params)
             self.refresh_from(response, api_key)
 
         return self
@@ -778,3 +808,16 @@ class Event(Resource):
     @classmethod
     def receive(self, values):
         return convert_to_easypost_object(json.loads(values), api_key)
+
+
+class User(UpdateResource):
+    pass
+
+
+class CarrierAccount(AllResource, CreateResource, UpdateResource, DeleteResource):
+    @classmethod
+    def types(self):
+        requestor = Requestor(self.api_key)
+        url = "%s/%s" % (cls.class_url(), "carrier_types")
+        response, api_key = requestor.request('get', url)
+        return convert_to_easypost_object(response, api_key)
