@@ -75,7 +75,6 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'Order': Order,
         'PickupRate': PickupRate,
         'PostageLabel': PostageLabel,
-        'User': User,
         'CarrierAccount': CarrierAccount
     }
 
@@ -95,7 +94,6 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'pickup': Pickup,
         'pickuprate': PickupRate,
         'pl': PostageLabel,
-        'user': User,
         'ca': CarrierAccount
     }
 
@@ -808,10 +806,6 @@ class Event(Resource):
     @classmethod
     def receive(self, values):
         return convert_to_easypost_object(json.loads(values), api_key)
-
-
-# class User(UpdateResource):
-#     pass
 
 
 class CarrierAccount(AllResource, CreateResource, UpdateResource, DeleteResource):
