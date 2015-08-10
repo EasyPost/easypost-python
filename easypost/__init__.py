@@ -366,7 +366,6 @@ class EasyPostObject(object):
 
             cur = self
             cur_parent = self._parent
-            param = {}
             while cur_parent:
                 if cur._name:
                     cur_parent._unsaved_values.add(cur._name)
