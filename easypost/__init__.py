@@ -810,14 +810,13 @@ class Event(Resource):
         return convert_to_easypost_object(json.loads(values), api_key)
 
 
-class User(UpdateResource):
-    pass
+# class User(UpdateResource):
+#     pass
 
 
 class CarrierAccount(AllResource, CreateResource, UpdateResource, DeleteResource):
     @classmethod
-    def types(self):
-        requestor = Requestor(self.api_key)
-        url = "%s/%s" % (cls.class_url(), "carrier_types")
-        response, api_key = requestor.request('get', url)
+    def types(cls, api_key=None):
+        requestor = Requestor(api_key)
+        response, api_key = requestor.request('get', "/carrier_types")
         return convert_to_easypost_object(response, api_key)
