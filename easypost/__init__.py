@@ -75,7 +75,8 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'Order': Order,
         'PickupRate': PickupRate,
         'PostageLabel': PostageLabel,
-        'CarrierAccount': CarrierAccount
+        'CarrierAccount': CarrierAccount,
+        'User': User
     }
 
     prefixes = {
@@ -94,7 +95,8 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'pickup': Pickup,
         'pickuprate': PickupRate,
         'pl': PostageLabel,
-        'ca': CarrierAccount
+        'ca': CarrierAccount,
+        'user': User
     }
 
     if isinstance(response, list):
@@ -813,3 +815,28 @@ class CarrierAccount(AllResource, CreateResource, UpdateResource, DeleteResource
         requestor = Requestor(api_key)
         response, api_key = requestor.request('get', "/carrier_types")
         return convert_to_easypost_object(response, api_key)
+
+
+class User(AllResource, CreateResource, UpdateResource):
+    @classmethod
+    def retrieve_me(cls, api_key=None):
+        return cls.all()
+
+    @classmethod
+    def all_api_keys(cls, api_key=None):
+        requestor = Requestor(api_key)
+        response, api_key = requestor.request('get', "/api_keys")
+        return convert_to_easypost_object(response, api_key)
+
+    def api_keys(self):
+        api_keys = User.all_api_keys()
+        my_api_keys = []
+        if api_keys.id == self.id:
+            my_api_keys = api_keys.keys
+        else:
+            for child in api_keys.children:
+                if child.id == self.id:
+                    my_api_keys = child.keys
+                    break
+
+        return my_api_keys
