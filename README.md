@@ -41,7 +41,8 @@ to_address = easypost.Address.create(
   city = "Redondo Beach",
   state = "CA",
   zip = "90277",
-  country = "US"
+  country = "US",
+  phone = "310-808-5243"
 )
 from_address = easypost.Address.create(
   name = "EasyPost",
@@ -50,6 +51,7 @@ from_address = easypost.Address.create(
   city = "San Francisco",
   state = "CA",
   zip = "94105",
+  country = "US",
   phone = "415-456-7890"
 )
 
