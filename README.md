@@ -35,20 +35,21 @@ easypost.api_key = 'cueqNZUb3ldeWTNX7MU3Mel8UXtaAMUi'
 
 # create addresses
 to_address = easypost.Address.create(
-  name = "Sawyer Bateman",
-  street1 = "1A Larkspur Cres.",
+  name = "Dr. Steve Brule",
+  street1 = "179 N Harbor Dr",
   street2 = "",
-  city = "St. Albert",
-  state = "AB",
-  zip = "t8n2m4",
-  country = "CA"
+  city = "Redondo Beach",
+  state = "CA",
+  zip = "90277",
+  country = "US"
 )
 from_address = easypost.Address.create(
-  name = "Jon Calhoun",
-  street1 = "388 Townsend St",
+  name = "EasyPost",
+  street1 = "118 2nd Street",
+  street2 = "4th Floor",
   city = "San Francisco",
   state = "CA",
-  zip = "94107",
+  zip = "94105",
   phone = "415-456-7890"
 )
 
@@ -64,7 +65,7 @@ if hasattr(verified_from_address, 'message'):
 # create parcel
 try:
   parcel = easypost.Parcel.create(
-    predefined_package = "InvalidPackageName",
+    predefined_package = "Parcel",
     weight = 21.2
   )
 except easypost.Error as e:
