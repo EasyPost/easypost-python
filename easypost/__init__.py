@@ -417,6 +417,9 @@ class EasyPostObject(object):
         self.api_key = api_key
 
         for k, v in six.iteritems(values):
+            if k == 'id' and self.id != v:
+                self.id = v
+
             if k in self._immutable_values:
                 continue
             self.__dict__[k] = convert_to_easypost_object(v, api_key, self, k)
