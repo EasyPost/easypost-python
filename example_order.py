@@ -2,7 +2,6 @@ import easypost
 
 easypost.api_key = 'cueqNZUb3ldeWTNX7MU3Mel8UXtaAMUi'
 
-
 order = easypost.Order.create(
     to_address={
         'company': 'Oakland Dmv Office',
@@ -43,7 +42,10 @@ order = easypost.Order.create(
 
 print(order)
 
-order.buy(carrier="DHLExpress", service="DomesticExpress")
+order.buy(carrier="USPS", service="Priority")
 
-print(order.shipments[0].postage_label)
-print(order.shipments[0].tracking_code)
+for shipment in order.shipments:
+    # Insure the parcel
+    shipment.insure(amount=100)
+    print(shipment.postage_label.label_url)
+    print(shipment.tracking_code)

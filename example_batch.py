@@ -1,50 +1,44 @@
+from time import sleep
+
 import easypost
 easypost.api_key = 'cueqNZUb3ldeWTNX7MU3Mel8UXtaAMUi'
 # easypost.api_base = 'http://localhost:5000/v2'
 
 # from address and parcel don't change
 from_address = easypost.Address.create(
-    name = "Simpler Postage Inc.",
-    street1 = "388 Townsend St",
-    street2 = "Apt 20",
-    city = "San Francisco",
-    state = "CA",
-    zip = "94107",
-    phone = "415-456-7890"
+    name="Simpler Postage Inc.",
+    street1="388 Townsend St",
+    street2="Apt 20",
+    city="San Francisco",
+    state="CA",
+    zip="94107",
+    phone="415-456-7890"
 )
 
 parcel = easypost.Parcel.create(
-    predefined_package = "RegionalRateBoxA",
-    weight = 64
+    predefined_package="RegionalRateBoxA",
+    weight=64
 )
 
 # # populate order_list from db, csv, etc.
-# order_list = [{
-#   'customer': {
-#     'name': "Jon Calhoun",
-#     'street1': "388 Townsend St",
-#     'street2': "Apt 30",
-#     'city': "San Francisco",
-#     'state': "CA",
-#     'zip': "94107",
-#     'phone': "415-456-7890"
-#   },
-#   'order_number': '1234567890'
-# }]
+order_list = [{
+    'address': {
+        'name': "Jon Calhoun",
+        'street1': "388 Townsend St",
+        'street2': "Apt 30",
+        'city': "San Francisco",
+        'state': "CA",
+        'zip': "94107",
+        'phone': "415-456-7890"
+    },
+    'order_number': '1234567890'
+}]
 
 shipments = []
 
 for order in order_list:
-    to_address = easypost.Address.create(
-        name = order['customer']['name'],
-        street1 = order['customer']['street1'],
-        city = order['customer']['city'],
-        state = order['customer']['state'],
-        zip = order['customer']['zip']
-    )
-
     shipments.append({
-        'to_address': to_address,
+        'to_address': order['address'],
         'from_address': from_address,
         'parcel': parcel,
         'reference': order['order_number'],
@@ -53,7 +47,18 @@ for order in order_list:
     })
 
 # create batch of shipments
-batch = easypost.Batch.create_and_buy(shipment = shipments)
+batch = easypost.Batch.create_and_buy(shipment=shipments)
+
+# Poll while waiting for the batch to purchase the shipments
+while batch.state in ("creating", "queued_for_purchase", "purchasing"):
+    sleep(5)
+    batch.refresh()
+    print(batch.state)
+
+# Insure the shipments after purchase
+if batch.state == "purchased":
+    for shipment in batch.shipments:
+        shipment.insure(amount=100)
 
 ###### below here should probably be in a seperate script so that there's no risk of re-running create_and_buy
 

@@ -51,13 +51,15 @@ customs_info = {
 }
 
 shipment = easypost.Shipment.create(
-    to_address = to_address,
-    from_address = from_address,
-    parcel = parcel,
-    customs_info = customs_info
+    to_address=to_address,
+    from_address=from_address,
+    parcel=parcel,
+    customs_info=customs_info
 )
 
 # print shipment.rates
-shipment.buy(rate = shipment.lowest_rate())
+shipment.buy(rate=shipment.lowest_rate())
+# Insure the shipment
+shipment.insure(amount=100)
 
 print(shipment)

@@ -26,7 +26,7 @@ from_address = {
 parcel = {
     "length": 10.2,
     "width": 7.8,
-    "height" : 4.3,
+    "height": 4.3,
     "weight": 21.2
 }
 
@@ -64,6 +64,7 @@ shipment = easypost.Shipment.create(
 shipment.buy(rate=shipment.lowest_rate(
     ['USPS', 'ups'],
     'priorityMAILInternational'))
-
+# Insure the package
+shipment.insure(amount=100)
 print(shipment.tracking_code)
 print(shipment.postage_label.label_url)
