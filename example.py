@@ -15,7 +15,7 @@ to_address = easypost.Address.create(
 )
 from_address = easypost.Address.create(
     company="EasyPost",
-    street1="18 2nd St",
+    street1="118 2nd St",
     street2="4th Fl",
     city="San Francisco",
     state="CA",
