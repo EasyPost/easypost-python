@@ -19,7 +19,7 @@ Alternatively, you can clone the EasyPost python client repository:
     git clone https://github.com/EasyPost/easypost-python
 
 Install:
-    
+
     python setup.py install
 
 Import the EasyPost client:
@@ -120,6 +120,11 @@ shipment.buy(rate = shipment.rates[0])
 
 print shipment.tracking_code
 print shipment.postage_label.label_url
+
+# Insure the shipment for the value
+shipment.insure(amount=100)
+
+print shipment.insurance
 ```
 
 Documentation

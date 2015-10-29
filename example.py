@@ -94,4 +94,5 @@ shipment.insure(amount=100)
 # print(shipment.refund_status)
 
 print(shipment.tracking_code)
+print(shipment.insurance)
 print(shipment.postage_label.label_url)
