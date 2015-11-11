@@ -772,7 +772,12 @@ class PostageLabel(AllResource, CreateResource):
 
 
 class Tracker(AllResource, CreateResource):
-    pass
+    @classmethod
+    def create_list(cls, api_key=None, **params):
+        requestor = Requestor(api_key)
+        url = "%s/%s" % (cls.class_url(), "create_list")
+        response, api_key = requestor.request('post', url, params)
+        return convert_to_easypost_object(response["trackers"], api_key)
 
 
 class Pickup(AllResource, CreateResource):

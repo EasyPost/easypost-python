@@ -31,7 +31,7 @@ setup(
     version=version.VERSION,
     description='EasyPost Shipping API Client Library for Python',
     author='Sawyer Bateman',
-    author_email='contact@easypost.com',
+    author_email='support@easypost.com',
     url='https://easypost.com/',
     packages=['easypost'],
     package_data={'easypost': ['../VERSION']},
