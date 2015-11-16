@@ -784,7 +784,6 @@ class Tracker(AllResource, CreateResource):
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), "all_updated")
         response, api_key = requestor.request('get', url, params)
-        print response
         return convert_to_easypost_object(response["trackers"], api_key), response["has_more"]
 
 
