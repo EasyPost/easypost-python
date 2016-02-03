@@ -11,7 +11,7 @@ class AddressTests(unittest.TestCase):
     def test_orders(self):
         """
         We create an Order containing Shipment. Towards the end we assert on
-        Order and saved Parcel.
+        Order and Parcel's values
         :return:
         """
         to_address = {

@@ -1,5 +1,5 @@
 """
-Unit test to Parcel endpoint.
+Unit test around Parcel endpoint.
 """
 import unittest
 import easypost
