@@ -162,7 +162,7 @@ class Requestor(object):
 
     @classmethod
     def encode_none(cls, out, key, value):
-        pass # do not include None-valued params in request
+        pass  # do not include None-valued params in request
 
     @classmethod
     def _encode_inner(cls, params):
@@ -849,6 +849,7 @@ class CarrierAccount(AllResource, CreateResource, UpdateResource, DeleteResource
         response, api_key = requestor.request('get', "/carrier_types")
         return convert_to_easypost_object(response, api_key)
 
+
 class Blob(AllResource, CreateResource):
     @classmethod
     def retrieve(cls, easypost_id, api_key=None, **params):
@@ -861,4 +862,3 @@ class Blob(AllResource, CreateResource):
         url = "%s/%s" % (cls.class_url(), easypost_id)
         response, api_key = requestor.request('get', url)
         return response["signed_url"]
-
