@@ -75,7 +75,8 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'Order': Order,
         'PickupRate': PickupRate,
         'PostageLabel': PostageLabel,
-        'CarrierAccount': CarrierAccount
+        'CarrierAccount': CarrierAccount,
+        'User': User
     }
 
     prefixes = {
@@ -94,7 +95,8 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'pickup': Pickup,
         'pickuprate': PickupRate,
         'pl': PostageLabel,
-        'ca': CarrierAccount
+        'ca': CarrierAccount,
+        'user': User
     }
 
     if isinstance(response, list):
@@ -222,19 +224,19 @@ class Requestor(object):
         else:
             return '%s?%s' % (url, cls.encode(params))
 
-    def request(self, method, url, params=None):
+    def request(self, method, url, params=None, apiKeyRequired=True):
         if params is None:
             params = {}
-        http_body, http_status, my_api_key = self.request_raw(method, url, params)
+        http_body, http_status, my_api_key = self.request_raw(method, url, params, apiKeyRequired)
         response = self.interpret_response(http_body, http_status)
         return response, my_api_key
 
-    def request_raw(self, method, url, params=None):
+    def request_raw(self, method, url, params=None, apiKeyRequired=True):
         if params is None:
             params = {}
         my_api_key = self.api_key or api_key
 
-        if my_api_key is None:
+        if apiKeyRequired and my_api_key is None:
             raise Error(
                 'No API key provided. Set an API key via "easypost.api_key = \'APIKEY\'. '
                 'Your API keys can be found in your EasyPost dashboard, or you can email us '
@@ -848,6 +850,52 @@ class CarrierAccount(AllResource, CreateResource, UpdateResource, DeleteResource
         requestor = Requestor(api_key)
         response, api_key = requestor.request('get', "/carrier_types")
         return convert_to_easypost_object(response, api_key)
+
+
+class User(CreateResource, UpdateResource, DeleteResource):
+    @classmethod
+    def create(cls, api_key=None, **params):
+        requestor = Requestor(api_key)
+        url = cls.class_url()
+        wrapped_params = {cls.class_name(): params}
+        response, api_key = requestor.request('post', url, wrapped_params, False)
+        return convert_to_easypost_object(response, api_key)
+
+    @classmethod
+    def retrieve(cls, easypost_id="", api_key=None, **params):
+        try:
+            easypost_id = easypost_id['id']
+        except (KeyError, TypeError):
+            pass
+
+        if easypost_id == "":
+            requestor = Requestor(api_key)
+            response, api_key = requestor.request('get', cls.class_url())
+            return convert_to_easypost_object(response, api_key)
+        else:
+            instance = cls(easypost_id, api_key, **params)
+            instance.refresh()
+            return instance
+
+    @classmethod
+    def all_api_keys(cls, api_key=None):
+        requestor = Requestor(api_key)
+        url = "/api_keys"
+        response, api_key = requestor.request('get', url)
+        return convert_to_easypost_object(response, api_key)
+
+    def api_keys(self):
+        api_keys = self.all_api_keys()
+
+        if api_keys.id == self.id:
+            my_api_keys = api_keys.keys
+        else:
+            for child in api_keys.children:
+                if child.id == self.id:
+                    my_api_keys = child.keys
+                    break
+
+        return my_api_keys
 
 
 class Blob(AllResource, CreateResource):
