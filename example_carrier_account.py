@@ -1,5 +1,5 @@
 import easypost
-easypost.api_key = 'API KEY'
+easypost.api_key = 'PRODUCTION API KEY'
 
 original_num_cas = len(easypost.CarrierAccount.all())
 

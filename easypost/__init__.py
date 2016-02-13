@@ -75,7 +75,8 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'Order': Order,
         'PickupRate': PickupRate,
         'PostageLabel': PostageLabel,
-        'CarrierAccount': CarrierAccount
+        'CarrierAccount': CarrierAccount,
+        'User': User
     }
 
     prefixes = {
@@ -94,7 +95,8 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'pickup': Pickup,
         'pickuprate': PickupRate,
         'pl': PostageLabel,
-        'ca': CarrierAccount
+        'ca': CarrierAccount,
+        'user': User
     }
 
     if isinstance(response, list):
@@ -883,8 +885,8 @@ class User(CreateResource, UpdateResource, DeleteResource):
         return convert_to_easypost_object(response, api_key)
 
     def api_keys(self):
-        api_keys = self.all_api_keys()
-
+        api_keys = User.all_api_keys()
+        my_api_keys = []
         if api_keys.id == self.id:
             my_api_keys = api_keys.keys
         else:
