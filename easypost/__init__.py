@@ -75,7 +75,8 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'Order': Order,
         'PickupRate': PickupRate,
         'PostageLabel': PostageLabel,
-        'CarrierAccount': CarrierAccount
+        'CarrierAccount': CarrierAccount,
+        'User': User
     }
 
     prefixes = {
@@ -94,7 +95,8 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'pickup': Pickup,
         'pickuprate': PickupRate,
         'pl': PostageLabel,
-        'ca': CarrierAccount
+        'ca': CarrierAccount,
+        'user': User
     }
 
     if isinstance(response, list):
