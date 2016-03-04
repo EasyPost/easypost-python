@@ -1,64 +1,59 @@
-"""
-Unit tests related to 'Order'.
-"""
+# Unit tests related to 'Order' (https://www.easypost.com/docs/api#orders).
+
 import unittest
 import easypost
 from constants import API_KEY as api_key
 
+easypost.api_key = api_key
 
-class AddressTests(unittest.TestCase):
 
-    def test_orders(self):
-        """
-        We create an Order containing Shipment. Towards the end we assert on
-        Order and Parcel's values
-        :return:
-        """
+class OrderTests(unittest.TestCase):
+
+    def test_order_create_then_buy(self):
+        # We create an Order containing Shipment.
+        # Towards the end we assert on Order and Parcel's values
         to_address = {
-                'company': 'Oakland Dmv Office',
-                'name': "Customer",
-                'street1': "5300 Claremont Ave",
-                'city': "Oakland",
-                'state': "CA",
-                'zip': "94618",
-                'country': 'US',
-                'phone': '800-777-0133'
-            }
-        parcel = dict(
-            weight=21.2,
-            length=12,
-            width=12,
-            height=3
-        )
+            'company': 'Oakland Dmv Office',
+            'name': 'Customer',
+            'street1': '5300 Claremont Ave',
+            'city': 'Oakland',
+            'state': 'CA',
+            'zip': '94618',
+            'country': 'US',
+            'phone': '800-777-0133'
+        }
+
+        parcel1 = {
+            'weight': 21.2,
+            'length': 12,
+            'width': 12,
+            'height': 3
+        }
+
         order = easypost.Order.create(
-            api_key,
             to_address=to_address,
             from_address={
-                'name': "EasyPost",
-                'company': "EasyPost",
-                'street1': "164 Townsend St",
-                'city': "San Francisco",
-                'state': "CA",
-                'zip': "94107",
-                'phone': "415-456-7890"
+                'name': 'EasyPost',
+                'company': 'EasyPost',
+                'street1': '164 Townsend St',
+                'city': 'San Francisco',
+                'state': 'CA',
+                'zip': '94107',
+                'phone': '415-456-7890'
             },
-            shipments=[
-                {
-                    "parcel": easypost.Parcel.create(
-                        api_key,
-                        **parcel
-                        ),
-                    "options": {"label_format": "PDF"}
+            shipments=[{
+                'parcel': parcel1,
+                'options': {'label_format': 'PDF'}
+            }, {
+                'parcel': {
+                    'weight': 16,
+                    'length': 8,
+                    'width': 5,
+                    'height': 5
                 },
-                {
-                    "parcel": easypost.Parcel.create(
-                        api_key,
-                        weight=16,
-                        length=8,
-                        width=5,
-                        height=5),
-                    "options": {"label_format": "PDF"}
-                }])
+                'options': {'label_format': 'PDF'}
+            }]
+        )
 
         assert order.buyer_address.name == to_address['name']
         assert order.buyer_address.company == to_address['company']
@@ -69,12 +64,11 @@ class AddressTests(unittest.TestCase):
 
         # Assert the shipment's parcel
         assert len(order.shipments) == 2
-        assert order.shipments[1].parcel.height == parcel['height']
-        assert order.shipments[1].parcel.width == parcel['width']
-        assert order.shipments[1].parcel.weight == parcel['weight']
+        assert order.shipments[1].parcel.height == parcel1['height']
+        assert order.shipments[1].parcel.width == parcel1['width']
+        assert order.shipments[1].parcel.weight == parcel1['weight']
 
-
-        order.buy(carrier="USPS", service="Priority")
+        order.buy(carrier='USPS', service='Priority')
 
         for shipment in order.shipments:
             # Insure the parcel
@@ -84,5 +78,5 @@ class AddressTests(unittest.TestCase):
             assert 'http://assets.geteasypost.com' in shipment.postage_label.label_url
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

@@ -1,49 +1,45 @@
-"""
-Unit tests related to 'Batch' (https://www.easypost.com/docs/api#batches).
-"""
+# Unit tests related to 'Batch' (https://www.easypost.com/docs/api#batches).
 
 import unittest
 import easypost
 from constants import API_KEY as api_key
 from time import sleep
 
+easypost.api_key = api_key
+
 
 class BatchTests(unittest.TestCase):
 
-    def test_batch(self):
-        """
-        We create Address and Parcel objects. We then try to create a Batch containing a shipment. Finally,
-        we assert on saved and returned data.
-        :return:
-        """
+    def test_batch_create_and_buy(self):
+        # We create Address and Parcel objects. We then try to create a Batch containing a shipment. Finally,
+        # Finally, we assert on saved and returned data.
+
         # from address and parcel don't change
         from_address = easypost.Address.create(
-            api_key,
-            name="Simpler Postage Inc.",
-            street1="388 Townsend St",
-            street2="Apt 20",
-            city="San Francisco",
-            state="CA",
-            zip="94107",
-            phone="415-456-7890"
+            name='Simpler Postage Inc.',
+            street1='388 Townsend St',
+            street2='Apt 20',
+            city='San Francisco',
+            state='CA',
+            zip='94107',
+            phone='415-456-7890'
         )
 
         parcel = easypost.Parcel.create(
-            api_key,
-            predefined_package="RegionalRateBoxA",
+            predefined_package='RegionalRateBoxA',
             weight=64
         )
 
         # # populate order_list from db, csv, etc.
         order_list = [{
             'address': {
-                'name': "Jon Calhoun",
-                'street1': "388 Townsend St",
-                'street2': "Apt 30",
-                'city': "San Francisco",
-                'state': "CA",
-                'zip': "94107",
-                'phone': "415-456-7890"
+                'name': 'Jon Calhoun',
+                'street1': '388 Townsend St',
+                'street2': 'Apt 30',
+                'city': 'San Francisco',
+                'state': 'CA',
+                'zip': '94107',
+                'phone': '415-456-7890'
             },
             'order_number': '1234567890'
         }]
@@ -61,16 +57,16 @@ class BatchTests(unittest.TestCase):
             })
 
         # create batch of shipments
-        batch = easypost.Batch.create_and_buy(api_key, shipment=shipments)
+        batch = easypost.Batch.create_and_buy(shipment=shipments)
         assert batch.num_shipments == 1
 
         # Poll while waiting for the batch to purchase the shipments
-        while batch.state in ("creating", "queued_for_purchase", "purchasing"):
+        while batch.state in ('creating', 'queued_for_purchase', 'purchasing'):
             sleep(5)
             batch.refresh()
 
         # Insure the shipments after purchase
-        if batch.state == "purchased":
+        if batch.state == 'purchased':
             for shipment in batch.shipments:
                 shipment.insure(amount=100)
 
@@ -94,6 +90,3 @@ class BatchTests(unittest.TestCase):
 
         # Assert on tracker
         assert batch.shipments[0].tracker.tracking_code and batch.shipments[0].tracker.shipment_id
-
-
-
