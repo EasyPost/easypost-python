@@ -9,7 +9,7 @@ easypost.api_key = api_key
 class UserTests(unittest.TestCase):
 
     def test_child_user_create(self):
-        easypost.api_key = "VJ63zukvLyxz92NKP1k0EQ"  # User a Prod key for this test
+        easypost.api_key = "VJ63zukvLyxz92NKP1k0EQ"  # Use a Prod key for this test
 
         # Create an address and then verify some fields to test whether it was created just fine.
         child_user = easypost.User.create(
