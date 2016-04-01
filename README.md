@@ -33,8 +33,9 @@ Example
 import easypost
 easypost.api_key = 'cueqNZUb3ldeWTNX7MU3Mel8UXtaAMUi'
 
-# create addresses
+# create and verify addresses
 to_address = easypost.Address.create(
+  verify=["delivery"],
   name = "Dr. Steve Brule",
   street1 = "179 N Harbor Dr",
   street2 = "",
@@ -45,6 +46,7 @@ to_address = easypost.Address.create(
   phone = "310-808-5243"
 )
 from_address = easypost.Address.create(
+  verify=["delivery"],
   name = "EasyPost",
   street1 = "118 2nd Street",
   street2 = "4th Floor",
@@ -54,15 +56,6 @@ from_address = easypost.Address.create(
   country = "US",
   phone = "415-456-7890"
 )
-
-# verify address
-try:
-  verified_from_address = from_address.verify()
-except easypost.Error as e:
-  raise e
-if hasattr(verified_from_address, 'message'):
-  # the from address is not invalid, but it has an issue
-  pass
 
 # create parcel
 try:
@@ -109,7 +102,7 @@ customs_info = easypost.CustomsInfo.create(
 # create shipment
 shipment = easypost.Shipment.create(
   to_address = to_address,
-  from_address = verified_from_address,
+  from_address = from_address,
   parcel = parcel,
   customs_info = customs_info
 )
