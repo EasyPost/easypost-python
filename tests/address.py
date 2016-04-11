@@ -84,11 +84,11 @@ class AddressTests(unittest.TestCase):
             )
 
         assert context.exception.http_body == '{"error":{' \
-            '"code":"ADDRESS.VERIFY.FAILURE",' \
-            '"message":"Address not found",' \
+            '"code":"ADDRESS.VERIFICATION.NOT_FOUND",' \
+            '"message":"Address Not Found.",' \
             '"errors":[' \
-            '{"field":"address","message":"Address not found"},' \
-            '{"field":"street1","message":"House number is missing"}' \
+            '{"field":"address","message":"Address not found","suggestion":null},' \
+            '{"field":"street1","message":"House number is missing","suggestion":null}' \
             ']}}'
 
     def test_address_unicode(self):

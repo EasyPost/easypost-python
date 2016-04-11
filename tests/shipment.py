@@ -93,4 +93,5 @@ class ShipmentTests(unittest.TestCase):
         # Assert shipment.buy set attributes correctly
         assert shipment.tracking_code is not None
         assert shipment.insurance == '100.00'
-        assert 'http://assets.geteasypost.com' in shipment.postage_label.label_url
+
+        assert 'https://easypost-files.s3-us-west-2.amazonaws.com' in shipment.postage_label.label_url
