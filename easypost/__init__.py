@@ -410,7 +410,7 @@ class EasyPostObject(object):
         return self._values.keys()
 
     @classmethod
-    def construct_from(cls, values, api_key, parent=None, name=None):
+    def construct_from(cls, values, api_key=None, parent=None, name=None):
         instance = cls(values.get('id'), api_key, parent, name)
         instance.refresh_from(values, api_key)
         return instance
