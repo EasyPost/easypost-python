@@ -362,8 +362,9 @@ class EasyPostObject(object):
 
     def __setattr__(self, k, v):
         self.__dict__[k] = v
-        self._values.add(k)
+
         if k not in self._immutable_values:
+            self._values.add(k)
             self._unsaved_values.add(k)
 
             cur = self
@@ -382,10 +383,7 @@ class EasyPostObject(object):
         raise AttributeError("%r object has no attribute %r" % (type(self).__name__, k))
 
     def __getitem__(self, k):
-        if k in self._values:
-            return self.__dict__[k]
-        else:
-            raise KeyError(k)
+        return self.__dict__[k]
 
     def get(self, k, default=None):
         try:
@@ -462,7 +460,7 @@ class EasyPostObject(object):
                 return [_serialize(r) for r in o]
             return o
 
-        d = dict()
+        d = {"id": self.get("id")} if self.get("id") else {}
         for k in sorted(self._values):
             v = getattr(self, k)
             v = _serialize(v)
