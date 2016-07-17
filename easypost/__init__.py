@@ -450,7 +450,10 @@ class EasyPostObject(object):
                                           hex(id(self)), json_string)
 
     def __str__(self):
-        return json.dumps(self.to_dict(), sort_keys=True, indent=2, cls=EasyPostObjectEncoder)
+        return self.to_json(indent=2)
+    
+    def to_json(self, indent=None):
+        return json.dumps(self.to_dict(), sort_keys=True, indent=indent, cls=EasyPostObjectEncoder)
 
     def to_dict(self):
         def _serialize(o):
