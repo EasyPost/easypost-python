@@ -79,7 +79,7 @@ class BatchTests(unittest.TestCase):
         assert batch.shipments[0].buyer_address.street1 == '388 Townsend St'
 
         # Assert on fees
-        assert batch.shipments[0].fees[0].amount == '0.05000'
+        assert batch.shipments[0].fees[0].amount == '0.03000'
         assert batch.shipments[0].fees[1].amount == '6.01000'
         assert batch.shipments[0].fees[2].amount == '1.00000'
 
