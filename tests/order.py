@@ -64,9 +64,14 @@ class OrderTests(unittest.TestCase):
 
         # Assert the shipment's parcel
         assert len(order.shipments) == 2
-        assert order.shipments[1].parcel.height == parcel1['height']
-        assert order.shipments[1].parcel.width == parcel1['width']
-        assert order.shipments[1].parcel.weight == parcel1['weight']
+        assert order.shipments[0].parcel.height == parcel1['height']
+        assert order.shipments[0].parcel.length == parcel1['length']
+        assert order.shipments[0].parcel.width == parcel1['width']
+        assert order.shipments[0].parcel.weight == parcel1['weight']
+        assert order.shipments[1].parcel.height == 5.0
+        assert order.shipments[1].parcel.length == 8.0
+        assert order.shipments[1].parcel.width == 5.0
+        assert order.shipments[1].parcel.weight == 16.0
 
         order.buy(carrier='USPS', service='Priority')
 

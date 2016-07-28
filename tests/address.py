@@ -66,11 +66,10 @@ class AddressTests(unittest.TestCase):
         assert address.street1 == 'UNDELIEVRABLE ST'
 
         assert address.verifications['delivery']['success'] is False
-        assert len(address.verifications['delivery']['errors']) == 4
+
+        assert len(address.verifications['delivery']['errors']) >= 2
         assert address.verifications['delivery']['errors'][0]['message'] == 'Address not found'
-        assert address.verifications['delivery']['errors'][1]['message'] == 'House number is invalid'
-        assert address.verifications['delivery']['errors'][2]['message'] == 'House number is missing'
-        assert address.verifications['delivery']['errors'][3]['message'] == 'Street is invalid'
+        assert address.verifications['delivery']['errors'][1]['message'] == 'House number is missing'
 
     def test_address_creation_with_verify_strict_failure(self):
         # Create an address with a verify strict parameter to test that it fails elegantly
@@ -91,11 +90,9 @@ class AddressTests(unittest.TestCase):
         assert exception['error']['code'] == "ADDRESS.VERIFY.FAILURE"
         assert exception['error']['message'] == "Unable to verify address."
 
-        assert len(exception['error']['errors']) == 4
+        assert len(exception['error']['errors']) >= 2
         assert exception['error']['errors'][0]['message'] == 'Address not found'
-        assert exception['error']['errors'][1]['message'] == 'House number is invalid'
-        assert exception['error']['errors'][2]['message'] == 'House number is missing'
-        assert exception['error']['errors'][3]['message'] == 'Street is invalid'
+        assert exception['error']['errors'][1]['message'] == 'House number is missing'
 
     def test_address_unicode(self):
         # Create an address with unicode field and assert if it was created correctly.
