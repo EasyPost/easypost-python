@@ -66,6 +66,7 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'CustomsInfo': CustomsInfo,
         'Parcel': Parcel,
         'Shipment': Shipment,
+        'Insurance': Insurance,
         'Rate': Rate,
         'Refund': Refund,
         'Batch': Batch,
@@ -87,6 +88,7 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'cstinfo': CustomsInfo,
         'prcl': Parcel,
         'shp': Shipment,
+        'ins': Insurance,
         'rate': Rate,
         'rfnd': Refund,
         'batch': Batch,
@@ -642,6 +644,8 @@ class Address(AllResource, CreateResource):
 class ScanForm(AllResource, CreateResource):
     pass
 
+class Insurance(AllResource, CreateResource):
+    pass
 
 class CustomsItem(AllResource, CreateResource):
     pass
