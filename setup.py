@@ -36,5 +36,10 @@ setup(
     packages=['easypost'],
     package_data={'easypost': ['../VERSION']},
     install_requires=install_requires,
-    test_suite='test'
+    test_suite='test',
+    classifiers=[
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 3"
+    ]
 )
