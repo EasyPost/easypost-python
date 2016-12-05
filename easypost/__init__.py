@@ -77,7 +77,10 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'PickupRate': PickupRate,
         'PostageLabel': PostageLabel,
         'CarrierAccount': CarrierAccount,
-        'User': User
+        'User': User,
+        'ShipmentReport' : ShipmentReport,
+        'PaymentLogReport' : PaymentLogReport,
+        'TrackerReport' : TrackerReport
     }
 
     prefixes = {
@@ -98,7 +101,10 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'pickuprate': PickupRate,
         'pl': PostageLabel,
         'ca': CarrierAccount,
-        'user': User
+        'user': User,
+        'shrep' : ShipmentReport,
+        'plrep' : PaymentLogReport,
+        'trkrep' : TrackerReport
     }
 
     if isinstance(response, list):
@@ -901,6 +907,56 @@ class User(CreateResource, UpdateResource, DeleteResource):
                     break
 
         return my_api_keys
+
+class Report(AllResource, CreateResource):
+    @classmethod
+    def create(cls, api_key=None, **params):
+        requestor = Requestor(api_key)
+        url = cls.class_url()
+        wrapped_params = {cls.class_name(): params}
+        report_types = ['shipment', 'payment_log', 'tracker']
+
+        if str(params['type']) in report_types:
+            url += "/%s" % params[:type]
+        else:
+            raise Exception("Undertermined Report Type")
+
+        response, api_key = requestor.request('post', url, wrapped_params, False)
+        return convert_to_easypost_object(response, api_key)
+
+    @classmethod
+    def retrieve(cls, easypost_id="", api_key=None, **params):
+        try:
+            easypost_id = easypost_id['id']
+        except (KeyError, TypeError):
+            pass
+
+        url = cls.class_url()
+        report_types = { 'shprep': 'shipment', 'plrep': 'payment_log', 'trkrep': 'tracker' }
+        obj_id = params['public_id'].split("_")[0]
+
+        if obj_id in report_types  :
+            url += "/%s/%s" % (report_types[obj_id], params['public_id'])
+        else:
+            raise Exception("Undetermined Report Type")
+
+        if easypost_id == "":
+            requestor = Requestor(api_key)
+            response, api_key = requestor.request('get', url)
+            return convert_to_easypost_object(response, api_key)
+        else:
+            instance = cls(easypost_id, api_key, **params)
+            instance.refresh()
+            return instance
+
+class ShipmentReport(Report):
+    pass
+
+class PaymentLogReport(Report):
+    pass
+
+class TrackerReport(Report):
+    pass
 
 
 class Blob(AllResource, CreateResource):
