@@ -917,7 +917,7 @@ class Report(AllResource, CreateResource):
         report_types = ['shipment', 'payment_log', 'tracker']
 
         if str(params['type']) in report_types:
-            url += "/%s" % params[:type]
+            url += "/%s" % params['type']
         else:
             raise Exception("Undertermined Report Type")
 
@@ -948,6 +948,20 @@ class Report(AllResource, CreateResource):
             instance = cls(easypost_id, api_key, **params)
             instance.refresh()
             return instance
+
+    @classmethod
+    def all(cls, api_key=None, **params):
+        requestor = Requestor(api_key)
+        url = cls.class_url()
+        report_types = ['shipment', 'payment_log', 'tracker']
+
+        if str(params['type']) in report_types:
+            url += "/%s" % params['type']
+        else:
+            raise Exception("Undertemined Report Type")
+
+        response, api_key = requestor.request('get', url, params)
+        return convert_to_easypost_object(response, api_key)
 
 class ShipmentReport(Report):
     pass
