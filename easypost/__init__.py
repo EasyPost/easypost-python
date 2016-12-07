@@ -78,9 +78,7 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'PostageLabel': PostageLabel,
         'CarrierAccount': CarrierAccount,
         'User': User,
-        'ShipmentReport' : ShipmentReport,
-        'PaymentLogReport' : PaymentLogReport,
-        'TrackerReport' : TrackerReport
+        'Report': Report,
     }
 
     prefixes = {
@@ -101,10 +99,7 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'pickuprate': PickupRate,
         'pl': PostageLabel,
         'ca': CarrierAccount,
-        'user': User,
-        'shrep' : ShipmentReport,
-        'plrep' : PaymentLogReport,
-        'trkrep' : TrackerReport
+        'user': User
     }
 
     if isinstance(response, list):
@@ -459,7 +454,7 @@ class EasyPostObject(object):
 
     def __str__(self):
         return self.to_json(indent=2)
-    
+
     def to_json(self, indent=None):
         return json.dumps(self.to_dict(), sort_keys=True, indent=indent, cls=EasyPostObjectEncoder)
 
@@ -909,6 +904,8 @@ class User(CreateResource, UpdateResource, DeleteResource):
         return my_api_keys
 
 class Report(AllResource, CreateResource):
+    report_types = { 'shprep': 'shipment', 'plrep': 'payment_log', 'trkrep': 'tracker' }
+
     @classmethod
     def create(cls, api_key=None, **params):
         requestor = Requestor(api_key)
@@ -916,7 +913,7 @@ class Report(AllResource, CreateResource):
         wrapped_params = {cls.class_name(): params}
         report_types = ['shipment', 'payment_log', 'tracker']
 
-        if str(params['type']) in report_types:
+        if str(params['type']) in report_types.values():
             url += "/%s" % params['type']
         else:
             raise Exception("Undertermined Report Type")
@@ -932,7 +929,7 @@ class Report(AllResource, CreateResource):
             pass
 
         url = cls.class_url()
-        report_types = { 'shprep': 'shipment', 'plrep': 'payment_log', 'trkrep': 'tracker' }
+
         obj_id = params['public_id'].split("_")[0]
 
         if obj_id in report_types  :
@@ -962,15 +959,6 @@ class Report(AllResource, CreateResource):
 
         response, api_key = requestor.request('get', url, params)
         return convert_to_easypost_object(response, api_key)
-
-class ShipmentReport(Report):
-    pass
-
-class PaymentLogReport(Report):
-    pass
-
-class TrackerReport(Report):
-    pass
 
 
 class Blob(AllResource, CreateResource):
