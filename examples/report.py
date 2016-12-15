@@ -3,7 +3,7 @@ easypost.api_key = 'cueqNZUb3ldeWTNX7MU3Mel8UXtaAMUi'
 
 report = easypost.Report.create(
     start_date="2012-12-01",
-    end_date= "2013-01-01",
+    end_date="2013-01-01",
     type="shipment"
 )
 print(report.id)
@@ -14,7 +14,7 @@ print(report1.id)
 
 report2 = easypost.Report.create(
     start_date="2013-12-02",
-    end_date= "2014-01-01",
+    end_date="2014-01-01",
     type="shipment"
 )
 

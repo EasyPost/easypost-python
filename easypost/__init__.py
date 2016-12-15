@@ -79,6 +79,9 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'CarrierAccount': CarrierAccount,
         'User': User,
         'Report': Report,
+        'ShipmentReport': Report,
+        'PaymentLogReport': Report,
+        'TrackerReport': Report
     }
 
     prefixes = {
@@ -99,7 +102,10 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'pickuprate': PickupRate,
         'pl': PostageLabel,
         'ca': CarrierAccount,
-        'user': User
+        'user': User,
+        'shprep': Report,
+        'plrep': Report,
+        'trkrep': Report
     }
 
     if isinstance(response, list):
@@ -645,8 +651,10 @@ class Address(AllResource, CreateResource):
 class ScanForm(AllResource, CreateResource):
     pass
 
+
 class Insurance(AllResource, CreateResource):
     pass
+
 
 class CustomsItem(AllResource, CreateResource):
     pass
@@ -903,9 +911,10 @@ class User(CreateResource, UpdateResource, DeleteResource):
 
         return my_api_keys
 
+
 class Report(AllResource, CreateResource):
 
-    REPORT_TYPES = { 'shprep': 'shipment', 'plrep': 'payment_log', 'trkrep': 'tracker' }
+    REPORT_TYPES = {'shprep': 'shipment', 'plrep': 'payment_log', 'trkrep': 'tracker'}
 
     @classmethod
     def create(cls, api_key=None, **params):
