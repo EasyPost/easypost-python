@@ -18,6 +18,6 @@ report2 = easypost.Report.create(
     type="shipment"
 )
 
-report3 = easypost.Report.all(type="shipment")
+reports3 = easypost.Report.all(type="shipment")
 
-print(report3)
+print(reports3)

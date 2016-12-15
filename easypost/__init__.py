@@ -904,16 +904,16 @@ class User(CreateResource, UpdateResource, DeleteResource):
         return my_api_keys
 
 class Report(AllResource, CreateResource):
-    report_types = { 'shprep': 'shipment', 'plrep': 'payment_log', 'trkrep': 'tracker' }
+
+    REPORT_TYPES = { 'shprep': 'shipment', 'plrep': 'payment_log', 'trkrep': 'tracker' }
 
     @classmethod
     def create(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = cls.class_url()
         wrapped_params = {cls.class_name(): params}
-        report_types = ['shipment', 'payment_log', 'tracker']
 
-        if str(params['type']) in report_types.values():
+        if str(params['type']) in cls.REPORT_TYPES.values():
             url += "/%s" % params['type']
         else:
             raise Exception("Undertermined Report Type")
@@ -930,29 +930,23 @@ class Report(AllResource, CreateResource):
 
         url = cls.class_url()
 
-        obj_id = params['public_id'].split("_")[0]
+        obj_id = easypost_id.split("_")[0]
 
-        if obj_id in report_types  :
-            url += "/%s/%s" % (report_types[obj_id], params['public_id'])
+        if obj_id in cls.REPORT_TYPES:
+            url += "/%s/%s" % (cls.REPORT_TYPES[obj_id], easypost_id)
         else:
             raise Exception("Undetermined Report Type")
 
-        if easypost_id == "":
-            requestor = Requestor(api_key)
-            response, api_key = requestor.request('get', url)
-            return convert_to_easypost_object(response, api_key)
-        else:
-            instance = cls(easypost_id, api_key, **params)
-            instance.refresh()
-            return instance
+        requestor = Requestor(api_key)
+        response, api_key = requestor.request('get', url)
+        return convert_to_easypost_object(response, api_key)
 
     @classmethod
     def all(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = cls.class_url()
-        report_types = ['shipment', 'payment_log', 'tracker']
 
-        if str(params['type']) in report_types:
+        if str(params['type']) in cls.REPORT_TYPES.values():
             url += "/%s" % params['type']
         else:
             raise Exception("Undertemined Report Type")
