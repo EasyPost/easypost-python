@@ -6,8 +6,8 @@ import datetime
 import types
 import re
 from six.moves.urllib.parse import urlencode, quote_plus, urlparse
-
 from .version import VERSION
+
 
 # use urlfetch as request_lib on google app engine, otherwise use requests
 request_lib = None
@@ -18,6 +18,7 @@ except ImportError:
     try:
         import requests
         request_lib = 'requests'
+        requests_session = requests.Session()
     except ImportError:
         raise ImportError('EasyPost requires an up to date requests library. '
                           'Update requests via "pip install -U requests" or '
@@ -308,7 +309,14 @@ class Requestor(object):
                         "Please report to contact@easypost.com." % method)
 
         try:
-            result = requests.request(method, abs_url, headers=headers, data=data, timeout=60, verify=True)
+            result = requests_session.request(
+                method,
+                abs_url,
+                headers=headers,
+                data=data,
+                timeout=60,
+                verify=True,
+            )
             http_body = result.text
             http_status = result.status_code
         except Exception as e:
