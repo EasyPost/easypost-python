@@ -82,7 +82,8 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'Report': Report,
         'ShipmentReport': Report,
         'PaymentLogReport': Report,
-        'TrackerReport': Report
+        'TrackerReport': Report,
+        'Webhook': Webhook
     }
 
     prefixes = {
@@ -106,7 +107,8 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'user': User,
         'shprep': Report,
         'plrep': Report,
-        'trkrep': Report
+        'trkrep': Report,
+        'hook': Webhook
     }
 
     if isinstance(response, list):
@@ -984,3 +986,12 @@ class Blob(AllResource, CreateResource):
         url = "%s/%s" % (cls.class_url(), easypost_id)
         response, api_key = requestor.request('get', url)
         return response["signed_url"]
+
+
+class Webhook(AllResource, CreateResource, DeleteResource):
+    def update(self, **params):
+        requestor = Requestor(self.api_key)
+        url = self.instance_url()
+        response, api_key = requestor.request('put', url, params)
+        self.refresh_from(response, api_key)
+        return self
