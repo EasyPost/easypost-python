@@ -80,7 +80,7 @@ class BatchTests(unittest.TestCase):
 
         # Assert on fees
         assert batch.shipments[0].fees[0].amount == '0.03000'
-        assert batch.shipments[0].fees[1].amount == '6.01000'
+        assert batch.shipments[0].fees[1].amount == '6.52000'
         assert batch.shipments[0].fees[2].amount == '1.00000'
 
         # Assert on parcel

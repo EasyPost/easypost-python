@@ -70,6 +70,15 @@ class ShipmentTests(unittest.TestCase):
             customs_info=customs_info
         )
 
+        rate_id = shipment.rates[0].id
+        assert rate_id is not None
+
+        shipment.get_rates()
+
+        new_rate_id = shipment.rates[0].id
+        assert new_rate_id is not None
+        assert new_rate_id != rate_id
+
         # Assert address values match
         assert shipment.buyer_address.country == to_address.country
         assert shipment.buyer_address.phone == to_address.phone

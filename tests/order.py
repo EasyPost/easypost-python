@@ -55,6 +55,15 @@ class OrderTests(unittest.TestCase):
             }]
         )
 
+        rate_id = order.shipments[0].rates[0].id
+        assert rate_id is not None
+
+        order.get_rates()
+
+        new_rate_id = order.shipments[0].rates[0].id
+        assert new_rate_id is not None
+        assert new_rate_id != rate_id
+
         assert order.buyer_address.name == to_address['name']
         assert order.buyer_address.company == to_address['company']
         assert order.buyer_address.street1 == to_address['street1']
