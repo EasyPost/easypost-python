@@ -23,3 +23,7 @@ class ParcelTests(unittest.TestCase):
         assert parcel.width == 7.8
         assert parcel.weight == 21.2
         assert parcel.predefined_package == 'RegionalRateBoxA'
+
+
+if __name__ == '__main__':
+    unittest.main()

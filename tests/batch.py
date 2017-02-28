@@ -90,3 +90,7 @@ class BatchTests(unittest.TestCase):
 
         # Assert on tracker
         assert batch.shipments[0].tracker.tracking_code and batch.shipments[0].tracker.shipment_id
+
+
+if __name__ == '__main__':
+    unittest.main()
