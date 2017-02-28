@@ -85,3 +85,7 @@ class ScanFormTests(unittest.TestCase):
 
         # Assert values match
         assert scan_forms["scan_forms"][0].id == scan_form.id
+
+
+if __name__ == '__main__':
+    unittest.main()

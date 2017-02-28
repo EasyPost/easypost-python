@@ -144,3 +144,7 @@ class PickupTests(unittest.TestCase):
             carrier=pickup.pickup_rates[0].carrier,
             service=pickup.pickup_rates[0].service
         )
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -41,3 +41,7 @@ class TrackerTests(unittest.TestCase):
         assert len(trackers2["trackers"]) == 1             # Should be 1
         assert trackers2["has_more"] is False              # Should be false
         assert trackers2["trackers"][0].id == tracker3.id  # Should be the same as the id for tracker3
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -48,11 +48,11 @@ to_address = easypost.Address.create(
 from_address = easypost.Address.create(
   verify=["delivery"],
   name = "EasyPost",
-  street1 = "118 2nd Street",
-  street2 = "4th Floor",
+  street1 = "417 Montgomery Street",
+  street2 = "5th Floor",
   city = "San Francisco",
   state = "CA",
-  zip = "94105",
+  zip = "94104",
   country = "US",
   phone = "415-456-7890"
 )
@@ -124,7 +124,3 @@ Documentation
 -------------
 
 Up-to-date documentation at: https://www.easypost.com/docs
-
-Tests
------
-Coming soon!

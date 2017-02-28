@@ -65,3 +65,7 @@ class InsuranceTests(unittest.TestCase):
         # Assertions that index worked as expected
         assert len(insurances["insurances"]) == 5
         assert insurances["has_more"]
+
+
+if __name__ == '__main__':
+    unittest.main()

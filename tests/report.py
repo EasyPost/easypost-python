@@ -66,3 +66,7 @@ class ReportTests(unittest.TestCase):
         reports = easypost.Report.all(api_key=api_key, type="tracker")
         assert len(reports["reports"])
         assert reports["reports"][0].id == report.id == report2.id
+
+
+if __name__ == '__main__':
+    unittest.main()
