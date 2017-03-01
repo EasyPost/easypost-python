@@ -1,1 +1,4 @@
-VERSION = '3.5.2'
+import pkg_resources
+
+
+VERSION = pkg_resources.resource_stream('easypost', '../VERSION').read().strip()
