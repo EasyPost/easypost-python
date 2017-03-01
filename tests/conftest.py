@@ -1,20 +1,26 @@
+# setup for py.test
+
 import easypost
 import pytest
 
-from . import constants
+
+API_KEY = 'e2Cg9AScV1wqj4JuaatP7A'
+PROD_API_KEY = 'vsBlV5PvQ9Yy5NZ0ieQveQ'
 
 
+# this fixture is auto-loaded by all tests; it sets up the api key
 @pytest.yield_fixture(autouse=True)
 def setup_api_key():
     default_key = easypost.api_key
-    easypost.api_key = constants.API_KEY
+    easypost.api_key = API_KEY
     yield
     easypost.api_key = default_key
 
 
+# if a test needs to use the prod api key, make it depend on this fixture
 @pytest.yield_fixture()
 def prod_api_key():
     default_key = easypost.api_key
-    easypost.api_key = constants.PROD_API_KEY
+    easypost.api_key = PROD_API_KEY
     yield
     easypost.api_key = default_key

@@ -1,6 +1,7 @@
 # Unit tests related to 'Batch' (https://www.easypost.com/docs/api#batches).
 
 import easypost
+
 from time import sleep
 
 
@@ -56,7 +57,7 @@ def test_batch_create_and_buy():
 
     # Poll while waiting for the batch to purchase the shipments
     while batch.state in ('creating', 'queued_for_purchase', 'purchasing'):
-        sleep(5)
+        sleep(1)
         batch.refresh()
 
     # Insure the shipments after purchase
