@@ -1,11 +1,12 @@
-import six
+import datetime
 import json
 import platform
-import time
-import datetime
-import types
 import re
+import six
 import sys
+import time
+import types
+
 from six.moves.urllib.parse import urlencode, quote_plus, urlparse
 
 from .version import VERSION
@@ -289,7 +290,7 @@ class Requestor(object):
 
         headers = {
             'X-EasyPost-Client-User-Agent': json.dumps(ua),
-            'User-Agent': 'EasyPost/v2 PythonClient/%s' % VERSION,
+            'User-Agent': USER_AGENT,
             'Authorization': 'Bearer %s' % my_api_key,
             'Content-type': 'application/x-www-form-urlencoded'
         }
