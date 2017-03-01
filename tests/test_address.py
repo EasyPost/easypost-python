@@ -1,7 +1,9 @@
 # Unit tests related to 'Address' (https://www.easypost.com/docs/api#addresses).
 import unittest
 import easypost
-import json
+
+import pytest
+
 from constants import API_KEY as api_key
 
 easypost.api_key = api_key
@@ -73,7 +75,7 @@ class AddressTests(unittest.TestCase):
 
     def test_address_creation_with_verify_strict_failure(self):
         # Create an address with a verify strict parameter to test that it fails elegantly
-        with self.assertRaises(easypost.Error) as context:
+        with pytest.raises(easypost.Error) as caught_exception:
             easypost.Address.create(
                 verify_strict=['delivery'],
                 street1='UNDELIEVRABLE ST',
@@ -85,7 +87,7 @@ class AddressTests(unittest.TestCase):
                 phone='415-456-7890'
             )
 
-        exception = json.loads(context.exception.http_body)
+        exception = caught_exception.value.json_body
 
         assert exception['error']['code'] == "ADDRESS.VERIFY.FAILURE"
         assert exception['error']['message'] == "Unable to verify address."

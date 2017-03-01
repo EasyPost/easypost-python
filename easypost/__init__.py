@@ -51,9 +51,9 @@ api_base = 'https://api.easypost.com/v2'
 
 USER_AGENT = 'EasyPost/v2 PythonClient/{0} Python/{1}.{2}.{3} Platform/{4}'.format(
     VERSION,
-    sys.version_info.major,
-    sys.version_info.minor,
-    sys.version_info.micro,
+    sys.version_info[0],
+    sys.version_info[1],
+    sys.version_info[2],
     sys.platform
 )
 
