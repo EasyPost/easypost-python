@@ -77,4 +77,4 @@ def test_scan_form_create_and_retrieve():
     # index scan_forms
     scan_forms = easypost.ScanForm.all(page_size=2)
 
-    assert len(scan_forms) > 0
+    assert len(scan_forms['scan_forms']) > 0
