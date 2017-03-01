@@ -68,14 +68,17 @@ def test_order_create_then_buy():
     # Assert the shipment's parcel
     assert len(order.shipments) == 2
 
-    assert order.shipments[1].parcel.height == parcel1['height']
-    assert order.shipments[1].parcel.length == parcel1['length']
-    assert order.shipments[1].parcel.width == parcel1['width']
-    assert order.shipments[1].parcel.weight == parcel1['weight']
-    assert order.shipments[0].parcel.height == 5.0
-    assert order.shipments[0].parcel.length == 8.0
-    assert order.shipments[0].parcel.width == 5.0
-    assert order.shipments[0].parcel.weight == 16.0
+    square_box = [o.parcel for o in order.shipments if o.parcel.width == 5.0][0]
+    long_box = [o.parcel for o in order.shipments if o.parcel.height == 3.0][0]
+
+    assert long_box.height == parcel1['height']
+    assert long_box.length == parcel1['length']
+    assert long_box.width == parcel1['width']
+    assert long_box.weight == parcel1['weight']
+    assert square_box.height == 5.0
+    assert square_box.length == 8.0
+    assert square_box.width == 5.0
+    assert square_box.weight == 16.0
 
     order.buy(carrier='USPS', service='Priority')
 

@@ -3,7 +3,7 @@ import json
 import platform
 import re
 import six
-import sys
+import ssl
 import time
 import types
 
@@ -49,18 +49,13 @@ api_key = None
 api_base = 'https://api.easypost.com/v2'
 
 
-USER_AGENT = 'EasyPost/v2 PythonClient/{0} Python/{1}.{2}.{3} Platform/{4}'.format(
-    VERSION,
-    sys.version_info[0],
-    sys.version_info[1],
-    sys.version_info[2],
-    sys.platform
-)
+USER_AGENT = 'EasyPost/v2 PythonClient/{0}'.format(VERSION)
 
 
 class Error(Exception):
     def __init__(self, message=None, http_status=None, http_body=None):
         super(Error, self).__init__(message)
+        self.message = message
         self.http_status = http_status
         self.http_body = http_body
         try:
@@ -279,17 +274,20 @@ class Requestor(object):
             'publisher': 'easypost',
             'request_lib': request_lib,
         }
-        for attr, func in [['lang_version', platform.python_version],
-                           ['platform', platform.platform],
-                           ['uname', lambda: ' '.join(platform.uname())]]:
+        for attr, func in (('lang_version', platform.python_version),
+                           ('platform', platform.platform),
+                           ('uname', lambda: ' '.join(platform.uname()))):
             try:
                 val = func()
             except Exception as e:
                 val = "!! %s" % e
             ua[attr] = val
 
+        if hasattr(ssl, 'OPENSSL_VERSION'):
+            ua['openssl_version'] = ssl.OPENSSL_VERSION
+
         headers = {
-            'X-EasyPost-Client-User-Agent': json.dumps(ua),
+            'X-Client-User-Agent': json.dumps(ua),
             'User-Agent': USER_AGENT,
             'Authorization': 'Bearer %s' % my_api_key,
             'Content-type': 'application/x-www-form-urlencoded'
