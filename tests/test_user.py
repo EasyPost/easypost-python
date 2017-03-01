@@ -1,15 +1,13 @@
 # Unit tests related to 'Users' (https://www.easypost.com/docs/api#users).
 import unittest
 import easypost
-from constants import API_KEY as api_key
-
-easypost.api_key = api_key
+from . import constants
 
 
 class UserTests(unittest.TestCase):
 
     def test_child_user_create(self):
-        easypost.api_key = "VJ63zukvLyxz92NKP1k0EQ"  # Use a Prod key for this test
+        easypost.api_key = constants.PROD_API_KEY  # Use a Prod key for this test
 
         # Create an address and then verify some fields to test whether it was created just fine.
         child_user = easypost.User.create(
@@ -32,8 +30,4 @@ class UserTests(unittest.TestCase):
         assert updated_user.id == child_id
         assert updated_user.name == 'Python All-Things-Tested'
 
-        easypost.api_key = api_key  # Reset the api_key at the end, just in case
-
-
-if __name__ == '__main__':
-    unittest.main()
+        easypost.api_key = constants.API_KEY  # Reset the api_key at the end, just in case

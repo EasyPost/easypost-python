@@ -2,6 +2,8 @@
 
 import unittest
 import easypost
+import pytest
+
 from constants import API_KEY as api_key
 
 easypost.api_key = api_key
@@ -34,12 +36,9 @@ class WebhookTests(unittest.TestCase):
 
         # Delete a webhook
         webhook.delete()
-        try:
+
+        with pytest.raises(easypost.Error) as exception_context:
             easypost.Webhook.retrieve(webhook.id)
-        except easypost.Error as e:
-            assert e.http_status == 404
-            assert e.message == "The requested resource could not be found."
 
-
-if __name__ == '__main__':
-    unittest.main()
+        assert exception_context.value.http_status == 404
+        assert exception_context.value.message == "The requested resource could not be found."

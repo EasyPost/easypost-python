@@ -1,12 +1,19 @@
-import six
+import datetime
 import json
 import platform
-import time
-import datetime
-import types
 import re
+import six
+import sys
+import time
+import types
+
 from six.moves.urllib.parse import urlencode, quote_plus, urlparse
+
 from .version import VERSION
+
+__author__ = 'EasyPost <oss@easypost.com>'
+__version__ = VERSION
+version_info = tuple(int(v) for v in VERSION.split('.'))
 
 
 # use urlfetch as request_lib on google app engine, otherwise use requests
@@ -40,6 +47,15 @@ except ImportError:
 # config
 api_key = None
 api_base = 'https://api.easypost.com/v2'
+
+
+USER_AGENT = 'EasyPost/v2 PythonClient/{0} Python/{1}.{2}.{3} Platform/{4}'.format(
+    VERSION,
+    sys.version_info[0],
+    sys.version_info[1],
+    sys.version_info[2],
+    sys.platform
+)
 
 
 class Error(Exception):
@@ -274,7 +290,7 @@ class Requestor(object):
 
         headers = {
             'X-EasyPost-Client-User-Agent': json.dumps(ua),
-            'User-Agent': 'EasyPost/v2 PythonClient/%s' % VERSION,
+            'User-Agent': USER_AGENT,
             'Authorization': 'Bearer %s' % my_api_key,
             'Content-type': 'application/x-www-form-urlencoded'
         }

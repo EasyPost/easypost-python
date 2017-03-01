@@ -90,6 +90,8 @@ class PickupTests(unittest.TestCase):
             instructions='Special pickup instructions'
         )
 
+        assert pickup.pickup_rates != []
+
         pickup.buy(
             carrier=pickup.pickup_rates[0].carrier,
             service=pickup.pickup_rates[0].service
@@ -139,6 +141,8 @@ class PickupTests(unittest.TestCase):
             is_account_address=True,
             instructions='Special pickup instructions'
         )
+
+        assert pickup.pickup_rates != []
 
         pickup.buy(
             carrier=pickup.pickup_rates[0].carrier,

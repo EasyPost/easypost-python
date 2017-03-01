@@ -1,40 +1,43 @@
-import os
-import sys
-
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'easypost'))
-import importer
-import version
+install_requires = [
+    'requests >= 1.0.0'
+    'six'
+]
 
-path, script = os.path.split(sys.argv[0])
-os.chdir(os.path.abspath(path))
 
-# Get simplejson if we don't already have json
-install_requires = ['requests >= 1.0.0', 'six']
-try:
-    importer.import_json()
-except ImportError:
-    install_requires.append('simplejson')
+with open('VERSION', 'r') as f:
+    version = f.read().strip()
 
-try:
-    import json
-    _json_loaded = hasattr(json, 'loads')
-except ImportError:
-    pass
 
 setup(
     name='easypost',
-    version=version.VERSION,
+    version=version,
     description='EasyPost Shipping API Client Library for Python',
-    author='Sawyer Bateman',
+    author='EasyPost',
     author_email='support@easypost.com',
     url='https://easypost.com/',
     packages=['easypost'],
     package_data={'easypost': ['../VERSION']},
     install_requires=install_requires,
-    test_suite='test'
+    test_suite='test',
+    classifiers=[
+        "Development Status :: 5 - Production/Stable",
+        "Environment :: Web Environment",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2.6",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.2",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Intended Audience :: Developers",
+        "Operating System :: OS Independent",
+        "License :: OSI Approved :: MIT License",
+        "Topic :: Software Development :: Libraries",
+    ]
 )
