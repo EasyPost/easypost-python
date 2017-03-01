@@ -127,4 +127,10 @@ Up-to-date documentation at: https://www.easypost.com/docs
 
 Tests
 -----
-Coming soon!
+
+To run tests:
+
+   - Create a virtualenv for your version of Python (e.g., `python2.7 -m virtualenv venv`)
+   - Install dependencies in that virtualenv (`./venv/bin/pip install requests six`)
+   - Install test dependencies (`./venv/bin/pip install -r requirements-tests.txt`)
+   - Run the tests with `py.test` (`./venv/bin/py.test -vs tests`)

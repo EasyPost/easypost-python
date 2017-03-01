@@ -5,8 +5,14 @@ import time
 import datetime
 import types
 import re
+import sys
 from six.moves.urllib.parse import urlencode, quote_plus, urlparse
+
 from .version import VERSION
+
+__author__ = 'EasyPost <oss@easypost.com>'
+__version__ = VERSION
+version_info = tuple(int(v) for v in VERSION.split('.'))
 
 
 # use urlfetch as request_lib on google app engine, otherwise use requests
@@ -40,6 +46,15 @@ except ImportError:
 # config
 api_key = None
 api_base = 'https://api.easypost.com/v2'
+
+
+USER_AGENT = 'EasyPost/v2 PythonClient/{0} Python/{1}.{2}.{3} Platform/{4}'.format(
+    VERSION,
+    sys.version_info.major,
+    sys.version_info.minor,
+    sys.version_info.micro,
+    sys.platform
+)
 
 
 class Error(Exception):
