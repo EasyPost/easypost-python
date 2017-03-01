@@ -4,9 +4,22 @@ import time
 import datetime
 
 import easypost
+import pytest
+import pytz
 
 
-def test_pickup_batch():
+ONE_DAY = datetime.timedelta(days=1)
+
+
+@pytest.fixture
+def noon_on_next_monday():
+    today = datetime.date.today()
+    next_monday = today + datetime.timedelta(days=(7 - today.weekday()))
+    noon_est = datetime.time(12, 0, tzinfo=pytz.timezone('America/New_York'))
+    return datetime.datetime.combine(next_monday, noon_est)
+
+
+def test_pickup_batch(noon_on_next_monday):
     # Create a Batch containing multiple Shipments. Then we try to buy a Pickup and assert if it was bought.
     shipments = [
         {
@@ -30,8 +43,8 @@ def test_pickup_batch():
             'parcel': {
                 'weight': 10.2
             },
-            'carrier': 'UPS',
-            'service': 'NextDayAir'
+            'carrier': 'USPS',
+            'service': 'Priority'
         }, {
             'to_address': {
                 'name': 'Customer',
@@ -53,8 +66,8 @@ def test_pickup_batch():
             'parcel': {
                 'weight': 10.2
             },
-            'carrier': 'UPS',
-            'service': 'NextDayAir'
+            'carrier': 'USPS',
+            'service': 'Priority'
         }
     ]
 
@@ -68,9 +81,6 @@ def test_pickup_batch():
         for shipment in batch.shipments:
             shipment.insure(amount=100)
 
-    now = datetime.datetime.now()
-    later = now + datetime.timedelta(seconds=120)
-
     pickup = easypost.Pickup.create(
         address={
             'name': 'Sawyer Bateman',
@@ -83,8 +93,8 @@ def test_pickup_batch():
         },
         batch=batch,
         reference='internal_id_1234',
-        min_datetime=now.isoformat(),
-        max_datetime=later.isoformat(),
+        min_datetime=noon_on_next_monday.isoformat(),
+        max_datetime=(noon_on_next_monday + ONE_DAY).isoformat(),
         is_account_address=True,
         instructions='Special pickup instructions'
     )
@@ -97,7 +107,7 @@ def test_pickup_batch():
     )
 
 
-def test_single_pickup():
+def test_single_pickup(noon_on_next_monday):
     # Create a Shipment, buy it, and then buy a pickup for it
     shipment = easypost.Shipment.create(
         to_address={
@@ -122,10 +132,7 @@ def test_single_pickup():
         }
     )
 
-    shipment.buy(rate=shipment.lowest_rate('ups'), insurance=100.00)
-
-    now = datetime.datetime.now()
-    later = now + datetime.timedelta(seconds=120)
+    shipment.buy(rate=shipment.lowest_rate('usps'), insurance=100.00)
 
     pickup = easypost.Pickup.create(
         address={
@@ -139,8 +146,8 @@ def test_single_pickup():
         },
         shipment=shipment,
         reference='internal_id_1234',
-        min_datetime=now.isoformat(),
-        max_datetime=later.isoformat(),
+        min_datetime=noon_on_next_monday.isoformat(),
+        max_datetime=(noon_on_next_monday + ONE_DAY).isoformat(),
         is_account_address=True,
         instructions='Special pickup instructions'
     )
