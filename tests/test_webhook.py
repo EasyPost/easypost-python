@@ -4,12 +4,15 @@ import easypost
 import pytest
 
 
-def test_webhooks():
+def test_webhooks(per_run_unique):
+    url = 'example.com/{0}'.format(per_run_unique)
+    expected_url = 'http://example.com/{0}'.format(per_run_unique)
+
     # Create a webhook
-    webhook = easypost.Webhook.create(url="example.com")
+    webhook = easypost.Webhook.create(url=url)
     assert webhook.id is not None
     assert webhook.mode == "test"
-    assert webhook.url == "http://example.com"
+    assert webhook.url == expected_url
     assert webhook.disabled_at is None
     assert isinstance(webhook, easypost.Webhook)
 
@@ -24,7 +27,7 @@ def test_webhooks():
     assert webhook3.id == webhook.id
 
     # Index webhooks
-    webhooks = easypost.Webhook.all()
+    webhooks = easypost.Webhook.all(url=expected_url)
     assert webhooks["webhooks"][len(webhooks["webhooks"]) - 1].id == webhook.id
 
     # Delete a webhook

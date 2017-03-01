@@ -75,7 +75,7 @@ def test_scan_form_create_and_retrieve():
     assert scan_form2.id == scan_form.id
 
     # index scan_forms
-    scan_forms = easypost.ScanForm.all(page_size=2)
+    scan_forms = easypost.ScanForm.all(page_size=2, batch_id=scan_form.batch_id)
 
     # Assert values match
     assert scan_forms["scan_forms"][0].id == scan_form.id

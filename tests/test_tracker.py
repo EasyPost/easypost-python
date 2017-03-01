@@ -24,12 +24,9 @@ def test_tracker_values():
             assert tracker.signed_by == 'John Tester'
 
 
-def test_tracker_interactions():
+def test_tracker_interactions(per_run_unique):
     # create a pseudo-random tracking code so that we can run multiple instances of this test in parallel
-    tracking_code = '{0}{1}'.format(
-        datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
-        random.randrange(1, 100)
-    )
+    tracking_code = 'EP{0}'.format(per_run_unique)
 
     # Create a tracker and then retrieve it. We assert on created and retrieved tracker's values.
     tracker = easypost.Tracker.create(

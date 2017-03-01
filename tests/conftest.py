@@ -1,5 +1,8 @@
 # setup for py.test
 
+import datetime
+import random
+
 import easypost
 import pytest
 
@@ -24,3 +27,12 @@ def prod_api_key():
     easypost.api_key = PROD_API_KEY
     yield
     easypost.api_key = default_key
+
+
+@pytest.fixture
+def per_run_unique():
+    """Generate a string that should be very close to unique"""
+    return '{0}{1}'.format(
+        datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
+        random.randrange(1, 100)
+    )
