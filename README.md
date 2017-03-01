@@ -7,7 +7,7 @@ EasyPost is a simple shipping API. You can sign up for an account at https://eas
 Requirements
 ------------
 
-* Python 2.6, 2.7, or 3.2+
+* Python 2.6, 2.7, or 3.3+
 * [Requests](http://docs.python-requests.org/en/latest/) (if not on Google App Engine)
 * [six](https://pythonhosted.org/six/)
 
