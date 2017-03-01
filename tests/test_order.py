@@ -91,7 +91,3 @@ class OrderTests(unittest.TestCase):
             assert shipment.tracking_code
             assert shipment.insurance == '100.00'
             assert 'https://easypost-files.s3-us-west-2.amazonaws.com' in shipment.postage_label.label_url
-
-
-if __name__ == '__main__':
-    unittest.main()

@@ -74,7 +74,7 @@ class AddressTests(unittest.TestCase):
     def test_address_creation_with_verify_strict_failure(self):
         # Create an address with a verify strict parameter to test that it fails elegantly
         with self.assertRaises(easypost.Error) as context:
-            address = easypost.Address.create(
+            easypost.Address.create(
                 verify_strict=['delivery'],
                 street1='UNDELIEVRABLE ST',
                 city='San Francisco',
@@ -107,7 +107,3 @@ class AddressTests(unittest.TestCase):
 
         address = easypost.Address.create(state=state.encode('utf-8'))
         assert address.state == state
-
-
-if __name__ == '__main__':
-    unittest.main()

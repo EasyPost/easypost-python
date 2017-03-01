@@ -39,7 +39,3 @@ class WebhookTests(unittest.TestCase):
         except easypost.Error as e:
             assert e.http_status == 404
             assert e.message == "The requested resource could not be found."
-
-
-if __name__ == '__main__':
-    unittest.main()
