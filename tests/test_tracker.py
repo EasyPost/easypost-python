@@ -1,8 +1,5 @@
 # Unit tests related to 'Trackers' (https://www.easypost.com/docs/api#tracking).
 
-import datetime
-import random
-
 import easypost
 
 
