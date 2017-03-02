@@ -28,7 +28,11 @@ def test_webhooks(per_run_unique):
 
     # Index webhooks
     webhooks = easypost.Webhook.all(url=expected_url)
-    assert webhooks["webhooks"][len(webhooks["webhooks"]) - 1].id == webhook.id
+    for wh in webhooks["webhooks"]:
+        if wh.id == webhook.id:
+            break
+    else:
+        assert not 'Should find it'
 
     # Delete a webhook
     webhook.delete()
