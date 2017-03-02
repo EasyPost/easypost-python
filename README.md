@@ -136,7 +136,7 @@ print(shipment.insurance)
 Documentation
 -------------
 
-Up-to-date documentation at: <https://www.easypost.com/docs>
+Up-to-date documentation is available at: <https://www.easypost.com/docs>
 
 
 Client Library Development
