@@ -1,6 +1,6 @@
 # EasyPost Python Client Library
 
-[![Build Status](https://travis-ci.org/EasyPost/easypost-python.svg?branch=master)](https://travis-ci.org/EasyPost/easypost-python)
+[![Build Status](https://travis-ci.org/EasyPost/easypost-python.svg?branch=master)](https://travis-ci.org/EasyPost/easypost-python) [![API Testing](https://img.shields.io/badge/API%20Test-RapidAPI-blue.svg)](https://rapidapi.com/package/EasyPostTracking/functions?utm_source=EasyPostGithub&utm_medium=button&utm_content=Vender_GitHub)
 
 EasyPost is the simple shipping API. You can sign up for an account at <https://easypost.com>.
 
