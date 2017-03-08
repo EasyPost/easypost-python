@@ -80,7 +80,7 @@ try:
         weight = 21.2
     )
 except easypost.Error as e:
-    print(e.message)
+    print(str(e))
     if e.param is not None:
         print('Specifically an invalid param: %r' % e.param)
 
@@ -136,7 +136,7 @@ print(shipment.insurance)
 Documentation
 -------------
 
-Up-to-date documentation at: <https://www.easypost.com/docs>
+Up-to-date documentation is available at: <https://www.easypost.com/docs>
 
 
 Client Library Development

@@ -166,7 +166,7 @@ class Requestor(object):
     @classmethod
     def encode_dict(cls, out, key, dict_value):
         n = {}
-        for k, v in six.iteritems(dict_value):
+        for k, v in sorted(six.iteritems(dict_value)):
             k = cls._utf8(k)
             v = cls._utf8(v)
             n["%s[%s]" % (key, k)] = v
@@ -203,7 +203,7 @@ class Requestor(object):
             ENCODERS[type(None)] = cls.encode_none
 
         out = []
-        for key, value in six.iteritems(params):
+        for key, value in sorted(six.iteritems(params)):
             key = cls._utf8(key)
             try:
                 encoder = ENCODERS[value.__class__]
@@ -449,7 +449,7 @@ class EasyPostObject(object):
     def refresh_from(self, values, api_key):
         self.api_key = api_key
 
-        for k, v in six.iteritems(values):
+        for k, v in sorted(six.iteritems(values)):
             if k == 'id' and self.id != v:
                 self.id = v
 

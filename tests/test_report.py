@@ -11,7 +11,7 @@ def test_shipment_report():
     )
 
     assert report.object == "ShipmentReport"
-    assert report.status == "available"
+    assert report.status in ("available", "new")
     assert report.__class__ == easypost.Report
 
     report2 = easypost.Report.retrieve(report.id)
@@ -32,7 +32,7 @@ def test_payment_log_report():
     )
 
     assert report.object == "PaymentLogReport"
-    assert report.status == "available"
+    assert report.status in ("available", "new")
     assert report.__class__ == easypost.Report
 
     report2 = easypost.Report.retrieve(report.id)
