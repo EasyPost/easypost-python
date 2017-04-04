@@ -3,6 +3,10 @@
 * Modernize tests; make tests able to run in parallel; etc.
 * Clarify in README and `setup.py` the supported Python versions
 
+### 3.6.0 2017-04-04
+
+* Changed Report CRUD signatures. requires report type to be passed
+
 ### 3.5.2 2017-02-14
 
 * Added `get_rates` method to Order objects
