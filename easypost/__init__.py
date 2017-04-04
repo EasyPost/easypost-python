@@ -950,18 +950,11 @@ class User(CreateResource, UpdateResource, DeleteResource):
 
 class Report(AllResource, CreateResource):
 
-    REPORT_TYPES = {'shprep': 'shipment', 'plrep': 'payment_log', 'trkrep': 'tracker'}
-
     @classmethod
     def create(cls, api_key=None, **params):
         requestor = Requestor(api_key)
-        url = cls.class_url()
+        url = "%s/%s" % (cls.class_url(), params['type'])
         wrapped_params = {cls.class_name(): params}
-
-        if str(params['type']) in cls.REPORT_TYPES.values():
-            url += "/%s" % params['type']
-        else:
-            raise Exception("Undertermined Report Type")
 
         response, api_key = requestor.request('post', url, wrapped_params, False)
         return convert_to_easypost_object(response, api_key)
@@ -973,15 +966,7 @@ class Report(AllResource, CreateResource):
         except (KeyError, TypeError):
             pass
 
-        url = cls.class_url()
-
-        obj_id = easypost_id.split("_")[0]
-
-        if obj_id in cls.REPORT_TYPES:
-            url += "/%s/%s" % (cls.REPORT_TYPES[obj_id], easypost_id)
-        else:
-            raise Exception("Undetermined Report Type")
-
+        url = "%s/%s/%s" % (cls.class_url(), params['type'], easypost_id)
         requestor = Requestor(api_key)
         response, api_key = requestor.request('get', url)
         return convert_to_easypost_object(response, api_key)
@@ -989,13 +974,7 @@ class Report(AllResource, CreateResource):
     @classmethod
     def all(cls, api_key=None, **params):
         requestor = Requestor(api_key)
-        url = cls.class_url()
-
-        if str(params['type']) in cls.REPORT_TYPES.values():
-            url += "/%s" % params['type']
-        else:
-            raise Exception("Undertemined Report Type")
-
+        url = "%s/%s" % (cls.class_url(), params['type'])
         response, api_key = requestor.request('get', url, params)
         return convert_to_easypost_object(response, api_key)
 
