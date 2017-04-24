@@ -47,6 +47,7 @@ except ImportError:
 # config
 api_key = None
 api_base = 'https://api.easypost.com/v2'
+timeout = 60
 
 
 USER_AGENT = 'EasyPost/v2 PythonClient/{0}'.format(VERSION)
@@ -330,7 +331,7 @@ class Requestor(object):
                 abs_url,
                 headers=headers,
                 data=data,
-                timeout=60,
+                timeout=timeout,
                 verify=True,
             )
             http_body = result.text
