@@ -753,13 +753,13 @@ class Shipment(AllResource, CreateResource):
             carriers = carriers.split(',')
         except AttributeError:
             pass
-        carriers = [c.lower() for c in carriers]
+        carriers = set([c.lower() for c in carriers])
 
         try:
             services = services.split(',')
         except AttributeError:
             pass
-        services = [service.lower() for service in services]
+        services = set([service.lower() for service in services])
 
         for rate in self.rates:
             rate_carrier = rate.carrier.lower()
