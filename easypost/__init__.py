@@ -743,7 +743,7 @@ class Shipment(AllResource, CreateResource):
         self.refresh_from(response, api_key)
         return self
 
-    def lowest_rate(self, carriers=None, services=None):
+    def lowest_rate(self, carriers=None, services=None, raise_error=True):
         carriers = carriers or []
         services = services or []
 
@@ -773,7 +773,7 @@ class Shipment(AllResource, CreateResource):
             if lowest_rate is None or float(rate.rate) < float(lowest_rate.rate):
                 lowest_rate = rate
 
-        if lowest_rate is None:
+        if lowest_rate is None and raise_error:
             raise Error('No rates found.')
 
         return lowest_rate
