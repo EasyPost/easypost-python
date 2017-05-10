@@ -1,7 +1,10 @@
 ### NEXT (unreleased)
 
+### 3.6.1 2017-05-09
+
 * Modernize tests; make tests able to run in parallel; etc.
 * Clarify in README and `setup.py` the supported Python versions
+* Add top-level `timeout` variable for setting the HTTP timeout on requests
 
 ### 3.6.0 2017-04-04
 
