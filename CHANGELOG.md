@@ -1,5 +1,9 @@
 ### NEXT (unreleased)
 
+### 3.6.2 2017-05-23
+
+* Report.retrieve no longer requires a type to be passed
+
 ### 3.6.1 2017-05-09
 
 * Modernize tests; make tests able to run in parallel; etc.
