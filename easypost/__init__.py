@@ -969,18 +969,6 @@ class Report(AllResource, CreateResource):
         return convert_to_easypost_object(response, api_key)
 
     @classmethod
-    def retrieve(cls, easypost_id="", api_key=None, **params):
-        try:
-            easypost_id = easypost_id['id']
-        except (KeyError, TypeError):
-            pass
-
-        url = "%s/%s/%s" % (cls.class_url(), params['type'], easypost_id)
-        requestor = Requestor(api_key)
-        response, api_key = requestor.request('get', url)
-        return convert_to_easypost_object(response, api_key)
-
-    @classmethod
     def all(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), params['type'])
