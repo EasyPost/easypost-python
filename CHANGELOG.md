@@ -1,5 +1,9 @@
 ### NEXT (unreleased)
 
+### 4.0.0 2017-06-26
+
+* Added support for standalone rating endpoint
+
 ### 3.6.2 2017-05-23
 
 * Report.retrieve no longer requires a type to be passed

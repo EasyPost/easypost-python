@@ -261,6 +261,7 @@ class Requestor(object):
         return response, my_api_key
 
     def request_raw(self, method, url, params=None, apiKeyRequired=True):
+        isRating = False
         if params is None:
             params = {}
         my_api_key = self.api_key or api_key
@@ -272,8 +273,10 @@ class Requestor(object):
                 'at contact@easypost.com for assistance.')
 
         abs_url = self.api_url(url)
+        if (url == "/rating/v1/rates"):
+            abs_url = "https://api.easypost.com/rating/v1/rates"
+            isRating = True
         params = self._objects_to_ids(params)
-
         ua = {
             'client_version': VERSION,
             'lang': 'python',
@@ -291,21 +294,26 @@ class Requestor(object):
 
         if hasattr(ssl, 'OPENSSL_VERSION'):
             ua['openssl_version'] = ssl.OPENSSL_VERSION
-
-        headers = {
-            'X-Client-User-Agent': json.dumps(ua),
-            'User-Agent': USER_AGENT,
-            'Authorization': 'Bearer %s' % my_api_key,
-            'Content-type': 'application/x-www-form-urlencoded'
-        }
-
+        if isRating:
+            headers = {
+                'X-Client-User-Agent': json.dumps(ua),
+                'User-Agent': USER_AGENT,
+                'Authorization': 'Bearer %s' % my_api_key,
+                'Content-type': 'application/json' 
+            }
+        else:
+            headers = {
+                'X-Client-User-Agent': json.dumps(ua),
+                'User-Agent': USER_AGENT,
+                'Authorization': 'Bearer %s' % my_api_key,
+                'Content-type': 'application/x-www-form-urlencoded' 
+            }
         if timeout > _max_timeout:
             raise Error("`timeout` must not exceed %d; it is %d" % (_max_timeout, timeout))
-
         if request_lib == 'urlfetch':
             http_body, http_status = self.urlfetch_request(method, abs_url, headers, params)
         elif request_lib == 'requests':
-            http_body, http_status = self.requests_request(method, abs_url, headers, params)
+            http_body, http_status = self.requests_request(method, abs_url, headers, params, isRating)
         else:
             raise Error("Bug discovered: invalid request_lib: %s. "
                         "Please report to contact@easypost.com." % request_lib)
@@ -321,27 +329,40 @@ class Requestor(object):
             self.handle_api_error(http_status, http_body, response)
         return response
 
-    def requests_request(self, method, abs_url, headers, params):
+    def requests_request(self, method, abs_url, headers, params, isRating):
         method = method.lower()
         if method == 'get' or method == 'delete':
             if params:
                 abs_url = self.build_url(abs_url, params)
             data = None
         elif method == 'post' or method == 'put':
-            data = self.encode(params)
+            if not isRating:
+                data = self.encode(params)
+            else:
+                data = params
         else:
             raise Error("Bug discovered: invalid request method: %s. "
                         "Please report to contact@easypost.com." % method)
-
+        
         try:
-            result = requests_session.request(
-                method,
-                abs_url,
-                headers=headers,
-                data=data,
-                timeout=timeout,
-                verify=True,
-            )
+            if not isRating:
+                result = requests_session.request(
+                    method,
+                    abs_url,
+                    headers=headers,
+                    data=data,
+                    timeout=timeout,
+                    verify=True,
+                )
+            else:
+                result = requests_session.request(
+                    method,
+                    abs_url,
+                    headers=headers,
+                    data=json.dumps(data),
+                    timeout=timeout,
+                    verify=True,
+                )
             http_body = result.text
             http_status = result.status_code
         except Exception as e:
@@ -997,3 +1018,12 @@ class Webhook(AllResource, CreateResource, DeleteResource):
         response, api_key = requestor.request('put', url, params)
         self.refresh_from(response, api_key)
         return self
+
+class Rating(CreateResource):
+    @classmethod
+    def create(cls, api_key=None,**params):
+        requestor = Requestor(api_key)
+        url = "/rating/v1/rates"
+        response, api_key = requestor.request('post', url, params)
+        return convert_to_easypost_object(response, api_key)
+
