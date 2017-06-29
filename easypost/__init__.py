@@ -1002,6 +1002,7 @@ class Webhook(AllResource, CreateResource, DeleteResource):
         self.refresh_from(response, api_key)
         return self
 
+
 class Rating(CreateResource):
     @classmethod
     def create(cls, api_key=None, **params):
@@ -1009,4 +1010,3 @@ class Rating(CreateResource):
         url = "/rating/v1/rates"
         response, api_key = requestor.request('post', url, params)
         return convert_to_easypost_object(response, api_key)
-
