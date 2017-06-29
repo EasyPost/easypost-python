@@ -1,6 +1,6 @@
 ### NEXT (unreleased)
 
-### 4.0.0 2017-06-26
+### 3.7.0 2017-06-26
 
 * Added support for standalone rating endpoint
 

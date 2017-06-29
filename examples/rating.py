@@ -3,7 +3,7 @@ import easypost
 easypost.api_key = 'EASYPOSTAPIRATINGACTIVATEDKEY'
 
 rating = easypost.Rating.create(
-  carrier_accounts=["CARRIERACCOUNTID1", "CARRIERACCOUNTID2"],
+  carrier_accounts=['CARRIERACCOUNTID1', 'CARRIERACCOUNTID2'],
   to_address={
     "name": 'Dr. Steve Brule',
     "street1": '179 N Harbor Dr',
