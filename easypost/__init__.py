@@ -298,7 +298,7 @@ class Requestor(object):
             'X-Client-User-Agent': json.dumps(ua),
             'User-Agent': USER_AGENT,
             'Authorization': 'Bearer %s' % my_api_key,
-            'Content-Type': 'application/x-www-form-urlencoded' 
+            'Content-Type': 'application/x-www-form-urlencoded'
         }
         if isRating:
             headers['Content-Type'] = 'application/json'
@@ -332,12 +332,12 @@ class Requestor(object):
         elif method == 'post' or method == 'put':
             if headers['Content-Type'] != 'application/json':
                 data = self.encode(params)
+            else:
+                data = json.dumps(params)
         else:
             raise Error("Bug discovered: invalid request method: %s. "
                         "Please report to contact@easypost.com." % method)
         try:
-            if headers['Content-Type'] == 'application/json':
-                data = json.dumps(params)
             result = requests_session.request(
                 method,
                 abs_url,
