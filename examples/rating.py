@@ -1,6 +1,6 @@
 import easypost
 
-easypost.api_key = 'EASYPOSTAPIRATINGACTIVATEDKEY'
+easypost.api_key = 'EASYPOSTRATINGACTIVATEDKEY'
 
 rating = easypost.Rating.create(
     carrier_accounts=['CARRIERACCOUNTID1', 'CARRIERACCOUNTID2'],

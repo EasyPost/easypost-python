@@ -51,6 +51,7 @@ except ImportError:
 # config
 api_key = None
 api_base = 'https://api.easypost.com/v2'
+rating_url = '/rating/v1/rates'
 # use our default timeout, or our max timeout if that is less
 timeout = min(60, _max_timeout)
 
@@ -261,7 +262,6 @@ class Requestor(object):
         return response, my_api_key
 
     def request_raw(self, method, url, params=None, apiKeyRequired=True):
-        isRating = False
         if params is None:
             params = {}
         my_api_key = self.api_key or api_key
@@ -273,9 +273,6 @@ class Requestor(object):
                 'at contact@easypost.com for assistance.')
 
         abs_url = self.api_url(url)
-        if (url == "/rating/v1/rates"):
-            abs_url = "https://api.easypost.com/rating/v1/rates"
-            isRating = True
         params = self._objects_to_ids(params)
         ua = {
             'client_version': VERSION,
@@ -300,7 +297,8 @@ class Requestor(object):
             'Authorization': 'Bearer %s' % my_api_key,
             'Content-Type': 'application/x-www-form-urlencoded'
         }
-        if isRating:
+        if (url == rating_url):
+            abs_url = 'https://api.easypost.com/rating/v1/rates'
             headers['Content-Type'] = 'application/json'
 
         if timeout > _max_timeout:
