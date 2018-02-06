@@ -147,7 +147,7 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
 
 class Requestor(object):
     def __init__(self, local_api_key=None):
-        self.api_key = local_api_key
+        self._api_key = local_api_key
 
     @classmethod
     def api_url(cls, url=None):
@@ -263,7 +263,7 @@ class Requestor(object):
     def request_raw(self, method, url, params=None, apiKeyRequired=True):
         if params is None:
             params = {}
-        my_api_key = self.api_key or api_key
+        my_api_key = self._api_key or api_key
 
         if apiKeyRequired and my_api_key is None:
             raise Error(
@@ -391,13 +391,13 @@ class EasyPostObject(object):
         self.__dict__['_unsaved_values'] = set()
         self.__dict__['_transient_values'] = set()
         # python2.6 doesnt have {} syntax for sets
-        self.__dict__['_immutable_values'] = set(['api_key', 'id'])
+        self.__dict__['_immutable_values'] = set(['_api_key', 'id'])
         self.__dict__['_retrieve_params'] = params
 
         self.__dict__['_parent'] = parent
         self.__dict__['_name'] = name
 
-        self.__dict__['api_key'] = api_key
+        self.__dict__['_api_key'] = api_key
 
         if easypost_id:
             self.id = easypost_id
@@ -456,7 +456,7 @@ class EasyPostObject(object):
         return instance
 
     def refresh_from(self, values, api_key):
-        self.api_key = api_key
+        self._api_key = api_key
 
         for k, v in sorted(six.iteritems(values)):
             if k == 'id' and self.id != v:
@@ -537,7 +537,7 @@ class Resource(EasyPostObject):
         return instance
 
     def refresh(self):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = self.instance_url()
         response, api_key = requestor.request('get', url, self._retrieve_params)
         self.refresh_from(response, api_key)
@@ -594,7 +594,7 @@ class CreateResource(Resource):
 class UpdateResource(Resource):
     def save(self):
         if self._unsaved_values:
-            requestor = Requestor(self.api_key)
+            requestor = Requestor(self._api_key)
             params = {}
             for k in self._unsaved_values:
                 params[k] = getattr(self, k)
@@ -610,7 +610,7 @@ class UpdateResource(Resource):
 
 class DeleteResource(Resource):
     def delete(self, **params):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = self.instance_url()
         response, api_key = requestor.request('delete', url, params)
         self.refresh_from(response, api_key)
@@ -663,7 +663,7 @@ class Address(AllResource, CreateResource):
             return convert_to_easypost_object(response, api_key)
 
     def verify(self, carrier=None):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "verify")
         if carrier:
             url += "?carrier=%s" % carrier
@@ -715,21 +715,21 @@ class Shipment(AllResource, CreateResource):
         return response
 
     def get_rates(self):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "rates")
         response, api_key = requestor.request('get', url)
         self.refresh_from(response, api_key)
         return self
 
     def buy(self, **params):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
         response, api_key = requestor.request('post', url, params)
         self.refresh_from(response, api_key)
         return self
 
     def refund(self, **params):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "refund")
 
         response, api_key = requestor.request('get', url, params)
@@ -737,7 +737,7 @@ class Shipment(AllResource, CreateResource):
         return self
 
     def insure(self, **params):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "insure")
 
         response, api_key = requestor.request('post', url, params)
@@ -745,7 +745,7 @@ class Shipment(AllResource, CreateResource):
         return self
 
     def label(self, **params):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "label")
 
         response, api_key = requestor.request('get', url, params)
@@ -806,35 +806,35 @@ class Batch(AllResource, CreateResource):
         return convert_to_easypost_object(response, api_key)
 
     def buy(self, **params):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
         response, api_key = requestor.request('post', url, params)
         self.refresh_from(response, api_key)
         return self
 
     def label(self, **params):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "label")
         response, api_key = requestor.request('post', url, params)
         self.refresh_from(response, api_key)
         return self
 
     def remove_shipments(self, **params):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "remove_shipments")
         response, api_key = requestor.request('post', url, params)
         self.refresh_from(response, api_key)
         return self
 
     def add_shipments(self, **params):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "add_shipments")
         response, api_key = requestor.request('post', url, params)
         self.refresh_from(response, api_key)
         return self
 
     def create_scan_form(self, **params):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "scan_form")
         response, api_key = requestor.request('post', url, params)
         self.refresh_from(response, api_key)
@@ -863,14 +863,14 @@ class Tracker(AllResource, CreateResource):
 
 class Pickup(AllResource, CreateResource):
     def buy(self, **params):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
         response, api_key = requestor.request('post', url, params)
         self.refresh_from(response, api_key)
         return self
 
     def cancel(self, **params):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "cancel")
         response, api_key = requestor.request('post', url, params)
         self.refresh_from(response, api_key)
@@ -879,14 +879,14 @@ class Pickup(AllResource, CreateResource):
 
 class Order(AllResource, CreateResource):
     def get_rates(self):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "rates")
         response, api_key = requestor.request('get', url)
         self.refresh_from(response, api_key)
         return self
 
     def buy(self, **params):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
         response, api_key = requestor.request('post', url, params)
         self.refresh_from(response, api_key)
@@ -992,7 +992,7 @@ class Blob(AllResource, CreateResource):
 
 class Webhook(AllResource, CreateResource, DeleteResource):
     def update(self, **params):
-        requestor = Requestor(self.api_key)
+        requestor = Requestor(self._api_key)
         url = self.instance_url()
         response, api_key = requestor.request('put', url, params)
         self.refresh_from(response, api_key)
