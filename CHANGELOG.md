@@ -1,5 +1,10 @@
 ### NEXT (unreleased)
 
+### 3.6.3 2018-02-05
+
+* Fix issue with responses that contain an `api_key` field (gh-67)
+* Fix tests to take into account new label fee
+
 ### 3.6.2 2017-05-23
 
 * Report.retrieve no longer requires a type to be passed
