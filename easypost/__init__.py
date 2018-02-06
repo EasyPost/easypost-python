@@ -391,7 +391,7 @@ class EasyPostObject(object):
         self.__dict__['_unsaved_values'] = set()
         self.__dict__['_transient_values'] = set()
         # python2.6 doesnt have {} syntax for sets
-        self.__dict__['_immutable_values'] = {'_api_key', 'id'}
+        self.__dict__['_immutable_values'] = set(['_api_key', 'id'])
         self.__dict__['_retrieve_params'] = params
 
         self.__dict__['_parent'] = parent
