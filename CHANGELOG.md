@@ -1,5 +1,9 @@
 ### NEXT (unreleased)
 
+### 3.6.4 2018-04-09
+
+* Update user tests
+
 ### 3.6.3 2018-02-05
 
 * Fix issue with responses that contain an `api_key` field (gh-67)
