@@ -5,9 +5,7 @@ me = easypost.User.retrieve()
 
 child_user = easypost.User.create(
     name='Python All-Things-Testing',
-    password='password1',
-    password_confirmation='password1',
-    phone_number='7778675309'
+    phone_number='555-555-5555'
 )
 id = child_user.id
 
