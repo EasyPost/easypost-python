@@ -621,17 +621,14 @@ class DeleteResource(Resource):
 class Address(AllResource, CreateResource):
 
     @classmethod
-    def create(cls, api_key=None, verify=None, verify_strict=None, **params):
+    def create(cls, api_key=None, verify=[], verify_strict=[], **params):
         requestor = Requestor(api_key)
         url = cls.class_url()
 
         if verify or verify_strict:
-            verify = verify or []
-            verify_strict = verify_strict or []
-
             url += '?' + '&'.join(
-                ['verify[]=' + param for param in verify] +
-                ['verify_strict[]=' + param for param in verify_strict]
+                ['verify[]={0}'.format(opt) for opt in verify] +
+                ['verify_strict[]={0}'.format(opt) for opt in verify_strict]
             )
 
         wrapped_params = {cls.class_name(): params}
