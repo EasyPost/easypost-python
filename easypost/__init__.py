@@ -621,11 +621,13 @@ class DeleteResource(Resource):
 class Address(AllResource, CreateResource):
 
     @classmethod
-    def create(cls, api_key=None, verify=[], verify_strict=[], **params):
+    def create(cls, api_key=None, verify=None, verify_strict=None, **params):
         requestor = Requestor(api_key)
         url = cls.class_url()
 
         if verify or verify_strict:
+            verify = verify or []
+            verify_strict = verify_strict or []
             url += '?' + '&'.join(
                 ['verify[]={0}'.format(opt) for opt in verify] +
                 ['verify_strict[]={0}'.format(opt) for opt in verify_strict]
