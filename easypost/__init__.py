@@ -628,12 +628,10 @@ class Address(AllResource, CreateResource):
         if verify or verify_strict:
             verify = verify or []
             verify_strict = verify_strict or []
-            url += "?"
-
-            for param in verify:
-                url += "verify[]={0}".format(param)
-            for param in verify_strict:
-                url += "verify_strict[]={0}".format(param)
+            url += '?' + '&'.join(
+                ['verify[]={0}'.format(opt) for opt in verify] +
+                ['verify_strict[]={0}'.format(opt) for opt in verify_strict]
+            )
 
         wrapped_params = {cls.class_name(): params}
         response, api_key = requestor.request('post', url, wrapped_params)
