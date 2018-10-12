@@ -229,17 +229,11 @@ class Requestor(object):
         if isinstance(param, Resource):
             return {'id': param.id}
         elif isinstance(param, dict):
-            out = {}
-            for k, v in six.iteritems(param):
-                out[k] = cls._objects_to_ids(v)
-            return out
+            return {k: cls._objects_to_ids(v) for k, v in six.iteritems(param)}
         elif isinstance(param, list):
-            out = []
-            for k, v in enumerate(param):
-                out.append(cls._objects_to_ids(v))
-            return out
-        else:
-            return param
+            return [cls._objects_to_ids(v) for v in param]
+
+        return param
 
     @classmethod
     def encode(cls, params):
