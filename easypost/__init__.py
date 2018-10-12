@@ -19,7 +19,12 @@ GET = 'get'
 PUT = 'put'
 POST = 'post'
 DELETE = 'delete'
-
+# Standard error messages
+support_email = 'contact@easypost.com'
+request_err_msg = ('Unexpected error communicating with EasyPost. '
+                   'If this problem persists, please let us know at %{email}.').format(email=support_email)
+import_err_msg = ('EasyPost requires an up to date requests library. Update requests via "pip install -U requests" or '
+                  'contact us at %{email}.').format(email=support_email)
 # use urlfetch as request_lib on google app engine, otherwise use requests
 request_lib = None
 # use a max timeout equal to that of all customer-facing backend operations
@@ -35,22 +40,16 @@ except ImportError:
         request_lib = 'requests'
         requests_session = requests.Session()
     except ImportError:
-        raise ImportError('EasyPost requires an up to date requests library. '
-                          'Update requests via "pip install -U requests" or '
-                          'contact us at contact@easypost.com.')
+        raise ImportError(import_err_msg)
 
     try:
         version = requests.__version__
         major, minor, patch = [int(i) for i in version.split('.')]
     except Exception:
-        raise ImportError('EasyPost requires an up to date requests library. '
-                          'Update requests via "pip install -U requests" or contact '
-                          'us at contact@easypost.com.')
+        raise ImportError(import_err_msg)
     else:
         if major < 1:
-            raise ImportError('EasyPost requires an up to date requests library. Update '
-                              'requests via "pip install -U requests" or contact us '
-                              'at contact@easypost.com.')
+            raise ImportError(import_err_msg)
 
 # config
 api_key = None
@@ -179,7 +178,7 @@ class Requestor(object):
         for k, v in sorted(six.iteritems(dict_value)):
             k = cls._utf8(k)
             v = cls._utf8(v)
-            n["%s[%s]" % (key, k)] = v
+            n['%s[%s]' % (key, k)] = v
         out.extend(cls._encode_inner(n))
 
     @classmethod
@@ -267,7 +266,7 @@ class Requestor(object):
             raise Error(
                 'No API key provided. Set an API key via "easypost.api_key = \'APIKEY\'. '
                 'Your API keys can be found in your EasyPost dashboard, or you can email us '
-                'at contact@easypost.com for assistance.')
+                'at {email} for assistance.'.format(email=support_email))
 
         abs_url = self.api_url(url)
         params = self._objects_to_ids(params)
@@ -305,8 +304,8 @@ class Requestor(object):
         elif request_lib == 'requests':
             http_body, http_status = self.requests_request(method, abs_url, headers, params)
         else:
-            raise Error("Bug discovered: invalid request_lib: %s. "
-                        "Please report to contact@easypost.com." % request_lib)
+            raise Error("Bug discovered: invalid request_lib: {lib}. "
+                        "Please report to {email}.".format(lib=request_lib, email=support_email))
 
         return http_body, http_status, my_api_key
 
@@ -319,18 +318,22 @@ class Requestor(object):
             self.handle_api_error(http_status, http_body, response)
         return response
 
-    def requests_request(self, method, abs_url, headers, params):
-        method = method.lower()
+    @classmethod
+    def format_request_args(cls, method, url, params):
         if method in [GET, DELETE]:
             if params:
-                abs_url = self.build_url(abs_url, params)
+                url = cls.build_url(url, params)
             data = None
         elif method in [POST, PUT]:
-            data = self.encode(params)
+            data = cls.encode(params)
         else:
-            raise Error("Bug discovered: invalid request method: %s. "
-                        "Please report to contact@easypost.com." % method)
+            raise Error("Bug discovered: invalid request method: {method}. Please report to {email}."
+                        .format(method=method, email=support_email))
+        return url, data
 
+    def requests_request(self, method, abs_url, headers, params):
+        method = method.lower()
+        abs_url, data = self.format_request_args(method, abs_url, params)
         try:
             result = requests_session.request(
                 method,
@@ -342,21 +345,14 @@ class Requestor(object):
             )
             http_body = result.text
             http_status = result.status_code
-        except Exception as e:
-            raise Error("Unexpected error communicating with EasyPost. If this "
-                        "problem persists please let us know at contact@easypost.com.")
+        except Exception:
+            raise Error(request_err_msg)
+
         return http_body, http_status
 
     def urlfetch_request(self, method, abs_url, headers, params):
         args = {}
-        if method in [POST, PUT]:
-            args['payload'] = self.encode(params)
-        elif method in [GET, DELETE]:
-            abs_url = self.build_url(abs_url, params)
-        else:
-            raise Error("Bug discovered: invalid request method: %s. Please report "
-                        "to contact@easypost.com." % method)
-
+        abs_url, args['payload'] = self.format_request_args(method, abs_url, params)
         args['url'] = abs_url
         args['method'] = method
         args['headers'] = headers
@@ -366,8 +362,7 @@ class Requestor(object):
         try:
             result = urlfetch.fetch(**args)
         except:
-            raise Error("Unexpected error communicating with EasyPost. "
-                        "If this problem persists, let us know at contact@easypost.com.")
+            raise Error(request_err_msg)
 
         return result.content, result.status_code
 
