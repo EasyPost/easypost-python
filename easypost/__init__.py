@@ -556,7 +556,7 @@ class Resource(EasyPostObject):
     @classmethod
     def class_url(cls):
         cls_name = cls.class_name()
-        if cls_name[-1:] == "s" or cls_name[-1:] == "h":
+        if cls_name[-1] in ['s', 'n']:
             return "/%ses" % cls_name
         else:
             return "/%ss" % cls_name
