@@ -80,56 +80,33 @@ class Error(Exception):
 
 
 def convert_to_easypost_object(response, api_key, parent=None, name=None):
-    types = {
-        'Address': Address,
-        'ScanForm': ScanForm,
-        'CustomsItem': CustomsItem,
-        'CustomsInfo': CustomsInfo,
-        'Parcel': Parcel,
-        'Shipment': Shipment,
-        'Insurance': Insurance,
-        'Rate': Rate,
-        'Refund': Refund,
-        'Batch': Batch,
-        'Event': Event,
-        'Tracker': Tracker,
-        'Pickup': Pickup,
-        'Order': Order,
-        'PickupRate': PickupRate,
-        'PostageLabel': PostageLabel,
-        'CarrierAccount': CarrierAccount,
-        'User': User,
-        'Report': Report,
-        'ShipmentReport': Report,
-        'PaymentLogReport': Report,
-        'TrackerReport': Report,
-        'Webhook': Webhook
-    }
-
-    prefixes = {
-        'adr': Address,
-        'sf': ScanForm,
-        'evt': Event,
-        'cstitem': CustomsItem,
-        'cstinfo': CustomsInfo,
-        'prcl': Parcel,
-        'shp': Shipment,
-        'ins': Insurance,
-        'rate': Rate,
-        'rfnd': Refund,
-        'batch': Batch,
-        'trk': Tracker,
-        'order': Order,
-        'pickup': Pickup,
-        'pickuprate': PickupRate,
-        'pl': PostageLabel,
-        'ca': CarrierAccount,
-        'user': User,
-        'shprep': Report,
-        'plrep': Report,
-        'trkrep': Report,
-        'hook': Webhook
-    }
+    # Declarative way to map EasyPost types: (Model, Name, ID Prefix)
+    models = (
+        (Address, 'Address', 'adr'),
+        (Batch, 'Batch', 'batch'),
+        (CarrierAccount, 'CarrierAccount', 'ca'),
+        (CustomsInfo, 'CustomsInfo', 'cstinfo'),
+        (CustomsItem, 'CustomsItem', 'cstitem'),
+        (Event, 'Event', 'evt'),
+        (Insurance, 'Insurance', 'ins'),
+        (Order, 'Order', 'order'),
+        (Parcel, 'Parcel', 'prcl'),
+        (Pickup, 'Pickup', 'pickup'),
+        (PickupRate, 'PickupRate', 'pickuprate'),
+        (PostageLabel, 'PostageLabel', 'pl'),
+        (Rate, 'Rate', 'rate'),
+        (Refund, 'Refund', 'rfnd'),
+        (Report, 'PaymentLogReport', 'plrep'),
+        (Report, 'ShipmentReport', 'shprep'),
+        (Report, 'TrackerReport', 'trkrep'),
+        (ScanForm, 'ScanForm', 'sf'),
+        (Shipment, 'Shipment', 'shp'),
+        (Tracker, 'Tracker', 'trk'),
+        (User, 'User', 'user'),
+        (Webhook, 'Webhook', 'hook')
+    )
+    cls_by_name = {nm: cls for cls, nm, prefix in models}
+    cls_by_prefix = {prefix: cls for cls, nm, prefix in models}
 
     if isinstance(response, list):
         return [convert_to_easypost_object(r, api_key, parent) for r in response]
@@ -138,9 +115,9 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         cls_name = response.get('object', EasyPostObject)
         cls_id = response.get('id', None)
         if isinstance(cls_name, six.string_types):
-            cls = types.get(cls_name, EasyPostObject)
+            cls = cls_by_name.get(cls_name, EasyPostObject)
         elif cls_id is not None:
-            cls = prefixes.get(cls_id[0:cls_id.find('_')], EasyPostObject)
+            cls = cls_by_prefix.get(cls_id[0:cls_id.find('_')], EasyPostObject)
         else:
             cls = EasyPostObject
         return cls.construct_from(response, api_key, parent, name)
