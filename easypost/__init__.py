@@ -14,7 +14,11 @@ from .version import VERSION
 __author__ = 'EasyPost <oss@easypost.com>'
 __version__ = VERSION
 version_info = tuple(int(v) for v in VERSION.split('.'))
-
+# HTTP methods
+GET = 'get'
+PUT = 'put'
+POST = 'post'
+DELETE = 'delete'
 
 # use urlfetch as request_lib on google app engine, otherwise use requests
 request_lib = None
@@ -317,11 +321,11 @@ class Requestor(object):
 
     def requests_request(self, method, abs_url, headers, params):
         method = method.lower()
-        if method == 'get' or method == 'delete':
+        if method in [GET, DELETE]:
             if params:
                 abs_url = self.build_url(abs_url, params)
             data = None
-        elif method == 'post' or method == 'put':
+        elif method in [POST, PUT]:
             data = self.encode(params)
         else:
             raise Error("Bug discovered: invalid request method: %s. "
@@ -345,9 +349,9 @@ class Requestor(object):
 
     def urlfetch_request(self, method, abs_url, headers, params):
         args = {}
-        if method == 'post' or method == 'put':
+        if method in [POST, PUT]:
             args['payload'] = self.encode(params)
-        elif method == 'get' or method == 'delete':
+        elif method in [GET, DELETE]:
             abs_url = self.build_url(abs_url, params)
         else:
             raise Error("Bug discovered: invalid request method: %s. Please report "
@@ -367,7 +371,8 @@ class Requestor(object):
 
         return result.content, result.status_code
 
-    def handle_api_error(self, http_status, http_body, response):
+    @staticmethod
+    def handle_api_error(http_status, http_body, response):
         try:
             error = response['error']
         except (KeyError, TypeError):
@@ -533,7 +538,7 @@ class Resource(EasyPostObject):
     def refresh(self):
         requestor = Requestor(self._api_key)
         url = self.instance_url()
-        response, api_key = requestor.request('get', url, self._retrieve_params)
+        response, api_key = requestor.request(GET, url, self._retrieve_params)
         self.refresh_from(response, api_key)
         return self
 
@@ -571,7 +576,7 @@ class AllResource(Resource):
     def all(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = cls.class_url()
-        response, api_key = requestor.request('get', url, params)
+        response, api_key = requestor.request(GET, url, params)
         return convert_to_easypost_object(response, api_key)
 
 
@@ -581,7 +586,7 @@ class CreateResource(Resource):
         requestor = Requestor(api_key)
         url = cls.class_url()
         wrapped_params = {cls.class_name(): params}
-        response, api_key = requestor.request('post', url, wrapped_params)
+        response, api_key = requestor.request(POST, url, wrapped_params)
         return convert_to_easypost_object(response, api_key)
 
 
@@ -596,7 +601,7 @@ class UpdateResource(Resource):
                     params[k] = params[k].flatten_unsaved()
             params = {self.class_name(): params}
             url = self.instance_url()
-            response, api_key = requestor.request('put', url, params)
+            response, api_key = requestor.request(PUT, url, params)
             self.refresh_from(response, api_key)
 
         return self
@@ -606,7 +611,7 @@ class DeleteResource(Resource):
     def delete(self, **params):
         requestor = Requestor(self._api_key)
         url = self.instance_url()
-        response, api_key = requestor.request('delete', url, params)
+        response, api_key = requestor.request(DELETE, url, params)
         self.refresh_from(response, api_key)
         return self
 
@@ -628,7 +633,7 @@ class Address(AllResource, CreateResource):
             )
 
         wrapped_params = {cls.class_name(): params}
-        response, api_key = requestor.request('post', url, wrapped_params)
+        response, api_key = requestor.request(POST, url, wrapped_params)
         return convert_to_easypost_object(response, api_key)
 
     @classmethod
@@ -640,7 +645,7 @@ class Address(AllResource, CreateResource):
             cls.class_name(): params,
             "carrier": carrier
         }
-        response, api_key = requestor.request('post', url, wrapped_params)
+        response, api_key = requestor.request(POST, url, wrapped_params)
 
         response_address = response.get('address', None)
         response_message = response.get('message', None)
@@ -659,7 +664,7 @@ class Address(AllResource, CreateResource):
         url = "%s/%s" % (self.instance_url(), "verify")
         if carrier:
             url += "?carrier=%s" % carrier
-        response, api_key = requestor.request('get', url)
+        response, api_key = requestor.request(GET, url)
 
         response_address = response.get('address', None)
         response_message = response.get('message', None)
@@ -678,7 +683,7 @@ class ScanForm(AllResource, CreateResource):
     def create(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = cls.class_url()
-        response, api_key = requestor.request('post', url, params)
+        response, api_key = requestor.request(POST, url, params)
         return convert_to_easypost_object(response, api_key)
 
 
@@ -703,20 +708,20 @@ class Shipment(AllResource, CreateResource):
     def track_with_code(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), "track")
-        response, api_key = requestor.request('get', url, params)
+        response, api_key = requestor.request(GET, url, params)
         return response
 
     def get_rates(self):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "rates")
-        response, api_key = requestor.request('get', url)
+        response, api_key = requestor.request(GET, url)
         self.refresh_from(response, api_key)
         return self
 
     def buy(self, **params):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
-        response, api_key = requestor.request('post', url, params)
+        response, api_key = requestor.request(POST, url, params)
         self.refresh_from(response, api_key)
         return self
 
@@ -724,7 +729,7 @@ class Shipment(AllResource, CreateResource):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "refund")
 
-        response, api_key = requestor.request('get', url, params)
+        response, api_key = requestor.request(GET, url, params)
         self.refresh_from(response, api_key)
         return self
 
@@ -732,7 +737,7 @@ class Shipment(AllResource, CreateResource):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "insure")
 
-        response, api_key = requestor.request('post', url, params)
+        response, api_key = requestor.request(POST, url, params)
         self.refresh_from(response, api_key)
         return self
 
@@ -740,7 +745,7 @@ class Shipment(AllResource, CreateResource):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "label")
 
-        response, api_key = requestor.request('get', url, params)
+        response, api_key = requestor.request(GET, url, params)
         self.refresh_from(response, api_key)
         return self
 
@@ -794,41 +799,41 @@ class Batch(AllResource, CreateResource):
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), "create_and_buy")
         wrapped_params = {cls.class_name(): params}
-        response, api_key = requestor.request('post', url, wrapped_params)
+        response, api_key = requestor.request(POST, url, wrapped_params)
         return convert_to_easypost_object(response, api_key)
 
     def buy(self, **params):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
-        response, api_key = requestor.request('post', url, params)
+        response, api_key = requestor.request(POST, url, params)
         self.refresh_from(response, api_key)
         return self
 
     def label(self, **params):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "label")
-        response, api_key = requestor.request('post', url, params)
+        response, api_key = requestor.request(POST, url, params)
         self.refresh_from(response, api_key)
         return self
 
     def remove_shipments(self, **params):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "remove_shipments")
-        response, api_key = requestor.request('post', url, params)
+        response, api_key = requestor.request(POST, url, params)
         self.refresh_from(response, api_key)
         return self
 
     def add_shipments(self, **params):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "add_shipments")
-        response, api_key = requestor.request('post', url, params)
+        response, api_key = requestor.request(POST, url, params)
         self.refresh_from(response, api_key)
         return self
 
     def create_scan_form(self, **params):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "scan_form")
-        response, api_key = requestor.request('post', url, params)
+        response, api_key = requestor.request(POST, url, params)
         self.refresh_from(response, api_key)
         return self
 
@@ -842,14 +847,14 @@ class Tracker(AllResource, CreateResource):
     def create_list(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), "create_list")
-        response, api_key = requestor.request('post', url, params)
+        response, api_key = requestor.request(POST, url, params)
         return True
 
     @classmethod
     def all_updated(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), "all_updated")
-        response, api_key = requestor.request('get', url, params)
+        response, api_key = requestor.request(GET, url, params)
         return convert_to_easypost_object(response["trackers"], api_key), response["has_more"]
 
 
@@ -857,14 +862,14 @@ class Pickup(AllResource, CreateResource):
     def buy(self, **params):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
-        response, api_key = requestor.request('post', url, params)
+        response, api_key = requestor.request(POST, url, params)
         self.refresh_from(response, api_key)
         return self
 
     def cancel(self, **params):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "cancel")
-        response, api_key = requestor.request('post', url, params)
+        response, api_key = requestor.request(POST, url, params)
         self.refresh_from(response, api_key)
         return self
 
@@ -873,14 +878,14 @@ class Order(AllResource, CreateResource):
     def get_rates(self):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "rates")
-        response, api_key = requestor.request('get', url)
+        response, api_key = requestor.request(GET, url)
         self.refresh_from(response, api_key)
         return self
 
     def buy(self, **params):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
-        response, api_key = requestor.request('post', url, params)
+        response, api_key = requestor.request(POST, url, params)
         self.refresh_from(response, api_key)
         return self
 
@@ -899,7 +904,7 @@ class CarrierAccount(AllResource, CreateResource, UpdateResource, DeleteResource
     @classmethod
     def types(cls, api_key=None):
         requestor = Requestor(api_key)
-        response, api_key = requestor.request('get', "/carrier_types")
+        response, api_key = requestor.request(GET, "/carrier_types")
         return convert_to_easypost_object(response, api_key)
 
 
@@ -909,7 +914,7 @@ class User(CreateResource, UpdateResource, DeleteResource):
         requestor = Requestor(api_key)
         url = cls.class_url()
         wrapped_params = {cls.class_name(): params}
-        response, api_key = requestor.request('post', url, wrapped_params, False)
+        response, api_key = requestor.request(POST, url, wrapped_params, False)
         return convert_to_easypost_object(response, api_key)
 
     @classmethod
@@ -921,7 +926,7 @@ class User(CreateResource, UpdateResource, DeleteResource):
 
         if easypost_id == "":
             requestor = Requestor(api_key)
-            response, api_key = requestor.request('get', cls.class_url())
+            response, api_key = requestor.request(GET, cls.class_url())
             return convert_to_easypost_object(response, api_key)
         else:
             instance = cls(easypost_id, api_key, **params)
@@ -932,7 +937,7 @@ class User(CreateResource, UpdateResource, DeleteResource):
     def all_api_keys(cls, api_key=None):
         requestor = Requestor(api_key)
         url = "/api_keys"
-        response, api_key = requestor.request('get', url)
+        response, api_key = requestor.request(GET, url)
         return convert_to_easypost_object(response, api_key)
 
     def api_keys(self):
@@ -957,14 +962,14 @@ class Report(AllResource, CreateResource):
         url = "%s/%s" % (cls.class_url(), params['type'])
         wrapped_params = {cls.class_name(): params}
 
-        response, api_key = requestor.request('post', url, wrapped_params, False)
+        response, api_key = requestor.request(POST, url, wrapped_params, False)
         return convert_to_easypost_object(response, api_key)
 
     @classmethod
     def all(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), params['type'])
-        response, api_key = requestor.request('get', url, params)
+        response, api_key = requestor.request(GET, url, params)
         return convert_to_easypost_object(response, api_key)
 
 
@@ -978,7 +983,7 @@ class Blob(AllResource, CreateResource):
 
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), easypost_id)
-        response, api_key = requestor.request('get', url)
+        response, api_key = requestor.request(GET, url)
         return response["signed_url"]
 
 
@@ -986,6 +991,6 @@ class Webhook(AllResource, CreateResource, DeleteResource):
     def update(self, **params):
         requestor = Requestor(self._api_key)
         url = self.instance_url()
-        response, api_key = requestor.request('put', url, params)
+        response, api_key = requestor.request(PUT, url, params)
         self.refresh_from(response, api_key)
         return self
