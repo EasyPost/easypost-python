@@ -247,19 +247,19 @@ class Requestor(object):
         else:
             return '%s?%s' % (url, cls.encode(params))
 
-    def request(self, method, url, params=None, apiKeyRequired=True):
+    def request(self, method, url, params=None, api_key_reqd=True):
         if params is None:
             params = {}
-        http_body, http_status, my_api_key = self.request_raw(method, url, params, apiKeyRequired)
+        http_body, http_status, my_api_key = self.request_raw(method, url, params, api_key_reqd)
         response = self.interpret_response(http_body, http_status)
         return response, my_api_key
 
-    def request_raw(self, method, url, params=None, apiKeyRequired=True):
+    def request_raw(self, method, url, params=None, api_key_reqd=True):
         if params is None:
             params = {}
         my_api_key = self._api_key or api_key
 
-        if apiKeyRequired and my_api_key is None:
+        if api_key_reqd and my_api_key is None:
             raise Error(
                 'No API key provided. Set an API key via "easypost.api_key = \'APIKEY\'. '
                 'Your API keys can be found in your EasyPost dashboard, or you can email us '
