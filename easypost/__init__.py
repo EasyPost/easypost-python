@@ -105,8 +105,8 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         (User, 'User', 'user'),
         (Webhook, 'Webhook', 'hook')
     )
-    cls_by_name = {nm: cls for cls, nm, prefix in models}
-    cls_by_prefix = {prefix: cls for cls, nm, prefix in models}
+    cls_by_name = dict((nm, cls) for cls, nm, prefix in models)
+    cls_by_prefix = dict((prefix, cls) for cls, nm, prefix in models)
 
     if isinstance(response, list):
         return [convert_to_easypost_object(r, api_key, parent) for r in response]
@@ -209,7 +209,7 @@ class Requestor(object):
         if isinstance(param, Resource):
             return {'id': param.id}
         elif isinstance(param, dict):
-            return {k: cls._objects_to_ids(v) for k, v in six.iteritems(param)}
+            return dict((k, cls._objects_to_ids(v)) for k, v in six.iteritems(param))
         elif isinstance(param, list):
             return [cls._objects_to_ids(v) for v in param]
 
