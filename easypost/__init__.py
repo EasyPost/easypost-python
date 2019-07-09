@@ -777,7 +777,7 @@ class Shipment(AllResource, CreateResource):
             if len(services) > 0 and rate_service not in services:
                 continue
 
-            if lowest_rate is None or float(rate.rate) < float(lowest_rate.rate):
+            if lowest_rate is None or float(rate.rate.replace(',','.') < float(lowest_rate.rate.replace(',','.')):
                 lowest_rate = rate
 
         if lowest_rate is None:
