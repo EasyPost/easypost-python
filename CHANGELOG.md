@@ -1,4 +1,7 @@
-### NEXT (unreleased)
+### 4.0.0 2019-07-09
+
+* Update some `setup.py` fields
+* Formally remove Python 2.6 support (which has been broken for several years)
 
 ### 3.6.5 2019-07-09
 
