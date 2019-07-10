@@ -4,6 +4,7 @@
 * Fix broken pickup tests
 * Fix broken reports tests
 * Make tests run on Python 3.7
+* Fix typo in `install_requires` causing `six` to not be installed by pip (gh-84 from @roehnan)
 
 ### 3.6.3 2018-02-05
 
