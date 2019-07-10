@@ -75,7 +75,7 @@ def test_batch_create_and_buy():
 
     # Assert on fees
     assert batch.shipments[0].fees[0].amount == '0.01000'
-    assert batch.shipments[0].fees[1].amount == '7.10000'
+    assert batch.shipments[0].fees[1].amount == '7.65000'
     assert batch.shipments[0].fees[2].amount == '1.00000'
 
     # Assert on parcel
