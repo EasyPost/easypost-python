@@ -9,11 +9,11 @@ import types
 
 from six.moves.urllib.parse import urlencode, quote_plus, urlparse
 
-from .version import VERSION
+from .version import VERSION, VERSION_INFO
 
 __author__ = 'EasyPost <oss@easypost.com>'
 __version__ = VERSION
-version_info = tuple(int(v) for v in VERSION.split('.'))
+version_info = VERSION_INFO
 
 
 # use urlfetch as request_lib on google app engine, otherwise use requests
