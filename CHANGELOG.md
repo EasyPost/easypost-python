@@ -1,8 +1,9 @@
 ### NEXT (unreleased)
 
-### 3.6.4 2018-04-09
-
 * Update user tests
+* Fix broken pickup tests
+* Fix broken reports tests
+* Make tests run on Python 3.7
 
 ### 3.6.3 2018-02-05
 
