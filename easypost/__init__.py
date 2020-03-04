@@ -961,9 +961,7 @@ class Report(AllResource, CreateResource):
     def create(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), params['type'])
-        wrapped_params = {cls.class_name(): params}
-
-        response, api_key = requestor.request('post', url, wrapped_params, False)
+        response, api_key = requestor.request('post', url, params, False)
         return convert_to_easypost_object(response, api_key)
 
     @classmethod
@@ -972,7 +970,6 @@ class Report(AllResource, CreateResource):
         url = "%s/%s" % (cls.class_url(), params['type'])
         response, api_key = requestor.request('get', url, params)
         return convert_to_easypost_object(response, api_key)
-
 
 class Blob(AllResource, CreateResource):
     @classmethod
@@ -986,7 +983,6 @@ class Blob(AllResource, CreateResource):
         url = "%s/%s" % (cls.class_url(), easypost_id)
         response, api_key = requestor.request('get', url)
         return response["signed_url"]
-
 
 class Webhook(AllResource, CreateResource, DeleteResource):
     def update(self, **params):
