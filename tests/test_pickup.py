@@ -2,14 +2,11 @@
 
 import time
 import datetime
-
 import easypost
 import pytest
 import pytz
 
-
 ONE_DAY = datetime.timedelta(days=1)
-
 
 @pytest.fixture
 def noon_on_next_monday():
@@ -18,18 +15,19 @@ def noon_on_next_monday():
     noon_est = datetime.time(12, 0, tzinfo=pytz.timezone('America/New_York'))
     return datetime.datetime.combine(next_monday, noon_est)
 
-
 def test_pickup_batch(noon_on_next_monday):
     # Create a Batch containing multiple Shipments. Then we try to buy a Pickup and assert if it was bought.
 
     pickup_address = easypost.Address.create(
         verify=['delivery'],
-        name='Jarrett Streebin',
+        name='TAKASHI KOVACS',
         company='EasyPost',
-        street1='1 MONTGOMERY ST STE 400',
-        city='San Francisco',
-        state='CA',
-        zip='94104',
+        street1='2889 W ASHTON BLVD',
+        street2='SUITE 325',
+        city='Lehi',
+        state='UT',
+        zip='84042',
+        country='US',
         phone='415-456-7890'
     )
 
@@ -102,18 +100,19 @@ def test_pickup_batch(noon_on_next_monday):
         service=pickup.pickup_rates[0].service
     )
 
-
 def test_single_pickup(noon_on_next_monday):
     """Create a Shipment, buy it, and then buy a pickup for it"""
 
     pickup_address = easypost.Address.create(
         verify=['delivery'],
-        name='Jarrett Streebin',
+        name='TAKASHI KOVACS',
         company='EasyPost',
-        street1='1 MONTGOMERY ST STE 400',
-        city='San Francisco',
-        state='CA',
-        zip='94104',
+        street1='2889 W ASHTON BLVD',
+        street2='SUITE 325',
+        city='Lehi',
+        state='UT',
+        zip='84042',
+        country='US',
         phone='415-456-7890'
     )
 
@@ -144,7 +143,7 @@ def test_single_pickup(noon_on_next_monday):
         instructions='Special pickup instructions'
     )
 
-    assert pickup.pickup_rates != []
+    assert pickup.pickup_rates != [], pickup.messages
 
     pickup.buy(
         carrier=pickup.pickup_rates[0].carrier,

@@ -1,13 +1,17 @@
 # Unit tests related to 'Report's (https://www.easypost.com/docs/api.html#reports).
 
 import easypost
+from datetime import date
 
+# Use the current date to avoid needing to define a new date manually on each test
+today = date.today()
+testdate = today.strftime("%Y/%m/%d")
 
 def test_shipment_report():
     report = easypost.Report.create(
         type="shipment",
-        start_date="2012-12-01",
-        end_date="2013-01-01",
+        start_date=testdate,
+        end_date=testdate,
     )
 
     assert report.object == "ShipmentReport"
