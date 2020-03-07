@@ -1,3 +1,8 @@
+### 4.0.1 2020-03-06
+
+* Fixed a bug that would not create reports properly
+* Fixed stale unit tests
+
 ### 4.0.0 2019-07-09
 
 * Update some `setup.py` fields
