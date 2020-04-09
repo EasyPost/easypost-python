@@ -100,6 +100,8 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'ShipmentReport': Report,
         'PaymentLogReport': Report,
         'TrackerReport': Report,
+        'RefundReport': Report,
+        'ShipmentInvoiceReport': Report,
         'Webhook': Webhook
     }
 
@@ -125,6 +127,8 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'shprep': Report,
         'plrep': Report,
         'trkrep': Report,
+        'refrep': Report,
+        'shpinvrep': Report,
         'hook': Webhook
     }
 
