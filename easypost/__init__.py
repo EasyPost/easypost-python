@@ -15,19 +15,20 @@ __author__ = 'EasyPost <oss@easypost.com>'
 __version__ = VERSION
 version_info = VERSION_INFO
 
-
 # use urlfetch as request_lib on google app engine, otherwise use requests
 request_lib = None
 # use a max timeout equal to that of all customer-facing backend operations
 _max_timeout = 90
 try:
     from google.appengine.api import urlfetch
+
     request_lib = 'urlfetch'
     # use the GAE application-wide "deadline" (or its default) if it's less than our existing max timeout
     _max_timeout = min(urlfetch.get_default_fetch_deadline() or 60, _max_timeout)
 except ImportError:
     try:
         import requests
+
         request_lib = 'requests'
         requests_session = requests.Session()
     except ImportError:
@@ -53,7 +54,6 @@ api_key = None
 api_base = 'https://api.easypost.com/v2'
 # use our default timeout, or our max timeout if that is less
 timeout = min(60, _max_timeout)
-
 
 USER_AGENT = 'EasyPost/v2 PythonClient/{0}'.format(VERSION)
 
@@ -229,14 +229,10 @@ class Requestor(object):
         if isinstance(param, Resource):
             return {'id': param.id}
         elif isinstance(param, dict):
-            out = {}
-            for k, v in six.iteritems(param):
-                out[k] = cls._objects_to_ids(v)
+            out = {k: cls._objects_to_ids(v) for k, v in six.iteritems(param)}
             return out
         elif isinstance(param, list):
-            out = []
-            for k, v in enumerate(param):
-                out.append(cls._objects_to_ids(v))
+            out = [cls._objects_to_ids(v) for k, v in enumerate(param)]
             return out
         else:
             return param
@@ -323,11 +319,11 @@ class Requestor(object):
 
     def requests_request(self, method, abs_url, headers, params):
         method = method.lower()
-        if method == 'get' or method == 'delete':
+        if method in ['get', 'delete']:
             if params:
                 abs_url = self.build_url(abs_url, params)
             data = None
-        elif method == 'post' or method == 'put':
+        elif method in ['post', 'put']:
             data = self.encode(params)
         else:
             raise Error("Bug discovered: invalid request method: %s. "
@@ -351,9 +347,9 @@ class Requestor(object):
 
     def urlfetch_request(self, method, abs_url, headers, params):
         args = {}
-        if method == 'post' or method == 'put':
+        if method in ['post', 'put']:
             args['payload'] = self.encode(params)
-        elif method == 'get' or method == 'delete':
+        elif method in ['get', 'delete']:
             abs_url = self.build_url(abs_url, params)
         else:
             raise Error("Bug discovered: invalid request method: %s. Please report "
@@ -556,7 +552,7 @@ class Resource(EasyPostObject):
     @classmethod
     def class_url(cls):
         cls_name = cls.class_name()
-        if cls_name[-1:] == "s" or cls_name[-1:] == "h":
+        if cls_name[-1:] in ["s", "h"]:
             return "/%ses" % cls_name
         else:
             return "/%ss" % cls_name
@@ -770,11 +766,11 @@ class Shipment(AllResource, CreateResource):
 
         for rate in self.rates:
             rate_carrier = rate.carrier.lower()
-            if len(carriers) > 0 and rate_carrier not in carriers:
+            if carriers and rate_carrier not in carriers:
                 continue
 
             rate_service = rate.service.lower()
-            if len(services) > 0 and rate_service not in services:
+            if services and rate_service not in services:
                 continue
 
             if lowest_rate is None or float(rate.rate) < float(lowest_rate.rate):
@@ -971,6 +967,7 @@ class Report(AllResource, CreateResource):
         response, api_key = requestor.request('get', url, params)
         return convert_to_easypost_object(response, api_key)
 
+
 class Blob(AllResource, CreateResource):
     @classmethod
     def retrieve(cls, easypost_id, api_key=None, **params):
@@ -983,6 +980,7 @@ class Blob(AllResource, CreateResource):
         url = "%s/%s" % (cls.class_url(), easypost_id)
         response, api_key = requestor.request('get', url)
         return response["signed_url"]
+
 
 class Webhook(AllResource, CreateResource, DeleteResource):
     def update(self, **params):
