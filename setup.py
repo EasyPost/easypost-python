@@ -41,7 +41,7 @@ setup(
         'Docs': 'https://www.easypost.com/docs/api',
         'Tracker': 'https://github.com/EasyPost/easypost-python/issues',
         'Source': 'https://github.com/EasyPost/easypost-python',
-        'CI': 'https://travis-ci.org/EasyPost/easypost-python',
+        'CI': 'https://travis-ci.com/EasyPost/easypost-python',
     },
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, <4',
     classifiers=[
