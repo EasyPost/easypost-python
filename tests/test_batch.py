@@ -3,6 +3,7 @@
 import easypost
 from time import sleep
 
+
 def test_batch_create_and_buy():
     # We create Address and Parcel objects. We then try to create a Batch containing a shipment.
     # Finally, we assert on saved and returned data.
@@ -72,7 +73,7 @@ def test_batch_create_and_buy():
     assert batch.shipments[0].buyer_address.street1 == '388 Townsend St'
 
     # Assert on fees
-    assert batch.shipments[0].fees[0].amount == '0.01000'
+    assert batch.shipments[0].fees[0].amount == '0.00000'
     assert batch.shipments[0].fees[1].amount == '7.68000'
     assert batch.shipments[0].fees[2].amount == '1.00000'
 
