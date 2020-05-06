@@ -146,7 +146,7 @@ Client Library Development
 ### Releasing
 
    1. Add new features to [CHANGELOG.md](CHANGELOG.md)
-   1. Bump the version in `VERSION`
+   1. Bump the version in `easypost/version.py` and `setup.py`
    1. Create a git tag
    1. Push to PyPI with `python setup.py sdist upload`
 
