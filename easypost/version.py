@@ -1,7 +1,7 @@
 import pkg_resources
 
 
-VERSION = '4.0.1'
+VERSION = '4.0.2'
 
 if '-' in VERSION:
     VERSION_INFO = tuple([int(v) for v in VERSION.split('-')[0].split('.')] + VERSION.split('-')[1:])
