@@ -734,7 +734,7 @@ class Shipment(AllResource, CreateResource):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "refund")
 
-        response, api_key = requestor.request('get', url, params)
+        response, api_key = requestor.request('post', url, params)
         self.refresh_from(response, api_key)
         return self
 
