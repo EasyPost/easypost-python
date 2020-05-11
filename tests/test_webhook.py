@@ -4,6 +4,7 @@ import easypost
 import pytest
 
 
+@pytest.mark.vcr()
 def test_webhooks(per_run_unique):
     url = 'example.com/{0}'.format(per_run_unique)
     expected_url = 'http://example.com/{0}'.format(per_run_unique)

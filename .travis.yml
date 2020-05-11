@@ -1,17 +1,23 @@
 language: python
 matrix:
   include:
-    - python: "2.7"
-    - python: "3.4"
-    - python: "3.5"
-    - python: "3.6"
-    - python: "pypy"
-    - python: "pypy3.5"
-    - python: 3.7
-      dist: xenial
-      sudo: true
+  - python: '2.7'
+  - python: '3.5'
+  - python: '3.6'
+  - python: pypy
+  - python: pypy3.5
+  - python: 3.7
+    dist: xenial
+    sudo: true
+  - python: 3.8
+    dist: xenial
+    sudo: true
 install:
-  - "pip install six requests"
-  - "pip install -r requirements-tests.txt"
-  - "python setup.py install"
-script: "pytest --cov=easypost --cov-report=term-missing tests/"
+- pip install six requests
+- pip install -r requirements-tests.txt
+- python setup.py install
+script: py.test --cov=easypost --cov-report=term-missing --vcr-record=none --cov-fail-under=60 tests/
+env:
+  global:
+  - secure: GY8+PX7WH8nZUK26F/7ygkYoWi6iXvetJybkNnAFZN+cwRuHe9qwJVrEtSr0jeFWWaxt0OvglAcv66ApHI6g137Y2cxqMyfJaBgFHI2d4Yl75ppkJuqkNch0YLhm2CiWllOnPfvdDkVz6ivW7T0jGbWtExeGt8NAMlQvkThE6Mo=
+  - secure: WO+grBRxUJcGIXhBouWFb6/M59JLcA/mgLOhQmQcLPyw4n32wKgyRQZfc9AYqH+9bWxh2uWIk+Z0wmugCM6ETq80cVpEHWWUZ66bhlPG0tHYcquvBfn/+1iOmnDRdtXpsg59qe/My69S9H1mwPYEznVLJXuCFhOxFy9L9LyWMQU=

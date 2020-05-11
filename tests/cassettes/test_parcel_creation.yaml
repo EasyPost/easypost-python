@@ -1,0 +1,70 @@
+interactions:
+- request:
+    body: !!python/unicode parcel%5Bheight%5D=4.3&parcel%5Blength%5D=10.2&parcel%5Bpredefined_package%5D=RegionalRateBoxA&parcel%5Bweight%5D=21.2&parcel%5Bwidth%5D=7.8
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '140'
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/parcels
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SOQQ6CMBBF7zJrIG2hFNjpCQxx5YaUdgrVCgRrMDHe3SFx73J+/nt/3uAtNLCs
+        JnRKO5SqlnkhiqJ0VSXKmmElWZ87J1UPCcz9FU0k4KRXg4ESs6KOaDu9p4IJljKZcn4WvJGqydWF
+        Os/F/u0EnIY4QsNZJhLYvN0PlVUJjOiHkcgiyxN6FC06P5Ft0eamByRli4OfJx1aWjnOrwPpth8k
+        +K67z3bvRXxE+HwBAAD//wMAsBgoMvMAAAA=
+    headers:
+      cache-control:
+      - no-cache, no-store, must-revalidate, private
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      location:
+      - /api/v2/parcels/prcl_7afe5795342446f882690e850b3ff57b
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-ep-request-uuid:
+      - d4ade2d15eb9ca51fb2f4fdb0008991d
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb6sj
+      x-proxied:
+      - intlb1sj 5834894b53
+      - intlb2wdc 5834894b53
+      - extlb2wdc 5834894b53
+      x-runtime:
+      - '0.039357'
+      x-version-label:
+      - easypost-202005112100-59b664a857-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1

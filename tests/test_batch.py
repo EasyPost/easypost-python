@@ -1,10 +1,12 @@
 # Unit tests related to 'Batch' (https://www.easypost.com/docs/api#batches).
 
 import easypost
+import pytest
 from time import sleep
 
 
-def test_batch_create_and_buy():
+@pytest.mark.vcr()
+def test_batch_create_and_buy(vcr):
     # We create Address and Parcel objects. We then try to create a Batch containing a shipment.
     # Finally, we assert on saved and returned data.
 
@@ -56,7 +58,8 @@ def test_batch_create_and_buy():
 
     # Poll while waiting for the batch to purchase the shipments
     while batch.state in ('creating', 'queued_for_purchase', 'purchasing'):
-        sleep(1)
+        if vcr.record_mode != 'none':
+            sleep(1)
         batch.refresh()
 
     # Insure the shipments after purchase

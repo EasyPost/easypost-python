@@ -1,0 +1,207 @@
+interactions:
+- request:
+    body: !!python/unicode address%5Bcity%5D=San+Francisco&address%5Bcompany%5D=EasyPost&address%5Bphone%5D=415-456-7890&address%5Bstate%5D=CA&address%5Bstreet1%5D=118+2nd+St&address%5Bstreet2%5D=4th+Fl&address%5Bzip%5D=94105
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '198'
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/addresses
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SQTUvEMBCG/0rJ2YWmJv26LeKeherFS5lNpmwkTUqSiuuy/91JFxW8eMs8PO/k
+        ZS7MaNYz0GFUopEd1pOYaiF017WtEsdS1y3Uigtxz+6YP76hSuTvtQ4YIyEVEBLqETKuyqrclXLH
+        +XPFe9n0lXwlZ130v46DGVnvVmtpp58XcGeSHyGen3xMJMQUEBMnyHlbVE4Xwy+uCIt0Kg42VzIp
+        ZwdwxSGAUyYqv5lUgvjDnoZPs9CzE7yUOeFXl0IOvQw0Lifvsim4FLJu2q4kiDMY+91w9joLCbdq
+        CkIwGMYJlLHb5zeLTmQ0umTgJzihxgB2TPAx5svf6FbtD3vHYCajIBnvIusv1+sXAAAA//8DAASe
+        NBKsAQAA
+    headers:
+      cache-control:
+      - no-cache, no-store, must-revalidate, private
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      location:
+      - /api/v2/addresses/adr_c4759e6f4f644d9988c4b0d68a6c1443
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-ep-request-uuid:
+      - c805095c5eb9ca44f531ba3f00083c02
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb6sj
+      x-proxied:
+      - intlb2sj 5834894b53
+      - intlb1wdc 5834894b53
+      - extlb1wdc 5834894b53
+      x-runtime:
+      - '0.042179'
+      x-version-label:
+      - easypost-202005112100-59b664a857-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: GET
+    uri: https://api.easypost.com/v2/addresses/adr_c4759e6f4f644d9988c4b0d68a6c1443/verify
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SRS0/EIBSF/0rDuqOFlr52zaiJiRmNHRdqTMOUW8VQmFBqfMT/7qWjLtzI6t7D
+        d+Bw+SBCSgfTROoPoiSpsXedqDiX2W7IizTJmNxVLAdgKa/KJC9oT0lM7O4Zeo988+2PSe9AeJCd
+        CDJLWLJK+IrSLaM1L2rG75CZ9/JfxogRSG1mrfFMO+6FeUP4tGlvry7bLQKTdwCeokhpGbHNSdRu
+        o7OLKPvdY7gXEikfrG2zic6um836vF1fLgxmQH3dYPOu9lhWGcUgac6SYLOz8S44b1ps90/WBDyj
+        PON5UVaBgVEo/ZNytDIAHiYf7MI5Ba4bRK/0kuBA4ZiUBOOVQOMg9AQxGUCCE7rz4rUL4z+QS8A/
+        2gs4NaheeGXN8lsStELxLdTT3PfLJ3o346ngnHXY3T/EiHlMujg0mv0coqbFUVEWeRkTbc3jt7ii
+        jB2lVcVZTLwaoXs/vLsZ8epeHF/YqWvMI2iYyGdYXwAAAP//AwDb5Ma2PQIAAA==
+    headers:
+      cache-control:
+      - no-cache, no-store, must-revalidate, private
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      location:
+      - /api/v2/addresses/adr_a955d4bf673042db926ee235980671c1
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-ep-request-uuid:
+      - c805095c5eb9ca45f531ba3f00083c11
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb10sj
+      x-proxied:
+      - intlb2sj 5834894b53
+      - intlb1wdc 5834894b53
+      - extlb1wdc 5834894b53
+      x-runtime:
+      - '0.097437'
+      x-version-label:
+      - easypost-202005112100-59b664a857-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: GET
+    uri: https://api.easypost.com/v2/addresses/adr_c4759e6f4f644d9988c4b0d68a6c1443
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SQTUvEMBCG/0rJ2YWmJv26LeKeherFS5lNpmwkTUqSiuuy/91JFxW8eMs8PO/k
+        ZS7MaNYz0GFUopEd1pOYaiF017WtEsdS1y3Uigtxz+6YP76hSuTvtQ4YIyEVEBLqETKuyqrclXLH
+        +XPFe9n0lXwlZ130v46DGVnvVmtpp58XcGeSHyGen3xMJMQUEBMnyHlbVE4Xwy+uCIt0Kg42VzIp
+        ZwdwxSGAUyYqv5lUgvjDnoZPs9CzE7yUOeFXl0IOvQw0Lifvsim4FLJu2q4kiDMY+91w9joLCbdq
+        CkIwGMYJlLHb5zeLTmQ0umTgJzihxgB2TPAx5svf6FbtD3vHYCajIBnvIusv1+sXAAAA//8DAASe
+        NBKsAQAA
+    headers:
+      cache-control:
+      - no-cache, no-store, must-revalidate, private
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-ep-request-uuid:
+      - c805095c5eb9ca45f531ba3f00083c23
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb10sj
+      x-proxied:
+      - intlb2sj 5834894b53
+      - intlb1wdc 5834894b53
+      - extlb1wdc 5834894b53
+      x-runtime:
+      - '0.027148'
+      x-version-label:
+      - easypost-202005112100-59b664a857-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

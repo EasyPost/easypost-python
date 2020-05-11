@@ -1,8 +1,10 @@
 # Unit tests related to 'Parcel' (https://www.easypost.com/docs/api#parcels).
 
 import easypost
+import pytest
 
 
+@pytest.mark.vcr()
 def test_parcel_creation():
     # Simply create a Parcel and assert on saved data.
     parcel = easypost.Parcel.create(

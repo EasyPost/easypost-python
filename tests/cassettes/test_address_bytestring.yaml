@@ -1,0 +1,70 @@
+interactions:
+- request:
+    body: !!python/unicode address%5Bstate%5D=DELEGACI%C3%B3N+BENITO+JU%C3%A1REZ
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '53'
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/addresses
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SQQU7DQAxFr1LNmkqZadNAdm2JUBEqErQbNpEz9gijZBJNJgioehjOwBF6MSaL
+        hsCG5f9+9rd9EIwiFYAuj5XRsIgBk4WcG5CXppjPrmaFLgqtI4PiQtTFC2kf+CWio7YNlnYEnjCH
+        3laRiqZRPJVyp2QaJ6lKngLTNfgvY6EikdquLMPMumrAvp9l6x2Rl7+lGmD2IzLkhIzr7C67Wa43
+        p6/tZJVtN7v7ye3+9PmQ9Ukf3PwEdda70C72j6HSPNd2WIIq4PIsqhr7uZ5a398MzjG53IDmchQf
+        XsJI1jMMjYaQHJS5h7e8//Rozz/eKzk2rMFzbVuRHo7HbwAAAP//AwDzj9QRnAEAAA==
+    headers:
+      cache-control:
+      - no-cache, no-store, must-revalidate, private
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      location:
+      - /api/v2/addresses/adr_52fca65ad7614fa18fb4393bcbbcc0fd
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-ep-request-uuid:
+      - 2b85eb425eb9ca47fb0a061d000475f3
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb6sj
+      x-proxied:
+      - intlb1sj 5834894b53
+      - extlb1sj 5834894b53
+      x-runtime:
+      - '0.034639'
+      x-version-label:
+      - easypost-202005112100-59b664a857-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1

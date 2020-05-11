@@ -30,6 +30,8 @@ except ImportError:
         import requests
         request_lib = 'requests'
         requests_session = requests.Session()
+        requests_http_adapter = requests.adapters.HTTPAdapter(max_retries=3)
+        requests_session.mount('https://api.easypost.com', requests_http_adapter)
     except ImportError:
         raise ImportError('EasyPost requires an up to date requests library. '
                           'Update requests via "pip install -U requests" or '
@@ -59,20 +61,21 @@ USER_AGENT = 'EasyPost/v2 PythonClient/{0}'.format(VERSION)
 
 
 class Error(Exception):
-    def __init__(self, message=None, http_status=None, http_body=None):
+    def __init__(self, message=None, http_status=None, http_body=None, original_exception=None):
         super(Error, self).__init__(message)
         self.message = message
         self.http_status = http_status
         self.http_body = http_body
+        self.original_exception = original_exception
         try:
             self.json_body = json.loads(http_body)
-        except:
+        except Exception:
             self.json_body = None
 
         self.param = None
         try:
             self.param = self.json_body['error'].get('param', None)
-        except:
+        except Exception:
             pass
 
 
@@ -222,7 +225,7 @@ class Requestor(object):
                 # don't need special encoding
                 try:
                     value = six.text_type(value)
-                except:
+                except Exception:
                     pass
 
                 out.append((key, value))
@@ -350,7 +353,8 @@ class Requestor(object):
             http_status = result.status_code
         except Exception as e:
             raise Error("Unexpected error communicating with EasyPost. If this "
-                        "problem persists please let us know at contact@easypost.com.")
+                        "problem persists please let us know at contact@easypost.com.",
+                        original_exception=e)
         return http_body, http_status
 
     def urlfetch_request(self, method, abs_url, headers, params):
@@ -371,9 +375,10 @@ class Requestor(object):
 
         try:
             result = urlfetch.fetch(**args)
-        except:
+        except Exception as e:
             raise Error("Unexpected error communicating with EasyPost. "
-                        "If this problem persists, let us know at contact@easypost.com.")
+                        "If this problem persists, let us know at contact@easypost.com.",
+                        original_exception=e)
 
         return result.content, result.status_code
 
