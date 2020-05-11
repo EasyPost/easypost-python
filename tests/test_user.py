@@ -4,6 +4,7 @@ import easypost
 import pytest
 
 
+@pytest.mark.vcr()
 def test_child_user_create(prod_api_key):
     # Create an address and then verify some fields to test whether it was created just fine.
     child_user = easypost.User.create(

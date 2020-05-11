@@ -5,6 +5,7 @@ import easypost
 import pytest
 
 
+@pytest.mark.vcr()
 def test_address_creation_verification():
     # Create an address and then verify some fields to test whether it was created just fine.
     address = easypost.Address.create(
@@ -27,6 +28,7 @@ def test_address_creation_verification():
     assert address.zip == '94105'
 
 
+@pytest.mark.vcr()
 def test_address_creation_with_verify():
     # Create an address with a verify parameter to test that it verifies accurately
     address = easypost.Address.create(
@@ -47,6 +49,7 @@ def test_address_creation_with_verify():
     assert address.country == 'US'
 
 
+@pytest.mark.vcr()
 def test_address_creation_with_verify_failure():
     # Create an address with a verify parameter to test that it fails elegantly
     address = easypost.Address.create(
@@ -70,6 +73,7 @@ def test_address_creation_with_verify_failure():
     assert address.verifications['delivery']['errors'][1]['message'] == 'House number is missing'
 
 
+@pytest.mark.vcr()
 def test_address_creation_with_verify_strict_failure():
     # Create an address with a verify strict parameter to test that it fails elegantly
     with pytest.raises(easypost.Error) as caught_exception:
@@ -94,6 +98,7 @@ def test_address_creation_with_verify_strict_failure():
     assert exception['error']['errors'][1]['message'] == 'House number is missing'
 
 
+@pytest.mark.vcr()
 def test_address_unicode():
     # Create an address with unicode field and assert if it was created correctly.
     state = u'DELEGACI\xf3N BENITO JU\xe1REZ'
@@ -102,6 +107,7 @@ def test_address_unicode():
     assert address.state == state
 
 
+@pytest.mark.vcr()
 def test_address_bytestring():
     # Create an address with a bytestring field and assert if it was created correctly.
     state = u'DELEGACI\xf3N BENITO JU\xe1REZ'

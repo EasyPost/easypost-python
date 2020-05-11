@@ -8,6 +8,7 @@ import pytz
 
 ONE_DAY = datetime.timedelta(days=1)
 
+
 @pytest.fixture
 def noon_on_next_monday():
     today = datetime.date.today()
@@ -15,7 +16,9 @@ def noon_on_next_monday():
     noon_est = datetime.time(12, 0, tzinfo=pytz.timezone('America/New_York'))
     return datetime.datetime.combine(next_monday, noon_est)
 
-def test_pickup_batch(noon_on_next_monday):
+
+@pytest.mark.vcr()
+def test_pickup_batch(noon_on_next_monday, vcr):
     # Create a Batch containing multiple Shipments. Then we try to buy a Pickup and assert if it was bought.
 
     pickup_address = easypost.Address.create(
@@ -75,7 +78,8 @@ def test_pickup_batch(noon_on_next_monday):
 
     batch = easypost.Batch.create_and_buy(shipments=shipments)
     while batch.state in ('creating', 'queued_for_purchase', 'purchasing'):
-        time.sleep(0.1)
+        if vcr.record_mode != 'none':
+            time.sleep(0.1)
         batch.refresh()
 
     # Insure the shipments after purchase
@@ -100,6 +104,8 @@ def test_pickup_batch(noon_on_next_monday):
         service=pickup.pickup_rates[0].service
     )
 
+
+@pytest.mark.vcr()
 def test_single_pickup(noon_on_next_monday):
     """Create a Shipment, buy it, and then buy a pickup for it"""
 

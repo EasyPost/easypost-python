@@ -1,0 +1,67 @@
+interactions:
+- request:
+    body: !!python/unicode address%5Bcity%5D=San+Francisco&address%5Bcompany%5D=EasyPost&address%5Bcountry%5D=US&address%5Bphone%5D=415-456-7890&address%5Bstate%5D=CA&address%5Bstreet1%5D=UNDELIEVRABLE+ST&address%5Bzip%5D=94105
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '200'
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/addresses?verify_strict%5B%5D=delivery
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA2yNQYvCMBBG/0qYswT22lulqRa0hcYsiIhUMy2BNoFMsrBI/7vZVReFvc775r0r
+        oPfOQ3aFi9MIGeRF0Qop+adoq3LPy7zaqFbAAiYk6oafibLdeUQWHPtCb/pv1mntE+Vp9asjyA5/
+        QsGfyrrZncpG1UXa9QZHnejj9c2f32/MusB6F61OlOIwIAXjLGQ2juO8eAmsGyXFqVbbpWj5tpKy
+        qlcvDQoeMXy8NdYuEjIbpzN6ZohNhsjY4b/ScZ5vAAAA//8DAA6dJ+AnAQAA
+    headers:
+      cache-control:
+      - no-cache, no-store, must-revalidate, private
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-ep-request-uuid:
+      - a89393095eb9ca46fb0bb081000517f8
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb11sj
+      x-proxied:
+      - intlb1sj 5834894b53
+      - extlb2sj 5834894b53
+      x-runtime:
+      - '0.061712'
+      x-version-label:
+      - easypost-202005112100-59b664a857-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 422
+      message: Unknown
+version: 1

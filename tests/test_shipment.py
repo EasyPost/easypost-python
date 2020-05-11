@@ -6,6 +6,7 @@ import easypost
 import pytest
 
 
+@pytest.mark.vcr()
 def test_shipment_creation():
     # We create a shipment and assert on values saved.
 
@@ -97,8 +98,9 @@ def test_shipment_creation():
     assert 'https://easypost-files.s3-us-west-2.amazonaws.com' in shipment.postage_label.label_url
 
 
+@pytest.mark.vcr()
 @pytest.mark.slow
-def test_rerate():
+def test_rerate(vcr):
     # We create a shipment and assert on values saved.
 
     # create a to address and a from address
@@ -162,8 +164,11 @@ def test_rerate():
     rate_id = shipment.rates[0].id
     assert rate_id is not None
 
-    # we only rerate on get_rates calls for shipments made at least 60 seconds ago
-    time.sleep(61)
+    if vcr.record_mode != 'none':
+        # we only rerate on get_rates calls for shipments made at least 60 seconds ago
+        time.sleep(61)
+
+    easypost.requests_session.close()
 
     shipment.get_rates()
 

@@ -1,8 +1,10 @@
 # Unit tests related to 'ScanForms' (https://www.easypost.com/docs/api.html#manifesting-scan-form).
 
 import easypost
+import pytest
 
 
+@pytest.mark.vcr()
 def test_scan_form_create_and_retrieve():
     # prepare params for shipment
     to_address = {

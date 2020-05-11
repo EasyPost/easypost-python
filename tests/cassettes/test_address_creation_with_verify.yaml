@@ -1,0 +1,72 @@
+interactions:
+- request:
+    body: !!python/unicode address%5Bcity%5D=San+Francisco&address%5Bcompany%5D=EasyPost&address%5Bcountry%5D=US&address%5Bphone%5D=415-456-7890&address%5Bstate%5D=CA&address%5Bstreet1%5D=118+2+streat&address%5Bstreet2%5D=FL+4&address%5Bzip%5D=94105
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '222'
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/addresses?verify%5B%5D=delivery
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SRUU/DIBSF/0rDczcHK+vat2ZqYrJMY+eDGtPQcqsYCgtQo1v871429cEXeeIe
+        vnM5XA5ESVISIV3Ti7zggvadzIts0dKWQyvnfV+0tC94LkhKbPsKXUC+ktKB9yh1DkQA2Ygosxmb
+        TWZ8QumW0ZLnJeMPyIw7+S9jxACkNKPW2NMOO2E+EL6o6vub63qLgA8OIFAUKV0mbHOe1Nvkcp1k
+        v2cMz2IiFaK1rjbJ5W21WV3Vq+sjgxlQX1VY7NUOt0VGMch8wWbRZkcTXHTe1VjuXqyJeEZ5xhf5
+        sogMDELpn5SDlREI4EO0C+cUxCl2Sh8TnCgck5JgghJo7IX2kJIeJDihmyDemzj+E3kM+Ed7A6d6
+        1YmgrPGkPBAJWqH4Efd+7Lr4CWVwI3YF56zD6vEpRSxg0qNDozmMMeo8n+bLfLFMibbm+VucUMam
+        86LgLCVBDdDsT++uBry6E2dr65vKPIMGTz5xfQEAAP//AwCJU1ONMQIAAA==
+    headers:
+      cache-control:
+      - no-cache, no-store, must-revalidate, private
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      location:
+      - /api/v2/addresses/adr_fa795a1fcd7946b1b5ebd3ff9b1f957a
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-ep-request-uuid:
+      - 2b85eb3b5eb9ca45fb64815f0004758a
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb11sj
+      x-proxied:
+      - intlb1sj 5834894b53
+      - extlb1sj 5834894b53
+      x-runtime:
+      - '0.102762'
+      x-version-label:
+      - easypost-202005112100-59b664a857-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1
