@@ -55,6 +55,9 @@ api_base = 'https://api.easypost.com/v2'
 # use our default timeout, or our max timeout if that is less
 timeout = min(60, _max_timeout)
 
+# For calling an Un-Mapped URL
+custom_endpoint = None
+
 USER_AGENT = 'EasyPost/v2 PythonClient/{0}'.format(VERSION)
 
 
@@ -250,10 +253,14 @@ class Requestor(object):
             return '%s?%s' % (url, cls.encode(params))
 
     def request(self, method, url, params=None, apiKeyRequired=True):
+        print(f'Hitting {method} {url}')
         if params is None:
             params = {}
+        # /duties_and_taxes/v1/classifications {'undocumented': {'description': 'shoes'}}
+        print(f'{url} {params}')
         http_body, http_status, my_api_key = self.request_raw(method, url, params, apiKeyRequired)
         response = self.interpret_response(http_body, http_status)
+        print('THIS IS RESP ', response)
         return response, my_api_key
 
     def request_raw(self, method, url, params=None, apiKeyRequired=True):
@@ -311,6 +318,7 @@ class Requestor(object):
     def interpret_response(self, http_body, http_status):
         try:
             response = json.loads(http_body)
+            print('RESPONSE: ', response)
         except Exception:
             raise Error("Invalid response body from API: (%d) %s " % (http_status, http_body), http_status, http_body)
         if not (200 <= http_status < 300):
@@ -387,7 +395,7 @@ class EasyPostObject(object):
         self.__dict__['_unsaved_values'] = set()
         self.__dict__['_transient_values'] = set()
         # python2.6 doesnt have {} syntax for sets
-        self.__dict__['_immutable_values'] = set(['_api_key', 'id'])
+        self.__dict__['_immutable_values'] = {'_api_key', 'id'}
         self.__dict__['_retrieve_params'] = params
 
         self.__dict__['_parent'] = parent
@@ -551,11 +559,14 @@ class Resource(EasyPostObject):
 
     @classmethod
     def class_url(cls):
-        cls_name = cls.class_name()
-        if cls_name[-1:] in ["s", "h"]:
-            return "/%ses" % cls_name
+        if custom_endpoint:
+            return custom_endpoint
         else:
-            return "/%ss" % cls_name
+            cls_name = cls.class_name()
+            if cls_name[-1:] in ["s", "h"]:
+                return "/%ses" % cls_name
+            else:
+                return "/%ss" % cls_name
 
     def instance_url(self):
         easypost_id = self.get('id')
@@ -989,3 +1000,9 @@ class Webhook(AllResource, CreateResource, DeleteResource):
         response, api_key = requestor.request('put', url, params)
         self.refresh_from(response, api_key)
         return self
+
+
+class Undocumented(AllResource, CreateResource, DeleteResource, UpdateResource):
+    # Catch-all API
+    pass
+    # /duties_and_taxes/v1/classifications {'undocumented': {'description': 'shoes'}}
