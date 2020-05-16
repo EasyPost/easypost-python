@@ -1,0 +1,71 @@
+interactions:
+- request:
+    body: !!python/unicode address%5Bstate%5D=DELEGACI%C3%B3N+BENITO+JU%C3%A1REZ
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '53'
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/addresses
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SQQU7DQAxFr1LNmkqZCSUluwIRKkJFgnbDJnJijzBKJtHEQUDVw3AGjtCLMVk0
+        LWxY/u9nf9tbxahSBejzgmwEsSG0Wp/r2FxeFBEmdg5mbqmMY3WmmuKVSgn8AtFT1wWr9ARCmMNg
+        m8hE02g21XptdDpLUpM8B6Zv8V/GQU0qdX1VhZlN3YL7OMhOPJHo39KMMMsJGXJCxk12n90urpf7
+        79XkKlst1w+Tu83+6zEbkj65PQb1TnxoV5unUGlfGjcuQTVwdRB1g8NcoU6Gm8F7Jp9bKLk6iQ8v
+        YSQnDGOjJSQPVS7wng+fPtnzj/dGni2XINy4TqXb3e4HAAD//wMA8mpM2JwBAAA=
+    headers:
+      cache-control:
+      - no-cache, no-store, must-revalidate, private
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      location:
+      - /api/v2/addresses/adr_bef0a32edf11413296b0d7f8a28fec33
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-ep-request-uuid:
+      - c805095b5eb9ca47fb40589f00083cae
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb2sj
+      x-proxied:
+      - intlb2sj 5834894b53
+      - intlb2wdc 5834894b53
+      - extlb1wdc 5834894b53
+      x-runtime:
+      - '0.039506'
+      x-version-label:
+      - easypost-202005112146-47e058b20a-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1

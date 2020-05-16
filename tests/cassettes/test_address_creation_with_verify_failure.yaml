@@ -1,0 +1,74 @@
+interactions:
+- request:
+    body: !!python/unicode address%5Bcity%5D=San+Francisco&address%5Bcompany%5D=EasyPost&address%5Bcountry%5D=US&address%5Bphone%5D=415-456-7890&address%5Bstate%5D=CA&address%5Bstreet1%5D=UNDELIEVRABLE+ST&address%5Bzip%5D=94105
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '200'
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/addresses?verify%5B%5D=delivery
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4RR0Y7aMBD8lSjPHEpSEkLeuJLrId1BRaAPraposTd0q8RGtlOVovv3roOgqKrU
+        vNg7mfXMzp5DkmERgjS1mKZxBkKI/F0+me2nOWQiz8Usa2IpZb4PR6Hef0fhmD+X0qC1DAmD4FDW
+        4OEkSqKHKH2I420SF+m0SLLPzOmP8r8cBR2Gherblt/U3RHUickl2NNHbR0TrDOILmZwt1qUL8vy
+        02b++FIG1fb2M7k9QM53V6CCJwNKkBV6YLENxt/PufhFR77OJnGU+jF0r5zxTbuKy+M3rTxzEqeT
+        NJvms4hB7IDaq0SnpSc4HMwJMIbQ1A0IagfxC4tDIonKEdwaG5RooK0d/Kx99hd0sPYX9gMNNSTA
+        kVY2LM6hxJYYPPm77YXwGygaaC2yOWO04fLLmWcZrJXj+WKxKatqvFpv66c1x8ZOG8L2svHrBjs+
+        4IB/thoo7YKGA5E+s/5w4BnZwsXW2+hO4Hm9q8p6tXt9LDfj12VVLVcf7jSuK7vXeNa9xUD13R5N
+        QDboyFpSh38pfR3xxI4z98O/8fcbAAD//wMAs/uc560CAAA=
+    headers:
+      cache-control:
+      - no-cache, no-store, must-revalidate, private
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      location:
+      - /api/v2/addresses/adr_c7516accc83849b78a6c88c96f1ddd8b
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-ep-request-uuid:
+      - d4ade2cb5eb9ca46f52f7b2e000895fe
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb10sj
+      x-proxied:
+      - intlb2sj 5834894b53
+      - intlb2wdc 5834894b53
+      - extlb2wdc 5834894b53
+      x-runtime:
+      - '0.167093'
+      x-version-label:
+      - easypost-202005112100-59b664a857-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1

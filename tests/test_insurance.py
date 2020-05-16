@@ -1,8 +1,10 @@
 # Unit tests related to 'Shipments' (https://www.easypost.com/docs/api#shipments).
 
 import easypost
+import pytest
 
 
+@pytest.mark.vcr()
 def test_insurance_creation():
     # We create an insurance and assert on values saved.
     tracking_code = "EZ2000000002"

@@ -1,8 +1,10 @@
 # Unit tests related to 'Order' (https://www.easypost.com/docs/api#orders).
 
 import easypost
+import pytest
 
 
+@pytest.mark.vcr()
 def test_order_create_then_buy():
     # We create an Order containing Shipment.
     # Towards the end we assert on Order and Parcel's values

@@ -1,3 +1,16 @@
+### 4.1.0 2020-05-11
+* change tests to use [vcrpy](https://github.com/kevin1024/vcrpy) so they are more reliable
+* add `original_exception` to `easypost.Error` in cases where we are re-raising an underlying error (e.g., an HTTP exception)
+* fix a bunch of flake8 warnings
+* [potentially-breaking] soft-deprecate Python 3.3 and 3.4. these have been dropped by most of the libraries we use, so probably don't work anyway.
+* Swap GET to POST on Refund method
+
+### 4.0.2 2020-05-05
+* cleaned up how the `__version__` attribute is populated to no longer throw warnings (#95, #98, #104)
+* added some misding reports
+* fix stale tests
+* move testing infrastructure from travis-ci.org to travis-ci.com
+
 ### 4.0.1 2020-03-06
 
 * Fixed a bug that would not create reports properly

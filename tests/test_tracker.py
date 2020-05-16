@@ -1,8 +1,10 @@
 # Unit tests related to 'Trackers' (https://www.easypost.com/docs/api#tracking).
 
 import easypost
+import pytest
 
 
+@pytest.mark.vcr()
 def test_tracker_values():
 
     for code, status in (
@@ -21,6 +23,7 @@ def test_tracker_values():
             assert tracker.signed_by == 'John Tester'
 
 
+@pytest.mark.vcr()
 def test_tracker_interactions(per_run_unique):
     # create a pseudo-random tracking code so that we can run multiple instances of this test in parallel
     tracking_code = 'EP{0}'.format(per_run_unique)

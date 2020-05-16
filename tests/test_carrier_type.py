@@ -1,8 +1,10 @@
 # Unit tests related to 'CarrierType' (https://www.easypost.com/docs/api#carrier-types).
 
 import easypost
+import pytest
 
 
+@pytest.mark.vcr()
 def test_carrier_types(prod_api_key):
     carriers = easypost.CarrierAccount.types()
 

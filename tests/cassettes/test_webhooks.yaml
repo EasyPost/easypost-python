@@ -1,0 +1,386 @@
+interactions:
+- request:
+    body: !!python/unicode webhook%5Burl%5D=example.com%2F20200511150500100
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '48'
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/webhooks
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAxSMQQ7CIBBF78LayDBhBHsRlw1TprEK0liamBjv7nT5X/57X7NkM5h7a8+RYuaJ
+        xPsY0CNdGDPSzDFcGaOfgzmZxg+Zugo34cNRVFsWBV22rmt/lyPX+zpYK59U1yLnqVWLgADknCMg
+        AAeg57xsiYvkMWnytZfy+wMAAP//AwBuMR8cjwAAAA==
+    headers:
+      cache-control:
+      - no-cache, no-store, must-revalidate, private
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-ep-request-uuid:
+      - c805095d5eb9cc37fb4169280008e0f5
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb6sj
+      x-proxied:
+      - intlb2sj 5834894b53
+      - intlb1wdc 5834894b53
+      - extlb1wdc 5834894b53
+      x-runtime:
+      - '0.039208'
+      x-version-label:
+      - easypost-202005112146-47e058b20a-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: GET
+    uri: https://api.easypost.com/v2/webhooks/hook_58dbc5e448724256b2d25fb879b284f7
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAxSMQQ7CIBBF78LayDBhBHsRlw1TprEK0liamBjv7nT5X/57X7NkM5h7a8+RYuaJ
+        xPsY0CNdGDPSzDFcGaOfgzmZxg+Zugo34cNRVFsWBV22rmt/lyPX+zpYK59U1yLnqVWLgADknCMg
+        AAeg57xsiYvkMWnytZfy+wMAAP//AwBuMR8cjwAAAA==
+    headers:
+      cache-control:
+      - no-cache, no-store, must-revalidate, private
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-ep-request-uuid:
+      - c805095d5eb9cc38fb4169280008e112
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb4sj
+      x-proxied:
+      - intlb2sj 5834894b53
+      - intlb2wdc 5834894b53
+      - extlb1wdc 5834894b53
+      x-runtime:
+      - '0.034494'
+      x-version-label:
+      - easypost-202005112146-47e058b20a-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: PUT
+    uri: https://api.easypost.com/v2/webhooks/hook_58dbc5e448724256b2d25fb879b284f7
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAxSMQQ7CIBBF78LayDBhBHsRlw1TprEK0liamBjv7nT5X/57X7NkM5h7a8+RYuaJ
+        xPsY0CNdGDPSzDFcGaOfgzmZxg+Zugo34cNRVFsWBV22rmt/lyPX+zpYK59U1yLnqVWLgADknCMg
+        AAeg57xsiYvkMWnytZfy+wMAAP//AwBuMR8cjwAAAA==
+    headers:
+      cache-control:
+      - no-cache, no-store, must-revalidate, private
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-ep-request-uuid:
+      - c805095d5eb9cc38fb4169280008e12e
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb6sj
+      x-proxied:
+      - intlb1sj 5834894b53
+      - intlb1wdc 5834894b53
+      - extlb1wdc 5834894b53
+      x-runtime:
+      - '0.046372'
+      x-version-label:
+      - easypost-202005112146-47e058b20a-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: GET
+    uri: https://api.easypost.com/v2/webhooks?url=http%3A%2F%2Fexample.com%2F20200511150500100
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA8SQ20oDQQyG32WuW5tkkjnscwiCImUOGazuusXdolD67u7qjfRW0Lv8P8nHR87m
+        XfPTOL5Mpns4m0M1nVnjvnhAQe+cR+EGlLBwtd4mK02TA7MxY37WMi8Hd9+IpRrGqksx6zQv6fTW
+        r7h5Pna7nX6k4djrTRmH3fQ1Lhv1MKXca92nlUOAcYu4Bb4l2wF35O7NZfNTy/rkoWXWDIEj58iW
+        1GHSGmKLPv2Nlr/WwhBDC04UE3ErNjAylvVnJUom/SctCTUXUebgiUlcpkrScvAxU+Dmf6VFQACC
+        iAICgADXhq+nvr88Xj4BAAD//wMAzN/A2GMCAAA=
+    headers:
+      cache-control:
+      - no-cache, no-store, must-revalidate, private
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-ep-request-uuid:
+      - c805095d5eb9cc38fb4169280008e147
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb2sj
+      x-proxied:
+      - intlb2sj 5834894b53
+      - intlb2wdc 5834894b53
+      - extlb1wdc 5834894b53
+      x-runtime:
+      - '0.038502'
+      x-version-label:
+      - easypost-202005112146-47e058b20a-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: DELETE
+    uri: https://api.easypost.com/v2/webhooks/hook_58dbc5e448724256b2d25fb879b284f7
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6quBQAAAP//AwBDv6ajAgAAAA==
+    headers:
+      cache-control:
+      - no-cache, no-store, must-revalidate, private
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-ep-request-uuid:
+      - c805095d5eb9cc39fb4169280008e15e
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb3sj
+      x-proxied:
+      - intlb2sj 5834894b53
+      - intlb2wdc 5834894b53
+      - extlb1wdc 5834894b53
+      x-runtime:
+      - '0.036730'
+      x-version-label:
+      - easypost-202005112146-47e058b20a-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: GET
+    uri: https://api.easypost.com/v2/webhooks/hook_58dbc5e448724256b2d25fb879b284f7
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAxyMvQ5AQBAGX2WztXiAq0V5GioR4e5DgY1dV4l399NNJpm5GKqi7C4OEsGOfVX3
+        ZdX4gjPeYDbMn60XkOJIsBPxJZOkARQkrZF2OWkETZL2mL/ZvzR2bXffDwAAAP//AwBwhdrwYQAA
+        AA==
+    headers:
+      cache-control:
+      - no-cache, no-store, must-revalidate, private
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-ep-request-uuid:
+      - c805095d5eb9cc39fb4169280008e17a
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb9sj
+      x-proxied:
+      - intlb1sj 5834894b53
+      - intlb1wdc 5834894b53
+      - extlb1wdc 5834894b53
+      x-runtime:
+      - '0.100627'
+      x-version-label:
+      - easypost-202005112146-47e058b20a-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 404
+      message: Not Found
+version: 1
