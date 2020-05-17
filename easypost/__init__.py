@@ -261,7 +261,6 @@ class Requestor(object):
             params = {}
         http_body, http_status, my_api_key = self.request_raw(method, url, params, apiKeyRequired)
         response = self.interpret_response(http_body, http_status)
-        print('THIS IS RESP ', response)
         return response, my_api_key
 
     def request_raw(self, method, url, params=None, apiKeyRequired=True):
@@ -305,7 +304,6 @@ class Requestor(object):
 
         if timeout > _max_timeout:
             raise Error("`timeout` must not exceed %d; it is %d" % (_max_timeout, timeout))
-        print(f'FINAL {method, abs_url, headers, params}')
         if request_lib == 'urlfetch':
             http_body, http_status = self.urlfetch_request(method, abs_url, headers, params)
         elif request_lib == 'requests':
@@ -319,7 +317,6 @@ class Requestor(object):
     def interpret_response(self, http_body, http_status):
         try:
             response = json.loads(http_body)
-            print('RESPONSE: ', response)
         except Exception:
             raise Error("Invalid response body from API: (%d) %s " % (http_status, http_body), http_status, http_body)
         if not (200 <= http_status < 300):
