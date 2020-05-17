@@ -1032,29 +1032,14 @@ What inputs do you have?
 
 class Undocumented(AllResource, CreateResource, DeleteResource, UpdateResource):
     # Catch-all API
-    @staticmethod
-    def prepare_context(url):
-        custom_endpoint = url
-        # return super()
 
     @classmethod
-    def request(cls, api_key=None, cls_name=None, **params):
+    def request(cls, api_key=None, **params):
         requestor = Requestor(api_key)
-        url = params.pop('url')
+        url = params.pop('resource_endpoint')
         request_method = params.pop('method')
         # wrapped_params = {cls_name or cls.class_name(): params}
         response, api_key = requestor.request(request_method, url, params)
         return convert_to_easypost_object(response, api_key)
 
-    def update(self, **params):
-        requestor = Requestor(self._api_key)
-        url = params.pop('url')
-        response, api_key = requestor.request('put', url, params)
-        self.refresh_from(response, api_key)
-        return convert_to_easypost_object(response, api_key)
-    #
-    # def _parse_params(self, params):
-    #     url = ''
-    #     return
-    pass
     # /duties_and_taxes/v1/classifications {'undocumented': {'description': 'shoes'}}
