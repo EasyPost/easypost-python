@@ -257,11 +257,8 @@ class Requestor(object):
             return '%s?%s' % (url, cls.encode(params))
 
     def request(self, method, url, params=None, apiKeyRequired=True):
-        print(f'Hitting {method} {url}')
         if params is None:
             params = {}
-        # /duties_and_taxes/v1/classifications {'undocumented': {'description': 'shoes'}}
-        print(f'{url} {params}')
         http_body, http_status, my_api_key = self.request_raw(method, url, params, apiKeyRequired)
         response = self.interpret_response(http_body, http_status)
         print('THIS IS RESP ', response)
@@ -1007,23 +1004,6 @@ class Webhook(AllResource, CreateResource, DeleteResource):
         return self
 
 
-"""
-What inputs do you have?
--> URL
--> HTTP Method
--> Request body
--> Request headers
-"""
-
-
-#
-# def factory(BaseClass):
-#     class NewClass(BaseClass): pass
-#
-#     NewClass.__name__ = "factory_%s" % BaseClass.__name__
-#     return NewClass
-
-
 class Undocumented(AllResource, CreateResource, DeleteResource, UpdateResource):
     # Catch-all API
 
@@ -1035,5 +1015,3 @@ class Undocumented(AllResource, CreateResource, DeleteResource, UpdateResource):
         # wrapped_params = {cls_name or cls.class_name(): params}
         response, api_key = requestor.request(request_method, url, params)
         return convert_to_easypost_object(response, api_key)
-
-    # /duties_and_taxes/v1/classifications {'undocumented': {'description': 'shoes'}}
