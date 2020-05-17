@@ -1004,14 +1004,12 @@ class Webhook(AllResource, CreateResource, DeleteResource):
         return self
 
 
-class Undocumented(AllResource, CreateResource, DeleteResource, UpdateResource):
+class Undocumented(object):
     # Catch-all API
-
     @classmethod
     def request(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = params.pop('resource_endpoint')
         request_method = params.pop('method')
-        # wrapped_params = {cls_name or cls.class_name(): params}
         response, api_key = requestor.request(request_method, url, params)
         return convert_to_easypost_object(response, api_key)
