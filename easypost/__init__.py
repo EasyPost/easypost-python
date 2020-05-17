@@ -549,8 +549,6 @@ class Resource(EasyPostObject):
 
     @classmethod
     def class_name(cls):
-        # if cls.body_parent_key:
-        #     return cls.body_parent_key
         if cls == Resource:
             raise NotImplementedError('Resource is an abstract class. '
                                       'You should perform actions on its subclasses.')
