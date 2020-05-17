@@ -57,9 +57,6 @@ api_base = 'https://api.easypost.com/v2'
 # use our default timeout, or our max timeout if that is less
 timeout = min(60, _max_timeout)
 
-# For calling an Un-Mapped URL
-custom_endpoint = None
-
 USER_AGENT = 'EasyPost/v2 PythonClient/{0}'.format(VERSION)
 
 
@@ -570,9 +567,6 @@ class Resource(EasyPostObject):
 
     @classmethod
     def class_url(cls):
-        # if custom_endpoint:
-        #     return custom_endpoint
-        # else:
         cls_name = cls.class_name()
         if cls_name[-1:] in ["s", "h"]:
             return "/%ses" % cls_name
