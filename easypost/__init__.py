@@ -336,6 +336,7 @@ class Requestor(object):
                         "Please report to contact@easypost.com." % method)
 
         try:
+            print(f'INPUT: {method, abs_url, data}')
             result = requests_session.request(
                 method,
                 abs_url,
@@ -350,6 +351,7 @@ class Requestor(object):
             raise Error("Unexpected error communicating with EasyPost. If this "
                         "problem persists please let us know at contact@easypost.com.",
                         original_exception=e)
+        print(result.json(), http_body)
         return http_body, http_status
 
     def urlfetch_request(self, method, abs_url, headers, params):
@@ -1000,11 +1002,9 @@ class Webhook(AllResource, CreateResource, DeleteResource):
 
 
 class Undocumented(object):
-    # Catch-all API
+    # For un-mapped APIs
     @classmethod
-    def request(cls, api_key=None, **params):
+    def request(cls, resource, method, api_key=None, params=None):
         requestor = Requestor(api_key)
-        url = params.pop('resource_endpoint')
-        request_method = params.pop('method')
-        response, api_key = requestor.request(request_method, url, params)
+        response, api_key = requestor.request(method, resource, params)
         return convert_to_easypost_object(response, api_key)
