@@ -701,11 +701,11 @@ class Insurance(AllResource, CreateResource):
     pass
 
 
-class CustomsItem(AllResource, CreateResource):
+class CustomsItem(CreateResource):
     pass
 
 
-class CustomsInfo(AllResource, CreateResource):
+class CustomsInfo(CreateResource):
     pass
 
 
@@ -868,7 +868,7 @@ class Tracker(AllResource, CreateResource):
         return convert_to_easypost_object(response["trackers"], api_key), response["has_more"]
 
 
-class Pickup(AllResource, CreateResource):
+class Pickup(CreateResource):
     def buy(self, **params):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
@@ -884,7 +884,7 @@ class Pickup(AllResource, CreateResource):
         return self
 
 
-class Order(AllResource, CreateResource):
+class Order(CreateResource):
     def get_rates(self):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "rates")
@@ -980,6 +980,7 @@ class Report(AllResource, CreateResource):
         response, api_key = requestor.request('get', url, params)
         return convert_to_easypost_object(response, api_key)
 
+
 class Blob(AllResource, CreateResource):
     @classmethod
     def retrieve(cls, easypost_id, api_key=None, **params):
@@ -992,6 +993,7 @@ class Blob(AllResource, CreateResource):
         url = "%s/%s" % (cls.class_url(), easypost_id)
         response, api_key = requestor.request('get', url)
         return response["signed_url"]
+
 
 class Webhook(AllResource, CreateResource, DeleteResource):
     def update(self, **params):
