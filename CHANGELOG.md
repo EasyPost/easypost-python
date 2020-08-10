@@ -1,3 +1,9 @@
+### 4.2.0 2020-08-09
+
+* Added events methods
+* Removed various old code
+
+
 ### 4.1.0 2020-05-11
 * change tests to use [vcrpy](https://github.com/kevin1024/vcrpy) so they are more reliable
 * add `original_exception` to `easypost.Error` in cases where we are re-raising an underlying error (e.g., an HTTP exception)
@@ -5,21 +11,25 @@
 * [potentially-breaking] soft-deprecate Python 3.3 and 3.4. these have been dropped by most of the libraries we use, so probably don't work anyway.
 * Swap GET to POST on Refund method
 
+
 ### 4.0.2 2020-05-05
 * cleaned up how the `__version__` attribute is populated to no longer throw warnings (#95, #98, #104)
 * added some misding reports
 * fix stale tests
 * move testing infrastructure from travis-ci.org to travis-ci.com
 
+
 ### 4.0.1 2020-03-06
 
 * Fixed a bug that would not create reports properly
 * Fixed stale unit tests
 
+
 ### 4.0.0 2019-07-09
 
 * Update some `setup.py` fields
 * Formally remove Python 2.6 support (which has been broken for several years)
+
 
 ### 3.6.5 2019-07-09
 
@@ -28,17 +38,21 @@
 * Make tests run on Python 3.7
 * Fix typo in `install_requires` causing `six` to not be installed by pip (gh-84 from @roehnan)
 
+
 ### 3.6.4 2018-04-09 (never actually released)
 * Update user tests
+
 
 ### 3.6.3 2018-02-05
 
 * Fix issue with responses that contain an `api_key` field (gh-67)
 * Fix tests to take into account new label fee
 
+
 ### 3.6.2 2017-05-23
 
 * Report.retrieve no longer requires a type to be passed
+
 
 ### 3.6.1 2017-05-09
 
@@ -46,9 +60,11 @@
 * Clarify in README and `setup.py` the supported Python versions
 * Add top-level `timeout` variable for setting the HTTP timeout on requests
 
+
 ### 3.6.0 2017-04-04
 
 * Changed Report CRUD signatures. requires report type to be passed
+
 
 ### 3.5.2 2017-02-14
 
@@ -154,6 +170,7 @@ at once
 ### 2.0.15 2015-07-31
 
 * Fixed bug with address verification url rendering
+
 
 ### 2.0.14 2015-03-30
 
