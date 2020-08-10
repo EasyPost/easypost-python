@@ -22,7 +22,7 @@ with long_description_open('README.md', encoding='utf-8') as f:
 
 setup(
     name='easypost',
-    version='4.1.0',
+    version='5.0.0',
     description='EasyPost Shipping API Client Library for Python',
     author='EasyPost',
     author_email='support@easypost.com',
