@@ -709,7 +709,7 @@ class CustomsInfo(CreateResource):
     pass
 
 
-class Parcel(AllResource, CreateResource):
+class Parcel(CreateResource):
     pass
 
 
