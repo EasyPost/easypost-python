@@ -1,0 +1,24 @@
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pythonversion: ['2.7', '3.5', '3.6', '3.8', '3.8', '3.9', 'pypy-2.7', 'pypy-3.6']
+      steps:
+        - uses: actions/checkout@v2
+        - name: set up python
+          uses: actions/setup-python@v2
+          with:
+            python-version: ${{ matrix.pythonversion }}
+        - name: install dependencies
+          run: |
+            python -m pip install six requests
+            python -m pip install -r requirements-tests.txt
+            python -m pip install -e .
+        - name: lint with flake8
+          run: flake8 --max-line-length=127 --statistics .
+        - name: test with pytest
+          run: pytest --cov=easypost --cov-report=term-missing --vcr-record=none --cov-fail-under=60 tests/
+          env:
+            TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
+            PROD_API_KEY: ${{ secrets.PROD_API_KEY }}
