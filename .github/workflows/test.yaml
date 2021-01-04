@@ -23,7 +23,7 @@ jobs:
           python -m pip install -r requirements-tests.txt
           python -m pip install -e .
       - name: lint with flake8
-        run: flake8 --max-line-length=127 --statistics .
+        run: flake8 --max-line-length=127 --statistics easypost/ tests/ examples/
       - name: test with pytest
         run: pytest --cov=easypost --cov-report=term-missing --vcr-record=none --cov-fail-under=60 tests/
         env:

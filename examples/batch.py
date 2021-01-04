@@ -60,7 +60,7 @@ if batch.state == "purchased":
     for shipment in batch.shipments:
         shipment.insure(amount=100)
 
-###### below here should probably be in a seperate script so that there's no risk of re-running create_and_buy
+# WARNING: below here should probably be in a seperate script so that there's no risk of re-running create_and_buy
 
 # # run this to check on the batch status after it's been created
 # # postage is purchased asyncronously, so you'll have to poll until it's done
