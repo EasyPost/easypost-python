@@ -1,6 +1,6 @@
 # EasyPost Python Client Library
 
-[![Build Status](https://travis-ci.com/EasyPost/easypost-python.svg?branch=master)](https://travis-ci.com/EasyPost/easypost-python)
+[![CI](https://github.com/EasyPost/easypost-python/workflows/CI/badge.svg)](https://github.com/EasyPost/easypost-python/actions?query=workflow%3ACI)
 [![PyPI version](https://badge.fury.io/py/easypost.svg)](https://badge.fury.io/py/easypost)
 
 EasyPost is the simple shipping API. You can sign up for an account at <https://easypost.com>.
@@ -157,5 +157,5 @@ To run tests:
    - Create a virtualenv for your version of Python (e.g., `python2.7 -m virtualenv venv`)
    - Install dependencies in that virtualenv (`./venv/bin/pip install requests six`)
    - Install test dependencies (`./venv/bin/pip install -r requirements-tests.txt`)
-   - Export `$TEST_API_KEY` and `$PROD_API_KEY` appropriately (these are set by `.travis.yml` for CI)
+   - Export `$TEST_API_KEY` and `$PROD_API_KEY` appropriately (these are set automatically for CI)
    - Run the tests with `py.test` (`./venv/bin/py.test -vs tests`)
