@@ -1,7 +1,5 @@
 # setup for py.test
 
-import datetime
-import random
 import os
 
 import easypost

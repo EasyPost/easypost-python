@@ -54,7 +54,7 @@ shipment = easypost.Shipment.create(
     customs_info=customs_info)
 
 # Can also be done like so:
-#shipment = easypost.Shipment.create(
+# shipment = easypost.Shipment.create(
 #    {"to_address": to_address,
 #     "from_address": from_address,
 #     "parcel": parcel,
