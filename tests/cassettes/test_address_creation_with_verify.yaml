@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: !!python/unicode address%5Bcity%5D=San+Francisco&address%5Bcompany%5D=EasyPost&address%5Bcountry%5D=US&address%5Bphone%5D=415-456-7890&address%5Bstate%5D=CA&address%5Bstreet1%5D=118+2+streat&address%5Bstreet2%5D=FL+4&address%5Bzip%5D=94105
+    body: address%5Bcity%5D=San+Francisco&address%5Bcompany%5D=EasyPost&address%5Bcountry%5D=US&address%5Bphone%5D=415-456-7890&address%5Bstate%5D=CA&address%5Bstreet1%5D=118+2&address%5Bstreet2%5D=FLoor+4&address%5Bzip%5D=94105
     headers:
       Accept:
       - '*/*'
@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '222'
+      - '218'
       Content-type:
       - application/x-www-form-urlencoded
       authorization:
@@ -23,26 +23,30 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4SRUU/DIBSF/0rDczcHK+vat2ZqYrJMY+eDGtPQcqsYCgtQo1v871429cEXeeIe
-        vnM5XA5ESVISIV3Ti7zggvadzIts0dKWQyvnfV+0tC94LkhKbPsKXUC+ktKB9yh1DkQA2Ygosxmb
-        TWZ8QumW0ZLnJeMPyIw7+S9jxACkNKPW2NMOO2E+EL6o6vub63qLgA8OIFAUKV0mbHOe1Nvkcp1k
-        v2cMz2IiFaK1rjbJ5W21WV3Vq+sjgxlQX1VY7NUOt0VGMch8wWbRZkcTXHTe1VjuXqyJeEZ5xhf5
-        sogMDELpn5SDlREI4EO0C+cUxCl2Sh8TnCgck5JgghJo7IX2kJIeJDihmyDemzj+E3kM+Ed7A6d6
-        1YmgrPGkPBAJWqH4Efd+7Lr4CWVwI3YF56zD6vEpRSxg0qNDozmMMeo8n+bLfLFMibbm+VucUMam
-        86LgLCVBDdDsT++uBry6E2dr65vKPIMGTz5xfQEAAP//AwCJU1ONMQIAAA==
+        H4sIAAAAAAAAA4yRQW/cIBCF/4rFNd4EMA5r36xNIlWKNlG9OVRVZBEYJ1QYLIyrJlH/e4fdpoee
+        wol5fG/mAe/EGtISZeKgq7FhVI2CMy1ks20oF2ora16pUTLZkJKEpx+gE/KdMRGWBSUdQSUwg8oy
+        p5xtaL2h4sCalvOW1meUtpQiuM7mc6BXE5DWr85h9zDNyr+i47rrv93f9QcElhQBEkORsW3B91dF
+        fyhubgvx74zjWc5mU7b23b64+drtd1/63d2RwSCo7zos3uyM20YwTFNd8hxAh9WnmJ0PPZbzS/AZ
+        F6wW9aXEd0ERJmXdR8opmAzMMZhVJxt8bqJitBCHUWnrjjlOLD6bNeCTVWgflVugJCMYiMoNSf0a
+        8necyGPM/7SfEO1otcpDFtK+EwPOovia98uqdf6UNsUVu0KMIWL1/bFELGHeo8OhOa05cCXP5VbK
+        uiQu+Oe/4oZxfl41jZAlSXaC4e10+27C0Vpd3IZl6PwzOFjIb1x/AAAA//8DAF9cHN5BAgAA
     headers:
       cache-control:
-      - no-cache, no-store, must-revalidate, private
+      - no-cache, no-store
       content-encoding:
       - gzip
       content-type:
       - application/json; charset=utf-8
+      etag:
+      - W/"b592e46223a2fb06aec9737fc1ea7960"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_fa795a1fcd7946b1b5ebd3ff9b1f957a
+      - /api/v2/addresses/adr_c3f910af421c47989024a87523af7179
       pragma:
       - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
       strict-transport-security:
       - max-age=15768000; includeSubDomains; preload
       transfer-encoding:
@@ -51,19 +55,26 @@ interactions:
       - easypost
       x-content-type-options:
       - nosniff
+      x-download-options:
+      - noopen
       x-ep-request-uuid:
-      - 2b85eb3b5eb9ca45fb64815f0004758a
+      - da5cd8ff60919edcfa577fd000168402
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb11sj
+      - bigweb6nuq
+      x-permitted-cross-domain-policies:
+      - none
       x-proxied:
-      - intlb1sj 5834894b53
-      - extlb1sj 5834894b53
+      - intlb2nuq 7ba176609e
+      - intlb1wdc 7ba176609e
+      - extlb1wdc 7ba176609e
+      x-request-id:
+      - 7bb9bb59-ded5-4121-9df2-3f70ae87dedf
       x-runtime:
-      - '0.102762'
+      - '0.065413'
       x-version-label:
-      - easypost-202005112100-59b664a857-master
+      - easypost-202105032258-6cf990e618-master
       x-xss-protection:
       - 1; mode=block
     status:
