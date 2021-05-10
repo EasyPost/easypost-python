@@ -2,12 +2,12 @@ import datetime
 import json
 import platform
 import re
-import six
 import ssl
 import time
 import types
 
-from six.moves.urllib.parse import urlencode, quote_plus, urlparse
+import six
+from six.moves.urllib.parse import quote_plus, urlencode, urlparse
 
 from .version import VERSION, VERSION_INFO
 
@@ -724,6 +724,14 @@ class Shipment(AllResource, CreateResource):
     def get_rates(self):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "rates")
+        response, api_key = requestor.request('get', url)
+        self.refresh_from(response, api_key)
+        return self
+
+    def get_smartrates(self):
+        requestor = Requestor(self._api_key)
+        url = "%s/%s" % (self.instance_url(), "smartrate")
+
         response, api_key = requestor.request('get', url)
         self.refresh_from(response, api_key)
         return self
