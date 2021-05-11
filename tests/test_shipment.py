@@ -206,13 +206,20 @@ def test_smartrate(vcr):
         'height': 5,
         'weight': 65.9
     }
+
     shipment = easypost.Shipment.create(
         to_address=to_address,
         from_address=from_address,
         parcel=parcel,
     )
-
     assert shipment.rates
 
     smartrates = shipment.get_smartrates()
-    assert smartrates['result'][0]['time_in_transit']
+    assert shipment.rates[0]['id'] == smartrates['result'][0]['id']
+    assert smartrates['result'][0]['time_in_transit']['percentile_50'] == 2
+    assert smartrates['result'][0]['time_in_transit']['percentile_75'] == 2
+    assert smartrates['result'][0]['time_in_transit']['percentile_85'] == 3
+    assert smartrates['result'][0]['time_in_transit']['percentile_90'] == 3
+    assert smartrates['result'][0]['time_in_transit']['percentile_95'] == 4
+    assert smartrates['result'][0]['time_in_transit']['percentile_97'] == 5
+    assert smartrates['result'][0]['time_in_transit']['percentile_99'] == 7
