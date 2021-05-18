@@ -216,10 +216,10 @@ def test_smartrate(vcr):
 
     smartrates = shipment.get_smartrates()
     assert shipment.rates[0]['id'] == smartrates['result'][0]['id']
-    assert smartrates['result'][0]['time_in_transit']['percentile_50'] == 2
+    assert smartrates['result'][0]['time_in_transit']['percentile_50'] == 1
     assert smartrates['result'][0]['time_in_transit']['percentile_75'] == 2
-    assert smartrates['result'][0]['time_in_transit']['percentile_85'] == 3
+    assert smartrates['result'][0]['time_in_transit']['percentile_85'] == 2
     assert smartrates['result'][0]['time_in_transit']['percentile_90'] == 3
-    assert smartrates['result'][0]['time_in_transit']['percentile_95'] == 4
-    assert smartrates['result'][0]['time_in_transit']['percentile_97'] == 5
-    assert smartrates['result'][0]['time_in_transit']['percentile_99'] == 7
+    assert smartrates['result'][0]['time_in_transit']['percentile_95'] == 3
+    assert smartrates['result'][0]['time_in_transit']['percentile_97'] == 4
+    assert smartrates['result'][0]['time_in_transit']['percentile_99'] == 5
