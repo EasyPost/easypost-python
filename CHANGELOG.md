@@ -1,3 +1,7 @@
+### 5.1.1 2021-05-18
+
+* fix: stops appending smartrates to Shipment object
+
 ### 5.1.0 2021-05-14
 
 * Adds `SmartRate` functionality to the `Shipments` object (available by calling `get_smartrates()` on a shipment)
