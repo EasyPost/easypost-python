@@ -2,18 +2,18 @@ import datetime
 import json
 import platform
 import re
-import six
 import ssl
 import time
 import types
 
-from six.moves.urllib.parse import urlencode, quote_plus, urlparse
+import six
+from six.moves.urllib.parse import quote_plus, urlencode, urlparse
 
-from .version import VERSION
+from .version import VERSION, VERSION_INFO
 
 __author__ = 'EasyPost <oss@easypost.com>'
 __version__ = VERSION
-version_info = tuple(int(v) for v in VERSION.split('.'))
+version_info = VERSION_INFO
 
 
 # use urlfetch as request_lib on google app engine, otherwise use requests
@@ -30,6 +30,8 @@ except ImportError:
         import requests
         request_lib = 'requests'
         requests_session = requests.Session()
+        requests_http_adapter = requests.adapters.HTTPAdapter(max_retries=3)
+        requests_session.mount('https://api.easypost.com', requests_http_adapter)
     except ImportError:
         raise ImportError('EasyPost requires an up to date requests library. '
                           'Update requests via "pip install -U requests" or '
@@ -59,20 +61,21 @@ USER_AGENT = 'EasyPost/v2 PythonClient/{0}'.format(VERSION)
 
 
 class Error(Exception):
-    def __init__(self, message=None, http_status=None, http_body=None):
+    def __init__(self, message=None, http_status=None, http_body=None, original_exception=None):
         super(Error, self).__init__(message)
         self.message = message
         self.http_status = http_status
         self.http_body = http_body
+        self.original_exception = original_exception
         try:
             self.json_body = json.loads(http_body)
-        except:
+        except Exception:
             self.json_body = None
 
         self.param = None
         try:
             self.param = self.json_body['error'].get('param', None)
-        except:
+        except Exception:
             pass
 
 
@@ -100,6 +103,8 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'ShipmentReport': Report,
         'PaymentLogReport': Report,
         'TrackerReport': Report,
+        'RefundReport': Report,
+        'ShipmentInvoiceReport': Report,
         'Webhook': Webhook
     }
 
@@ -125,6 +130,8 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'shprep': Report,
         'plrep': Report,
         'trkrep': Report,
+        'refrep': Report,
+        'shpinvrep': Report,
         'hook': Webhook
     }
 
@@ -218,7 +225,7 @@ class Requestor(object):
                 # don't need special encoding
                 try:
                     value = six.text_type(value)
-                except:
+                except Exception:
                     pass
 
                 out.append((key, value))
@@ -346,7 +353,8 @@ class Requestor(object):
             http_status = result.status_code
         except Exception as e:
             raise Error("Unexpected error communicating with EasyPost. If this "
-                        "problem persists please let us know at contact@easypost.com.")
+                        "problem persists please let us know at contact@easypost.com.",
+                        original_exception=e)
         return http_body, http_status
 
     def urlfetch_request(self, method, abs_url, headers, params):
@@ -367,9 +375,10 @@ class Requestor(object):
 
         try:
             result = urlfetch.fetch(**args)
-        except:
+        except Exception as e:
             raise Error("Unexpected error communicating with EasyPost. "
-                        "If this problem persists, let us know at contact@easypost.com.")
+                        "If this problem persists, let us know at contact@easypost.com.",
+                        original_exception=e)
 
         return result.content, result.status_code
 
@@ -692,15 +701,15 @@ class Insurance(AllResource, CreateResource):
     pass
 
 
-class CustomsItem(AllResource, CreateResource):
+class CustomsItem(CreateResource):
     pass
 
 
-class CustomsInfo(AllResource, CreateResource):
+class CustomsInfo(CreateResource):
     pass
 
 
-class Parcel(AllResource, CreateResource):
+class Parcel(CreateResource):
     pass
 
 
@@ -719,6 +728,13 @@ class Shipment(AllResource, CreateResource):
         self.refresh_from(response, api_key)
         return self
 
+    def get_smartrates(self):
+        requestor = Requestor(self._api_key)
+        url = "%s/%s" % (self.instance_url(), "smartrate")
+
+        response, api_key = requestor.request('get', url)
+        return response
+
     def buy(self, **params):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
@@ -730,7 +746,7 @@ class Shipment(AllResource, CreateResource):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "refund")
 
-        response, api_key = requestor.request('get', url, params)
+        response, api_key = requestor.request('post', url, params)
         self.refresh_from(response, api_key)
         return self
 
@@ -859,7 +875,7 @@ class Tracker(AllResource, CreateResource):
         return convert_to_easypost_object(response["trackers"], api_key), response["has_more"]
 
 
-class Pickup(AllResource, CreateResource):
+class Pickup(CreateResource):
     def buy(self, **params):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
@@ -875,7 +891,7 @@ class Pickup(AllResource, CreateResource):
         return self
 
 
-class Order(AllResource, CreateResource):
+class Order(CreateResource):
     def get_rates(self):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "rates")
@@ -895,7 +911,7 @@ class PickupRate(Resource):
     pass
 
 
-class Event(Resource):
+class Event(AllResource, Resource):
     @classmethod
     def receive(self, values):
         return convert_to_easypost_object(json.loads(values), api_key)
@@ -961,9 +977,7 @@ class Report(AllResource, CreateResource):
     def create(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), params['type'])
-        wrapped_params = {cls.class_name(): params}
-
-        response, api_key = requestor.request('post', url, wrapped_params, False)
+        response, api_key = requestor.request('post', url, params, False)
         return convert_to_easypost_object(response, api_key)
 
     @classmethod

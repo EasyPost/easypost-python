@@ -1,21 +1,20 @@
 # setup for py.test
 
-import datetime
-import random
+import os
 
 import easypost
 import pytest
 
 
-API_KEY = 'e2Cg9AScV1wqj4JuaatP7A'
-PROD_API_KEY = 'vsBlV5PvQ9Yy5NZ0ieQveQ'
+TEST_API_KEY = os.environ['TEST_API_KEY']
+PROD_API_KEY = os.environ['PROD_API_KEY']
 
 
 # this fixture is auto-loaded by all tests; it sets up the api key
 @pytest.yield_fixture(autouse=True)
 def setup_api_key():
     default_key = easypost.api_key
-    easypost.api_key = API_KEY
+    easypost.api_key = TEST_API_KEY
     yield
     easypost.api_key = default_key
 
@@ -31,8 +30,18 @@ def prod_api_key():
 
 @pytest.fixture
 def per_run_unique():
-    """Generate a string that should be very close to unique"""
-    return '{0}{1}'.format(
-        datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
-        random.randrange(1, 100)
-    )
+    # this used to return a unique value per-run; however, now that we use
+    # VCR, treat it more like an epoch
+    return '20200511150500100'
+
+
+@pytest.fixture(scope='module')
+def vcr_config():
+    return {
+        # Replace the Authorization request header with "DUMMY" in cassettes
+        "filter_headers": [
+            ('authorization', 'EZTK-NONE'),
+            ('x-client-user-agent', 'suppressed'),
+            ('user-agent', 'easypost/v2 pythonclient/suppressed'),
+        ],
+    }

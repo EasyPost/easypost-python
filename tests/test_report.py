@@ -1,25 +1,31 @@
 # Unit tests related to 'Report's (https://www.easypost.com/docs/api.html#reports).
 
 import easypost
+import pytest
+from datetime import date
+
+# Use the current date to avoid needing to define a new date manually on each test
+today = date.today()
+testdate = today.strftime("%Y/%m/%d")
 
 
+@pytest.mark.vcr()
 def test_shipment_report():
-    def test_shipment_report():
-        report = easypost.Report.create(
-            type="shipment",
-            start_date="2012-12-01",
-            end_date="2013-01-01",
-        )
+    report = easypost.Report.create(
+        type="shipment",
+        start_date=testdate,
+        end_date=testdate,
+    )
 
-        assert report.object == "ShipmentReport"
-        assert report.status in ("available", "new")
-        assert report.__class__ == easypost.Report
+    assert report.object == "ShipmentReport"
+    assert report.status in ("available", "new")
+    assert report.__class__ == easypost.Report
 
-        report2 = easypost.Report.retrieve(report.id, type="shipment")
+    report2 = easypost.Report.retrieve(report.id, type="shipment")
 
-        assert report2.__class__ == easypost.Report
-        assert report2.id == report.id
+    assert report2.__class__ == easypost.Report
+    assert report2.id == report.id
 
-        reports = easypost.Report.all(type="shipment")
-        assert len(reports["reports"])
-        assert reports["reports"][0].id == report.id == report2.id
+    reports = easypost.Report.all(type="shipment")
+    assert len(reports["reports"])
+    assert reports["reports"][0].id == report.id == report2.id

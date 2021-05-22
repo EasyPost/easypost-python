@@ -1,7 +1,49 @@
-### NEXT (unreleased)
+### 5.1.1 2021-05-18
 
-### 3.6.4 2018-04-09
+* fix: stops appending smartrates to Shipment object
 
+### 5.1.0 2021-05-14
+
+* Adds `SmartRate` functionality to the `Shipments` object (available by calling `get_smartrates()` on a shipment)
+
+### 5.0.0 2020-08-10
+
+* Add `all` method for retrieving Events
+* _[backwards-compatibility break]_ Remove `all` method for some un-supported types: CustomsItem, CustomsInfo, Pickup, and Order
+
+### 4.1.0 2020-05-11
+
+* change tests to use [vcrpy](https://github.com/kevin1024/vcrpy) so they are more reliable
+* add `original_exception` to `easypost.Error` in cases where we are re-raising an underlying error (e.g., an HTTP exception)
+* fix a bunch of flake8 warnings
+* [potentially-breaking] soft-deprecate Python 3.3 and 3.4. these have been dropped by most of the libraries we use, so probably don't work anyway.
+* Swap GET to POST on Refund method
+
+### 4.0.2 2020-05-05
+
+* cleaned up how the `__version__` attribute is populated to no longer throw warnings (#95, #98, #104)
+* added some misding reports
+* fix stale tests
+* move testing infrastructure from travis-ci.org to travis-ci.com
+
+### 4.0.1 2020-03-06
+
+* Fixed a bug that would not create reports properly
+* Fixed stale unit tests
+
+### 4.0.0 2019-07-09
+
+* Update some `setup.py` fields
+* Formally remove Python 2.6 support (which has been broken for several years)
+
+### 3.6.5 2019-07-09
+
+* Fix broken pickup tests
+* Fix broken reports tests
+* Make tests run on Python 3.7
+* Fix typo in `install_requires` causing `six` to not be installed by pip (gh-84 from @roehnan)
+
+### 3.6.4 2018-04-09 (never actually released)
 * Update user tests
 
 ### 3.6.3 2018-02-05

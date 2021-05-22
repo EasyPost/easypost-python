@@ -1,0 +1,83 @@
+interactions:
+- request:
+    body: address%5Bcity%5D=San+Francisco&address%5Bcompany%5D=EasyPost&address%5Bcountry%5D=US&address%5Bphone%5D=415-456-7890&address%5Bstate%5D=CA&address%5Bstreet1%5D=118+2&address%5Bstreet2%5D=FLoor+4&address%5Bzip%5D=94105
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '218'
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/addresses?verify%5B%5D=delivery
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4yRQW/cIBCF/4rFNd4EMA5r36xNIlWKNlG9OVRVZBEYJ1QYLIyrJlH/e4fdpoee
+        wol5fG/mAe/EGtISZeKgq7FhVI2CMy1ks20oF2ora16pUTLZkJKEpx+gE/KdMRGWBSUdQSUwg8oy
+        p5xtaL2h4sCalvOW1meUtpQiuM7mc6BXE5DWr85h9zDNyr+i47rrv93f9QcElhQBEkORsW3B91dF
+        fyhubgvx74zjWc5mU7b23b64+drtd1/63d2RwSCo7zos3uyM20YwTFNd8hxAh9WnmJ0PPZbzS/AZ
+        F6wW9aXEd0ERJmXdR8opmAzMMZhVJxt8bqJitBCHUWnrjjlOLD6bNeCTVWgflVugJCMYiMoNSf0a
+        8necyGPM/7SfEO1otcpDFtK+EwPOovia98uqdf6UNsUVu0KMIWL1/bFELGHeo8OhOa05cCXP5VbK
+        uiQu+Oe/4oZxfl41jZAlSXaC4e10+27C0Vpd3IZl6PwzOFjIb1x/AAAA//8DAF9cHN5BAgAA
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"b592e46223a2fb06aec9737fc1ea7960"
+      expires:
+      - '0'
+      location:
+      - /api/v2/addresses/adr_c3f910af421c47989024a87523af7179
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=15768000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - da5cd8ff60919edcfa577fd000168402
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb6nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 7ba176609e
+      - intlb1wdc 7ba176609e
+      - extlb1wdc 7ba176609e
+      x-request-id:
+      - 7bb9bb59-ded5-4121-9df2-3f70ae87dedf
+      x-runtime:
+      - '0.065413'
+      x-version-label:
+      - easypost-202105032258-6cf990e618-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1

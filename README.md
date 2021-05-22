@@ -1,13 +1,14 @@
 # EasyPost Python Client Library
 
-[![Build Status](https://travis-ci.org/EasyPost/easypost-python.svg?branch=master)](https://travis-ci.org/EasyPost/easypost-python)
+[![CI](https://github.com/EasyPost/easypost-python/workflows/CI/badge.svg)](https://github.com/EasyPost/easypost-python/actions?query=workflow%3ACI)
+[![PyPI version](https://badge.fury.io/py/easypost.svg)](https://badge.fury.io/py/easypost)
 
 EasyPost is the simple shipping API. You can sign up for an account at <https://easypost.com>.
 
 Requirements
 ------------
 
-* [Python](https://www.python.org) 2.6, 2.7, or 3.3+ (or corresponding [PyPy](https://pypy.org) versions).
+* [Python](https://www.python.org) 2.7 or 3.3+ (or corresponding [PyPy](https://pypy.org) versions). Note that we only test on Python 2.7 and 3.5+; we strongly recommend against using 3.3.x or 3.4.x as they are no longer supported by many libraries.
 * [requests](http://docs.python-requests.org/en/latest/) (if not on Google App Engine)
 * [six](https://pythonhosted.org/six/)
 
@@ -145,9 +146,11 @@ Client Library Development
 ### Releasing
 
    1. Add new features to [CHANGELOG.md](CHANGELOG.md)
-   1. Bump the version in `VERSION`
-   1. Create a git tag
-   1. Push to PyPI with `python setup.py sdist upload`
+   1. Bump the version in `easypost/version.py` and `setup.py`
+   1. Create and push a signed git tag
+   1. Create a Release in Github based on the tag, with a human-readable summary of changes
+   1. Build sdist and wheel: `rm -rf build/ dist/ ./*.egg-info; python3 setup.py sdist bdist_wheel`
+   1. Push to PyPI with `twine upload dist/*`
 
 ### Running Tests
 
@@ -156,4 +159,5 @@ To run tests:
    - Create a virtualenv for your version of Python (e.g., `python2.7 -m virtualenv venv`)
    - Install dependencies in that virtualenv (`./venv/bin/pip install requests six`)
    - Install test dependencies (`./venv/bin/pip install -r requirements-tests.txt`)
+   - Export `$TEST_API_KEY` and `$PROD_API_KEY` appropriately (these are set automatically for CI)
    - Run the tests with `py.test` (`./venv/bin/py.test -vs tests`)
