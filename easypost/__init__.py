@@ -152,6 +152,31 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         return response
 
 
+def _utf8(value):
+    if six.PY2:
+        # Python2's urlencode wants bytestrings, not unicode
+        if isinstance(value, six.text_type):
+            return value.encode('utf-8')
+        return value
+    elif isinstance(value, six.binary_type):
+        # Python3's six.text_type(bytestring) returns "b'bytestring'"
+        # So, have to decode it to unicode
+        return value.decode('utf-8')
+    else:
+        # Python3's urlencode can handle unicode
+        return value
+
+
+def _urlencode_list(params):
+    encoded = []
+    for key, values in sorted(params.items()):
+        for value in values:
+            if isinstance(value, bool):
+                value = str(value).lower()
+            encoded.append('{0}[]={1}'.format(key, quote_plus(_utf8(value))))
+    return '&'.join(encoded)
+
+
 class Requestor(object):
     def __init__(self, local_api_key=None):
         self._api_key = local_api_key
@@ -162,26 +187,11 @@ class Requestor(object):
         return '%s%s' % (api_base, url)
 
     @classmethod
-    def _utf8(cls, value):
-        if six.PY2:
-            # Python2's urlencode wants bytestrings, not unicode
-            if isinstance(value, six.text_type):
-                return value.encode('utf-8')
-            return value
-        elif isinstance(value, six.binary_type):
-            # Python3's six.text_type(bytestring) returns "b'bytestring'"
-            # So, have to decode it to unicode
-            return value.decode('utf-8')
-        else:
-            # Python3's urlencode can handle unicode
-            return value
-
-    @classmethod
     def encode_dict(cls, out, key, dict_value):
         n = {}
         for k, v in sorted(six.iteritems(dict_value)):
-            k = cls._utf8(k)
-            v = cls._utf8(v)
+            k = _utf8(k)
+            v = _utf8(v)
             n["%s[%s]" % (key, k)] = v
         out.extend(cls._encode_inner(n))
 
@@ -189,7 +199,7 @@ class Requestor(object):
     def encode_list(cls, out, key, list_value):
         n = {}
         for k, v in enumerate(list_value):
-            v = cls._utf8(v)
+            v = _utf8(v)
             n["%s[%s]" % (key, k)] = v
         out.extend(cls._encode_inner(n))
 
@@ -217,7 +227,7 @@ class Requestor(object):
 
         out = []
         for key, value in sorted(six.iteritems(params)):
-            key = cls._utf8(key)
+            key = _utf8(key)
             try:
                 encoder = ENCODERS[value.__class__]
                 encoder(out, key, value)
@@ -574,7 +584,7 @@ class Resource(EasyPostObject):
         easypost_id = self.get('id')
         if not easypost_id:
             raise Error('%s instance has invalid ID: %r' % (type(self).__name__, easypost_id))
-        easypost_id = Requestor._utf8(easypost_id)
+        easypost_id = _utf8(easypost_id)
         base = self.class_url()
         param = quote_plus(easypost_id)
         return "{base}/{param}".format(base=base, param=param)
@@ -634,13 +644,15 @@ class Address(AllResource, CreateResource):
         requestor = Requestor(api_key)
         url = cls.class_url()
 
-        if verify or verify_strict:
-            verify = verify or []
-            verify_strict = verify_strict or []
-            url += '?' + '&'.join(
-                ['verify[]={0}'.format(opt) for opt in verify] +
-                ['verify_strict[]={0}'.format(opt) for opt in verify_strict]
-            )
+        verify_params = {}
+        for key, value in (('verify', verify), ('verify_strict', verify_strict)):
+            if not value:
+                continue
+            elif isinstance(value, (bool, str)):
+                value = [value]
+            verify_params[key] = value
+        if verify_params:
+            url += '?' + _urlencode_list(verify_params)
 
         wrapped_params = {cls.class_name(): params}
         response, api_key = requestor.request('post', url, wrapped_params)
