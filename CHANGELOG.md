@@ -1,8 +1,18 @@
+### 5.1.1 2021-05-18
+
+* fix: stops appending smartrates to Shipment object
+
+### 5.1.0 2021-05-14
+
+* Adds `SmartRate` functionality to the `Shipments` object (available by calling `get_smartrates()` on a shipment)
+
 ### 5.0.0 2020-08-10
+
 * Add `all` method for retrieving Events
 * _[backwards-compatibility break]_ Remove `all` method for some un-supported types: CustomsItem, CustomsInfo, Pickup, and Order
 
 ### 4.1.0 2020-05-11
+
 * change tests to use [vcrpy](https://github.com/kevin1024/vcrpy) so they are more reliable
 * add `original_exception` to `easypost.Error` in cases where we are re-raising an underlying error (e.g., an HTTP exception)
 * fix a bunch of flake8 warnings
@@ -10,6 +20,7 @@
 * Swap GET to POST on Refund method
 
 ### 4.0.2 2020-05-05
+
 * cleaned up how the `__version__` attribute is populated to no longer throw warnings (#95, #98, #104)
 * added some misding reports
 * fix stale tests

@@ -12,23 +12,23 @@ def test_shipment_creation():
 
     # create a to address and a from address
     to_address = easypost.Address.create(
-        name="Sawyer Bateman",
-        street1="1A Larkspur Cres.",
-        street2="",
-        city="St. Albert",
-        state="AB",
-        zip="t8n2m4",
-        country="CA",
-        phone="780-283-9384"
+        name='Sawyer Bateman',
+        street1='1A Larkspur Cres.',
+        street2='',
+        city='St. Albert',
+        state='AB',
+        zip='t8n2m4',
+        country='CA',
+        phone='780-283-9384'
     )
     from_address = easypost.Address.create(
-        company="EasyPost",
-        street1="118 2nd St",
-        street2="4th Fl",
-        city="San Francisco",
-        state="CA",
-        zip="94105",
-        phone="415-456-7890"
+        company='EasyPost',
+        street1='118 2nd St',
+        street2='4th Fl',
+        city='San Francisco',
+        state='CA',
+        zip='94105',
+        phone='415-456-7890'
     )
 
     # create a parcel
@@ -41,22 +41,22 @@ def test_shipment_creation():
 
     # create customs_info form for intl shipping
     customs_item = easypost.CustomsItem.create(
-        description="EasyPost t-shirts",
+        description='EasyPost t-shirts',
         hs_tariff_number=123456,
-        origin_country="US",
+        origin_country='US',
         quantity=2,
         value=96.27,
         weight=21.1
     )
     customs_info = easypost.CustomsInfo.create(
         customs_certify=1,
-        customs_signer="Hector Hammerfall",
-        contents_type="gift",
-        contents_explanation="",
-        eel_pfc="NOEEI 30.37(a)",
-        non_delivery_option="return",
-        restriction_type="none",
-        restriction_comments="",
+        customs_signer='Hector Hammerfall',
+        contents_type='gift',
+        contents_explanation='',
+        eel_pfc='NOEEI 30.37(a)',
+        non_delivery_option='return',
+        restriction_type='none',
+        restriction_comments='',
         customs_items=[customs_item]
     )
 
@@ -111,23 +111,23 @@ def test_rerate(vcr):
 
     # create a to address and a from address
     to_address = easypost.Address.create(
-        name="Sawyer Bateman",
-        street1="1A Larkspur Cres.",
-        street2="",
-        city="St. Albert",
-        state="AB",
-        zip="t8n2m4",
-        country="CA",
-        phone="780-283-9384"
+        name='Sawyer Bateman',
+        street1='1A Larkspur Cres.',
+        street2='',
+        city='St. Albert',
+        state='AB',
+        zip='t8n2m4',
+        country='CA',
+        phone='780-283-9384'
     )
     from_address = easypost.Address.create(
-        company="EasyPost",
-        street1="118 2nd St",
-        street2="4th Fl",
-        city="San Francisco",
-        state="CA",
-        zip="94105",
-        phone="415-456-7890"
+        company='EasyPost',
+        street1='118 2nd St',
+        street2='4th Fl',
+        city='San Francisco',
+        state='CA',
+        zip='94105',
+        phone='415-456-7890'
     )
 
     # create a parcel
@@ -140,22 +140,22 @@ def test_rerate(vcr):
 
     # create customs_info form for intl shipping
     customs_item = easypost.CustomsItem.create(
-        description="EasyPost t-shirts",
+        description='EasyPost t-shirts',
         hs_tariff_number=123456,
-        origin_country="US",
+        origin_country='US',
         quantity=2,
         value=96.27,
         weight=21.1
     )
     customs_info = easypost.CustomsInfo.create(
         customs_certify=1,
-        customs_signer="Hector Hammerfall",
-        contents_type="gift",
-        contents_explanation="",
-        eel_pfc="NOEEI 30.37(a)",
-        non_delivery_option="return",
-        restriction_type="none",
-        restriction_comments="",
+        customs_signer='Hector Hammerfall',
+        contents_type='gift',
+        contents_explanation='',
+        eel_pfc='NOEEI 30.37(a)',
+        non_delivery_option='return',
+        restriction_type='none',
+        restriction_comments='',
         customs_items=[customs_item]
     )
 
@@ -181,3 +181,51 @@ def test_rerate(vcr):
     new_rate_id = shipment.rates[0].id
     assert new_rate_id is not None
     assert new_rate_id != rate_id
+
+
+@pytest.mark.vcr()
+def test_smartrate(vcr):
+    to_address = {
+        'name': 'Dr. Steve Brule',
+        'street1': '179 N Harbor Dr',
+        'city': 'Redondo Beach',
+        'state': 'CA',
+        'zip': '90277',
+        'country': 'US',
+        'phone': '4153334444',
+        'email': 'dr_steve_brule@gmail.com'
+    }
+    from_address = {
+        'name': 'EasyPost',
+        'street1': '417 Montgomery Street',
+        'street2': '5th Floor',
+        'city': 'San Francisco',
+        'state': 'CA',
+        'zip': '94104',
+        'country': 'US',
+        'phone': '4153334444',
+        'email': 'support@easypost.com'
+    }
+    parcel = {
+        'length': 20.2,
+        'width': 10.9,
+        'height': 5,
+        'weight': 65.9
+    }
+
+    shipment = easypost.Shipment.create(
+        to_address=to_address,
+        from_address=from_address,
+        parcel=parcel,
+    )
+    assert shipment.rates
+
+    smartrates = shipment.get_smartrates()
+    assert shipment.rates[0]['id'] == smartrates['result'][0]['id']
+    assert smartrates['result'][0]['time_in_transit']['percentile_50'] == 1
+    assert smartrates['result'][0]['time_in_transit']['percentile_75'] == 2
+    assert smartrates['result'][0]['time_in_transit']['percentile_85'] == 2
+    assert smartrates['result'][0]['time_in_transit']['percentile_90'] == 3
+    assert smartrates['result'][0]['time_in_transit']['percentile_95'] == 3
+    assert smartrates['result'][0]['time_in_transit']['percentile_97'] == 4
+    assert smartrates['result'][0]['time_in_transit']['percentile_99'] == 5

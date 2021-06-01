@@ -33,8 +33,8 @@ def test_address_creation_with_verify():
     # Create an address with a verify parameter to test that it verifies accurately
     address = easypost.Address.create(
         verify=['delivery'],
-        street1='118 2 streat',
-        street2='FL 4',
+        street1='118 2',
+        street2='FLoor 4',
         city='San Francisco',
         state='CA',
         zip='94105',

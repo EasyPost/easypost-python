@@ -1,5 +1,7 @@
-import sys
 import io
+import sys
+
+
 try:
     from setuptools import setup
 except ImportError:
@@ -22,7 +24,7 @@ with long_description_open('README.md', encoding='utf-8') as f:
 
 setup(
     name='easypost',
-    version='5.0.0',
+    version='5.1.1',
     description='EasyPost Shipping API Client Library for Python',
     author='EasyPost',
     author_email='support@easypost.com',
