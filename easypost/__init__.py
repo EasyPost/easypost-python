@@ -740,7 +740,7 @@ class Shipment(AllResource, CreateResource):
         url = "%s/%s" % (self.instance_url(), "smartrate")
 
         response, api_key = requestor.request('get', url)
-        return response
+        return response.get('result', [])
 
     def buy(self, **params):
         requestor = Requestor(self._api_key)
