@@ -1,3 +1,7 @@
+### v5.1.2 2021-06-10
+
+* Strips away the `result` key from SmartRate and simply returns an array of SmartRate objects
+
 ### 5.1.1 2021-05-18
 
 * fix: stops appending smartrates to Shipment object
