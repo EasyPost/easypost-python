@@ -146,7 +146,8 @@ Client Library Development
 ### Releasing
 
    1. Add new features to [CHANGELOG.md](CHANGELOG.md)
-   1. Bump the version in `easypost/version.py` and `setup.py`
+   1. Bump the version in `easypost/version.py`
+   1. Bump the version in `setup.py`
    1. Create and push a signed git tag
    1. Create a Release in Github based on the tag, with a human-readable summary of changes
    1. Build sdist and wheel: `rm -rf build/ dist/ ./*.egg-info; python3 setup.py sdist bdist_wheel`
