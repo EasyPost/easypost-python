@@ -1,3 +1,7 @@
+### NEXT
+
+* Remove 2015-vintage experimental "`all_updated`" action from trackers
+
 ### v5.1.2 2021-06-10
 
 * Strips away the `result` key from SmartRate and simply returns an array of SmartRate objects
