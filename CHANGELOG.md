@@ -1,6 +1,9 @@
-### NEXT
+## CHANGELOG
+
+### NEXT RELEASE
 
 * Remove 2015-vintage experimental "`all_updated`" action from trackers
+* Correct references of `contact@easypost.com` to `support@easypost.com`
 
 ### v5.1.2 2021-06-10
 
