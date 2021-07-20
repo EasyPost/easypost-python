@@ -14,6 +14,7 @@ from .version import VERSION, VERSION_INFO
 __author__ = 'EasyPost <oss@easypost.com>'
 __version__ = VERSION
 version_info = VERSION_INFO
+SUPPORT_EMAIL = 'support@easypost.com'
 
 
 # use urlfetch as request_lib on google app engine, otherwise use requests
@@ -35,7 +36,7 @@ except ImportError:
     except ImportError:
         raise ImportError('EasyPost requires an up to date requests library. '
                           'Update requests via "pip install -U requests" or '
-                          'contact us at contact@easypost.com.')
+                          'contact us at {}.'.format(SUPPORT_EMAIL))
 
     try:
         version = requests.__version__
@@ -43,12 +44,12 @@ except ImportError:
     except Exception:
         raise ImportError('EasyPost requires an up to date requests library. '
                           'Update requests via "pip install -U requests" or contact '
-                          'us at contact@easypost.com.')
+                          'us at {}.'.format(SUPPORT_EMAIL))
     else:
         if major < 1:
             raise ImportError('EasyPost requires an up to date requests library. Update '
                               'requests via "pip install -U requests" or contact us '
-                              'at contact@easypost.com.')
+                              'at {}.'.format(SUPPORT_EMAIL))
 
 # config
 api_key = None
@@ -286,7 +287,7 @@ class Requestor(object):
             raise Error(
                 'No API key provided. Set an API key via "easypost.api_key = \'APIKEY\'. '
                 'Your API keys can be found in your EasyPost dashboard, or you can email us '
-                'at contact@easypost.com for assistance.')
+                'at {} for assistance.'.format(SUPPORT_EMAIL))
 
         abs_url = self.api_url(url)
         params = self._objects_to_ids(params)
@@ -324,8 +325,8 @@ class Requestor(object):
         elif request_lib == 'requests':
             http_body, http_status = self.requests_request(method, abs_url, headers, params)
         else:
-            raise Error("Bug discovered: invalid request_lib: %s. "
-                        "Please report to contact@easypost.com." % request_lib)
+            raise Error("Bug discovered: invalid request_lib: {}. "
+                        "Please report to {}.".format(request_lib, SUPPORT_EMAIL))
 
         return http_body, http_status, my_api_key
 
@@ -347,8 +348,8 @@ class Requestor(object):
         elif method == 'post' or method == 'put':
             data = self.encode(params)
         else:
-            raise Error("Bug discovered: invalid request method: %s. "
-                        "Please report to contact@easypost.com." % method)
+            raise Error("Bug discovered: invalid request method: {}. "
+                        "Please report to {}.".format(method, SUPPORT_EMAIL))
 
         try:
             result = requests_session.request(
@@ -363,7 +364,7 @@ class Requestor(object):
             http_status = result.status_code
         except Exception as e:
             raise Error("Unexpected error communicating with EasyPost. If this "
-                        "problem persists please let us know at contact@easypost.com.",
+                        "problem persists please let us know at {}.".format(SUPPORT_EMAIL),
                         original_exception=e)
         return http_body, http_status
 
@@ -374,8 +375,8 @@ class Requestor(object):
         elif method == 'get' or method == 'delete':
             abs_url = self.build_url(abs_url, params)
         else:
-            raise Error("Bug discovered: invalid request method: %s. Please report "
-                        "to contact@easypost.com." % method)
+            raise Error("Bug discovered: invalid request method: {}. Please report "
+                        "to {}.".format(method, SUPPORT_EMAIL))
 
         args['url'] = abs_url
         args['method'] = method
@@ -387,7 +388,7 @@ class Requestor(object):
             result = urlfetch.fetch(**args)
         except Exception as e:
             raise Error("Unexpected error communicating with EasyPost. "
-                        "If this problem persists, let us know at contact@easypost.com.",
+                        "If this problem persists, let us know at {}.".format(SUPPORT_EMAIL),
                         original_exception=e)
 
         return result.content, result.status_code
