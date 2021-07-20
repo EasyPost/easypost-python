@@ -1,4 +1,4 @@
-VERSION = '5.1.2'
+VERSION = '5.1.3'
 
 if '-' in VERSION:
     VERSION_INFO = tuple([int(v) for v in VERSION.split('-')[0].split('.')] + VERSION.split('-')[1:])

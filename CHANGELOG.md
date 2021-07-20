@@ -2,8 +2,11 @@
 
 ### NEXT RELEASE
 
+### v5.1.3 2021-07-20
+
 * Remove 2015-vintage experimental "`all_updated`" action from trackers
 * Correct references of `contact@easypost.com` to `support@easypost.com`
+* Clean up address verify property and some miscellaneous request logic
 
 ### v5.1.2 2021-06-10
 
