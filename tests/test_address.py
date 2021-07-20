@@ -50,6 +50,27 @@ def test_address_creation_with_verify():
 
 
 @pytest.mark.vcr()
+def test_address_creation_with_verify_bool():
+    # Create an address with a verify parameter to test that it verifies accurately
+    address = easypost.Address.create(
+        verify=True,
+        street1='118 2',
+        street2='FLoor 4',
+        city='San Francisco',
+        state='CA',
+        zip='94105',
+        country='US',
+        company='EasyPost',
+        phone='415-456-7890'
+    )
+
+    assert address.id is not None
+    assert address.street1 == '118 2ND ST FL 4'
+    assert address.street2 == ''
+    assert address.country == 'US'
+
+
+@pytest.mark.vcr()
 def test_address_creation_with_verify_failure():
     # Create an address with a verify parameter to test that it fails elegantly
     address = easypost.Address.create(
