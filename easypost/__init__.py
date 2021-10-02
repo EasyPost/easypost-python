@@ -314,7 +314,7 @@ class Requestor(object):
             'X-Client-User-Agent': json.dumps(ua),
             'User-Agent': USER_AGENT,
             'Authorization': 'Bearer %s' % my_api_key,
-            'Content-type': 'application/x-www-form-urlencoded'
+            'Content-type': 'application/json'
         }
 
         if timeout > _max_timeout:
@@ -346,7 +346,7 @@ class Requestor(object):
                 abs_url = self.build_url(abs_url, params)
             data = None
         elif method == 'post' or method == 'put':
-            data = self.encode(params)
+            data = json.dumps(params)
         else:
             raise Error("Bug discovered: invalid request method: {}. "
                         "Please report to {}.".format(method, SUPPORT_EMAIL))
@@ -371,7 +371,7 @@ class Requestor(object):
     def urlfetch_request(self, method, abs_url, headers, params):
         args = {}
         if method == 'post' or method == 'put':
-            args['payload'] = self.encode(params)
+            args['payload'] = json.dumps(params)
         elif method == 'get' or method == 'delete':
             abs_url = self.build_url(abs_url, params)
         else:
