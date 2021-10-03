@@ -1,17 +1,17 @@
 interactions:
 - request:
-    body: !!python/unicode address%5Bcity%5D=San+Francisco&address%5Bcompany%5D=EasyPost&address%5Bcountry%5D=US&address%5Bphone%5D=415-456-7890&address%5Bstate%5D=CA&address%5Bstreet1%5D=UNDELIEVRABLE+ST&address%5Bzip%5D=94105
+    body: !!python/unicode '{"verify_strict": ["delivery"], "address": {"city": "San
+      Francisco", "zip": "94105", "street1": "UNDELIEVRABLE ST", "company": "EasyPost",
+      "phone": "415-456-7890", "state": "CA", "country": "US"}}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
+      - gzip, deflate, compress
       Content-Length:
-      - '200'
+      - !!python/unicode 196
       Content-type:
-      - application/x-www-form-urlencoded
+      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -19,7 +19,7 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: POST
-    uri: https://api.easypost.com/v2/addresses?verify_strict%5B%5D=delivery
+    uri: https://api.easypost.com/v2/addresses
   response:
     body:
       string: !!binary |
@@ -29,7 +29,7 @@ interactions:
         qlcvDQoeMXy8NdYuEjIbpzN6ZohNhsjY4b/ScZ5vAAAA//8DAA6dJ+AnAQAA
     headers:
       cache-control:
-      - no-cache, no-store, must-revalidate, private
+      - no-cache, no-store
       content-encoding:
       - gzip
       content-type:
@@ -38,27 +38,36 @@ interactions:
       - '0'
       pragma:
       - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
       strict-transport-security:
-      - max-age=15768000; includeSubDomains; preload
+      - max-age=31536000; includeSubDomains; preload
       transfer-encoding:
       - chunked
       x-backend:
       - easypost
       x-content-type-options:
       - nosniff
+      x-download-options:
+      - noopen
       x-ep-request-uuid:
-      - a89393095eb9ca46fb0bb081000517f8
+      - 8246f7cc6159ed5cf6f2b2f90040bee1
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb11sj
+      - bigweb8nuq
+      x-permitted-cross-domain-policies:
+      - none
       x-proxied:
-      - intlb1sj 5834894b53
-      - extlb2sj 5834894b53
+      - intlb2nuq d40607e4ab
+      - intlb2wdc d40607e4ab
+      - extlb3wdc d40607e4ab
+      x-request-id:
+      - 25d5db94-6c89-410e-b646-55d395f649cb
       x-runtime:
-      - '0.061712'
+      - '0.086290'
       x-version-label:
-      - easypost-202005112100-59b664a857-master
+      - easypost-202110011858-559f609973-master
       x-xss-protection:
       - 1; mode=block
     status:

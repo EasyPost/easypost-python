@@ -1,17 +1,16 @@
 interactions:
 - request:
-    body: !!python/unicode parcel%5Bheight%5D=4.3&parcel%5Blength%5D=10.2&parcel%5Bpredefined_package%5D=RegionalRateBoxA&parcel%5Bweight%5D=21.2&parcel%5Bwidth%5D=7.8
+    body: !!python/unicode '{"parcel": {"predefined_package": "RegionalRateBoxA",
+      "length": 10.2, "width": 7.8, "weight": 21.2, "height": 4.3}}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
+      - gzip, deflate, compress
       Content-Length:
-      - '140'
+      - !!python/unicode 115
       Content-type:
-      - application/x-www-form-urlencoded
+      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -23,45 +22,55 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4SOQQ6CMBBF7zJrIG2hFNjpCQxx5YaUdgrVCgRrMDHe3SFx73J+/nt/3uAtNLCs
-        JnRKO5SqlnkhiqJ0VSXKmmElWZ87J1UPCcz9FU0k4KRXg4ESs6KOaDu9p4IJljKZcn4WvJGqydWF
-        Os/F/u0EnIY4QsNZJhLYvN0PlVUJjOiHkcgiyxN6FC06P5Ft0eamByRli4OfJx1aWjnOrwPpth8k
-        +K67z3bvRXxE+HwBAAD//wMAsBgoMvMAAAA=
+        H4sIAAAAAAAAA4SOyw6CMBBF/2XWQNpSymOnX2CIKzdkaAeoIhCswcT47w6Je5dzc8+58wbvoIJl
+        tWMjjC00GlmiybTKLJZkZK7bjkypXSEhgrm9kg0MnHC1NHJiV8JArsE9VULJWIpYpGeZV5mqMn3h
+        znNxfzsjTX0YoJIiURFs3u1HnhQRDOT7gUmdpBE/So46P7FtQXvDnlhZU+/nCceaV47z68C67Qcp
+        uevus9t7gR4BPl8AAAD//wMAX5oWevMAAAA=
     headers:
       cache-control:
-      - no-cache, no-store, must-revalidate, private
+      - no-cache, no-store
       content-encoding:
       - gzip
       content-type:
       - application/json; charset=utf-8
+      etag:
+      - W/"cc7751ba1308108cdffa13debbb8b0a7"
       expires:
       - '0'
       location:
-      - /api/v2/parcels/prcl_7afe5795342446f882690e850b3ff57b
+      - /api/v2/parcels.prcl_06c84a619a65425ca9e6174bfe694d81
       pragma:
       - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
       strict-transport-security:
-      - max-age=15768000; includeSubDomains; preload
+      - max-age=31536000; includeSubDomains; preload
       transfer-encoding:
       - chunked
       x-backend:
       - easypost
       x-content-type-options:
       - nosniff
+      x-download-options:
+      - noopen
       x-ep-request-uuid:
-      - d4ade2d15eb9ca51fb2f4fdb0008991d
+      - 8246f7ca6159edf6f6f2b31b0040d736
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6sj
+      - bigweb2nuq
+      x-permitted-cross-domain-policies:
+      - none
       x-proxied:
-      - intlb1sj 5834894b53
-      - intlb2wdc 5834894b53
-      - extlb2wdc 5834894b53
+      - intlb1nuq d40607e4ab
+      - intlb1wdc d40607e4ab
+      - extlb3wdc d40607e4ab
+      x-request-id:
+      - d2a30ad5-fd5f-4830-8ac8-84505d85e3f8
       x-runtime:
-      - '0.039357'
+      - '0.030101'
       x-version-label:
-      - easypost-202005112100-59b664a857-master
+      - easypost-202110011858-559f609973-master
       x-xss-protection:
       - 1; mode=block
     status:

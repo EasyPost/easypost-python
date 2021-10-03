@@ -69,16 +69,16 @@ def test_batch_create_and_buy(vcr):
 
     assert len(batch.shipments) == 1
     assert batch.shipments[0].batch_status == 'postage_purchased'
-    assert batch.shipments[0].buyer_address.city == 'San Francisco'
+    assert batch.shipments[0].buyer_address.city == 'SAN FRANCISCO'
     assert batch.shipments[0].buyer_address.country == 'US'
-    assert batch.shipments[0].buyer_address.name == 'Jon Calhoun'
+    assert batch.shipments[0].buyer_address.name == 'JON CALHOUN'
     assert batch.shipments[0].buyer_address.phone == '4154567890'
-    assert batch.shipments[0].buyer_address.street1 == '388 Townsend St'
+    assert batch.shipments[0].buyer_address.street1 == '388 TOWNSEND ST APT 30'
 
     # Assert on fees
     assert batch.shipments[0].fees[0].amount == '0.00000'
-    assert batch.shipments[0].fees[1].amount == '7.68000'
-    assert batch.shipments[0].fees[2].amount == '1.00000'
+    assert batch.shipments[0].fees[1].amount == '8.08000'
+    assert batch.shipments[0].fees[2].amount == '0.50000'
 
     # Assert on parcel
 

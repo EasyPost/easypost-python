@@ -1,6 +1,11 @@
 interactions:
 - request:
-    body: !!python/unicode insurance%5Bamount%5D=101.0&insurance%5Bcarrier%5D=USPS&insurance%5Bfrom_address%5D%5Bcity%5D=San+Francisco&insurance%5Bfrom_address%5D%5Bcompany%5D=EasyPost&insurance%5Bfrom_address%5D%5Bphone%5D=415-456-7890&insurance%5Bfrom_address%5D%5Bstate%5D=CA&insurance%5Bfrom_address%5D%5Bstreet1%5D=118+2nd+St&insurance%5Bfrom_address%5D%5Bstreet2%5D=4th+Fl&insurance%5Bfrom_address%5D%5Bzip%5D=94105&insurance%5Bto_address%5D%5Bcity%5D=Redondo+Beach&insurance%5Bto_address%5D%5Bname%5D=Dr.+Steve+Brule&insurance%5Bto_address%5D%5Bphone%5D=310-808-5243&insurance%5Bto_address%5D%5Bstate%5D=CA&insurance%5Bto_address%5D%5Bstreet1%5D=179+N+Harbor+Dr&insurance%5Bto_address%5D%5Bzip%5D=90277&insurance%5Btracking_code%5D=EZ2000000002
+    body: !!python/unicode '{"insurance": {"tracking_code": "EZ2000000002",
+      "amount": 101.0, "carrier": "USPS", "to_address": {"city": "Redondo Beach",
+      "name": "Dr. Steve Brule", "zip": "90277", "street1": "179 N Harbor Dr",
+      "phone": "310-808-5243", "state": "CA"}, "from_address": {"city":
+      "San Francisco", "zip": "94105", "street1": "118 2nd St", "company":
+      "EasyPost", "phone": "415-456-7890", "state": "CA", "street2": "4th Fl"}}}'
     headers:
       Accept:
       - '*/*'
@@ -11,7 +16,7 @@ interactions:
       Content-Length:
       - '724'
       Content-type:
-      - application/x-www-form-urlencoded
+      - application/json
       authorization:
       - EZTK-NONE
       user-agent:

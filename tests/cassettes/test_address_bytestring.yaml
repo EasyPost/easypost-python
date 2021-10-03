@@ -1,17 +1,15 @@
 interactions:
 - request:
-    body: !!python/unicode address%5Bstate%5D=DELEGACI%C3%B3N+BENITO+JU%C3%A1REZ
+    body: !!python/unicode '{"address": {"state": "DELEGACI\u00f3N BENITO JU\u00e1REZ"}}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
+      - gzip, deflate, compress
       Content-Length:
-      - '53'
+      - !!python/unicode 60
       Content-type:
-      - application/x-www-form-urlencoded
+      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -23,45 +21,56 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4SQQU7DQAxFr1LNmkqZadNAdm2JUBEqErQbNpEz9gijZBJNJgioehjOwBF6MSaL
-        hsCG5f9+9rd9EIwiFYAuj5XRsIgBk4WcG5CXppjPrmaFLgqtI4PiQtTFC2kf+CWio7YNlnYEnjCH
-        3laRiqZRPJVyp2QaJ6lKngLTNfgvY6EikdquLMPMumrAvp9l6x2Rl7+lGmD2IzLkhIzr7C67Wa43
-        p6/tZJVtN7v7ye3+9PmQ9Ukf3PwEdda70C72j6HSPNd2WIIq4PIsqhr7uZ5a398MzjG53IDmchQf
-        XsJI1jMMjYaQHJS5h7e8//Rozz/eKzk2rMFzbVuRHo7HbwAAAP//AwDzj9QRnAEAAA==
+        H4sIAAAAAAAAA4yQTU7DQAyFr1LNFirN5EeQ2RWIUBEqErQbNpEz4wijZBJNXARUPQxn4Ai9GJNF
+        08CK5Xv+7Gd7J8gKLcD6IqouYyNtBsqkSZplpYnLMo0lYlwBJIk4F235ioYDv7DWY98Hy3gERlvA
+        YEcyUnMl5zJeqwudSh2pMym1lAHcdvZ/oIMGhXbbug7T26YD93GUPXtEVr9lNMLEEzKEhaCb/D6/
+        XVwvD9+r2VW+Wq4fZnebw9dj/hySPqk7BW0d+9AuNk+h0r20blwCG6D6KJrWDnMZex6uB+8JfVGB
+        oXoSH55DFh0TjI0VWvRQFwzvxfDzyZ5/vDf0VJEBptb1Qu/2+x8AAAD//wMAsxhdIqYBAAA=
     headers:
       cache-control:
-      - no-cache, no-store, must-revalidate, private
+      - no-cache, no-store
       content-encoding:
       - gzip
       content-type:
       - application/json; charset=utf-8
+      etag:
+      - W/"f62cb93a60776c03581d2126cf135637"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_52fca65ad7614fa18fb4393bcbbcc0fd
+      - /api/v2/addresses/adr_2f83c0d9a1c54599bc3bb530ee3faa44
       pragma:
       - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
       strict-transport-security:
-      - max-age=15768000; includeSubDomains; preload
+      - max-age=31536000; includeSubDomains; preload
       transfer-encoding:
       - chunked
       x-backend:
       - easypost
       x-content-type-options:
       - nosniff
+      x-download-options:
+      - noopen
       x-ep-request-uuid:
-      - 2b85eb425eb9ca47fb0a061d000475f3
+      - 8246f7cc6159ed5df6f2b3120040bf00
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6sj
+      - bigweb2nuq
+      x-permitted-cross-domain-policies:
+      - none
       x-proxied:
-      - intlb1sj 5834894b53
-      - extlb1sj 5834894b53
+      - intlb1nuq d40607e4ab
+      - intlb2wdc d40607e4ab
+      - extlb3wdc d40607e4ab
+      x-request-id:
+      - 2ff16883-3dcc-470e-87b2-4b608fa20a0d
       x-runtime:
-      - '0.034639'
+      - '0.036746'
       x-version-label:
-      - easypost-202005112100-59b664a857-master
+      - easypost-202110011858-559f609973-master
       x-xss-protection:
       - 1; mode=block
     status:
