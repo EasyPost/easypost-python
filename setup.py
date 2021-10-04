@@ -8,7 +8,7 @@ except ImportError:
     from distutils.core import setup
 
 install_requires = [
-    'requests >= 1.0.0',
+    'requests >= 2.4.3',
     'six'
 ]
 
