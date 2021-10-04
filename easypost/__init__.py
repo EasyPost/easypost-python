@@ -23,41 +23,33 @@ request_lib = None
 _max_timeout = 90
 try:
     from google.appengine.api import urlfetch
-
     request_lib = 'urlfetch'
     # use the GAE application-wide "deadline" (or its default) if it's less than our existing max timeout
     _max_timeout = min(urlfetch.get_default_fetch_deadline() or 60, _max_timeout)
 except ImportError:
     try:
         import requests
-
         request_lib = 'requests'
         requests_session = requests.Session()
         requests_http_adapter = requests.adapters.HTTPAdapter(max_retries=3)
         requests_session.mount('https://api.easypost.com', requests_http_adapter)
     except ImportError:
-        raise ImportError(
-            'EasyPost requires an up to date requests library. '
-            'Update requests via "pip install -U requests" or '
-            'contact us at {}.'.format(SUPPORT_EMAIL)
-        )
+        raise ImportError('EasyPost requires an up to date requests library. '
+                          'Update requests via "pip install -U requests" or '
+                          'contact us at {}.'.format(SUPPORT_EMAIL))
 
     try:
         version = requests.__version__
         major, minor, patch = [int(i) for i in version.split('.')]
     except Exception:
-        raise ImportError(
-            'EasyPost requires an up to date requests library. '
-            'Update requests via "pip install -U requests" or contact '
-            'us at {}.'.format(SUPPORT_EMAIL)
-        )
+        raise ImportError('EasyPost requires an up to date requests library. '
+                          'Update requests via "pip install -U requests" or contact '
+                          'us at {}.'.format(SUPPORT_EMAIL))
     else:
         if major < 1:
-            raise ImportError(
-                'EasyPost requires an up to date requests library. Update '
-                'requests via "pip install -U requests" or contact us '
-                'at {}.'.format(SUPPORT_EMAIL)
-            )
+            raise ImportError('EasyPost requires an up to date requests library. Update '
+                              'requests via "pip install -U requests" or contact us '
+                              'at {}.'.format(SUPPORT_EMAIL))
 
 # config
 api_key = None
@@ -111,11 +103,11 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'Report': Report,
         'ShipmentReport': Report,
         'PaymentLogReport': Report,
+        'TaxIdentifier': TaxIdentifier,
         'TrackerReport': Report,
         'RefundReport': Report,
         'ShipmentInvoiceReport': Report,
-        'TaxIdentifier': TaxIdentifier,
-        'Webhook': Webhook,
+        'Webhook': Webhook
     }
 
     prefixes = {
@@ -142,7 +134,7 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'trkrep': Report,
         'refrep': Report,
         'shpinvrep': Report,
-        'hook': Webhook,
+        'hook': Webhook
     }
 
     if isinstance(response, list):
@@ -154,7 +146,7 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         if isinstance(cls_name, six.string_types):
             cls = types.get(cls_name, EasyPostObject)
         elif cls_id is not None:
-            cls = prefixes.get(cls_id[0 : cls_id.find('_')], EasyPostObject)
+            cls = prefixes.get(cls_id[0:cls_id.find('_')], EasyPostObject)
         else:
             cls = EasyPostObject
         return cls.construct_from(response, api_key, parent, name)
@@ -296,8 +288,7 @@ class Requestor(object):
             raise Error(
                 'No API key provided. Set an API key via "easypost.api_key = \'APIKEY\'. '
                 'Your API keys can be found in your EasyPost dashboard, or you can email us '
-                'at {} for assistance.'.format(SUPPORT_EMAIL)
-            )
+                'at {} for assistance.'.format(SUPPORT_EMAIL))
 
         abs_url = self.api_url(url)
         params = self._objects_to_ids(params)
@@ -308,11 +299,9 @@ class Requestor(object):
             'publisher': 'easypost',
             'request_lib': request_lib,
         }
-        for attr, func in (
-            ('lang_version', platform.python_version),
-            ('platform', platform.platform),
-            ('uname', lambda: ' '.join(platform.uname())),
-        ):
+        for attr, func in (('lang_version', platform.python_version),
+                           ('platform', platform.platform),
+                           ('uname', lambda: ' '.join(platform.uname()))):
             try:
                 val = func()
             except Exception as e:
@@ -326,7 +315,7 @@ class Requestor(object):
             'X-Client-User-Agent': json.dumps(ua),
             'User-Agent': USER_AGENT,
             'Authorization': 'Bearer %s' % my_api_key,
-            'Content-type': 'application/x-www-form-urlencoded',
+            'Content-type': 'application/x-www-form-urlencoded'
         }
 
         if timeout > _max_timeout:
@@ -337,9 +326,8 @@ class Requestor(object):
         elif request_lib == 'requests':
             http_body, http_status = self.requests_request(method, abs_url, headers, params)
         else:
-            raise Error(
-                "Bug discovered: invalid request_lib: {}. Please report to {}.".format(request_lib, SUPPORT_EMAIL)
-            )
+            raise Error("Bug discovered: invalid request_lib: {}. "
+                        "Please report to {}.".format(request_lib, SUPPORT_EMAIL))
 
         return http_body, http_status, my_api_key
 
@@ -361,9 +349,8 @@ class Requestor(object):
         elif method == 'post' or method == 'put':
             data = self.encode(params)
         else:
-            raise Error(
-                "Bug discovered: invalid request method: {}. Please report to {}.".format(method, SUPPORT_EMAIL)
-            )
+            raise Error("Bug discovered: invalid request method: {}. "
+                        "Please report to {}.".format(method, SUPPORT_EMAIL))
 
         try:
             result = requests_session.request(
@@ -377,11 +364,9 @@ class Requestor(object):
             http_body = result.text
             http_status = result.status_code
         except Exception as e:
-            raise Error(
-                "Unexpected error communicating with EasyPost. If this "
-                "problem persists please let us know at {}.".format(SUPPORT_EMAIL),
-                original_exception=e,
-            )
+            raise Error("Unexpected error communicating with EasyPost. If this "
+                        "problem persists please let us know at {}.".format(SUPPORT_EMAIL),
+                        original_exception=e)
         return http_body, http_status
 
     def urlfetch_request(self, method, abs_url, headers, params):
@@ -391,9 +376,8 @@ class Requestor(object):
         elif method == 'get' or method == 'delete':
             abs_url = self.build_url(abs_url, params)
         else:
-            raise Error(
-                "Bug discovered: invalid request method: {}. Please report to {}.".format(method, SUPPORT_EMAIL)
-            )
+            raise Error("Bug discovered: invalid request method: {}. Please report "
+                        "to {}.".format(method, SUPPORT_EMAIL))
 
         args['url'] = abs_url
         args['method'] = method
@@ -404,12 +388,9 @@ class Requestor(object):
         try:
             result = urlfetch.fetch(**args)
         except Exception as e:
-            raise Error(
-                "Unexpected error communicating with EasyPost. If this problem persists, let us know at {}.".format(
-                    SUPPORT_EMAIL
-                ),
-                original_exception=e,
-            )
+            raise Error("Unexpected error communicating with EasyPost. "
+                        "If this problem persists, let us know at {}.".format(SUPPORT_EMAIL),
+                        original_exception=e)
 
         return result.content, result.status_code
 
@@ -525,9 +506,11 @@ class EasyPostObject(object):
         if isinstance(self.get('object'), six.string_types):
             type_string = ' %s' % self.get('object').encode('utf8')
 
-        json_string = json.dumps(self.to_dict(), sort_keys=True, indent=2, cls=EasyPostObjectEncoder)
+        json_string = json.dumps(self.to_dict(), sort_keys=True,
+                                 indent=2, cls=EasyPostObjectEncoder)
 
-        return '<%s%s at %s> JSON: %s' % (type(self).__name__, type_string, hex(id(self)), json_string)
+        return '<%s%s at %s> JSON: %s' % (type(self).__name__, type_string,
+                                          hex(id(self)), json_string)
 
     def __str__(self):
         return self.to_json(indent=2)
@@ -584,7 +567,8 @@ class Resource(EasyPostObject):
     @classmethod
     def class_name(cls):
         if cls == Resource:
-            raise NotImplementedError('Resource is an abstract class. You should perform actions on its subclasses.')
+            raise NotImplementedError('Resource is an abstract class. '
+                                      'You should perform actions on its subclasses.')
 
         cls_name = six.text_type(cls.__name__)
         cls_name = cls_name[0:1] + re.sub(r'([A-Z])', r'_\1', cls_name[1:])
@@ -656,6 +640,7 @@ class DeleteResource(Resource):
 
 # specific resources
 class Address(AllResource, CreateResource):
+
     @classmethod
     def create(cls, api_key=None, verify=None, verify_strict=None, **params):
         requestor = Requestor(api_key)
@@ -682,7 +667,7 @@ class Address(AllResource, CreateResource):
 
         wrapped_params = {
             cls.class_name(): params,
-            "carrier": carrier,
+            "carrier": carrier
         }
         response, api_key = requestor.request('post', url, wrapped_params)
 
@@ -1005,6 +990,7 @@ class User(CreateResource, UpdateResource, DeleteResource):
 
 
 class Report(AllResource, CreateResource):
+
     @classmethod
     def create(cls, api_key=None, **params):
         requestor = Requestor(api_key)
