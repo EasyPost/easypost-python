@@ -187,7 +187,7 @@ class Requestor(object):
         pass  # do not include None-valued params in request
 
     @classmethod
-    def _encode_inner(cls, params):
+    def encode_url(cls, params):
         # special case value encoding
         ENCODERS = {
             datetime.datetime: cls.encode_datetime,
@@ -211,7 +211,7 @@ class Requestor(object):
                     pass
 
                 out.append((key, value))
-        return out
+        return urlencode(out)
 
     @classmethod
     def _objects_to_ids(cls, param):
@@ -231,16 +231,12 @@ class Requestor(object):
             return param
 
     @classmethod
-    def encode(cls, params):
-        return urlencode(cls._encode_inner(params))
-
-    @classmethod
     def build_url(cls, url, params):
         base_query = urlparse(url).query
         if base_query:
-            return '%s&%s' % (url, cls.encode(params))
+            return '%s&%s' % (url, cls.encode_url(params))
         else:
-            return '%s?%s' % (url, cls.encode(params))
+            return '%s?%s' % (url, cls.encode_url(params))
 
     def request(self, method, url, params=None, apiKeyRequired=True):
         if params is None:
