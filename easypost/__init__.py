@@ -160,6 +160,24 @@ def _utf8(value):
     return value
 
 
+def encode_url_params(params):
+    converted_params = []
+    for key, value in sorted(six.iteritems(params)):
+        if value is None:
+            continue  # don't add Nones to the query
+        elif isinstance(value, datetime.datetime):
+            value = int(time.mktime(value.timetuple()))  # to UTC timestamp
+        converted_params.append((key, value))
+    return urlencode(converted_params)
+
+
+def add_params_to_url(url, params):
+    encoded_params = encode_url_params(params)
+    if encoded_params:
+        return '%s?%s' % (url, encoded_params)
+    return url
+
+
 class Requestor(object):
     def __init__(self, local_api_key=None):
         self._api_key = local_api_key
@@ -174,24 +192,6 @@ class Requestor(object):
             return [cls._objects_to_ids(v) for v in param]
         else:
             return param
-
-    @classmethod
-    def encode_url_params(cls, params):
-        converted_params = []
-        for key, value in sorted(six.iteritems(params)):
-            if value is None:
-                continue  # don't add Nones to the query
-            elif isinstance(value, datetime.datetime):
-                value = int(time.mktime(value.timetuple()))  # to UTC timestamp
-            converted_params.append((key, value))
-        return urlencode(converted_params)
-
-    @classmethod
-    def add_params_to_url(cls, url, params):
-        encoded_params = cls.encode_url_params(params)
-        if encoded_params:
-            return '%s?%s' % (url, encoded_params)
-        return url
 
     def request(self, method, url, params=None, apiKeyRequired=True):
         if params is None:
@@ -264,7 +264,7 @@ class Requestor(object):
     def requests_request(self, method, abs_url, headers, params):
         method = method.lower()
         if method == 'get' or method == 'delete':
-            abs_url = self.add_params_to_url(abs_url, params)
+            abs_url = add_params_to_url(abs_url, params)
             data = None
         elif method == 'post' or method == 'put':
             data = json.dumps(params, default=_utf8)
@@ -300,7 +300,7 @@ class Requestor(object):
             fetch_args['url'] = abs_url
             fetch_args['payload'] = json.dumps(params, default=_utf8)
         elif method == 'get' or method == 'delete':
-            fetch_args['url'] = self.add_params_to_url(abs_url, params)
+            fetch_args['url'] = add_params_to_url(abs_url, params)
         else:
             raise Error("Bug discovered: invalid request method: {}. Please report "
                         "to {}.".format(method, SUPPORT_EMAIL))
@@ -484,8 +484,7 @@ class Resource(EasyPostObject):
 
     @classmethod
     def snakecase_name(cls):
-        """ Return the class name as snake_case.
-        """
+        """Return the class name as snake_case."""
         snake_name = (cls.__name__[0:1] + re.sub(r'([A-Z])', r'_\1', cls.__name__[1:])).lower()
         return snake_name
 
