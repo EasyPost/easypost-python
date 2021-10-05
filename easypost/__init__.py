@@ -4,10 +4,9 @@ import platform
 import re
 import ssl
 import time
-import types
 
 import six
-from six.moves.urllib.parse import quote_plus, urlencode, urlparse
+from six.moves.urllib.parse import urlencode
 
 from .version import VERSION, VERSION_INFO
 
@@ -155,18 +154,10 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
 
 
 def _utf8(value):
-    if six.PY2:
-        # Python2's urlencode wants bytestrings, not unicode
-        if isinstance(value, six.text_type):
-            return value.encode('utf-8')
-        return value
-    elif isinstance(value, six.binary_type):
-        # Python3's six.text_type(bytestring) returns "b'bytestring'"
-        # So, have to decode it to unicode
+    # Python3's str(bytestring) returns "b'bytestring'" so we use .decode instead
+    if isinstance(value, six.binary_type):
         return value.decode('utf-8')
-    else:
-        # Python3's urlencode can handle unicode
-        return value
+    return value
 
 
 class Requestor(object):
@@ -174,70 +165,33 @@ class Requestor(object):
         self._api_key = local_api_key
 
     @classmethod
-    def api_url(cls, url=None):
-        url = url or ''
-        return '%s%s' % (api_base, url)
-
-    @classmethod
-    def encode_datetime(cls, out, key, dt_value):
-        utc_timestamp = int(time.mktime(dt_value.timetuple()))
-        out.append((key, utc_timestamp))
-
-    @classmethod
-    def encode_none(cls, out, key, value):
-        pass  # do not include None-valued params in request
-
-    @classmethod
-    def encode_url(cls, params):
-        # special case value encoding
-        ENCODERS = {
-            datetime.datetime: cls.encode_datetime,
-        }
-        if six.PY2:
-            ENCODERS[types.NoneType] = cls.encode_none
-        if six.PY3:
-            ENCODERS[type(None)] = cls.encode_none
-
-        out = []
-        for key, value in sorted(six.iteritems(params)):
-            key = _utf8(key)
-            try:
-                encoder = ENCODERS[value.__class__]
-                encoder(out, key, value)
-            except KeyError:
-                # don't need special encoding
-                try:
-                    value = six.text_type(value)
-                except Exception:
-                    pass
-
-                out.append((key, value))
-        return urlencode(out)
-
-    @classmethod
     def _objects_to_ids(cls, param):
         if isinstance(param, Resource):
             return {'id': param.id}
         elif isinstance(param, dict):
-            out = {}
-            for k, v in six.iteritems(param):
-                out[k] = cls._objects_to_ids(v)
-            return out
+            return {k: cls._objects_to_ids(v) for k, v in six.iteritems(param)}
         elif isinstance(param, list):
-            out = []
-            for k, v in enumerate(param):
-                out.append(cls._objects_to_ids(v))
-            return out
+            return [cls._objects_to_ids(v) for v in param]
         else:
             return param
 
     @classmethod
-    def build_url(cls, url, params):
-        base_query = urlparse(url).query
-        if base_query:
-            return '%s&%s' % (url, cls.encode_url(params))
-        else:
-            return '%s?%s' % (url, cls.encode_url(params))
+    def encode_url_params(cls, params):
+        converted_params = []
+        for key, value in sorted(six.iteritems(params)):
+            if value is None:
+                continue  # don't add Nones to the query
+            elif isinstance(value, datetime.datetime):
+                value = int(time.mktime(value.timetuple()))  # to UTC timestamp
+            converted_params.append((key, value))
+        return urlencode(converted_params)
+
+    @classmethod
+    def add_params_to_url(cls, url, params):
+        encoded_params = cls.encode_url_params(params)
+        if encoded_params:
+            return '%s?%s' % (url, encoded_params)
+        return url
 
     def request(self, method, url, params=None, apiKeyRequired=True):
         if params is None:
@@ -257,7 +211,7 @@ class Requestor(object):
                 'Your API keys can be found in your EasyPost dashboard, or you can email us '
                 'at {} for assistance.'.format(SUPPORT_EMAIL))
 
-        abs_url = self.api_url(url)
+        abs_url = '%s%s' % (api_base, url or '')
         params = self._objects_to_ids(params)
 
         ua = {
@@ -310,8 +264,7 @@ class Requestor(object):
     def requests_request(self, method, abs_url, headers, params):
         method = method.lower()
         if method == 'get' or method == 'delete':
-            if params:
-                abs_url = self.build_url(abs_url, params)
+            abs_url = self.add_params_to_url(abs_url, params)
             data = None
         elif method == 'post' or method == 'put':
             data = json.dumps(params, default=_utf8)
@@ -337,23 +290,23 @@ class Requestor(object):
         return http_body, http_status
 
     def urlfetch_request(self, method, abs_url, headers, params):
-        args = {}
+        fetch_args = {
+            'method': method,
+            'headers': headers,
+            'validate_certificate': False,
+            'deadline': timeout
+        }
         if method == 'post' or method == 'put':
-            args['payload'] = json.dumps(params, default=_utf8)
+            fetch_args['url'] = abs_url
+            fetch_args['payload'] = json.dumps(params, default=_utf8)
         elif method == 'get' or method == 'delete':
-            abs_url = self.build_url(abs_url, params)
+            fetch_args['url'] = self.add_params_to_url(abs_url, params)
         else:
             raise Error("Bug discovered: invalid request method: {}. Please report "
                         "to {}.".format(method, SUPPORT_EMAIL))
 
-        args['url'] = abs_url
-        args['method'] = method
-        args['headers'] = headers
-        args['validate_certificate'] = False
-        args['deadline'] = timeout
-
         try:
-            result = urlfetch.fetch(**args)
+            result = urlfetch.fetch(**fetch_args)
         except Exception as e:
             raise Error("Unexpected error communicating with EasyPost. "
                         "If this problem persists, let us know at {}.".format(SUPPORT_EMAIL),
@@ -378,8 +331,7 @@ class EasyPostObject(object):
         self.__dict__['_values'] = set()
         self.__dict__['_unsaved_values'] = set()
         self.__dict__['_transient_values'] = set()
-        # python2.6 doesnt have {} syntax for sets
-        self.__dict__['_immutable_values'] = set(['_api_key', 'id'])
+        self.__dict__['_immutable_values'] = {'_api_key', 'id'}
         self.__dict__['_retrieve_params'] = params
 
         self.__dict__['_parent'] = parent
@@ -449,7 +401,6 @@ class EasyPostObject(object):
         for k, v in sorted(six.iteritems(values)):
             if k == 'id' and self.id != v:
                 self.id = v
-
             if k in self._immutable_values:
                 continue
             self.__dict__[k] = convert_to_easypost_object(v, api_key, self, k)
@@ -461,10 +412,10 @@ class EasyPostObject(object):
         values = {}
         for key in self._unsaved_values:
             value = self.get(key)
-            values[key] = value
-
             if type(value) is EasyPostObject:
                 values[key] = value.flatten_unsaved()
+            else:
+                values[key] = value
         return values
 
     def __repr__(self):
@@ -532,19 +483,16 @@ class Resource(EasyPostObject):
         return self
 
     @classmethod
-    def class_name(cls):
-        if cls == Resource:
-            raise NotImplementedError('Resource is an abstract class. '
-                                      'You should perform actions on its subclasses.')
-
-        cls_name = six.text_type(cls.__name__)
-        cls_name = cls_name[0:1] + re.sub(r'([A-Z])', r'_\1', cls_name[1:])
-        return "%s" % cls_name.lower()
+    def snakecase_name(cls):
+        """ Return the class name as snake_case.
+        """
+        snake_name = (cls.__name__[0:1] + re.sub(r'([A-Z])', r'_\1', cls.__name__[1:])).lower()
+        return snake_name
 
     @classmethod
     def class_url(cls):
-        cls_name = cls.class_name()
-        if cls_name[-1:] == "s" or cls_name[-1:] == "h":
+        cls_name = cls.snakecase_name()
+        if cls_name[-1:] in ("s", "h"):
             return "/%ses" % cls_name
         else:
             return "/%ss" % cls_name
@@ -553,10 +501,7 @@ class Resource(EasyPostObject):
         easypost_id = self.get('id')
         if not easypost_id:
             raise Error('%s instance has invalid ID: %r' % (type(self).__name__, easypost_id))
-        easypost_id = _utf8(easypost_id)
-        base = self.class_url()
-        param = quote_plus(easypost_id)
-        return "{base}/{param}".format(base=base, param=param)
+        return "%s/%s" % (self.class_url(), easypost_id)
 
 
 # parent resource classes
@@ -574,7 +519,7 @@ class CreateResource(Resource):
     def create(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = cls.class_url()
-        wrapped_params = {cls.class_name(): params}
+        wrapped_params = {cls.snakecase_name(): params}
         response, api_key = requestor.request('post', url, wrapped_params)
         return convert_to_easypost_object(response, api_key)
 
@@ -588,7 +533,7 @@ class UpdateResource(Resource):
                 params[k] = getattr(self, k)
                 if type(params[k]) is EasyPostObject:
                     params[k] = params[k].flatten_unsaved()
-            params = {self.class_name(): params}
+            params = {self.snakecase_name(): params}
             url = self.instance_url()
             response, api_key = requestor.request('put', url, params)
             self.refresh_from(response, api_key)
@@ -613,7 +558,7 @@ class Address(AllResource, CreateResource):
         requestor = Requestor(api_key)
         url = cls.class_url()
 
-        wrapped_params = {cls.class_name(): params}
+        wrapped_params = {cls.snakecase_name(): params}
         for key, value in (('verify', verify), ('verify_strict', verify_strict)):
             if not value:
                 continue
@@ -630,7 +575,7 @@ class Address(AllResource, CreateResource):
         url = "%s/%s" % (cls.class_url(), "create_and_verify")
 
         wrapped_params = {
-            cls.class_name(): params,
+            cls.snakecase_name(): params,
             "carrier": carrier
         }
         response, api_key = requestor.request('post', url, wrapped_params)
@@ -650,12 +595,12 @@ class Address(AllResource, CreateResource):
     def verify(self, carrier=None):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "verify")
-        if carrier:
-            url += "?carrier=%s" % carrier
-        response, api_key = requestor.request('get', url)
+        params = {"carrier": carrier}
+        response, api_key = requestor.request('get', url, params=params)
 
         response_address = response.get('address', None)
         response_message = response.get('message', None)
+
         if response_address is not None:
             verified_address = convert_to_easypost_object(response_address, api_key)
             if response_message is not None:
@@ -716,7 +661,6 @@ class Shipment(AllResource, CreateResource):
     def get_smartrates(self):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "smartrate")
-
         response, api_key = requestor.request('get', url)
         return response.get('result', [])
 
@@ -730,7 +674,6 @@ class Shipment(AllResource, CreateResource):
     def refund(self, **params):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "refund")
-
         response, api_key = requestor.request('post', url, params)
         self.refresh_from(response, api_key)
         return self
@@ -738,7 +681,6 @@ class Shipment(AllResource, CreateResource):
     def insure(self, **params):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "insure")
-
         response, api_key = requestor.request('post', url, params)
         self.refresh_from(response, api_key)
         return self
@@ -746,7 +688,6 @@ class Shipment(AllResource, CreateResource):
     def label(self, **params):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "label")
-
         response, api_key = requestor.request('get', url, params)
         self.refresh_from(response, api_key)
         return self
@@ -754,7 +695,6 @@ class Shipment(AllResource, CreateResource):
     def lowest_rate(self, carriers=None, services=None):
         carriers = carriers or []
         services = services or []
-
         lowest_rate = None
 
         try:
@@ -770,12 +710,10 @@ class Shipment(AllResource, CreateResource):
         services = [service.lower() for service in services]
 
         for rate in self.rates:
-            rate_carrier = rate.carrier.lower()
-            if len(carriers) > 0 and rate_carrier not in carriers:
+            if len(carriers) > 0 and rate.carrier.lower() not in carriers:
                 continue
 
-            rate_service = rate.service.lower()
-            if len(services) > 0 and rate_service not in services:
+            if len(services) > 0 and rate.service.lower() not in services:
                 continue
 
             if lowest_rate is None or float(rate.rate) < float(lowest_rate.rate):
@@ -804,7 +742,7 @@ class Batch(AllResource, CreateResource):
     def create_and_buy(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), "create_and_buy")
-        wrapped_params = {cls.class_name(): params}
+        wrapped_params = {cls.snakecase_name(): params}
         response, api_key = requestor.request('post', url, wrapped_params)
         return convert_to_easypost_object(response, api_key)
 
@@ -912,7 +850,7 @@ class User(CreateResource, UpdateResource, DeleteResource):
     def create(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = cls.class_url()
-        wrapped_params = {cls.class_name(): params}
+        wrapped_params = {cls.snakecase_name(): params}
         response, api_key = requestor.request('post', url, wrapped_params, False)
         return convert_to_easypost_object(response, api_key)
 
