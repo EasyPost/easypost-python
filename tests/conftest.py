@@ -10,6 +10,25 @@ TEST_API_KEY = os.environ['TEST_API_KEY']
 PROD_API_KEY = os.environ['PROD_API_KEY']
 
 
+def pytest_sessionstart(session):
+    # this is for local unit testing with google appengine, otherwise you get a
+    # 'No api proxy found for service "urlfetch"' response
+    try:
+        from google.appengine.ext import testbed
+        session.appengine_testbed = testbed.Testbed()
+        session.appengine_testbed.activate()
+        session.appengine_testbed.init_urlfetch_stub()
+    except ImportError:
+        # if the import fails then we're not using the appengine sdk, so just
+        # keep going without initializing the testbed stub
+        pass
+
+
+def pytest_sessionfinish(session, exitstatus):
+    if hasattr(session, "appengine_testbed"):
+        session.appengine_testbed.deactivate()
+
+
 # this fixture is auto-loaded by all tests; it sets up the api key
 @pytest.yield_fixture(autouse=True)
 def setup_api_key():
