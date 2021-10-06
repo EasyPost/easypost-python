@@ -9,8 +9,8 @@ Requirements
 ------------
 
 * [Python](https://www.python.org) 2.7 or 3.3+ (or corresponding [PyPy](https://pypy.org) versions). Note that we only test on Python 2.7 and 3.5+; we strongly recommend against using 3.3.x or 3.4.x as they are no longer supported by many libraries.
-* [requests](http://docs.python-requests.org/en/latest/) (if not on Google App Engine)
-* [six](https://pythonhosted.org/six/)
+* [requests](http://docs.python-requests.org/en/latest/) >= v2.4.3 (if not on Google App Engine) (will be installed automatically)
+* [six](https://pythonhosted.org/six/) (will be installed automatically)
 
 
 Looking for a client library for another language? Check out <https://www.easypost.com/docs/libraries>.
