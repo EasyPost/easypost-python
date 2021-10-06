@@ -103,6 +103,7 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         'Report': Report,
         'ShipmentReport': Report,
         'PaymentLogReport': Report,
+        'TaxIdentifier': TaxIdentifier,
         'TrackerReport': Report,
         'RefundReport': Report,
         'ShipmentInvoiceReport': Report,
@@ -820,6 +821,10 @@ class Shipment(AllResource, CreateResource):
             raise Error('No rates found.')
 
         return lowest_rate
+
+
+class TaxIdentifier(Resource):
+    pass
 
 
 class Rate(CreateResource):
