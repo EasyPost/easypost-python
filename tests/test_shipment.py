@@ -174,7 +174,8 @@ def test_rerate(vcr):
         # we only rerate on get_rates calls for shipments made at least 60 seconds ago
         time.sleep(61)
 
-    easypost.requests_session.close()
+    if hasattr(easypost, 'requests_session'):  # the urlfetch code has no session obj
+        easypost.requests_session.close()
 
     shipment.regenerate_rates()
 
