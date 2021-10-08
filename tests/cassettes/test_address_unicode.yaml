@@ -1,17 +1,15 @@
 interactions:
 - request:
-    body: !!python/unicode address%5Bstate%5D=DELEGACI%C3%B3N+BENITO+JU%C3%A1REZ
+    body: !!python/unicode '{"address": {"state": "DELEGACI\u00f3N BENITO JU\u00e1REZ"}}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
+      - gzip, deflate, compress
       Content-Length:
-      - '53'
+      - !!python/unicode 60
       Content-type:
-      - application/x-www-form-urlencoded
+      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -23,46 +21,56 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4SQQU7DQAxFr1LNmkqZCSUluwIRKkJFgnbDJnJijzBKJtHEQUDVw3AGjtCLMVk0
-        LWxY/u9nf9tbxahSBejzgmwEsSG0Wp/r2FxeFBEmdg5mbqmMY3WmmuKVSgn8AtFT1wWr9ARCmMNg
-        m8hE02g21XptdDpLUpM8B6Zv8V/GQU0qdX1VhZlN3YL7OMhOPJHo39KMMMsJGXJCxk12n90urpf7
-        79XkKlst1w+Tu83+6zEbkj65PQb1TnxoV5unUGlfGjcuQTVwdRB1g8NcoU6Gm8F7Jp9bKLk6iQ8v
-        YSQnDGOjJSQPVS7wng+fPtnzj/dGni2XINy4TqXb3e4HAAD//wMA8mpM2JwBAAA=
+        H4sIAAAAAAAAA4yQwU7DMAyGX2XKFSa5Ye0gtwEVGkJDgu2yS2USVxi1SZWmCJj2MDwDj7AXIz2s
+        FE4c/9+f/dveCTZCCTS+kCkZiSDPpYHZRaYR09mctNSQlTIrE3Eq3NML6RD5hTGe2jZa2hMGMgX2
+        tgSZTBOYwtk6masUlIQTAAUQwa4x/wMt1iSU7aoqTnd1g/b9KNvgiULyW8oB5jAiY1gMus7v8pvF
+        1fLwtZpc5qvl+n5yuzl8PuTbmPTBzU9QZ4OP7WLzGCvNs7PDElQjV0dRO9PPDdSG/nr0nskXJWqu
+        RvHxOWzIBsahsSRDHqsi4FvR/3y05x/vlTyXrDGws61Qu/3+GwAA//8DANdmiGKmAQAA
     headers:
       cache-control:
-      - no-cache, no-store, must-revalidate, private
+      - no-cache, no-store
       content-encoding:
       - gzip
       content-type:
       - application/json; charset=utf-8
+      etag:
+      - W/"374fa285db201a90f6a6f5c485027b38"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_bef0a32edf11413296b0d7f8a28fec33
+      - /api/v2/addresses/adr_25ed2a0282d0496caa547ec2c06f26f1
       pragma:
       - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
       strict-transport-security:
-      - max-age=15768000; includeSubDomains; preload
+      - max-age=31536000; includeSubDomains; preload
       transfer-encoding:
       - chunked
       x-backend:
       - easypost
       x-content-type-options:
       - nosniff
+      x-download-options:
+      - noopen
       x-ep-request-uuid:
-      - c805095b5eb9ca47fb40589f00083cae
+      - 8246f7cb6159ed5cf6f2b2fa0040bef1
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb2sj
+      - bigweb1nuq
+      x-permitted-cross-domain-policies:
+      - none
       x-proxied:
-      - intlb2sj 5834894b53
-      - intlb2wdc 5834894b53
-      - extlb1wdc 5834894b53
+      - intlb2nuq d40607e4ab
+      - intlb2wdc d40607e4ab
+      - extlb3wdc d40607e4ab
+      x-request-id:
+      - c383617d-fa8c-43c5-9f5c-9eaffb7a4c5e
       x-runtime:
-      - '0.039506'
+      - '0.033906'
       x-version-label:
-      - easypost-202005112146-47e058b20a-master
+      - easypost-202110011858-559f609973-master
       x-xss-protection:
       - 1; mode=block
     status:

@@ -1,17 +1,18 @@
 interactions:
 - request:
-    body: !!python/unicode address%5Bcity%5D=Lehi&address%5Bcompany%5D=EasyPost&address%5Bcountry%5D=US&address%5Bname%5D=TAKASHI+KOVACS&address%5Bphone%5D=415-456-7890&address%5Bstate%5D=UT&address%5Bstreet1%5D=2889+W+ASHTON+BLVD&address%5Bstreet2%5D=SUITE+325&address%5Bzip%5D=84042
+    body: !!python/unicode '{"verify": ["delivery"], "address": {"city": "Lehi", "name":
+      "TAKASHI KOVACS", "zip": "84042", "street1": "2889 W ASHTON BLVD", "street2":
+      "SUITE 325", "phone": "415-456-7890", "state": "UT", "country": "US", "company":
+      "EasyPost"}}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
+      - gzip, deflate, compress
       Content-Length:
-      - '257'
+      - !!python/unicode 232
       Content-type:
-      - application/x-www-form-urlencoded
+      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -19,70 +20,82 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: POST
-    uri: https://api.easypost.com/v2/addresses?verify%5B%5D=delivery
+    uri: https://api.easypost.com/v2/addresses
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4SRT2/UMBDFv0rkc7bEifP3FuhKrVqxSEmLAKFoYk/AyHFWjoNoq353xlnEgQs5
-        2W9+780488K0Yg0D5YaiHmsopZoyzAVKHEsF9SSysUhFUcLIYraMP1B64lulHK4rSdIheFQDBDlN
-        0uSQ5AfO+5Q3edmI4jMx21n9l7EwI1X79q7tbm6ju9Nj+64L+ct8BvtEpWPbffpw6noSV+8QPQ9p
-        VVVHHyPy9Kf30dv7x+uo649RluZ/sZSwEKR9SLk/3tzuJZqIrg8h7lmf6ViJRGSHQgi+t92sd8Hw
-        EKY4f19swAXPRV6UVZ2QiDNowxq7GROzeVEB8Lj6YAfnNLphAqnN3vhC0U/TCq3XQMYJzIoxm1Ch
-        AzN4+DWEZVzIfcB/tJ/o9KQleL3YlTUvTKHRJD6F87pJGVbSeLdRKjq3OLp9+RoT5mnS3WHI7Lcw
-        qkiuRMbLImZmsd/+iLQVflXVouQx83rG4fny7nam1hLeXKOlfuyVvt8AAAD//wMAALhY8zoCAAA=
+        H4sIAAAAAAAAA4yRzW7UMBSFXyXylkyxE+d3F+hIrVoxSEmLKoQi174DRo4zchxEW/XduTeDWLBq
+        Vvbxd849jl+YNaxlyoRRQFUKME3zmGWyybQyRjS8LHlZVXWmOUvZ/PgTdES+MybAsqCkA6gIZlQk
+        ZzwTO8F3PB9E1RZ5y4t3nLecvOvJvA30agJEhu6m66+uk5vDffexp0nzdFL+CY/2Xf/w+dAPKC4x
+        AERBkXXdJF8S9AyHT8mH2/vLpB/2SZ4V/7AMMQqykVJu91fX2xHWwu0dxT3bEy5ryWW+K6UU29jV
+        x0CGO2px+jF7wqUoZFFWdUOVYVLWsdavzqVsmg0BEZZIdhWChTAelbZuG3ym8PdZAz5ahcajcguk
+        7AgGgnJjVL9HepYzuRX8T/sFwR6tVtHOfmHtCzPgLIpPtF5Wrelx2hhWTIUQ5oC7r99SxCI23RwO
+        zXGlqpJfSMFzkTI3++9/xZ0Q4qKuyjxl0U4wPp+v3U04Wav3l+BxHHvF7w8AAAD//wMAwQnyn0MC
+        AAA=
     headers:
       cache-control:
-      - no-cache, no-store, must-revalidate, private
+      - no-cache, no-store
       content-encoding:
       - gzip
       content-type:
       - application/json; charset=utf-8
+      etag:
+      - W/"158d231e49c2e7053ea48cdd1852b72a"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_69b9a7cdf3e54eceb7da9f43b62467ab
+      - /api/v2/addresses/adr_1e761ed99b22492cadd19066067782c0
       pragma:
       - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
       strict-transport-security:
-      - max-age=15768000; includeSubDomains; preload
+      - max-age=31536000; includeSubDomains; preload
       transfer-encoding:
       - chunked
       x-backend:
       - easypost
       x-content-type-options:
       - nosniff
+      x-download-options:
+      - noopen
       x-ep-request-uuid:
-      - c805095e5eb9ca59fb33444c0008408b
+      - 8246f7c86159ee01f6f2b3350040d85e
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb11sj
+      - bigweb6nuq
+      x-permitted-cross-domain-policies:
+      - none
       x-proxied:
-      - intlb2sj 5834894b53
-      - intlb1wdc 5834894b53
-      - extlb1wdc 5834894b53
+      - intlb1nuq d40607e4ab
+      - intlb2wdc d40607e4ab
+      - extlb3wdc d40607e4ab
+      x-request-id:
+      - 5883d321-2e4d-4f73-9333-54644f7f2ee9
       x-runtime:
-      - '0.141859'
+      - '0.057118'
       x-version-label:
-      - easypost-202005112100-59b664a857-master
+      - easypost-202110011858-559f609973-master
       x-xss-protection:
       - 1; mode=block
     status:
       code: 201
       message: Created
 - request:
-    body: !!python/unicode shipment%5Bfrom_address%5D%5Bid%5D=adr_69b9a7cdf3e54eceb7da9f43b62467ab&shipment%5Bparcel%5D%5Bweight%5D=21.2&shipment%5Bto_address%5D%5Bcity%5D=Bethesda&shipment%5Bto_address%5D%5Bcountry%5D=US&shipment%5Bto_address%5D%5Bname%5D=Customer&shipment%5Bto_address%5D%5Bstate%5D=MD&shipment%5Bto_address%5D%5Bstreet1%5D=8308+Fenway+Rd&shipment%5Bto_address%5D%5Bzip%5D=20817
+    body: !!python/unicode '{"shipment": {"to_address": {"city": "Bethesda", "name":
+      "Customer", "zip": "20817", "country": "US", "state": "MD", "street1": "8308
+      Fenway Rd"}, "from_address": {"id": "adr_1e761ed99b22492cadd19066067782c0"},
+      "parcel": {"weight": 21.2}}}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
+      - gzip, deflate, compress
       Content-Length:
-      - '370'
+      - !!python/unicode 239
       Content-type:
-      - application/x-www-form-urlencoded
+      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -94,86 +107,88 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA+yZbW/UOBCA/0qVz2XP77H7rdDegeCgYgun44Qix560ObLZlZMFFsR/v3E22e4W
-        KIH2tEKi6of1eDx+mcdje/IxcQFsCz6zbXKUMMLIPSLvUXrO6JFMj4R6lRwmZZMFaJehTo4KWzVw
-        mMygaewFNMnRP6+xNPeArVtoWtSeL9pyXmPVx8QtQ4DarbDyxfQE6xZ2NYO6jXXtahEbTU+fnpw+
-        Tz4dJh7HkVn/1tYOKwhKAhQQ22OxXlbVYdK0tl2i5WRZv6nn72q02Abr3pT1Rea6Qaz1lgv/zUnl
-        tnWXWemHNuvy0MO2rJ/sIHTLpp3Pmqysi/kgK8J8hmP3AVXj5KLZxPqQKZMbmzpfcJACHOSpt6YQ
-        PFdMqNTmcb3yf8HFgR737Q9HOWXMHGs7i2t8fvz4ePrw0cHjZy+PH0yj/flsYevoltPj6d9nz6bn
-        SVzcANDSaE1rc/DXAbY5f/b04P6TlycH0/PTA87kRo2hWjRUttHKk9OHj5K1e2J/L6K5D+UCf2pB
-        BL+nhKBdt8u6DWsaIgyX8zqqCyqFVKk2BIUws2U1LOsuWM6GUELICuvKqut4rYWLVnqkqrTVBtAC
-        PARbZa19v+XjboDXZG8hlEXp7AZaD1WJwlX83Syd61zahiVahRDmoYfeQ4sj7VpU2LhdxqEKMhGc
-        puowqeb1RS9Er9CJNiKliGs5g+zDet7HM+za2d9OoMb+kk/4h3utbpbBbjE/DziTrfEubHBQbSBb
-        BFdlzHFaoNc8SCOY8IbL1IpUSAopincoO1u3vzvIKqgv2stheO9Kf1W4hPList2MPKBTirJGewvc
-        tFtb6l2vx+iE7XodV2QxR7ddQFbZHDZkBBxWdES/CrGYeZsa0IbmBJgAmubCKFJYnkOeS0PZ9io8
-        j6R+cw3SEWvQ6eyC2kB4W0YPJmehnIeI6obeDv6ziH9YbxZkg5pYfz1Whg6wbFATk25/9NLPtKuy
-        abNrJjvZZ5oD37heK1xCtiNpNz7ZEWYXS4tUtgB+s8VwrtnntprLchFDfEcslhYZ9d545QnxkguX
-        p5pQYJJ47QwUmqRbO9u6LkSs2zqb5UwqmYLRRoHwilunqaTWcaGsExQQj20AUkWEcJpbkVNhUBGJ
-        QPolk2jCc74PALrdNoUq9noDBAQDxAgIerVREPS6oyBQdwiB2i8ESjhTUGKFKqTQFIMidmlIapTR
-        PPfpHiA4fb8YDvav+F/wiSLf9r9En8qR/h9MjvL/F7x9GwT603afoUB4Zx2hguWABy81mnHrNXij
-        EQtK9kDBHwEn5Hch2IkBYsL0qIOgUxsVA9SE67EMyM8AuJqhPmf8iBD8f5X8GBLyjnmwNBc8VYXK
-        cyeYTnOpcyGtpEopR724xgPPiVGoK5ELYRADKfE6y0FJ6cCksAce+Ildfelg2GaC8wlV32ZiUBvD
-        BGdr3VFM8BuYELdmgu+XCY1xg+WmKJws8A2icsKMVnhZT1MomNjHdYHVHqk4LsPXkcAnBhmBxKA2
-        6qggk1T8+H3xapL81kjc9Q3yO5GwOaOeYITICyJYSnMEwhDvWeqJyZ3dAxJP4X27ZmJq4zPxq2Do
-        cXdI/R13SE0najQY9AYw2K3BoPsFgyrunRLgrGfCWWbxpSEl4Sq3tOCwj/PjCoxTG6rV8Z83XC2o
-        mXA54m4x6I17ZZqJZndDB9FH/Cemw6dFiq9NLpXFdtIa7ExypYxkqQXi90rHDRHDTCgfETF6tVER
-        w0zk6FfnzUxQ8rMx8bpLWeMl/1oauXG2zop5mG0E3bUPPRu2HlpdJjs6qS/Ov5hQdhQESHwEFQU+
-        bCA1EnKtFD5xJCuI2wlE/1tC+UGXAl8fRkMqeciwDklkzYk++B3qd3Z18DzugE3iuE+jr1PH96G9
-        hMbb5Cp9/GdEZZ0+ZkTTzidfzByvDd02Y9xn8H84YRyztstm0fRpXd1tlGWof30P+PU94PbfA/Ll
-        KsaiX5HgJ4kEMcz3RBQwfCD9nuNn47Npf3gln/4DAAD//wMAxwK3SaYdAAA=
+        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
     headers:
       cache-control:
-      - no-cache, no-store, must-revalidate, private
+      - no-cache, no-store
       content-encoding:
       - gzip
       content-type:
       - application/json; charset=utf-8
+      etag:
+      - W/"48bb031f2f52d8bfeae7371c53496829"
       expires:
       - '0'
       location:
-      - /api/v2/shipments/shp_1dd9d6d00d534cb7801e250d8c9ef807
+      - /api/v2/shipments/shp_47f86de53aab4fb2bceedf934b79d189
       pragma:
       - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
       strict-transport-security:
-      - max-age=15768000; includeSubDomains; preload
+      - max-age=31536000; includeSubDomains; preload
       transfer-encoding:
       - chunked
       x-backend:
       - easypost
       x-content-type-options:
       - nosniff
+      x-download-options:
+      - noopen
       x-ep-request-uuid:
-      - c805095e5eb9ca5afb33444c0008409a
+      - 8246f7c86159ee01f6f2b3350040d864
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb10sj
+      - bigweb6nuq
+      x-permitted-cross-domain-policies:
+      - none
       x-proxied:
-      - intlb1sj 5834894b53
-      - intlb1wdc 5834894b53
-      - extlb1wdc 5834894b53
+      - intlb2nuq d40607e4ab
+      - intlb2wdc d40607e4ab
+      - extlb3wdc d40607e4ab
+      x-request-id:
+      - 9924f6bc-325a-49c4-939b-10cd472e7bba
       x-runtime:
-      - '1.018840'
+      - '0.284581'
       x-version-label:
-      - easypost-202005112100-59b664a857-master
+      - easypost-202110011858-559f609973-master
       x-xss-protection:
       - 1; mode=block
     status:
       code: 201
       message: Created
 - request:
-    body: !!python/unicode insurance=100.0&rate%5Bid%5D=rate_da79e891b0e24e17b4960fa3bebb5912
+    body: !!python/unicode '{"rate": {"id": "rate_3fdfda78138642b1ab55912e2edfe150"},
+      "insurance": 100.0}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
+      - gzip, deflate, compress
       Content-Length:
-      - '66'
+      - !!python/unicode 77
       Content-type:
-      - application/x-www-form-urlencoded
+      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -181,99 +196,101 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: POST
-    uri: https://api.easypost.com/v2/shipments/shp_1dd9d6d00d534cb7801e250d8c9ef807/buy
+    uri: https://api.easypost.com/v2/shipments/shp_47f86de53aab4fb2bceedf934b79d189/buy
   response:
     body:
       string: !!binary |
-        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
-        +5Ii+vpfAAAA//8DAPnSVSE0JQAA
+        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
     headers:
       cache-control:
-      - no-cache, no-store, must-revalidate, private
+      - no-cache, no-store
       content-encoding:
       - gzip
       content-type:
       - application/json; charset=utf-8
+      etag:
+      - W/"cdcfc4a97d2d7771fdd872847b3435e2"
       expires:
       - '0'
       pragma:
       - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
       strict-transport-security:
-      - max-age=15768000; includeSubDomains; preload
+      - max-age=31536000; includeSubDomains; preload
       transfer-encoding:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
+      x-download-options:
+      - noopen
       x-ep-request-uuid:
-      - c805095e5eb9ca5bfb33444c00084104
+      - 8246f7c86159ee02f6f2b3350040d871
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7sj
+      - bigweb2nuq
+      x-permitted-cross-domain-policies:
+      - none
       x-proxied:
-      - intlb2sj 5834894b53
-      - intlb2wdc 5834894b53
-      - extlb1wdc 5834894b53
+      - intlb2nuq d40607e4ab
+      - intlb1wdc d40607e4ab
+      - extlb3wdc d40607e4ab
+      x-request-id:
+      - 995a0513-57c3-4e3c-a24b-8bdc83c3cd7b
       x-runtime:
-      - '0.950182'
+      - '0.848059'
       x-version-label:
-      - easypost-202005112146-47e058b20a-master
+      - easypost-202110011858-559f609973-master
       x-xss-protection:
       - 1; mode=block
     status:
       code: 200
       message: OK
 - request:
-    body: !!python/unicode pickup%5Baddress%5D%5Bid%5D=adr_69b9a7cdf3e54eceb7da9f43b62467ab&pickup%5Binstructions%5D=Special+pickup+instructions&pickup%5Bis_account_address%5D=True&pickup%5Bmax_datetime%5D=2020-05-19T12%3A00%3A00-04%3A56&pickup%5Bmin_datetime%5D=2020-05-18T12%3A00%3A00-04%3A56&pickup%5Breference%5D=internal_id_1234&pickup%5Bshipment%5D%5Bid%5D=shp_1dd9d6d00d534cb7801e250d8c9ef807
+    body: !!python/unicode '{"pickup": {"reference": "internal_id_1234", "max_datetime":
+      "2021-10-05T12:00:00-04:56", "min_datetime": "2021-10-04T12:00:00-04:56", "shipment":
+      {"id": "shp_47f86de53aab4fb2bceedf934b79d189"}, "address": {"id": "adr_1e761ed99b22492cadd19066067782c0"},
+      "is_account_address": true, "instructions": "Special pickup instructions"}}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
+      - gzip, deflate, compress
       Content-Length:
-      - '372'
+      - !!python/unicode 329
       Content-type:
-      - application/x-www-form-urlencoded
+      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -285,69 +302,77 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA5RU207cMBD9lSjPy9ZOnOvbtosEAgHqLlRthSLHnlCXrBM5DgVW/DvjJKULrbQ0
-        T87MmYvnnPHWV9LP/VaJ274tKE1plLAwozJjMZEcBImiOMkgkkFFAn/mN+VPEBZDLoYQtAgD3IIs
-        uLMGJCAHJDqgdB3QPEpyln5DTN/KvZhNIwG9FjqLf53ltu/wv9e3uvml0WSgAgNaOJTSFozmdaFk
-        QYOQuXilC1fFqg3sVknXNM6jOCdkqMLv/4nKXqFUV3Ahml7bgktpoMNOrOkBPbrDg7Cq0a67VQtC
-        8dobB+i98mIxDOQ3gMDv1zioRlfKbLjz+rnu63rmv2TfjkRwaYo4KzOeCFmFEDEQUCaSZxULyzhg
-        ccLLXRYWU/xeGuJ30DBgNB8Gs16cLFZHx97J+dXi08rlbzYt1w/oOlysvl6cr9YDSwbAUpctTTPv
-        i4cx6/Mz7+Pp1dJbrQ+9MIheYAHCXCJlXZbTw6PjiWdX79Kle1QtHlNGWHgQM0aHskiCcQGXrov2
-        R6MdnNGIoTDTjKARNlzVvyf6WkaCG6PAFBUXqh4KjygcmpKgLXLn5xWvO6S2AgkGJWVRIo6METk0
-        +MZ2B0ZVSvBJBVtfQq3Q+ODOXS/EjmDAmMZMCpBgsdMhosZg27tWGZmzkCbxzK8bfTMZkRU6TzOW
-        0JnvpFo8jvdebLC04B+WoLGe/4Tfn0tOkp2KTTttsH1n2b5dMDB3atilM7i3S/7gNmzkgsyJG6vo
-        jVu3cfbL/RLL3iGxATP1O+S9GFgdW/3Pp2gH7hovkjIJZcKSgIYlC8qQR6kMY3CnjKak+vv1+uzu
-        +3T99AwAAP//AwD4aK5tBgUAAA==
+        H4sIAAAAAAAAA5RU70/bMBD9V6J8XcvsxHF+fOtWJBAI0FqYtglFrn1hHqlTOQ4DKv73nZMMCpvU
+        LZ+S87t7z/fusg21Cotwo+VttykZV5VkFaVKUZZH+SqrVrGAVcJAJAp4OAmb1Q+QDlMu+hSMSAvC
+        gSqFj0YkolNKpiRe0rRI4oKkXxHTbdRezLpRgKcOWodfrROua/G7M7em+WkwZKECC0Z6lDYOrBF1
+        qVVJo5j5fG1Kz+L0GnZZ2JLyIuEFIT2LuP8rKnmF0m0ppGw640qhlIUWlTjbAZ6YFl+k043x6hYb
+        kFrUwdDA4NUpkmGiuAEEfrvGRjWm0nYt/GlYmK6uJ+Fz9e1ghFC2pJByCirPV1GELkjE0JxwTnia
+        ZpEkuy7Mxvy9NiTvCMHL7ffiBWhE36Ll7GS2ODoOTs6vZh8XnqlZb4R5wKPD2eLLxfli2ftlARz1
+        JbMsDz4HmLM8Pws+nF7Ng8XyMIij5BkWIcwX0s5XOT08Oh4d93yXvtyj3uBrxgiLp5wx2tOiHdYn
+        XHoVm++N8XBGE5bwNMu9ZFgLXf/u7euBksJaDbashNR1TzygsH1agXHoYlhUom7R5AoUWBwuh8Pi
+        bRmQvcA3sTuwutJSjPOwDRXUGoMP/r3tpNwZHbC2seMsKHCotM+oMdl1XiojB4ySmE7CujE3Y3BK
+        KT3IUh5PQj+z5eNw7dkamaV4PweDdOETPi93HGd35BqX26J6H9m+3TSwd7pfqjO4d3Px4FdtsIIc
+        9IMgO+v3bmj9fP+sZf+w8j1m1NvXvehNHaT+5z9pB+6Fl6KKlSRxplY8Z6mIc86yKBJxDBGnEZF/
+        /sY++fs+XT/9AgAA//8DAG9MSQUPBQAA
     headers:
       cache-control:
-      - no-cache, no-store, must-revalidate, private
+      - no-cache, no-store
       content-encoding:
       - gzip
       content-type:
       - application/json; charset=utf-8
+      etag:
+      - W/"ac1b5c2ddcdd4b036ad24bcaec426b38"
       expires:
       - '0'
       pragma:
       - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
       strict-transport-security:
-      - max-age=15768000; includeSubDomains; preload
+      - max-age=31536000; includeSubDomains; preload
       transfer-encoding:
       - chunked
       x-backend:
       - easypost
       x-content-type-options:
       - nosniff
+      x-download-options:
+      - noopen
       x-ep-request-uuid:
-      - c805095e5eb9ca5cfb33444c0008413e
+      - 8246f7c86159ee03f6f2b3350040d88f
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6sj
+      - bigweb4nuq
+      x-permitted-cross-domain-policies:
+      - none
       x-proxied:
-      - intlb2sj 5834894b53
-      - intlb1wdc 5834894b53
-      - extlb1wdc 5834894b53
+      - intlb2nuq d40607e4ab
+      - intlb1wdc d40607e4ab
+      - extlb3wdc d40607e4ab
+      x-request-id:
+      - 7529580a-3b7a-4939-bd74-1e3b397f9080
       x-runtime:
-      - '0.788154'
+      - '0.923887'
       x-version-label:
-      - easypost-202005112100-59b664a857-master
+      - easypost-202110011858-559f609973-master
       x-xss-protection:
       - 1; mode=block
     status:
       code: 200
       message: OK
 - request:
-    body: !!python/unicode carrier=USPS&service=NextDay
+    body: !!python/unicode '{"carrier": "USPS", "service": "NextDay"}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
+      - gzip, deflate, compress
       Content-Length:
-      - '28'
+      - !!python/unicode 41
       Content-type:
-      - application/x-www-form-urlencoded
+      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -355,55 +380,65 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: POST
-    uri: https://api.easypost.com/v2/pickups/pickup_1181574391d9460daec055679e5d2f02/buy
+    uri: https://api.easypost.com/v2/pickups/pickup_46dfc4f11dd14929b8fb3aeb54ea5de6/buy
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA5RUXU/cMBD8K1GegdqJ8+G8XTkkEAhQL4DaCkWOvQG3OefkOKhw4r93nUT0oFVp
-        8+SsZ3fHO2NvQ63CItxo+X3YVJTmNMlYzKniLCVKgCRJkmYcEhU1JAr3wq7+BtJhyuWYghFpQThQ
-        lfDRiERknyT7lJYRLZKsYPkXxAwb9RdMQjxm3SnAXQe9w7/eCTf0+N/Le1BDCwqDFhqwYKTHaePA
-        GtFWWlU0ipmvoE3l+zi9ht0+eUnTIkkLMvURP/6I4q9Quq+ElN1gXCWUstAjF2cHwB3T40I63RnP
-        b7UBqUUbTCMMXu1iM0wUd4DAr7c4qs402q6F38XUm/IwJTTjEffsX9psJ02EslXKay4yqZoYEgYS
-        6kwJ3rC4TiOWZqLeFWQx57+rSPq+IhPGiHFC5eJ0sTo+CU4vrheHK1+/W2+EecSto8Xq8+XFqhwF
-        swCO+mp5zoObAHPKi/Pg49n1MliVR0EcJS+wCGG+kHa+ytnR8cksue935cs96Q0uc0ZYvJ8yRse2
-        qIb1CVeexea+Mx7OaMLQozknGIS10G1YmKFt3zpKCms12KoRUrdj4wmFQ9MKjEMRw6IRbY8aN6DA
-        orccesWLMSFHgm9iD2B1o6WY7bANFbQag49+3Q9S7jgHrO3sbAUFDpmOGS0mu8FTZeSAxTRL98K2
-        M3dzEFWhBzlnGd0LvWerp+ncizW2luLDEgz2C5/x+3XI2btzs/l6W6TvI9u3dw3sgx4v1Tn8cEvx
-        6K/apAU5IH6scrD+3k2zX75vMf4PFhsxM9+x7uWo6kT1P1+lHbgnXmV1FquMZRGNaxbVsUhyFafg
-        V5zmpPn9Ifvkz/t8+/wTAAD//wMAGgl4uBEFAAA=
+        H4sIAAAAAAAAA5RUXU/cMBD8K1Fey1E7cZyPtyuHBAIB6gVQW6HIZ2/Abc45OQ4qnPjvXScRHLQq
+        bZ6S9ezOeGc321CrsAg3Wv7oNxXjqpasplQpyvIoX2X1KhawShiIRAEP98J29R2kw5SLIQUj0oJw
+        oCrhoxGJ6IySGYlLmhZJXJD0K2L6jfobJveYdasATx10Dr86J1zf4Xcn70D1DSgMWqjBgpEep40D
+        a0RTaVXRKGa+gjaV53F6Dbs8rKS8SHhByMAjfv4RlbxC6a4SUra9cZVQykKHWpztAU9Mhy/S6dZ4
+        fcsNSC2aYGxh8OoUyTBR3AICv91gq1pTa7sW/hRTr8sDTlNGc+I7+0yzHT0RylYUUk5B5fkqitAQ
+        iRiP5oSnaRZJsmvIfMp/15HkAyF4y/dteQEaMfSqnJ/Ml0fHwcn51fxg6Zna9UaYBzw6nC+/XJwv
+        y8E6C+CoL5lleXAdYE55fhZ8Or1aBMvyMIij5BkWIcwX0s5XOT08Op7M93yXvtyj3uBrxgiLZ5wx
+        OtCiL9YnXHoVm7vWeDijCUt4muVeMqyFbsLC9E3zdraksFaDrWohdTMQjyhsn1ZgHNoZFrVoOnS7
+        BgUWp8zh1HhbRuQg8E3sHqyutRTTYGxDBY3G4IN/73opd2YIrG3tNBQKHCodMhpMdr2Xysg+oySm
+        e2HTmtspOKOU7mcpj/dCP7zV43jt+RqZpfi4AIN04RM+L3echnjimvbconof2b5dOrD3etiuM/jp
+        FuLB79xoBdkfBkH21i/g2PrF+7OW/cP2D5hJ71D3YjB1lPqfv6cduBdeiTpWksSZWvGcpSLOOcui
+        SMQxRJxGRP7+R/vs7/t08/QLAAD//wMAjcGKLhoFAAA=
     headers:
       cache-control:
-      - no-cache, no-store, must-revalidate, private
+      - no-cache, no-store
       content-encoding:
       - gzip
       content-type:
       - application/json; charset=utf-8
+      etag:
+      - W/"5aed4a4d8d21e1babd0ae02c013b63d8"
       expires:
       - '0'
       pragma:
       - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
       strict-transport-security:
-      - max-age=15768000; includeSubDomains; preload
+      - max-age=31536000; includeSubDomains; preload
       transfer-encoding:
       - chunked
       x-backend:
       - easypost
       x-content-type-options:
       - nosniff
+      x-download-options:
+      - noopen
       x-ep-request-uuid:
-      - c805095e5eb9ca5dfb33444c0008417e
+      - 8246f7c86159ee04f6f2b3350040d8af
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb2sj
+      - bigweb6nuq
+      x-permitted-cross-domain-policies:
+      - none
       x-proxied:
-      - intlb1sj 5834894b53
-      - intlb1wdc 5834894b53
-      - extlb1wdc 5834894b53
+      - intlb2nuq d40607e4ab
+      - intlb1wdc d40607e4ab
+      - extlb3wdc d40607e4ab
+      x-request-id:
+      - 40a31d10-3c46-452c-92a9-8820265620b7
       x-runtime:
-      - '0.889950'
+      - '1.075531'
       x-version-label:
-      - easypost-202005112146-47e058b20a-master
+      - easypost-202110011858-559f609973-master
       x-xss-protection:
       - 1; mode=block
     status:

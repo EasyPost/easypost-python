@@ -169,16 +169,6 @@ def _utf8(value):
         return value
 
 
-def _urlencode_list(params):
-    encoded = []
-    for key, values in sorted(params.items()):
-        for value in values:
-            if isinstance(value, bool):
-                value = str(value).lower()
-            encoded.append('{0}[]={1}'.format(key, quote_plus(_utf8(value))))
-    return '&'.join(encoded)
-
-
 class Requestor(object):
     def __init__(self, local_api_key=None):
         self._api_key = local_api_key
@@ -187,23 +177,6 @@ class Requestor(object):
     def api_url(cls, url=None):
         url = url or ''
         return '%s%s' % (api_base, url)
-
-    @classmethod
-    def encode_dict(cls, out, key, dict_value):
-        n = {}
-        for k, v in sorted(six.iteritems(dict_value)):
-            k = _utf8(k)
-            v = _utf8(v)
-            n["%s[%s]" % (key, k)] = v
-        out.extend(cls._encode_inner(n))
-
-    @classmethod
-    def encode_list(cls, out, key, list_value):
-        n = {}
-        for k, v in enumerate(list_value):
-            v = _utf8(v)
-            n["%s[%s]" % (key, k)] = v
-        out.extend(cls._encode_inner(n))
 
     @classmethod
     def encode_datetime(cls, out, key, dt_value):
@@ -215,11 +188,9 @@ class Requestor(object):
         pass  # do not include None-valued params in request
 
     @classmethod
-    def _encode_inner(cls, params):
+    def encode_url(cls, params):
         # special case value encoding
         ENCODERS = {
-            list: cls.encode_list,
-            dict: cls.encode_dict,
             datetime.datetime: cls.encode_datetime,
         }
         if six.PY2:
@@ -241,7 +212,7 @@ class Requestor(object):
                     pass
 
                 out.append((key, value))
-        return out
+        return urlencode(out)
 
     @classmethod
     def _objects_to_ids(cls, param):
@@ -261,16 +232,12 @@ class Requestor(object):
             return param
 
     @classmethod
-    def encode(cls, params):
-        return urlencode(cls._encode_inner(params))
-
-    @classmethod
     def build_url(cls, url, params):
         base_query = urlparse(url).query
         if base_query:
-            return '%s&%s' % (url, cls.encode(params))
+            return '%s&%s' % (url, cls.encode_url(params))
         else:
-            return '%s?%s' % (url, cls.encode(params))
+            return '%s?%s' % (url, cls.encode_url(params))
 
     def request(self, method, url, params=None, apiKeyRequired=True):
         if params is None:
@@ -315,7 +282,7 @@ class Requestor(object):
             'X-Client-User-Agent': json.dumps(ua),
             'User-Agent': USER_AGENT,
             'Authorization': 'Bearer %s' % my_api_key,
-            'Content-type': 'application/x-www-form-urlencoded'
+            'Content-type': 'application/json'
         }
 
         if timeout > _max_timeout:
@@ -347,7 +314,7 @@ class Requestor(object):
                 abs_url = self.build_url(abs_url, params)
             data = None
         elif method == 'post' or method == 'put':
-            data = self.encode(params)
+            data = json.dumps(params, default=_utf8)
         else:
             raise Error("Bug discovered: invalid request method: {}. "
                         "Please report to {}.".format(method, SUPPORT_EMAIL))
@@ -372,7 +339,7 @@ class Requestor(object):
     def urlfetch_request(self, method, abs_url, headers, params):
         args = {}
         if method == 'post' or method == 'put':
-            args['payload'] = self.encode(params)
+            args['payload'] = json.dumps(params, default=_utf8)
         elif method == 'get' or method == 'delete':
             abs_url = self.build_url(abs_url, params)
         else:
@@ -646,17 +613,14 @@ class Address(AllResource, CreateResource):
         requestor = Requestor(api_key)
         url = cls.class_url()
 
-        verify_params = {}
+        wrapped_params = {cls.class_name(): params}
         for key, value in (('verify', verify), ('verify_strict', verify_strict)):
             if not value:
                 continue
             elif isinstance(value, (bool, str)):
                 value = [value]
-            verify_params[key] = value
-        if verify_params:
-            url += '?' + _urlencode_list(verify_params)
+            wrapped_params[key] = value
 
-        wrapped_params = {cls.class_name(): params}
         response, api_key = requestor.request('post', url, wrapped_params)
         return convert_to_easypost_object(response, api_key)
 
