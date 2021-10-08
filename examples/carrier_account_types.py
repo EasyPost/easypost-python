@@ -1,7 +1,8 @@
 from __future__ import print_function
 
 import easypost
-easypost.api_key = 'PRODUCTION API KEY'
+
+easypost.api_key = "PRODUCTION API KEY"
 
 types = easypost.CarrierAccount.types()
 

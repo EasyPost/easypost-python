@@ -1,7 +1,8 @@
 # Unit tests related to 'CarrierType' (https://www.easypost.com/docs/api#carrier-types).
 
-import easypost
 import pytest
+
+import easypost
 
 
 @pytest.mark.vcr()
@@ -11,11 +12,11 @@ def test_carrier_types(prod_api_key):
     assert len(carriers) > 0
 
     for carrier in carriers:
-        if carrier.type == 'AustraliaPostAccount':
-            assert hasattr(carrier.fields.credentials, 'api_key')
-            assert hasattr(carrier.fields.credentials, 'api_secret')
-            assert hasattr(carrier.fields.credentials, 'account_number')
-            assert hasattr(carrier.fields.credentials, 'print_as_you_go')
+        if carrier.type == "AustraliaPostAccount":
+            assert hasattr(carrier.fields.credentials, "api_key")
+            assert hasattr(carrier.fields.credentials, "api_secret")
+            assert hasattr(carrier.fields.credentials, "account_number")
+            assert hasattr(carrier.fields.credentials, "print_as_you_go")
 
             assert isinstance(carrier.fields.credentials.api_key, easypost.EasyPostObject)
             assert isinstance(carrier.fields.credentials.api_secret, easypost.EasyPostObject)

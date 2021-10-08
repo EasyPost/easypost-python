@@ -1,13 +1,14 @@
 # Unit tests related to 'Webhook' (https://www.easypost.com/webhooks-guide).
 
-import easypost
 import pytest
+
+import easypost
 
 
 @pytest.mark.vcr()
 def test_webhooks(per_run_unique):
-    url = 'example.com/{0}'.format(per_run_unique)
-    expected_url = 'http://example.com/{0}'.format(per_run_unique)
+    url = "example.com/{0}".format(per_run_unique)
+    expected_url = "http://example.com/{0}".format(per_run_unique)
 
     # Create a webhook
     webhook = easypost.Webhook.create(url=url)
@@ -29,7 +30,7 @@ def test_webhooks(per_run_unique):
 
     # Index webhooks
     webhooks = easypost.Webhook.all(url=expected_url)
-    assert any(wh.id == webhook.id for wh in webhooks['webhooks'])
+    assert any(wh.id == webhook.id for wh in webhooks["webhooks"])
 
     # Delete a webhook
     webhook.delete()

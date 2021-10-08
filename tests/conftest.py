@@ -2,12 +2,12 @@
 
 import os
 
-import easypost
 import pytest
 
+import easypost
 
-TEST_API_KEY = os.environ['TEST_API_KEY']
-PROD_API_KEY = os.environ['PROD_API_KEY']
+TEST_API_KEY = os.environ["TEST_API_KEY"]
+PROD_API_KEY = os.environ["PROD_API_KEY"]
 
 
 def pytest_sessionstart(session):
@@ -15,6 +15,7 @@ def pytest_sessionstart(session):
     # 'No api proxy found for service "urlfetch"' response
     try:
         from google.appengine.ext import testbed
+
         session.appengine_testbed = testbed.Testbed()
         session.appengine_testbed.activate()
         session.appengine_testbed.init_urlfetch_stub()
@@ -51,16 +52,16 @@ def prod_api_key():
 def per_run_unique():
     # this used to return a unique value per-run; however, now that we use
     # VCR, treat it more like an epoch
-    return '20200511150500100'
+    return "20200511150500100"
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope="module")
 def vcr_config():
     return {
         # Replace the Authorization request header with "DUMMY" in cassettes
         "filter_headers": [
-            ('authorization', 'EZTK-NONE'),
-            ('x-client-user-agent', 'suppressed'),
-            ('user-agent', 'easypost/v2 pythonclient/suppressed'),
+            ("authorization", "EZTK-NONE"),
+            ("x-client-user-agent", "suppressed"),
+            ("user-agent", "easypost/v2 pythonclient/suppressed"),
         ],
     }

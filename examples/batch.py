@@ -1,7 +1,8 @@
 from time import sleep
 
 import easypost
-easypost.api_key = 'cueqNZUb3ldeWTNX7MU3Mel8UXtaAMUi'
+
+easypost.api_key = "API_KEY"
 # easypost.api_base = 'http://localhost:5000/v2'
 
 # from address and parcel don't change
@@ -12,39 +13,40 @@ from_address = easypost.Address.create(
     city="San Francisco",
     state="CA",
     zip="94107",
-    phone="415-456-7890"
+    phone="415-456-7890",
 )
 
-parcel = easypost.Parcel.create(
-    predefined_package="RegionalRateBoxA",
-    weight=64
-)
+parcel = easypost.Parcel.create(predefined_package="RegionalRateBoxA", weight=64)
 
 # # populate order_list from db, csv, etc.
-order_list = [{
-    'address': {
-        'name': "Jon Calhoun",
-        'street1': "388 Townsend St",
-        'street2': "Apt 30",
-        'city': "San Francisco",
-        'state': "CA",
-        'zip': "94107",
-        'phone': "415-456-7890"
-    },
-    'order_number': '1234567890'
-}]
+order_list = [
+    {
+        "address": {
+            "name": "Jon Calhoun",
+            "street1": "388 Townsend St",
+            "street2": "Apt 30",
+            "city": "San Francisco",
+            "state": "CA",
+            "zip": "94107",
+            "phone": "415-456-7890",
+        },
+        "order_number": "1234567890",
+    }
+]
 
 shipments = []
 
 for order in order_list:
-    shipments.append({
-        'to_address': order['address'],
-        'from_address': from_address,
-        'parcel': parcel,
-        'reference': order['order_number'],
-        'carrier': 'USPS',
-        'service': 'Priority'
-    })
+    shipments.append(
+        {
+            "to_address": order["address"],
+            "from_address": from_address,
+            "parcel": parcel,
+            "reference": order["order_number"],
+            "carrier": "USPS",
+            "service": "Priority",
+        }
+    )
 
 # create batch of shipments
 batch = easypost.Batch.create_and_buy(shipment=shipments)

@@ -1,5 +1,6 @@
 import easypost
-easypost.api_key = 'PRODUCTION API KEY'
+
+easypost.api_key = "PRODUCTION API KEY"
 
 # Here are two different ways to retrieve your api_keys
 api_keys = easypost.User.all_api_keys()

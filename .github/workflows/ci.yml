@@ -1,8 +1,8 @@
-name: 'CI'
+name: "CI"
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
 
 jobs:
@@ -15,14 +15,19 @@ jobs:
         with:
           python-version: 3.9
       - name: install dependencies
-        run: python -m pip install flake8
+        run: python -m pip install -r requirements-dev.txt -e .
       - name: lint with flake8
         run: flake8 --statistics easypost/ tests/ examples/
+      - name: Check formatting with Black
+        run: black easypost/ tests/ examples/ --check
+      - name: Check formatting with iSort
+        run: isort easypost/ tests/ examples/ --check-only
   run-tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        pythonversion: ['2.7', '3.5', '3.6', '3.7', '3.8', '3.9', 'pypy-2.7', 'pypy-3.6']
+        pythonversion:
+          ["2.7", "3.5", "3.6", "3.7", "3.8", "3.9", "pypy-2.7", "pypy-3.6"]
     steps:
       - uses: actions/checkout@v2
       - name: set up python

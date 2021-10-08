@@ -1,5 +1,6 @@
 import easypost
-easypost.api_key = 'cueqNZUb3ldeWTNX7MU3Mel8UXtaAMUi'
+
+easypost.api_key = "API_KEY"
 
 # retrieve a shipment by tracking_code
 shipment = easypost.Shipment.retrieve("LN123456789US")
@@ -10,4 +11,4 @@ shipment.refresh()
 
 print(shipment.id)
 
-print(shipment.label(file_format='PDF'))
+print(shipment.label(file_format="PDF"))
