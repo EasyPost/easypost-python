@@ -1,5 +1,6 @@
 import easypost
-easypost.api_key = 'cueqNZUb3ldeWTNX7MU3Mel8UXtaAMUi'
+
+easypost.api_key = "API_KEY"
 
 # create address
 address = easypost.Address.create(
@@ -9,7 +10,7 @@ address = easypost.Address.create(
     city="San Francisco",
     state="CA",
     zip="94105",
-    phone="415-456-7890"
+    phone="415-456-7890",
 )
 
 verified_address = address.verify()

@@ -1,7 +1,8 @@
 # Unit tests related to 'Shipments' (https://www.easypost.com/docs/api#shipments).
 
-import easypost
 import pytest
+
+import easypost
 
 
 @pytest.mark.vcr()
@@ -17,7 +18,7 @@ def test_insurance_creation():
         "city": "Redondo Beach",
         "state": "CA",
         "zip": "90277",
-        "phone": "310-808-5243"
+        "phone": "310-808-5243",
     }
 
     from_address = {
@@ -27,7 +28,7 @@ def test_insurance_creation():
         "city": "San Francisco",
         "state": "CA",
         "zip": "94105",
-        "phone": "415-456-7890"
+        "phone": "415-456-7890",
     }
 
     # create insurance
@@ -36,7 +37,7 @@ def test_insurance_creation():
         from_address=from_address,
         tracking_code=tracking_code,
         carrier=carrier,
-        amount=amount
+        amount=amount,
     )
 
     # Assertions that create worked as expected

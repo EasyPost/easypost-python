@@ -1,7 +1,8 @@
 # Unit tests related to 'ScanForms' (https://www.easypost.com/docs/api.html#manifesting-scan-form).
 
-import easypost
 import pytest
+
+import easypost
 
 
 @pytest.mark.vcr()
@@ -15,7 +16,7 @@ def test_scan_form_create_and_retrieve():
         "state": "AB",
         "zip": "t8n2m4",
         "country": "CA",
-        "phone": "780-283-9384"
+        "phone": "780-283-9384",
     }
     from_address = {
         "company": "EasyPost",
@@ -24,21 +25,16 @@ def test_scan_form_create_and_retrieve():
         "city": "San Francisco",
         "state": "CA",
         "zip": "94105",
-        "phone": "415-456-7890"
+        "phone": "415-456-7890",
     }
-    parcel = {
-        "length": 10.2,
-        "width": 7.8,
-        "height": 4.3,
-        "weight": 21.2
-    }
+    parcel = {"length": 10.2, "width": 7.8, "height": 4.3, "weight": 21.2}
     customs_item = {
         "description": "EasyPost t-shirts",
         "hs_tariff_number": 123456,
         "origin_country": "US",
         "quantity": 2,
         "value": 96.27,
-        "weight": 21.1
+        "weight": 21.1,
     }
     customs_info = {
         "customs_certify": 1,
@@ -49,7 +45,7 @@ def test_scan_form_create_and_retrieve():
         "non_delivery_option": "return",
         "restriction_type": "none",
         "restriction_comments": "",
-        "customs_items": [customs_item]
+        "customs_items": [customs_item],
     }
 
     # create shipment and buy
@@ -57,14 +53,12 @@ def test_scan_form_create_and_retrieve():
         to_address=to_address,
         from_address=from_address,
         parcel=parcel,
-        customs_info=customs_info
+        customs_info=customs_info,
     )
-    shipment.buy(rate=shipment.lowest_rate(['USPS', 'ups'], 'priorityMAILInternational'), insurance=100.00)
+    shipment.buy(rate=shipment.lowest_rate(["USPS", "ups"], "priorityMAILInternational"), insurance=100.00)
 
     # create scan form
-    scan_form = easypost.ScanForm.create(
-        shipments=[shipment]
-    )
+    scan_form = easypost.ScanForm.create(shipments=[shipment])
 
     # Assert values match
     assert scan_form.id is not None
@@ -79,4 +73,4 @@ def test_scan_form_create_and_retrieve():
     # index scan_forms
     scan_forms = easypost.ScanForm.all(page_size=2)
 
-    assert len(scan_forms['scan_forms']) > 0
+    assert len(scan_forms["scan_forms"]) > 0

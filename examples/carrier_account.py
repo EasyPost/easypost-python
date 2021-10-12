@@ -1,5 +1,6 @@
 import easypost
-easypost.api_key = 'PRODUCTION API KEY'
+
+easypost.api_key = "PRODUCTION API KEY"
 
 original_num_cas = len(easypost.CarrierAccount.all())
 
@@ -8,10 +9,12 @@ created_ca = easypost.CarrierAccount.create(
     description="A test Ups Account",
     reference="PythonClientUpsTestAccount",
     credentials={
-         "account_number": "A1A1A1",
-         "user_id": "UPSDOTCOM_USERNAME",
-         "password": "UPSDOTCOM_PASSWORD",
-         "access_license_number": "UPS_ACCESS_LICENSE_NUMBER"})
+        "account_number": "A1A1A1",
+        "user_id": "UPSDOTCOM_USERNAME",
+        "password": "UPSDOTCOM_PASSWORD",
+        "access_license_number": "UPS_ACCESS_LICENSE_NUMBER",
+    },
+)
 
 caid = created_ca["id"]
 
@@ -21,7 +24,7 @@ retrieved_ca.credentials = {
     "account_number": "B2B2B2B2",
     "user_id": "UPSDOTCOM_USERNAME",
     "password": "UPSDOTCOM_PASSWORD",
-    "access_license_number": "UPS_ACCESS_LICENSE_NUMBER"
+    "access_license_number": "UPS_ACCESS_LICENSE_NUMBER",
 }
 retrieved_ca.save()
 
