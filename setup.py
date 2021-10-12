@@ -1,15 +1,14 @@
 import io
 import sys
 
-
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
 install_requires = [
-    'requests >= 2.4.3',
-    'six'
+    "requests >= 2.4.3",
+    "six",
 ]
 
 
@@ -18,28 +17,28 @@ if sys.version_info < (3, 0):
 else:
     long_description_open = open
 
-with long_description_open('README.md', encoding='utf-8') as f:
+with long_description_open("README.md", encoding="utf-8") as f:
     long_description = f.read()
 
 
 setup(
-    name='easypost',
-    version='5.1.3',
-    description='EasyPost Shipping API Client Library for Python',
-    author='EasyPost',
-    author_email='support@easypost.com',
-    url='https://easypost.com/',
-    packages=['easypost'],
+    name="easypost",
+    version="6.0.0",
+    description="EasyPost Shipping API Client Library for Python",
+    author="EasyPost",
+    author_email="support@easypost.com",
+    url="https://easypost.com/",
+    packages=["easypost"],
     install_requires=install_requires,
-    test_suite='test',
+    test_suite="test",
     long_description=long_description,
-    long_description_content_type='text/markdown',
+    long_description_content_type="text/markdown",
     project_urls={
-        'Docs': 'https://www.easypost.com/docs/api',
-        'Tracker': 'https://github.com/EasyPost/easypost-python/issues',
-        'Source': 'https://github.com/EasyPost/easypost-python',
+        "Docs": "https://www.easypost.com/docs/api",
+        "Tracker": "https://github.com/EasyPost/easypost-python/issues",
+        "Source": "https://github.com/EasyPost/easypost-python",
     },
-    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, <4',
+    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, <4",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
@@ -53,5 +52,5 @@ setup(
         "Operating System :: OS Independent",
         "License :: OSI Approved :: MIT License",
         "Topic :: Software Development :: Libraries",
-    ]
+    ],
 )
