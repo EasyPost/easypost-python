@@ -6,7 +6,10 @@ try:
 except ImportError:
     from distutils.core import setup
 
-install_requires = ["requests >= 2.4.3", "six"]
+install_requires = [
+    "requests >= 2.4.3",
+    "six",
+]
 
 
 if sys.version_info < (3, 0):
