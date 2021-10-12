@@ -1,6 +1,12 @@
 ## CHANGELOG
 
-### NEXT RELEASE
+### v6.0.0 2021-10-12
+
+* JSON encodes POST bodies instead of form encoding them
+* Adds support for `tax_identifiers`
+* Black formatting and iSort tools added to repo
+* Bumps `requests` from v1 to v2
+* Various refactor efforts and code cleanup
 
 ### v5.1.3 2021-07-20
 
