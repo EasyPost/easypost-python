@@ -2,7 +2,7 @@
 
 ### NEXT RELEASE
 
-* Lowers the default timeout from 90 seconds to 60 seconds for all requests
+* Removes `_max_timeout` and instead uses a flat 60 second timeout for requests
 
 ### v6.0.0 2021-10-12
 
