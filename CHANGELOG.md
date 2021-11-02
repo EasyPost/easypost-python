@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+### NEXT RELEASE
+
+* Lowers the default timeout from 90 seconds to 60 seconds for all requests
+
 ### v6.0.0 2021-10-12
 
 * JSON encodes POST bodies instead of form encoding them
