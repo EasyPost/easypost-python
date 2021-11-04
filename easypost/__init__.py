@@ -14,19 +14,23 @@ __author__ = "EasyPost <oss@easypost.com>"
 __version__ = VERSION
 version_info = VERSION_INFO
 SUPPORT_EMAIL = "support@easypost.com"
+USER_AGENT = "EasyPost/v2 PythonClient/{0}".format(VERSION)
+TIMEOUT = 60
 
+# config
+api_key = None
+api_base = "https://api.easypost.com/v2"
 
 # use urlfetch as request_lib on google app engine, otherwise use requests
 request_lib = None
-# use a max timeout equal to that of all customer-facing backend operations
-_max_timeout = 90
 try:
     from google.appengine.api import urlfetch
 
     request_lib = "urlfetch"
-    # use the GAE application-wide "deadline" (or its default) if it's less than our existing max timeout
-    _max_timeout = min(urlfetch.get_default_fetch_deadline() or 60, _max_timeout)
+    # use the GAE application-wide "deadline" (or its default)
+    timeout = urlfetch.get_default_fetch_deadline() or TIMEOUT
 except ImportError:
+    timeout = TIMEOUT
     try:
         import requests
 
@@ -57,15 +61,6 @@ except ImportError:
                 'requests via "pip install -U requests" or contact us '
                 "at {}.".format(SUPPORT_EMAIL)
             )
-
-# config
-api_key = None
-api_base = "https://api.easypost.com/v2"
-# use our default timeout, or our max timeout if that is less
-timeout = min(60, _max_timeout)
-
-
-USER_AGENT = "EasyPost/v2 PythonClient/{0}".format(VERSION)
 
 
 class Error(Exception):
@@ -249,9 +244,6 @@ class Requestor(object):
             "Authorization": "Bearer %s" % my_api_key,
             "Content-type": "application/json",
         }
-
-        if timeout > _max_timeout:
-            raise Error("`timeout` must not exceed %d; it is %d" % (_max_timeout, timeout))
 
         if request_lib == "urlfetch":
             http_body, http_status = self.urlfetch_request(method, abs_url, headers, params)

@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+### NEXT RELEASE
+
+* Removes `_max_timeout` and instead uses a flat 60 second timeout for requests
+
 ### v6.0.0 2021-10-12
 
 * JSON encodes POST bodies instead of form encoding them
