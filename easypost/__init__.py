@@ -14,7 +14,12 @@ __author__ = "EasyPost <oss@easypost.com>"
 __version__ = VERSION
 version_info = VERSION_INFO
 SUPPORT_EMAIL = "support@easypost.com"
+USER_AGENT = "EasyPost/v2 PythonClient/{0}".format(VERSION)
 TIMEOUT = 60
+
+# config
+api_key = None
+api_base = "https://api.easypost.com/v2"
 
 # use urlfetch as request_lib on google app engine, otherwise use requests
 request_lib = None
@@ -23,9 +28,9 @@ try:
 
     request_lib = "urlfetch"
     # use the GAE application-wide "deadline" (or its default)
-    _platform_timeout = urlfetch.get_default_fetch_deadline() or TIMEOUT
+    timeout = urlfetch.get_default_fetch_deadline() or TIMEOUT
 except ImportError:
-    _platform_timeout = TIMEOUT
+    timeout = TIMEOUT
     try:
         import requests
 
@@ -56,14 +61,6 @@ except ImportError:
                 'requests via "pip install -U requests" or contact us '
                 "at {}.".format(SUPPORT_EMAIL)
             )
-
-# config
-api_key = None
-api_base = "https://api.easypost.com/v2"
-timeout = _platform_timeout
-
-
-USER_AGENT = "EasyPost/v2 PythonClient/{0}".format(VERSION)
 
 
 class Error(Exception):
