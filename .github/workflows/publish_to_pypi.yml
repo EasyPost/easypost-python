@@ -18,6 +18,7 @@ jobs:
       with:
         find: "VERSIONADDEDBYGITHUB"
         replace: "${{ github.ref_name }}"
+        include: "easypost/_version.py"
         regex: false
     - name: Set up Python
       uses: actions/setup-python@v2
