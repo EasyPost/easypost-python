@@ -8,12 +8,11 @@ import time
 import six
 from six.moves.urllib.parse import urlencode
 
-from .version import VERSION, VERSION_INFO
+from ._version import VERSION
+from ._info import SUPPORT_EMAIL, AUTHOR, AUTHOR_EMAIL
 
-__author__ = "EasyPost <oss@easypost.com>"
 __version__ = VERSION
-version_info = VERSION_INFO
-SUPPORT_EMAIL = "support@easypost.com"
+__author__ = "{0} <{1}>".format(AUTHOR, AUTHOR_EMAIL)
 USER_AGENT = "EasyPost/v2 PythonClient/{0}".format(VERSION)
 TIMEOUT = 60
 

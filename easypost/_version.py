@@ -1,4 +1,4 @@
-VERSION = "6.0.0"
+VERSION = "VERSIONADDEDBYGITHUB"
 
 if "-" in VERSION:
     VERSION_INFO = tuple([int(v) for v in VERSION.split("-")[0].split(".")] + VERSION.split("-")[1:])
