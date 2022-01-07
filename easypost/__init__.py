@@ -65,7 +65,7 @@ except ImportError:
 
 class Error(Exception):
     def __init__(self, message=None, http_status=None, http_body=None, original_exception=None):
-        super(Error, self).__init__(message)
+        super(Error, self).__init__(http_body)
         self.message = message
         self.http_status = http_status
         self.http_body = http_body
