@@ -1,0 +1,76 @@
+interactions:
+- request:
+    body: '{"trackers": {"0": {"tracking_code": "EZ1000000001"}, "1": {"tracking_code":
+      "EZ2000000002"}, "2": {"tracking_code": "EZ3000000003"}, "3": {"tracking_code":
+      "EZ4000000004"}}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '174'
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/trackers/create_list
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6quBQAAAP//AwBDv6ajAgAAAA==
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"44136fa355b3678a1146ad16f7e8649e"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 81f96ebc61e71da3e7886e68003bdc33
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb5nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq ffc213653a
+      - extlb2nuq ffc213653a
+      x-request-id:
+      - 950d74b6-f59a-4a06-8543-e78780ded06c
+      x-runtime:
+      - '0.043259'
+      x-version-label:
+      - easypost-202201181926-d15669a17d-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
