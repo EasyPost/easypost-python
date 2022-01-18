@@ -67,3 +67,19 @@ def test_tracker_interactions(per_run_unique):
     assert len(trackers2["trackers"]) == 1  # Should be 1
     assert trackers2["has_more"] is False  # Should be false
     assert trackers2["trackers"][0].id == tracker3.id  # Should be the same as the id for tracker3
+
+
+@pytest.mark.vcr()
+def test_tracker_create_list():
+    """Tests that we can create a list of trackers in bulk."""
+    trackers_list = easypost.Tracker.create_list(
+        trackers={
+            "0": {"tracking_code": "EZ1000000001"},
+            "1": {"tracking_code": "EZ2000000002"},
+            "2": {"tracking_code": "EZ3000000003"},
+            "3": {"tracking_code": "EZ4000000004"},
+        }
+    )
+
+    # This endpoint/method does not return anything, just make sure the request doesn't fail
+    assert trackers_list is True
