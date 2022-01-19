@@ -13,15 +13,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Find and Replace
+    - name: Use release tag as version number
       uses: jacobtomlinson/gha-find-replace@2.0.0
       with:
         find: "VERSIONADDEDBYGITHUB"
         replace: "${{ github.ref_name }}"
         include: "easypost/_version.py"
         regex: false
-    - name: Set up Python
-      uses: actions/setup-python@v2
+    - uses: actions/setup-python@v2
       with:
         python-version: '3.8'
     - name: Install dependencies
