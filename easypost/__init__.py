@@ -14,7 +14,7 @@ __author__ = "EasyPost <oss@easypost.com>"
 __version__ = VERSION
 version_info = VERSION_INFO
 SUPPORT_EMAIL = "support@easypost.com"
-USER_AGENT = "EasyPost/v2 PythonClient/{0}".format(VERSION)
+USER_AGENT = "EasyPost/v2 PythonClient/{0} Python/{1}".format(VERSION, platform.python_version())
 TIMEOUT = 60
 
 # config

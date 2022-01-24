@@ -3,6 +3,7 @@
 ### NEXT RELEASE
 
 * Removes `_max_timeout` and instead uses a flat 60 second timeout for requests
+* Adds Python version to user-agent header on requests
 
 ### v6.0.0 2021-10-12
 
