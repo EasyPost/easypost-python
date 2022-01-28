@@ -12,8 +12,10 @@ from ._version import VERSION
 from ._info import SUPPORT_EMAIL, AUTHOR, AUTHOR_EMAIL
 
 __version__ = VERSION
+version_info = VERSION_INFO
 __author__ = "{0} <{1}>".format(AUTHOR, AUTHOR_EMAIL)
-USER_AGENT = "EasyPost/v2 PythonClient/{0}".format(VERSION)
+SUPPORT_EMAIL = "support@easypost.com"
+USER_AGENT = "EasyPost/v2 PythonClient/{0} Python/{1}".format(VERSION, platform.python_version())
 TIMEOUT = 60
 
 # config
