@@ -2,6 +2,7 @@
 
 ### NEXT RELEASE
 
+* Add the `update_brand()` method to the User object
 * Removes `_max_timeout` and instead uses a flat 60 second timeout for requests
 * Adds Python version to user-agent header on requests
 
