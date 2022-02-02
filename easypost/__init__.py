@@ -86,6 +86,7 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
     types = {
         "Address": Address,
         "Batch": Batch,
+        "Brand": Brand,
         "CarrierAccount": CarrierAccount,
         "CustomsInfo": CustomsInfo,
         "CustomsItem": CustomsItem,
@@ -609,6 +610,10 @@ class Address(AllResource, CreateResource):
             return convert_to_easypost_object(response, api_key)
 
 
+class Brand(Resource):
+    pass
+
+
 class ScanForm(AllResource, CreateResource):
     @classmethod
     def create(cls, api_key=None, **params):
@@ -887,6 +892,11 @@ class User(CreateResource, UpdateResource, DeleteResource):
                     break
 
         return my_api_keys
+
+    def update_brand(self, api_key=None, **params):
+        requestor = Requestor(api_key)
+        response, api_key = requestor.request("put", self.instance_url() + "/brand", params)
+        return convert_to_easypost_object(response, api_key)
 
 
 class Report(AllResource, CreateResource):
