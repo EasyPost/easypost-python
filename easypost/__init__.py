@@ -794,8 +794,8 @@ class Tracker(AllResource, CreateResource):
     def create_list(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), "create_list")
-        newParams = {"trackers": params}
-        response, api_key = requestor.request("post", url, newParams)
+        new_params = {"trackers": params}
+        response, api_key = requestor.request("post", url, new_params)
         return True
 
 
