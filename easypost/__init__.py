@@ -791,7 +791,7 @@ class PostageLabel(AllResource, CreateResource):
 
 class Tracker(AllResource, CreateResource):
     @classmethod
-    def create_list(cls, api_key=None, **params):
+    def create_list(cls, params={}, api_key=None):
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), "create_list")
         new_params = {"trackers": params}
