@@ -73,7 +73,7 @@ def test_tracker_interactions(per_run_unique):
 def test_tracker_create_list():
     """Tests that we can create a list of trackers in bulk."""
     trackers_list = easypost.Tracker.create_list(
-        trackers={
+        params={
             "0": {"tracking_code": "EZ1000000001"},
             "1": {"tracking_code": "EZ2000000002"},
             "2": {"tracking_code": "EZ3000000003"},
