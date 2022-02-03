@@ -72,8 +72,8 @@ def test_tracker_interactions(per_run_unique):
 @pytest.mark.vcr()
 def test_tracker_create_list():
     """Tests that we can create a list of trackers in bulk."""
-    trackers_list = easypost.Tracker.create_list(
-        trackers={
+    success = easypost.Tracker.create_list(
+        {
             "0": {"tracking_code": "EZ1000000001"},
             "1": {"tracking_code": "EZ2000000002"},
             "2": {"tracking_code": "EZ3000000003"},
@@ -82,4 +82,4 @@ def test_tracker_create_list():
     )
 
     # This endpoint/method does not return anything, just make sure the request doesn't fail
-    assert trackers_list is True
+    assert success is True
