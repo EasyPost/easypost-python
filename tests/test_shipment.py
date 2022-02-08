@@ -72,12 +72,6 @@ def test_shipment_creation():
     rate_id = shipment.rates[0].id
     assert rate_id is not None
 
-    previous_ids = set(r.id for r in shipment.rates)
-
-    # Get the rates back
-    shipment.get_rates()
-    assert set(r.id for r in shipment.rates) == previous_ids
-
     # Assert address values match
     assert shipment.buyer_address.country == to_address.country
     assert shipment.buyer_address.phone == to_address.phone
