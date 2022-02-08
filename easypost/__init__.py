@@ -654,13 +654,6 @@ class Shipment(AllResource, CreateResource):
         self.refresh_from(response, api_key)
         return self
 
-    def get_rates(self):
-        requestor = Requestor(self._api_key)
-        url = "%s/%s" % (self.instance_url(), "rates")
-        response, api_key = requestor.request("get", url)
-        self.refresh_from(response, api_key)
-        return self
-
     def get_smartrates(self):
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "smartrate")

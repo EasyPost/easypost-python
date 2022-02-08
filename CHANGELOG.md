@@ -5,6 +5,7 @@
 * Add the `update_brand()` method to the User object
 * Removes `_max_timeout` and instead uses a flat 60 second timeout for requests
 * Adds Python version to user-agent header on requests
+* Removes `shipment.get_rates()` method since the shipment object already has rates. If you need to get new rates for a shipment, please use the `shipment.regenerate_rates()` method.
 
 ### v6.0.0 2021-10-12
 
