@@ -868,6 +868,12 @@ class User(CreateResource, UpdateResource, DeleteResource):
             return instance
 
     @classmethod
+    def retrieve_me(cls, api_key=None, **params):
+        requestor = Requestor(api_key)
+        response, api_key = requestor.request("get", cls.class_url())
+        return convert_to_easypost_object(response, api_key)
+
+    @classmethod
     def all_api_keys(cls, api_key=None):
         requestor = Requestor(api_key)
         url = "/api_keys"
