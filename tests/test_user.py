@@ -6,6 +6,13 @@ import easypost
 
 
 @pytest.mark.vcr()
+def test_retrieve_me(prod_api_key):
+    user = easypost.User.retrieve_me()
+
+    assert user.id is not None
+
+
+@pytest.mark.vcr()
 def test_child_user_create(prod_api_key):
     # Create an address and then verify some fields to test whether it was created just fine.
     child_user = easypost.User.create(name="Python All-Things-Testing")
