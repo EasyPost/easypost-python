@@ -2,6 +2,8 @@
 
 ### NEXT RELEASE
 
+* Bumps minimum Python version from 2.7 to 3.6
+* Bumps all dependencies
 * Add the `update_brand()` method to the User object
 * Removes `_max_timeout` and instead uses a flat 60 second timeout for requests
 * Adds Python version to user-agent header on requests

@@ -5,13 +5,6 @@
 
 EasyPost is the simple shipping API. You can sign up for an account at <https://easypost.com>.
 
-Requirements
-------------
-
-* [Python](https://www.python.org) 2.7 or 3.3+ (or corresponding [PyPy](https://pypy.org) versions). Note that we only test on Python 2.7 and 3.5+; we strongly recommend against using 3.3.x or 3.4.x as they are no longer supported by many libraries.
-* [requests](http://docs.python-requests.org/en/latest/) >= v2.4.3 (if not on Google App Engine) (will be installed automatically)
-* [six](https://pythonhosted.org/six/) (will be installed automatically)
-
 
 Looking for a client library for another language? Check out <https://www.easypost.com/docs/libraries>.
 
@@ -31,10 +24,10 @@ Alternatively, you can clone the EasyPost python client repository:
 git clone https://github.com/EasyPost/easypost-python
 ```
 
-Install:
+Install Locally:
 
 ```bash
-python setup.py install
+make install
 ```
 
 Import the EasyPost client:
@@ -153,12 +146,12 @@ Client Library Development
    1. Build sdist and wheel: `rm -rf build/ dist/ ./*.egg-info; python3 setup.py sdist bdist_wheel`
    1. Push to PyPI with `twine upload dist/*`
 
-### Running Tests
+## Development
 
-To run tests:
+```bash
+# Run tests
+EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... make test
 
-   - Create a virtualenv for your version of Python (e.g., `python2.7 -m virtualenv venv`)
-   - Install dependencies in that virtualenv (`./venv/bin/pip install requests six`)
-   - Install test dependencies (`./venv/bin/pip install -r requirements-tests.txt`)
-   - Export `$TEST_API_KEY` and `$PROD_API_KEY` appropriately (these are set automatically for CI)
-   - Run the tests with `py.test` (`./venv/bin/py.test -vs tests`)
+# Run test coverage
+EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... make coverage
+```
