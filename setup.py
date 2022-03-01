@@ -6,9 +6,24 @@ try:
 except ImportError:
     from distutils.core import setup
 
-install_requires = [
+REQUIREMENTS = [
     "requests >= 2.4.3",
     "six",
+]
+
+DEV_REQUIREMENTS = [
+    "black",
+    "configparser<5",  # 5.0.0 removes python 2.x support
+    "flake8",
+    "isort",
+    "mock==3.0.5",  # >3.0.5 removes python 2.x support
+    "pytest-cov==2.8.1",
+    "pytest-vcr==1.*",
+    "pytest==4.6.*",
+    "pytz",
+    "setuptools>=42,<45",  # 45.0.0 removes python 2.x support
+    "vcrpy==3.*",  # 4.x removes python 2.x support
+    "zipp==0.5.*",  # zipp after 0.5 tries to install its own setuptools at build time, which fails on python 2.7
 ]
 
 
@@ -29,7 +44,10 @@ setup(
     author_email="support@easypost.com",
     url="https://easypost.com/",
     packages=["easypost"],
-    install_requires=install_requires,
+    install_requires=REQUIREMENTS,
+    extras_require={
+        "dev": DEV_REQUIREMENTS,
+    },
     test_suite="test",
     long_description=long_description,
     long_description_content_type="text/markdown",

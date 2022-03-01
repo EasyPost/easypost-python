@@ -31,10 +31,10 @@ Alternatively, you can clone the EasyPost python client repository:
 git clone https://github.com/EasyPost/easypost-python
 ```
 
-Install:
+Install Locally:
 
 ```bash
-python setup.py install
+make install
 ```
 
 Import the EasyPost client:
@@ -155,10 +155,10 @@ Client Library Development
 
 ### Running Tests
 
-To run tests:
+```bash
+# Run tests
+TEST_API_KEY=123... PROD_API_KEY=123... make test
 
-   - Create a virtualenv for your version of Python (e.g., `python2.7 -m virtualenv venv`)
-   - Install dependencies in that virtualenv (`./venv/bin/pip install requests six`)
-   - Install test dependencies (`./venv/bin/pip install -r requirements-tests.txt`)
-   - Export `$TEST_API_KEY` and `$PROD_API_KEY` appropriately (these are set automatically for CI)
-   - Run the tests with `py.test` (`./venv/bin/py.test -vs tests`)
+# Run test coverage
+TEST_API_KEY=123... PROD_API_KEY=123... make coverage
+```
