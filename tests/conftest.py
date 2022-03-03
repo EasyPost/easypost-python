@@ -6,8 +6,8 @@ import pytest
 
 import easypost
 
-TEST_API_KEY = os.environ["TEST_API_KEY"]
-PROD_API_KEY = os.environ["PROD_API_KEY"]
+EASYPOST_TEST_API_KEY = os.environ["EASYPOST_TEST_API_KEY"]
+EASYPOST_PROD_API_KEY = os.environ["EASYPOST_PROD_API_KEY"]
 
 
 def pytest_sessionstart(session):
@@ -34,7 +34,7 @@ def pytest_sessionfinish(session, exitstatus):
 @pytest.yield_fixture(autouse=True)
 def setup_api_key():
     default_key = easypost.api_key
-    easypost.api_key = TEST_API_KEY
+    easypost.api_key = EASYPOST_TEST_API_KEY
     yield
     easypost.api_key = default_key
 
@@ -43,7 +43,7 @@ def setup_api_key():
 @pytest.yield_fixture()
 def prod_api_key():
     default_key = easypost.api_key
-    easypost.api_key = PROD_API_KEY
+    easypost.api_key = EASYPOST_PROD_API_KEY
     yield
     easypost.api_key = default_key
 

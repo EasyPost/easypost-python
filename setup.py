@@ -1,25 +1,22 @@
-import io
-import sys
+from setuptools import setup
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
-
-install_requires = [
+REQUIREMENTS = [
     "requests >= 2.4.3",
-    "six",
 ]
 
+DEV_REQUIREMENTS = [
+    "black",
+    "flake8",
+    "isort",
+    "pytest-cov==3.*",
+    "pytest-vcr==1.*",
+    "pytest==7.*",
+    "pytz",  # TODO: Remove when we overhaul the test suite
+    "vcrpy==4.*",
+]
 
-if sys.version_info < (3, 0):
-    long_description_open = io.open
-else:
-    long_description_open = open
-
-with long_description_open("README.md", encoding="utf-8") as f:
+with open("README.md", encoding="utf-8") as f:
     long_description = f.read()
-
 
 setup(
     name="easypost",
@@ -29,7 +26,10 @@ setup(
     author_email="support@easypost.com",
     url="https://easypost.com/",
     packages=["easypost"],
-    install_requires=install_requires,
+    install_requires=REQUIREMENTS,
+    extras_require={
+        "dev": DEV_REQUIREMENTS,
+    },
     test_suite="test",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -38,16 +38,16 @@ setup(
         "Tracker": "https://github.com/EasyPost/easypost-python/issues",
         "Source": "https://github.com/EasyPost/easypost-python",
     },
-    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, <4",
+    python_requires=">=3.6, <4",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
         "License :: OSI Approved :: MIT License",

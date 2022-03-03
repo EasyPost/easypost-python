@@ -4,9 +4,7 @@ import platform
 import re
 import ssl
 import time
-
-import six
-from six.moves.urllib.parse import urlencode
+from urllib.parse import urlencode
 
 from .version import VERSION, VERSION_INFO
 
@@ -14,7 +12,7 @@ __author__ = "EasyPost <oss@easypost.com>"
 __version__ = VERSION
 version_info = VERSION_INFO
 SUPPORT_EMAIL = "support@easypost.com"
-USER_AGENT = "EasyPost/v2 PythonClient/{0} Python/{1}".format(VERSION, platform.python_version())
+USER_AGENT = f"EasyPost/v2 PythonClient/{VERSION} Python/{platform.python_version()}"
 TIMEOUT = 60
 
 # config
@@ -42,7 +40,7 @@ except ImportError:
         raise ImportError(
             "EasyPost requires an up to date requests library. "
             'Update requests via "pip install -U requests" or '
-            "contact us at {}.".format(SUPPORT_EMAIL)
+            f"contact us at {SUPPORT_EMAIL}."
         )
 
     try:
@@ -52,14 +50,14 @@ except ImportError:
         raise ImportError(
             "EasyPost requires an up to date requests library. "
             'Update requests via "pip install -U requests" or contact '
-            "us at {}.".format(SUPPORT_EMAIL)
+            f"us at {SUPPORT_EMAIL}."
         )
     else:
         if major < 1:
             raise ImportError(
                 "EasyPost requires an up to date requests library. Update "
                 'requests via "pip install -U requests" or contact us '
-                "at {}.".format(SUPPORT_EMAIL)
+                f"at {SUPPORT_EMAIL}."
             )
 
 
@@ -146,7 +144,7 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
         response = response.copy()
         cls_name = response.get("object", EasyPostObject)
         cls_id = response.get("id", None)
-        if isinstance(cls_name, six.string_types):
+        if isinstance(cls_name, str):
             cls = types.get(cls_name, EasyPostObject)
         elif cls_id is not None:
             cls = prefixes.get(cls_id[0 : cls_id.find("_")], EasyPostObject)
@@ -159,14 +157,14 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
 
 def _utf8(value):
     # Python3's str(bytestring) returns "b'bytestring'" so we use .decode instead
-    if isinstance(value, six.binary_type):
+    if isinstance(value, bytes):
         return value.decode("utf-8")
     return value
 
 
 def encode_url_params(params):
     converted_params = []
-    for key, value in sorted(six.iteritems(params)):
+    for key, value in sorted(params.items()):
         if value is None:
             continue  # don't add Nones to the query
         elif isinstance(value, datetime.datetime):
@@ -191,7 +189,7 @@ class Requestor(object):
         if isinstance(param, Resource):
             return {"id": param.id}
         elif isinstance(param, dict):
-            return {k: cls._objects_to_ids(v) for k, v in six.iteritems(param)}
+            return {k: cls._objects_to_ids(v) for k, v in param.items()}
         elif isinstance(param, list):
             return [cls._objects_to_ids(v) for v in param]
         else:
@@ -213,7 +211,7 @@ class Requestor(object):
             raise Error(
                 "No API key provided. Set an API key via \"easypost.api_key = 'APIKEY'. "
                 "Your API keys can be found in your EasyPost dashboard, or you can email us "
-                "at {} for assistance.".format(SUPPORT_EMAIL)
+                f"at {SUPPORT_EMAIL} for assistance."
             )
 
         abs_url = "%s%s" % (api_base, url or "")
@@ -251,9 +249,7 @@ class Requestor(object):
         elif request_lib == "requests":
             http_body, http_status = self.requests_request(method, abs_url, headers, params)
         else:
-            raise Error(
-                "Bug discovered: invalid request_lib: {}. " "Please report to {}.".format(request_lib, SUPPORT_EMAIL)
-            )
+            raise Error(f"Bug discovered: invalid request_lib: {request_lib}. Please report to {SUPPORT_EMAIL}.")
 
         return http_body, http_status, my_api_key
 
@@ -274,9 +270,7 @@ class Requestor(object):
         elif method == "post" or method == "put":
             data = json.dumps(params, default=_utf8)
         else:
-            raise Error(
-                "Bug discovered: invalid request method: {}. " "Please report to {}.".format(method, SUPPORT_EMAIL)
-            )
+            raise Error(f"Bug discovered: invalid request method: {method}. Please report to {SUPPORT_EMAIL}.")
 
         try:
             result = requests_session.request(
@@ -292,7 +286,7 @@ class Requestor(object):
         except Exception as e:
             raise Error(
                 "Unexpected error communicating with EasyPost. If this "
-                "problem persists please let us know at {}.".format(SUPPORT_EMAIL),
+                f"problem persists please let us know at {SUPPORT_EMAIL}.",
                 original_exception=e,
             )
         return http_body, http_status
@@ -305,16 +299,14 @@ class Requestor(object):
         elif method == "get" or method == "delete":
             fetch_args["url"] = add_params_to_url(abs_url, params)
         else:
-            raise Error(
-                "Bug discovered: invalid request method: {}. Please report " "to {}.".format(method, SUPPORT_EMAIL)
-            )
+            raise Error(f"Bug discovered: invalid request method: {method}. Please report to {SUPPORT_EMAIL}.")
 
         try:
             result = urlfetch.fetch(**fetch_args)
         except Exception as e:
             raise Error(
                 "Unexpected error communicating with EasyPost. "
-                "If this problem persists, let us know at {}.".format(SUPPORT_EMAIL),
+                f"If this problem persists, let us know at {SUPPORT_EMAIL}.",
                 original_exception=e,
             )
 
@@ -404,7 +396,7 @@ class EasyPostObject(object):
     def refresh_from(self, values, api_key):
         self._api_key = api_key
 
-        for k, v in sorted(six.iteritems(values)):
+        for k, v in sorted(values.items()):
             if k == "id" and self.id != v:
                 self.id = v
             if k in self._immutable_values:
@@ -427,7 +419,7 @@ class EasyPostObject(object):
     def __repr__(self):
         type_string = ""
 
-        if isinstance(self.get("object"), six.string_types):
+        if isinstance(self.get("object"), str):
             type_string = " %s" % self.get("object").encode("utf8")
 
         json_string = json.dumps(self.to_dict(), sort_keys=True, indent=2, cls=EasyPostObjectEncoder)

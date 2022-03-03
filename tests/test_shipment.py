@@ -1,6 +1,6 @@
 # Unit tests related to 'Shipments' (https://www.easypost.com/docs/api#shipments).
 
-import time
+# import time
 
 import pytest
 
@@ -165,9 +165,10 @@ def test_rerate(vcr):
     rate_id = shipment.rates[0].id
     assert rate_id is not None
 
-    if vcr.record_mode != "none":
-        # we only rerate on get_rates calls for shipments made at least 60 seconds ago
-        time.sleep(61)
+    # Uncomment if you need to re-record cassettes
+    # if vcr.record_mode != "none":
+    #     # we only rerate on get_rates calls for shipments made at least 60 seconds ago
+    #     time.sleep(61)
 
     if hasattr(easypost, "requests_session"):  # the urlfetch code has no session obj
         easypost.requests_session.close()
