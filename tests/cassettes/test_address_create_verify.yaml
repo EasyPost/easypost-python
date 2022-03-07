@@ -1,0 +1,84 @@
+interactions:
+- request:
+    body: '{"address": {"street1": "417 montgomery streat", "street2": "FL 5", "city":
+      "San Francisco", "state": "CA", "zip": "94104", "country": "US", "company":
+      "EasyPost", "phone": "415-123-4567"}, "verify": [true]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '207'
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/addresses
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4yRUWvbMBSF/0rQ65xOkp048ZsJWSmsyaizhzKKuZWuWw3ZCpJc2ob+913Z28ue
+        agzWPXzn6Fi6MKNZxUD7lm+EUppvYV1wIVABQA5KdOtHVUohC5Yx9/gbVSS+1tpjCCQpjxBRt5Bk
+        yaVc8nwpypOUlSgrufnCecU5geNZfw4coEdWDaO1lO76Mwxv5NjXzf2PY3MiIESPGAWJhSgXt8fD
+        6fp4u7+7XzQneveL1RQzU5Ko1NLEFNLUh8W3u/qwu2l2x4mhSqTvahrezZmW20LwYinElKHcOESf
+        nD8bGs/PbsBp25WQebFalyRiD8b+69s7nYCIISY7eG/Qtx0oY6cGM0VHZzQO0QAZO7ABM9ahRg+2
+        jfDapiuZyangf9oLetMZBdG4IbDqkooX6RtGpdKlVNGPlIjeO0/Tr4eMaYzUMswRH2m2hnLePmu7
+        MEv7xTH9XV5eldu8kBmzbnj6Ky6FlFcFl5tNxqLpsX2fj6ruqa2Cr99daOvhCS0G9kHPHwAAAP//
+        AwAQXALxeAIAAA==
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"a5c0a8fd170edd3057038cfaca2bfacc"
+      expires:
+      - '0'
+      location:
+      - /api/v2/addresses/adr_081ccd09a64011ecaaa3ac1f6bc72124
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c758e50b6233b378ff030106002a599e
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb6nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 3e97db20d4
+      - intlb1wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
+      x-runtime:
+      - '0.045596'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1

@@ -1,0 +1,160 @@
+interactions:
+- request:
+    body: '{"address": {"name": "Jack Sparrow", "company": "EasyPost", "street1":
+      "388 Townsend St", "street2": "Apt 20", "city": "San Francisco", "state": "CA",
+      "zip": "94107", "phone": "5555555555"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '190'
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/addresses
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4yRsW7DIBCGX8VibSIBdm3HW1S1Q6dKTmfrDGeV1gYLcNM0yrv3cKRU6lQm7uM7
+        7hecmdGsYaB9x+uyGDiUUBZcCFS1qCtQYih7VfV5KdmGuf4dVSR/r7XHEAgpjxBRd5Cw5FJueb4V
+        1UHKRlSN3N1x3nBO4jLr/4kWJiTlGdRH1s7gvTumOW6awZ7o4BHC6cWFSDBEjxgFwbyus4M72oBW
+        Z+3vmUxh55jJdLMyMV3Qgs2ePFhlgnKrScGIP+yp+DYzbXeF4NU6dbHRp6bXlsr5zdlk3t8WQZzA
+        jKyxyzhu2OR0EiKu+RSlN+i7AZQZ1+FXi97OaLTRwK1xQI0exi7CV5e+5ErXaH/YJ3ozGAXROBtY
+        c75cfgAAAP//AwBlMd07xQEAAA==
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"e8a452954d1d815be7144981493e6a3e"
+      expires:
+      - '0'
+      location:
+      - /api/v2/addresses/adr_0864f0a6a64011ec8187ac1f6bc7b362
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c758e50d6233b378ff030108002a59b9
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb1nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 3e97db20d4
+      - intlb2wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
+      x-runtime:
+      - '0.025563'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: GET
+    uri: https://api.easypost.com/v2/addresses/adr_0864f0a6a64011ec8187ac1f6bc7b362/verify
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4yRT2+jMBDFvwrydUnXNgkO3KxsK+0fJVFgVa2qCjn2pOvKQGRM1Tbqd98xVD3s
+        qb7APH5v5uG5EGWMh2Eg5YVYQ0qsfUPXShXqSFW+pIyBXrMiU5qd8qMWxyznJCX98RF0QF6++1Oi
+        PagAplFR5pTzBc0WTNScl0yUvPhCaUkpguPZfA7sVAuI/JCbn0m1l4fD7jbO6duz6l7ww7Ws/ux3
+        VY3iEDxAYChm63VS72631fX2W1LVidzXCacfCEckNrEhdqjkNrk5yO3me7XZTQwmQ30jsXi1Z3wt
+        loyKBcsFnWaPXfDR+bvC8vy37yK++jgoQqusI2U3OpeStjcRCDCEaFfeW/DNSWnrpgQzhTdoDXTB
+        KjQGP0JKTmDAK9cE9dzExczglO8/7Qm8PVmtgu27aY+Yexmfw6j1tNq5I3jfe6zu7lNiIGDIYW7x
+        Fmtnsc/LZ20X4nBeGOPPZeJKiNWKpcT13cO7uGCcX2VFXoiUBNtC8zrflGwxrVZff/VDI7sHcDCQ
+        t3j+AQAA//8DAK01PhGKAgAA
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"19eb6f267035ab84e44da2bb8f394489"
+      expires:
+      - '0'
+      location:
+      - /api/v2/addresses/adr_08aa9ab0a64011ec8193ac1f6bc7b362
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c758e50d6233b379ff030108002a59cd
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb3nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 3e97db20d4
+      - intlb2wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
+      x-runtime:
+      - '0.053538'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,150 @@
+interactions:
+- request:
+    body: '{"parcel": {"length": "10", "width": "8", "height": "4", "weight": "15.4"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '75'
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/parcels
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SMuxKCMBBF/2VrYJIYIOQrLKxsmCW7PDRCBsNYOP67yYy93d57z9k3LAQWwu58
+        T/XQ1lp0rSLSCjXWaJoBtTHaqbHRUMA23NjFJJxxd+xT43bGyNRjbpVQqhSnUrYXpaw0VnTXxByB
+        /jKe1ynOYKWoRAGvhXIw+Z55meZk6hzCzsTjsqZvAd0dJwa7Ht4n5YfJutIFPDZKC0R+Rvh8AQAA
+        //8DAKTnIj/lAAAA
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"0aca47d7014aab5e4e3b29cc98303dd2"
+      expires:
+      - '0'
+      location:
+      - /api/v2/parcels.prcl_d5b7540972dd42a4a5a86ba4884c2f64
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c758e50b6233b3a1ff030463002a63e8
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb2nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 3e97db20d4
+      - intlb2wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
+      x-runtime:
+      - '0.027056'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: GET
+    uri: https://api.easypost.com/v2/parcels/prcl_d5b7540972dd42a4a5a86ba4884c2f64
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SMuxKCMBBF/2VrYJIYIOQrLKxsmCW7PDRCBsNYOP67yYy93d57z9k3LAQWwu58
+        T/XQ1lp0rSLSCjXWaJoBtTHaqbHRUMA23NjFJJxxd+xT43bGyNRjbpVQqhSnUrYXpaw0VnTXxByB
+        /jKe1ynOYKWoRAGvhXIw+Z55meZk6hzCzsTjsqZvAd0dJwa7Ht4n5YfJutIFPDZKC0R+Rvh8AQAA
+        //8DAKTnIj/lAAAA
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"0aca47d7014aab5e4e3b29cc98303dd2"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c758e50b6233b3a1ff030463002a63f1
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb3nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 3e97db20d4
+      - intlb1wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
+      x-runtime:
+      - '0.018114'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

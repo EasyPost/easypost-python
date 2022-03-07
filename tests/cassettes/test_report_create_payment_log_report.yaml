@@ -1,0 +1,76 @@
+interactions:
+- request:
+    body: '{"type": "payment_log", "start_date": "2022-03-01", "end_date": "2022-03-11"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '77'
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/reports/payment_log
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SOuw7CMAxF/yUzlRLThqjfwIAQE0uVh4uK0iZKXQFC/DtJWRALm33uubKfbHCs
+        ZdEnjJ1qEPptI3uQvAZtNWrFjZVG1UIbqNmGBXNFS7lx0I8RJ9qHyxFjSJQzm1ATuk6XHDhAxbeV
+        2J0AWqFakOfsLNH9dWbSibrifTlc5AQn98tF4WNwhRHO9OnTMud9wls5mTxrp8X7dezwHoeE8/pB
+        oa83AAAA//8DANVsX4EDAQAA
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"d7d84ee4f0e9d9a4897890e469d66259"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c758e50d6233b3b1ff030483002a6804
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb2nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 3e97db20d4
+      - intlb1wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
+      x-runtime:
+      - '0.034481'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1

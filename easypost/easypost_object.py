@@ -183,6 +183,11 @@ class EasyPostObject(object):
     def __str__(self):
         return self.to_json(indent=2)
 
+    def __eq__(self, other):
+        if not isinstance(other, EasyPostObject):
+            return False
+        return self.__str__() == other.__str__()
+
     def to_json(self, indent=None):
         return json.dumps(self.to_dict(), sort_keys=True, indent=indent, cls=EasyPostObjectEncoder)
 

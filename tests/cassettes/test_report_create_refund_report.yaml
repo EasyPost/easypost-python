@@ -1,0 +1,76 @@
+interactions:
+- request:
+    body: '{"type": "refund", "start_date": "2022-03-01", "end_date": "2022-03-11"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '72'
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/reports/refund
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SOyw7CIBBF/4W1JjBQW/iMxpUbAmVIaipteEQT478LdWPcuJs599zMPMnsiCIR
+        fcRNd3ToqEHB5WAFSCM5d9KDt2h7I7wgB7LaK065Vkb0JbgRtzXmyqeIJqPTpmVAAY6UH1l/BlBs
+        UHC6VKds7q+TsolZN+/LoawmGNwvZ43fVtdYxpQ//VxS3QPe28m4EBXKsuyjxsc2R0z7B42+3gAA
+        AP//AwBx9/P6AAEAAA==
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"e6eb923441999fab9cc809afcdf674bc"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c758e5066233b3b2ff030484002a681e
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb2nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 3e97db20d4
+      - intlb1wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
+      x-runtime:
+      - '0.036594'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1

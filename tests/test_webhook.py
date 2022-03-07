@@ -1,42 +1,52 @@
-# Unit tests related to 'Webhook' (https://www.easypost.com/webhooks-guide).
-
 import pytest
 
 import easypost
 
 
 @pytest.mark.vcr()
-def test_webhooks(per_run_unique):
-    url = "example.com/{0}".format(per_run_unique)
-    expected_url = "http://example.com/{0}".format(per_run_unique)
+def test_webhook_create(webhook_url):
+    webhook = easypost.Webhook.create(url=webhook_url)
 
-    # Create a webhook
-    webhook = easypost.Webhook.create(url=url)
-    assert webhook.id is not None
-    assert webhook.mode == "test"
-    assert webhook.url == expected_url
-    assert webhook.disabled_at is None
     assert isinstance(webhook, easypost.Webhook)
+    assert str.startswith(webhook.id, "hook_")
+    assert webhook.url == webhook_url
 
-    # Retrieve a webhook
-    webhook2 = easypost.Webhook.retrieve(webhook.id)
-    assert webhook2.id is not None
-    assert webhook2.id == webhook.id
+    webhook.delete()  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
 
-    # Update a webhook (re-enable it)
-    webhook3 = webhook.update()
-    assert webhook3.id is not None
-    assert webhook3.id == webhook.id
 
-    # Index webhooks
-    webhooks = easypost.Webhook.all(url=expected_url)
-    assert any(wh.id == webhook.id for wh in webhooks["webhooks"])
+@pytest.mark.vcr()
+def test_webhook_retrieve(webhook_url):
+    webhook = easypost.Webhook.create(url=webhook_url)
 
-    # Delete a webhook
-    webhook.delete()
+    retrieved_webhook = easypost.Webhook.retrieve(webhook.id)
 
-    with pytest.raises(easypost.Error) as exception_context:
-        easypost.Webhook.retrieve(webhook.id)
+    assert isinstance(retrieved_webhook, easypost.Webhook)
+    assert retrieved_webhook == webhook
 
-    assert exception_context.value.http_status == 404
-    assert exception_context.value.message == "The requested resource could not be found."
+    retrieved_webhook.delete()  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
+
+
+@pytest.mark.vcr()
+def test_webhook_all(page_size):
+    webhooks = easypost.Webhook.all(page_size=page_size)
+
+    webhooks_array = webhooks["webhooks"]
+
+    assert len(webhooks_array) <= page_size
+    assert all(isinstance(webhook, easypost.Webhook) for webhook in webhooks_array)
+
+
+@pytest.mark.vcr()
+@pytest.mark.skip(reason="Cannot be easily tested - requires a disabled webhook.")
+def test_webhook_update():
+    pass
+
+
+@pytest.mark.vcr()
+def test_webhook_delete(webhook_url):
+    webhook = easypost.Webhook.create(url=webhook_url)
+
+    response = webhook.delete()
+
+    # This endpoint/method does not return anything, just make sure the request doesn't fail
+    assert isinstance(response, easypost.Webhook)

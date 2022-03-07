@@ -1,0 +1,150 @@
+interactions:
+- request:
+    body: '{"type": "shipment_invoice", "start_date": "2022-03-01", "end_date": "2022-03-11"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '82'
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/reports/shipment_invoice
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SOwW4CIRCG34VzTYCqy/IGvaonLwThN4tBlsCsmjR994Jeml68TGa++f7MfLPg
+        mWZ1yiHdCrLhEGfht+thbEXZjRqxVoMS/DRi3G44+2Dz6QJHLbWfQr4i0Ve6zcFhhzwXaoIrsARv
+        bJckl3LFP1diOEiphdJSHZuzZP/WqWQLme79cbhoGyT/n4vOr7PvjFDplaeltjnh3k+WyHRaYny2
+        Bo8cCurzgxcNycXFw7gpRF+QmD7bWPHzCwAA//8DAMykI6AlAQAA
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"df8cd32a34b522fcf1db763437255088"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c758e5076233b3b4ff0304a2002a68b6
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb9nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 3e97db20d4
+      - intlb2wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
+      x-runtime:
+      - '0.037089'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: GET
+    uri: https://api.easypost.com/v2/reports/shpinvrep_0e1f1d6479d648a589e487810b9e9650
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SOwW4CIRCG34VzTYCqy/IGvbY99UIQfrM0LEtg1miM717Qi/HSy2Tmm+/PzJUF
+        zzSrUw7pVJANhzgKv98OYyvK7tSIrRqU4IcR437H2RtbDr9w1FJfU8gzEn2k0xIcPpGXQk1wBZbg
+        je2S5FJu+PtGDN9SaqG0VD/NWbP/16lkC5nuPTlctA2Sf+Wi83nxnREqPfK01jZjznTpR0tkOq0x
+        3luDcw4F9f7Dg4bk4uph3BSiL0hMH22suP0BAAD//wMAvNkH0ycBAAA=
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"236e2ba8f7da569bf05b05d2522c6c61"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-canary:
+      - direct
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c758e5076233b3b4ff0304a2002a68c8
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb7nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 3e97db20d4
+      - intlb2wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
+      x-runtime:
+      - '0.029070'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,74 @@
+interactions:
+- request:
+    body: '{"shipment": {}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/shipments
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4TNQQrCMBCF4asMsy49QHcFBQu2lFbdiJSxGWugSeok6iL07kYv4PLBz/cisogT
+        LCKOTjEW2O+qtt42h7xqTuW+2gxt2ZV1jxka9p6mb3O0dJ0ZgoNRmAKDv+vFsA0ZOMvgBIwThoWE
+        DAcWD29OW9sXzVrlyfq9eizOEYMbSClJeJI7fjy1sAKyCoz2XtspxzWLeBNn/oeXdf0AAAD//wMA
+        SeCRtdMAAAA=
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c758e50c6233b38fff030441002a5f0b
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb6nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 3e97db20d4
+      - intlb1wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
+      x-runtime:
+      - '0.019727'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 422
+      message: Unprocessable Entity
+version: 1

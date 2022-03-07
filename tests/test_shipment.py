@@ -1,224 +1,107 @@
-# Unit tests related to 'Shipments' (https://www.easypost.com/docs/api#shipments).
-
-# import time
-
 import pytest
 
 import easypost
 
 
 @pytest.mark.vcr()
-def test_shipment_creation():
-    # We create a shipment and assert on values saved.
+def test_shipment_create(full_shipment):
+    shipment = easypost.Shipment.create(**full_shipment)
 
-    # create a to address and a from address
-    to_address = easypost.Address.create(
-        name="Sawyer Bateman",
-        street1="1A Larkspur Cres.",
-        street2="",
-        city="St. Albert",
-        state="AB",
-        zip="t8n2m4",
-        country="CA",
-        phone="780-283-9384",
-    )
-    from_address = easypost.Address.create(
-        company="EasyPost",
-        street1="118 2nd St",
-        street2="4th Fl",
-        city="San Francisco",
-        state="CA",
-        zip="94105",
-        phone="415-456-7890",
-    )
+    assert isinstance(shipment, easypost.Shipment)
+    assert str.startswith(shipment.id, "shp_")
+    assert shipment.rates is not None
+    assert shipment.options.label_format == "PNG"
+    assert shipment.options.invoice_number == "123"
+    assert shipment.reference == "123"
 
-    # create a parcel
-    parcel = easypost.Parcel.create(
-        length=10.2,
-        width=7.8,
-        height=4.3,
-        weight=21.2,
-    )
 
-    # create customs_info form for intl shipping
-    customs_item = easypost.CustomsItem.create(
-        description="EasyPost t-shirts",
-        hs_tariff_number=123456,
-        origin_country="US",
-        quantity=2,
-        value=96.27,
-        weight=21.1,
-    )
-    customs_info = easypost.CustomsInfo.create(
-        customs_certify=1,
-        customs_signer="Hector Hammerfall",
-        contents_type="gift",
-        contents_explanation="",
-        eel_pfc="NOEEI 30.37(a)",
-        non_delivery_option="return",
-        restriction_type="none",
-        restriction_comments="",
-        customs_items=[customs_item],
-    )
+@pytest.mark.vcr()
+def test_shipment_retrieve(full_shipment):
+    shipment = easypost.Shipment.create(**full_shipment)
 
-    # create shipment
-    shipment = easypost.Shipment.create(
-        to_address=to_address,
-        from_address=from_address,
-        parcel=parcel,
-        customs_info=customs_info,
-    )
+    retrieved_shipment = easypost.Shipment.retrieve(shipment.id)
 
-    rate_id = shipment.rates[0].id
-    assert rate_id is not None
+    assert isinstance(retrieved_shipment, easypost.Shipment)
+    assert retrieved_shipment == shipment
 
-    # Assert address values match
-    assert shipment.buyer_address.country == to_address.country
-    assert shipment.buyer_address.phone == to_address.phone
-    assert shipment.buyer_address.street1 == to_address.street1
-    assert shipment.buyer_address.zip == to_address.zip
-    assert shipment.customs_info.contents_explanation == customs_info.contents_explanation
 
-    # Assert on parcel values match
-    assert shipment.parcel.height == parcel.height
-    assert shipment.parcel.weight == parcel.weight
-    assert shipment.parcel.width == parcel.width
+@pytest.mark.vcr()
+def test_shipment_all(page_size):
+    shipments = easypost.Shipment.all(page_size=page_size)
 
-    # Assert customs items values match
-    assert shipment.customs_info.customs_items[0].description == customs_item.description
-    assert shipment.customs_info.customs_items[0].hs_tariff_number == customs_item.hs_tariff_number
-    assert shipment.customs_info.customs_items[0].value == customs_item.value
+    shipment_array = shipments["shipments"]
 
-    # buy shipment
-    shipment.buy(rate=shipment.lowest_rate(["USPS", "ups"], "priorityMAILInternational"), insurance=100.00)
+    assert len(shipment_array) <= page_size
+    assert shipments["has_more"] is not None
+    assert all(isinstance(shipment, easypost.Shipment) for shipment in shipment_array)
 
-    # Assert shipment.buy set attributes correctly
-    assert shipment.tracking_code is not None
+
+@pytest.mark.vcr()
+def test_shipment_buy(full_shipment):
+    shipment = easypost.Shipment.create(**full_shipment)
+    shipment.buy(rate=shipment.lowest_rate())
+
+    assert shipment.postage_label is not None
+
+
+@pytest.mark.vcr()
+def test_shipment_regenerate_rates(full_shipment):
+    shipment = easypost.Shipment.create(**full_shipment)
+
+    rates = shipment.regenerate_rates()
+
+    rates_array = rates["rates"]
+
+    assert isinstance(rates_array, list)
+    assert all(isinstance(rate, easypost.Rate) for rate in rates_array)
+
+
+@pytest.mark.vcr()
+def test_shipment_convert_label(full_shipment):
+    shipment = easypost.Shipment.create(**full_shipment)
+    shipment.buy(rate=shipment.lowest_rate())
+    shipment.label(file_format="ZPL")
+
+    assert shipment.postage_label.label_zpl_url is not None
+
+
+@pytest.mark.vcr()
+def test_shipment_insure(one_call_buy_shipment):
+    """Set insurnace to `0` when buying a shipment.
+
+    If the shipment was purchased with a USPS rate, it must have had its insurance set to `0` when bought
+    so that USPS doesn't automatically insure it so we could manually insure it here.
+    """
+    # Set to 0 so USPS doesn't insure this automatically and we can insure the shipment manually
+    one_call_buy_shipment["insurance"] = 0
+
+    shipment = easypost.Shipment.create(**one_call_buy_shipment)
+    shipment.insure(amount="100")
+
     assert shipment.insurance == "100.00"
 
-    assert "https://easypost-files.s3.us-west-2.amazonaws.com" in shipment.postage_label.label_url
+
+@pytest.mark.vcr()
+def test_shipment_refund(one_call_buy_shipment):
+    """Refunding a test shipment must happen within seconds of the shipment being created as test shipments naturally.
+
+    Follow a flow of created -> delivered to cycle through tracking events in test mode - as such anything older
+    than a few seconds in test mode may not be refundable.
+    """
+    shipment = easypost.Shipment.create(**one_call_buy_shipment)
+    shipment.refund()
+
+    assert shipment.refund_status == "submitted"
 
 
 @pytest.mark.vcr()
-@pytest.mark.slow
-def test_rerate(vcr):
-    # We create a shipment and assert on values saved.
+def test_shipment_smartrate(basic_shipment):
+    shipment = easypost.Shipment.create(**basic_shipment)
 
-    # create a to address and a from address
-    to_address = easypost.Address.create(
-        name="Sawyer Bateman",
-        street1="1A Larkspur Cres.",
-        street2="",
-        city="St. Albert",
-        state="AB",
-        zip="t8n2m4",
-        country="CA",
-        phone="780-283-9384",
-    )
-    from_address = easypost.Address.create(
-        company="EasyPost",
-        street1="118 2nd St",
-        street2="4th Fl",
-        city="San Francisco",
-        state="CA",
-        zip="94105",
-        phone="415-456-7890",
-    )
-
-    # create a parcel
-    parcel = easypost.Parcel.create(
-        length=10.2,
-        width=7.8,
-        height=4.3,
-        weight=21.2,
-    )
-
-    # create customs_info form for intl shipping
-    customs_item = easypost.CustomsItem.create(
-        description="EasyPost t-shirts",
-        hs_tariff_number=123456,
-        origin_country="US",
-        quantity=2,
-        value=96.27,
-        weight=21.1,
-    )
-    customs_info = easypost.CustomsInfo.create(
-        customs_certify=1,
-        customs_signer="Hector Hammerfall",
-        contents_type="gift",
-        contents_explanation="",
-        eel_pfc="NOEEI 30.37(a)",
-        non_delivery_option="return",
-        restriction_type="none",
-        restriction_comments="",
-        customs_items=[customs_item],
-    )
-
-    # create shipment
-    shipment = easypost.Shipment.create(
-        to_address=to_address,
-        from_address=from_address,
-        parcel=parcel,
-        customs_info=customs_info,
-    )
-
-    rate_id = shipment.rates[0].id
-    assert rate_id is not None
-
-    # Uncomment if you need to re-record cassettes
-    # if vcr.record_mode != "none":
-    #     # we only rerate on get_rates calls for shipments made at least 60 seconds ago
-    #     time.sleep(61)
-
-    if hasattr(easypost, "requests_session"):  # the urlfetch code has no session obj
-        easypost.requests_session.close()
-
-    shipment.regenerate_rates()
-
-    new_rate_id = shipment.rates[0].id
-    assert new_rate_id is not None
-    assert new_rate_id != rate_id
-
-
-@pytest.mark.vcr()
-def test_smartrate(vcr):
-    to_address = {
-        "name": "Dr. Steve Brule",
-        "street1": "179 N Harbor Dr",
-        "city": "Redondo Beach",
-        "state": "CA",
-        "zip": "90277",
-        "country": "US",
-        "phone": "4153334444",
-        "email": "dr_steve_brule@gmail.com",
-    }
-    from_address = {
-        "name": "EasyPost",
-        "street1": "417 Montgomery Street",
-        "street2": "5th Floor",
-        "city": "San Francisco",
-        "state": "CA",
-        "zip": "94104",
-        "country": "US",
-        "phone": "4153334444",
-        "email": "support@easypost.com",
-    }
-    parcel = {
-        "length": 20.2,
-        "width": 10.9,
-        "height": 5,
-        "weight": 65.9,
-    }
-
-    shipment = easypost.Shipment.create(
-        to_address=to_address,
-        from_address=from_address,
-        parcel=parcel,
-    )
-    assert shipment.rates
+    assert shipment.rates is not None
 
     smartrates = shipment.get_smartrates()
-    assert shipment.rates[0]["id"] == smartrates[0]["id"]
+
     assert smartrates[0]["time_in_transit"]["percentile_50"] is not None
     assert smartrates[0]["time_in_transit"]["percentile_75"] is not None
     assert smartrates[0]["time_in_transit"]["percentile_85"] is not None
@@ -226,3 +109,53 @@ def test_smartrate(vcr):
     assert smartrates[0]["time_in_transit"]["percentile_95"] is not None
     assert smartrates[0]["time_in_transit"]["percentile_97"] is not None
     assert smartrates[0]["time_in_transit"]["percentile_99"] is not None
+
+
+@pytest.mark.vcr()
+def test_shipment_create_empty_objects(basic_shipment):
+    shipment_data = basic_shipment
+    shipment_data["customs_info"] = {}
+    shipment_data["customs_info"]["customs_item"] = {}
+    shipment_data["options"] = None
+    shipment_data["tax_identifiers"] = None
+    shipment_data["reference"] = ""
+
+    shipment = easypost.Shipment.create(**shipment_data)
+
+    assert isinstance(shipment, easypost.Shipment)
+    assert str.startswith(shipment.id, "shp_")
+    assert shipment.options is not None
+    assert shipment.customs_info is None
+    assert shipment.reference is None
+
+
+@pytest.mark.vcr()
+def test_shipment_create_tax_identifier(basic_shipment, tax_identifier):
+    shipment_data = basic_shipment
+    shipment_data["tax_identifiers"] = [tax_identifier]
+
+    shipment = easypost.Shipment.create(**shipment_data)
+
+    assert isinstance(shipment, easypost.Shipment)
+    assert str.startswith(shipment.id, "shp_")
+    assert shipment.tax_identifiers[0]["tax_id_type"] == "IOSS"
+
+
+@pytest.mark.vcr()
+def test_shipment_create_with_ids(basic_address, basic_parcel):
+    from_address = easypost.Address.create(**basic_address)
+    to_address = easypost.Address.create(**basic_address)
+    parcel = easypost.Parcel.create(**basic_parcel)
+
+    shipment = easypost.Shipment.create(
+        from_address={"id": from_address.id},
+        to_address={"id": to_address.id},
+        parcel={"id": parcel.id},
+    )
+
+    assert isinstance(shipment, easypost.Shipment)
+    assert str.startswith(shipment.id, "shp_")
+    assert str.startswith(shipment.from_address.id, "adr_")
+    assert str.startswith(shipment.to_address.id, "adr_")
+    assert str.startswith(shipment.parcel.id, "prcl_")
+    assert shipment.from_address.street1 == "388 Townsend St"

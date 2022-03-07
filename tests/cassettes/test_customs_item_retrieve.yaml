@@ -1,0 +1,153 @@
+interactions:
+- request:
+    body: '{"customs_item": {"description": "Sweet shirts", "quantity": 2, "weight":
+      11, "value": 23, "hs_tariff_number": "654321", "origin_country": "US"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '145'
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/customs_items
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4RPMW7DMAz8SqHZCSzZshOvnTqnXboIskTHCizJlagGQdG/l27huRvJu+PdfTFn
+        2cBMRofgleVacg5anGTbnuV4GsW566emlaJruJWsYnG8gUHSPJeM0ecX0tHZJNAIVukNErUQh7o5
+        8P5ViIH3g+TvxCmr/ZdjIZvkVnQxEOlyB8CnPLuEmcA5K9TJTZMKxY+QiNHJthF8y5Xc1QVlYgmY
+        HoS8Xej6UXSgarSLin3qpcBm3Rxrwu7grjNF4fxYU4FoCQtlWSrmf2eGkJF4XocyaYMlbY5/DFNS
+        gmAe+w7GhH1ekwtbTRM9PSJz5SxQisnt+u8fAAAA//8DAIQXsDt3AQAA
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"a6ae88d4838e74e263ef345948fab7e0"
+      expires:
+      - '0'
+      location:
+      - /api/v2/customs_items/cstitem_d1a511ea2854495b8b2967f3452631d5
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c758e50c6233b38fff030440002a5ef0
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb4nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 3e97db20d4
+      - intlb2wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
+      x-runtime:
+      - '0.025166'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: GET
+    uri: https://api.easypost.com/v2/customs_items/cstitem_d1a511ea2854495b8b2967f3452631d5
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4RPMW7DMAz8SqHZCSzZshOvnTqnXboIskTHCizJlagGQdG/l27huRvJu+PdfTFn
+        2cBMRofgleVacg5anGTbnuV4GsW566emlaJruJWsYnG8gUHSPJeM0ecX0tHZJNAIVukNErUQh7o5
+        8P5ViIH3g+TvxCmr/ZdjIZvkVnQxEOlyB8CnPLuEmcA5K9TJTZMKxY+QiNHJthF8y5Xc1QVlYgmY
+        HoS8Xej6UXSgarSLin3qpcBm3Rxrwu7grjNF4fxYU4FoCQtlWSrmf2eGkJF4XocyaYMlbY5/DFNS
+        gmAe+w7GhH1ekwtbTRM9PSJz5SxQisnt+u8fAAAA//8DAIQXsDt3AQAA
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"a6ae88d4838e74e263ef345948fab7e0"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c758e50c6233b38fff030440002a5eff
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb5nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 3e97db20d4
+      - intlb1wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
+      x-runtime:
+      - '0.019285'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

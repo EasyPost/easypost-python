@@ -1,45 +1,81 @@
-# Unit tests related to 'Users' (https://www.easypost.com/docs/api#users).
-
 import pytest
 
 import easypost
 
 
 @pytest.mark.vcr()
-def test_retrieve_me(prod_api_key):
-    user = easypost.User.retrieve_me()
+@pytest.mark.skip(reason="This endpoint returns the child user keys in plain text, do not run this test.")
+def test_user_create(prod_api_key):
+    user = easypost.User.create(name="Test User")
 
-    assert user.id is not None
+    assert isinstance(user, easypost.User)
+    assert str.startswith(user.id, "user_")
+    assert user.name == "Test User"
 
 
 @pytest.mark.vcr()
-def test_child_user_create(prod_api_key):
-    # Create an address and then verify some fields to test whether it was created just fine.
-    child_user = easypost.User.create(name="Python All-Things-Testing")
+def test_user_retrieve(prod_api_key, child_user_id):
+    user = easypost.User.retrieve(child_user_id)
 
-    with pytest.raises(easypost.Error) as caught_exception:
-        easypost.User.create(
-            name="Python All-Things-Testing",
-            password="super-secret-password",
-            password_confirmation="super-secret-password",
-        )
+    assert isinstance(user, easypost.User)
+    assert str.startswith(user.id, "user_")
 
-    exception = caught_exception.value.json_body
-    error_msg = "Child users must be created via the API and must not contain an email or password."
-    assert exception["error"]["message"] == error_msg
-    assert exception["error"]["code"] == "USER.INVALID"
 
-    child_id = child_user.id
-    assert child_id is not None
+@pytest.mark.vcr()
+def test_user_retrieve_me(prod_api_key):
+    user = easypost.User.retrieve_me()
 
-    retrieved_user = easypost.User.retrieve(child_id)
-    assert retrieved_user.id == child_id
-    assert retrieved_user.name == "Python All-Things-Testing"
+    assert isinstance(user, easypost.User)
+    assert str.startswith(user.id, "user_")
 
-    new_name = "Python All-Things-Tested"
-    retrieved_user.name = new_name
-    retrieved_user.save()
 
-    updated_user = easypost.User.retrieve(child_id)
-    assert updated_user.id == child_id
-    assert updated_user.name == "Python All-Things-Tested"
+@pytest.mark.vcr()
+def test_user_update(prod_api_key):
+    user = easypost.User.retrieve_me()
+
+    test_phone = "5555555555"
+
+    user.phone = test_phone
+    user.save()
+
+    assert isinstance(user, easypost.User)
+    assert str.startswith(user.id, "user_")
+    assert user.phone == test_phone
+
+
+@pytest.mark.vcr()
+@pytest.mark.skip(
+    reason="Due to our inability to create child users securely, "
+    "we must also skip deleting them as we cannot replace the deleted ones easily."
+)
+def test_user_delete(prod_api_key):
+    user = easypost.User.create(name="Test User")
+
+    user.delete()
+
+
+@pytest.mark.vcr()
+@pytest.mark.skip(reason="API keys are returned as plaintext, do not run this test.")
+def test_user_all_api_keys(prod_api_key):
+    user = easypost.User.retrieve_me()
+    user.all_api_keys()
+
+
+@pytest.mark.vcr()
+@pytest.mark.skip(reason="API keys are returned as plaintext, do not run this test.")
+def test_user_api_keys(prod_api_key):
+    user = easypost.User.retrieve_me()
+    user.api_keys()
+
+
+@pytest.mark.vcr()
+def test_user_update_brand(prod_api_key):
+    user = easypost.User.retrieve_me()
+
+    color = "#123456"
+
+    brand = user.update_brand(color=color)
+
+    assert isinstance(brand, easypost.Brand)
+    assert str.startswith(brand.id, "brd_")
+    assert brand.color == color

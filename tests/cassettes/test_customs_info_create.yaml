@@ -1,0 +1,86 @@
+interactions:
+- request:
+    body: '{"customs_info": {"eel_pfc": "NOEEI 30.37(a)", "customs_certify": true,
+      "customs_signer": "Steve Brule", "contents_type": "merchandise", "contents_explanation":
+      "", "restriction_type": "none", "non_delivery_option": "return", "customs_items":
+      [{"description": "Sweet shirts", "quantity": 2, "weight": 11, "value": 23, "hs_tariff_number":
+      "654321", "origin_country": "US"}]}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '374'
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/customs_infos
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6xRy27bMBD8FYOnBnAMkbKsxzFFDrm0B7eXFgVBkUubhUSqK9KpEeTfu6ytpAEK
+        9NLjzuyQszNPzBnWMT1H522QRuu2NpaXza7dtmXVN9xWvWr6HRgo+pKtWei/g46keZ/mGMb5gXQE
+        awQVwUiVKVEIcVuUt7z+JETH664qvtBOmsw/d3TwEXycJfycBuVVdMHT9p9MPE9A0Aioj8obN0Nm
+        L26kBozOnlkXMcErPLuDByTVPsIJVneYhqwCGORkNeEfPt7fP6zKYlPW79QNUT54aWBwJ8CzDNPV
+        B0JM6IlGmCM6nWGpwzhmZ6zzaRjeclez9Fr+bwwmT5EWaDKgB4XXEy/Sxa+LMNJ7X59e+yFEKrtT
+        llvRcsW3275uqZgGKmt5UzaitX/rh3T/sR8Ds0a3xLF/BIir+eiQrl+zI5Wj0FkrfRr733nvqm0p
+        ePaF7uByVslHpH7Y5z2hP5LydBrNYs1Oakg5HlFuCuIewR2OZIXzTZHrz9FdUnob46h8skpTMfnH
+        JUdE8Pq8zKD1S8YTOp/PzLUFQ59LZ6g+Z92if/72/AsAAP//AwC7Q5j4GQMAAA==
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"1781fe87a130748c5ba17089affc0c8a"
+      expires:
+      - '0'
+      location:
+      - /api/v2/customs_infos/cstinfo_dcc97df138694935b81f5ba8b6ede0b3
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c758e50a6233b38eff030426002a5ec3
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb3nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 3e97db20d4
+      - intlb2wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
+      x-runtime:
+      - '0.033016'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1

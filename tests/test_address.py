@@ -1,144 +1,85 @@
-# Unit tests related to 'Address' (https://www.easypost.com/docs/api#addresses).
-
 import pytest
 
 import easypost
 
 
 @pytest.mark.vcr()
-def test_address_creation_verification():
-    # Create an address and then verify some fields to test whether it was created just fine.
-    address = easypost.Address.create(
-        company="EasyPost",
-        street1="118 2nd St",
-        street2="4th Fl",
-        city="San Francisco",
-        state="CA",
-        zip="94105",
-        phone="415-456-7890",
-    )
+def test_address_create(basic_address):
+    address = easypost.Address.create(**basic_address)
+
+    assert isinstance(address, easypost.Address)
+    assert str.startswith(address.id, "adr_")
+    assert address.street1 == "388 Townsend St"
+
+
+@pytest.mark.vcr()
+def test_address_create_verify_strict(basic_address):
+    address_data = basic_address
+    address_data["verify_strict"] = [True]
+
+    address = easypost.Address.create(**address_data)
+
+    assert isinstance(address, easypost.Address)
+    assert str.startswith(address.id, "adr_")
+    assert address.street1 == "388 TOWNSEND ST APT 20"
+
+
+@pytest.mark.vcr()
+def test_address_retrieve(basic_address):
+    address = easypost.Address.create(**basic_address)
+
+    retrieved_address = easypost.Address.retrieve(address.id)
+
+    assert isinstance(retrieved_address, easypost.Address)
+    assert retrieved_address == address
+
+
+@pytest.mark.vcr()
+def test_address_all(page_size):
+    addresses = easypost.Address.all(page_size=page_size)
+
+    addresses_array = addresses["addresses"]
+
+    assert len(addresses_array) <= page_size
+    assert addresses["has_more"] is not None
+    assert all(isinstance(address, easypost.Address) for address in addresses_array)
+
+
+@pytest.mark.vcr()
+def test_address_create_verify(incorrect_address_to_verify):
+    """Test creating a verified address.
+
+    We purposefully pass in slightly incorrect data to get the corrected address back once verified.
+    """
+    incorrect_address_to_verify["verify"] = [True]
+
+    address = easypost.Address.create(**incorrect_address_to_verify)
+
+    assert isinstance(address, easypost.Address)
+    assert str.startswith(address.id, "adr_")
+    assert address.street1 == "417 MONTGOMERY ST STE 500"
+
+
+@pytest.mark.vcr()
+def test_address_create_and_verify(incorrect_address_to_verify):
+    """Test creating a verified address.
+
+    We purposefully pass in slightly incorrect data to get the corrected address back once verified.
+    """
+    incorrect_address_to_verify["verify"] = [True]
+
+    address = easypost.Address.create_and_verify(**incorrect_address_to_verify)
+
+    assert isinstance(address, easypost.Address)
+    assert str.startswith(address.id, "adr_")
+    assert address.street1 == "417 MONTGOMERY ST STE 500"
+
+
+@pytest.mark.vcr()
+def test_address_verify(basic_address):
+    address = easypost.Address.create(**basic_address)
     address.verify()
 
-    address = easypost.Address.retrieve(address.id)
-
-    assert address.country == "US"
-    assert address.email is None
-    assert address.federal_tax_id is None
-    assert address.state == "CA"
-    assert address.zip == "94105"
-
-
-@pytest.mark.vcr()
-def test_address_creation_with_verify():
-    # Create an address with a verify parameter to test that it verifies accurately
-    address = easypost.Address.create(
-        verify=["delivery"],
-        street1="118 2",
-        street2="FLoor 4",
-        city="San Francisco",
-        state="CA",
-        zip="94105",
-        country="US",
-        company="EasyPost",
-        phone="415-456-7890",
-    )
-
-    assert address.id is not None
-    assert address.street1 == "118 2ND ST FL 4"
-    assert address.street2 == ""
-    assert address.country == "US"
-
-
-@pytest.mark.vcr()
-def test_address_creation_with_verify_bool():
-    # Create an address with a verify parameter to test that it verifies accurately
-    address = easypost.Address.create(
-        verify=True,
-        street1="118 2",
-        street2="FLoor 4",
-        city="San Francisco",
-        state="CA",
-        zip="94105",
-        country="US",
-        company="EasyPost",
-        phone="415-456-7890",
-    )
-
-    assert address.id is not None
-    assert address.street1 == "118 2ND ST FL 4"
-    assert address.street2 == ""
-    assert address.country == "US"
-
-
-@pytest.mark.vcr()
-def test_address_creation_with_verify_failure():
-    # Create an address with a verify parameter to test that it fails elegantly
-    address = easypost.Address.create(
-        verify=["delivery"],
-        street1="UNDELIEVRABLE ST",
-        city="San Francisco",
-        state="CA",
-        zip="94105",
-        country="US",
-        company="EasyPost",
-        phone="415-456-7890",
-    )
-
-    assert address.id is not None
-    assert address.street1 == "UNDELIEVRABLE ST"
-
-    assert address.verifications["delivery"]["success"] is False
-
-    assert len(address.verifications["delivery"]["errors"]) >= 2
-    assert address.verifications["delivery"]["errors"][0]["message"] == "Address not found"
-    assert address.verifications["delivery"]["errors"][1]["message"] == "House number is missing"
-
-
-@pytest.mark.vcr()
-def test_address_creation_with_verify_strict_failure():
-    # Create an address with a verify strict parameter to test that it fails elegantly
-    with pytest.raises(easypost.Error) as caught_exception:
-        easypost.Address.create(
-            verify_strict=["delivery"],
-            street1="UNDELIEVRABLE ST",
-            city="San Francisco",
-            state="CA",
-            zip="94105",
-            country="US",
-            company="EasyPost",
-            phone="415-456-7890",
-        )
-
-    exception = caught_exception.value.json_body
-
-    assert exception["error"]["code"] == "ADDRESS.VERIFY.FAILURE"
-    assert exception["error"]["message"] == "Unable to verify address."
-
-    assert len(exception["error"]["errors"]) >= 2
-    assert exception["error"]["errors"][0]["message"] == "Address not found"
-    assert exception["error"]["errors"][1]["message"] == "House number is missing"
-
-
-@pytest.mark.vcr()
-def test_address_unicode():
-    # Create an address with unicode field and assert if it was created correctly.
-    # TODO: Remove these `fmt` on/off lines once we drop support for Python 2
-    # fmt: off
-    state = u"DELEGACI\xf3N BENITO JU\xe1REZ"
-    # fmt: on
-
-    address = easypost.Address.create(state=state)
-    assert address.state == state
-
-
-@pytest.mark.vcr()
-def test_address_bytestring():
-    # Create an address with a bytestring field and assert if it was created correctly.
-    # TODO: Remove these `fmt` on/off lines once we drop support for Python 2
-    # fmt: off
-    state = u"DELEGACI\xf3N BENITO JU\xe1REZ"
-    # fmt: on
-
-    utfstring = state.encode("utf8")
-    address = easypost.Address.create(state=utfstring)
-    assert address.state == state
+    assert isinstance(address, easypost.Address)
+    assert str.startswith(address.id, "adr_")
+    assert address.street1 == "388 Townsend St"
