@@ -80,8 +80,8 @@ def test_batch_create_and_buy(vcr):
 
     # Assert on fees
     assert batch.shipments[0].fees[0].amount == "0.00000"
-    assert batch.shipments[0].fees[1].amount == "8.08000"
-    assert batch.shipments[0].fees[2].amount == "0.50000"
+    assert batch.shipments[0].fees[1].amount == "8.38000"
+    assert batch.shipments[0].fees[2].amount == "1.00000"
 
     # Assert on parcel
 

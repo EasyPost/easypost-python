@@ -9,6 +9,8 @@
 * Adds Python version to user-agent header on requests
 * Removes `shipment.get_rates()` method since the shipment object already has rates. If you need to get new rates for a shipment, please use the `shipment.regenerate_rates()` method.
 * Add `retrieve_me()` convenience function that allow users to retrieve without specifying an ID.
+* Remove `blob` class since it's never being used
+* Remove `track_with_code` in shipment class since it's no longer being used
 
 ### v6.0.0 2021-10-12
 
