@@ -1,5 +1,3 @@
-# setup for py.test
-
 import os
 
 import pytest

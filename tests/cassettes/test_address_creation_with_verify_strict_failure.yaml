@@ -1,15 +1,17 @@
 interactions:
 - request:
-    body: !!python/unicode '{"verify_strict": ["delivery"], "address": {"city": "San
-      Francisco", "zip": "94105", "street1": "UNDELIEVRABLE ST", "company": "EasyPost",
-      "phone": "415-456-7890", "state": "CA", "country": "US"}}'
+    body: '{"address": {"street1": "UNDELIEVRABLE ST", "city": "San Francisco", "state":
+      "CA", "zip": "94105", "country": "US", "company": "EasyPost", "phone": "415-456-7890"},
+      "verify_strict": ["delivery"]}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, compress
+      - gzip, deflate
+      Connection:
+      - keep-alive
       Content-Length:
-      - !!python/unicode 196
+      - '196'
       Content-type:
       - application/json
       authorization:
@@ -51,7 +53,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 8246f7cc6159ed5cf6f2b2f90040bee1
+      - 1cbfe2c46229327aff234dd8007f9835
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -59,18 +61,18 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq d40607e4ab
-      - intlb2wdc d40607e4ab
-      - extlb3wdc d40607e4ab
+      - intlb2nuq 88c34981dc
+      - intlb2wdc 88c34981dc
+      - extlb1wdc 88c34981dc
       x-request-id:
-      - 25d5db94-6c89-410e-b646-55d395f649cb
+      - 49b0be3a-e6d2-46df-ac41-2a334f2196a0
       x-runtime:
-      - '0.086290'
+      - '0.045922'
       x-version-label:
-      - easypost-202110011858-559f609973-master
+      - easypost-202203092247-68fc214d14-master
       x-xss-protection:
       - 1; mode=block
     status:
       code: 422
-      message: Unknown
+      message: Unprocessable Entity
 version: 1

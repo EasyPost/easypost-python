@@ -1,15 +1,17 @@
 interactions:
 - request:
-    body: !!python/unicode '{"verify": ["delivery"], "address": {"city": "San Francisco",
-      "zip": "94105", "street1": "118 2", "street2": "FLoor 4", "phone": "415-456-7890",
-      "state": "CA", "country": "US", "company": "EasyPost"}}'
+    body: '{"address": {"street1": "118 2", "street2": "FLoor 4", "city": "San Francisco",
+      "state": "CA", "zip": "94105", "country": "US", "company": "EasyPost", "phone":
+      "415-456-7890"}, "verify": ["delivery"]}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, compress
+      - gzip, deflate
+      Connection:
+      - keep-alive
       Content-Length:
-      - !!python/unicode 200
+      - '200'
       Content-type:
       - application/json
       authorization:
@@ -23,13 +25,13 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4yRS0/EIBSF/0rD1o5CS6ePXTNqYmJGY8eFMabBcjtiKEyAGh/xv3uZUReuZMU9
-        fOdy4H4QJUlDhHR9RWle8WVeVCznUDCxlJLzui7Lgo5VNpKU2MdnGALyrZQOvEdpcCACyF5EOaMZ
-        WzC6oPmGlU1BG1YfUdpQiuC8k/8DjZiANGbWGrvbaSfMGzrO2u7u+qrbIOCDAwgMRcaqJFufJt0m
-        Ob9M+O9ZhmcxmwrR2rXr5PymXa8uutXVnsEgqK9aLN7VDrc1Z7RY5MssBhjsbIKLztsOy92TNRHn
-        rODFsqzqyMAklP5JOVkZgQA+RLtwToHrRzEovU9woPDDlAQTlEDjKLSHlIwgwQndB/Hax0EcyH3A
-        P9oLODWqQQRljSfNB5GgFYpvce/nYYjjaIKbsSs4Zx1W9w8pYgGT7h0azWGOUfPyuKxwrinR1my/
-        xQXLsuO8rnmZkqAm6N8P724nvHoQJ5fW963ZggZPPnF9AQAA//8DAEv8TQI7AgAA
+        H4sIAAAAAAAAA4yRQW/cIBCF/4rFtd4UsL1efLM2iVQp2kTx9lBVkcXCOKHCsAJcNYn63zvsNjnk
+        FE7Mm+/BG3glRpOOSB3GupKi0g0V06QZAyWE1lKxaX1Q7aFac1ISf/gFKiHfax0gRpRUAJlAjzLL
+        nHK+otWKij2vOlp3vPlCaUcpgstRfw50cgbSucVaPN3PR+me0XHVDz/uboc9AjEFgMRQZGxT8N1l
+        MeyL65uifu9x7OVsJmXr0O+K6/t+t/02bG9PDAZBfdtj8WKOuBU1o80Kh8wBlF9cCtn5fcDy+ORd
+        xmvW1M263YjMwCyNfUs5e52BBDFluwzBQBgnqYw9JThT+GBGg0tGonGSNkJJJtAQpB2T/DPmjziT
+        p4AftN8QzGSUTMa7SLpXosEaFJ/zPi5K5e/oUljwVAjBB6x+PpSIJUx6clg0pyVHrdqLdtO2TUms
+        d4//xRXj/KISom5LkswM48t57n7Gq5X8euPj2LtHsBDJX1z/AAAA//8DAFnrnds7AgAA
     headers:
       cache-control:
       - no-cache, no-store
@@ -38,11 +40,11 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"b19db5075e011e022bb77b8aa7fada55"
+      - W/"81665c405533a9c7d1a59aea7be2cc68"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_8003846358134e51a6dd44997750f82f
+      - /api/v2/addresses/adr_43a93d509ffd11ec99ddac1f6bc7b362
       pragma:
       - no-cache
       referrer-policy:
@@ -58,23 +60,23 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 8246f7cc6159ed5bf6f2b2f60040be9f
+      - 1cbfe2c062293279ff234dbe007f9803
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb5nuq
+      - bigweb4nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq d40607e4ab
-      - intlb1wdc d40607e4ab
-      - extlb3wdc d40607e4ab
+      - intlb1nuq 88c34981dc
+      - intlb1wdc 88c34981dc
+      - extlb1wdc 88c34981dc
       x-request-id:
-      - 1fdaa1b6-586e-4552-b703-6e6739bb3f43
+      - c9c8250d-2283-4720-bc34-367a8d971a91
       x-runtime:
-      - '0.054200'
+      - '0.052683'
       x-version-label:
-      - easypost-202110011858-559f609973-master
+      - easypost-202203092247-68fc214d14-master
       x-xss-protection:
       - 1; mode=block
     status:

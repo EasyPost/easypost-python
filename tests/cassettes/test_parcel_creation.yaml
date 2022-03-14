@@ -1,14 +1,16 @@
 interactions:
 - request:
-    body: !!python/unicode '{"parcel": {"predefined_package": "RegionalRateBoxA",
-      "length": 10.2, "width": 7.8, "weight": 21.2, "height": 4.3}}'
+    body: '{"parcel": {"predefined_package": "RegionalRateBoxA", "length": 10.2, "width":
+      7.8, "height": 4.3, "weight": 21.2}}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, compress
+      - gzip, deflate
+      Connection:
+      - keep-alive
       Content-Length:
-      - !!python/unicode 115
+      - '115'
       Content-type:
       - application/json
       authorization:
@@ -22,10 +24,10 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4SOyw6CMBBF/2XWQNpSymOnX2CIKzdkaAeoIhCswcT47w6Je5dzc8+58wbvoIJl
-        tWMjjC00GlmiybTKLJZkZK7bjkypXSEhgrm9kg0MnHC1NHJiV8JArsE9VULJWIpYpGeZV5mqMn3h
-        znNxfzsjTX0YoJIiURFs3u1HnhQRDOT7gUmdpBE/So46P7FtQXvDnlhZU+/nCceaV47z68C67Qcp
-        uevus9t7gR4BPl8AAAD//wMAX5oWevMAAAA=
+        H4sIAAAAAAAAA4SOQQ6CMBBF7zLrQkpbhbLTExjiyg0p7VCqSAnWYGK8u0Pi3uX8/Pf+vCE4qGFe
+        7Nhq7FG7va6ULhWXqAvRqU6h3lkue2eBQeyuaBMBJ7NYHCmxC5qErjVbKrgQGZcZ12cha65qqS/U
+        ec7ub2fEyacB6oLngsEa3HaUecVgwOAHIlUuGT2KDvswkW029mY8krJBH+JkxoZWjvF1IN36g0Sx
+        6e7Rbb2EjwSfLwAAAP//AwBd2zKm8wAAAA==
     headers:
       cache-control:
       - no-cache, no-store
@@ -34,11 +36,11 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"cc7751ba1308108cdffa13debbb8b0a7"
+      - W/"4dc0316330a7db1be3e50e5d01144dd0"
       expires:
       - '0'
       location:
-      - /api/v2/parcels.prcl_06c84a619a65425ca9e6174bfe694d81
+      - /api/v2/parcels.prcl_9efe9d698497403e912b4b4e95c03fdc
       pragma:
       - no-cache
       referrer-policy:
@@ -54,7 +56,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 8246f7ca6159edf6f6f2b31b0040d736
+      - 1cbfe2bf62293287ff234ddf007f9b35
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -62,15 +64,15 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq d40607e4ab
-      - intlb1wdc d40607e4ab
-      - extlb3wdc d40607e4ab
+      - intlb2nuq 88c34981dc
+      - intlb2wdc 88c34981dc
+      - extlb1wdc 88c34981dc
       x-request-id:
-      - d2a30ad5-fd5f-4830-8ac8-84505d85e3f8
+      - fe107dec-9cbc-4884-9147-87742d808cf3
       x-runtime:
-      - '0.030101'
+      - '0.023384'
       x-version-label:
-      - easypost-202110011858-559f609973-master
+      - easypost-202203092247-68fc214d14-master
       x-xss-protection:
       - 1; mode=block
     status:

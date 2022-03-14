@@ -60,5 +60,5 @@ def test_insurance_creation():
     insurances = easypost.Insurance.all(page_size=5)
 
     # Assertions that index worked as expected
-    assert len(insurances["insurances"]) == 5
+    assert len(insurances["insurances"]) <= 5
     assert insurances["has_more"]

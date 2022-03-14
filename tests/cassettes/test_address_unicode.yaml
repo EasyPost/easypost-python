@@ -1,13 +1,15 @@
 interactions:
 - request:
-    body: !!python/unicode '{"address": {"state": "DELEGACI\u00f3N BENITO JU\u00e1REZ"}}'
+    body: '{"address": {"state": "DELEGACI\u00f3N BENITO JU\u00e1REZ"}}'
     headers:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate, compress
+      - gzip, deflate
+      Connection:
+      - keep-alive
       Content-Length:
-      - !!python/unicode 60
+      - '60'
       Content-type:
       - application/json
       authorization:
@@ -21,11 +23,11 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4yQwU7DMAyGX2XKFSa5Ye0gtwEVGkJDgu2yS2USVxi1SZWmCJj2MDwDj7AXIz2s
-        FE4c/9+f/dveCTZCCTS+kCkZiSDPpYHZRaYR09mctNSQlTIrE3Eq3NML6RD5hTGe2jZa2hMGMgX2
-        tgSZTBOYwtk6masUlIQTAAUQwa4x/wMt1iSU7aoqTnd1g/b9KNvgiULyW8oB5jAiY1gMus7v8pvF
-        1fLwtZpc5qvl+n5yuzl8PuTbmPTBzU9QZ4OP7WLzGCvNs7PDElQjV0dRO9PPDdSG/nr0nskXJWqu
-        RvHxOWzIBsahsSRDHqsi4FvR/3y05x/vlTyXrDGws61Qu/3+GwAA//8DANdmiGKmAQAA
+        H4sIAAAAAAAAA4yQQU7DMBBFr1J5C5UcNwTiXYEIFaEiQbthE03ssRiU2JHjIKDqYTgDR+jFcBYN
+        gRXL/+fN/JnZMdJMMtC+TNNMYHWe58boJEF1IcwZqMRkFQeuE2SnzFUvqELkl1p77LpoKY8QUJcw
+        2IILMeeLOc83YiF5KkV2wrnkPIJ9q/8HWmiQSdvXdZzumhbs+1F2wSOG5LcUI0xhQsawGHRd3BU3
+        y6vV4Ws9uyzWq8397HZ7+HwonmLSB7U/Qb0NPraz7WOstM/OjktgA1QfReP0MDdgF4brwXtCXxpQ
+        VE/i43NIow0EY6NBjR7qMsBbOfx8sucf7xU9GVIQyNmOyd1+/w0AAP//AwBAHCVspgEAAA==
     headers:
       cache-control:
       - no-cache, no-store
@@ -34,11 +36,11 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"374fa285db201a90f6a6f5c485027b38"
+      - W/"83176bc7c8e5e1c9d62bef6c6de236f6"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_25ed2a0282d0496caa547ec2c06f26f1
+      - /api/v2/addresses/adr_4462eb799ffd11ec82f5ac1f6b0a0d1e
       pragma:
       - no-cache
       referrer-policy:
@@ -54,23 +56,23 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 8246f7cb6159ed5cf6f2b2fa0040bef1
+      - 1cbfe2c06229327aff234dd9007f9843
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb1nuq
+      - bigweb4nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq d40607e4ab
-      - intlb2wdc d40607e4ab
-      - extlb3wdc d40607e4ab
+      - intlb1nuq 88c34981dc
+      - intlb2wdc 88c34981dc
+      - extlb1wdc 88c34981dc
       x-request-id:
-      - c383617d-fa8c-43c5-9f5c-9eaffb7a4c5e
+      - 66c2dc88-5161-4761-9c93-926f17822382
       x-runtime:
-      - '0.033906'
+      - '0.100547'
       x-version-label:
-      - easypost-202110011858-559f609973-master
+      - easypost-202203092247-68fc214d14-master
       x-xss-protection:
       - 1; mode=block
     status:

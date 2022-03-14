@@ -139,5 +139,6 @@ def test_address_bytestring():
     state = u"DELEGACI\xf3N BENITO JU\xe1REZ"
     # fmt: on
 
-    address = easypost.Address.create(state=state.encode("utf-8"))
+    utfstring = state.encode("utf8")
+    address = easypost.Address.create(state=utfstring)
     assert address.state == state

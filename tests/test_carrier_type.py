@@ -3,6 +3,7 @@
 import pytest
 
 import easypost
+from easypost.easypost_object import EasyPostObject
 
 
 @pytest.mark.vcr()
@@ -18,7 +19,7 @@ def test_carrier_types(prod_api_key):
             assert hasattr(carrier.fields.credentials, "account_number")
             assert hasattr(carrier.fields.credentials, "print_as_you_go")
 
-            assert isinstance(carrier.fields.credentials.api_key, easypost.EasyPostObject)
-            assert isinstance(carrier.fields.credentials.api_secret, easypost.EasyPostObject)
-            assert isinstance(carrier.fields.credentials.account_number, easypost.EasyPostObject)
-            assert isinstance(carrier.fields.credentials.print_as_you_go, easypost.EasyPostObject)
+            assert isinstance(carrier.fields.credentials.api_key, EasyPostObject)
+            assert isinstance(carrier.fields.credentials.api_secret, EasyPostObject)
+            assert isinstance(carrier.fields.credentials.account_number, EasyPostObject)
+            assert isinstance(carrier.fields.credentials.print_as_you_go, EasyPostObject)
