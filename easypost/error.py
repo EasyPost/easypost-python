@@ -1,17 +1,25 @@
 import json
+from typing import Optional, Union
 
 
 class Error(Exception):
-    def __init__(self, message=None, http_status=None, http_body=None, original_exception=None):
+    def __init__(
+        self,
+        message: Optional[str] = None,
+        http_status: Optional[int] = None,
+        http_body: Optional[Union[str, bytes]] = None,
+        original_exception: Optional[Exception] = None,
+    ):
         super(Error, self).__init__(message)
         self.message = message
         self.http_status = http_status
         self.http_body = http_body
         self.original_exception = original_exception
-        try:
-            self.json_body = json.loads(http_body)
-        except Exception:
-            self.json_body = None
+        if http_body:
+            try:
+                self.json_body = json.loads(http_body)
+            except Exception:
+                self.json_body = None
 
         self.param = None
         try:

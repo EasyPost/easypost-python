@@ -2,15 +2,19 @@ from setuptools import setup
 
 REQUIREMENTS = [
     "requests >= 2.4.3",
+    "typing-extensions"
 ]
 
 DEV_REQUIREMENTS = [
     "black",
     "flake8",
     "isort",
+    "mypy",
     "pytest-cov==3.*",
     "pytest-vcr==1.*",
     "pytest==7.*",
+    "types-requests",
+    "types-urllib3",
     "vcrpy==4.*",
 ]
 

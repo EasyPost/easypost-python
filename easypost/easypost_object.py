@@ -1,9 +1,12 @@
 import json
+from typing import Any, Dict, List, Optional
 
 import easypost
 
 
-def convert_to_easypost_object(response, api_key, parent=None, name=None):
+def convert_to_easypost_object(
+    response: Dict[str, Any], api_key: Optional[str] = None, parent: object = None, name: Optional[str] = None
+):
     """Convert a response to an EasyPost object."""
     types = {
         "Address": easypost.Address,
@@ -63,7 +66,7 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
     }
 
     if isinstance(response, list):
-        return [convert_to_easypost_object(r, api_key, parent) for r in response]
+        return [convert_to_easypost_object(response=item, api_key=api_key, parent=parent) for item in response]
     elif isinstance(response, dict):
         response = response.copy()
         cls_name = response.get("object", EasyPostObject)
@@ -74,13 +77,20 @@ def convert_to_easypost_object(response, api_key, parent=None, name=None):
             cls = prefixes.get(cls_id[0 : cls_id.find("_")], EasyPostObject)
         else:
             cls = EasyPostObject
-        return cls.construct_from(response, api_key, parent, name)
+        return cls.construct_from(values=response, api_key=api_key, parent=parent, name=name)
     else:
         return response
 
 
 class EasyPostObject(object):
-    def __init__(self, easypost_id=None, api_key=None, parent=None, name=None, **params):
+    def __init__(
+        self,
+        easypost_id: Optional[str] = None,
+        api_key: Optional[str] = None,
+        parent: object = None,
+        name: Optional[str] = None,
+        **params,
+    ):
         self.__dict__["_values"] = set()
         self.__dict__["_unsaved_values"] = set()
         self.__dict__["_transient_values"] = set()
@@ -95,7 +105,7 @@ class EasyPostObject(object):
         if easypost_id:
             self.id = easypost_id
 
-    def __setattr__(self, k, v):
+    def __setattr__(self, k, v: Any) -> None:
         self.__dict__[k] = v
 
         if k not in self._immutable_values:
@@ -110,7 +120,7 @@ class EasyPostObject(object):
                 cur = cur_parent
                 cur_parent = cur._parent
 
-    def __getattr__(self, k):
+    def __getattr__(self, k) -> Any:
         try:
             return self.__dict__[k]
         except KeyError:
@@ -120,36 +130,40 @@ class EasyPostObject(object):
     def __getitem__(self, k):
         return self.__dict__[k]
 
-    def get(self, k, default=None):
+    def get(self, k, default: Any = None) -> Any:
         try:
             return self[k]
         except KeyError:
             return default
 
-    def setdefault(self, k, default=None):
+    def setdefault(self, k, default: Any = None) -> Any:
         try:
             return self[k]
         except KeyError:
             self[k] = default
         return default
 
-    def __setitem__(self, k, v):
+    def __setitem__(self, k, v) -> None:
         setattr(self, k, v)
 
-    def keys(self):
+    @property
+    def keys(self) -> List[str]:
         return self._values.keys()
 
-    def values(self):
+    @property
+    def values(self) -> List[Any]:
         return self._values.keys()
 
     @classmethod
-    def construct_from(cls, values, api_key=None, parent=None, name=None):
+    def construct_from(
+        cls, values: Dict[str, Any], api_key: Optional[str] = None, parent: object = None, name: Optional[str] = None
+    ) -> object:
         """Construct an object."""
-        instance = cls(values.get("id"), api_key, parent, name)
-        instance.refresh_from(values, api_key)
+        instance = cls(easypost_id=values.get("id"), api_key=api_key, parent=parent, name=name)
+        instance.refresh_from(values=values, api_key=api_key)
         return instance
 
-    def refresh_from(self, values, api_key):
+    def refresh_from(self, values: Dict[str, Any], api_key: Optional[str] = None) -> None:
         """Update local object with changes from the API."""
         self._api_key = api_key
 
@@ -158,12 +172,12 @@ class EasyPostObject(object):
                 self.id = v
             if k in self._immutable_values:
                 continue
-            self.__dict__[k] = convert_to_easypost_object(v, api_key, self, k)
+            self.__dict__[k] = convert_to_easypost_object(response=v, api_key=api_key, parent=self, name=k)
             self._values.add(k)
             self._transient_values.discard(k)
             self._unsaved_values.discard(k)
 
-    def flatten_unsaved(self):
+    def flatten_unsaved(self) -> Dict[str, Any]:
         """Return a dict of `_unsaved_values` values from the current object."""
         values = {}
         for key in self._unsaved_values:
@@ -174,29 +188,29 @@ class EasyPostObject(object):
                 values[key] = value
         return values
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         type_string = ""
 
         if isinstance(self.get("object"), str):
             type_string = " %s" % self.get("object").encode("utf8")
 
-        json_string = json.dumps(self.to_dict(), sort_keys=True, indent=2, cls=EasyPostObjectEncoder)
+        json_string = json.dumps(obj=self.to_dict(), sort_keys=True, indent=2, cls=EasyPostObjectEncoder)
 
         return "<%s%s at %s> JSON: %s" % (type(self).__name__, type_string, hex(id(self)), json_string)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.to_json(indent=2)
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if not isinstance(other, EasyPostObject):
             return False
         return self.__str__() == other.__str__()
 
-    def to_json(self, indent=None):
+    def to_json(self, indent: int = None) -> str:
         """Convert current object to json string."""
-        return json.dumps(self.to_dict(), sort_keys=True, indent=indent, cls=EasyPostObjectEncoder)
+        return json.dumps(obj=self.to_dict(), sort_keys=True, indent=indent, cls=EasyPostObjectEncoder)
 
-    def to_dict(self):
+    def to_dict(self) -> Dict[str, Any]:
         """Convert current object to a dict."""
 
         def _serialize(o):
@@ -215,9 +229,9 @@ class EasyPostObject(object):
 
 
 class EasyPostObjectEncoder(json.JSONEncoder):
-    def default(self, obj):
+    def default(self, obj: Any) -> Any:
         """Convert easypost object to a dict."""
         if isinstance(obj, EasyPostObject):
             return obj.to_dict()
         else:
-            return json.JSONEncoder.default(self, obj)
+            return json.JSONEncoder.default(self, o=obj)

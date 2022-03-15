@@ -8,7 +8,7 @@ def test_refund_create(one_call_buy_shipment, usps):
     shipment = easypost.Shipment.create(**one_call_buy_shipment)
 
     # We need to retrieve the shipment so that the tracking_code has time to populate
-    retrieved_shipment = easypost.Shipment.retrieve(shipment)
+    retrieved_shipment = easypost.Shipment.retrieve(shipment["id"])
 
     refund = easypost.Refund.create(
         carrier=usps,
@@ -34,7 +34,7 @@ def test_refund_all(page_size):
 def test_refund_retrieve(page_size):
     refunds = easypost.Refund.all(page_size=page_size)
 
-    retrieved_refund = easypost.Refund.retrieve(refunds["refunds"][0])
+    retrieved_refund = easypost.Refund.retrieve(refunds["refunds"][0]["id"])
 
     assert isinstance(retrieved_refund, easypost.Refund)
     assert retrieved_refund.id == refunds["refunds"][0].id
