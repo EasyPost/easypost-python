@@ -11,6 +11,7 @@ class Resource(EasyPostObject):
 
     @classmethod
     def retrieve(cls, easypost_id, api_key=None, **params):
+        """Retrieve an object from the EasyPost API."""
         try:
             easypost_id = easypost_id["id"]
         except (KeyError, TypeError):
@@ -21,6 +22,7 @@ class Resource(EasyPostObject):
         return instance
 
     def refresh(self):
+        """Refresh the local object from the API response."""
         requestor = Requestor(self._api_key)
         url = self.instance_url()
         response, api_key = requestor.request("get", url, self._retrieve_params)
@@ -35,6 +37,7 @@ class Resource(EasyPostObject):
 
     @classmethod
     def class_url(cls):
+        """Generate a URL based on class name."""
         cls_name = cls.snakecase_name()
         if cls_name[-1:] in ("s", "h"):
             return "/%ses" % cls_name
@@ -42,6 +45,7 @@ class Resource(EasyPostObject):
             return "/%ss" % cls_name
 
     def instance_url(self):
+        """Generate an instance URL based on the ID of the object."""
         easypost_id = self.get("id")
         if not easypost_id:
             raise Error("%s instance has invalid ID: %r" % (type(self).__name__, easypost_id))
@@ -51,6 +55,7 @@ class Resource(EasyPostObject):
 class AllResource(Resource):
     @classmethod
     def all(cls, api_key=None, **params):
+        """Retrieve a list of records from the API."""
         requestor = Requestor(api_key)
         url = cls.class_url()
         response, api_key = requestor.request("get", url, params)
@@ -60,6 +65,7 @@ class AllResource(Resource):
 class CreateResource(Resource):
     @classmethod
     def create(cls, api_key=None, **params):
+        """Create an EasyPost object."""
         requestor = Requestor(api_key)
         url = cls.class_url()
         wrapped_params = {cls.snakecase_name(): params}
@@ -69,6 +75,7 @@ class CreateResource(Resource):
 
 class UpdateResource(Resource):
     def save(self):
+        """Update an EasyPost object."""
         if self._unsaved_values:
             requestor = Requestor(self._api_key)
             params = {}
@@ -86,6 +93,7 @@ class UpdateResource(Resource):
 
 class DeleteResource(Resource):
     def delete(self, **params):
+        """Delete an EasyPost object."""
         requestor = Requestor(self._api_key)
         url = self.instance_url()
         response, api_key = requestor.request("delete", url, params)

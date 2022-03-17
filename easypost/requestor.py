@@ -16,6 +16,8 @@ class Requestor:
 
     @classmethod
     def _objects_to_ids(cls, param):
+        """If providing an object as a parameter to another object,
+        only pass along the ID so the API will use the object reference correctly."""
         if isinstance(param, EasyPostObject):
             return {"id": param.id}
         elif isinstance(param, dict):
@@ -26,6 +28,7 @@ class Requestor:
             return param
 
     def request(self, method, url, params=None, api_key_required=True):
+        """Make a request to the EasyPost API."""
         if params is None:
             params = {}
         http_body, http_status, my_api_key = self.request_raw(method, url, params, api_key_required)
@@ -33,6 +36,7 @@ class Requestor:
         return response, my_api_key
 
     def request_raw(self, method, url, params=None, api_key_required=True):
+        """Internal logic required to make a request to the EasyPost API."""
         # Importing here to avoid circular imports
         from easypost import VERSION, api_base, api_key
 
@@ -88,6 +92,7 @@ class Requestor:
         return http_body, http_status, my_api_key
 
     def interpret_response(self, http_body, http_status):
+        """Interpret the response body we receive from the API."""
         try:
             response = json.loads(http_body)
         except Exception:
@@ -97,6 +102,7 @@ class Requestor:
         return response
 
     def requests_request(self, method, abs_url, headers, params):
+        """Make a request by using the `request` library."""
         method = method.lower()
         if method == "get" or method == "delete":
             abs_url = self.add_params_to_url(abs_url, params)
@@ -126,6 +132,7 @@ class Requestor:
         return http_body, http_status
 
     def urlfetch_request(self, method, abs_url, headers, params):
+        """Make a request by using the `urlfetch` library."""
         fetch_args = {"method": method, "headers": headers, "validate_certificate": False, "deadline": timeout}
         if method == "post" or method == "put":
             fetch_args["url"] = abs_url
@@ -149,6 +156,7 @@ class Requestor:
         return result.content, result.status_code
 
     def handle_api_error(self, http_status, http_body, response):
+        """Handles API errors returned from EasyPost."""
         try:
             error = response["error"]
         except (KeyError, TypeError):
@@ -166,6 +174,7 @@ class Requestor:
         return value
 
     def encode_url_params(self, params):
+        """Encode params for a URL."""
         converted_params = []
         for key, value in sorted(params.items()):
             if value is None:
@@ -176,6 +185,7 @@ class Requestor:
             return urlencode(converted_params)
 
     def add_params_to_url(self, url, params):
+        """Add params to the URL."""
         encoded_params = self.encode_url_params(params)
         if encoded_params:
             return "%s?%s" % (url, encoded_params)
