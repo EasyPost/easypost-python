@@ -1,0 +1,120 @@
+interactions:
+- request:
+    body: '{"shipment": {"to_address": {"name": "Jack Sparrow", "company": "EasyPost",
+      "street1": "388 Townsend St", "street2": "Apt 20", "city": "San Francisco",
+      "state": "CA", "zip": "94107", "phone": "5555555555"}, "from_address": {"name":
+      "Jack Sparrow", "company": "EasyPost", "street1": "388 Townsend St", "street2":
+      "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "phone": "5555555555"},
+      "parcel": {"length": "10", "width": "8", "height": "4", "weight": "15.4"}, "tax_identifiers":
+      [{"entity": "SENDER", "tax_id_type": "IOSS", "tax_id": "12345", "issuing_country":
+      "GB"}]}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '587'
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/shipments
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+xZ227cyBH9FWFeox30/aI371q7cZA4xo7z4sAgqrurLWZHnAHJsa1d+N+3mnOR
+        ZNkSDRmcxLEehGGzurtY5/SpKvKPWWwRekwV9LOzmWBC/MDkD9y+FOKM+zPGXs1OZ3VXtdhv2mZ2
+        lmHZ4ensErsO3mA3O/v3H7MIbVtjS/P/9WJB5rvrCmJcbZq+qhPdilCFaEV2NjoUUmWfIHgW0Yek
+        QhTaSpraX62RjFtyqcK2XbWzw140/Kx5C8s6nTyJkcZO/l5HbDo8aTaXgbb/cDreFYYqgglSSAxK
+        gXACgpEhGGeyNGAmdCVwrnRIoJXzynh0wmarfeDGSwSRJnQlKqksSMOYt0pLCIxpERFBJ1AJ2ZQA
+        MZYyyKhN4opC4hJRJChudJDR8SkBckp7FMCid0Z5hxC448kbLhUGZvKEriiBRlgOkMkVGdCBDobZ
+        wJMwwQo3oSuoo1OBJYoKAZRzkEEbLoJQPrGgpqSt0+SIzSkwz5SnY52JxkYz6dAqI6YESBjjo81O
+        lK05OZQZGiaj8FFKZ3DKE8RD5gyU4CR2OUfwTEcFyTMbZUp6QlesF5zAcE4zrpRXATAyDVnprIg7
+        fkJXtBNKJMEyiqA0ch95Yk5HH5zm3NgJXfEGwEQTtI5G0cnxkTmRtRI5K+7YlAAxkRNILSXjJPQ6
+        Oc+1YtmjJKWTYkq1FZGAUVQU2IQKk3IcSVl0MpGSIp3vKSVOSrAQhIiOdEWAi5wHiklCKl1AT1mv
+        JEpARtscs83K6uQxpcxyMtznLGBKXZFZeAJDBYWS6pXsqWxKxgobY8pCTknbrIPzxnFJ2VkxOkpK
+        JkP/k/Z0wGWYUlcEA041ktIgFGXkwEluXeAqB9SkflNyRXLKwlZZpNIJrQ8myZiAo2OBRqZUW59i
+        YhK15xFU9NFroTUTICyVcjo9Wm1fk+0qFcMeu55mrtZ9vWqoLSEfN22LTbwqTi6e0r01XF1i05d7
+        u00X58+fnv9KTzRLZXtIb6GJdIPRSIsZy3y6bDbL5ems66Hf0MqzTfNbs3rXFN9biL/VzZsqDk5s
+        7TbrdF9DJUpDFaCPF0OUtnO21/sdbo4dQrEdjJuuX112Vd3k1X4st6tL8j21ZFoebgg+pLaSiKQZ
+        xoJRjHOMQRoNkWdTGjEuipSuwn8wFkef7OafPtgQ/oUx+j978EGvDRu4LNH+GwXrZLEmqqzelX1W
+        l2toCjzn0F29WA34dX2L2HMalM6dvKQwd9ikk8X1PVGcXfcnoqwc674ssIDm5OeWsKu7uJptoSo7
+        /vSELn6v1/TTK87ssCvxs92SonDiYtUUS334o0G8hHq5j+5tfu2JniHWy2HzrRXFrk5ErhoOEzMm
+        bGFZ9fD+BtKDax+NvcW2znWEPXU/EP3qptu0cIN+q5aWuzGJ4hhxecB73cZllSLVNirmSEqkuBdO
+        JxGiCtR0cy5lvAn4i+38h/F+NQLqYrPE5k1/MTvjbM5OZ+/qVC5c+X2B9ZsLmqnKxbqluOS6odXW
+        RIgb3H63M+N6rm7HneKxJn6QbbWEgIcQF9HYvoIYYjBoCI/Ba8tIZLRVkTq0wAVVWQKVpPw59LCH
+        GPxaaPJgBMSICAw2t6nSYfu2LvjNXrT1qi1kOb0pnItBOdstU+1cDuz8WLNa7ImL1c7KzS27Hrxj
+        vKy7vrq94DB0xzDhsibSXVUJrih+/NZIfwDk1mD1ZgNEyB4xHd4C0YNWd9fqLup1EdptFugu1hW1
+        rIEqKQVMakWNKvXzSC1AYhmUjxDvezsiNGkYesrzqJKRQM2/5hCp9ICoOA7p6Bp9JSIDpMxCBtS2
+        c4/UFsfyOkNIr1AcAf2f6/amdNyBntjuH4Z+ZzUG+p3pKOjFV4ReHBd6TyVPKQFLA05nXXqt6OwD
+        I03EZIYmc2roz9+v90n1M+ALObf6YfSFnauxJ3+/5Cj8P4H2Yyiwy3FHZIGjbbjTVPIiKMOsZ9SZ
+        JLKlZTyTxxCAbaZd4LLsel8KEOJhJuysxqWAwfT/TQecCpZx5MZKo5J3zjittKRmSIKOIRyBAfIp
+        XH0K/1tKwOfOjVCCndkoJRDzocgfxQB5hwGHpxTipZBnQzX/anYfJ/p282lKyK9MCeDU6ltDnQyV
+        t8LZQK02dd6aG2MiT+rj1OBD5t7FwHJSXkmfQHEprAfajxqiI1DiOb7viRVP6vYc2uXVk398nhmO
+        z9UIZdibjWGGE3MzWhvulofXD+teMvcoZnztevELmZETUi/sNYu0NDO0S44iSOqYQxZcHoMZv7T0
+        QOnzdOB8bkYUjHuzMXTg5gtSxf10eKRQHJkOTpNEQGI+eKeIBC5Tz6gF18nokNUxqodroVgABerz
+        vFBibs3DvNibjeGF0nM7OoF8y7zgWgtpQQZprPLWBRMl1SCa9lHgpDsqL+6hBJ3rEd3F3mwUJagT
+        Gd1d3E8Jzs7k/y4lMnMhGS7AuKRiJEpgyJZr7yRIwe0RKCGa9BAjJJvzEVXm3mwMI8jWPqLPuK4y
+        +WNF4ms3Hg8z4vXwnYDS9Ufv7rsITZVX7eVhYKj+Cdf2RnM1fD4oGO0uV597i68si7h/i++9wP1b
+        /JCimX1/i/9f+xZ/06276vfBOT6cpk3bfP9U842BHDZXRTy+H91vCtWi3uXb0uuyEO5+fUlWOSC7
+        2OUkGttuW9zM9BDbT1flahvE7dfovRWN/PXZ06fnzw8j1e6z9bN/Lkro6q7bbD8+7yP6y4+Ukj78
+        CQAA//8DAPJExx/UKwAA
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"948c98f1f4efe70629d01a3766d59e9d"
+      expires:
+      - '0'
+      location:
+      - /api/v2/shipments/shp_271ba7a4a03546b7827eaecd0fa49cac
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-canary:
+      - direct
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c758e5086233b3d4ff0304c9002a6f1d
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb7nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 3e97db20d4
+      - intlb2wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
+      x-runtime:
+      - '1.968452'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1

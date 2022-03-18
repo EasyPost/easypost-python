@@ -1,22 +1,22 @@
-# Unit tests related to 'Parcel' (https://www.easypost.com/docs/api#parcels).
-
 import pytest
 
 import easypost
 
 
 @pytest.mark.vcr()
-def test_parcel_creation():
-    # Simply create a Parcel and assert on saved data.
-    parcel = easypost.Parcel.create(
-        predefined_package="RegionalRateBoxA",
-        length=10.2,
-        width=7.8,
-        height=4.3,
-        weight=21.2,
-    )
+def test_parcel_create(basic_parcel):
+    parcel = easypost.Parcel.create(**basic_parcel)
 
-    assert parcel.height == 4.3
-    assert parcel.width == 7.8
-    assert parcel.weight == 21.2
-    assert parcel.predefined_package == "RegionalRateBoxA"
+    assert isinstance(parcel, easypost.Parcel)
+    assert str.startswith(parcel.id, "prcl_")
+    assert parcel.weight == 15.4
+
+
+@pytest.mark.vcr()
+def test_parcel_retrieve(basic_parcel):
+    parcel = easypost.Parcel.create(**basic_parcel)
+
+    retrieved_parcel = easypost.Parcel.retrieve(parcel.id)
+
+    assert isinstance(retrieved_parcel, easypost.Parcel)
+    assert retrieved_parcel == parcel

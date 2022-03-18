@@ -11,7 +11,6 @@ DEV_REQUIREMENTS = [
     "pytest-cov==3.*",
     "pytest-vcr==1.*",
     "pytest==7.*",
-    "pytz",  # TODO: Remove when we overhaul the test suite
     "vcrpy==4.*",
 ]
 

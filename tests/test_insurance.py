@@ -1,64 +1,44 @@
-# Unit tests related to 'Shipments' (https://www.easypost.com/docs/api#shipments).
-
 import pytest
 
 import easypost
 
 
 @pytest.mark.vcr()
-def test_insurance_creation():
-    # We create an insurance and assert on values saved.
-    tracking_code = "EZ2000000002"
-    carrier = "USPS"
-    amount = 101.00
+def test_insurance_create(one_call_buy_shipment, basic_insurance):
+    shipment = easypost.Shipment.create(**one_call_buy_shipment)
 
-    to_address = {
-        "name": "Dr. Steve Brule",
-        "street1": "179 N Harbor Dr",
-        "city": "Redondo Beach",
-        "state": "CA",
-        "zip": "90277",
-        "phone": "310-808-5243",
-    }
+    insurance_data = basic_insurance
+    insurance_data["tracking_code"] = shipment.tracking_code
 
-    from_address = {
-        "company": "EasyPost",
-        "street1": "118 2nd St",
-        "street2": "4th Fl",
-        "city": "San Francisco",
-        "state": "CA",
-        "zip": "94105",
-        "phone": "415-456-7890",
-    }
+    insurance = easypost.Insurance.create(**insurance_data)
 
-    # create insurance
-    insurance = easypost.Insurance.create(
-        to_address=to_address,
-        from_address=from_address,
-        tracking_code=tracking_code,
-        carrier=carrier,
-        amount=amount,
-    )
+    assert isinstance(insurance, easypost.Insurance)
+    assert str.startswith(insurance.id, "ins_")
+    assert insurance.amount == "100.00000"
 
-    # Assertions that create worked as expected
-    assert isinstance(insurance.to_address, easypost.Address)
-    assert isinstance(insurance.from_address, easypost.Address)
-    assert insurance.tracking_code == tracking_code
-    assert insurance.amount == "101.00000"
-    assert isinstance(insurance.tracker, easypost.Tracker)
 
-    insurance2 = easypost.Insurance.retrieve(insurance.id)
+@pytest.mark.vcr()
+def test_insurance_retrieve(one_call_buy_shipment, basic_insurance):
+    shipment = easypost.Shipment.create(**one_call_buy_shipment)
 
-    # Assertions that retrieve worked as expected
-    assert insurance2.id == insurance.id
-    assert isinstance(insurance2.to_address, easypost.Address)
-    assert isinstance(insurance2.from_address, easypost.Address)
-    assert insurance2.tracking_code == tracking_code
-    assert insurance2.amount == "101.00000"
-    assert isinstance(insurance2.tracker, easypost.Tracker)
+    insurance_data = basic_insurance
+    insurance_data["tracking_code"] = shipment.tracking_code
 
-    insurances = easypost.Insurance.all(page_size=5)
+    insurance = easypost.Insurance.create(**insurance_data)
 
-    # Assertions that index worked as expected
-    assert len(insurances["insurances"]) <= 5
-    assert insurances["has_more"]
+    retrieved_insurance = easypost.Insurance.retrieve(insurance.id)
+
+    assert isinstance(retrieved_insurance, easypost.Insurance)
+    # status changes between creation and retrieval, so we can't compare the whole object
+    assert insurance.id == retrieved_insurance.id
+
+
+@pytest.mark.vcr()
+def test_insurance__all(page_size):
+    insurances = easypost.Insurance.all(page_size=page_size)
+
+    insurance_array = insurances["insurances"]
+
+    assert len(insurance_array) <= page_size
+    assert insurances["has_more"] is not None
+    assert all(isinstance(insurance, easypost.Insurance) for insurance in insurance_array)

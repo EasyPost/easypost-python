@@ -1,0 +1,76 @@
+interactions:
+- request:
+    body: '{"type": "shipment_invoice", "start_date": "2022-03-01", "end_date": "2022-03-11"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '82'
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/reports/shipment_invoice
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SOMW7DMAxF76K5AWxacWzdoGvaKYugiDSsQpEFiXYCFL17pGQpsmQj338f5K9w
+        KJTIc3RhSxQ1SADTd+duHEhK2ZlJ4ri3BgYC7MdJfIjl/EOWS+trdvFCgT/DtjhLR4pL4iLYRIYJ
+        takSNAC7ptu1h28A1Q4K+lNx1ohvncwmsa7eP6dpS0IBX3lb+WXBypgyP/u85rIHutaTyQsVVu8f
+        o6ZbdIny44MndcH6FUnb2XlMFISajM/0dwcAAP//AwBd5//nJQEAAA==
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"e2a3b48116317e0b5179b142d83cf7ba"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c758e5096233b3b2ff030486002a6838
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb2nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 3e97db20d4
+      - intlb2wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
+      x-runtime:
+      - '0.039632'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1

@@ -1,92 +1,106 @@
-# Unit tests related to 'Batch' (https://www.easypost.com/docs/api#batches).
-
-from time import sleep
-
 import pytest
 
 import easypost
 
 
 @pytest.mark.vcr()
-def test_batch_create_and_buy(vcr):
-    # We create Address and Parcel objects. We then try to create a Batch containing a shipment.
-    # Finally, we assert on saved and returned data.
+def test_batch_create(one_call_buy_shipment):
+    batch = easypost.Batch.create(shipments=[one_call_buy_shipment])
 
-    # from address and parcel don't change
-    from_address = easypost.Address.create(
-        name="Simpler Postage Inc.",
-        street1="388 Townsend St",
-        street2="Apt 20",
-        city="San Francisco",
-        state="CA",
-        zip="94107",
-        phone="415-456-7890",
+    assert isinstance(batch, easypost.Batch)
+    assert str.startswith(batch.id, "batch_")
+    assert batch.shipments is not None
+
+
+@pytest.mark.vcr()
+def test_batch_retrieve(one_call_buy_shipment):
+    batch = easypost.Batch.create(shipments=[one_call_buy_shipment])
+
+    retrieved_batch = easypost.Batch.retrieve(batch.id)
+
+    assert isinstance(batch, easypost.Batch)
+    # status changes between creation and retrieval, so we can't compare the whole object
+    assert retrieved_batch.id == batch.id
+
+
+@pytest.mark.vcr()
+def test_batch_all(page_size):
+    batches = easypost.Batch.all(page_size=page_size)
+
+    batches_array = batches["batches"]
+
+    assert len(batches_array) <= page_size
+    assert batches["has_more"] is not None
+    assert all(isinstance(batch, easypost.Batch) for batch in batches_array)
+
+
+@pytest.mark.vcr()
+def test_batch_create_and_buy(one_call_buy_shipment):
+    batch = easypost.Batch.create(
+        shipments=[
+            one_call_buy_shipment,
+            one_call_buy_shipment,
+        ],
     )
 
-    parcel = easypost.Parcel.create(predefined_package="RegionalRateBoxA", weight=64)
+    assert isinstance(batch, easypost.Batch)
+    assert str.startswith(batch.id, "batch_")
+    assert batch.num_shipments == 2
 
-    # # populate order_list from db, csv, etc.
-    order_list = [
-        {
-            "address": {
-                "name": "Jon Calhoun",
-                "street1": "388 Townsend St",
-                "street2": "Apt 30",
-                "city": "San Francisco",
-                "state": "CA",
-                "zip": "94107",
-                "phone": "415-456-7890",
-            },
-            "order_number": "1234567890",
-        }
-    ]
 
-    shipments = []
+@pytest.mark.vcr()
+def test_batch_buy(one_call_buy_shipment):
+    shipment_data = one_call_buy_shipment
 
-    for order in order_list:
-        shipments.append(
-            {
-                "to_address": order["address"],
-                "from_address": from_address,
-                "parcel": parcel,
-                "reference": order["order_number"],
-                "carrier": "USPS",
-                "service": "Priority",
-            }
-        )
+    batch = easypost.Batch.create(shipments=[shipment_data])
+    batch.buy()
 
-    # create batch of shipments
-    batch = easypost.Batch.create_and_buy(shipment=shipments)
+    assert isinstance(batch, easypost.Batch)
     assert batch.num_shipments == 1
 
-    # Poll while waiting for the batch to purchase the shipments
-    while batch.state in ("creating", "queued_for_purchase", "purchasing"):
-        if vcr.record_mode != "none":
-            sleep(1)
-        batch.refresh()
 
-    # Insure the shipments after purchase
-    if batch.state == "purchased":
-        for shipment in batch.shipments:
-            shipment.insure(amount=100)
+@pytest.mark.vcr()
+def test_batch_create_scanform(one_call_buy_shipment):
+    shipment_data = one_call_buy_shipment
 
-    assert len(batch.shipments) == 1
-    assert batch.shipments[0].batch_status == "postage_purchased"
-    assert batch.shipments[0].buyer_address.city == "SAN FRANCISCO"
-    assert batch.shipments[0].buyer_address.country == "US"
-    assert batch.shipments[0].buyer_address.name == "JON CALHOUN"
-    assert batch.shipments[0].buyer_address.phone == "4154567890"
-    assert batch.shipments[0].buyer_address.street1 == "388 TOWNSEND ST APT 30"
+    batch = easypost.Batch.create(shipments=[shipment_data])
+    batch.buy()
 
-    # Assert on fees
-    assert batch.shipments[0].fees[0].amount == "0.00000"
-    assert batch.shipments[0].fees[1].amount == "8.38000"
-    assert batch.shipments[0].fees[2].amount == "1.00000"
+    # Uncomment the following line if you need to re-record the cassette
+    # time.sleep(5)  # Wait enough time for the batch to process buying the shipment
 
-    # Assert on parcel
+    batch.create_scan_form()
 
-    assert batch.shipments[0].parcel.predefined_package == "RegionalRateBoxA"
-    assert batch.shipments[0].parcel.weight == 64.0
+    # We can't assert anything meaningful here because the scanform gets queued
+    # for generation and may not be immediately available
+    assert isinstance(batch, easypost.Batch)
 
-    # Assert on tracker
-    assert batch.shipments[0].tracker.tracking_code and batch.shipments[0].tracker.shipment_id
+
+@pytest.mark.vcr()
+def test_batch_add_remove_shipment(one_call_buy_shipment):
+    shipment = easypost.Shipment.create(**one_call_buy_shipment)
+
+    batch = easypost.Batch.create()
+
+    batch.add_shipments(shipments=[shipment])
+
+    assert batch.num_shipments == 1
+
+    batch.remove_shipments(shipments=[shipment])
+
+    assert batch.num_shipments == 0
+
+
+@pytest.mark.vcr()
+def test_batch_label(one_call_buy_shipment):
+    batch = easypost.Batch.create(shipments=[one_call_buy_shipment])
+    batch.buy()
+
+    # Uncomment the following line if you need to re-record the cassette
+    # time.sleep(5)  # Wait enough time for the batch to process buying the shipment
+
+    batch.label(file_format="ZPL")
+
+    # We can't assert anything meaningful here because the label gets queued
+    # for generation and may not be immediately available
+    assert isinstance(batch, easypost.Batch)

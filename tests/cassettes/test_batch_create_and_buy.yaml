@@ -1,8 +1,20 @@
 interactions:
 - request:
-    body: '{"address": {"name": "Simpler Postage Inc.", "street1": "388 Townsend St",
+    body: '{"batch": {"shipments": [{"to_address": {"name": "Jack Sparrow", "company":
+      "EasyPost", "street1": "388 Townsend St", "street2": "Apt 20", "city": "San
+      Francisco", "state": "CA", "zip": "94107", "phone": "5555555555"}, "from_address":
+      {"name": "Jack Sparrow", "company": "EasyPost", "street1": "388 Townsend St",
       "street2": "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107",
-      "phone": "415-456-7890"}}'
+      "phone": "5555555555"}, "parcel": {"length": "10", "width": "8", "height": "4",
+      "weight": "15.4"}, "service": "First", "carrier_accounts": ["ca_b25657e9896e4d63ac8151ac346ac41e"],
+      "carrier": "USPS"}, {"to_address": {"name": "Jack Sparrow", "company": "EasyPost",
+      "street1": "388 Townsend St", "street2": "Apt 20", "city": "San Francisco",
+      "state": "CA", "zip": "94107", "phone": "5555555555"}, "from_address": {"name":
+      "Jack Sparrow", "company": "EasyPost", "street1": "388 Townsend St", "street2":
+      "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "phone": "5555555555"},
+      "parcel": {"length": "10", "width": "8", "height": "4", "weight": "15.4"}, "service":
+      "First", "carrier_accounts": ["ca_b25657e9896e4d63ac8151ac346ac41e"], "carrier":
+      "USPS"}]}}'
     headers:
       Accept:
       - '*/*'
@@ -11,7 +23,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '177'
+      - '1156'
       Content-type:
       - application/json
       authorization:
@@ -21,16 +33,15 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: POST
-    uri: https://api.easypost.com/v2/addresses
+    uri: https://api.easypost.com/v2/batches
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4yRQU/DMAyF/0qVKxtK0m5re5uQkLghbZwrL3GHUZtUiQeMaf+dpGgcOHGLnz/7
-        vSQXQVa0AmzoqsrgenWQTd9bpdDUparBqH59kCCtQrEQ/vCGhhO/tTZgjEkyAYHRdpBlLbVeynIp
-        m70uW1m1enMnZStlAk+T/R/oYMSE7GicBgzFs48MRyyenLnPfn6cwJ1F607DsBCRAyKrxJd1Xez9
-        h4vobLFjcevpHHfiQufdhvicd4MrHgM4Q9H4mUzRkv6wTcUXTenYVEpuZr+T45CHXnapnF69y2Sl
-        VtVqvambvBVHoOGWaPQ2A4wxZzAQAmHoejA0zOY/VHo9suiY4HewR4sBho7hs8ufcrtgivZHe8dA
-        PRlg8i6K9nK9fgMAAP//AwCAKbM7xwEAAA==
+        H4sIAAAAAAAAA4SPzW7DIBCE34WzI2Gc2jHHPkNOjSLEzzqmxUD5OUV5967ruu2hUm/M7My3y51Y
+        QzhRsuhZdKp7kic1yq49HseRqRMd6NSbaWR9P4AhDQnqFXTBxvPaQGMJBlAWyAVVLrKsUieQxfob
+        Wr4uIs82LuBLJpw1JMEECbzGoK/ONVsajJArmFHGDrQ7tMOZMd4OvKMviKnR/JvJWnoxhbTs4F97
+        L9ftuorv+76RcNqQ9woVwdgTsSY9ywyf/vaHgERp3Vc2BmTc4Dv4t/vTeODQ6rca94ucVOBETW4z
+        Hh8AAAD//wMA2XumHoABAAA=
     headers:
       cache-control:
       - no-cache, no-store
@@ -39,168 +50,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"3891d2ca97f76406852683a2ca2b34c4"
-      expires:
-      - '0'
-      location:
-      - /api/v2/addresses/adr_44ce65b09ffd11ec8318ac1f6b0a0d1e
-      pragma:
-      - no-cache
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains; preload
-      transfer-encoding:
-      - chunked
-      x-backend:
-      - easypost
-      x-content-type-options:
-      - nosniff
-      x-download-options:
-      - noopen
-      x-ep-request-uuid:
-      - 1cbfe2c36229327aff234ddb007f986e
-      x-frame-options:
-      - SAMEORIGIN
-      x-node:
-      - bigweb4nuq
-      x-permitted-cross-domain-policies:
-      - none
-      x-proxied:
-      - intlb1nuq 88c34981dc
-      - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      x-request-id:
-      - bc7fdb68-7694-4535-9309-030753aa645c
-      x-runtime:
-      - '0.094760'
-      x-version-label:
-      - easypost-202203092247-68fc214d14-master
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 201
-      message: Created
-- request:
-    body: '{"parcel": {"predefined_package": "RegionalRateBoxA", "weight": 64}}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '68'
-      Content-type:
-      - application/json
-      authorization:
-      - EZTK-NONE
-      user-agent:
-      - easypost/v2 pythonclient/suppressed
-      x-client-user-agent:
-      - suppressed
-    method: POST
-    uri: https://api.easypost.com/v2/parcels
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4SNyw6CMBRE/+WuwZS2vLrTLzDElRtS2gtUa0uwBBPjv1sSjUuXMzlz5glGg4Bp
-        VrYtsEfKal1kFec5wboqu6zuMomMyyovIQHfXVCFODjKWaGNjZpRBtSt3FpKKE0JS0l9okwQLmh5
-        jswy6b+MRTeEEYRbrE1gNfoXRjTDGL5pmlFjb1z0TVJd5YBR2uBgvJO2iT8H/9hH4fpZFXxHErh5
-        vXEB7wFebwAAAP//AwAAgYiT9QAAAA==
-    headers:
-      cache-control:
-      - no-cache, no-store
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json; charset=utf-8
-      etag:
-      - W/"b6092b621155929473d295dec3c2867f"
-      expires:
-      - '0'
-      location:
-      - /api/v2/parcels.prcl_6efe239d6184450e987b19b1ae34a857
-      pragma:
-      - no-cache
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains; preload
-      transfer-encoding:
-      - chunked
-      x-backend:
-      - easypost
-      x-content-type-options:
-      - nosniff
-      x-download-options:
-      - noopen
-      x-ep-request-uuid:
-      - 1cbfe2c36229327bff234ddb007f987b
-      x-frame-options:
-      - SAMEORIGIN
-      x-node:
-      - bigweb5nuq
-      x-permitted-cross-domain-policies:
-      - none
-      x-proxied:
-      - intlb1nuq 88c34981dc
-      - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      x-request-id:
-      - bdded4fb-8246-43f3-a56d-afd612253ca5
-      x-runtime:
-      - '0.023133'
-      x-version-label:
-      - easypost-202203092247-68fc214d14-master
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 201
-      message: Created
-- request:
-    body: '{"batch": {"shipment": [{"to_address": {"name": "Jon Calhoun", "street1":
-      "388 Townsend St", "street2": "Apt 30", "city": "San Francisco", "state": "CA",
-      "zip": "94107", "phone": "415-456-7890"}, "from_address": {"id": "adr_44ce65b09ffd11ec8318ac1f6b0a0d1e"},
-      "parcel": {"id": "prcl_6efe239d6184450e987b19b1ae34a857"}, "reference": "1234567890",
-      "carrier": "USPS", "service": "Priority"}]}}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '390'
-      Content-type:
-      - application/json
-      authorization:
-      - EZTK-NONE
-      user-agent:
-      - easypost/v2 pythonclient/suppressed
-      x-client-user-agent:
-      - suppressed
-    method: POST
-    uri: https://api.easypost.com/v2/batches/create_and_buy
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4SPzW7DIBCE34WzI2FiJw7HPkNPrSK04E1Mi4Hyc4ry7lnXddtDpd6Y2Zlvlxuz
-        I5NMQzGTOrQIvIWOAzfdcGxBd3oY+v4gQJ849qxhQb+hKdR4WhpkzGFEkgVzIZULlEWahFCsv5Ll
-        66zyZOOMvmQm24YlvGBCbyjoq3PNmsZRwQIWXIgd3+/46VnsJe+kOL4Qpsbx30w24NUlpHkD/9r7
-        el6vq/S+bRuZ5A37qFgJTD0VazITZPz01z8EIoJ1X9kYiHHF7+Df7k/jTkNr3mvcLnKg0ama3Grc
-        HwAAAP//AwBUlqgkgAEAAA==
-    headers:
-      cache-control:
-      - no-cache, no-store
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json; charset=utf-8
-      etag:
-      - W/"4456e0d3631058a9c3e2f1662273bb84"
+      - W/"f09e024bb8f264684976363908288575"
       expires:
       - '0'
       pragma:
@@ -218,159 +68,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 1cbfe2c36229327bff234ddb007f9885
-      x-frame-options:
-      - SAMEORIGIN
-      x-node:
-      - bigweb3nuq
-      x-permitted-cross-domain-policies:
-      - none
-      x-proxied:
-      - intlb2nuq 88c34981dc
-      - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      x-request-id:
-      - fe2a0855-7893-403a-9a91-87aa1a9281fd
-      x-runtime:
-      - '0.041479'
-      x-version-label:
-      - easypost-202203092247-68fc214d14-master
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-type:
-      - application/json
-      authorization:
-      - EZTK-NONE
-      user-agent:
-      - easypost/v2 pythonclient/suppressed
-      x-client-user-agent:
-      - suppressed
-    method: GET
-    uri: https://api.easypost.com/v2/batches/batch_61ea01a40a0c4871ab4b885562ab90e5
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4RQy07DMBD8F5+DtH6lTo58AycQsmxn04bmRWyfqv47m6aBCg7cvLOz45m5sK5h
-        NfMuhZMtOTrgToGDoMyBO6+8MVqXwvkKULOCTf4DQ6KL5/WCgGFqkMaEMdEUk0vrOOclnFzsxiOB
-        Yx5sPHXzgGOKrOYFW7DFBcdA1DH3fcHCgnTYWLdKCxDiCeQTVC9C1qBqcXglmTw3/3JicKNtp2XY
-        hR/+fbvcY64mc1xdTvQ8or27xYYUNsqAMdJmV3nwy7iQSpcHUwGx0+LCmVLasNVQKdAagEMlS845
-        aAFGlES8tRxPs5Wmaow3wGUrlNZN5aUXqmwhgG+NFOz6vtW4OrzsxbAaCvaZMVN+ivft+IbfON1E
-        wV3X37l/o629/0Z/Lq607MI5z3vk3nnsbV76Dbh+AQAA//8DAEPCQj0pAgAA
-    headers:
-      cache-control:
-      - no-cache, no-store
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json; charset=utf-8
-      etag:
-      - W/"51bf8361849014acc0cb2c2906a82c1e"
-      expires:
-      - '0'
-      pragma:
-      - no-cache
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains; preload
-      transfer-encoding:
-      - chunked
-      x-backend:
-      - easypost
-      x-content-type-options:
-      - nosniff
-      x-download-options:
-      - noopen
-      x-ep-request-uuid:
-      - 1cbfe2c36229327cff234ddb007f98c4
-      x-frame-options:
-      - SAMEORIGIN
-      x-node:
-      - bigweb8nuq
-      x-permitted-cross-domain-policies:
-      - none
-      x-proxied:
-      - intlb2nuq 88c34981dc
-      - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      x-request-id:
-      - d496cad3-3c0b-4b4f-b0b2-3ef2f175f3c8
-      x-runtime:
-      - '0.024508'
-      x-version-label:
-      - easypost-202203092247-68fc214d14-master
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-type:
-      - application/json
-      authorization:
-      - EZTK-NONE
-      user-agent:
-      - easypost/v2 pythonclient/suppressed
-      x-client-user-agent:
-      - suppressed
-    method: GET
-    uri: https://api.easypost.com/v2/batches/batch_61ea01a40a0c4871ab4b885562ab90e5
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA3xQy27DIBD8F86OtLwc7GO/IadWFQKMYzd+1cApyr93ieM2aqXe2NmZZWaupG9I
-        TayJrtMl9QaoEWDACXWkxgqrlJQlM7YCL0lBZvvhXUTFS1YgMM6NxzH6EHEK0cQ8Lml1nQm+QWxK
-        ow5dv4x+ioHUtCCrb/3qJ4fMKQ1DQdzqUddoky8zYOwA/ADVifEaRM2Or3gmLc1/HJU5wZlJt/M6
-        7oef/n27PlJmjylkkzM+z14/m90oow8BN/uVJ7+EMi5keVQVIDuuxl366azd1kIlQEoAChUvKaUg
-        GShWIvFecugWzVXVKKuA8pYJKZvKcstE2YID2yrOyO19azE7vO7FkBoK8pl8wvwY79vxHb9z+hmD
-        m354cP9Gy73/Rn8UN1z27pKWPfJgrB90WocNuH0BAAD//wMAarlwySgCAAA=
-    headers:
-      cache-control:
-      - no-cache, no-store
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json; charset=utf-8
-      etag:
-      - W/"8462de07c6e0e909233aefb289af5c79"
-      expires:
-      - '0'
-      pragma:
-      - no-cache
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains; preload
-      transfer-encoding:
-      - chunked
-      x-backend:
-      - easypost
-      x-content-type-options:
-      - nosniff
-      x-download-options:
-      - noopen
-      x-ep-request-uuid:
-      - 1cbfe2c36229327dff234ddb007f990e
+      - c758e50d6233b37aff03010c002a5a0f
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -378,123 +76,13 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 88c34981dc
-      - intlb2wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      x-request-id:
-      - ed9443a1-a904-469c-9028-f3f43b2ae138
+      - intlb1nuq 3e97db20d4
+      - intlb2wdc 3e97db20d4
+      - extlb1wdc 3e97db20d4
       x-runtime:
-      - '0.026568'
+      - '0.047697'
       x-version-label:
-      - easypost-202203092247-68fc214d14-master
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"amount": 100}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '15'
-      Content-type:
-      - application/json
-      authorization:
-      - EZTK-NONE
-      user-agent:
-      - easypost/v2 pythonclient/suppressed
-      x-client-user-agent:
-      - suppressed
-    method: POST
-    uri: https://api.easypost.com/v2/shipments/shp_389d8b8013f2455d9b3b246f0c0bf832/insure
-  response:
-    body:
-      string: !!binary |
-        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
-    headers:
-      cache-control:
-      - no-cache, no-store
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json; charset=utf-8
-      etag:
-      - W/"90a6fd66aa0887573d1dd340b8103325"
-      expires:
-      - '0'
-      pragma:
-      - no-cache
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains; preload
-      transfer-encoding:
-      - chunked
-      x-backend:
-      - easypost
-      x-content-type-options:
-      - nosniff
-      x-download-options:
-      - noopen
-      x-ep-request-uuid:
-      - 1cbfe2c36229327dff234ddb007f9919
-      x-frame-options:
-      - SAMEORIGIN
-      x-node:
-      - bigweb6nuq
-      x-permitted-cross-domain-policies:
-      - none
-      x-proxied:
-      - intlb2nuq 88c34981dc
-      - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      x-request-id:
-      - 53435fb9-a334-4514-b053-5aa6027741cf
-      x-runtime:
-      - '0.142369'
-      x-version-label:
-      - easypost-202203092247-68fc214d14-master
+      - easypost-202203171927-d8d87a16dd-master
       x-xss-protection:
       - 1; mode=block
     status:

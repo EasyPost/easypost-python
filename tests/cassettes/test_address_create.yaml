@@ -1,0 +1,81 @@
+interactions:
+- request:
+    body: '{"address": {"name": "Jack Sparrow", "company": "EasyPost", "street1":
+      "388 Townsend St", "street2": "Apt 20", "city": "San Francisco", "state": "CA",
+      "zip": "94107", "phone": "5555555555"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '190'
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/addresses
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4yRsW7DIBCGX8VibSIBju3EW1S1Q6dKTmfrDGeF1gYLcNM0yrv3cKRU6lQm7uM7
+        7hdcmNGsZqB9y6tyV2BRQrnhQqDaihJBib7sVNXlpWQr5rp3VJH8vdYeQyCkPEJE3ULCkku55vla
+        VAcpa1HVsnrgvOacxHnS/xMtjEjKC6iPrJnAe3dKc9w4gT3TwROE86sLkWCIHjEKgvl2mx3cyQa0
+        Omt+z2QKO8VMppuViemCBmz27MEqE5RbTApG/HFPxbeZaLvbCF4tU2cbfWp6a6icjs4ms7gvgjiC
+        GVht52FYsdHpJERc8ilKb9C3PSgzLMNvFr2d0WijgXtjjxo9DG2ErzZ9yY0u0f6wT/SmNwqicTaw
+        +nK9/gAAAP//AwAmcuNUxQEAAA==
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"a27b5fa41de73ef9bfbe4dfa55399072"
+      expires:
+      - '0'
+      location:
+      - /api/v2/addresses/adr_07695e56a64011ec816eac1f6bc7b362
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 34f5dd416233b377ff0300ea002aecbd
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb8nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 3e97db20d4
+      - extlb1nuq 3e97db20d4
+      x-runtime:
+      - '0.031396'
+      x-version-label:
+      - easypost-202203171927-d8d87a16dd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1
