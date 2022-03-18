@@ -1,4 +1,4 @@
-import easypost.easypost_object as util
+from easypost.easypost_object import convert_to_easypost_object
 from easypost.requestor import Requestor
 from easypost.resource import AllResource, CreateResource
 
@@ -10,7 +10,7 @@ class Batch(AllResource, CreateResource):
         url = "%s/%s" % (cls.class_url(), "create_and_buy")
         wrapped_params = {cls.snakecase_name(): params}
         response, api_key = requestor.request("post", url, wrapped_params)
-        return util.convert_to_easypost_object(response, api_key)
+        return convert_to_easypost_object(response, api_key)
 
     def buy(self, **params):
         requestor = Requestor(self._api_key)
