@@ -1,7 +1,6 @@
 import re
 
-import easypost.easypost_object as util
-from easypost.easypost_object import EasyPostObject
+from easypost.easypost_object import EasyPostObject, convert_to_easypost_object
 from easypost.error import Error
 from easypost.requestor import Requestor
 
@@ -55,7 +54,7 @@ class AllResource(Resource):
         requestor = Requestor(api_key)
         url = cls.class_url()
         response, api_key = requestor.request("get", url, params)
-        return util.convert_to_easypost_object(response, api_key)
+        return convert_to_easypost_object(response, api_key)
 
 
 class CreateResource(Resource):
@@ -65,7 +64,7 @@ class CreateResource(Resource):
         url = cls.class_url()
         wrapped_params = {cls.snakecase_name(): params}
         response, api_key = requestor.request("post", url, wrapped_params)
-        return util.convert_to_easypost_object(response, api_key)
+        return convert_to_easypost_object(response, api_key)
 
 
 class UpdateResource(Resource):

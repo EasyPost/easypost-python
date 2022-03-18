@@ -1,4 +1,4 @@
-import easypost.easypost_object as util
+from easypost.easypost_object import convert_to_easypost_object
 from easypost.requestor import Requestor
 from easypost.resource import AllResource, CreateResource
 
@@ -18,7 +18,7 @@ class Address(AllResource, CreateResource):
             wrapped_params[key] = value
 
         response, api_key = requestor.request("post", url, wrapped_params)
-        return util.convert_to_easypost_object(response, api_key)
+        return convert_to_easypost_object(response, api_key)
 
     @classmethod
     def create_and_verify(cls, api_key=None, carrier=None, **params):
@@ -32,13 +32,13 @@ class Address(AllResource, CreateResource):
         response_message = response.get("message", None)
 
         if response_address is not None:
-            verified_address = util.convert_to_easypost_object(response_address, api_key)
+            verified_address = convert_to_easypost_object(response_address, api_key)
             if response_message is not None:
                 verified_address.message = response_message
                 verified_address._immutable_values.update("message")
             return verified_address
         else:
-            return util.convert_to_easypost_object(response, api_key)
+            return convert_to_easypost_object(response, api_key)
 
     def verify(self, carrier=None):
         requestor = Requestor(self._api_key)
@@ -50,10 +50,10 @@ class Address(AllResource, CreateResource):
         response_message = response.get("message", None)
 
         if response_address is not None:
-            verified_address = util.convert_to_easypost_object(response_address, api_key)
+            verified_address = convert_to_easypost_object(response_address, api_key)
             if response_message is not None:
                 verified_address.message = response_message
                 verified_address._immutable_values.update("message")
             return verified_address
         else:
-            return util.convert_to_easypost_object(response, api_key)
+            return convert_to_easypost_object(response, api_key)

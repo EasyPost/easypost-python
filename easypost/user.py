@@ -1,4 +1,4 @@
-import easypost.easypost_object as util
+from easypost.easypost_object import convert_to_easypost_object
 from easypost.requestor import Requestor
 from easypost.resource import CreateResource, DeleteResource, UpdateResource
 
@@ -10,7 +10,7 @@ class User(CreateResource, UpdateResource, DeleteResource):
         url = cls.class_url()
         wrapped_params = {cls.snakecase_name(): params}
         response, api_key = requestor.request("post", url, wrapped_params, False)
-        return util.convert_to_easypost_object(response, api_key)
+        return convert_to_easypost_object(response, api_key)
 
     @classmethod
     def retrieve(cls, easypost_id="", api_key=None, **params):
@@ -22,7 +22,7 @@ class User(CreateResource, UpdateResource, DeleteResource):
         if easypost_id == "":
             requestor = Requestor(api_key)
             response, api_key = requestor.request("get", cls.class_url())
-            return util.convert_to_easypost_object(response, api_key)
+            return convert_to_easypost_object(response, api_key)
         else:
             instance = cls(easypost_id, api_key, **params)
             instance.refresh()
@@ -32,14 +32,14 @@ class User(CreateResource, UpdateResource, DeleteResource):
     def retrieve_me(cls, api_key=None, **params):
         requestor = Requestor(api_key)
         response, api_key = requestor.request("get", cls.class_url())
-        return util.convert_to_easypost_object(response, api_key)
+        return convert_to_easypost_object(response, api_key)
 
     @classmethod
     def all_api_keys(cls, api_key=None):
         requestor = Requestor(api_key)
         url = "/api_keys"
         response, api_key = requestor.request("get", url)
-        return util.convert_to_easypost_object(response, api_key)
+        return convert_to_easypost_object(response, api_key)
 
     def api_keys(self):
         api_keys = self.all_api_keys()
@@ -57,4 +57,4 @@ class User(CreateResource, UpdateResource, DeleteResource):
     def update_brand(self, api_key=None, **params):
         requestor = Requestor(api_key)
         response, api_key = requestor.request("put", self.instance_url() + "/brand", params)
-        return util.convert_to_easypost_object(response, api_key)
+        return convert_to_easypost_object(response, api_key)
