@@ -6,6 +6,7 @@ from easypost.resource import AllResource, CreateResource
 class Report(AllResource, CreateResource):
     @classmethod
     def create(cls, api_key=None, **params):
+        """Create a report."""
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), params["type"])
         response, api_key = requestor.request("post", url, params, False)
@@ -13,6 +14,7 @@ class Report(AllResource, CreateResource):
 
     @classmethod
     def all(cls, api_key=None, **params):
+        """Retrieve all reports."""
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), params["type"])
         response, api_key = requestor.request("get", url, params)

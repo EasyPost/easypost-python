@@ -4,6 +4,7 @@ import easypost
 
 
 def convert_to_easypost_object(response, api_key, parent=None, name=None):
+    """Convert a response to an EasyPost object."""
     types = {
         "Address": easypost.Address,
         "Batch": easypost.Batch,
@@ -143,11 +144,13 @@ class EasyPostObject(object):
 
     @classmethod
     def construct_from(cls, values, api_key=None, parent=None, name=None):
+        """Construct an object."""
         instance = cls(values.get("id"), api_key, parent, name)
         instance.refresh_from(values, api_key)
         return instance
 
     def refresh_from(self, values, api_key):
+        """Update local object with changes from the API."""
         self._api_key = api_key
 
         for k, v in sorted(values.items()):
@@ -161,6 +164,7 @@ class EasyPostObject(object):
             self._unsaved_values.discard(k)
 
     def flatten_unsaved(self):
+        """Return a dict of `_unsaved_values` values from the current object."""
         values = {}
         for key in self._unsaved_values:
             value = self.get(key)
@@ -189,9 +193,12 @@ class EasyPostObject(object):
         return self.__str__() == other.__str__()
 
     def to_json(self, indent=None):
+        """Convert current object to json string."""
         return json.dumps(self.to_dict(), sort_keys=True, indent=indent, cls=EasyPostObjectEncoder)
 
     def to_dict(self):
+        """Convert current object to a dict."""
+
         def _serialize(o):
             if isinstance(o, EasyPostObject):
                 return o.to_dict()
@@ -209,6 +216,7 @@ class EasyPostObject(object):
 
 class EasyPostObjectEncoder(json.JSONEncoder):
     def default(self, obj):
+        """Convert easypost object to a dict."""
         if isinstance(obj, EasyPostObject):
             return obj.to_dict()
         else:

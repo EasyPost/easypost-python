@@ -6,6 +6,7 @@ from easypost.resource import AllResource, CreateResource
 class Address(AllResource, CreateResource):
     @classmethod
     def create(cls, api_key=None, verify=None, verify_strict=None, **params):
+        """Create an address."""
         requestor = Requestor(api_key)
         url = cls.class_url()
 
@@ -22,6 +23,7 @@ class Address(AllResource, CreateResource):
 
     @classmethod
     def create_and_verify(cls, api_key=None, carrier=None, **params):
+        """Create and verify an address."""
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), "create_and_verify")
 
@@ -41,6 +43,7 @@ class Address(AllResource, CreateResource):
             return convert_to_easypost_object(response, api_key)
 
     def verify(self, carrier=None):
+        """Verify an address."""
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "verify")
         params = {"carrier": carrier}

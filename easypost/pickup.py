@@ -4,6 +4,7 @@ from easypost.resource import CreateResource
 
 class Pickup(CreateResource):
     def buy(self, **params):
+        """Buy a pickup."""
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
         response, api_key = requestor.request("post", url, params)
@@ -11,6 +12,7 @@ class Pickup(CreateResource):
         return self
 
     def cancel(self, **params):
+        """Cancel a pickup."""
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "cancel")
         response, api_key = requestor.request("post", url, params)

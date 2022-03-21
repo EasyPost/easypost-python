@@ -11,6 +11,7 @@ from easypost.resource import (
 class CarrierAccount(AllResource, CreateResource, UpdateResource, DeleteResource):
     @classmethod
     def types(cls, api_key=None):
+        """Get the types of carrier accounts available to the user."""
         requestor = Requestor(api_key)
         response, api_key = requestor.request("get", "/carrier_types")
         return convert_to_easypost_object(response, api_key)

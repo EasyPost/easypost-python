@@ -5,6 +5,7 @@ from easypost.resource import AllResource, CreateResource
 
 class Shipment(AllResource, CreateResource):
     def regenerate_rates(self):
+        """Regenerate rates for a shipment."""
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "rerate")
         response, api_key = requestor.request("post", url)
@@ -12,12 +13,14 @@ class Shipment(AllResource, CreateResource):
         return self
 
     def get_smartrates(self):
+        """Get smartrates for a shipment."""
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "smartrate")
         response, api_key = requestor.request("get", url)
         return response.get("result", [])
 
     def buy(self, **params):
+        """Buy a shipment."""
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
         response, api_key = requestor.request("post", url, params)
@@ -25,6 +28,7 @@ class Shipment(AllResource, CreateResource):
         return self
 
     def refund(self, **params):
+        """Refund a shipment."""
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "refund")
         response, api_key = requestor.request("post", url, params)
@@ -32,6 +36,7 @@ class Shipment(AllResource, CreateResource):
         return self
 
     def insure(self, **params):
+        """Insure a shipment."""
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "insure")
         response, api_key = requestor.request("post", url, params)
@@ -39,6 +44,7 @@ class Shipment(AllResource, CreateResource):
         return self
 
     def label(self, **params):
+        """Convert the label format of a shipment."""
         requestor = Requestor(self._api_key)
         url = "%s/%s" % (self.instance_url(), "label")
         response, api_key = requestor.request("get", url, params)
@@ -46,6 +52,7 @@ class Shipment(AllResource, CreateResource):
         return self
 
     def lowest_rate(self, carriers=None, services=None):
+        """Get the lowest rate of a shipment."""
         carriers = carriers or []
         services = services or []
         lowest_rate = None

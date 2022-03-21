@@ -5,6 +5,7 @@ from easypost.resource import AllResource, CreateResource
 class Tracker(AllResource, CreateResource):
     @classmethod
     def create_list(cls, trackers, api_key=None):
+        """Create a list of trackers."""
         requestor = Requestor(api_key)
         url = "%s/%s" % (cls.class_url(), "create_list")
         new_params = {"trackers": trackers}
