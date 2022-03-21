@@ -12,6 +12,34 @@ def create_report(report_type, report_start_date, report_end_date):
 
 
 @pytest.mark.vcr()
+def test_report_create_with_additional_columns(report_start_date, report_end_date):
+    report = easypost.Report.create(
+        type="shipment",
+        start_date=report_start_date,
+        end_date=report_end_date,
+        additional_columns=["from_name", "from_company"],
+    )
+
+    # Reports are queued, so we can't wait for completion.
+    # Verifying columns would require parsing CSV. Verify correct parameters via URL in cassette
+    assert isinstance(report, easypost.Report)
+
+
+@pytest.mark.vcr()
+def test_report_create_with_columns(report_start_date, report_end_date):
+    report = easypost.Report.create(
+        type="shipment",
+        start_date=report_start_date,
+        end_date=report_end_date,
+        columns=["usps_zone"],
+    )
+
+    # Reports are queued, so we can't wait for completion.
+    # Verifying columns would require parsing CSV. Verify correct parameters via URL in cassette
+    assert isinstance(report, easypost.Report)
+
+
+@pytest.mark.vcr()
 def test_report_create_payment_log_report(report_start_date, report_end_date):
     report = create_report("payment_log", report_start_date, report_end_date)
 

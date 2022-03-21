@@ -1,0 +1,75 @@
+interactions:
+- request:
+    body: '{"type": "shipment", "start_date": "2022-03-01", "end_date": "2022-03-11"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '74'
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/reports/shipment?additional_columns%5B%5D=from_name&additional_columns%5B%5D=from_company&
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SOQY7CMAxF75I1SKnbDiHHGFixiULsqhmFNEpcgYS4+ySwQWzY2e+/L/suPAot
+        ypwyJbPHzuFO4r6HYdgpqaZpVKDGUZ1htHYQG7Gc/8hxrRxmny4U+ZfSkrkmLpNlQmNbChJgK/st
+        9MfuRwNoqU7VWRN+dQrbzKZ5b47sakIRP3nX+GXBxpgKv/q8lrpHuraTOQgd1xCeo6Fb8pnK84MX
+        9dGFFcm42QfMFIWebCj0+AcAAP//AwDr0SMYGwEAAA==
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"12add75880785e2b6e5d453dc173cac2"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c18aa496623b4930ff02fbc300123b79
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb2nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 3e97db20d4
+      - extlb1nuq 3e97db20d4
+      x-runtime:
+      - '0.047671'
+      x-version-label:
+      - easypost-202203222149-4f3b000452-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1

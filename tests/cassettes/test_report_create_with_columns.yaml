@@ -1,0 +1,75 @@
+interactions:
+- request:
+    body: '{"type": "shipment", "start_date": "2022-03-01", "end_date": "2022-03-11"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '74'
+      Content-type:
+      - application/json
+      authorization:
+      - EZTK-NONE
+      user-agent:
+      - easypost/v2 pythonclient/suppressed
+      x-client-user-agent:
+      - suppressed
+    method: POST
+    uri: https://api.easypost.com/v2/reports/shipment?columns%5B%5D=usps_zone&
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4SOMW7DMAxF76K5ASjGcWwdo+nURZBNGlahyIJEowWC3r1SshRZspHvvw/ypjwp
+        o8qaMic7nPWEE3QIp75bOnQjDT1M4GDUtAxn9aa26YtnqZXL6tOVo7xz2rLUZM7shMm6liIgHuB4
+        wOOH7g2igfGzOnuil04Rl8U2758DuiYc6Znrxq8bNSZc5NGXvdQ98nc7mYMycQ/hPlr+ST5zuX/w
+        oD7OYSe28+oDZY7KLC4U/v0DAAD//wMAzYmmVhsBAAA=
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"f2906ef81541d44c2c1ddff260d1b777"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - c18aa493623b4931ff02fbc400123b96
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb3nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 3e97db20d4
+      - extlb1nuq 3e97db20d4
+      x-runtime:
+      - '0.077810'
+      x-version-label:
+      - easypost-202203222149-4f3b000452-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1
