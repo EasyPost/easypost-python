@@ -60,6 +60,7 @@ class Requestor:
             ("lang_version", platform.python_version),
             ("platform", platform.platform),
             ("uname", lambda: " ".join(platform.uname())),
+            ("implementation", platform.python_implementation),
         ):
             try:
                 val = func()
