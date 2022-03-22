@@ -34,7 +34,7 @@ class Requestor:
             return param
 
     def request(
-        self, method: str, url: str, params: Optional[Dict[str, Any]] = None, api_key_required: bool = True
+            self, method: str, url: str, params: Optional[Dict[str, Any]] = None, api_key_required: bool = True
     ) -> Tuple[dict, Optional[str]]:
         """Make a request to the EasyPost API."""
         if params is None:
@@ -46,7 +46,7 @@ class Requestor:
         return response, my_api_key
 
     def request_raw(
-        self, method: str, url: str, params: Optional[Dict[str, Any]] = None, api_key_required: bool = True
+            self, method: str, url: str, params: Optional[Dict[str, Any]] = None, api_key_required: bool = True
     ) -> Tuple[str, int, Optional[str]]:
         """Internal logic required to make a request to the EasyPost API."""
         # Importing here to avoid circular imports
@@ -69,11 +69,18 @@ class Requestor:
             "lang": "python",
             "publisher": "easypost",
             "request_lib": request_lib,
-            "lang_version": platform.python_version(),
-            "platform": platform.platform(),
-            "uname": " ".join(platform.uname()),
-            "implementation": platform.python_implementation(),
         }
+        for attr, func in (
+                ("lang_version", platform.python_version),
+                ("platform", platform.platform),
+                ("uname", lambda: " ".join(platform.uname())),
+                ("implementation", platform.python_implementation),
+        ):
+            try:
+                val = func()
+            except Exception as e:
+                val = "!! %s" % e
+            ua[attr] = val
 
         if hasattr(ssl, "OPENSSL_VERSION"):
             ua["openssl_version"] = ssl.OPENSSL_VERSION
@@ -111,7 +118,7 @@ class Requestor:
         return response
 
     def requests_request(
-        self, method: str, abs_url: str, headers: Dict[str, Any], params: Dict[str, Any]
+            self, method: str, abs_url: str, headers: Dict[str, Any], params: Dict[str, Any]
     ) -> Tuple[str, int]:
         """Make a request by using the `request` library."""
         method = method.lower()
@@ -143,7 +150,7 @@ class Requestor:
         return http_body, http_status
 
     def urlfetch_request(
-        self, method: str, abs_url: str, headers: Dict[str, Any], params: Dict[str, Any]
+            self, method: str, abs_url: str, headers: Dict[str, Any], params: Dict[str, Any]
     ) -> Tuple[str, int]:
         """Make a request by using the `urlfetch` library."""
         fetch_args = {"method": method, "headers": headers, "validate_certificate": False, "deadline": timeout}

@@ -33,6 +33,9 @@ setup(
     extras_require={
         "dev": DEV_REQUIREMENTS,
     },
+    package_data={
+        'easypost': ['py.typed']
+    },
     test_suite="test",
     long_description=long_description,
     long_description_content_type="text/markdown",

@@ -5,13 +5,14 @@
 * Bumps minimum Python version from 2.7 to 3.6
 * Bumps all dependencies
 * Add the `update_brand()` method to the User object
-* Removes `_max_timeout` and instead uses a flat 60 second timeout for requests
+* Removes `_max_timeout` and instead uses a flat 60-second timeout for requests
 * Adds Python version to user-agent header on requests
 * Removes `shipment.get_rates()` method since the shipment object already has rates. If you need to get new rates for a shipment, please use the `shipment.regenerate_rates()` method.
 * Add `retrieve_me()` convenience function that allow users to retrieve without specifying an ID.
 * Remove `blob` class since it's never being used
 * Remove `track_with_code` in shipment class since it's no longer being used
 * Add support for `columns` and `additional_columns` on Report creation
+* Must pass a list object to `Shipment.lowest_rate()` rather than a comma-separated list
 
 ### v6.0.0 2021-10-12
 
