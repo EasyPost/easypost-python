@@ -1,5 +1,5 @@
 import re
-from typing import List, Optional, Any
+from typing import Any, List, Optional
 
 from easypost.easypost_object import EasyPostObject, convert_to_easypost_object
 from easypost.error import Error

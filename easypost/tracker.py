@@ -1,4 +1,4 @@
-from typing import List, Optional, Dict, Any
+from typing import Any, Dict, List, Optional
 
 from easypost.requestor import Requestor
 from easypost.resource import AllResource, CreateResource

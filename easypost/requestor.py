@@ -4,7 +4,7 @@ import platform
 import ssl
 import time
 from json import JSONDecodeError
-from typing import Optional, Tuple, Union, Dict, Any
+from typing import Any, Dict, Optional, Tuple, Union
 from urllib.parse import urlencode
 
 from easypost.constant import SUPPORT_EMAIL, TIMEOUT, USER_AGENT
@@ -110,7 +110,9 @@ class Requestor:
             self.handle_api_error(http_status=http_status, http_body=http_body, response=response)
         return response
 
-    def requests_request(self, method: str, abs_url: str, headers: Dict[str, Any], params: Dict[str, Any]) -> Tuple[str, int]:
+    def requests_request(
+        self, method: str, abs_url: str, headers: Dict[str, Any], params: Dict[str, Any]
+    ) -> Tuple[str, int]:
         """Make a request by using the `request` library."""
         method = method.lower()
         if method == "get" or method == "delete":
@@ -140,7 +142,9 @@ class Requestor:
             )
         return http_body, http_status
 
-    def urlfetch_request(self, method: str, abs_url: str, headers: Dict[str, Any], params: Dict[str, Any]) -> Tuple[str, int]:
+    def urlfetch_request(
+        self, method: str, abs_url: str, headers: Dict[str, Any], params: Dict[str, Any]
+    ) -> Tuple[str, int]:
         """Make a request by using the `urlfetch` library."""
         fetch_args = {"method": method, "headers": headers, "validate_certificate": False, "deadline": timeout}
         if method == "get" or method == "delete":
