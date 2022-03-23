@@ -11,6 +11,7 @@
 * Add `retrieve_me()` convenience function that allow users to retrieve without specifying an ID.
 * Remove `blob` class since it's never being used
 * Remove `track_with_code` in shipment class since it's no longer being used
+* Add support for `columns` and `additional_columns` on Report creation
 
 ### v6.0.0 2021-10-12
 
