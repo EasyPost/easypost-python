@@ -43,6 +43,9 @@ install:
 	$(PYTHON_BINARY) -m venv $(VIRTUAL_ENV)
 	$(VIRTUAL_BIN)/pip install -e ."[dev]"
 
+install-pypy:
+	$(PYTHON_BINARY) -m venv $(VIRTUAL_ENV)
+	$(VIRTUAL_BIN)/pip install -e ."[pypy_dev]"
 ## isort - Sorts imports throughout the project
 isort:
 	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/
