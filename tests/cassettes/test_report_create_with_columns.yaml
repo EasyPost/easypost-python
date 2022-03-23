@@ -1,6 +1,7 @@
 interactions:
 - request:
-    body: '{"type": "shipment", "start_date": "2022-03-01", "end_date": "2022-03-11"}'
+    body: '{"type": "shipment", "start_date": "2022-03-01", "end_date": "2022-03-11",
+      "columns": ["usps_zone"]}'
     headers:
       Accept:
       - '*/*'
@@ -9,7 +10,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '74'
+      - '100'
       Content-type:
       - application/json
       authorization:
@@ -19,14 +20,14 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: POST
-    uri: https://api.easypost.com/v2/reports/shipment?columns%5B%5D=usps_zone&
+    uri: https://api.easypost.com/v2/reports/shipment
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4SOMW7DMAxF76K5ASjGcWwdo+nURZBNGlahyIJEowWC3r1SshRZspHvvw/ypjwp
-        o8qaMic7nPWEE3QIp75bOnQjDT1M4GDUtAxn9aa26YtnqZXL6tOVo7xz2rLUZM7shMm6liIgHuB4
-        wOOH7g2igfGzOnuil04Rl8U2758DuiYc6Znrxq8bNSZc5NGXvdQ98nc7mYMycQ/hPlr+ST5zuX/w
-        oD7OYSe28+oDZY7KLC4U/v0DAAD//wMAzYmmVhsBAAA=
+        H4sIAAAAAAAAA4SOQQ7CIBBF78LaJi20VTmGunJDKDNNMUgJTKOJ8e5CuzFu3M28/35mXswCkyxN
+        IWJQtR5NP2hoYexbLbrj/sBHY1oh0DQ4ANuxebihoVw5Tzbc0dMJwxwpJyaiJgSlS8przqtaVFxc
+        eCM7Ibvump0lwF8nkY6kivfl1E1O0MMvbwq/z1AYYaKtT0vKu8dHORkdk35xbh0VPoONmNYPNmq9
+        cQugMpN1ENEzOWqX8P0BAAD//wMAXYPjmhsBAAA=
     headers:
       cache-control:
       - no-cache, no-store
@@ -35,7 +36,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"f2906ef81541d44c2c1ddff260d1b777"
+      - W/"fea3abd2485ac3f11aeb87851a241354"
       expires:
       - '0'
       pragma:
@@ -53,20 +54,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c18aa493623b4931ff02fbc400123b96
+      - 4aee9dd1623b96f3ff10b19b000fe131
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb3nuq
+      - bigweb8nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
+      - intlb1nuq 3e97db20d4
       - extlb1nuq 3e97db20d4
       x-runtime:
-      - '0.077810'
+      - '0.035181'
       x-version-label:
-      - easypost-202203222149-4f3b000452-master
+      - easypost-202203231943-61a988cd70-master
       x-xss-protection:
       - 1; mode=block
     status:
