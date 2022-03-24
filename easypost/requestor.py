@@ -34,7 +34,11 @@ class Requestor:
             return param
 
     def request(
-        self, method: str, url: str, params: Optional[Dict[str, Any]] = None, api_key_required: bool = True
+        self,
+        method: str,
+        url: str,
+        params: Optional[Dict[str, Any]] = None,
+        api_key_required: bool = True,
     ) -> Tuple[dict, Optional[str]]:
         """Make a request to the EasyPost API."""
         if params is None:
@@ -46,7 +50,11 @@ class Requestor:
         return response, my_api_key
 
     def request_raw(
-        self, method: str, url: str, params: Optional[Dict[str, Any]] = None, api_key_required: bool = True
+        self,
+        method: str,
+        url: str,
+        params: Optional[Dict[str, Any]] = None,
+        api_key_required: bool = True,
     ) -> Tuple[str, int, Optional[str]]:
         """Internal logic required to make a request to the EasyPost API."""
         # Importing here to avoid circular imports
@@ -111,14 +119,18 @@ class Requestor:
             response = json.loads(http_body)
         except JSONDecodeError:
             raise Exception(
-                "Unable to parse response body from API: %s\nHTTP response code was: %d" % (http_body, http_status)
+                f"Unable to parse response body from API: {http_body}\nHTTP response code was: {http_status}"
             )
         if not (200 <= http_status < 300):
             self.handle_api_error(http_status=http_status, http_body=http_body, response=response)
         return response
 
     def requests_request(
-        self, method: str, abs_url: str, headers: Dict[str, Any], params: Dict[str, Any]
+        self,
+        method: str,
+        abs_url: str,
+        headers: Dict[str, Any],
+        params: Dict[str, Any],
     ) -> Tuple[str, int]:
         """Make a request by using the `request` library."""
         method = method.lower()
@@ -150,7 +162,11 @@ class Requestor:
         return http_body, http_status
 
     def urlfetch_request(
-        self, method: str, abs_url: str, headers: Dict[str, Any], params: Dict[str, Any]
+        self,
+        method: str,
+        abs_url: str,
+        headers: Dict[str, Any],
+        params: Dict[str, Any],
     ) -> Tuple[str, int]:
         """Make a request by using the `urlfetch` library."""
         fetch_args = {"method": method, "headers": headers, "validate_certificate": False, "deadline": timeout}

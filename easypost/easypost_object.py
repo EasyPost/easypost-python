@@ -5,7 +5,10 @@ import easypost
 
 
 def convert_to_easypost_object(
-    response: Dict[str, Any], api_key: Optional[str] = None, parent: object = None, name: Optional[str] = None
+    response: Dict[str, Any],
+    api_key: Optional[str] = None,
+    parent: object = None,
+    name: Optional[str] = None,
 ):
     """Convert a response to an EasyPost object."""
     types = {
@@ -156,7 +159,11 @@ class EasyPostObject(object):
 
     @classmethod
     def construct_from(
-        cls, values: Dict[str, Any], api_key: Optional[str] = None, parent: object = None, name: Optional[str] = None
+        cls,
+        values: Dict[str, Any],
+        api_key: Optional[str] = None,
+        parent: object = None,
+        name: Optional[str] = None,
     ) -> object:
         """Construct an object."""
         instance = cls(easypost_id=values.get("id"), api_key=api_key, parent=parent, name=name)

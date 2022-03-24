@@ -17,6 +17,7 @@ DEV_REQUIREMENTS = [
     "vcrpy==4.*",
 ]
 
+# packages incompatible with PyPy go here
 CPYTHON_DEV_REQUIREMENTS = [
     "mypy",
 ]
@@ -35,7 +36,7 @@ setup(
     install_requires=REQUIREMENTS,
     extras_require={
         "dev": DEV_REQUIREMENTS + CPYTHON_DEV_REQUIREMENTS,
-        "pypy_dev": DEV_REQUIREMENTS,
+        "pypy_dev": DEV_REQUIREMENTS,  # no cpython requirements
     },
     package_data={
         'easypost': ['py.typed']
