@@ -1,3 +1,5 @@
+from typing import List, Optional
+
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.requestor import Requestor
 from easypost.resource import (
@@ -10,8 +12,8 @@ from easypost.resource import (
 
 class CarrierAccount(AllResource, CreateResource, UpdateResource, DeleteResource):
     @classmethod
-    def types(cls, api_key=None):
+    def types(cls, api_key: Optional[str] = None) -> List[str]:
         """Get the types of carrier accounts available to the user."""
-        requestor = Requestor(api_key)
-        response, api_key = requestor.request("get", "/carrier_types")
-        return convert_to_easypost_object(response, api_key)
+        requestor = Requestor(local_api_key=api_key)
+        response, api_key = requestor.request(method="get", url="/carrier_types")
+        return convert_to_easypost_object(response=response, api_key=api_key)

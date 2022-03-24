@@ -3,6 +3,8 @@ import json
 import platform
 import ssl
 import time
+from json import JSONDecodeError
+from typing import Any, Dict, Optional, Tuple, Union
 from urllib.parse import urlencode
 
 from easypost.constant import SUPPORT_EMAIL, TIMEOUT, USER_AGENT
@@ -11,37 +13,53 @@ from easypost.error import Error
 
 
 class Requestor:
-    def __init__(self, local_api_key=None):
+    def __init__(self, local_api_key: Optional[str] = None):
         self._api_key = local_api_key
 
     @classmethod
-    def _objects_to_ids(cls, param):
+    def _objects_to_ids(cls, param: Dict[str, Any]) -> Dict[str, Any]:
         """If providing an object as a parameter to another object,
         only pass along the ID so the API will use the object reference correctly."""
         if isinstance(param, EasyPostObject):
             return {"id": param.id}
         elif isinstance(param, dict):
-            return {k: cls._objects_to_ids(v) for k, v in param.items()}
-        elif isinstance(param, list):
-            return [cls._objects_to_ids(v) for v in param]
+            data = {}
+            for (k, v) in param.items():
+                if isinstance(v, list):
+                    data[k] = [cls._objects_to_ids(item) for item in v]  # type: ignore
+                else:
+                    data[k] = cls._objects_to_ids(v)  # type: ignore
+            return data
         else:
             return param
 
-    def request(self, method, url, params=None, api_key_required=True):
+    def request(
+        self,
+        method: str,
+        url: str,
+        params: Optional[Dict[str, Any]] = None,
+        api_key_required: bool = True,
+    ) -> Tuple[dict, Optional[str]]:
         """Make a request to the EasyPost API."""
         if params is None:
             params = {}
-        http_body, http_status, my_api_key = self.request_raw(method, url, params, api_key_required)
-        response = self.interpret_response(http_body, http_status)
+        http_body, http_status, my_api_key = self.request_raw(
+            method=method, url=url, params=params, api_key_required=api_key_required
+        )
+        response = self.interpret_response(http_body=http_body, http_status=http_status)
         return response, my_api_key
 
-    def request_raw(self, method, url, params=None, api_key_required=True):
+    def request_raw(
+        self,
+        method: str,
+        url: str,
+        params: Optional[Dict[str, Any]] = None,
+        api_key_required: bool = True,
+    ) -> Tuple[str, int, Optional[str]]:
         """Internal logic required to make a request to the EasyPost API."""
         # Importing here to avoid circular imports
         from easypost import VERSION, api_base, api_key
 
-        if params is None:
-            params = {}
         my_api_key = self._api_key or api_key
 
         if api_key_required and my_api_key is None:
@@ -52,7 +70,7 @@ class Requestor:
             )
 
         abs_url = "%s%s" % (api_base, url or "")
-        params = self._objects_to_ids(params)
+        params = self._objects_to_ids(param=params or {})
 
         ua = {
             "client_version": VERSION,
@@ -67,7 +85,7 @@ class Requestor:
             ("implementation", platform.python_implementation),
         ):
             try:
-                val = func()
+                val = func()  # type: ignore
             except Exception as e:
                 val = "!! %s" % e
             ua[attr] = val
@@ -83,29 +101,41 @@ class Requestor:
         }
 
         if request_lib == "urlfetch":
-            http_body, http_status = self.urlfetch_request(method, abs_url, headers, params)
+            http_body, http_status = self.urlfetch_request(
+                method=method, abs_url=abs_url, headers=headers, params=params
+            )
         elif request_lib == "requests":
-            http_body, http_status = self.requests_request(method, abs_url, headers, params)
+            http_body, http_status = self.requests_request(
+                method=method, abs_url=abs_url, headers=headers, params=params
+            )
         else:
             raise Error(f"Bug discovered: invalid request_lib: {request_lib}. Please report to {SUPPORT_EMAIL}.")
 
         return http_body, http_status, my_api_key
 
-    def interpret_response(self, http_body, http_status):
+    def interpret_response(self, http_body: str, http_status: int) -> Dict[str, Any]:
         """Interpret the response body we receive from the API."""
         try:
             response = json.loads(http_body)
-        except Exception:
-            raise Error("Invalid response body from API: (%d) %s " % (http_status, http_body), http_status, http_body)
+        except JSONDecodeError:
+            raise Exception(
+                f"Unable to parse response body from API: {http_body}\nHTTP response code was: {http_status}"
+            )
         if not (200 <= http_status < 300):
-            self.handle_api_error(http_status, http_body, response)
+            self.handle_api_error(http_status=http_status, http_body=http_body, response=response)
         return response
 
-    def requests_request(self, method, abs_url, headers, params):
+    def requests_request(
+        self,
+        method: str,
+        abs_url: str,
+        headers: Dict[str, Any],
+        params: Dict[str, Any],
+    ) -> Tuple[str, int]:
         """Make a request by using the `request` library."""
         method = method.lower()
         if method == "get" or method == "delete":
-            abs_url = self.add_params_to_url(abs_url, params)
+            abs_url = self.add_params_to_url(url=abs_url, params=params)
             data = None
         elif method == "post" or method == "put":
             data = json.dumps(params, default=self._utf8)
@@ -131,21 +161,27 @@ class Requestor:
             )
         return http_body, http_status
 
-    def urlfetch_request(self, method, abs_url, headers, params):
+    def urlfetch_request(
+        self,
+        method: str,
+        abs_url: str,
+        headers: Dict[str, Any],
+        params: Dict[str, Any],
+    ) -> Tuple[str, int]:
         """Make a request by using the `urlfetch` library."""
         fetch_args = {"method": method, "headers": headers, "validate_certificate": False, "deadline": timeout}
-        if method == "post" or method == "put":
+        if method == "get" or method == "delete":
+            fetch_args["url"] = self.add_params_to_url(url=abs_url, params=params)
+        elif method == "post" or method == "put":
             fetch_args["url"] = abs_url
             fetch_args["payload"] = json.dumps(params, default=self._utf8)
-        elif method == "get" or method == "delete":
-            fetch_args["url"] = self.add_params_to_url(abs_url, params)
         else:
             raise Error(f"Bug discovered: invalid request method: {method}. Please report to {SUPPORT_EMAIL}.")
 
         try:
-            from google.appengine.api import urlfetch
+            from google.appengine.api import urlfetch  # type: ignore
 
-            result = urlfetch.fetch(**fetch_args)
+            result = urlfetch.fetch(**fetch_args)  # type: ignore
         except Exception as e:
             raise Error(
                 "Unexpected error communicating with EasyPost. "
@@ -155,7 +191,7 @@ class Requestor:
 
         return result.content, result.status_code
 
-    def handle_api_error(self, http_status, http_body, response):
+    def handle_api_error(self, http_status: int, http_body: str, response: Dict[str, Any]) -> None:
         """Handles API errors returned from EasyPost."""
         try:
             error = response["error"]
@@ -163,17 +199,17 @@ class Requestor:
             raise Error("Invalid response from API: (%d) %r " % (http_status, http_body), http_status, http_body)
 
         try:
-            raise Error(error.get("message", ""), http_status, http_body)
+            raise Error(message=error.get("message", ""), http_status=http_status, http_body=http_body)
         except AttributeError:
-            raise Error(error, http_status, http_body)
+            raise Error(message=error, http_status=http_status, http_body=http_body)
 
-    def _utf8(self, value):
+    def _utf8(self, value: Union[str, bytes]) -> str:
         # Python3's str(bytestring) returns "b'bytestring'" so we use .decode instead
         if isinstance(value, bytes):
-            return value.decode("utf-8")
+            return value.decode(encoding="utf-8")
         return value
 
-    def encode_url_params(self, params):
+    def encode_url_params(self, params: Dict[str, Any]) -> Union[str, None]:
         """Encode params for a URL."""
         converted_params = []
         for key, value in sorted(params.items()):
@@ -182,11 +218,11 @@ class Requestor:
             elif isinstance(value, datetime.datetime):
                 value = int(time.mktime(value.timetuple()))  # to UTC timestamp
             converted_params.append((key, value))
-            return urlencode(converted_params)
+        return urlencode(query=converted_params)
 
-    def add_params_to_url(self, url, params):
+    def add_params_to_url(self, url: str, params: Dict[str, Any]) -> str:
         """Add params to the URL."""
-        encoded_params = self.encode_url_params(params)
+        encoded_params = self.encode_url_params(params=params)
         if encoded_params:
             return "%s?%s" % (url, encoded_params)
         return url
@@ -208,7 +244,7 @@ except ImportError:
         request_lib = "requests"
         requests_session = requests.Session()
         requests_http_adapter = requests.adapters.HTTPAdapter(max_retries=3)
-        requests_session.mount("https://api.easypost.com", requests_http_adapter)
+        requests_session.mount(prefix="https://api.easypost.com", adapter=requests_http_adapter)
     except Exception:
         raise ImportError(
             "EasyPost requires an up to date requests library. "

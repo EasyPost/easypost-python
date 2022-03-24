@@ -2,6 +2,7 @@ from setuptools import setup
 
 REQUIREMENTS = [
     "requests >= 2.4.3",
+    "typing-extensions"
 ]
 
 DEV_REQUIREMENTS = [
@@ -11,7 +12,14 @@ DEV_REQUIREMENTS = [
     "pytest-cov==3.*",
     "pytest-vcr==1.*",
     "pytest==7.*",
+    "types-requests",
+    "types-urllib3",
     "vcrpy==4.*",
+]
+
+# packages incompatible with PyPy go here
+CPYTHON_DEV_REQUIREMENTS = [
+    "mypy",
 ]
 
 with open("README.md", encoding="utf-8") as f:
@@ -27,7 +35,11 @@ setup(
     packages=["easypost"],
     install_requires=REQUIREMENTS,
     extras_require={
-        "dev": DEV_REQUIREMENTS,
+        "dev": DEV_REQUIREMENTS + CPYTHON_DEV_REQUIREMENTS,
+        "pypy_dev": DEV_REQUIREMENTS,  # no cpython requirements
+    },
+    package_data={
+        'easypost': ['py.typed']
     },
     test_suite="test",
     long_description=long_description,

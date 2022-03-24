@@ -13,11 +13,11 @@ def pytest_sessionstart(session):
     # this is for local unit testing with google appengine, otherwise you get a
     # 'No api proxy found for service "urlfetch"' response
     try:
-        from google.appengine.ext import testbed
+        from google.appengine.ext import testbed  # type: ignore
 
-        session.appengine_testbed = testbed.Testbed()
-        session.appengine_testbed.activate()
-        session.appengine_testbed.init_urlfetch_stub()
+        session.appengine_testbed = testbed.Testbed()  # type: ignore
+        session.appengine_testbed.activate()  # type: ignore
+        session.appengine_testbed.init_urlfetch_stub()  # type: ignore
     except ImportError:
         # if the import fails then we're not using the appengine sdk, so just
         # keep going without initializing the testbed stub
@@ -26,7 +26,7 @@ def pytest_sessionstart(session):
 
 def pytest_sessionfinish(session, exitstatus):
     if hasattr(session, "appengine_testbed"):
-        session.appengine_testbed.deactivate()
+        session.appengine_testbed.deactivate()  # type: ignore
 
 
 # this fixture is auto-loaded by all tests; it sets up the api key

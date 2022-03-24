@@ -7,5 +7,5 @@ from easypost.resource import AllResource, Resource
 
 class Event(AllResource, Resource):
     @classmethod
-    def receive(cls, values):
-        return convert_to_easypost_object(json.loads(values), easypost.api_key)
+    def receive(cls, values: str) -> "Event":
+        return convert_to_easypost_object(response=json.loads(s=values), api_key=easypost.api_key)

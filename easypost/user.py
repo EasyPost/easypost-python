@@ -1,3 +1,5 @@
+from typing import List, Optional
+
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.requestor import Requestor
 from easypost.resource import CreateResource, DeleteResource, UpdateResource
@@ -5,62 +7,56 @@ from easypost.resource import CreateResource, DeleteResource, UpdateResource
 
 class User(CreateResource, UpdateResource, DeleteResource):
     @classmethod
-    def create(cls, api_key=None, **params):
+    def create(cls, api_key: Optional[str] = None, **params) -> "User":
         """Create a user."""
-        requestor = Requestor(api_key)
+        requestor = Requestor(local_api_key=api_key)
         url = cls.class_url()
         wrapped_params = {cls.snakecase_name(): params}
-        response, api_key = requestor.request("post", url, wrapped_params, False)
-        return convert_to_easypost_object(response, api_key)
+        response, api_key = requestor.request(method="post", url=url, params=wrapped_params, api_key_required=False)
+        return convert_to_easypost_object(response=response, api_key=api_key)
 
     @classmethod
-    def retrieve(cls, easypost_id="", api_key=None, **params):
+    def retrieve(cls, easypost_id: Optional[str] = None, api_key: Optional[str] = None, **params) -> "User":
         """Retrieve a user."""
-        try:
-            easypost_id = easypost_id["id"]
-        except (KeyError, TypeError):
-            pass
-
-        if easypost_id == "":
-            requestor = Requestor(api_key)
-            response, api_key = requestor.request("get", cls.class_url())
-            return convert_to_easypost_object(response, api_key)
+        if not easypost_id:
+            requestor = Requestor(local_api_key=api_key)
+            response, api_key = requestor.request(method="get", url=cls.class_url())
+            return convert_to_easypost_object(response=response, api_key=api_key)
         else:
-            instance = cls(easypost_id, api_key, **params)
+            instance = cls(easypost_id=easypost_id, api_key=api_key, **params)
             instance.refresh()
             return instance
 
     @classmethod
-    def retrieve_me(cls, api_key=None, **params):
+    def retrieve_me(cls, api_key: Optional[str] = None, **params) -> "User":
         """Retrieve the authenticated user."""
-        requestor = Requestor(api_key)
-        response, api_key = requestor.request("get", cls.class_url())
-        return convert_to_easypost_object(response, api_key)
+        requestor = Requestor(local_api_key=api_key)
+        response, api_key = requestor.request(method="get", url=cls.class_url())
+        return convert_to_easypost_object(response=response, api_key=api_key)
 
     @classmethod
-    def all_api_keys(cls, api_key=None):
+    def all_api_keys(cls, api_key: Optional[str] = None) -> "User":
         """Get all API keys including child user keys."""
-        requestor = Requestor(api_key)
+        requestor = Requestor(local_api_key=api_key)
         url = "/api_keys"
-        response, api_key = requestor.request("get", url)
-        return convert_to_easypost_object(response, api_key)
+        response, api_key = requestor.request(method="get", url=url)
+        return convert_to_easypost_object(response=response, api_key=api_key)
 
-    def api_keys(self):
+    def api_keys(self) -> List[str]:
         """Get the authenticated user's API keys."""
         api_keys = self.all_api_keys()
 
         if api_keys.id == self.id:
-            my_api_keys = api_keys.keys
+            return api_keys.keys
         else:
             for child in api_keys.children:
                 if child.id == self.id:
-                    my_api_keys = child.keys
-                    break
+                    return child.keys
 
-        return my_api_keys
+        return []
 
-    def update_brand(self, api_key=None, **params):
+    def update_brand(self, api_key: Optional[str] = None, **params) -> "User":
         """Update the User's Brand."""
-        requestor = Requestor(api_key)
-        response, api_key = requestor.request("put", self.instance_url() + "/brand", params)
-        return convert_to_easypost_object(response, api_key)
+        requestor = Requestor(local_api_key=api_key)
+        response, api_key = requestor.request(method="put", url=self.instance_url() + "/brand", params=params)
+        return convert_to_easypost_object(response=response, api_key=api_key)
