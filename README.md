@@ -3,155 +3,81 @@
 [![CI](https://github.com/EasyPost/easypost-python/workflows/CI/badge.svg)](https://github.com/EasyPost/easypost-python/actions?query=workflow%3ACI)
 [![PyPI version](https://badge.fury.io/py/easypost.svg)](https://badge.fury.io/py/easypost)
 
-EasyPost is the simple shipping API. You can sign up for an account at <https://easypost.com>.
+EasyPost, the simple shipping solution. You can sign up for an account at https://easypost.com.
 
-
-Looking for a client library for another language? Check out <https://www.easypost.com/docs/libraries>.
-
-
-Installation
-------------
-
-You can install easypost via pip with:
+## Install
 
 ```bash
 pip install easypost
 ```
 
-Alternatively, you can clone the EasyPost python client repository:
-
-```bash
-git clone https://github.com/EasyPost/easypost-python
-```
-
-Install Locally:
-
-```bash
-make install
-```
-
-Import the EasyPost client:
-
 ```python
+# Import the EasyPost library:
 import easypost
 ```
 
-Example
--------
+## Usage
+
+A simple create & buy shipment example:
 
 ```python
+import os
 import easypost
-easypost.api_key = '<YOUR API KEY FROM https://www.easypost.com/account/api-keys>'
 
-# create and verify addresses
-to_address = easypost.Address.create(
-    verify=["delivery"],
-    name = "Dr. Steve Brule",
-    street1 = "179 N Harbor Dr",
-    street2 = "",
-    city = "Redondo Beach",
-    state = "CA",
-    zip = "90277",
-    country = "US",
-    phone = "310-808-5243"
-)
-from_address = easypost.Address.create(
-    verify=["delivery"],
-    name = "EasyPost",
-    street1 = "118 2nd Street",
-    street2 = "4th Floor",
-    city = "San Francisco",
-    state = "CA",
-    zip = "94105",
-    country = "US",
-    phone = "415-456-7890"
-)
+easypost.api_key = os.getenv('EASYPOST_API_KEY')
 
-# create parcel
-try:
-    parcel = easypost.Parcel.create(
-        predefined_package = "Parcel",
-        weight = 21.2
-    )
-except easypost.Error as e:
-    print(str(e))
-    if e.param is not None:
-        print('Specifically an invalid param: %r' % e.param)
-
-parcel = easypost.Parcel.create(
-    length = 10.2,
-    width = 7.8,
-    height = 4.3,
-    weight = 21.2
-)
-
-# create customs_info form for intl shipping
-customs_item = easypost.CustomsItem.create(
-    description = "EasyPost t-shirts",
-    hs_tariff_number = 123456,
-    origin_country = "US",
-    quantity = 2,
-    value = 96.27,
-    weight = 21.1
-)
-customs_info = easypost.CustomsInfo.create(
-    customs_certify = 1,
-    customs_signer = "Hector Hammerfall",
-    contents_type = "gift",
-    contents_explanation = "",
-    eel_pfc = "NOEEI 30.37(a)",
-    non_delivery_option = "return",
-    restriction_type = "none",
-    restriction_comments = "",
-    customs_items = [customs_item]
-)
-
-# create shipment
 shipment = easypost.Shipment.create(
-    to_address = to_address,
-    from_address = from_address,
-    parcel = parcel,
-    customs_info = customs_info
+    from_address = {
+        "name": "EasyPost",
+        "street1": "118 2nd Street",
+        "street2": "4th Floor",
+        "city": "San Francisco",
+        "state": "CA",
+        "zip": "94105",
+        "country": "US",
+        "phone": "415-456-7890",
+    },
+    to_address = {
+        "name": "Dr. Steve Brule",
+        "street1": "179 N Harbor Dr",
+        "city": "Redondo Beach",
+        "state": "CA",
+        "zip": "90277",
+        "country": "US",
+        "phone": "310-808-5243",
+    },
+    parcel = {
+        "length": 10.2,
+        "width": 7.8,
+        "height": 4.3,
+        "weight": 21.2,
+    },
 )
 
-# buy postage label with one of the rate objects
-shipment.buy(rate = shipment.rates[0])
-# alternatively: shipment.buy(rate = shipment.lowest_rate())
+shipment.buy(rate=shipment.lowest_rate())
 
-print(shipment.tracking_code)
-print(shipment.postage_label.label_url)
-
-# Insure the shipment for the value
-shipment.insure(amount=100)
-
-print(shipment.insurance)
+print(shipment)
 ```
 
-Documentation
--------------
+## Documentation
 
-Up-to-date documentation is available at: <https://www.easypost.com/docs>
-
-
-Client Library Development
--------------------------
-
-### Releasing
-
-   1. Add new features to [CHANGELOG.md](CHANGELOG.md)
-   1. Bump the version in `easypost/version.py`
-   1. Bump the version in `setup.py`
-   1. Create and push a signed git tag
-   1. Create a Release in Github based on the tag, with a human-readable summary of changes
-   1. Build sdist and wheel: `rm -rf build/ dist/ ./*.egg-info; python3 setup.py sdist bdist_wheel`
-   1. Push to PyPI with `twine upload dist/*`
+API Documentation can be found at: https://easypost.com/docs/api.
 
 ## Development
 
 ```bash
+# Install dependencies
+make install
+
+# Lint project
+make lint
+
 # Run tests
 EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... make test
 
 # Run test coverage
 EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... make coverage
+
+# Get a comprehensive list of development actions
+make help
 ```
