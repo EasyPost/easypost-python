@@ -114,6 +114,9 @@ class Requestor:
 
     def interpret_response(self, http_body: str, http_status: int) -> Dict[str, Any]:
         """Interpret the response body we receive from the API."""
+        if http_status == 204:
+            # HTTP 204 does not have any response body and we can just return here
+            return {}
         try:
             response = json.loads(http_body)
         except JSONDecodeError:
