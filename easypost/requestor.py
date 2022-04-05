@@ -97,7 +97,6 @@ class Requestor:
             "X-Client-User-Agent": json.dumps(ua),
             "User-Agent": USER_AGENT,
             "Authorization": "Bearer %s" % my_api_key,
-            "Content-type": "application/json",
         }
 
         if request_lib == "urlfetch":
@@ -135,10 +134,11 @@ class Requestor:
         """Make a request by using the `request` library."""
         method = method.lower()
         if method == "get" or method == "delete":
-            abs_url = self.add_params_to_url(url=abs_url, params=params)
-            data = None
+            url_params = params
+            json = None
         elif method == "post" or method == "put":
-            data = json.dumps(params, default=self._utf8)
+            json = params
+            url_params = None
         else:
             raise Error(f"Bug discovered: invalid request method: {method}. Please report to {SUPPORT_EMAIL}.")
 
@@ -146,8 +146,9 @@ class Requestor:
             result = requests_session.request(
                 method,
                 abs_url,
+                params=url_params,
                 headers=headers,
-                data=data,
+                json=json,
                 timeout=timeout,
                 verify=True,
             )
