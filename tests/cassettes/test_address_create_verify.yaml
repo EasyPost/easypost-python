@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"address": {"street1": "417 montgomery streat", "street2": "FL 5", "city":
+    body: '{"address": {"street1": "417 montgomery street", "street2": "FL 5", "city":
       "San Francisco", "state": "CA", "zip": "94104", "country": "US", "company":
       "EasyPost", "phone": "415-123-4567"}, "verify": [true]}'
     headers:
@@ -12,7 +12,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '207'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -25,14 +25,15 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4yRUWvbMBSF/0rQ65xOkp048ZsJWSmsyaizhzKKuZWuWw3ZCpJc2ob+913Z28ue
-        agzWPXzn6Fi6MKNZxUD7lm+EUppvYV1wIVABQA5KdOtHVUohC5Yx9/gbVSS+1tpjCCQpjxBRt5Bk
-        yaVc8nwpypOUlSgrufnCecU5geNZfw4coEdWDaO1lO76Mwxv5NjXzf2PY3MiIESPGAWJhSgXt8fD
-        6fp4u7+7XzQneveL1RQzU5Ko1NLEFNLUh8W3u/qwu2l2x4mhSqTvahrezZmW20LwYinElKHcOESf
-        nD8bGs/PbsBp25WQebFalyRiD8b+69s7nYCIISY7eG/Qtx0oY6cGM0VHZzQO0QAZO7ABM9ahRg+2
-        jfDapiuZyangf9oLetMZBdG4IbDqkooX6RtGpdKlVNGPlIjeO0/Tr4eMaYzUMswRH2m2hnLePmu7
-        MEv7xTH9XV5eldu8kBmzbnj6Ky6FlFcFl5tNxqLpsX2fj6ruqa2Cr99daOvhCS0G9kHPHwAAAP//
-        AwAQXALxeAIAAA==
+        H4sIAAAAAAAAA9SST4+bMBDFvwpyL62aZLHDn4QbyiYVUgJVSCtFVYUcPKSujImMWTUb7XfvmOz2
+        0FOv5QLzeG/889g3IgVJCBemCiPK5yyMThEPKIX6RHnDa9pEpzo+zSNGJqQ7/YTaoj8VwkDfo1Qb
+        4BZExZ3MfMamfjD14wNdJGGYBPFH3098H43DRfybUfMWSKIHpbB71164vmJinZbHz0V5QENvDYCl
+        KAY09nZFfvhU7Nb7o1cevM3WC/9YGFocorSuQ5nm3maf5qusXBWjB3lQX6VYPMsLfi4DilCUsqWL
+        dYO2xiW/lFhefnQaxjVDyuZBGMUoQsuleoNtO+EMFnrr4twYCabCGUo1EtxdODcpQFvJMdhw1cOE
+        NCDAcFVZ/qty53F3joB/aU9gZCNrbmWne5LcHHjg3v1Q1+5EEmsG7AjGdAarbzfcx4i1npXrVZE/
+        pvtjleWbYr9LD1mRz7L8a7rNHpG4kaDcZXgbHu4IO/KzS2f6iSspvB7qTgturp7UTWfaEeR9erEP
+        5SAtvPvgBjuczzgD/HGnfvk+IQIsTqp/FVytJO7l+j+h34jCjB0c0zyexct5wCZEdfr8Kk4pY7PA
+        Z4vFhFjZQvV8vzJpi6dW84dt11epPoOCnrzg8xsAAP//AwCnANTsfQMAAA==
     headers:
       cache-control:
       - no-cache, no-store
@@ -41,11 +42,11 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"a5c0a8fd170edd3057038cfaca2bfacc"
+      - W/"a15d88faf9f4a2f5317ef70e97be36d0"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_081ccd09a64011ecaaa3ac1f6bc72124
+      - /api/v2/addresses/adr_561a3256b6a411ecb1afac1f6bc7b362
       pragma:
       - no-cache
       referrer-policy:
@@ -61,21 +62,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50b6233b378ff030106002a599e
+      - 6399b1b1624f33b3ff22307500038190
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb8nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb2nuq fde591f008
       x-runtime:
-      - '0.045596'
+      - '0.051492'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204071625-f7b25baf21-master
       x-xss-protection:
       - 1; mode=block
     status:

@@ -13,6 +13,7 @@
 * Remove `track_with_code` in shipment class since it's no longer being used
 * Add support for `columns` and `additional_columns` on Report creation
 * Must pass a list object to `Shipment.lowest_rate()` rather than a comma-separated list
+* Removes the unusable `carrier` param from `Address.create_and_verify()` along with the dead `message` conditional check
 
 ### v6.0.0 2021-10-12
 

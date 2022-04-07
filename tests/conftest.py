@@ -133,7 +133,7 @@ def basic_address():
 @pytest.fixture
 def incorrect_address_to_verify():
     return {
-        "street1": "417 montgomery streat",
+        "street1": "417 montgomery street",
         "street2": "FL 5",
         "city": "San Francisco",
         "state": "CA",
