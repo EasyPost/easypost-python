@@ -4,10 +4,20 @@ import platform
 import ssl
 import time
 from json import JSONDecodeError
-from typing import Any, Dict, Optional, Tuple, Union
+from typing import (
+    Any,
+    Dict,
+    Optional,
+    Tuple,
+    Union,
+)
 from urllib.parse import urlencode
 
-from easypost.constant import SUPPORT_EMAIL, TIMEOUT, USER_AGENT
+from easypost.constant import (
+    SUPPORT_EMAIL,
+    TIMEOUT,
+    USER_AGENT,
+)
 from easypost.easypost_object import EasyPostObject
 from easypost.error import Error
 
@@ -58,7 +68,11 @@ class Requestor:
     ) -> Tuple[str, int, Optional[str]]:
         """Internal logic required to make a request to the EasyPost API."""
         # Importing here to avoid circular imports
-        from easypost import VERSION, api_base, api_key
+        from easypost import (
+            VERSION,
+            api_base,
+            api_key,
+        )
 
         my_api_key = self._api_key or api_key
 

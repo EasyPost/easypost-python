@@ -1,7 +1,15 @@
-from typing import Any, Dict, List, Optional
+from typing import (
+    Any,
+    Dict,
+    List,
+    Optional,
+)
 
 from easypost.requestor import Requestor
-from easypost.resource import AllResource, CreateResource
+from easypost.resource import (
+    AllResource,
+    CreateResource,
+)
 
 
 class Tracker(AllResource, CreateResource):

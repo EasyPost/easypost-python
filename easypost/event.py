@@ -2,7 +2,10 @@ import json
 
 import easypost
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.resource import AllResource, Resource
+from easypost.resource import (
+    AllResource,
+    Resource,
+)
 
 
 class Event(AllResource, Resource):

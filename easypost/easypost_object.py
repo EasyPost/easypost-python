@@ -12,6 +12,7 @@ import easypost
 EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP = {
     "adr": "Address",
     "batch": "Batch",
+    "brd": "Brand",
     "ca": "CarrierAccount",
     "cstinfo": "CustomsInfo",
     "cstitem": "CustomsItem",
@@ -57,16 +58,14 @@ def convert_to_easypost_object(
         return [convert_to_easypost_object(response=item, api_key=api_key, parent=parent) for item in response]
     elif isinstance(response, dict):
         response = response.copy()
-        object_type = response.get("object", EasyPostObject)
-        object_id = response.get("id", None)
+        object_type_str = response.get("object", "EasyPostObject")
+        class_name = OBJECT_CLASS_NAME_OVERRIDES.get(object_type_str, object_type_str)
 
-        if isinstance(object_type, str):
-            class_name = OBJECT_CLASS_NAME_OVERRIDES.get(object_type, object_type)
-        elif object_id is not None:
+        object_id = response.get("id", None)
+        if object_id is not None:
+            # If an object ID is present, use it to find the class type instead.
             object_id_prefix = object_id.split("_")[0]
-            class_name = EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP.get(object_id_prefix)
-        else:
-            class_name = "EasyPostObject"
+            class_name = EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP.get(object_id_prefix, "EasyPostObject")
 
         cls = getattr(easypost, class_name, EasyPostObject)
         obj = cls.construct_from(values=response, api_key=api_key, parent=parent, name=name)

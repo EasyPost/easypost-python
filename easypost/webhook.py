@@ -1,5 +1,9 @@
 from easypost.requestor import Requestor
-from easypost.resource import AllResource, CreateResource, DeleteResource
+from easypost.resource import (
+    AllResource,
+    CreateResource,
+    DeleteResource,
+)
 
 
 class Webhook(AllResource, CreateResource, DeleteResource):
