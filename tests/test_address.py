@@ -57,7 +57,7 @@ def test_address_create_verify(incorrect_address_to_verify):
 
     assert isinstance(address, easypost.Address)
     assert str.startswith(address.id, "adr_")
-    assert address.street1 == "417 MONTGOMERY ST STE 500"
+    assert address.street1 == "417 MONTGOMERY ST FL 5"
 
 
 @pytest.mark.vcr()
@@ -72,7 +72,7 @@ def test_address_create_and_verify(incorrect_address_to_verify):
 
     assert isinstance(address, easypost.Address)
     assert str.startswith(address.id, "adr_")
-    assert address.street1 == "417 MONTGOMERY ST STE 500"
+    assert address.street1 == "417 MONTGOMERY ST FL 5"
 
 
 @pytest.mark.vcr()

@@ -30,22 +30,18 @@ class Address(AllResource, CreateResource):
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     @classmethod
-    def create_and_verify(cls, api_key: Optional[str] = None, carrier: Optional[str] = None, **params) -> "Address":
+    def create_and_verify(cls, api_key: Optional[str] = None, **params) -> "Address":
         """Create and verify an address."""
         requestor = Requestor(local_api_key=api_key)
         url = "%s/%s" % (cls.class_url(), "create_and_verify")
 
-        wrapped_params = {cls.snakecase_name(): params, "carrier": carrier}
+        wrapped_params = {cls.snakecase_name(): params}
         response, api_key = requestor.request(method="post", url=url, params=wrapped_params)
 
         response_address = response.get("address", None)
-        response_message = response.get("message", None)
 
         if response_address is not None:
             verified_address = convert_to_easypost_object(response=response_address, api_key=api_key)
-            if response_message is not None:
-                verified_address.message = response_message
-                verified_address._immutable_values.update("message")
             return verified_address
         else:
             return convert_to_easypost_object(response=response, api_key=api_key)
