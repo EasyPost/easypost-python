@@ -14,6 +14,7 @@ EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP = {
     "batch": "Batch",
     "brd": "Brand",
     "ca": "CarrierAccount",
+    "cfrep": "Report",
     "cstinfo": "CustomsInfo",
     "cstitem": "CustomsItem",
     "evt": "Event",
@@ -37,8 +38,8 @@ EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP = {
     "user": "User",
 }
 
-
 OBJECT_CLASS_NAME_OVERRIDES = {
+    "CashFlowReport": "Report",
     "PaymentLogReport": "Report",
     "RefundReport": "Report",
     "ShipmentInvoiceReport": "Report",
