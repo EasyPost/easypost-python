@@ -5,6 +5,7 @@ import pytest
 
 import easypost
 
+
 EASYPOST_TEST_API_KEY = os.environ["EASYPOST_TEST_API_KEY"]
 EASYPOST_PROD_API_KEY = os.environ["EASYPOST_PROD_API_KEY"]
 

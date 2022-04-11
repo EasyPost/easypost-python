@@ -1,7 +1,14 @@
 import re
-from typing import Any, List, Optional
+from typing import (
+    Any,
+    List,
+    Optional,
+)
 
-from easypost.easypost_object import EasyPostObject, convert_to_easypost_object
+from easypost.easypost_object import (
+    EasyPostObject,
+    convert_to_easypost_object,
+)
 from easypost.error import Error
 from easypost.requestor import Requestor
 

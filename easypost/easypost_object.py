@@ -1,7 +1,51 @@
 import json
-from typing import Any, Dict, List, Optional
+from typing import (
+    Any,
+    Dict,
+    List,
+    Optional,
+)
 
 import easypost
+
+
+EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP = {
+    "adr": "Address",
+    "batch": "Batch",
+    "brd": "Brand",
+    "ca": "CarrierAccount",
+    "cfrep": "Report",
+    "cstinfo": "CustomsInfo",
+    "cstitem": "CustomsItem",
+    "evt": "Event",
+    "hook": "Webhook",
+    "ins": "Insurance",
+    "order": "Order",
+    "pickup": "Pickup",
+    "pickuprate": "PickupRate",
+    "pl": "PostageLabel",
+    "plrep": "Report",
+    "prcl": "Parcel",
+    "rate": "Rate",
+    "refrep": "Report",
+    "rfnd": "Refund",
+    "sf": "ScanForm",
+    "shp": "Shipment",
+    "shpinvrep": "Report",
+    "shprep": "Report",
+    "trk": "Tracker",
+    "trkrep": "Report",
+    "user": "User",
+}
+
+OBJECT_CLASS_NAME_OVERRIDES = {
+    "CashFlowReport": "Report",
+    "PaymentLogReport": "Report",
+    "RefundReport": "Report",
+    "ShipmentInvoiceReport": "Report",
+    "ShipmentReport": "Report",
+    "TrackerReport": "Report",
+}
 
 
 def convert_to_easypost_object(
@@ -11,76 +55,22 @@ def convert_to_easypost_object(
     name: Optional[str] = None,
 ):
     """Convert a response to an EasyPost object."""
-    types = {
-        "Address": easypost.Address,
-        "Batch": easypost.Batch,
-        "Brand": easypost.Brand,
-        "CarrierAccount": easypost.CarrierAccount,
-        "CustomsInfo": easypost.CustomsInfo,
-        "CustomsItem": easypost.CustomsItem,
-        "Event": easypost.Event,
-        "Insurance": easypost.Insurance,
-        "Order": easypost.Order,
-        "Parcel": easypost.Parcel,
-        "PaymentLogReport": easypost.Report,
-        "Pickup": easypost.Pickup,
-        "PickupRate": easypost.PickupRate,
-        "PostageLabel": easypost.PostageLabel,
-        "Rate": easypost.Rate,
-        "Refund": easypost.Refund,
-        "RefundReport": easypost.Report,
-        "Report": easypost.Report,
-        "ScanForm": easypost.ScanForm,
-        "Shipment": easypost.Shipment,
-        "ShipmentInvoiceReport": easypost.Report,
-        "ShipmentReport": easypost.Report,
-        "TaxIdentifier": easypost.TaxIdentifier,
-        "Tracker": easypost.Tracker,
-        "TrackerReport": easypost.Report,
-        "User": easypost.User,
-        "Webhook": easypost.Webhook,
-    }
-
-    prefixes = {
-        "adr": easypost.Address,
-        "batch": easypost.Batch,
-        "ca": easypost.CarrierAccount,
-        "cstinfo": easypost.CustomsInfo,
-        "cstitem": easypost.CustomsItem,
-        "evt": easypost.Event,
-        "hook": easypost.Webhook,
-        "ins": easypost.Insurance,
-        "order": easypost.Order,
-        "pickup": easypost.Pickup,
-        "pickuprate": easypost.PickupRate,
-        "pl": easypost.PostageLabel,
-        "plrep": easypost.Report,
-        "prcl": easypost.Parcel,
-        "rate": easypost.Rate,
-        "refrep": easypost.Report,
-        "rfnd": easypost.Refund,
-        "sf": easypost.ScanForm,
-        "shp": easypost.Shipment,
-        "shpinvrep": easypost.Report,
-        "shprep": easypost.Report,
-        "trk": easypost.Tracker,
-        "trkrep": easypost.Report,
-        "user": easypost.User,
-    }
-
     if isinstance(response, list):
         return [convert_to_easypost_object(response=item, api_key=api_key, parent=parent) for item in response]
     elif isinstance(response, dict):
         response = response.copy()
-        cls_name = response.get("object", EasyPostObject)
-        cls_id = response.get("id", None)
-        if isinstance(cls_name, str):
-            cls = types.get(cls_name, EasyPostObject)
-        elif cls_id is not None:
-            cls = prefixes.get(cls_id[0 : cls_id.find("_")], EasyPostObject)
-        else:
-            cls = EasyPostObject
-        return cls.construct_from(values=response, api_key=api_key, parent=parent, name=name)
+        object_type_str = response.get("object", "EasyPostObject")
+        class_name = OBJECT_CLASS_NAME_OVERRIDES.get(object_type_str, object_type_str)
+
+        object_id = response.get("id", None)
+        if object_id is not None:
+            # If an object ID is present, use it to find the class type instead.
+            object_id_prefix = object_id.split("_")[0]
+            class_name = EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP.get(object_id_prefix, "EasyPostObject")
+
+        cls = getattr(easypost, class_name, EasyPostObject)
+        obj = cls.construct_from(values=response, api_key=api_key, parent=parent, name=name)
+        return obj
     else:
         return response
 

@@ -22,7 +22,11 @@ from easypost.tracker import Tracker
 from easypost.user import User
 from easypost.webhook import Webhook
 
-from .version import VERSION, VERSION_INFO
+from .version import (
+    VERSION,
+    VERSION_INFO,
+)
+
 
 __author__ = "EasyPost <oss@easypost.com>"
 __version__ = VERSION

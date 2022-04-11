@@ -3,7 +3,10 @@ from typing import List
 from easypost import Rate
 from easypost.error import Error
 from easypost.requestor import Requestor
-from easypost.resource import AllResource, CreateResource
+from easypost.resource import (
+    AllResource,
+    CreateResource,
+)
 
 
 class Shipment(AllResource, CreateResource):

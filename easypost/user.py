@@ -1,8 +1,15 @@
-from typing import List, Optional
+from typing import (
+    List,
+    Optional,
+)
 
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.requestor import Requestor
-from easypost.resource import CreateResource, DeleteResource, UpdateResource
+from easypost.resource import (
+    CreateResource,
+    DeleteResource,
+    UpdateResource,
+)
 
 
 class User(CreateResource, UpdateResource, DeleteResource):

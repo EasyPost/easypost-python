@@ -2,7 +2,10 @@ from typing import Optional
 
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.requestor import Requestor
-from easypost.resource import AllResource, CreateResource
+from easypost.resource import (
+    AllResource,
+    CreateResource,
+)
 
 
 class Report(AllResource, CreateResource):
