@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"type": "shipment", "start_date": "2022-03-01", "end_date": "2022-03-11",
+    body: '{"type": "shipment", "start_date": "2022-04-11", "end_date": "2022-04-11",
       "additional_columns": ["from_name", "from_company"]}'
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '127'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -24,10 +24,10 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4SOQW7DIBBF78K6kTAE1+EYTVfdIALfMhXBCMZKpKp3DySbKJvsZt5/XzN/LHim
-        WV1yQTbjSfKDnIXimPbeyWkYD5PFbJUcPxUU+2Dr6ReOWuW4hHxGoi/ktVBLXIEleGN7KrgQOy53
-        Qn6LQSup1f6nOVv2b51KtpDp3pPDh5Yg+Vc+dH5efWeESo8+bbXtCZd+skSm0xbjfTS45lBQ7x88
-        aEgubh7GLSH6gsT0bGPF/w0AAP//AwAdVT5GGwEAAA==
+        H4sIAAAAAAAAA4SOzQrCMBCE3yVnhSb0x+Yx1JOXsM2uNBLTkGxQEN/dRi8eBG+7M98w8xAOhRZ5
+        jomigWEEUF1rcbKtbJtRDrsRcLAAdpSTFBuxTBeyvEYOs4tXCrynuCReHZsImNBAdVWj1LZpt1Id
+        Za+l1F1/WpkS8S+TGRKbyn0ztZsC/tSvC1aNKfMnzyWvf6BbrUxe6FC8f5+G7tElyu8FH9UF6wuS
+        sbPzmCgIfQaf6fkCAAD//wMAsBiIkxsBAAA=
     headers:
       cache-control:
       - no-cache, no-store
@@ -36,7 +36,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"9b478efdc3013c3950f1c7b4326a1820"
+      - W/"461b6c7c2e00248d19fb82c4c274c85d"
       expires:
       - '0'
       pragma:
@@ -54,7 +54,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 4aee9dd3623b96f2ff10b19a000fe10f
+      - 23047b0e6255a4cce7799785002c7ca8
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -62,12 +62,13 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - extlb1nuq 3e97db20d4
+      - intlb1nuq fde591f008
+      - intlb2wdc fde591f008
+      - extlb3wdc fde591f008
       x-runtime:
-      - '0.033436'
+      - '0.130179'
       x-version-label:
-      - easypost-202203231943-61a988cd70-master
+      - easypost-202204112244-205415e174-master
       x-xss-protection:
       - 1; mode=block
     status:

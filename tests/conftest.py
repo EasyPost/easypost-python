@@ -48,13 +48,6 @@ def prod_api_key():
     easypost.api_key = default_key
 
 
-@pytest.fixture
-def per_run_unique():
-    # this used to return a unique value per-run; however, now that we use
-    # VCR, treat it more like an epoch
-    return "20200511150500100"
-
-
 @pytest.fixture(scope="module")
 def vcr_config():
     return {
@@ -73,16 +66,11 @@ def page_size():
     return 5
 
 
-# This is the carrier account ID for the default USPS account that comes by default.
-# All tests should use this carrier account
+# This is the USPS carrier account ID that comes with your EasyPost account by default and should be used for all tests
 @pytest.fixture
 def usps_carrier_account_id():
-    return "ca_b25657e9896e4d63ac8151ac346ac41e"
-
-
-@pytest.fixture
-def child_user_id():
-    return "user_9bc25a1d07f54682997435937b30d4f0"
+    # Fallback to the EasyPost Python Client Library Test User USPS carrier account ID
+    return os.getenv("USPS_CARRIER_ACCOUNT_ID", "ca_b25657e9896e4d63ac8151ac346ac41e")
 
 
 @pytest.fixture
@@ -91,30 +79,29 @@ def usps():
 
 
 @pytest.fixture
-def pickup_service():
-    return "NextDay"
-
-
-@pytest.fixture
 def usps_service():
     return "First"
 
 
 @pytest.fixture
+def pickup_service():
+    return "NextDay"
+
+
+@pytest.fixture
+def report_type():
+    return "shipment"
+
+
+# If you need to re-record cassettes, increment this date by 1
+@pytest.fixture
+def report_date():
+    return "2022-04-11"
+
+
+@pytest.fixture
 def webhook_url():
     return "http://example.com"
-
-
-# If ever these need to change due to re-recording cassettes, simply increment this date by 1
-@pytest.fixture
-def report_start_date():
-    return "2022-03-01"
-
-
-# If ever these need to change due to re-recording cassettes, simply increment this date by 2
-@pytest.fixture
-def report_end_date():
-    return "2022-03-11"
 
 
 @pytest.fixture
@@ -243,15 +230,50 @@ def one_call_buy_shipment(basic_address, basic_parcel, usps_service, usps_carrie
 
 
 # This fixture will require you to add a `shipment` key with a Shipment object from a test.
-# If you need to re-record cassettes, simply iterate the dates below and ensure they're one day in the future,
+# If you need to re-record cassettes, increment the date below and ensure it is one day in the future,
 # USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
 @pytest.fixture
 def basic_pickup(basic_address):
+    pickup_date = "2022-04-13"
+
     return {
         "address": basic_address,
-        "min_datetime": "2022-03-18",
-        "max_datetime": "2022-03-19",
+        "min_datetime": pickup_date,
+        "max_datetime": pickup_date,
         "instructions": "Pickup at front door",
+    }
+
+
+@pytest.fixture
+def basic_carrier_account():
+    return {
+        "type": "UpsAccount",
+        "credentials": {
+            "account_number": "A1A1A1",
+            "user_id": "USERID",
+            "password": "PASSWORD",
+            "access_license_number": "ALN",
+        },
+    }
+
+
+# This fixture will require you to append a `tracking_code` key with the shipment's tracking code
+@pytest.fixture
+def basic_insurance(basic_address, usps):
+    return {
+        "to_address": basic_address,
+        "from_address": basic_address,
+        "carrier": usps,
+        "amount": "100",
+    }
+
+
+@pytest.fixture
+def basic_order(basic_address, basic_shipment):
+    return {
+        "to_address": basic_address,
+        "from_address": basic_address,
+        "shipments": [basic_shipment],
     }
 
 
@@ -291,27 +313,3 @@ def event():
             "object": "Event",
         }
     )
-
-
-@pytest.fixture
-def basic_carrier_account():
-    return {
-        "type": "UpsAccount",
-        "credentials": {
-            "account_number": "A1A1A1",
-            "user_id": "USERID",
-            "password": "PASSWORD",
-            "access_license_number": "ALN",
-        },
-    }
-
-
-# This fixture will require you to append a `tracking_code` key with the shipment's tracking code
-@pytest.fixture
-def basic_insurance(basic_address, usps):
-    return {
-        "to_address": basic_address,
-        "from_address": basic_address,
-        "carrier": usps,
-        "amount": "100",
-    }

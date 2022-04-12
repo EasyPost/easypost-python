@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"type": "tracker", "start_date": "2022-03-01", "end_date": "2022-03-11"}'
+    body: '{"type": "shipment", "start_date": "2022-04-11", "end_date": "2022-04-11"}'
     headers:
       Accept:
       - '*/*'
@@ -9,8 +9,8 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '73'
-      Content-type:
+      - '74'
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -19,19 +19,14 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: POST
-    uri: https://api.easypost.com/v2/reports/tracker
+    uri: https://api.easypost.com/v2/reports/shipment
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA2xSXW/UMBD8L5HgiVzidRwnkSIUFdBVgPi4SOX6Em3sTS80lwTbR8sh/jtO71oh
-        4MVaz8zu7K79M+h1UATO3BqaG9QiTRFAi1wlkihPgfJEdbmCVOe6DV4EU/uVlPMptUF1S+YzzZNx
-        nlCG0JFucCEhBghjHjKoIS4YFADXXnOY9X80sgZWiLyAZNFYh8Y1i+4PTcw8Q6P+G2cLvp/0gjmy
-        7pTvDtbf8Tv2A7YDLcZm8MjOudkWUURof8yTdWHXD2RXlq8ONrzz6SGscI/HacQ7u1LTPnoQRO40
-        amMeZo0W85gzGWlkrcx4p7iQCRPcr0qqnDMUcYeIfHXs55dfwmp/DKvhZjK92+3L6mqThOv31UW4
-        WVcg0ucnwYUhTaPrcSirt5fVFuS7D+n200ZsPm7rq8tn8ObR1odP7frYcn/4fhPf3reDR88FX/lN
-        lY85NQDLQF6fudf3c2/Iljw+A5v+ZiS9JtRkbLmbnqoshN+noVIkLWdd2ikC3aataqVMMOsYCNCx
-        TkCl1OlUt3GbceCQiUQwGWPGWCq7vFWnV2joZP3vF4CCZYWQyxfoRzUcNDVq1w/a0BgUHQ6Wfv0G
-        AAD//wMANLUPwK0CAAA=
+        H4sIAAAAAAAAA4SOQW4CMQxF75I1SEmAoZNjtF11EwX7o0kVMlHiUZFQ794MbFggdWe//77sm4qs
+        nGpTqSh+pLfTDqQPRGF/DsfRgA0H6EGTpXGnNmo+fYOkVz6mWC7I8o4yV+kJVQQB+7CmVlu71fut
+        sZ9mcMa4w/DVnaXwv06TUMWv3rNjeoLML/ll5pUJmjz6srS+Z/ysJ2tSLi8p3UePa4kV7f7Bg8ZM
+        aWF4mmLiiqzcOaSG3z8AAAD//wMAWzhxUhsBAAA=
     headers:
       cache-control:
       - no-cache, no-store
@@ -40,7 +35,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"5dd4c4ca4d8a202b6718870b82b586f3"
+      - W/"de809f83a0bda9bc6cf70f96a6563b89"
       expires:
       - '0'
       pragma:
@@ -58,7 +53,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50a6233b3b3ff030487002a6841
+      - 23047b0a6255a4cce7799784002c7c7b
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -66,13 +61,13 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - intlb1wdc fde591f008
+      - extlb3wdc fde591f008
       x-runtime:
-      - '0.045584'
+      - '0.036142'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204112244-205415e174-master
       x-xss-protection:
       - 1; mode=block
     status:
