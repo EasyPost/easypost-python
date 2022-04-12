@@ -3,18 +3,14 @@ import pytest
 import easypost
 
 
-def create_pickup(one_call_buy_shipment, basic_pickup):
+@pytest.mark.vcr()
+def test_pickup_create(one_call_buy_shipment, basic_pickup):
     shipment = easypost.Shipment.create(**one_call_buy_shipment)
 
     pickup_data = basic_pickup
     pickup_data["shipment"] = shipment
 
-    return easypost.Pickup.create(**pickup_data)
-
-
-@pytest.mark.vcr()
-def test_pickup_create(one_call_buy_shipment, basic_pickup):
-    pickup = create_pickup(one_call_buy_shipment, basic_pickup)
+    pickup = easypost.Pickup.create(**pickup_data)
 
     assert isinstance(pickup, easypost.Pickup)
     assert str.startswith(pickup.id, "pickup_")
@@ -23,7 +19,12 @@ def test_pickup_create(one_call_buy_shipment, basic_pickup):
 
 @pytest.mark.vcr()
 def test_pickup_retrieve(one_call_buy_shipment, basic_pickup):
-    pickup = create_pickup(one_call_buy_shipment, basic_pickup)
+    shipment = easypost.Shipment.create(**one_call_buy_shipment)
+
+    pickup_data = basic_pickup
+    pickup_data["shipment"] = shipment
+
+    pickup = easypost.Pickup.create(**pickup_data)
 
     retrieved_pickup = easypost.Pickup.retrieve(pickup.id)
 
@@ -33,7 +34,12 @@ def test_pickup_retrieve(one_call_buy_shipment, basic_pickup):
 
 @pytest.mark.vcr()
 def test_pickup_buy(usps, one_call_buy_shipment, basic_pickup, pickup_service):
-    pickup = create_pickup(one_call_buy_shipment, basic_pickup)
+    shipment = easypost.Shipment.create(**one_call_buy_shipment)
+
+    pickup_data = basic_pickup
+    pickup_data["shipment"] = shipment
+
+    pickup = easypost.Pickup.create(**pickup_data)
 
     bought_pickup = pickup.buy(carrier=usps, service=pickup_service)
 
@@ -44,10 +50,15 @@ def test_pickup_buy(usps, one_call_buy_shipment, basic_pickup, pickup_service):
 
 
 @pytest.mark.vcr()
-def test_pickup_cancel(usps, one_call_buy_shipment, basic_pickup):
-    pickup = create_pickup(one_call_buy_shipment, basic_pickup)
+def test_pickup_cancel(usps, one_call_buy_shipment, basic_pickup, pickup_service):
+    shipment = easypost.Shipment.create(**one_call_buy_shipment)
 
-    bought_pickup = pickup.buy(carrier=usps, service="Nextday")
+    pickup_data = basic_pickup
+    pickup_data["shipment"] = shipment
+
+    pickup = easypost.Pickup.create(**pickup_data)
+
+    bought_pickup = pickup.buy(carrier=usps, service=pickup_service)
 
     cancelled_pickup = bought_pickup.cancel()
 

@@ -3,17 +3,9 @@ import pytest
 import easypost
 
 
-def create_order(basic_address, basic_shipment):
-    return easypost.Order.create(
-        to_address=basic_address,
-        from_address=basic_address,
-        shipments=[basic_shipment],
-    )
-
-
 @pytest.mark.vcr()
-def test_order_create(basic_address, basic_shipment):
-    order = create_order(basic_address, basic_shipment)
+def test_order_create(basic_order):
+    order = easypost.Order.create(**basic_order)
 
     assert isinstance(order, easypost.Order)
     assert str.startswith(order.id, "order_")
@@ -21,8 +13,8 @@ def test_order_create(basic_address, basic_shipment):
 
 
 @pytest.mark.vcr()
-def test_order_retrieve(basic_address, basic_shipment):
-    order = create_order(basic_address, basic_shipment)
+def test_order_retrieve(basic_order):
+    order = easypost.Order.create(**basic_order)
 
     retrieved_order = easypost.Order.retrieve(order.id)
 
@@ -32,8 +24,8 @@ def test_order_retrieve(basic_address, basic_shipment):
 
 
 @pytest.mark.vcr()
-def test_order_get_rates(basic_address, basic_shipment):
-    order = create_order(basic_address, basic_shipment)
+def test_order_get_rates(basic_order):
+    order = easypost.Order.create(**basic_order)
 
     rates = order.get_rates()
 
@@ -44,8 +36,8 @@ def test_order_get_rates(basic_address, basic_shipment):
 
 
 @pytest.mark.vcr()
-def test_order_buy(usps, usps_service, basic_address, basic_shipment):
-    order = create_order(basic_address, basic_shipment)
+def test_order_buy(usps, usps_service, basic_order):
+    order = easypost.Order.create(**basic_order)
     order.buy(carrier=usps, service=usps_service)
 
     shipment_array = order["shipments"]

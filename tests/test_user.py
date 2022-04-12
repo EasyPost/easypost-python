@@ -14,8 +14,10 @@ def test_user_create(prod_api_key):
 
 
 @pytest.mark.vcr()
-def test_user_retrieve(prod_api_key, child_user_id):
-    user = easypost.User.retrieve(child_user_id)
+def test_user_retrieve(prod_api_key):
+    authenticated_user = easypost.User.retrieve_me()
+
+    user = easypost.User.retrieve(authenticated_user["children"][0]["id"])
 
     assert isinstance(user, easypost.User)
     assert str.startswith(user.id, "user_")

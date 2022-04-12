@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"type": "shipment", "start_date": "2022-03-01", "end_date": "2022-03-11",
+    body: '{"type": "shipment", "start_date": "2022-04-11", "end_date": "2022-04-11",
       "columns": ["usps_zone"]}'
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '100'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -24,10 +24,10 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4SOQQ7CIBBF78LaJi20VTmGunJDKDNNMUgJTKOJ8e5CuzFu3M28/35mXswCkyxN
-        IWJQtR5NP2hoYexbLbrj/sBHY1oh0DQ4ANuxebihoVw5Tzbc0dMJwxwpJyaiJgSlS8przqtaVFxc
-        eCM7Ibvump0lwF8nkY6kivfl1E1O0MMvbwq/z1AYYaKtT0vKu8dHORkdk35xbh0VPoONmNYPNmq9
-        cQugMpN1ENEzOWqX8P0BAAD//wMAXYPjmhsBAAA=
+        H4sIAAAAAAAAA4SOQQ7CIBBF78Jak0JpiRxDXbkhFKYphlICQzQx3l3ablyYuJt5//3MvIizRJI8
+        xQRRjUzTHvqh5T3lJ2h1azoqzChGwYWxnBzIMtzBYK1cJhdnCHiGuCSsiUmgEazSa8oaxo4NP1J2
+        pb2kVHbiVp0S7V8no06oVu/boTWBYH/yebErQ8i497Hkugd4rCeTJzIU77dRwTO6BHn7YKcuGF8s
+        KDM5bxMEIkftM7w/AAAA//8DANZmC48bAQAA
     headers:
       cache-control:
       - no-cache, no-store
@@ -36,7 +36,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"fea3abd2485ac3f11aeb87851a241354"
+      - W/"63233bc97409935a7c8d82113f18347b"
       expires:
       - '0'
       pragma:
@@ -49,25 +49,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 4aee9dd1623b96f3ff10b19b000fe131
+      - bcd42efa6255a4cde77997860030f038
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb8nuq
+      - bigweb7nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - extlb1nuq 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb1nuq fde591f008
       x-runtime:
-      - '0.035181'
+      - '0.037531'
       x-version-label:
-      - easypost-202203231943-61a988cd70-master
+      - easypost-202204112244-205415e174-master
       x-xss-protection:
       - 1; mode=block
     status:
