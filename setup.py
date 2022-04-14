@@ -1,8 +1,9 @@
 from setuptools import setup
 
+
 REQUIREMENTS = [
     "requests >= 2.4.3",
-    "typing-extensions"
+    "typing-extensions",
 ]
 
 DEV_REQUIREMENTS = [
@@ -22,12 +23,17 @@ CPYTHON_DEV_REQUIREMENTS = [
     "mypy",
 ]
 
+RELEASE_REQUIREMENTS = [
+    "twine==3.8.*",  # Twine 4.0+ drops support for Python 3.6
+    "wheel",
+]
+
 with open("README.md", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
     name="easypost",
-    version="6.0.0",
+    version="7.0.0",
     description="EasyPost Shipping API Client Library for Python",
     author="EasyPost",
     author_email="support@easypost.com",
@@ -37,9 +43,10 @@ setup(
     extras_require={
         "dev": DEV_REQUIREMENTS + CPYTHON_DEV_REQUIREMENTS,
         "pypy_dev": DEV_REQUIREMENTS,  # no cpython requirements
+        "release": RELEASE_REQUIREMENTS,
     },
     package_data={
-        'easypost': ['py.typed']
+        "easypost": ["py.typed"],
     },
     test_suite="test",
     long_description=long_description,

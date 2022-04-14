@@ -10,7 +10,7 @@ help:
 
 ## build - Builds the project in preparation for release
 build:
-	$(PYTHON_BINARY) setup.py sdist bdist_wheel
+	$(VIRTUAL_BIN)/python setup.py sdist bdist_wheel
 
 ## coverage - Test the project and generate an HTML coverage report
 coverage:
@@ -18,11 +18,8 @@ coverage:
 
 ## clean - Remove the virtual environment and clear out .pyc files
 clean:
-	rm -rf $(VIRTUAL_ENV)
+	rm -rf $(VIRTUAL_ENV) dist/ build/ *.egg-info/
 	find . -name '*.pyc' -delete
-	rm -rf dist
-	rm -rf build
-	rm -rf *.egg-info
 
 ## black - Runs the Black Python formatter against the project
 black:
@@ -39,13 +36,20 @@ format: black isort lint mypy
 format-check: black-check isort-check lint mypy
 
 ## install - Install the project locally
-install:
-	$(PYTHON_BINARY) -m venv $(VIRTUAL_ENV)
+install: | venv install-dev
+
+## install-dev - Install dev requirements
+install-dev: | venv
 	$(VIRTUAL_BIN)/pip install -e ."[dev]"
 
-install-pypy:
-	$(PYTHON_BINARY) -m venv $(VIRTUAL_ENV)
+## install-pypy - Install dev requirements for pypy
+install-pypy: | venv
 	$(VIRTUAL_BIN)/pip install -e ."[pypy_dev]"
+
+## install-release - Install release requirements
+install-release: | venv
+	$(VIRTUAL_BIN)/pip install -e ."[release]"
+
 ## isort - Sorts imports throughout the project
 isort:
 	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/
@@ -62,8 +66,16 @@ lint:
 mypy:
 	$(VIRTUAL_BIN)/mypy $(PROJECT_NAME)/ $(TEST_DIR)/
 
+## publish - Publish the project to PyPI
+publish:
+	$(VIRTUAL_BIN)/twine upload dist/*
+
 ## test - Test the project
 test:
 	$(VIRTUAL_BIN)/pytest
 
-.PHONY: help build coverage clean black black-check format format-check install isort isort-check lint mypy test
+## venv - Create the virtual environment
+venv:
+	$(PYTHON_BINARY) -m venv $(VIRTUAL_ENV)
+
+.PHONY: help build coverage clean black black-check format format-check install install-dev install-pypy install-release isort isort-check lint mypy publish test
