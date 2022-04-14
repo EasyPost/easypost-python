@@ -63,6 +63,8 @@ print(shipment)
 
 API Documentation can be found at: https://easypost.com/docs/api.
 
+Upgrading major versions of this project? Refer to the [Upgrade Guide](UPGRADE_GUIDE.md).
+
 ## Development
 
 ```bash

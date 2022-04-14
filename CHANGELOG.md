@@ -1,270 +1,259 @@
-## CHANGELOG
+# CHANGELOG
 
-### NEXT RELEASE
+## v7.0.0 (2022-04-14)
 
-* Bumps minimum Python version from 2.7 to 3.6
-* Bumps all dependencies
-* Add the `update_brand()` method to the User object
-* Removes `_max_timeout` and instead uses a flat 60-second timeout for requests
-* Adds Python version to user-agent header on requests
-* Removes `shipment.get_rates()` method since the shipment object already has rates. If you need to get new rates for a shipment, please use the `shipment.regenerate_rates()` method.
-* Add `retrieve_me()` convenience function that allow users to retrieve without specifying an ID.
-* Remove `blob` class since it's never being used
-* Remove `track_with_code` in shipment class since it's no longer being used
-* Add support for `columns` and `additional_columns` on Report creation
-* Must pass a list object to `Shipment.lowest_rate()` rather than a comma-separated list
-* Removes the unusable `carrier` param from `Address.create_and_verify()` along with the dead `message` conditional check
+Upgrading major versions of this project? Refer to the [Upgrade Guide](UPGRADE_GUIDE.md).
 
-### v6.0.0 2021-10-12
+### Breaking Changes
 
-* JSON encodes POST bodies instead of form encoding them
-* Adds support for `tax_identifiers`
-* Black formatting and iSort tools added to repo
-* Bumps `requests` from v1 to v2
-* Various refactor efforts and code cleanup
+- Bumps minimum Python version from 2.7 to 3.6
+- Bumps all dependencies
+- Removes `shipment.get_rates()` method since the shipment object already has rates. If you need to get new rates for a shipment, please use the `shipment.regenerate_rates()` method.
+- Removes `track_with_code` in shipment class since it's no longer being used
+- Removes the unusable `carrier` param from `Address.create_and_verify()` along with the dead `message` conditional check
+- Must pass a list object to `shipment.lowest_rate()` rather than a comma-separated list
 
-### v5.1.3 2021-07-20
+### Features
 
-* Remove 2015-vintage experimental "`all_updated`" action from trackers
-* Correct references of `contact@easypost.com` to `support@easypost.com`
-* Clean up address verify property and some miscellaneous request logic
+- Adds the `update_brand()` method to the User object
+- Adds Python version to user-agent header on requests
+- Adds `retrieve_me()` convenience function that allow users to retrieve without specifying an ID.
 
-### v5.1.2 2021-06-10
+### Chores
 
-* Strips away the `result` key from SmartRate and simply returns an array of SmartRate objects
+- Broke out the entire project into separate modules based on object
+- Removes `_max_timeout` and instead uses a flat 60-second timeout for requests
+- Added Makefile for much easier development management
+- Added typehints throughout the project
+- Consolidated all dependencies from various requirements files to `setup.py`
+- Added a comprehensive test suite that tests all interfaces of the project
+- Documented each interface of the project via docstrings
 
-### 5.1.1 2021-05-18
+## v6.0.0 (2021-10-12)
 
-* fix: stops appending smartrates to Shipment object
+Upgrading major versions of this project? Refer to the [Upgrade Guide](UPGRADE_GUIDE.md).
 
-### 5.1.0 2021-05-14
+- JSON encodes POST bodies instead of form encoding them
+- Adds support for `tax_identifiers`
+- Black formatting and iSort tools added to repo
+- Bumps `requests` from v1 to v2
+- Various refactor efforts and code cleanup
 
-* Adds `SmartRate` functionality to the `Shipments` object (available by calling `get_smartrates()` on a shipment)
+## v5.1.3 (2021-07-20)
 
-### 5.0.0 2020-08-10
+- Remove 2015-vintage experimental "`all_updated`" action from trackers
+- Correct references of `contact@easypost.com` to `support@easypost.com`
+- Clean up address verify property and some miscellaneous request logic
 
-* Add `all` method for retrieving Events
-* _[backwards-compatibility break]_ Remove `all` method for some un-supported types: CustomsItem, CustomsInfo, Pickup, and Order
+## vv5.1.2 (2021-06-10)
 
-### 4.1.0 2020-05-11
+- Strips away the `result` key from SmartRate and simply returns an array of SmartRate objects
 
-* change tests to use [vcrpy](https://github.com/kevin1024/vcrpy) so they are more reliable
-* add `original_exception` to `easypost.Error` in cases where we are re-raising an underlying error (e.g., an HTTP exception)
-* fix a bunch of flake8 warnings
-* [potentially-breaking] soft-deprecate Python 3.3 and 3.4. these have been dropped by most of the libraries we use, so probably don't work anyway.
-* Swap GET to POST on Refund method
+## v5.1.1 (2021-05-18)
 
-### 4.0.2 2020-05-05
+- fix: stops appending smartrates to Shipment object
 
-* cleaned up how the `__version__` attribute is populated to no longer throw warnings (#95, #98, #104)
-* added some misding reports
-* fix stale tests
-* move testing infrastructure from travis-ci.org to travis-ci.com
+## v5.1.0 (2021-05-14)
 
-### 4.0.1 2020-03-06
+- Adds `SmartRate` functionality to the `Shipments` object (available by calling `get_smartrates()` on a shipment)
 
-* Fixed a bug that would not create reports properly
-* Fixed stale unit tests
+## v5.0.0 (2020-08-10)
 
-### 4.0.0 2019-07-09
+- Add `all` method for retrieving Events
+- _[backwards-compatibility break]_ Remove `all` method for some un-supported types: CustomsItem, CustomsInfo, Pickup, and Order
 
-* Update some `setup.py` fields
-* Formally remove Python 2.6 support (which has been broken for several years)
+## v4.1.0 (2020-05-11)
 
-### 3.6.5 2019-07-09
+- change tests to use [vcrpy](https://github.com/kevin1024/vcrpy) so they are more reliable
+- add `original_exception` to `easypost.Error` in cases where we are re-raising an underlying error (e.g., an HTTP exception)
+- fix a bunch of flake8 warnings
+- [potentially-breaking] soft-deprecate Python 3.3 and 3.4. these have been dropped by most of the libraries we use, so probably don't work anyway.
+- Swap GET to POST on Refund method
 
-* Fix broken pickup tests
-* Fix broken reports tests
-* Make tests run on Python 3.7
-* Fix typo in `install_requires` causing `six` to not be installed by pip (gh-84 from @roehnan)
+## v4.0.2 (2020-05-05)
 
-### 3.6.4 2018-04-09 (never actually released)
-* Update user tests
+- cleaned up how the `__version__` attribute is populated to no longer throw warnings (#95, #98, #104)
+- added some misding reports
+- fix stale tests
+- move testing infrastructure from travis-ci.org to travis-ci.com
 
-### 3.6.3 2018-02-05
+## v4.0.1 (2020-03-06)
 
-* Fix issue with responses that contain an `api_key` field (gh-67)
-* Fix tests to take into account new label fee
+- Fixed a bug that would not create reports properly
+- Fixed stale unit tests
 
-### 3.6.2 2017-05-23
+## v4.0.0 (2019-07-09)
 
-* Report.retrieve no longer requires a type to be passed
+- Update some `setup.py` fields
+- Formally remove Python 2.6 support (which has been broken for several years)
 
-### 3.6.1 2017-05-09
+## v3.6.5 (2019-07-09)
 
-* Modernize tests; make tests able to run in parallel; etc.
-* Clarify in README and `setup.py` the supported Python versions
-* Add top-level `timeout` variable for setting the HTTP timeout on requests
+- Fix broken pickup tests
+- Fix broken reports tests
+- Make tests run on Python 3.7
+- Fix typo in `install_requires` causing `six` to not be installed by pip (gh-84 from @roehnan)
 
-### 3.6.0 2017-04-04
+## v3.6.4 (2018-04-09)
 
-* Changed Report CRUD signatures. requires report type to be passed
+**NOTE:** This version was never released
 
-### 3.5.2 2017-02-14
+- Update user tests
 
-* Added `get_rates` method to Order objects
+## v3.6.3 (2018-02-05)
 
+- Fix issue with responses that contain an `api_key` field (gh-67)
+- Fix tests to take into account new label fee
 
-### 3.5.1 2017-01-19
+## v3.6.2 (2017-05-23)
 
-* Fixed create for ScanForms
+- Report.retrieve no longer requires a type to be passed
 
+## v3.6.1 (2017-05-09)
 
-### 3.5.0 2017-01-18
+- Modernize tests; make tests able to run in parallel; etc.
+- Clarify in README and `setup.py` the supported Python versions
+- Add top-level `timeout` variable for setting the HTTP timeout on requests
 
-* Added basic CRUD methods for Webhook Objects
-* Fixed Order test
+## v3.6.0 (2017-04-04)
 
+- Changed Report CRUD signatures. requires report type to be passed
 
-### 3.4.0 2016-12-20
+## v3.5.2 (2017-02-14)
 
-* Added session pooling
+- Added `get_rates` method to Order objects
 
+## v3.5.1 (2017-01-19)
 
-### 3.3.0 2016-12-15
+- Fixed create for ScanForms
 
-* Added support for Report objects
+## v3.5.0 (2017-01-18)
 
+- Added basic CRUD methods for Webhook Objects
+- Fixed Order test
 
-### 3.2.2 2016-07-29
+## v3.4.0 (2016-12-20)
 
-* Added support for Insurance objects
+- Added session pooling
 
+## v3.3.0 (2016-12-15)
 
-### 3.2.1 2016-07-18
+- Added support for Report objects
 
-* Added `to_json` method for EasyPost object. Thanks ThePsyjo!
+## v3.2.2 (2016-07-29)
 
+- Added support for Insurance objects
 
-### 3.2.0 2016-05-17
+## v3.2.1 (2016-07-18)
 
-* Remove `api_keys` from object dumps
-* Fixed address tests to keep them in line with the new API messages
-* This was previously known as version 3.1.3
+- Added `to_json` method for EasyPost object. Thanks ThePsyjo!
 
+## v3.2.0 (2016-05-17)
 
-### 3.1.2 2016-03-04
+- Remove `api_keys` from object dumps
+- Fixed address tests to keep them in line with the new API messages
+- This was previously known as version 3.1.3
 
-* Added a suite of unittest tests. Thanks wyounas!
+## v3.1.2 (2016-03-04)
 
+- Added a suite of unittest tests. Thanks wyounas!
 
-### 3.1.1 2016-02-12
+## v3.1.1 (2016-02-12)
 
-* Added ability to interact with Users (create, retrieve and update)
+- Added ability to interact with Users (create, retrieve and update)
 
+## v3.1.0 (2015-12-08)
 
-### 3.1.0 2015-12-08
+- Add verifications to Address.create
 
-* Add verifications to Address.create
+## v3.0.6 (2015-11-24)
 
+- Added Blob.retrieve for fetching urls for blobs stored by EasyPost.
 
-### 3.0.6 2015-11-24
+## v3.0.5 (2015-11-18)
 
-* Added Blob.retrieve for fetching urls for blobs stored by EasyPost.
+- Changed the interface on `Tracker.create_list` to return True rather than the
+  Trackers themselves
 
+## v3.0.4 (2015-11-16)
 
-### 3.0.5 2015-11-18
+- Minor bugfix
 
-* Changed the interface on `Tracker.create_list` to return True rather than the
-Trackers themselves
+## v3.0.3 (2015-11-16)
 
+- Added a `Tracker.all_updated` method for retrieving a large number of Trackers
+  by status or `tracking_details` updated datetime
 
-### 3.0.4 2015-11-16
+## v3.0.2 (2015-11-10)
 
-* Minor bugfix
+- Added a `Tracker.create_list` method for creating a large number of Trackers
+  at once
 
+## v3.0.1 (2015-11-04)
 
-### 3.0.3 2015-11-16
+- Fixed some examples and added some new ones, particularly dealing with Tracker.all
 
-* Added a `Tracker.all_updated` method for retrieving a large number of Trackers
-by status or `tracking_details` updated datetime
+## v3.0.0 (2015-10-19)
 
+- Fixed bug where retrieving a shipment by tracking code or reference doesn't set the ID properly
 
-### 3.0.2 2015-11-10
+## v2.0.16 (2015-08-10)
 
-* Added a `Tracker.create_list` method for creating a large number of Trackers
-at once
+- Added ability to interact with carrier accounts (full CRUD)
 
+## v2.0.15 (2015-07-31)
 
-### 3.0.1 2015-11-04
+- Fixed bug with address verification url rendering
 
-* Fixed some examples and added some new ones, particularly dealing with Tracker.all
+## v2.0.14 (2015-03-30)
 
+- Fix numerous bugs, including Python3 encoding
 
-### 3.0.0 2015-10-19
+## v2.0.13 (2015-01-09)
 
-* Fixed bug where retrieving a shipment by tracking code or reference doesn't set the ID properly
+- Added python3 support
 
+## v2.0.12 (2014-11-04)
 
-### 2.0.16 2015-08-10
+- Added tracker to shipment response
+- Added tracker example
 
-* Added ability to interact with carrier accounts (full CRUD)
+## v2.0.11 (2014-09-19)
 
+- Added Order support.
 
-### 2.0.15 2015-07-31
+## v2.0.10 (2014-09-10)
 
-* Fixed bug with address verification url rendering
+- Added Pickup cancellation method.
 
-### 2.0.14 2015-03-30
+## v2.0.9 (2014-09-02)
 
-* Fix numerous bugs, including Python3 encoding
+- Added Pickup resource for scheduling pickups.
 
+## v2.0.6 (2013-10-17)
 
-### 2.0.13 2015-01-09
+- Added Event resource for webhook digestion.
+- Added buy method to Batch.
 
-* Added python3 support
+## v2.0.5 (2013-09-22)
 
+- Bug Fix: UTF-8 input handled more gracefully.
 
-### 2.0.12 2014-11-04
+## v2.0.4 (2013-07-31)
 
-* Added tracker to shipment response
-* Added tracker example
+- API Addition: Tracker resource added. Trackers can be used to register any tracking code with EasyPost webhooks.
 
+## v2.0.3 (2013-07-23)
 
-### 2.0.11 2014-09-19
+- API Addition: `Shipment.track_with_code` returns tracking details for any tracking code.
 
-* Added Order support.
+## v2.0.2 (2013-07-07)
 
+- Bug fix: `address.create_and_verify` is now a classmethod.
 
-### 2.0.10 2014-09-10
+## v2.0.1 (2013-07-05)
 
-* Added Pickup cancellation method.
-
-
-### 2.0.9 2014-09-02
-
-* Added Pickup resource for scheduling pickups.
-
-
-### 2.0.6 2013-10-17
-
-* Added Event resource for webhook digestion.
-* Added buy method to Batch.
-
-
-### 2.0.5 2013-09-22
-
-* Bug Fix: UTF-8 input handled more gracefully.
-
-
-### 2.0.4 2013-07-31
-
-* API Addition: Tracker resource added. Trackers can be used to register any tracking code with EasyPost webhooks.
-
-
-### 2.0.3 2013-07-23
-
-* API Addition: `Shipment.track_with_code` returns tracking details for any tracking code.
-
-
-### 2.0.2 2013-07-07
-
-* Bug fix: `address.create_and_verify` is now a classmethod.
-
-
-### 2.0.1 2013-07-05
-
-* Added function to Address to all creating and verifying at the same time.
-* Add label function to Shipment to request specific label `file_formats` (pdf, epl2, zpl).
-* Add insure function to Shipment. Add insurance to any shipment in one call!
-* Fixed `shipment.get_rates` bug.
+- Added function to Address to all creating and verifying at the same time.
+- Add label function to Shipment to request specific label `file_formats` (pdf, epl2, zpl).
+- Add insure function to Shipment. Add insurance to any shipment in one call!
+- Fixed `shipment.get_rates` bug.
