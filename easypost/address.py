@@ -5,7 +5,10 @@ from typing import (
 )
 
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.requestor import Requestor
+from easypost.requestor import (
+    RequestMethod,
+    Requestor,
+)
 from easypost.resource import (
     AllResource,
     CreateResource,
@@ -33,7 +36,7 @@ class Address(AllResource, CreateResource):
                 value = [value]
             wrapped_params[key] = value
 
-        response, api_key = requestor.request(method="post", url=url, params=wrapped_params)
+        response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=wrapped_params)
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     @classmethod
@@ -43,7 +46,7 @@ class Address(AllResource, CreateResource):
         url = "%s/%s" % (cls.class_url(), "create_and_verify")
 
         wrapped_params = {cls.snakecase_name(): params}
-        response, api_key = requestor.request(method="post", url=url, params=wrapped_params)
+        response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
         response_address = response.get("address", None)
 
@@ -58,7 +61,7 @@ class Address(AllResource, CreateResource):
         requestor = Requestor(local_api_key=self._api_key)
         url = "%s/%s" % (self.instance_url(), "verify")
         params = {"carrier": carrier}
-        response, api_key = requestor.request(method="get", url=url, params=params)
+        response, api_key = requestor.request(method=RequestMethod.GET, url=url, params=params)
 
         response_address = response.get("address", None)
         response_message = response.get("message", None)

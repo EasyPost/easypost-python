@@ -4,7 +4,10 @@ from typing import (
 )
 
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.requestor import Requestor
+from easypost.requestor import (
+    RequestMethod,
+    Requestor,
+)
 from easypost.resource import (
     CreateResource,
     DeleteResource,
@@ -19,7 +22,9 @@ class User(CreateResource, UpdateResource, DeleteResource):
         requestor = Requestor(local_api_key=api_key)
         url = cls.class_url()
         wrapped_params = {cls.snakecase_name(): params}
-        response, api_key = requestor.request(method="post", url=url, params=wrapped_params, api_key_required=False)
+        response, api_key = requestor.request(
+            method=RequestMethod.POST, url=url, params=wrapped_params, api_key_required=False
+        )
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     @classmethod
@@ -27,7 +32,7 @@ class User(CreateResource, UpdateResource, DeleteResource):
         """Retrieve a user."""
         if not easypost_id:
             requestor = Requestor(local_api_key=api_key)
-            response, api_key = requestor.request(method="get", url=cls.class_url())
+            response, api_key = requestor.request(method=RequestMethod.GET, url=cls.class_url())
             return convert_to_easypost_object(response=response, api_key=api_key)
         else:
             instance = cls(easypost_id=easypost_id, api_key=api_key, **params)
@@ -38,7 +43,7 @@ class User(CreateResource, UpdateResource, DeleteResource):
     def retrieve_me(cls, api_key: Optional[str] = None, **params) -> "User":
         """Retrieve the authenticated user."""
         requestor = Requestor(local_api_key=api_key)
-        response, api_key = requestor.request(method="get", url=cls.class_url())
+        response, api_key = requestor.request(method=RequestMethod.GET, url=cls.class_url())
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     @classmethod
@@ -46,7 +51,7 @@ class User(CreateResource, UpdateResource, DeleteResource):
         """Get all API keys including child user keys."""
         requestor = Requestor(local_api_key=api_key)
         url = "/api_keys"
-        response, api_key = requestor.request(method="get", url=url)
+        response, api_key = requestor.request(method=RequestMethod.GET, url=url)
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     def api_keys(self) -> List[str]:
@@ -65,5 +70,7 @@ class User(CreateResource, UpdateResource, DeleteResource):
     def update_brand(self, api_key: Optional[str] = None, **params) -> "User":
         """Update the User's Brand."""
         requestor = Requestor(local_api_key=api_key)
-        response, api_key = requestor.request(method="put", url=self.instance_url() + "/brand", params=params)
+        response, api_key = requestor.request(
+            method=RequestMethod.PUT, url=self.instance_url() + "/brand", params=params
+        )
         return convert_to_easypost_object(response=response, api_key=api_key)
