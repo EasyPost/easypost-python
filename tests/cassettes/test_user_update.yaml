@@ -8,8 +8,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -20,28 +18,66 @@ interactions:
     uri: https://api.easypost.com/v2/users
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA9SYS4/bNhDHv8rC164XM+TweUpR9NZDDu4lRSDwMYxVyA9IdoBFkO/e0SbZZhPU
-        6qEoIp0sDUnNj/zPQ/6w6esmbq4Tj50hbWyyOdgSCKoPqIPFpIvLAUJTm/vNKf/J5SITfpcJcn9O
-        Ix8v3bzG8ToM95tjOrCYf03T4+vTdLl7/XjZn453vwy9jLv7rc9jGh/vdjxdpnm62Lg7Xg9ZVosb
-        83yJ7T2PfetZVr6MV77flJHThWuX5tcrQLcFvQXcgY6AUdMbmZPTkI5ldgAeYL7md4x94e4sfNO+
-        Px/EjRfmkcs+je+4S4fTdbZ94pi4nI5VfO3+YcDz48t+5Gl/Gp63YJ+mLvfD0B/fdQcW/GdLKV1j
-        7kbh+OSDFgcqt3QdZA+P03Wcvf/mRX8/fzkXN9/aDv2xP1wPYsaHJzY+pH6Q28rvf2I5kbOcyPb8
-        dCKvvtw/lNNBhpZ9P1Q5y03848NXkgi5KJOwgmuGrFchOBFJ0C5rqNTgtiT+taw+q+azWH4ehu1u
-        L9s3bWehiAS+U4oHEJUAPmEuKEXBFswWcacwmhDBvXnJ+/bj/dfI2iYdjC/VmkQmqIy1Zkequaq1
-        VWlFyDQHhzHRqNvIzRh0PoNWhag49kVZxJY8EZoaaF3IFIVa6dvIjM1DUgymedIYgoVitQPxGNjx
-        aoTttkrtECOGSOY2smViDibYjI4KllQ1eYliCW1QjtuKkN0OICofKSwIGxopCd8MphAABcXF5uxb
-        tiG05laBrJ4KHc3pi1yEhViWfI3gjIQvIKHmHCSy0UIuksGp6f8DWX78J8zhqbiHqP1tZjRZOI3U
-        pZpIoQ9BKlat7GvAYjCsjhkpKnubWXG2VhwGUyt5xyJtHVRwqtUiT3hF0g5zzqYQcUHakqJF29aB
-        qpmCzx6l62m6+FbAgrerQkY3n7JeaEaUQ+tCkgLFQM4qn5XKgIbd3KOQWReyJGwv8bwQzCB1CYm9
-        4kbAQfovKsV63bJq0pSsC1mSF0S9IOyAUHQpuYBL0oBRkBMGxKKCL1bK9KqQlaRsE3GhGak1eDdX
-        ZEgibE0pGSuNWGZnW3FrimWEHahIOuoFYYusqcrKRaEikzGhz06EDsGq0tw6+q8vyLOwrVAvfVhI
-        keKaDCU3N5/ZMWXrpHZl7Zxb+Efhh0I2OwXRyBckfYf89uNfAAAA//8DANSEovlGEQAA
+      string: '{"object": "User", "parent_id": null, "name": "EasyPost Python Client
+        Library Tests", "phone_number": "5555555555", "verified": true, "created_at":
+        "2017-03-01T03:01:34Z", "balance": "0.00000", "price_per_shipment": "0.00000",
+        "recharge_amount": null, "secondary_recharge_amount": null, "recharge_threshold":
+        null, "has_billing_method": null, "cc_fee_rate": "0.03", "default_insurance_amount":
+        null, "insurance_fee_rate": "0.01", "insurance_fee_minimum": "1.00", "email":
+        "dev+easypost-python@easypost.com", "children": [{"id": "user_9bc25a1d07f54682997435937b30d4f0",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2020-05-11T21:59:07Z", "children": []}, {"id": "user_36a3958cd65a4592b1ddb742f7d3362a",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2020-05-14T03:55:52Z", "children": []}, {"id": "user_f55178b032c44c7e8c2611fa84415d94",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2020-05-14T04:03:23Z", "children": []}, {"id": "user_e1f80a2e05f84319960c63701a30e7e0",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2020-07-22T11:19:45Z", "children": []}, {"id": "user_6e4ee9596b174c1cad3480d47f5027ef",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2020-07-27T00:28:49Z", "children": []}, {"id": "user_f0f42ddbb05c400492ec6bb8fb699ff7",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-04T21:47:02Z", "children": []}, {"id": "user_c25107511f01413eb978b160bcf544f3",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Testing", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-09T03:09:38Z", "children": []}, {"id": "user_15beb95593da4218991d0dde8d91c519",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Testing", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-09T03:14:26Z", "children": []}, {"id": "user_2eb666a605dd487e92e392972fdcdd4e",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-09T04:49:12Z", "children": []}, {"id": "user_60c5106702db498b81feef3c8fc06086",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-09T17:14:37Z", "children": []}, {"id": "user_271679a319e047628b22b015e7395845",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-09T18:48:09Z", "children": []}, {"id": "user_10d3414e82ef40e9b1d4cc683fb2f1fa",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-09T19:30:32Z", "children": []}, {"id": "user_910c3ccbc07a44c49015011c298c6ad3",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-09T23:05:15Z", "children": []}, {"id": "user_dd98700490a04734aa56843be76fc786",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-10T02:43:39Z", "children": []}, {"id": "user_d344d010c21245b1a18b714e0962cf7f",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-10T19:36:43Z", "children": []}, {"id": "user_f5b66eda54a74ee9b7e4b672ebb37772",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-15T20:51:54Z", "children": []}]}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '4422'
       content-type:
       - application/json; charset=utf-8
       etag:
@@ -58,28 +94,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5086233b3dbff0304e9002a7090
+      - f6c5a4ed62605310e7996a660024444d
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb2nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb1nuq fde591f008
       x-runtime:
-      - '0.178590'
+      - '0.358655'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -96,7 +129,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '33'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -108,28 +141,66 @@ interactions:
     uri: https://api.easypost.com/v2/users/user_54356a6b96c940d8913961a3c7b909f2
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA9SYS4/bNhDHv8rC164XM+TweUpR9NZDDu4lRSDwMYxVyA9IdoBFkO/e0SbZZhPU
-        6qEoIp0sDUnNj/zPQ/6w6esmbq4Tj50hbWyyOdgSCKoPqIPFpIvLAUJTm/vNKf/J5SITfpcJcn9O
-        Ix8v3bzG8ToM95tjOrCYf03T4+vTdLl7/XjZn453vwy9jLv7rc9jGh/vdjxdpnm62Lg7Xg9ZVosb
-        83yJ7T2PfetZVr6MV77flJHThWuX5tcrQLcFvQXcgY6AUdMbmZPTkI5ldgAeYL7md4x94e4sfNO+
-        Px/EjRfmkcs+je+4S4fTdbZ94pi4nI5VfO3+YcDz48t+5Gl/Gp63YJ+mLvfD0B/fdQcW/GdLKV1j
-        7kbh+OSDFgcqt3QdZA+P03Wcvf/mRX8/fzkXN9/aDv2xP1wPYsaHJzY+pH6Q28rvf2I5kbOcyPb8
-        dCKvvtw/lNNBhpZ9P1Q5y03848NXkgi5KJOwgmuGrFchOBFJ0C5rqNTgtiT+taw+q+azWH4ehu1u
-        L9s3bWehiAS+U4oHEJUAPmEuKEXBFswWcacwmhDBvXnJ+/bj/dfI2iYdjC/VmkQmqIy1Zkequaq1
-        VWlFyDQHhzHRqNvIzRh0PoNWhag49kVZxJY8EZoaaF3IFIVa6dvIjM1DUgymedIYgoVitQPxGNjx
-        aoTttkrtECOGSOY2smViDibYjI4KllQ1eYliCW1QjtuKkN0OICofKSwIGxopCd8MphAABcXF5uxb
-        tiG05laBrJ4KHc3pi1yEhViWfI3gjIQvIKHmHCSy0UIuksGp6f8DWX78J8zhqbiHqP1tZjRZOI3U
-        pZpIoQ9BKlat7GvAYjCsjhkpKnubWXG2VhwGUyt5xyJtHVRwqtUiT3hF0g5zzqYQcUHakqJF29aB
-        qpmCzx6l62m6+FbAgrerQkY3n7JeaEaUQ+tCkgLFQM4qn5XKgIbd3KOQWReyJGwv8bwQzCB1CYm9
-        4kbAQfovKsV63bJq0pSsC1mSF0S9IOyAUHQpuYBL0oBRkBMGxKKCL1bK9KqQlaRsE3GhGak1eDdX
-        ZEgibE0pGSuNWGZnW3FrimWEHahIOuoFYYusqcrKRaEikzGhz06EDsGq0tw6+q8vyLOwrVAvfVhI
-        keKaDCU3N5/ZMWXrpHZl7Zxb+Efhh0I2OwXRyBckfYf89uNfAAAA//8DANSEovlGEQAA
+      string: '{"object": "User", "parent_id": null, "name": "EasyPost Python Client
+        Library Tests", "phone_number": "5555555555", "verified": true, "created_at":
+        "2017-03-01T03:01:34Z", "balance": "0.00000", "price_per_shipment": "0.00000",
+        "recharge_amount": null, "secondary_recharge_amount": null, "recharge_threshold":
+        null, "has_billing_method": null, "cc_fee_rate": "0.03", "default_insurance_amount":
+        null, "insurance_fee_rate": "0.01", "insurance_fee_minimum": "1.00", "email":
+        "dev+easypost-python@easypost.com", "children": [{"id": "user_9bc25a1d07f54682997435937b30d4f0",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2020-05-11T21:59:07Z", "children": []}, {"id": "user_36a3958cd65a4592b1ddb742f7d3362a",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2020-05-14T03:55:52Z", "children": []}, {"id": "user_f55178b032c44c7e8c2611fa84415d94",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2020-05-14T04:03:23Z", "children": []}, {"id": "user_e1f80a2e05f84319960c63701a30e7e0",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2020-07-22T11:19:45Z", "children": []}, {"id": "user_6e4ee9596b174c1cad3480d47f5027ef",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2020-07-27T00:28:49Z", "children": []}, {"id": "user_f0f42ddbb05c400492ec6bb8fb699ff7",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-04T21:47:02Z", "children": []}, {"id": "user_c25107511f01413eb978b160bcf544f3",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Testing", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-09T03:09:38Z", "children": []}, {"id": "user_15beb95593da4218991d0dde8d91c519",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Testing", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-09T03:14:26Z", "children": []}, {"id": "user_2eb666a605dd487e92e392972fdcdd4e",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-09T04:49:12Z", "children": []}, {"id": "user_60c5106702db498b81feef3c8fc06086",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-09T17:14:37Z", "children": []}, {"id": "user_271679a319e047628b22b015e7395845",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-09T18:48:09Z", "children": []}, {"id": "user_10d3414e82ef40e9b1d4cc683fb2f1fa",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-09T19:30:32Z", "children": []}, {"id": "user_910c3ccbc07a44c49015011c298c6ad3",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-09T23:05:15Z", "children": []}, {"id": "user_dd98700490a04734aa56843be76fc786",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-10T02:43:39Z", "children": []}, {"id": "user_d344d010c21245b1a18b714e0962cf7f",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-10T19:36:43Z", "children": []}, {"id": "user_f5b66eda54a74ee9b7e4b672ebb37772",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Python All-Things-Tested", "phone_number": "8005550100", "verified": true,
+        "created_at": "2022-03-15T20:51:54Z", "children": []}]}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '4422'
       content-type:
       - application/json; charset=utf-8
       etag:
@@ -146,28 +217,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5086233b3dcff0304e9002a70ad
+      - f6c5a4ed62605310e7996a6600244471
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb5nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - intlb2wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb1nuq fde591f008
       x-runtime:
-      - '0.179274'
+      - '0.239997'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:

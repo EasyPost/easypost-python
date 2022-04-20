@@ -8,8 +8,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -20,34 +18,71 @@ interactions:
     uri: https://api.easypost.com/v2/scan_forms?page_size=5
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA+yWTW/jNhCG/0qga/PBIYdfvi2K7qGnAtleWhTGkBxu1NqyIclNs4v8947sxNld
-        NLWdPQWIoIM0ejl8+fGI87kZMnXzuuqXQzP7/XPTlmbWDHXOVmPULscULRoXSGWXvFWaSgaOoTlv
-        VulPzqPIryXFe8kgsdwzjVzmNMW10vpCmQvwH7SeQZgZ85toNutyUDP2lP9qu4/zvCo8OWsiKgXT
-        HY0DuVB5h7r547yhUnoeRPTgnko/16UmT9mQQwXAOdaiKEN1SZEqwF/af/fQ/qB7/YNSM6UOD+FJ
-        2NGSRfKzjObsek19v7qd+lkt19TdyYefaLj7ZTWMEhzGnnkECZoQzj6sbruBu3J2/fRNT2bX45me
-        Mud2nBJcU3f2vqcut0NebZViTOI/vpOXT+1aHiOC8tteN93YT41+vZbX9c2qm5R2f0mQl9Qumlm3
-        WSzOm6XMvQhG3vrL4r7lfl4pt4tt5zuVzF1buBtb2jesXLinxXykf+bTkuyiW2vfxP7mvq1tprFd
-        ddMK3t/vdBt5eVwO6Xsp60MfeZ9fNtt800t/zc04rofZ1RXLRK5lIi9qu+DhcjCXm+HiVpxf6Eta
-        0qdVR7fDpUz81VZwtd/2V9PyKQP+KgSTSzQqKkYsDGS0yqQ4BAXIoV6uS20eOp+SzMe79d5SojHf
-        bAf28AhWJySoufiKmSBQDblm4wvpXF3cLkhX2365Hfwuz/35E4EQ0IMNnLMG9I4IKWiLHMGi0/hC
-        AuEIAuF4Ao19lsBcTEkuPhKYVMg7ArPXoPFFBKpjCVRvBL5CAi0X2fMu5kABrcfo5djJYHNJNjgb
-        TyNQWwU1WM8ODDqbgmLKcoBZFMiB1UECUUM1Go1xXiNACilqTsBFBWNZ6RcQ6GfGHyLwUXMUgVbH
-        5whUkSvJ9/0ZiDo8EphKdqcTKM7gKAK/Er4R+HoIBM21hAzBOYdydgUTq3KBtWed2aXTCCwhFRTu
-        TCABe9p1UZtM3jMmW7dF5AECq6DrpYExBS2bGKoPOhtEG5NX9VQCYWbjTP8/gV9ojiHQOROeIzBo
-        qjaSJWfKRCBhxu+oQnfO7GECvxW+Efh6CFS25Cj/68qO0WJKoRRONWCtwaSkTyQwolRbUnUa1KiT
-        iQaw1FiKbOLgIx0k0KgEVRk5Q6McI0byRV8is7RPAc0LCbRHEGiPJ1DDswQCMStrHglMqOp3VKE7
-        Z3gsgfhG4CskUI48j16KRbkRQwnVhcwYXVRFQYATq1ACH2wyYCGhlLIRUcequWS2TM7/N4GynW9o
-        mC9XvWQe+w3f/wsAAP//AwBxwc49qhEAAA==
+      string: '{"scan_forms": [{"id": "sf_a97898d414994e34b55699cabe0c603c", "object":
+        "ScanForm", "created_at": "2022-04-20T18:37:34Z", "updated_at": "2022-04-20T18:37:34Z",
+        "tracking_codes": ["9400100109361115909005"], "address": {"id": "adr_f0e382e0c0d811ecbe07ac1f6bc7b362",
+        "object": "Address", "created_at": "2022-04-20T18:37:32+00:00", "updated_at":
+        "2022-04-20T18:37:32+00:00", "name": "Jack Sparrow", "company": "EasyPost",
+        "street1": "388 Townsend St", "street2": "Apt 20", "city": "San Francisco",
+        "state": "CA", "zip": "94107", "country": "US", "phone": "5555555555", "email":
+        null, "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
+        null, "state_tax_id": null, "verifications": {}}, "status": "created", "message":
+        null, "form_url": "https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20220420/15566cbc0a244e748955fc8cdf774c88.pdf",
+        "form_file_type": null, "batch_id": "batch_a66627fb641e4708afefd5d7732940f6",
+        "confirmation": null}, {"id": "sf_71c19a0dc51e4e11bc6d82a632fac160", "object":
+        "ScanForm", "created_at": "2022-04-20T18:37:32Z", "updated_at": "2022-04-20T18:37:32Z",
+        "tracking_codes": ["9400100109361115908992"], "address": {"id": "adr_efea30fac0d811ec9c27ac1f6bc72124",
+        "object": "Address", "created_at": "2022-04-20T18:37:31+00:00", "updated_at":
+        "2022-04-20T18:37:31+00:00", "name": "Jack Sparrow", "company": "EasyPost",
+        "street1": "388 Townsend St", "street2": "Apt 20", "city": "San Francisco",
+        "state": "CA", "zip": "94107", "country": "US", "phone": "5555555555", "email":
+        null, "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
+        null, "state_tax_id": null, "verifications": {}}, "status": "created", "message":
+        null, "form_url": "https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20220420/bc525c3a4a9248bb835c03a66d503c6c.pdf",
+        "form_file_type": null, "batch_id": "batch_70940b3a9d2a4789bc94d1883b86aff1",
+        "confirmation": null}, {"id": "sf_9108938698a74ceba0d38bcf8e225417", "object":
+        "ScanForm", "created_at": "2022-04-04T18:09:17Z", "updated_at": "2022-04-04T18:09:18Z",
+        "tracking_codes": ["9400100109361113616080"], "address": {"id": "adr_570c3e4ab44211ec8173ac1f6b0a0d1e",
+        "object": "Address", "created_at": "2022-04-04T18:09:16+00:00", "updated_at":
+        "2022-04-04T18:09:16+00:00", "name": "Jack Sparrow", "company": "EasyPost",
+        "street1": "388 Townsend St", "street2": "Apt 20", "city": "San Francisco",
+        "state": "CA", "zip": "94107", "country": "US", "phone": "5555555555", "email":
+        null, "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
+        null, "state_tax_id": null, "verifications": {}}, "status": "created", "message":
+        null, "form_url": "https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20220404/9b13f0790d9c439a8749eeba26cc83fb.pdf",
+        "form_file_type": null, "batch_id": "batch_a2396440f9d646a3bef240a648764cde",
+        "confirmation": null}, {"id": "sf_97e137bde7ce4d05bc9ac683a4afde1f", "object":
+        "ScanForm", "created_at": "2022-04-04T18:09:15Z", "updated_at": "2022-04-04T18:09:16Z",
+        "tracking_codes": ["9400100109361113616073"], "address": {"id": "adr_55b7d2b7b44211ecaebcac1f6bc7b362",
+        "object": "Address", "created_at": "2022-04-04T18:09:14+00:00", "updated_at":
+        "2022-04-04T18:09:14+00:00", "name": "Jack Sparrow", "company": "EasyPost",
+        "street1": "388 Townsend St", "street2": "Apt 20", "city": "San Francisco",
+        "state": "CA", "zip": "94107", "country": "US", "phone": "5555555555", "email":
+        null, "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
+        null, "state_tax_id": null, "verifications": {}}, "status": "created", "message":
+        null, "form_url": "https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20220404/0fa99a10134c4d2596ad92edc3b85bac.pdf",
+        "form_file_type": null, "batch_id": "batch_bc0f613b36c94f589e0beb009224f4b0",
+        "confirmation": null}, {"id": "sf_1cedab7486dd406eb938970e64da2350", "object":
+        "ScanForm", "created_at": "2022-03-31T23:16:51Z", "updated_at": "2022-03-31T23:16:52Z",
+        "tracking_codes": ["9400100109361113137219"], "address": {"id": "adr_a51ebaafb14811ecaaabac1f6b0a0d1e",
+        "object": "Address", "created_at": "2022-03-31T23:16:50+00:00", "updated_at":
+        "2022-03-31T23:16:50+00:00", "name": "Jack Sparrow", "company": "EasyPost",
+        "street1": "388 Townsend St", "street2": "Apt 20", "city": "San Francisco",
+        "state": "CA", "zip": "94107", "country": "US", "phone": "5555555555", "email":
+        null, "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
+        null, "state_tax_id": null, "verifications": {}}, "status": "created", "message":
+        null, "form_url": "https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20220331/aa7accbc96c044d8a04f680ee7494c48.pdf",
+        "form_file_type": null, "batch_id": "batch_aec2257d7d66454785b30568ffe41711",
+        "confirmation": null}], "has_more": true}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '4522'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"b5b95570af565fede4ade168ed39fc0b"
+      - W/"69621dcb8a5788c3ee1e6d0bf74eb34a"
       expires:
       - '0'
       pragma:
@@ -65,21 +100,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5066233b3b9ff0304a7002a69a2
+      - f6c5a4ed626052eee7996a2300243827
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb5nuq
+      - bigweb9nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb1nuq fde591f008
       x-runtime:
-      - '0.070548'
+      - '0.107167'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:

@@ -17,7 +17,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '591'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -29,21 +29,20 @@ interactions:
     uri: https://api.easypost.com/v2/batches
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4SPzU7DMBCE38XnVHIctyU+8gycQJXln01jcGzjn1PVd2dDCHBA4uaZnfl2fSPO
-        EkG0qmaWxxMfGZ+40iPlw1Frbh84N9aAZsNANelI1K9gKjYe1wYaS7SAskKpqEpVdZUmg6ouXNEK
-        bZFldmmBUAsRfUcyTJAhGAyG5n23pcFKtYIZZexAh0N/fmJM9GfBxmfEtGT/zRSjgpxiXnbwr70v
-        l+26hu/bvpEI2pH3Bg3B2JOpZTOrAp/+9oeIROX8VzZFZFzhO/i3+9O449CZt5b2i7zS4GXLfjPu
-        HwAAAP//AwAggSNkgAEAAA==
+      string: '{"object": "Batch", "mode": "test", "state": "creating", "num_shipments":
+        1, "reference": null, "created_at": "2022-04-20T18:36:44Z", "updated_at":
+        "2022-04-20T18:36:44Z", "scan_form": null, "shipments": [], "status": {"created":
+        0, "queued_for_purchase": 0, "creation_failed": 0, "postage_purchased": 0,
+        "postage_purchase_failed": 0}, "pickup": null, "label_url": null}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '384'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"11420314c98aada59f76b49486362e42"
+      - W/"fce4e459bb423ec0490823f901259029"
       expires:
       - '0'
       pragma:
@@ -56,28 +55,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50d6233b379ff030109002a59d6
+      - 401d18d8626052bce799698100242b92
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb4nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb2nuq fde591f008
       x-runtime:
-      - '0.046986'
+      - '0.040616'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:

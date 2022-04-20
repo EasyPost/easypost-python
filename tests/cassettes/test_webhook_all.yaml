@@ -8,8 +8,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -20,13 +18,12 @@ interactions:
     uri: https://api.easypost.com/v2/webhooks?page_size=5
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA6pWKk9NysjPzy5WsoqOrQUAAAD//wMAA9lGdQ8AAAA=
+      string: '{"webhooks": []}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '15'
       content-type:
       - application/json; charset=utf-8
       etag:
@@ -48,21 +45,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50a6233b3deff030504002a7154
+      - f6c5a4eb62605314e7996a6a00244657
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb3nuq
+      - bigweb9nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb1nuq fde591f008
       x-runtime:
-      - '0.022467'
+      - '0.024492'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:

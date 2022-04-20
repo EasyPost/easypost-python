@@ -14,7 +14,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '374'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -26,28 +26,30 @@ interactions:
     uri: https://api.easypost.com/v2/customs_infos
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA6xRy27bMBD8FYOnBnAMiZIf0jFFDrm0B7eXFgVBLZc2C4lUV6RTI8i/d1lbSQMU
-        6KXHndkhZ2eehDOiFTBF521QiJ3EruzqutzVHcCukUVRrU0pcVs3phJLEbrvCJE179MUwzA9sI5h
-        INQRjdKZkoWUt0V1W24/SdmW23ZdfOGdNJp/7kDwEX2cFP4ce+11dMHz9p9MPI/I0IAER+2NmzCz
-        FzcKkKKzZ9FGSvgKT+7gkVi1j3jCxR2lPqsQezVaYPzDx/v7h0VVrKrtO33DlA9eGezdCemswnj1
-        QRgTeaYJp0gOMqwgDEN2Jlqf+v4tdzXLr+X/hmDyFHmBJ4PQa7qeeJHOfl3Egd/7+vTaDyMKOmw2
-        pZVmU9h60+06aOxGNygNItim/ls/rPuP/RicgNwcx/4RMS6moyO+fimOXI4mZ63yaeh+571Z15Us
-        sy9yB5ezSj4S9yM+7xn9kbTn03iWS3HSfcrxyGpVMPeI7nBkK2W5KnL9ObpLSm9jHLRPVgMXk3+c
-        cyRCD+d5RoCXjEdyPp+ZawuGP1fOcH3Ouln//O35FwAAAP//AwBBonAVGQMAAA==
+      string: '{"object": "CustomsInfo", "created_at": "2022-04-20T18:36:55Z", "updated_at":
+        "2022-04-20T18:36:55Z", "contents_explanation": "", "contents_type": "merchandise",
+        "customs_certify": true, "customs_signer": "Steve Brule", "eel_pfc": "NOEEI
+        30.37(a)", "non_delivery_option": "return", "restriction_comments": null,
+        "restriction_type": "none", "mode": "test", "declaration": null, "customs_items":
+        [{"id": "cstitem_5c19a0ceb9094d93bd1566480d426962", "object": "CustomsItem",
+        "created_at": "2022-04-20T18:36:55Z", "updated_at": "2022-04-20T18:36:55Z",
+        "description": "Sweet shirts", "hs_tariff_number": "654321", "origin_country":
+        "US", "quantity": 2, "value": "23.0", "weight": 11.0, "code": null, "mode":
+        "test", "manufacturer": null, "currency": null, "eccn": null, "printed_commodity_identifier":
+        null}]}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '793'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"4de649258982947f90672d86d70bdf60"
+      - W/"b71411255d3e92bc0d792b37fbe7d857"
       expires:
       - '0'
       location:
-      - /api/v2/customs_infos/cstinfo_eeb2eb1b44184bcc8920035d12e749d3
+      - /api/v2/customs_infos/cstinfo_fe648f70907d4c19886729200d20da1b
       pragma:
       - no-cache
       referrer-policy:
@@ -63,7 +65,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5076233b38eff03043e002a5ece
+      - 401d18d5626052c7e79969c000242f87
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -71,13 +73,12 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb2nuq fde591f008
       x-runtime:
-      - '0.039725'
+      - '0.031342'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -92,8 +93,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -101,27 +100,29 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: GET
-    uri: https://api.easypost.com/v2/customs_infos/cstinfo_eeb2eb1b44184bcc8920035d12e749d3
+    uri: https://api.easypost.com/v2/customs_infos/cstinfo_fe648f70907d4c19886729200d20da1b
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA6xRy27bMBD8FYOnBnAMiZIf0jFFDrm0B7eXFgVBLZc2C4lUV6RTI8i/d1lbSQMU
-        6KXHndkhZ2eehDOiFTBF521QiJ3EruzqutzVHcCukUVRrU0pcVs3phJLEbrvCJE179MUwzA9sI5h
-        INQRjdKZkoWUt0V1W24/SdmW23ZdfOGdNJp/7kDwEX2cFP4ce+11dMHz9p9MPI/I0IAER+2NmzCz
-        FzcKkKKzZ9FGSvgKT+7gkVi1j3jCxR2lPqsQezVaYPzDx/v7h0VVrKrtO33DlA9eGezdCemswnj1
-        QRgTeaYJp0gOMqwgDEN2Jlqf+v4tdzXLr+X/hmDyFHmBJ4PQa7qeeJHOfl3Egd/7+vTaDyMKOmw2
-        pZVmU9h60+06aOxGNygNItim/ls/rPuP/RicgNwcx/4RMS6moyO+fimOXI4mZ63yaeh+571Z15Us
-        sy9yB5ezSj4S9yM+7xn9kbTn03iWS3HSfcrxyGpVMPeI7nBkK2W5KnL9ObpLSm9jHLRPVgMXk3+c
-        cyRCD+d5RoCXjEdyPp+ZawuGP1fOcH3Ouln//O35FwAAAP//AwBBonAVGQMAAA==
+      string: '{"object": "CustomsInfo", "created_at": "2022-04-20T18:36:55Z", "updated_at":
+        "2022-04-20T18:36:55Z", "contents_explanation": "", "contents_type": "merchandise",
+        "customs_certify": true, "customs_signer": "Steve Brule", "eel_pfc": "NOEEI
+        30.37(a)", "non_delivery_option": "return", "restriction_comments": null,
+        "restriction_type": "none", "mode": "test", "declaration": null, "customs_items":
+        [{"id": "cstitem_5c19a0ceb9094d93bd1566480d426962", "object": "CustomsItem",
+        "created_at": "2022-04-20T18:36:55Z", "updated_at": "2022-04-20T18:36:55Z",
+        "description": "Sweet shirts", "hs_tariff_number": "654321", "origin_country":
+        "US", "quantity": 2, "value": "23.0", "weight": 11.0, "code": null, "mode":
+        "test", "manufacturer": null, "currency": null, "eccn": null, "printed_commodity_identifier":
+        null}]}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '793'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"4de649258982947f90672d86d70bdf60"
+      - W/"b71411255d3e92bc0d792b37fbe7d857"
       expires:
       - '0'
       pragma:
@@ -134,26 +135,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5076233b38eff03043e002a5ed6
+      - 401d18d5626052c7e79969c000242f97
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb1nuq
+      - bigweb7nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb2nuq fde591f008
       x-runtime:
-      - '0.020560'
+      - '0.024008'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:

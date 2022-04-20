@@ -12,7 +12,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '190'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -24,26 +24,25 @@ interactions:
     uri: https://api.easypost.com/v2/addresses
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4yRwU7DMAyGX6XKlU1KsrFuvU0IDpyQOs6VG7si0CZVkjLGtHfH6aQhcSKn+Mvn
-        +FdyFhZFJQBDI8sWO922sFlLpcjsdi2CUd2mlSBRkVgI376TSezvEQPFyMgEgkTYQMZaar2Uq6Uq
-        D1pXqqx0eSdlJSWL04j/Ex0MxMozmI+iHiEEf8xz/DCCO/HBI8TTi4+JYUyBKCmGq+22OPiji+Sw
-        qH/PdA47pkLnm41N+YIaXPEUwBkbjZ9NDsb8Yc/Ftx15u1srWc5TJ5dCbnqtuRzfvMvm/W0xpAFs
-        Lyo39f1CDB6zkGjOZzi9pdB0YGw/D79a/HYWySULt8aOkAL0TYKvJn/Jlc7R/rBPCrazBpL1Lorq
-        fLn8AAAA//8DADt+SwvFAQAA
+      string: '{"object": "Address", "created_at": "2022-04-20T18:36:42+00:00", "updated_at":
+        "2022-04-20T18:36:42+00:00", "name": "Jack Sparrow", "company": "EasyPost",
+        "street1": "388 Townsend St", "street2": "Apt 20", "city": "San Francisco",
+        "state": "CA", "zip": "94107", "country": "US", "phone": "5555555555", "email":
+        null, "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
+        null, "state_tax_id": null, "verifications": {}}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '453'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"d779da91995fab3ace3e42bcf5b5edc3"
+      - W/"f85e56700d9ef9294327993ba65f8160"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_07bdf2bba64011ec99bdac1f6b0a0d1e
+      - /api/v2/addresses/adr_d2ba9e37c0d811ec990aac1f6bc7bdc6
       pragma:
       - no-cache
       referrer-policy:
@@ -59,20 +58,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 34f5dd466233b377ff0300ec002aecda
+      - 401d18db626052bae799697c00242ad7
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb2nuq
+      - bigweb1nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - extlb1nuq 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb2nuq fde591f008
       x-runtime:
-      - '0.033821'
+      - '0.033803'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -87,8 +86,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -96,25 +93,24 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: GET
-    uri: https://api.easypost.com/v2/addresses/adr_07bdf2bba64011ec99bdac1f6b0a0d1e
+    uri: https://api.easypost.com/v2/addresses/adr_d2ba9e37c0d811ec990aac1f6bc7bdc6
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4yRwU7DMAyGX6XKlU1KsrFuvU0IDpyQOs6VG7si0CZVkjLGtHfH6aQhcSKn+Mvn
-        +FdyFhZFJQBDI8sWO922sFlLpcjsdi2CUd2mlSBRkVgI376TSezvEQPFyMgEgkTYQMZaar2Uq6Uq
-        D1pXqqx0eSdlJSWL04j/Ex0MxMozmI+iHiEEf8xz/DCCO/HBI8TTi4+JYUyBKCmGq+22OPiji+Sw
-        qH/PdA47pkLnm41N+YIaXPEUwBkbjZ9NDsb8Yc/Ftx15u1srWc5TJ5dCbnqtuRzfvMvm/W0xpAFs
-        Lyo39f1CDB6zkGjOZzi9pdB0YGw/D79a/HYWySULt8aOkAL0TYKvJn/Jlc7R/rBPCrazBpL1Lorq
-        fLn8AAAA//8DADt+SwvFAQAA
+      string: '{"object": "Address", "created_at": "2022-04-20T18:36:42+00:00", "updated_at":
+        "2022-04-20T18:36:42+00:00", "name": "Jack Sparrow", "company": "EasyPost",
+        "street1": "388 Townsend St", "street2": "Apt 20", "city": "San Francisco",
+        "state": "CA", "zip": "94107", "country": "US", "phone": "5555555555", "email":
+        null, "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
+        null, "state_tax_id": null, "verifications": {}}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '453'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"d779da91995fab3ace3e42bcf5b5edc3"
+      - W/"f85e56700d9ef9294327993ba65f8160"
       expires:
       - '0'
       pragma:
@@ -132,20 +128,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 34f5dd466233b378ff0300ec002aece2
+      - 401d18db626052bae799697c00242ae2
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb3nuq
+      - bigweb4nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - extlb1nuq 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb2nuq fde591f008
       x-runtime:
-      - '0.027357'
+      - '0.031531'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:

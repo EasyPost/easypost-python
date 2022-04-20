@@ -10,7 +10,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '75'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -22,24 +22,22 @@ interactions:
     uri: https://api.easypost.com/v2/parcels
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4SMOw7CMBBE77J1iPxJ5M8pKKhoIsdeJwaTWMYRBeLu2BI93c7Me/uG4EBDyjZO
-        iinHpeJMKDmokczGe2sEscoJP1sOHezzDW2pwtlki7E2NqMp6CbTWkYYOxF+ouLCmKZSE3mtzJHc
-        XybitpQVNCU96eAVXAuy3SuGZa3m0ELK6NCHrX5Lxt7NgqC3I8aq/DA69kMHj93VBQo+C3y+AAAA
-        //8DAHucJp/lAAAA
+      string: '{"object": "Parcel", "created_at": "2022-04-20T18:37:14Z", "updated_at":
+        "2022-04-20T18:37:14Z", "length": 10.0, "width": 8.0, "height": 4.0, "predefined_package":
+        null, "weight": 15.4, "mode": "test"}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '229'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"57b6cccb9fd308e9fc4d8659ad7bece6"
+      - W/"e8c962247a1aad2a4c038039a052bf55"
       expires:
       - '0'
       location:
-      - /api/v2/parcels.prcl_929d389327984950baffca70c9d7fbc3
+      - /api/v2/parcels.prcl_2e93b087c9f241ed84b97d73253bdf95
       pragma:
       - no-cache
       referrer-policy:
@@ -55,7 +53,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5076233b3a0ff030462002a63dd
+      - f6c5a4e6626052dae79969e4002430a7
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -63,13 +61,12 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb1nuq fde591f008
       x-runtime:
-      - '0.023918'
+      - '0.024209'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:

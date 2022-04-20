@@ -10,7 +10,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '46'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -22,30 +22,35 @@ interactions:
     uri: https://api.easypost.com/v2/trackers
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA8xUXW+bQBD8KxbP/oALsR2ecdNarWXVjlpTRei4W/DZcKC7oxGJ/N+7ZwhO06rN
-        S6XyBLPL7Mwsx5MjuBM4Rh1jOuXe3E9YesV9H3hy48/nfDalqU+mhBPuDJ0yOQAz2L9VlB1BIVSU
-        HCwBaINPxuJCZjFr4UXkud3lYVkbamqNeKUgxl6phenhmIOhIsdqLY+yfJBYYQqoAR5TO5S4hIzc
-        q5E32xISeDeBex1hT13xv/ZokUlsSRonkHWeD50HENkeX/Bm4+nQQfE4PRffQTWxZfsD015UBUgT
-        29xaLkaVEhhG4Nxt1puXKbSO0PC3p1fZYTVs7WKEoDXN7My1gtGmGzAQMi1VQY0o5UABA1Rnd8BB
-        MyUqCz8LeFusba91Z0RxcUh+cVjWip2XR3WzLs977Sx2a22Zepd5yWgr5zcuPz4XkUSY5qXknomV
-        tTSqrz2Kqr09nYZvy81mVmFpkNME8kH31fybsOZbbxa48/8wrPvL6J9tpELSXDxiIoFRNQwdoWMF
-        plaoIqW5RqSqk1ywuFb2/O2NqXQwmZxFjwGdVehszMpiwg+LKX+/VF/JgkThwl/dLg/RYXVchZ/z
-        6PbD9SrM/ChkZPdl53467JooXB7RTQrw6hS8A7Anpang8jtpMVpYh4i6Y5fgj8OGsacqs/I7tQrS
-        WvIeON2ffgAAAP//AwAAkMahyAQAAA==
+      string: '{"object": "Tracker", "mode": "test", "tracking_code": "EZ1000000001",
+        "status": "pre_transit", "status_detail": "unknown", "created_at": "2022-04-20T18:38:05Z",
+        "updated_at": "2022-04-20T18:38:05Z", "signed_by": null, "weight": 17.6, "est_delivery_date":
+        "2022-04-20T18:38:05Z", "shipment_id": null, "carrier": "USPS", "tracking_details":
+        [{"object": "TrackingDetail", "message": "Pre-Shipment information received",
+        "description": null, "status": "pre_transit", "status_detail": null, "datetime":
+        "2022-03-20T18:38:05Z", "source": "EasyPost", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": null, "state": null, "country": null,
+        "zip": null}}, {"object": "TrackingDetail", "message": "Shipping label created",
+        "description": null, "status": "pre_transit", "status_detail": null, "datetime":
+        "2022-03-21T13:27:05Z", "source": "EasyPost", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": null, "state": null, "country": null,
+        "zip": null}}], "carrier_detail": null, "finalized": true, "is_return": false,
+        "public_url": "https://track.easypost.com/djE6dHJrXzg5NWY5NzQ0ZDRlODQ0OTNiNTMxYzk3MTQ2ZDYzODM4",
+        "fees": [{"object": "Fee", "type": "TrackerFee", "amount": "0.02000", "charged":
+        false, "refunded": false}]}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '1224'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"f1b6719e9882bb240ac9425efaead041"
+      - W/"d8c7eaf6f3101ed7edc561ea176e08e9"
       expires:
       - '0'
       location:
-      - /api/v2/trackers/trk_a6d184bcf3d44edb9488d76af4262d2d
+      - /api/v2/trackers/trk_895f9744d4e84493b531c97146d63838
       pragma:
       - no-cache
       referrer-policy:
@@ -61,21 +66,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5066233b3d9ff0304e4002a7027
+      - f6c5a4ec6260530ce7996a4a002442f4
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb8nuq
+      - bigweb9nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb2wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb1nuq fde591f008
       x-runtime:
-      - '0.105707'
+      - '0.098364'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -90,8 +94,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -99,31 +101,39 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: GET
-    uri: https://api.easypost.com/v2/trackers/trk_a6d184bcf3d44edb9488d76af4262d2d
+    uri: https://api.easypost.com/v2/trackers/trk_895f9744d4e84493b531c97146d63838
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA7xUXW/aMBT9K5GfoQ1pykfeJqBf6mhVqNZmmiIT3wRDcCLb6cQq/vuu4xBYR6dp
-        UscL8T3X955zbN9XwhkJiJariHZZp+/P4+SM+T6w+cDv91mvSxPf63rMY6RF8vkSYo35M0njFUgM
-        rXMGpgAojStt4lykUWzD47Dj1r8OwkpTXSqMFxIizBWK6yYcMdCUZ4jW67JgVAPisQT8YBE1rT3X
-        89ruWbvTm3le0BkE7nmIOTb5zzmKpwJT5hsSiDLLWuQ78HShdyuUgBwy/gJyE1Wt36+04MUahI6M
-        e3Z3TKXkaElAHqf300MvrC6U/fX1jYOIjqxoNBKUoqnpeS+hPa0bONciyZ2p+dK5U1dmoGLJC81z
-        sev+j86aP83Xe6Xeb0rzUsawV1XLrA/YNm+UZnlMLasjSm93IBbhenPIvKkU56XQssF+8MJ+bret
-        v/PO+FYg5NzSOWTO0N6cD/esP+u4wXn34z0jV3eP09ndhDTGkdkTOW4c6fXc7hnZbr+1SALw5gJe
-        gBGjNwXs37ON0bUphlH3xPXw5ZryCypT9DFIaKagRSQkpWBNwHTYidz5dtBqaKHmuBTIF14ZdMGl
-        0u1hRpVy7pECHiJedosaUQJ3CCxqab7zTCsLs6OwOadf4VzylIsD13eOOrOnloOOVYOqzvqPh1Td
-        UM1FVemQ3vDq08PtuGI4HbYcb+BXDA+zj9C0HdKS4rXWgEPvzWCzOM00SGEs5AxHDE+qAWYxLrjm
-        NNtvpFrDuqinJfItynnG46iU5pEstC5UcHpaUTkBqjZFrvRJnK9P2XLcZVc38skbe+Fo7E8ub5bh
-        crKajB6y8PL6fDJK/XAUe89fnt3Py+dNOLpZke1PAAAA//8DAOfQfRmZBgAA
+      string: '{"object": "Tracker", "mode": "test", "tracking_code": "EZ1000000001",
+        "status": "pre_transit", "status_detail": "status_update", "created_at": "2022-04-20T18:38:05Z",
+        "updated_at": "2022-04-20T18:38:05Z", "signed_by": null, "weight": null, "est_delivery_date":
+        "2022-04-20T18:38:05Z", "shipment_id": null, "carrier": "USPS", "tracking_details":
+        [{"object": "TrackingDetail", "message": "Pre-Shipment Info Sent to USPS",
+        "description": null, "status": "pre_transit", "status_detail": "status_update",
+        "datetime": "2022-03-20T18:38:05Z", "source": "USPS", "carrier_code": null,
+        "tracking_location": {"object": "TrackingLocation", "city": null, "state":
+        null, "country": null, "zip": null}}, {"object": "TrackingDetail", "message":
+        "Shipping Label Created", "description": null, "status": "pre_transit", "status_detail":
+        "status_update", "datetime": "2022-03-21T07:15:05Z", "source": "USPS", "carrier_code":
+        null, "tracking_location": {"object": "TrackingLocation", "city": "HOUSTON",
+        "state": "TX", "country": null, "zip": "77063"}}], "fees": [{"object": "Fee",
+        "type": "TrackerFee", "amount": "0.02000", "charged": false, "refunded": false}],
+        "carrier_detail": {"object": "CarrierDetail", "service": "First-Class Package
+        Service", "container_type": null, "est_delivery_date_local": null, "est_delivery_time_local":
+        null, "origin_location": "HOUSTON TX, 77001", "origin_tracking_location":
+        {"object": "TrackingLocation", "city": "HOUSTON", "state": "TX", "country":
+        null, "zip": "77063"}, "destination_location": "CHARLESTON SC, 29401", "destination_tracking_location":
+        null, "guaranteed_delivery_date": null, "alternate_identifier": null, "initial_delivery_attempt":
+        null}, "public_url": "https://track.easypost.com/djE6dHJrXzg5NWY5NzQ0ZDRlODQ0OTNiNTMxYzk3MTQ2ZDYzODM4"}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '1689'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"40c6c0b1c381e8c02ff0a6d5808ef4cd"
+      - W/"9b584df8f485cea5bd35143ced58a95f"
       expires:
       - '0'
       pragma:
@@ -141,21 +151,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5066233b3d9ff0304e4002a7039
+      - f6c5a4ec6260530de7996a4a0024430a
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb4nuq
+      - bigweb1nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb2wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb1nuq fde591f008
       x-runtime:
-      - '0.052093'
+      - '0.064255'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:

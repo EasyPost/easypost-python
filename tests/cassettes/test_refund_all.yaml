@@ -8,8 +8,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -20,25 +18,36 @@ interactions:
     uri: https://api.easypost.com/v2/refunds?page_size=5
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA7TTQW7cMAwF0LtoPQEkkZJIn6Jo2k2LwhAlqnGb8QQeexXk7pXTTRqgySRADK+I
-        b4t8oO7Nom2b69kM3+/NVM1gljbXMUjJLJpiSIBZOafi1BOwFwWvag7mJL+0rP2Dz49/6JWyaF61
-        jnmveuv9lYUrl754PzgafPjWM9tdfTWzLrn8nuafYzlV7TFGa93+MkTXH7QpetoPPM1tWo55nU7z
-        OG9H0cUM83Z7ezDnNa9bn8qcNzlOaz9yz+dlmfaM+Xr96boXzjfT3VHndXyc/HxzN7psFYBSSx5Q
-        U+YSlCnXlmOkImoeDk+dwAbnha2UwqgxZvIhIkgJwBJaepuTGwIPyC86Pcm87tR7ho9xCsycnWN2
-        gGgZxRMlGwV88k6lPHNStK0Gx9KCYAERVyw0sRJillrgHU6OXtsnHCBe6uTwQqdF9zYvZWqsVfpN
-        4uoYc8gSfVKqpIQxYH3OFCRULhSjLYAMniN7h1KZLLYQ/RuY4s6EMKD7P9PfDA6BLmHyFDl+DFOB
-        ypj6MqiNfe5IPvYeM6TQVBPhMybG6Pd72RcvIYLPjcExIRayWZx7B5N7gSn9k7mAidB9CBNmIrat
-        tZABqUZKpUoqvlBloRrMw4+Ducnn8XhaemvrsunDHwAAAP//AwDuRGBl4gUAAA==
+      string: '{"refunds": [{"id": "rfnd_344069531a64402a978520d06c1d79ce", "object":
+        "Refund", "created_at": "2022-04-20T18:37:27Z", "updated_at": "2022-04-20T18:37:27Z",
+        "tracking_code": "9400100109361115908985", "confirmation_number": null, "status":
+        "submitted", "carrier": "USPS", "shipment_id": "shp_1cfe34b5490d4ebe8466c228b1d225ed"},
+        {"id": "rfnd_7bd8e6771b79441d82529edd07a92a3b", "object": "Refund", "created_at":
+        "2022-04-19T21:21:29Z", "updated_at": "2022-04-19T21:21:29Z", "tracking_code":
+        "9400100109361115774788", "confirmation_number": null, "status": "submitted",
+        "carrier": "USPS", "shipment_id": "shp_929f545b7f314cb1bb046f6e7b096fc8"},
+        {"id": "rfnd_b9735ef29af24afdbafa2967db5ac0e7", "object": "Refund", "created_at":
+        "2022-04-04T18:09:48Z", "updated_at": "2022-04-05T18:09:48Z", "tracking_code":
+        "9400100109361113616158", "confirmation_number": null, "status": "rejected",
+        "carrier": "USPS", "shipment_id": "shp_d676c9923e8b49ea9fa64688b464c306"},
+        {"id": "rfnd_c3fcd07056954828a16347e578c7335d", "object": "Refund", "created_at":
+        "2022-04-04T18:09:08Z", "updated_at": "2022-04-05T18:09:08Z", "tracking_code":
+        "9400100109361113616066", "confirmation_number": null, "status": "rejected",
+        "carrier": "USPS", "shipment_id": "shp_452e88ad02c445a88c243e8fc4b917fb"},
+        {"id": "rfnd_f03928b38e8c48608501b5d51e4e225e", "object": "Refund", "created_at":
+        "2022-03-31T23:17:12Z", "updated_at": "2022-04-01T23:17:12Z", "tracking_code":
+        "9400100109361113137271", "confirmation_number": null, "status": "rejected",
+        "carrier": "USPS", "shipment_id": "shp_4ab5f72521134e718ff58aa80e61579a"}],
+        "has_more": true}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '1506'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"f9ebc9c3ef6104b572f6deb08a01bc60"
+      - W/"29bc7bfe781c906e5417bc4939998ce9"
       expires:
       - '0'
       pragma:
@@ -56,21 +65,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5096233b3b1ff030481002a67d5
+      - f6c5a4ed626052e7e7996a030024356b
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb9nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb1nuq fde591f008
       x-runtime:
-      - '0.038416'
+      - '0.054834'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:

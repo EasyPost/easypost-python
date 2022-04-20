@@ -11,7 +11,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '145'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -23,25 +23,24 @@ interactions:
     uri: https://api.easypost.com/v2/customs_items
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4RPu07EMBD8FeQ6d4qdF0lLRX3Q0FiOvb4YxXaw15xOiH9nA0pNt7szszPzxZxh
-        E9MZHYKXpuG8h7Z/tGBbwcfZjn0/dH0t5pHbeWQVi/M7aCTNU8kYfX4mHZ11AoVgpNohUQtxqpsT
-        H16EmPgwdfyNOGUz/3IMZJ3chi4GIl1uAPiQF5cwE7hkiSo5a2UofoZEjL5rG8H3XMldXZA6loDp
-        Tsjrha4fRQWqRruo2KdaC+zWzbkm7AbuulAUzs81FYiGsFDWtWL+d2YIGYnnVShWaSxpd/xj6JIS
-        BH0/dtA6HPOWXNhr6ujpEZlLZ4BSWHfov38AAAD//wMAei6jAncBAAA=
+      string: '{"object": "CustomsItem", "created_at": "2022-04-20T18:36:55Z", "updated_at":
+        "2022-04-20T18:36:55Z", "description": "Sweet shirts", "hs_tariff_number":
+        "654321", "origin_country": "US", "quantity": 2, "value": "23.0", "weight":
+        11.0, "code": null, "mode": "test", "manufacturer": null, "currency": null,
+        "eccn": null, "printed_commodity_identifier": null}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '375'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"e693d3e479dcfb50cf923c043468cfcf"
+      - W/"d640d44f7b6abe2c43edd56b4a36b0fb"
       expires:
       - '0'
       location:
-      - /api/v2/customs_items/cstitem_d3116e468fef4219bf96675602b91fb9
+      - /api/v2/customs_items/cstitem_64ea79e5c50b4dab9bde6cec12dd3f21
       pragma:
       - no-cache
       referrer-policy:
@@ -57,21 +56,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50c6233b38eff03043f002a5ee5
+      - 401d18d4626052c7e79969c100242fc2
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb2nuq
+      - bigweb5nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb2nuq fde591f008
       x-runtime:
-      - '0.025237'
+      - '0.026553'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:

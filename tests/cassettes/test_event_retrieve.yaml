@@ -8,8 +8,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -20,22 +18,31 @@ interactions:
     uri: https://api.easypost.com/v2/events?page_size=5
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA7zSy2rDMBAF0H/ROjV6jjTe9w+6ailG0owbF/LAlrMJ+ffKaRvoqqUE76TLHUkH
-        dBZ84n2ZRPtyFsRTHodjGQ570YoUS94285FiYRIbMVAN+VQ6ZSQko0IEK5XiHLjX0pDU0ftkPNTu
-        PPHYXQeuK2eNgwgJIaOVFFAZBBVN9gkl9rpOTCWWuT5DHHlPw/6tRnnk5eoulhprqfWDNA/KP2nd
-        Kt9aaALCc+3tDsS1UXgqdXdI75yXiccFJi6bv7u0C4QxfrsSUPJkM1vNIbuwkss13vl7umQfmfrl
-        oZ8ujMTQW+UYUAPJlVyq0eG+LmbKytmbiyxJDDrYZIhSXsklmxr92/V1+E8XgfV4+4doq8tgdi70
-        NbfruAw2AcLvrteN2Map2x3GWirjzJcPAAAA//8DAHSHX0tUBAAA
+      string: '{"events": [{"description": "tracker.created", "id": "evt_dabaa47ac0d811ec836f51d8c3ed53a3",
+        "user_id": "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2022-04-20T18:36:55.677Z", "mode": "test", "object": "Event"}, {"description":
+        "tracker.created", "id": "evt_d9816684c0d811ec97c135835d74efaa", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2022-04-20T18:36:53.624Z", "mode": "test", "object": "Event"}, {"description":
+        "tracker.created", "id": "evt_d91f3cc0c0d811ecb3274b573ce0dc9e", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2022-04-20T18:36:52.981Z", "mode": "test", "object": "Event"}, {"description":
+        "tracker.created", "id": "evt_d8d2bf3ac0d811ec95a045eca8f96b7a", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2022-04-20T18:36:52.480Z", "mode": "test", "object": "Event"}, {"description":
+        "batch.updated", "id": "evt_d7ba06bcc0d811ecbb560934f37bfb0b", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2022-04-20T18:36:50.640Z", "mode": "test", "object": "Event"}], "has_more":
+        true}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '1116'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"f03929a3af58b881f8a595bb345f9e6d"
+      - W/"fb7525a372887c2ca405a209229855c8"
       expires:
       - '0'
       pragma:
@@ -53,7 +60,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5086233b390ff030443002a5f37
+      - 401d18d6626052c9e79969c50024307a
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -61,13 +68,12 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb2nuq fde591f008
       x-runtime:
-      - '0.172613'
+      - '0.185062'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:

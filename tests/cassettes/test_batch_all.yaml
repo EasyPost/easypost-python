@@ -8,8 +8,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -20,44 +18,53 @@ interactions:
     uri: https://api.easypost.com/v2/batches?page_size=5
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"batches": [{"id": "batch_67a12ea58af74fd9a97e869e94e55eab", "object":
+        "Batch", "mode": "test", "state": "created", "num_shipments": 1, "reference":
+        null, "created_at": "2022-03-22T17:43:04Z", "updated_at": "2022-03-22T17:43:04Z",
+        "scan_form": null, "shipments": [{"batch_status": "created", "batch_message":
+        null, "reference": null, "tracking_code": null, "id": "shp_5246d76917ad45b0a7876ecd1ad6c9c7"}],
+        "status": {"created": 1, "queued_for_purchase": 0, "creation_failed": 0, "postage_purchased":
+        0, "postage_purchase_failed": 0}, "pickup": null, "label_url": null}, {"id":
+        "batch_64958eadeb404ccfa4504ef2a54d9863", "object": "Batch", "mode": "test",
+        "state": "created", "num_shipments": 1, "reference": null, "created_at": "2022-03-22T17:43:05Z",
+        "updated_at": "2022-03-22T17:43:05Z", "scan_form": null, "shipments": [{"batch_status":
+        "created", "batch_message": null, "reference": null, "tracking_code": null,
+        "id": "shp_ce0673d4b5174397b56e6dba191a8689"}], "status": {"created": 1, "queued_for_purchase":
+        0, "creation_failed": 0, "postage_purchased": 0, "postage_purchase_failed":
+        0}, "pickup": null, "label_url": null}, {"id": "batch_6ca79d70679e4ab08e9ba6dbe24be7d9",
+        "object": "Batch", "mode": "test", "state": "created", "num_shipments": 2,
+        "reference": null, "created_at": "2022-03-22T17:43:06Z", "updated_at": "2022-03-22T17:43:06Z",
+        "scan_form": null, "shipments": [{"batch_status": "created", "batch_message":
+        null, "reference": null, "tracking_code": null, "id": "shp_c97a3e06ecf94a838ce8b36279326968"},
+        {"batch_status": "created", "batch_message": null, "reference": null, "tracking_code":
+        null, "id": "shp_0eb98c99c7114b8ebbcbb075bb195151"}], "status": {"created":
+        2, "queued_for_purchase": 0, "creation_failed": 0, "postage_purchased": 0,
+        "postage_purchase_failed": 0}, "pickup": null, "label_url": null}, {"id":
+        "batch_cc9f4686eeb34aa990941ddd15d5e29c", "object": "Batch", "mode": "test",
+        "state": "purchased", "num_shipments": 1, "reference": null, "created_at":
+        "2022-03-22T17:43:07Z", "updated_at": "2022-03-22T17:43:08Z", "scan_form":
+        null, "shipments": [{"batch_status": "postage_purchased", "batch_message":
+        null, "reference": null, "tracking_code": "9400100109361111902628", "id":
+        "shp_d9f4a061fa614ec0a2bff46431743245"}], "status": {"created": 0, "queued_for_purchase":
+        0, "creation_failed": 0, "postage_purchased": 1, "postage_purchase_failed":
+        0}, "pickup": null, "label_url": null}, {"id": "batch_e76aa89116f74f5589f7934c702d6aab",
+        "object": "Batch", "mode": "test", "state": "purchased", "num_shipments":
+        1, "reference": null, "created_at": "2022-03-22T17:43:07Z", "updated_at":
+        "2022-03-22T17:43:09Z", "scan_form": null, "shipments": [{"batch_status":
+        "postage_purchased", "batch_message": null, "reference": null, "tracking_code":
+        "9400100109361111902642", "id": "shp_d9113a34f3534dcf99ae251843085394"}],
+        "status": {"created": 0, "queued_for_purchase": 0, "creation_failed": 0, "postage_purchased":
+        1, "postage_purchase_failed": 0}, "pickup": null, "label_url": null}], "has_more":
+        true}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '2788'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"02849f443925149c5beab89a205af9f9"
+      - W/"39133c6a8a1c7649c5295b88a74aa698"
       expires:
       - '0'
       pragma:
@@ -75,21 +82,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5076233b37aff03010b002a59f8
+      - 401d18d7626052bde799698300242bda
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb3nuq
+      - bigweb5nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb2nuq fde591f008
       x-runtime:
-      - '0.199448'
+      - '0.060194'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:

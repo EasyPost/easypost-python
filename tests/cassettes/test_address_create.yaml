@@ -12,7 +12,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '190'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -24,26 +24,25 @@ interactions:
     uri: https://api.easypost.com/v2/addresses
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4yRsW7DIBCGX8VibSIBju3EW1S1Q6dKTmfrDGeF1gYLcNM0yrv3cKRU6lQm7uM7
-        7hdcmNGsZqB9y6tyV2BRQrnhQqDaihJBib7sVNXlpWQr5rp3VJH8vdYeQyCkPEJE3ULCkku55vla
-        VAcpa1HVsnrgvOacxHnS/xMtjEjKC6iPrJnAe3dKc9w4gT3TwROE86sLkWCIHjEKgvl2mx3cyQa0
-        Omt+z2QKO8VMppuViemCBmz27MEqE5RbTApG/HFPxbeZaLvbCF4tU2cbfWp6a6icjs4ms7gvgjiC
-        GVht52FYsdHpJERc8ilKb9C3PSgzLMNvFr2d0WijgXtjjxo9DG2ErzZ9yY0u0f6wT/SmNwqicTaw
-        +nK9/gAAAP//AwAmcuNUxQEAAA==
+      string: '{"object": "Address", "created_at": "2022-04-20T18:36:41+00:00", "updated_at":
+        "2022-04-20T18:36:41+00:00", "name": "Jack Sparrow", "company": "EasyPost",
+        "street1": "388 Townsend St", "street2": "Apt 20", "city": "San Francisco",
+        "state": "CA", "zip": "94107", "country": "US", "phone": "5555555555", "email":
+        null, "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
+        null, "state_tax_id": null, "verifications": {}}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '453'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"a27b5fa41de73ef9bfbe4dfa55399072"
+      - W/"243245efea868f731d72645f2fab2107"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_07695e56a64011ec816eac1f6bc7b362
+      - /api/v2/addresses/adr_d24bd513c0d811ecaf61ac1f6b0a0d1e
       pragma:
       - no-cache
       referrer-policy:
@@ -59,20 +58,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 34f5dd416233b377ff0300ea002aecbd
+      - 401d18d6626052b9e799666c00242aa3
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb8nuq
+      - bigweb6nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - extlb1nuq 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb2nuq fde591f008
       x-runtime:
-      - '0.031396'
+      - '0.028999'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202204201711-cf6c4e6664-master
       x-xss-protection:
       - 1; mode=block
     status:
