@@ -3,6 +3,7 @@ import json
 import platform
 import ssl
 import time
+from enum import Enum
 from json import JSONDecodeError
 from typing import (
     Any,
@@ -20,6 +21,13 @@ from easypost.constant import (
 )
 from easypost.easypost_object import EasyPostObject
 from easypost.error import Error
+
+
+class RequestMethod(Enum):
+    GET = "get"
+    POST = "post"
+    PUT = "put"
+    DELETE = "delete"
 
 
 class Requestor:
@@ -45,7 +53,7 @@ class Requestor:
 
     def request(
         self,
-        method: str,
+        method: RequestMethod,
         url: str,
         params: Optional[Dict[str, Any]] = None,
         api_key_required: bool = True,
@@ -61,7 +69,7 @@ class Requestor:
 
     def request_raw(
         self,
-        method: str,
+        method: RequestMethod,
         url: str,
         params: Optional[Dict[str, Any]] = None,
         api_key_required: bool = True,
@@ -143,29 +151,32 @@ class Requestor:
 
     def requests_request(
         self,
-        method: str,
+        method: RequestMethod,
         abs_url: str,
         headers: Dict[str, Any],
         params: Dict[str, Any],
     ) -> Tuple[str, int]:
         """Make a request by using the `request` library."""
-        method = method.lower()
-        if method == "get" or method == "delete":
+        if method in [RequestMethod.GET, RequestMethod.DELETE]:
             url_params = params
-            json = None
-        elif method == "post" or method == "put":
-            json = params
+            body = None
+        elif method in [RequestMethod.POST, RequestMethod.PUT]:
             url_params = None
+            body = params
         else:
+            # how did you reach here with an enum?
             raise Error(f"Bug discovered: invalid request method: {method}. Please report to {SUPPORT_EMAIL}.")
+
+        if url_params and method not in [RequestMethod.GET, RequestMethod.DELETE]:
+            raise Error("Only GET and DELETE requests support parameters.")
 
         try:
             result = requests_session.request(
-                method,
-                abs_url,
+                method=method.value,
+                url=abs_url,
                 params=url_params,
                 headers=headers,
-                json=json,
+                json=body,
                 timeout=timeout,
                 verify=True,
             )
@@ -181,19 +192,22 @@ class Requestor:
 
     def urlfetch_request(
         self,
-        method: str,
+        method: RequestMethod,
         abs_url: str,
         headers: Dict[str, Any],
         params: Dict[str, Any],
     ) -> Tuple[str, int]:
         """Make a request by using the `urlfetch` library."""
-        fetch_args = {"method": method, "headers": headers, "validate_certificate": False, "deadline": timeout}
-        if method == "get" or method == "delete":
-            fetch_args["url"] = self.add_params_to_url(url=abs_url, params=params)
-        elif method == "post" or method == "put":
+        fetch_args = {"method": method.value, "headers": headers, "validate_certificate": False, "deadline": timeout}
+        if method in [RequestMethod.GET, RequestMethod.DELETE]:
+            # GET/DELETE requests use query params
+            fetch_args["url"] = self.add_params_to_url(url=abs_url, params=params, method=method)
+        elif method in [RequestMethod.POST, RequestMethod.PUT]:
             fetch_args["url"] = abs_url
+            # POST/PUT requests use body params
             fetch_args["payload"] = json.dumps(params, default=self._utf8)
         else:
+            # how did you reach here with an enum?
             raise Error(f"Bug discovered: invalid request method: {method}. Please report to {SUPPORT_EMAIL}.")
 
         try:
@@ -227,8 +241,10 @@ class Requestor:
             return value.decode(encoding="utf-8")
         return value
 
-    def encode_url_params(self, params: Dict[str, Any]) -> Union[str, None]:
+    def encode_url_params(self, params: Dict[str, Any], method: RequestMethod) -> Union[str, None]:
         """Encode params for a URL."""
+        if method not in [RequestMethod.GET, RequestMethod.DELETE]:
+            raise Error("Only GET and DELETE requests support parameters.")
         converted_params = []
         for key, value in sorted(params.items()):
             if value is None:
@@ -238,9 +254,11 @@ class Requestor:
             converted_params.append((key, value))
         return urlencode(query=converted_params)
 
-    def add_params_to_url(self, url: str, params: Dict[str, Any]) -> str:
+    def add_params_to_url(self, url: str, params: Dict[str, Any], method: RequestMethod) -> str:
         """Add params to the URL."""
-        encoded_params = self.encode_url_params(params=params)
+        if method not in [RequestMethod.GET, RequestMethod.DELETE]:
+            raise Error("Only GET and DELETE requests support parameters.")
+        encoded_params = self.encode_url_params(params=params, method=method)
         if encoded_params:
             return "%s?%s" % (url, encoded_params)
         return url
