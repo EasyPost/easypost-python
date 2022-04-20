@@ -10,7 +10,10 @@ from easypost.easypost_object import (
     convert_to_easypost_object,
 )
 from easypost.error import Error
-from easypost.requestor import Requestor
+from easypost.requestor import (
+    RequestMethod,
+    Requestor,
+)
 
 
 class Resource(EasyPostObject):
@@ -28,7 +31,7 @@ class Resource(EasyPostObject):
         """Refresh the local object from the API response."""
         requestor = Requestor(local_api_key=self._api_key)
         url = self.instance_url()
-        response, api_key = requestor.request(method="get", url=url, params=self._retrieve_params)
+        response, api_key = requestor.request(method=RequestMethod.GET, url=url, params=self._retrieve_params)
         self.refresh_from(values=response, api_key=api_key)
         return self
 
@@ -61,7 +64,7 @@ class AllResource(Resource):
         """Retrieve a list of records from the API."""
         requestor = Requestor(local_api_key=api_key)
         url = cls.class_url()
-        response, api_key = requestor.request(method="get", url=url, params=params)
+        response, api_key = requestor.request(method=RequestMethod.GET, url=url, params=params)
         return convert_to_easypost_object(response=response, api_key=api_key)
 
 
@@ -72,7 +75,7 @@ class CreateResource(Resource):
         requestor = Requestor(local_api_key=api_key)
         url = cls.class_url()
         wrapped_params = {cls.snakecase_name(): params}
-        response, api_key = requestor.request(method="post", url=url, params=wrapped_params)
+        response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=wrapped_params)
         return convert_to_easypost_object(response=response, api_key=api_key)
 
 
@@ -88,7 +91,7 @@ class UpdateResource(Resource):
                     params[k] = params[k].flatten_unsaved()
             params = {self.snakecase_name(): params}
             url = self.instance_url()
-            response, api_key = requestor.request(method="put", url=url, params=params)
+            response, api_key = requestor.request(method=RequestMethod.PUT, url=url, params=params)
             self.refresh_from(values=response, api_key=api_key)
 
         return self
@@ -99,6 +102,6 @@ class DeleteResource(Resource):
         """Delete an EasyPost object."""
         requestor = Requestor(local_api_key=self._api_key)
         url = self.instance_url()
-        response, api_key = requestor.request(method="delete", url=url, params=params)
+        response, api_key = requestor.request(method=RequestMethod.DELETE, url=url, params=params)
         self.refresh_from(values=response, api_key=api_key)
         return self

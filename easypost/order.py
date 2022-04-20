@@ -1,4 +1,7 @@
-from easypost.requestor import Requestor
+from easypost.requestor import (
+    RequestMethod,
+    Requestor,
+)
 from easypost.resource import CreateResource
 
 
@@ -7,7 +10,7 @@ class Order(CreateResource):
         """Get rates for an order."""
         requestor = Requestor(local_api_key=self._api_key)
         url = "%s/%s" % (self.instance_url(), "rates")
-        response, api_key = requestor.request(method="get", url=url)
+        response, api_key = requestor.request(method=RequestMethod.GET, url=url)
         self.refresh_from(values=response, api_key=api_key)
         return self
 
@@ -15,6 +18,6 @@ class Order(CreateResource):
         """Buy an order."""
         requestor = Requestor(local_api_key=self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
-        response, api_key = requestor.request(method="post", url=url, params=params)
+        response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=params)
         self.refresh_from(values=response, api_key=api_key)
         return self

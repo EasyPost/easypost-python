@@ -1,7 +1,10 @@
 from typing import Optional
 
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.requestor import Requestor
+from easypost.requestor import (
+    RequestMethod,
+    Requestor,
+)
 from easypost.resource import (
     AllResource,
     CreateResource,
@@ -14,7 +17,7 @@ class Report(AllResource, CreateResource):
         """Create a report."""
         requestor = Requestor(local_api_key=api_key)
         url = f"{cls.class_url()}/{params.get('type')}"
-        response, api_key = requestor.request(method="post", url=url, params=params)
+        response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=params)
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     @classmethod
@@ -22,5 +25,5 @@ class Report(AllResource, CreateResource):
         """Retrieve all reports."""
         requestor = Requestor(local_api_key=api_key)
         url = f"{cls.class_url()}/{params.get('type')}"
-        response, api_key = requestor.request(method="get", url=url, params=params)
+        response, api_key = requestor.request(method=RequestMethod.GET, url=url, params=params)
         return convert_to_easypost_object(response=response, api_key=api_key)

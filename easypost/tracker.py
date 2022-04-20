@@ -5,7 +5,10 @@ from typing import (
     Optional,
 )
 
-from easypost.requestor import Requestor
+from easypost.requestor import (
+    RequestMethod,
+    Requestor,
+)
 from easypost.resource import (
     AllResource,
     CreateResource,
@@ -19,5 +22,5 @@ class Tracker(AllResource, CreateResource):
         requestor = Requestor(local_api_key=api_key)
         url = "%s/%s" % (cls.class_url(), "create_list")
         new_params = {"trackers": trackers}
-        _, _ = requestor.request(method="post", url=url, params=new_params)
+        _, _ = requestor.request(method=RequestMethod.POST, url=url, params=new_params)
         return True
