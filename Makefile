@@ -46,10 +46,6 @@ install-dev: | venv
 install-pypy: | venv
 	$(VIRTUAL_BIN)/pip install -e ."[pypy_dev]"
 
-## install-release - Install release requirements
-install-release: | venv
-	$(VIRTUAL_BIN)/pip install -e ."[release]"
-
 ## isort - Sorts imports throughout the project
 isort:
 	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/
@@ -78,4 +74,4 @@ test:
 venv:
 	$(PYTHON_BINARY) -m venv $(VIRTUAL_ENV)
 
-.PHONY: help build coverage clean black black-check format format-check install install-dev install-pypy install-release isort isort-check lint mypy publish test
+.PHONY: help build coverage clean black black-check format format-check install install-dev install-pypy isort isort-check lint mypy publish test
