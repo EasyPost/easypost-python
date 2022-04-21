@@ -7,25 +7,22 @@ REQUIREMENTS = [
 ]
 
 DEV_REQUIREMENTS = [
-    "black",
-    "flake8",
-    "isort",
+    "black==22.*",
+    "flake8==4.*",
+    "isort==5.*",
     "pytest-cov==3.*",
     "pytest-vcr==1.*",
     "pytest==7.*",
+    "twine==3.8.*",  # Twine 4.0+ drops support for Python 3.6
     "types-requests",
     "types-urllib3",
     "vcrpy==4.*",
+    "wheel==0.37.*",
 ]
 
 # packages incompatible with PyPy go here
 CPYTHON_DEV_REQUIREMENTS = [
-    "mypy",
-]
-
-RELEASE_REQUIREMENTS = [
-    "twine==3.8.*",  # Twine 4.0+ drops support for Python 3.6
-    "wheel",
+    "mypy==0.942",
 ]
 
 with open("README.md", encoding="utf-8") as f:
@@ -43,7 +40,6 @@ setup(
     extras_require={
         "dev": DEV_REQUIREMENTS + CPYTHON_DEV_REQUIREMENTS,
         "pypy_dev": DEV_REQUIREMENTS,  # no cpython requirements
-        "release": RELEASE_REQUIREMENTS,
     },
     package_data={
         "easypost": ["py.typed"],
