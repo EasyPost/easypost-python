@@ -58,26 +58,24 @@ def vcr_config():
             ("user-agent", "easypost/v2 pythonclient/suppressed"),
         ],
         "decode_compressed_response": True,
+        "before_record_response": filter_response(),
+        "record_mode": "once"
     }
 
 
 def filter_response():
     def before_record_response(response):
-        response['body']['string'] = response['body']['string'].decode('utf8')
-        response_map = json.loads(response['body']['string'])
-        
-        if "id" in response_map.keys():
-            response_map.pop("id")  
-        response_string = json.dumps(response_map)
-        response['body']['string'] = response_string
-        return response
+            response['body']['string'] = response['body']['string'].decode('utf8')
+            response_map = json.loads(response['body']['string'])
+
+            if "id" in response_map.keys():
+                response_map["id"] = "***"
+
+            response_string = json.dumps(response_map)
+            response['body']['string'] = response_string
+            # breakpoint()
+            return response
     return before_record_response
-
-
-@pytest.fixture(scope='module')
-def vcr(vcr):
-    vcr.before_record_response = filter_response()
-    return vcr
 
 
 # We keep the page_size of retrieving `all` records small so cassettes stay small
