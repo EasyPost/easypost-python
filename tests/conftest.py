@@ -57,6 +57,7 @@ def vcr_config():
             ("x-client-user-agent", "suppressed"),
             ("user-agent", "easypost/v2 pythonclient/suppressed"),
         ],
+        "decode_compressed_response": True,
     }
 
 
@@ -234,7 +235,7 @@ def one_call_buy_shipment(basic_address, basic_parcel, usps_service, usps_carrie
 # USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
 @pytest.fixture
 def basic_pickup(basic_address):
-    pickup_date = "2022-04-13"
+    pickup_date = "2022-04-27"
 
     return {
         "address": basic_address,

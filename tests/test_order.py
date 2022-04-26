@@ -43,3 +43,26 @@ def test_order_buy(usps, usps_service, basic_order):
     shipment_array = order["shipments"]
 
     assert all(shipment.postage_label is not None for shipment in shipment_array)
+
+
+@pytest.mark.vcr()
+def test_order_lowest_rate(basic_order):
+    """Test various usage alterations of the lowest_rate method."""
+    order = easypost.Order.create(**basic_order)
+
+    # Test lowest rate with no filters
+    lowest_rate = order.lowest_rate()
+    assert lowest_rate.service == "First"
+    assert lowest_rate.rate == "5.49"
+    assert lowest_rate.carrier == "USPS"
+
+    # Test lowest rate with service filter (this rate is higher than the lowest but should filter)
+    lowest_rate_service = order.lowest_rate(services=["Priority"])
+    assert lowest_rate_service.service == "Priority"
+    assert lowest_rate_service.rate == "7.37"
+    assert lowest_rate_service.carrier == "USPS"
+
+    # Test lowest rate with carrier filter (should error due to bad carrier)
+    with pytest.raises(easypost.Error) as error:
+        order.lowest_rate(carriers=["BAD CARRIER"])
+        assert error.message == "No rates found."

@@ -1,4 +1,7 @@
-from typing import List
+from typing import (
+    List,
+    Optional,
+)
 
 from easypost import Rate
 from easypost.error import Error
@@ -10,6 +13,7 @@ from easypost.resource import (
     AllResource,
     CreateResource,
 )
+from easypost.util import Util
 
 
 class Shipment(AllResource, CreateResource):
@@ -62,24 +66,39 @@ class Shipment(AllResource, CreateResource):
 
     def lowest_rate(self, carriers: List[str] = None, services: List[str] = None) -> Rate:
         """Get the lowest rate of a shipment."""
-        carriers = carriers or []
-        services = services or []
-        lowest_rate = None
-
-        carriers = [c.lower() for c in carriers]
-        services = [service.lower() for service in services]
-
-        for rate in self.rates:
-            if len(carriers) > 0 and rate.carrier.lower() not in carriers:
-                continue
-
-            if len(services) > 0 and rate.service.lower() not in services:
-                continue
-
-            if lowest_rate is None or float(rate.rate) < float(lowest_rate.rate):
-                lowest_rate = rate
-
-        if lowest_rate is None:
-            raise Error(message="No rates found.")
+        lowest_rate = Util.get_lowest_object_rate(self, carriers, services)
 
         return lowest_rate
+
+    @staticmethod
+    def get_lowest_smartrate(
+        smartrates, delivery_days: Optional[int] = None, delivery_accuracy: Optional[str] = None
+    ) -> Rate:
+        """Get the lowest smartrate."""
+        valid_delivery_accuracy_values = {
+            "percentile_50",
+            "percentile_75",
+            "percentile_85",
+            "percentile_90",
+            "percentile_95",
+            "percentile_97",
+            "percentile_99",
+        }
+        lowest_smartrate = None
+
+        for rate in smartrates:
+            if delivery_days and delivery_accuracy:
+                if delivery_accuracy not in valid_delivery_accuracy_values:
+                    raise Error(
+                        message=f"Invalid delivery_accuracy value, must be one of: {valid_delivery_accuracy_values}"
+                    )
+                elif rate["time_in_transit"][delivery_accuracy] > delivery_days:
+                    continue
+
+            if lowest_smartrate is None or float(rate["rate"]) < float(lowest_smartrate["rate"]):
+                lowest_smartrate = rate
+
+        if lowest_smartrate is None:
+            raise Error(message="No rates found.")
+
+        return lowest_smartrate

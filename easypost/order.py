@@ -1,8 +1,11 @@
+from typing import List
+
 from easypost.requestor import (
     RequestMethod,
     Requestor,
 )
 from easypost.resource import CreateResource
+from easypost.util import Util
 
 
 class Order(CreateResource):
@@ -21,3 +24,9 @@ class Order(CreateResource):
         response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=params)
         self.refresh_from(values=response, api_key=api_key)
         return self
+
+    def lowest_rate(self, carriers: List[str] = None, services: List[str] = None):
+        """Get the lowest rate of a order."""
+        lowest_rate = Util.get_lowest_object_rate(self, carriers, services)
+
+        return lowest_rate

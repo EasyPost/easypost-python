@@ -65,3 +65,30 @@ def test_pickup_cancel(usps, one_call_buy_shipment, basic_pickup, pickup_service
     assert isinstance(cancelled_pickup, easypost.Pickup)
     assert str.startswith(cancelled_pickup.id, "pickup_")
     assert cancelled_pickup.status == "canceled"
+
+
+@pytest.mark.vcr()
+def test_pickup_lowest_rate(one_call_buy_shipment, basic_pickup):
+    """Test various usage alterations of the lowest_rate method."""
+    shipment = easypost.Shipment.create(**one_call_buy_shipment)
+
+    pickup_data = basic_pickup
+    pickup_data["shipment"] = shipment
+
+    pickup = easypost.Pickup.create(**pickup_data)
+
+    # Test lowest rate with no filters
+    lowest_rate = pickup.lowest_rate()
+    assert lowest_rate.service == "NextDay"
+    assert lowest_rate.rate == "0.00"
+    assert lowest_rate.carrier == "USPS"
+
+    # Test lowest rate with service filter (should error due to bad service)
+    with pytest.raises(easypost.Error) as error:
+        pickup.lowest_rate(services=["BAD SERVICE"])
+        assert error.message == "No rates found."
+
+    # Test lowest rate with carrier filter (should error due to bad carrier)
+    with pytest.raises(easypost.Error) as error:
+        pickup.lowest_rate(carriers=["BAD CARRIER"])
+        assert error.message == "No rates found."
