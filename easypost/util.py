@@ -1,13 +1,18 @@
 from typing import List
 
+from easypost.easypost_object import EasyPostObject
 from easypost.error import Error
 
 
 class Util:
-    def get_lowest_object_rate(
-        easypost_object=object, carriers: List[str] = None, services: List[str] = None, rates_key: str = "rates"
+    @staticmethod
+    def _get_lowest_object_rate(
+        easypost_object: EasyPostObject,
+        carriers: List[str] = None,
+        services: List[str] = None,
+        rates_key: str = "rates",
     ):
-        """Gets the lowest rate of an EasyPost object."""
+        """Gets the lowest rate of an EasyPost object such as a Shipment, Order, or Pickup."""
         carriers = carriers or []
         services = services or []
         lowest_rate = None

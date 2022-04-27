@@ -2,8 +2,8 @@
 
 ## NEXT RELEASE
 
-- Adds `lowest_rate` functions to Orders and Pickups
-- Adds a `get_lowest_smartrate` function
+- Adds a `lowest_rate` function to Orders and Pickups
+- Adds a `Shipment.get_lowest_smartrate` function and a `shipment.lowest_smartrate()` function
 
 ## v7.0.0 (2022-04-14)
 

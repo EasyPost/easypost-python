@@ -27,6 +27,6 @@ class Pickup(CreateResource):
 
     def lowest_rate(self, carriers: List[str] = None, services: List[str] = None):
         """Get the lowest rate of a pickup."""
-        lowest_rate = Util.get_lowest_object_rate(self, carriers, services, "pickup_rates")
+        lowest_rate = Util._get_lowest_object_rate(self, carriers, services, "pickup_rates")
 
         return lowest_rate

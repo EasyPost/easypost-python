@@ -26,7 +26,7 @@ class Order(CreateResource):
         return self
 
     def lowest_rate(self, carriers: List[str] = None, services: List[str] = None):
-        """Get the lowest rate of a order."""
-        lowest_rate = Util.get_lowest_object_rate(self, carriers, services)
+        """Get the lowest rate of an order."""
+        lowest_rate = Util._get_lowest_object_rate(self, carriers, services)
 
         return lowest_rate

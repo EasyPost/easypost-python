@@ -29,7 +29,7 @@ class Shipment(AllResource, CreateResource):
         """Get smartrates for a shipment."""
         requestor = Requestor(local_api_key=self._api_key)
         url = "%s/%s" % (self.instance_url(), "smartrate")
-        response, api_key = requestor.request(method=RequestMethod.GET, url=url)
+        response, _ = requestor.request(method=RequestMethod.GET, url=url)
         return response.get("result", [])
 
     def buy(self, **params) -> "Shipment":
@@ -66,15 +66,22 @@ class Shipment(AllResource, CreateResource):
 
     def lowest_rate(self, carriers: List[str] = None, services: List[str] = None) -> Rate:
         """Get the lowest rate of a shipment."""
-        lowest_rate = Util.get_lowest_object_rate(self, carriers, services)
+        lowest_rate = Util._get_lowest_object_rate(self, carriers, services)
 
         return lowest_rate
+
+    def lowest_smartrate(self, delivery_days: Optional[int] = None, delivery_accuracy: Optional[str] = None) -> Rate:
+        """Get the lowest smartrate of a shipment."""
+        smartrates = self.get_smartrates()
+        lowest_smartrate = self.get_lowest_smartrate(smartrates, delivery_days, delivery_accuracy)
+
+        return lowest_smartrate
 
     @staticmethod
     def get_lowest_smartrate(
         smartrates, delivery_days: Optional[int] = None, delivery_accuracy: Optional[str] = None
     ) -> Rate:
-        """Get the lowest smartrate."""
+        """Get the lowest smartrate from a list of smartrates."""
         valid_delivery_accuracy_values = {
             "percentile_50",
             "percentile_75",
