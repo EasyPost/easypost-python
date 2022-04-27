@@ -13,7 +13,7 @@ from easypost.resource import (
     AllResource,
     CreateResource,
 )
-from easypost.util import Util
+from easypost.util import get_lowest_object_rate
 
 
 class Shipment(AllResource, CreateResource):
@@ -66,7 +66,7 @@ class Shipment(AllResource, CreateResource):
 
     def lowest_rate(self, carriers: List[str] = None, services: List[str] = None) -> Rate:
         """Get the lowest rate of a shipment."""
-        lowest_rate = Util._get_lowest_object_rate(self, carriers, services)
+        lowest_rate = get_lowest_object_rate(self, carriers, services)
 
         return lowest_rate
 
