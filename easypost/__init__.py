@@ -1,3 +1,4 @@
+import easypost.beta
 from easypost.address import Address
 from easypost.batch import Batch
 from easypost.brand import Brand
