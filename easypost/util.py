@@ -21,11 +21,9 @@ def get_lowest_object_rate(
     for rate in easypost_object.get(rates_key, []):
         if carriers and rate.carrier.lower() not in carriers:
             continue
-
-        if services and rate.service.lower() not in services:
+        elif services and rate.service.lower() not in services:
             continue
-
-        if lowest_rate is None or float(rate.rate) < float(lowest_rate.rate):
+        elif lowest_rate is None or float(rate.rate) < float(lowest_rate.rate):
             lowest_rate = rate
 
     if lowest_rate is None:

@@ -1,7 +1,4 @@
-from typing import (
-    List,
-    Optional,
-)
+from typing import List
 
 from easypost import Rate
 from easypost.error import Error
@@ -70,7 +67,7 @@ class Shipment(AllResource, CreateResource):
 
         return lowest_rate
 
-    def lowest_smartrate(self, delivery_days: Optional[int] = None, delivery_accuracy: Optional[str] = None) -> Rate:
+    def lowest_smartrate(self, delivery_days: int, delivery_accuracy: str) -> Rate:
         """Get the lowest smartrate of this shipment."""
         smartrates = self.get_smartrates()
         lowest_smartrate = self.get_lowest_smartrate(smartrates, delivery_days, delivery_accuracy)
@@ -78,9 +75,7 @@ class Shipment(AllResource, CreateResource):
         return lowest_smartrate
 
     @staticmethod
-    def get_lowest_smartrate(
-        smartrates, delivery_days: Optional[int] = None, delivery_accuracy: Optional[str] = None
-    ) -> Rate:
+    def get_lowest_smartrate(smartrates, delivery_days: int, delivery_accuracy: str) -> Rate:
         """Get the lowest smartrate from a list of smartrates."""
         valid_delivery_accuracy_values = {
             "percentile_50",
@@ -93,15 +88,13 @@ class Shipment(AllResource, CreateResource):
         }
         lowest_smartrate = None
 
-        if delivery_accuracy and delivery_accuracy not in valid_delivery_accuracy_values:
+        if delivery_accuracy.lower() not in valid_delivery_accuracy_values:
             raise Error(message=f"Invalid delivery_accuracy value, must be one of: {valid_delivery_accuracy_values}")
 
         for rate in smartrates:
-            if delivery_days and delivery_accuracy:
-                if rate["time_in_transit"][delivery_accuracy] > delivery_days:
-                    continue
-
-            if lowest_smartrate is None or float(rate["rate"]) < float(lowest_smartrate["rate"]):
+            if rate["time_in_transit"][delivery_accuracy] > delivery_days:
+                continue
+            elif lowest_smartrate is None or float(rate["rate"]) < float(lowest_smartrate["rate"]):
                 lowest_smartrate = rate
 
         if lowest_smartrate is None:

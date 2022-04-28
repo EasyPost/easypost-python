@@ -181,28 +181,28 @@ def test_shipment_lowest_rate(full_shipment):
     # Test lowest rate with carrier filter (should error due to bad carrier)
     with pytest.raises(easypost.Error) as error:
         shipment.lowest_rate(carriers=["BAD CARRIER"])
-        assert error.message == "No rates found."
+    assert str(error.value) == "No rates found."
 
 
 @pytest.mark.vcr()
 def test_shipment_lowest_smartrate(basic_shipment):
     shipment = easypost.Shipment.create(**basic_shipment)
-    lowest_smartrate = shipment.lowest_smartrate()
 
-    assert lowest_smartrate["service"] == "First"
-    assert lowest_smartrate["rate"] == 5.49
-    assert lowest_smartrate["carrier"] == "USPS"
-
-    # Test lowest rate with filters
+    # Test lowest smartrate with valid filters
     lowest_smartrate_filters = shipment.lowest_smartrate(delivery_days=1, delivery_accuracy="percentile_90")
     assert lowest_smartrate_filters["service"] == "Priority"
     assert lowest_smartrate_filters["rate"] == 7.37
     assert lowest_smartrate_filters["carrier"] == "USPS"
 
-    # Test lowest rate with filters (should error due to bad delivery_accuracy)
+    # Test lowest smartrate with invalid filters (should error due to strict delivery_days)
     with pytest.raises(easypost.Error) as error:
-        lowest_smartrate_filters = shipment.lowest_smartrate(delivery_days=1, delivery_accuracy="BAD_PERCENTILE")
-        assert error.message == "No rates found."
+        _ = shipment.lowest_smartrate(delivery_days=0, delivery_accuracy="percentile_90")
+    assert str(error.value) == "No rates found."
+
+    # Test lowest smartrate with invalid filters (should error due to invalid delivery_accuracy)
+    with pytest.raises(easypost.Error) as error:
+        _ = shipment.lowest_smartrate(delivery_days=3, delivery_accuracy="BAD_ACCURACY")
+    assert "Invalid delivery_accuracy value" in str(error.value)
 
 
 @pytest.mark.vcr()
@@ -210,12 +210,7 @@ def test_shipment_get_lowest_smartrate(basic_shipment):
     shipment = easypost.Shipment.create(**basic_shipment)
     smartrates = shipment.get_smartrates()
 
-    lowest_smartrate = easypost.Shipment.get_lowest_smartrate(smartrates)
-    assert lowest_smartrate["service"] == "First"
-    assert lowest_smartrate["rate"] == 5.49
-    assert lowest_smartrate["carrier"] == "USPS"
-
-    # Test lowest rate with filters
+    # Test lowest smartrate with valid filters
     lowest_smartrate_filters = easypost.Shipment.get_lowest_smartrate(
         smartrates, delivery_days=1, delivery_accuracy="percentile_90"
     )
@@ -223,9 +218,12 @@ def test_shipment_get_lowest_smartrate(basic_shipment):
     assert lowest_smartrate_filters["rate"] == 7.37
     assert lowest_smartrate_filters["carrier"] == "USPS"
 
-    # Test lowest rate with filters (should error due to bad delivery_accuracy)
+    # Test lowest smartrate with invalid filters (should error due to strict delivery_days)
     with pytest.raises(easypost.Error) as error:
-        lowest_smartrate_filters = easypost.Shipment.get_lowest_smartrate(
-            smartrates, delivery_days=1, delivery_accuracy="BAD_PERCENTILE"
-        )
-        assert error.message == "No rates found."
+        _ = easypost.Shipment.get_lowest_smartrate(smartrates, delivery_days=0, delivery_accuracy="percentile_90")
+    assert str(error.value) == "No rates found."
+
+    # Test lowest smartrate with invalid filters (should error due to bad delivery_accuracy)
+    with pytest.raises(easypost.Error) as error:
+        _ = easypost.Shipment.get_lowest_smartrate(smartrates, delivery_days=3, delivery_accuracy="BAD_ACCURACY")
+    assert "Invalid delivery_accuracy value" in str(error.value)
