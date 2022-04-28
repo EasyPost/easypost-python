@@ -65,13 +65,13 @@ class Shipment(AllResource, CreateResource):
         return self
 
     def lowest_rate(self, carriers: List[str] = None, services: List[str] = None) -> Rate:
-        """Get the lowest rate of a shipment."""
+        """Get the lowest rate of this shipment."""
         lowest_rate = get_lowest_object_rate(self, carriers, services)
 
         return lowest_rate
 
     def lowest_smartrate(self, delivery_days: Optional[int] = None, delivery_accuracy: Optional[str] = None) -> Rate:
-        """Get the lowest smartrate of a shipment."""
+        """Get the lowest smartrate of this shipment."""
         smartrates = self.get_smartrates()
         lowest_smartrate = self.get_lowest_smartrate(smartrates, delivery_days, delivery_accuracy)
 
@@ -93,13 +93,12 @@ class Shipment(AllResource, CreateResource):
         }
         lowest_smartrate = None
 
+        if delivery_accuracy and delivery_accuracy not in valid_delivery_accuracy_values:
+            raise Error(message=f"Invalid delivery_accuracy value, must be one of: {valid_delivery_accuracy_values}")
+
         for rate in smartrates:
             if delivery_days and delivery_accuracy:
-                if delivery_accuracy not in valid_delivery_accuracy_values:
-                    raise Error(
-                        message=f"Invalid delivery_accuracy value, must be one of: {valid_delivery_accuracy_values}"
-                    )
-                elif rate["time_in_transit"][delivery_accuracy] > delivery_days:
+                if rate["time_in_transit"][delivery_accuracy] > delivery_days:
                     continue
 
             if lowest_smartrate is None or float(rate["rate"]) < float(lowest_smartrate["rate"]):
