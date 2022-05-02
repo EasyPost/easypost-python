@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## NEXT RELEASE
+
+- Adds a `lowest_rate` function to Orders and Pickups
+- Adds a `Shipment.get_lowest_smartrate` function and a `shipment.lowest_smartrate()` function
+
 ## v7.0.0 (2022-04-14)
 
 Upgrading major versions of this project? Refer to the [Upgrade Guide](UPGRADE_GUIDE.md).
