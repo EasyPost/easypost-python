@@ -4,6 +4,8 @@
 
 - Adds a `lowest_rate` function to Orders and Pickups
 - Adds a `Shipment.get_lowest_smartrate` function and a `shipment.lowest_smartrate()` function
+- Add beta Referral class for White Label API with these new functions:
+`create()`, `update_email()`, `all()`, and `add_credit_card()`
 
 ## v7.0.0 (2022-04-14)
 

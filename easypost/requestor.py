@@ -8,6 +8,7 @@ from json import JSONDecodeError
 from typing import (
     Any,
     Dict,
+    List,
     Optional,
     Tuple,
     Union,
@@ -51,18 +52,45 @@ class Requestor:
         else:
             return param
 
+    @staticmethod
+    def form_encode_params(data: Dict, parent_keys: List[str] = None, parent_dict: Dict = None) -> Dict:
+        """Form-encode a multi-layer dictionary to a one-layer dictionary."""
+        result = parent_dict or {}
+        keys = parent_keys or []
+
+        for key, value in data.items():
+            if isinstance(value, dict):
+                keys.append(key)
+                result = Requestor.form_encode_params(data=value, parent_keys=keys, parent_dict=result)
+            else:
+                dict_key = Requestor._build_dict_key(keys + [key])
+                result[dict_key] = value
+        return result
+
+    @staticmethod
+    def _build_dict_key(keys: List[str]) -> str:
+        """Build a dict key from a list of keys.
+        Example: [code, number] -> code[number]
+        """
+        result = keys[0]
+
+        for key in keys[1:]:
+            result += f"[{key}]"
+        return result
+
     def request(
         self,
         method: RequestMethod,
         url: str,
         params: Optional[Dict[str, Any]] = None,
         api_key_required: bool = True,
+        beta: bool = False,
     ) -> Tuple[dict, Optional[str]]:
         """Make a request to the EasyPost API."""
         if params is None:
             params = {}
         http_body, http_status, my_api_key = self.request_raw(
-            method=method, url=url, params=params, api_key_required=api_key_required
+            method=method, url=url, params=params, api_key_required=api_key_required, beta=beta
         )
         response = self.interpret_response(http_body=http_body, http_status=http_status)
         return response, my_api_key
@@ -73,6 +101,7 @@ class Requestor:
         url: str,
         params: Optional[Dict[str, Any]] = None,
         api_key_required: bool = True,
+        beta: bool = False,
     ) -> Tuple[str, int, Optional[str]]:
         """Internal logic required to make a request to the EasyPost API."""
         # Importing here to avoid circular imports
@@ -91,7 +120,11 @@ class Requestor:
                 f"at {SUPPORT_EMAIL} for assistance."
             )
 
-        abs_url = "%s%s" % (api_base, url or "")
+        if beta:
+            abs_url = f"https://api.easypost.com/beta{url}"
+        else:
+            abs_url = f"{api_base}{url}"
+
         params = self._objects_to_ids(param=params or {})
 
         ua = {
