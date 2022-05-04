@@ -8,8 +8,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -20,41 +18,24 @@ interactions:
     uri: https://api.easypost.com/v2/carrier_accounts?page_size=5
   response:
     body:
-      string: !!binary |
-        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
-        AwBo7b/lhi0AAA==
+      string: '[{"id":"ca_b25657e9896e4d63ac8151ac346ac41e","object":"CarrierAccount","type":"UspsAccount","clone":false,"created_at":"2017-03-01T03:01:34Z","updated_at":"2018-08-09T02:45:22Z","description":"USPS
+        Account","reference":null,"readable":"USPS","logo":null,"fields":{"credentials":{"company_name":{"visibility":"visible","label":"Account
+        Holder Name","value":""},"address_street":{"visibility":"visible","label":"Street
+        Address","value":""},"address_city":{"visibility":"visible","label":"City","value":""},"address_state":{"visibility":"visible","label":"State","value":""},"address_zip":{"visibility":"visible","label":"ZIP
+        Code","value":""},"phone":{"visibility":"visible","label":"Phone Number","value":""},"email":{"visibility":"visible","label":"Email
+        Address","value":null},"shipper_id":{"visibility":"visible","label":"Shipper
+        Identifier (Optional)","value":""}}},"credentials":{"company_name":"","address_street":"","address_city":"","address_state":"","address_zip":"","phone":"","email":null,"shipper_id":""},"test_credentials":null},{"id":"ca_05ab5a0345634187b52daaf787aa4cd0","object":"CarrierAccount","type":"LsoDefaultAccount","clone":false,"created_at":"2022-04-26T16:58:59Z","updated_at":"2022-04-26T16:58:59Z","description":"LSO
+        Account","reference":null,"readable":"LSO","logo":null,"fields":{"credentials":{}},"credentials":{},"test_credentials":null},{"id":"ca_d38ae88b6edb48ed93c0a16ed068215b","object":"CarrierAccount","type":"DhlExpressDefaultAccount","clone":false,"created_at":"2022-04-26T16:59:02Z","updated_at":"2022-04-26T16:59:02Z","description":"DHL
+        Express Account","reference":null,"readable":"DHL Express","logo":null,"fields":{"credentials":{}},"credentials":{},"test_credentials":null}]'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '1719'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"84e46190052b6d8eb678c47e0e5e313b"
+      - W/"4f6bb92cff15e038c9baed713a38dcee"
       expires:
       - '0'
       pragma:
@@ -72,21 +53,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50b6233b38bff030422002a5e02
+      - 62b330b86272e13fe786b85c00161b76
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb9nuq
+      - bigweb8nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - intlb2wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.470700'
+      - '0.057637'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

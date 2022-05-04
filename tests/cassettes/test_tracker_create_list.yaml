@@ -11,7 +11,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '134'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -23,13 +23,12 @@ interactions:
     uri: https://api.easypost.com/v2/trackers/create_list
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA6quBQAAAP//AwBDv6ajAgAAAA==
+      string: '{}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '2'
       content-type:
       - application/json; charset=utf-8
       etag:
@@ -46,26 +45,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50d6233b3daff0304e6002a705d
+      - 78245fb56272e172e786bc180013b17a
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb9nuq
+      - bigweb7nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb2wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb2nuq c51cdb8bf2
       x-runtime:
-      - '0.036569'
+      - '0.043364'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

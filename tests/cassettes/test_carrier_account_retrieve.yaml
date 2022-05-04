@@ -12,7 +12,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '165'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -24,21 +24,18 @@ interactions:
     uri: https://api.easypost.com/v2/carrier_accounts
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4SQQWvEIBCF/8riOQuJsUma29J7KbS99BJGHYvLVIOahbDkv1cJ7bKnxdO8+ea9
-        h1dmNRuZgqmtQcr6ySgpjOg7IUG0zYDPpu5aPgwDq5iXZ1Qp4y8QgsVwUsovLuVNWmfM+uccb5oi
-        77JogCLmKSAk1BOUe15zfqzbY9N/cD42/Si6r3yxzPohozGqYOdkvSuBb++HW2JAgwGdyqluISoC
-        aJCEO5kJ8t/+b2ksko5svJZuGl2yuWkZYTec3PIjMRTlYqOVlmxas1Mx9Y7WYgcS6b7G4XW/qtgF
-        aCnJp6Y8tm1b9Sjpn80/ijFNd3hpvf0CAAD//wMAVsRsUrABAAA=
+      string: '{"id":"ca_fd232465a60746f2bf178a7ce82a030f","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-05-04T20:25:35Z","updated_at":"2022-05-04T20:25:35Z","description":"UPS
+        Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+        Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '432'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"f825a6ddf1a971645d34b77a074c401d"
+      - W/"48a1c4ba415618243d5c5a8de4870dc7"
       expires:
       - '0'
       pragma:
@@ -56,7 +53,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50a6233b38aff030421002a5da9
+      - 62b330ba6272e13fe786b85b00161b23
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -64,13 +61,12 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.148746'
+      - '0.138783'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -85,8 +81,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -94,24 +88,21 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: GET
-    uri: https://api.easypost.com/v2/carrier_accounts/ca_30abb05fcb4f4764ba4318e9f0632888
+    uri: https://api.easypost.com/v2/carrier_accounts/ca_fd232465a60746f2bf178a7ce82a030f
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4SQQWvEIBCF/8riOQuJsUma29J7KbS99BJGHYvLVIOahbDkv1cJ7bKnxdO8+ea9
-        h1dmNRuZgqmtQcr6ySgpjOg7IUG0zYDPpu5aPgwDq5iXZ1Qp4y8QgsVwUsovLuVNWmfM+uccb5oi
-        77JogCLmKSAk1BOUe15zfqzbY9N/cD42/Si6r3yxzPohozGqYOdkvSuBb++HW2JAgwGdyqluISoC
-        aJCEO5kJ8t/+b2ksko5svJZuGl2yuWkZYTec3PIjMRTlYqOVlmxas1Mx9Y7WYgcS6b7G4XW/qtgF
-        aCnJp6Y8tm1b9Sjpn80/ijFNd3hpvf0CAAD//wMAVsRsUrABAAA=
+      string: '{"id":"ca_fd232465a60746f2bf178a7ce82a030f","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-05-04T20:25:35Z","updated_at":"2022-05-04T20:25:35Z","description":"UPS
+        Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+        Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '432'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"f825a6ddf1a971645d34b77a074c401d"
+      - W/"48a1c4ba415618243d5c5a8de4870dc7"
       expires:
       - '0'
       pragma:
@@ -129,21 +120,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50a6233b38aff030421002a5dd0
+      - 62b330ba6272e13fe786b85b00161b38
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb8nuq
+      - bigweb5nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - intlb2wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.031069'
+      - '0.070562'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -160,8 +150,6 @@ interactions:
       - keep-alive
       Content-Length:
       - '0'
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -169,16 +157,15 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: DELETE
-    uri: https://api.easypost.com/v2/carrier_accounts/ca_30abb05fcb4f4764ba4318e9f0632888
+    uri: https://api.easypost.com/v2/carrier_accounts/ca_fd232465a60746f2bf178a7ce82a030f
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA6quBQAAAP//AwBDv6ajAgAAAA==
+      string: '{}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '2'
       content-type:
       - application/json; charset=utf-8
       etag:
@@ -195,26 +182,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50a6233b38bff030421002a5de2
+      - 62b330ba6272e13fe786b85b00161b57
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb5nuq
+      - bigweb7nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.117670'
+      - '0.119995'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

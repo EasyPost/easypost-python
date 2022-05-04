@@ -10,7 +10,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '75'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -22,24 +22,20 @@ interactions:
     uri: https://api.easypost.com/v2/parcels
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4SMOw7CMBBE77J1iPxJ5M8pKKhoIsdeJwaTWMYRBeLu2BI93c7Me/uG4EBDyjZO
-        iinHpeJMKDmokczGe2sEscoJP1sOHezzDW2pwtlki7E2NqMp6CbTWkYYOxF+ouLCmKZSE3mtzJHc
-        XybitpQVNCU96eAVXAuy3SuGZa3m0ELK6NCHrX5Lxt7NgqC3I8aq/DA69kMHj93VBQo+C3y+AAAA
-        //8DAHucJp/lAAAA
+      string: '{"id":"prcl_c3c76620e3e943c88b8e94ae291d843f","object":"Parcel","created_at":"2022-05-04T20:25:48Z","updated_at":"2022-05-04T20:25:48Z","length":10.0,"width":8.0,"height":4.0,"predefined_package":null,"weight":15.4,"mode":"test"}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '229'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"57b6cccb9fd308e9fc4d8659ad7bece6"
+      - W/"5cfbcb5dcc7a0cfc07c5dd9cb724722f"
       expires:
       - '0'
       location:
-      - /api/v2/parcels.prcl_929d389327984950baffca70c9d7fbc3
+      - /api/v2/parcels.prcl_c3c76620e3e943c88b8e94ae291d843f
       pragma:
       - no-cache
       referrer-policy:
@@ -55,21 +51,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5076233b3a0ff030462002a63dd
+      - 62b330bc6272e14ce786b89d0016208e
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb5nuq
+      - bigweb8nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.023918'
+      - '0.022810'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

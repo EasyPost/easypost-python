@@ -10,7 +10,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '16'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -22,16 +22,14 @@ interactions:
     uri: https://api.easypost.com/v2/shipments
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4TNQQrCMBCF4asMsy49QHcFBQu2lFbdiJSxGWugSeok6iL07kYv4PLBz/cisogT
-        LCKOTjEW2O+qtt42h7xqTuW+2gxt2ZV1jxka9p6mb3O0dJ0ZgoNRmAKDv+vFsA0ZOMvgBIwThoWE
-        DAcWD29OW9sXzVrlyfq9eizOEYMbSClJeJI7fjy1sAKyCoz2XtspxzWLeBNn/oeXdf0AAAD//wMA
-        SeCRtdMAAAA=
+      string: '{"error":{"code":"SHIPMENT.INVALID_PARAMS","message":"Unable to create
+        shipment, one or more parameters were invalid.","errors":[{"to_address":"Required
+        and missing."},{"from_address":"Required and missing."}]}}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '211'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -51,21 +49,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50c6233b38fff030441002a5f0b
+      - 62b330ba6272e143e786b86400161cd7
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb9nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.019727'
+      - '0.016675'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

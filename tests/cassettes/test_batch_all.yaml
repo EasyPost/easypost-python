@@ -8,8 +8,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -20,44 +18,28 @@ interactions:
     uri: https://api.easypost.com/v2/batches?page_size=5
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"batches":[{"id":"batch_65108517e0ad4023ae4fb11707e45fe3","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-04-12T16:14:18Z","updated_at":"2022-04-12T16:14:18Z","scan_form":null,"shipments":[{"batch_status":"postage_purchased","batch_message":null,"reference":null,"tracking_code":"9400100109361114684958","id":"shp_19d078a1d1b84dfd86ccbb5e69da80b8"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":1,"postage_purchase_failed":0},"pickup":{"id":"pickup_a6f424dd8e45400fbe3c5dab19e11fae","object":"Pickup","created_at":"2022-04-12T16:14:18Z","updated_at":"2022-04-12T16:14:18Z","mode":"test","status":"unknown","reference":null,"min_datetime":"2022-04-13T00:00:00Z","max_datetime":"2022-04-13T00:00:00Z","is_account_address":false,"instructions":"Pickup
+        at front door","messages":[],"confirmation":null,"address":{"id":"adr_9adea311ba7b11ec8270ac1f6bc72124","object":"Address","created_at":"2022-04-12T16:14:18+00:00","updated_at":"2022-04-12T16:14:18+00:00","name":"Jack
+        Sparrow","company":"EasyPost","street1":"388 Townsend St","street2":"Apt 20","city":"San
+        Francisco","state":"CA","zip":"94107","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}},"carrier_accounts":[],"pickup_rates":[{"mode":"test","service":"NextDay","rate":"0.00","currency":"USD","created_at":"2022-04-12T16:14:20Z","updated_at":"2022-04-12T16:14:20Z","carrier":"USPS","pickup_id":"pickup_a6f424dd8e45400fbe3c5dab19e11fae","id":"pickuprate_d05c55a8fa814856896877903b2ce859","object":"PickupRate"}]},"label_url":null},{"id":"batch_423a9247fbe241edb0dccf5369398e54","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-04-12T16:14:21Z","updated_at":"2022-04-12T16:14:21Z","scan_form":null,"shipments":[{"batch_status":"postage_purchased","batch_message":null,"reference":null,"tracking_code":"9400100109361114684972","id":"shp_78cd300e6b2c4623a2c292130f1220ff"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":1,"postage_purchase_failed":0},"pickup":{"id":"pickup_2a052b8e87ed4f3792b75e4e2129f469","object":"Pickup","created_at":"2022-04-12T16:14:21Z","updated_at":"2022-04-12T16:14:21Z","mode":"test","status":"unknown","reference":null,"min_datetime":"2022-04-13T00:00:00Z","max_datetime":"2022-04-13T00:00:00Z","is_account_address":false,"instructions":"Pickup
+        at front door","messages":[],"confirmation":null,"address":{"id":"adr_9cc14a1bba7b11eca290ac1f6bc7b362","object":"Address","created_at":"2022-04-12T16:14:21+00:00","updated_at":"2022-04-12T16:14:21+00:00","name":"Jack
+        Sparrow","company":"EasyPost","street1":"388 Townsend St","street2":"Apt 20","city":"San
+        Francisco","state":"CA","zip":"94107","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}},"carrier_accounts":[],"pickup_rates":[{"mode":"test","service":"NextDay","rate":"0.00","currency":"USD","created_at":"2022-04-12T16:14:22Z","updated_at":"2022-04-12T16:14:22Z","carrier":"USPS","pickup_id":"pickup_2a052b8e87ed4f3792b75e4e2129f469","id":"pickuprate_39367c458f3f4beaaa5532ca343e0e4d","object":"PickupRate"}]},"label_url":null},{"id":"batch_1b08c137d2134dab9f69792a5a4d54da","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-04-12T16:14:23Z","updated_at":"2022-04-12T16:14:23Z","scan_form":null,"shipments":[{"batch_status":"postage_purchased","batch_message":null,"reference":null,"tracking_code":"9400100109361114684989","id":"shp_835a97af387d4d3caf1cc641829d72ac"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":1,"postage_purchase_failed":0},"pickup":{"id":"pickup_8f33563c8a1b490195838d9c47fa60fe","object":"Pickup","created_at":"2022-04-12T16:14:24Z","updated_at":"2022-04-12T16:14:25Z","mode":"test","status":"scheduled","reference":null,"min_datetime":"2022-04-13T00:00:00Z","max_datetime":"2022-04-13T00:00:00Z","is_account_address":false,"instructions":"Pickup
+        at front door","messages":[],"confirmation":"WTC61775092","address":{"id":"adr_9e3262cdba7b11ecad14ac1f6b0a0d1e","object":"Address","created_at":"2022-04-12T16:14:23+00:00","updated_at":"2022-04-12T16:14:23+00:00","name":"Jack
+        Sparrow","company":"EasyPost","street1":"388 Townsend St","street2":"Apt 20","city":"San
+        Francisco","state":"CA","zip":"94107","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}},"carrier_accounts":[],"pickup_rates":[{"mode":"test","service":"NextDay","rate":"0.00","currency":"USD","created_at":"2022-04-12T16:14:24Z","updated_at":"2022-04-12T16:14:24Z","carrier":"USPS","pickup_id":"pickup_8f33563c8a1b490195838d9c47fa60fe","id":"pickuprate_3bd99b26765543d2921743649f2ad709","object":"PickupRate"}]},"label_url":null},{"id":"batch_e33d1f064ab547cd9255f91db8f1d7ff","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-04-12T16:14:27Z","updated_at":"2022-04-12T16:14:27Z","scan_form":null,"shipments":[{"batch_status":"postage_purchased","batch_message":null,"reference":null,"tracking_code":"9400100109361114685016","id":"shp_a3918dbe7fc940ab9f37290c75826961"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":1,"postage_purchase_failed":0},"pickup":{"id":"pickup_421f3529555d4fac9b30d2b8282ba23a","object":"Pickup","created_at":"2022-04-12T16:14:27Z","updated_at":"2022-04-12T16:14:30Z","mode":"test","status":"canceled","reference":null,"min_datetime":"2022-04-13T00:00:00Z","max_datetime":"2022-04-13T00:00:00Z","is_account_address":false,"instructions":"Pickup
+        at front door","messages":[],"confirmation":"WTC61775072","address":{"id":"adr_a06c883eba7b11eca542ac1f6bc7b362","object":"Address","created_at":"2022-04-12T16:14:27+00:00","updated_at":"2022-04-12T16:14:27+00:00","name":"Jack
+        Sparrow","company":"EasyPost","street1":"388 Townsend St","street2":"Apt 20","city":"San
+        Francisco","state":"CA","zip":"94107","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}},"carrier_accounts":[],"pickup_rates":[{"mode":"test","service":"NextDay","rate":"0.00","currency":"USD","created_at":"2022-04-12T16:14:28Z","updated_at":"2022-04-12T16:14:28Z","carrier":"USPS","pickup_id":"pickup_421f3529555d4fac9b30d2b8282ba23a","id":"pickuprate_bd38e871488c4668a9886ba8ea007194","object":"PickupRate"}]},"label_url":null},{"id":"batch_2138e1c33cbc436b97aca5bbbefc0e78","object":"Batch","mode":"test","state":"created","num_shipments":1,"reference":null,"created_at":"2022-04-20T17:56:27Z","updated_at":"2022-04-20T17:56:27Z","scan_form":null,"shipments":[{"batch_status":"created","batch_message":null,"reference":null,"tracking_code":null,"id":"shp_dc2a1136b5ae409ca3816984a5510092"}],"status":{"created":1,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}],"has_more":true}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '7319'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"02849f443925149c5beab89a205af9f9"
+      - W/"7a6757f60df47e22d3a47fe1a0057ee3"
       expires:
       - '0'
       pragma:
@@ -70,26 +52,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5076233b37aff03010b002a59f8
+      - 62b330bd6272e130e786b83c001614ed
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb3nuq
+      - bigweb7nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.199448'
+      - '0.172352'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

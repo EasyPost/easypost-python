@@ -8,8 +8,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -20,22 +18,16 @@ interactions:
     uri: https://api.easypost.com/v2/events?page_size=5
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA7zSy2rDMBAF0H/ROjV6jjTe9w+6ailG0owbF/LAlrMJ+ffKaRvoqqUE76TLHUkH
-        dBZ84n2ZRPtyFsRTHodjGQ570YoUS94285FiYRIbMVAN+VQ6ZSQko0IEK5XiHLjX0pDU0ftkPNTu
-        PPHYXQeuK2eNgwgJIaOVFFAZBBVN9gkl9rpOTCWWuT5DHHlPw/6tRnnk5eoulhprqfWDNA/KP2nd
-        Kt9aaALCc+3tDsS1UXgqdXdI75yXiccFJi6bv7u0C4QxfrsSUPJkM1vNIbuwkss13vl7umQfmfrl
-        oZ8ujMTQW+UYUAPJlVyq0eG+LmbKytmbiyxJDDrYZIhSXsklmxr92/V1+E8XgfV4+4doq8tgdi70
-        NbfruAw2AcLvrteN2Map2x3GWirjzJcPAAAA//8DAHSHX0tUBAAA
+      string: '{"events":[{"description":"tracker.updated","id":"evt_5b81509ecbe811ec8b8e5b1737fe969b","user_id":"user_54356a6b96c940d8913961a3c7b909f2","status":"pending","created_at":"2022-05-04T20:25:36.969Z","mode":"test","object":"Event"},{"description":"batch.updated","id":"evt_5ad73c1ccbe811ec9fae033031f69f94","user_id":"user_54356a6b96c940d8913961a3c7b909f2","status":"pending","created_at":"2022-05-04T20:25:35.854Z","mode":"test","object":"Event"},{"description":"batch.updated","id":"evt_59f8bdb6cbe811ec840d1bbb9d54ec42","user_id":"user_54356a6b96c940d8913961a3c7b909f2","status":"pending","created_at":"2022-05-04T20:25:34.396Z","mode":"test","object":"Event"},{"description":"tracker.updated","id":"evt_59575700cbe811eca4802789fb5111c9","user_id":"user_54356a6b96c940d8913961a3c7b909f2","status":"pending","created_at":"2022-05-04T20:25:33.339Z","mode":"test","object":"Event"},{"description":"batch.updated","id":"evt_5785817ccbe811ecadf031720a1d8ffc","user_id":"user_54356a6b96c940d8913961a3c7b909f2","status":"pending","created_at":"2022-05-04T20:25:30.286Z","mode":"test","object":"Event"}],"has_more":true}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '1112'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"f03929a3af58b881f8a595bb345f9e6d"
+      - W/"93c72334fc893efb178789bd0dbfca39"
       expires:
       - '0'
       pragma:
@@ -53,21 +45,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5086233b390ff030443002a5f37
+      - 62b330be6272e143e786b87d00161d22
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb3nuq
+      - bigweb2nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.172613'
+      - '0.237216'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

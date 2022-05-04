@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"type": "shipment", "start_date": "2022-04-11", "end_date": "2022-04-11",
+    body: '{"type": "shipment", "start_date": "2022-05-04", "end_date": "2022-05-04",
       "additional_columns": ["from_name", "from_company"]}'
     headers:
       Accept:
@@ -23,20 +23,16 @@ interactions:
     uri: https://api.easypost.com/v2/reports/shipment
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4SOzQrCMBCE3yVnhSb0x+Yx1JOXsM2uNBLTkGxQEN/dRi8eBG+7M98w8xAOhRZ5
-        jomigWEEUF1rcbKtbJtRDrsRcLAAdpSTFBuxTBeyvEYOs4tXCrynuCReHZsImNBAdVWj1LZpt1Id
-        Za+l1F1/WpkS8S+TGRKbyn0ztZsC/tSvC1aNKfMnzyWvf6BbrUxe6FC8f5+G7tElyu8FH9UF6wuS
-        sbPzmCgIfQaf6fkCAAD//wMAsBiIkxsBAAA=
+      string: '{"id":"shprep_82fc5680d8af45fbb73a5dfbb978256a","object":"ShipmentReport","created_at":"2022-05-04T20:26:47Z","updated_at":"2022-05-04T20:26:47Z","start_date":"2022-05-04","end_date":"2022-05-04","mode":"test","status":"new","url":null,"url_expires_at":null,"include_children":false}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '283'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"461b6c7c2e00248d19fb82c4c274c85d"
+      - W/"9404e5fceac40771ab2db413bc6f1cb8"
       expires:
       - '0'
       pragma:
@@ -54,7 +50,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 23047b0e6255a4cce7799785002c7ca8
+      - 78245fb96272e187e786bc3b0013b699
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -62,13 +58,12 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq fde591f008
-      - intlb2wdc fde591f008
-      - extlb3wdc fde591f008
+      - intlb2nuq fde591f008
+      - extlb2nuq c51cdb8bf2
       x-runtime:
-      - '0.130179'
+      - '0.038460'
       x-version-label:
-      - easypost-202204112244-205415e174-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

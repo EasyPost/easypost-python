@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"type": "shipment", "start_date": "2022-04-11", "end_date": "2022-04-11",
+    body: '{"type": "shipment", "start_date": "2022-05-04", "end_date": "2022-05-04",
       "columns": ["usps_zone"]}'
     headers:
       Accept:
@@ -23,20 +23,16 @@ interactions:
     uri: https://api.easypost.com/v2/reports/shipment
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4SOQQ7CIBBF78Jak0JpiRxDXbkhFKYphlICQzQx3l3ablyYuJt5//3MvIizRJI8
-        xQRRjUzTHvqh5T3lJ2h1azoqzChGwYWxnBzIMtzBYK1cJhdnCHiGuCSsiUmgEazSa8oaxo4NP1J2
-        pb2kVHbiVp0S7V8no06oVu/boTWBYH/yebErQ8i497Hkugd4rCeTJzIU77dRwTO6BHn7YKcuGF8s
-        KDM5bxMEIkftM7w/AAAA//8DANZmC48bAQAA
+      string: '{"id":"shprep_5c8e26a47fde44b1963bfd72ff416a0f","object":"ShipmentReport","created_at":"2022-05-04T20:26:47Z","updated_at":"2022-05-04T20:26:47Z","start_date":"2022-05-04","end_date":"2022-05-04","mode":"test","status":"new","url":null,"url_expires_at":null,"include_children":false}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '283'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"63233bc97409935a7c8d82113f18347b"
+      - W/"b124195b3f2ada260bc3575307b35fb5"
       expires:
       - '0'
       pragma:
@@ -49,27 +45,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - bcd42efa6255a4cde77997860030f038
+      - 78245fba6272e187e786bc3c0013b6ac
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb5nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb1nuq fde591f008
+      - intlb1nuq fde591f008
+      - extlb2nuq c51cdb8bf2
       x-runtime:
-      - '0.037531'
+      - '0.039691'
       x-version-label:
-      - easypost-202204112244-205415e174-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:
