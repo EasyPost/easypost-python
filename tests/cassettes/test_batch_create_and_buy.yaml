@@ -24,7 +24,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '1156'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -36,21 +36,16 @@ interactions:
     uri: https://api.easypost.com/v2/batches
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4SPzW7DIBCE34WzI2Gc2jHHPkNOjSLEzzqmxUD5OUV5967ruu2hUm/M7My3y51Y
-        QzhRsuhZdKp7kic1yq49HseRqRMd6NSbaWR9P4AhDQnqFXTBxvPaQGMJBlAWyAVVLrKsUieQxfob
-        Wr4uIs82LuBLJpw1JMEECbzGoK/ONVsajJArmFHGDrQ7tMOZMd4OvKMviKnR/JvJWnoxhbTs4F97
-        L9ftuorv+76RcNqQ9woVwdgTsSY9ywyf/vaHgERp3Vc2BmTc4Dv4t/vTeODQ6rca94ucVOBETW4z
-        Hh8AAAD//wMA2XumHoABAAA=
+      string: '{"id":"batch_f330bd734875417c894233ce818adeaa","object":"Batch","mode":"test","state":"creating","num_shipments":2,"reference":null,"created_at":"2022-05-04T20:25:21Z","updated_at":"2022-05-04T20:25:21Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '384'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"f09e024bb8f264684976363908288575"
+      - W/"bb6d824c189bbf0daf97c45729834d0b"
       expires:
       - '0'
       pragma:
@@ -68,21 +63,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50d6233b37aff03010c002a5a0f
+      - 62b330bd6272e131e786b83d00161519
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb2nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb2wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.047697'
+      - '0.044405'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

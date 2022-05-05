@@ -10,7 +10,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '75'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -22,24 +22,20 @@ interactions:
     uri: https://api.easypost.com/v2/parcels
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4SMuxKCMBBF/2VrYJIYIOQrLKxsmCW7PDRCBsNYOP67yYy93d57z9k3LAQWwu58
-        T/XQ1lp0rSLSCjXWaJoBtTHaqbHRUMA23NjFJJxxd+xT43bGyNRjbpVQqhSnUrYXpaw0VnTXxByB
-        /jKe1ynOYKWoRAGvhXIw+Z55meZk6hzCzsTjsqZvAd0dJwa7Ht4n5YfJutIFPDZKC0R+Rvh8AQAA
-        //8DAKTnIj/lAAAA
+      string: '{"id":"prcl_35d1e841750348679b9970c4123d6935","object":"Parcel","created_at":"2022-05-04T20:25:48Z","updated_at":"2022-05-04T20:25:48Z","length":10.0,"width":8.0,"height":4.0,"predefined_package":null,"weight":15.4,"mode":"test"}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '229'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"0aca47d7014aab5e4e3b29cc98303dd2"
+      - W/"06105e1638fc6047757fb19d7e0b8209"
       expires:
       - '0'
       location:
-      - /api/v2/parcels.prcl_d5b7540972dd42a4a5a86ba4884c2f64
+      - /api/v2/parcels.prcl_35d1e841750348679b9970c4123d6935
       pragma:
       - no-cache
       referrer-policy:
@@ -55,21 +51,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50b6233b3a1ff030463002a63e8
+      - 62b330bc6272e14ce786b89e001620a7
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb2nuq
+      - bigweb5nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - intlb2wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.027056'
+      - '0.023991'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -84,8 +79,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -93,23 +86,19 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: GET
-    uri: https://api.easypost.com/v2/parcels/prcl_d5b7540972dd42a4a5a86ba4884c2f64
+    uri: https://api.easypost.com/v2/parcels/prcl_35d1e841750348679b9970c4123d6935
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4SMuxKCMBBF/2VrYJIYIOQrLKxsmCW7PDRCBsNYOP67yYy93d57z9k3LAQWwu58
-        T/XQ1lp0rSLSCjXWaJoBtTHaqbHRUMA23NjFJJxxd+xT43bGyNRjbpVQqhSnUrYXpaw0VnTXxByB
-        /jKe1ynOYKWoRAGvhXIw+Z55meZk6hzCzsTjsqZvAd0dJwa7Ht4n5YfJutIFPDZKC0R+Rvh8AQAA
-        //8DAKTnIj/lAAAA
+      string: '{"id":"prcl_35d1e841750348679b9970c4123d6935","object":"Parcel","created_at":"2022-05-04T20:25:48Z","updated_at":"2022-05-04T20:25:48Z","length":10.0,"width":8.0,"height":4.0,"predefined_package":null,"weight":15.4,"mode":"test"}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '229'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"0aca47d7014aab5e4e3b29cc98303dd2"
+      - W/"06105e1638fc6047757fb19d7e0b8209"
       expires:
       - '0'
       pragma:
@@ -127,21 +116,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50b6233b3a1ff030463002a63f1
+      - 62b330bc6272e14ce786b89e001620b3
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb3nuq
+      - bigweb8nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.018114'
+      - '0.020743'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

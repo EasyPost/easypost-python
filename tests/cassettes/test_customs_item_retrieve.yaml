@@ -11,7 +11,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '145'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -23,25 +23,21 @@ interactions:
     uri: https://api.easypost.com/v2/customs_items
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4RPMW7DMAz8SqHZCSzZshOvnTqnXboIskTHCizJlagGQdG/l27huRvJu+PdfTFn
-        2cBMRofgleVacg5anGTbnuV4GsW566emlaJruJWsYnG8gUHSPJeM0ecX0tHZJNAIVukNErUQh7o5
-        8P5ViIH3g+TvxCmr/ZdjIZvkVnQxEOlyB8CnPLuEmcA5K9TJTZMKxY+QiNHJthF8y5Xc1QVlYgmY
-        HoS8Xej6UXSgarSLin3qpcBm3Rxrwu7grjNF4fxYU4FoCQtlWSrmf2eGkJF4XocyaYMlbY5/DFNS
-        gmAe+w7GhH1ekwtbTRM9PSJz5SxQisnt+u8fAAAA//8DAIQXsDt3AQAA
+      string: '{"id":"cstitem_7242129c27bd40d09eaba1758d8add1f","object":"CustomsItem","created_at":"2022-05-04T20:25:38Z","updated_at":"2022-05-04T20:25:38Z","description":"Sweet
+        shirts","hs_tariff_number":"654321","origin_country":"US","quantity":2,"value":"23.0","weight":11.0,"code":null,"mode":"test","manufacturer":null,"currency":null,"eccn":null,"printed_commodity_identifier":null}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '375'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"a6ae88d4838e74e263ef345948fab7e0"
+      - W/"fe92de26d05664ebf9f11ec5fd28c542"
       expires:
       - '0'
       location:
-      - /api/v2/customs_items/cstitem_d1a511ea2854495b8b2967f3452631d5
+      - /api/v2/customs_items/cstitem_7242129c27bd40d09eaba1758d8add1f
       pragma:
       - no-cache
       referrer-policy:
@@ -57,21 +53,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50c6233b38fff030440002a5ef0
+      - 62b330bd6272e142e786b86300161cb3
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb4nuq
+      - bigweb8nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - intlb2wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.025166'
+      - '0.025360'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -86,8 +81,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -95,24 +88,20 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: GET
-    uri: https://api.easypost.com/v2/customs_items/cstitem_d1a511ea2854495b8b2967f3452631d5
+    uri: https://api.easypost.com/v2/customs_items/cstitem_7242129c27bd40d09eaba1758d8add1f
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4RPMW7DMAz8SqHZCSzZshOvnTqnXboIskTHCizJlagGQdG/l27huRvJu+PdfTFn
-        2cBMRofgleVacg5anGTbnuV4GsW566emlaJruJWsYnG8gUHSPJeM0ecX0tHZJNAIVukNErUQh7o5
-        8P5ViIH3g+TvxCmr/ZdjIZvkVnQxEOlyB8CnPLuEmcA5K9TJTZMKxY+QiNHJthF8y5Xc1QVlYgmY
-        HoS8Xej6UXSgarSLin3qpcBm3Rxrwu7grjNF4fxYU4FoCQtlWSrmf2eGkJF4XocyaYMlbY5/DFNS
-        gmAe+w7GhH1ekwtbTRM9PSJz5SxQisnt+u8fAAAA//8DAIQXsDt3AQAA
+      string: '{"id":"cstitem_7242129c27bd40d09eaba1758d8add1f","object":"CustomsItem","created_at":"2022-05-04T20:25:38Z","updated_at":"2022-05-04T20:25:38Z","description":"Sweet
+        shirts","hs_tariff_number":"654321","origin_country":"US","quantity":2,"value":"23.0","weight":11.0,"code":null,"mode":"test","manufacturer":null,"currency":null,"eccn":null,"printed_commodity_identifier":null}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '375'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"a6ae88d4838e74e263ef345948fab7e0"
+      - W/"fe92de26d05664ebf9f11ec5fd28c542"
       expires:
       - '0'
       pragma:
@@ -125,26 +114,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50c6233b38fff030440002a5eff
+      - 62b330bd6272e142e786b86300161cba
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb5nuq
+      - bigweb7nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.019285'
+      - '0.020427'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

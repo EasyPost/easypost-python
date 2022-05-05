@@ -24,29 +24,23 @@ interactions:
     uri: https://api.easypost.com/v2/addresses/create_and_verify
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA9SST4+bMBDFvwpyL61KsphA/nBD2aRCSqAK6UpRVSEHD6krY0fGrJqN9rt3TLI9
-        9LTXcoF5vDf8PMOVMM4NdB1JrkRwkmBtqngaN/HkCMcpiyiF+sijkNW0mR4DFnAKxCf6+Atqi/70
-        nvdJbYBZ4BVzchiE4SiIRsFsT+dJHCfR/HMQJEGAxv7M32dUrAWSqF5K7K7bM1MXTKzS8vC1KPdo
-        6KwBsBTFiM68bZHvvxTb1e7glXtvvfHiv5YQLQ5RWNehTHNvvUvzZVYui8GDPKgvUyxexBkfFxFF
-        KErDhYvpXlnjkt9KLM8/tYLhmzENJ1E8naEILRPyDbbV3BksdNbFmTECTNWwWsiB4ObCuQkOygqG
-        wYbJDnzSAAfDZGXZ78rt4+YcAP/RnsGIRtTMCq2G9SF45O5dX9fDRq3psSMYow1W3694jgFrNS5X
-        yyJ/THeHKsvXxW6b7rMiH2f5U7rJHpG4ESDdz/A2PDwRdmQnl87UM5OCex3UWnFmLp5QjTbtAPIx
-        PduHshcWPnxyg+1PJ5wBvrhRv/7wCQeLk+rugqulwLNc/if0K5GYsb1jmszGs8UkCn0itTrdxREN
-        w3EUhPO5T6xooXq5/TJpi1ur2cNGd1WqTiChI6/u+gMAAP//AwDfNKGTiQMAAA==
+      string: '{"address":{"id":"adr_512bdc91cbe811ec837dac1f6bc7b362","object":"Address","created_at":"2022-05-04T20:25:19+00:00","updated_at":"2022-05-04T20:25:19+00:00","name":null,"company":"EASYPOST","street1":"417
+        MONTGOMERY ST FL 5","street2":"","city":"SAN FRANCISCO","state":"CA","zip":"94104-1129","country":"US","phone":"4151234567","email":null,"mode":"test","carrier_facility":null,"residential":false,"federal_tax_id":null,"state_tax_id":null,"verifications":{"zip4":{"success":true,"errors":[{"code":"E.SECONDARY_INFORMATION.INVALID","field":"street2","message":"Invalid
+        secondary information(Apt/Suite#)","suggestion":null}],"details":null},"delivery":{"success":true,"errors":[{"code":"E.SECONDARY_INFORMATION.INVALID","field":"street2","message":"Invalid
+        secondary information(Apt/Suite#)","suggestion":null}],"details":{"latitude":37.79342,"longitude":-122.40288,"time_zone":"America/Los_Angeles"}}}}}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '905'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"e125f6fac47edaec1d6582bc01a06fc3"
+      - W/"00c792431fd886fc7da345bd52b8e0a7"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_565f53beb6a411ecbd42ac1f6b0a0d1e
+      - /api/v2/addresses/adr_512bdc91cbe811ec837dac1f6bc7b362
       pragma:
       - no-cache
       referrer-policy:
@@ -62,20 +56,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 6399b1b4624f33b4ff223076000381c5
+      - 62b330b76272e12fe786b82100161462
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb4nuq
+      - bigweb3nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
       - intlb2nuq fde591f008
-      - extlb2nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.052091'
+      - '0.051722'
       x-version-label:
-      - easypost-202204071625-f7b25baf21-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

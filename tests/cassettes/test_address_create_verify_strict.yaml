@@ -24,28 +24,22 @@ interactions:
     uri: https://api.easypost.com/v2/addresses
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4yRW2/jIBCF/4rF6zpdIL4kfkPZVtqLkij2qlpVlYVh3KWycQS4ahv1v++QVH3Y
-        p/KC5/ibMwc4EaNJRaR2bZ7Dquc57wqZMQaqY+tcKtYXnSq7ZcFJSqbuEVRAXmjtwHuUlAMZQLcy
-        ypxyvqDZgpYNW1V5XmXlF0orShGcj/pzoJUjIPJDbH4m9V4cDrvbOGcaj9K+4I9rUf/Z7+oGRR8c
-        QGAoLlerpNndbuvr7bekbhKxbxJOPxCOSDQxITrUYpvcHMR2873e7M4MJkN9I7B4NUf8XGeMlgtW
-        lPQ8e7bBxc7fNZbHv5ONeP6xUIRRmoFUdh6GlIyTjkAAH2K7dM6Aa3upzHBOcKHwBo0GG4zExuBm
-        SEkPGpwc2iCf2/gwF/Cc7z/tCZzpjZLBTNaT6hRzZ3H3s1Lxad4dwbnJYXV3nxINAUP6i8VbrAeD
-        Pi+fbTuRAeeFOR5uWV6VZZ6zlAyTfXgXF4zzq+W6WJcpCWaE9vVyU2LEtEp+/TX5VtgHGMCTN1z/
-        AAAA//8DAL9iT39+AgAA
+      string: '{"id":"adr_5089554ccbe811ec833eac1f6bc7b362","object":"Address","created_at":"2022-05-04T20:25:18+00:00","updated_at":"2022-05-04T20:25:18+00:00","name":"JACK
+        SPARROW","company":"EASYPOST","street1":"388 TOWNSEND ST APT 20","street2":"","city":"SAN
+        FRANCISCO","state":"CA","zip":"94107-1670","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":true,"federal_tax_id":null,"state_tax_id":null,"verifications":{"zip4":{"success":true,"errors":[],"details":null},"delivery":{"success":true,"errors":[],"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"}}}}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '638'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"46a84cdff613ae33b17054cf8e938831"
+      - W/"c6e8a2eecd3fff24b2ca9757bfaf800e"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_55e8f252b6a411ecb195ac1f6bc7b362
+      - /api/v2/addresses/adr_5089554ccbe811ec833eac1f6bc7b362
       pragma:
       - no-cache
       referrer-policy:
@@ -56,27 +50,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 6399b1ae624f33b3ff2230720003816d
+      - 62b330b86272e12ee786b81d001613ec
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb8nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
       - intlb2nuq fde591f008
-      - extlb2nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.039667'
+      - '0.043825'
       x-version-label:
-      - easypost-202204071625-f7b25baf21-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

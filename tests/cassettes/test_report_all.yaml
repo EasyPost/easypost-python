@@ -8,8 +8,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -17,35 +15,19 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: GET
-    uri: https://api.easypost.com/v2/reports/shipment?page_size=5&type=shipment
+    uri: https://api.easypost.com/v2/reports/shipment?type=shipment&page_size=5
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA9yWa2tbRxCG/4ug/WRZuzN7FYgi0haHtvQiQ+qUImZ3ZiMV3XrOcdI65L93FLmG
-        tmBC4n6wYTkcZmd39vLsO/N21Mlh3w39aPrL29GaR9NRvzqobZlbLWCKRMDkXIEklJ24ANYGrtGN
-        zkb78pvUQYcsVuvDVnbDT+/n0p7aCQ3CSzr2ggEYGxzbeAlmat0U8KX6XB/4Ph9/9OkH6obl0e/O
-        R5vVHtnxf+yo9u2ej7ZB+uE0frjWvY3oNa03VDZyDNxt1LIahkM/nUyE+j8P+34Yt/VG+vMez6/7
-        8RsdPoZz2tLNfkdv+vO6307eO0z6270uTwc3OUY3aOPEp5awVqiWnMu+UcFiIFBml5IhPL9ZH774
-        eTzf3oznm1f7bj2strP5i4UbX3w3fzZeXMzBh89PDs86YY2xps1s/s3z+RXEb78PVz8u/OKHq8sX
-        zz+Dr2/DJv29W6/+96gfXbDT5f1+rdbbCb/Uo5r9PebSZmeseXnb99Ufh3Un/QzNrWGxfrUTvhBi
-        6frZan83y7FDD7STmTWcyIfYEifjqTkbo6RiKFSgxhjBJxcRImHEIoUgh2odkSQOybbTNSzlFPpf
-        DBwXOHVG25GB9a5urlmWdbXecCe70bTRppd3Z//kFUuuEbmYWpLDVDPViuxqhOgV2PApvMIH8Ooe
-        G69YBcVktD5FlxqSOOfAZWwcADA/KV5ztK4lV5lTbMw+ScHIkVJhL8FS0nfroIKlBrr5WkypnJVX
-        9CGINw/PKxtKktlzTsaJviFrczVS9akkKxU/ilddB+DU5Pt4PflY+9h4bXq94qNVQQ0uGFsgoie9
-        RJN8ACpPiteWKKh6lqJwJkyiUkqmODJZLEb9yQ1dtEayVZ0zForN6JynZGxj+B/0VbNbsxUCY9GE
-        xjEzKK+QRaqKraRP4TV+AK/msfEq1EIIqTZSVbVGawBMXE0U71oGDk+KV0Z0OYNvmnw13UbVU7ZM
-        TTSpQChcko/5mG6kaDpu3CRmsNlLCxRzcg/Pq+BRw6vXKsU5klYAVXFbaeyRoH1M/RouFURteE89
-        cOfzyOqBMOGEnDIIayHnmmZCWxMUstx8E01JT4pXFKjGKau1WixYs+po9jkXrdSJvdooRggJfPWt
-        6bGkXKtoHcuZOFB5AF5/PRutqF9u951e+NBdy7u/AAAA//8DAPQqbs2NDQAA
+      string: '{"reports":[{"id":"shprep_2e556f9526df428fa48a5ddcd0b9b99e","object":"ShipmentReport","created_at":"2022-05-04T20:26:47Z","updated_at":"2022-05-04T20:26:48Z","start_date":"2022-05-04","end_date":"2022-05-04","mode":"test","status":"available","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220504/471b7ece8eed4ddcb64f18edca66f6fb.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220504%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220504T202648Z&X-Amz-Expires=30&X-Amz-SignedHeaders=host&X-Amz-Signature=d59c956fb017b5c2c829ccb30091fbcfd32964cb9a62d98ec03a6e8ac65c868e","url_expires_at":"2022-05-04T20:27:18Z","include_children":false},{"id":"shprep_5c8e26a47fde44b1963bfd72ff416a0f","object":"ShipmentReport","created_at":"2022-05-04T20:26:47Z","updated_at":"2022-05-04T20:26:47Z","start_date":"2022-05-04","end_date":"2022-05-04","mode":"test","status":"available","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220504/f21fa6d8a65344768b673e61e52d8694.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220504%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220504T202648Z&X-Amz-Expires=30&X-Amz-SignedHeaders=host&X-Amz-Signature=218aff05b0e1eb73402a8594e313110203faf4621d8a153918be044f12df2cba","url_expires_at":"2022-05-04T20:27:18Z","include_children":false},{"id":"shprep_82fc5680d8af45fbb73a5dfbb978256a","object":"ShipmentReport","created_at":"2022-05-04T20:26:47Z","updated_at":"2022-05-04T20:26:47Z","start_date":"2022-05-04","end_date":"2022-05-04","mode":"test","status":"available","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220504/32dc1aeebcba4de485033cb9d123df38.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220504%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220504T202648Z&X-Amz-Expires=30&X-Amz-SignedHeaders=host&X-Amz-Signature=e72cd99ac4152881d847aa464ab234f5e14dcb76bf93f22ab20ca0f5f92c6462","url_expires_at":"2022-05-04T20:27:18Z","include_children":false},{"id":"shprep_9f895fcc43b3431e8a95a3e0e0502829","object":"ShipmentReport","created_at":"2022-05-04T20:26:47Z","updated_at":"2022-05-04T20:26:47Z","start_date":"2022-05-04","end_date":"2022-05-04","mode":"test","status":"available","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220504/da0810771ee648b882cf0ad98e464532.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220504%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220504T202648Z&X-Amz-Expires=30&X-Amz-SignedHeaders=host&X-Amz-Signature=9b3a9c645052df746803ebcd8fc8ca99b29db9876c8decc59c1d572dfc34ea7c","url_expires_at":"2022-05-04T20:27:18Z","include_children":false},{"id":"shprep_5e91a815c0de4d9b88cb37931fc0a5f2","object":"ShipmentReport","created_at":"2022-04-21T22:45:12Z","updated_at":"2022-04-21T22:45:13Z","start_date":"2022-04-11","end_date":"2022-04-11","mode":"test","status":"empty","url":null,"url_expires_at":null,"include_children":false}],"has_more":true}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '3067'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"3dcb8ef5658eb2c5b7dd35c985583755"
+      - W/"dc7110b6c1334f307386c9e78a38a452"
       expires:
       - '0'
       pragma:
@@ -58,27 +40,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - d574d6bf6234e01ae002b2a70020d199
+      - 78245fbc6272e188e786bc3e0013b6d8
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb3nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - extlb2nuq 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb2nuq c51cdb8bf2
       x-runtime:
-      - '0.040021'
+      - '0.034285'
       x-version-label:
-      - easypost-202203181824-5959608622-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

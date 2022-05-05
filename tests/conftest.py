@@ -51,13 +51,19 @@ def prod_api_key():
 @pytest.fixture(scope="module")
 def vcr_config():
     return {
-        # Replace the Authorization request header with "DUMMY" in cassettes
         "filter_headers": [
             ("authorization", "EZTK-NONE"),
             ("x-client-user-agent", "suppressed"),
             ("user-agent", "easypost/v2 pythonclient/suppressed"),
         ],
         "decode_compressed_response": True,
+        "match_on": [
+            "body",
+            "headers",
+            "method",
+            "query",
+            "uri",
+        ],
     }
 
 
@@ -97,7 +103,7 @@ def report_type():
 # If you need to re-record cassettes, increment this date by 1
 @pytest.fixture
 def report_date():
-    return "2022-04-11"
+    return "2022-05-04"
 
 
 @pytest.fixture
@@ -235,7 +241,7 @@ def one_call_buy_shipment(basic_address, basic_parcel, usps_service, usps_carrie
 # USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
 @pytest.fixture
 def basic_pickup(basic_address):
-    pickup_date = "2022-04-27"
+    pickup_date = "2022-05-06"
 
     return {
         "address": basic_address,

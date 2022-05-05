@@ -115,7 +115,6 @@ def test_shipment_smartrate(basic_shipment):
 def test_shipment_create_empty_objects(basic_shipment):
     shipment_data = basic_shipment
     shipment_data["customs_info"] = {}
-    shipment_data["customs_info"]["customs_item"] = {}
     shipment_data["options"] = None
     shipment_data["tax_identifiers"] = None
     shipment_data["reference"] = ""

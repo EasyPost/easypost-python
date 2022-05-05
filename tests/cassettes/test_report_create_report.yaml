@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"type": "shipment", "start_date": "2022-04-11", "end_date": "2022-04-11"}'
+    body: '{"type": "shipment", "start_date": "2022-05-04", "end_date": "2022-05-04"}'
     headers:
       Accept:
       - '*/*'
@@ -22,20 +22,16 @@ interactions:
     uri: https://api.easypost.com/v2/reports/shipment
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4SOQW4CMQxF75I1SEmAoZNjtF11EwX7o0kVMlHiUZFQ794MbFggdWe//77sm4qs
-        nGpTqSh+pLfTDqQPRGF/DsfRgA0H6EGTpXGnNmo+fYOkVz6mWC7I8o4yV+kJVQQB+7CmVlu71fut
-        sZ9mcMa4w/DVnaXwv06TUMWv3rNjeoLML/ll5pUJmjz6srS+Z/ysJ2tSLi8p3UePa4kV7f7Bg8ZM
-        aWF4mmLiiqzcOaSG3z8AAAD//wMAWzhxUhsBAAA=
+      string: '{"id":"shprep_9f895fcc43b3431e8a95a3e0e0502829","object":"ShipmentReport","created_at":"2022-05-04T20:26:47Z","updated_at":"2022-05-04T20:26:47Z","start_date":"2022-05-04","end_date":"2022-05-04","mode":"test","status":"new","url":null,"url_expires_at":null,"include_children":false}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '283'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"de809f83a0bda9bc6cf70f96a6563b89"
+      - W/"c67d48e9dac7940edc34feedb79c6c6a"
       expires:
       - '0'
       pragma:
@@ -53,21 +49,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 23047b0a6255a4cce7799784002c7c7b
+      - 78245fbb6272e187e786bc3a0013b68e
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb1nuq
+      - bigweb5nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
       - intlb2nuq fde591f008
-      - intlb1wdc fde591f008
-      - extlb3wdc fde591f008
+      - extlb2nuq c51cdb8bf2
       x-runtime:
-      - '0.036142'
+      - '0.059884'
       x-version-label:
-      - easypost-202204112244-205415e174-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

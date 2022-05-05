@@ -17,7 +17,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '591'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -29,21 +29,16 @@ interactions:
     uri: https://api.easypost.com/v2/batches
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4SPzU7DMBCE38XnVHIctyU+8gycQJXln01jcGzjn1PVd2dDCHBA4uaZnfl2fSPO
-        EkG0qmaWxxMfGZ+40iPlw1Frbh84N9aAZsNANelI1K9gKjYe1wYaS7SAskKpqEpVdZUmg6ouXNEK
-        bZFldmmBUAsRfUcyTJAhGAyG5n23pcFKtYIZZexAh0N/fmJM9GfBxmfEtGT/zRSjgpxiXnbwr70v
-        l+26hu/bvpEI2pH3Bg3B2JOpZTOrAp/+9oeIROX8VzZFZFzhO/i3+9O449CZt5b2i7zS4GXLfjPu
-        HwAAAP//AwAggSNkgAEAAA==
+      string: '{"id":"batch_6da8c4c8199c4875b670c845f684fb3f","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-05-04T20:25:20Z","updated_at":"2022-05-04T20:25:20Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '384'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"11420314c98aada59f76b49486362e42"
+      - W/"26df610ae1fbc0a0688abe7d0f0474b9"
       expires:
       - '0'
       pragma:
@@ -56,28 +51,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e50d6233b379ff030109002a59d6
+      - 62b330b76272e130e786b83a001614ae
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb6nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.046986'
+      - '0.037857'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:

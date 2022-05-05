@@ -10,7 +10,7 @@ interactions:
       - keep-alive
       Content-Length:
       - '42'
-      Content-type:
+      Content-Type:
       - application/json
       authorization:
       - EZTK-NONE
@@ -22,19 +22,16 @@ interactions:
     uri: https://api.easypost.com/v2/webhooks
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAAyyMwQrCMBBE/yVna3fTaGy+QxC8lE2yYjU1pU1BEP/dDXicmffmo8aonLrn/ByM
-        IcDDzdDRACKHk2WylsF3FqEPpHYq+weHIsKFfXWkmnJkKQqvRdK2pHpXyuzalt80zYn3IU8yhYWp
-        cByo+hq0bqBr0J61dtg7hKswcVzJpz/02lL6/gAAAP//AwDvuxPMoQAAAA==
+      string: '{"id":"hook_7affffa6cbe811eca49265eed4e67fcc","object":"Webhook","mode":"test","url":"http://example.com","created_at":"2022-05-04T20:26:30Z","disabled_at":null}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '161'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"f0ec64cd7ee006e85410fd9d3398d082"
+      - W/"761ee21b9c0af25a85ecf3d5ee58731e"
       expires:
       - '0'
       pragma:
@@ -52,21 +49,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5066233b3ddff0304ec002a7120
+      - 78245fb76272e175e786bc1f0013b269
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb3nuq
+      - bigweb6nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb2wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb2nuq c51cdb8bf2
       x-runtime:
-      - '0.180863'
+      - '0.164057'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -81,8 +77,6 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -90,22 +84,19 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: GET
-    uri: https://api.easypost.com/v2/webhooks/hook_44a015f4a64011ec87ea77e0b37109ca
+    uri: https://api.easypost.com/v2/webhooks/hook_7affffa6cbe811eca49265eed4e67fcc
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAAyyMwQrCMBBE/yVna3fTaGy+QxC8lE2yYjU1pU1BEP/dDXicmffmo8aonLrn/ByM
-        IcDDzdDRACKHk2WylsF3FqEPpHYq+weHIsKFfXWkmnJkKQqvRdK2pHpXyuzalt80zYn3IU8yhYWp
-        cByo+hq0bqBr0J61dtg7hKswcVzJpz/02lL6/gAAAP//AwDvuxPMoQAAAA==
+      string: '{"id":"hook_7affffa6cbe811eca49265eed4e67fcc","object":"Webhook","mode":"test","url":"http://example.com","created_at":"2022-05-04T20:26:30Z","disabled_at":null}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '161'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"f0ec64cd7ee006e85410fd9d3398d082"
+      - W/"761ee21b9c0af25a85ecf3d5ee58731e"
       expires:
       - '0'
       pragma:
@@ -123,21 +114,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5066233b3deff0304ec002a7133
+      - 78245fb76272e176e786bc1f0013b274
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb5nuq
+      - bigweb6nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb2nuq c51cdb8bf2
       x-runtime:
-      - '0.089139'
+      - '0.024657'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -154,8 +144,6 @@ interactions:
       - keep-alive
       Content-Length:
       - '0'
-      Content-type:
-      - application/json
       authorization:
       - EZTK-NONE
       user-agent:
@@ -163,16 +151,15 @@ interactions:
       x-client-user-agent:
       - suppressed
     method: DELETE
-    uri: https://api.easypost.com/v2/webhooks/hook_44a015f4a64011ec87ea77e0b37109ca
+    uri: https://api.easypost.com/v2/webhooks/hook_7affffa6cbe811eca49265eed4e67fcc
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA6quBQAAAP//AwBDv6ajAgAAAA==
+      string: '{}'
     headers:
       cache-control:
       - no-cache, no-store
-      content-encoding:
-      - gzip
+      content-length:
+      - '2'
       content-type:
       - application/json; charset=utf-8
       etag:
@@ -194,21 +181,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c758e5066233b3deff0304ec002a713d
+      - 78245fb76272e176e786bc1f0013b27b
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb3nuq
+      - bigweb1nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 3e97db20d4
-      - intlb1wdc 3e97db20d4
-      - extlb1wdc 3e97db20d4
+      - intlb2nuq fde591f008
+      - extlb2nuq c51cdb8bf2
       x-runtime:
-      - '0.246376'
+      - '0.300071'
       x-version-label:
-      - easypost-202203171927-d8d87a16dd-master
+      - easypost-202205041833-02730cc398-master
       x-xss-protection:
       - 1; mode=block
     status:
