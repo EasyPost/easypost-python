@@ -1,4 +1,7 @@
-from setuptools import setup
+from setuptools import (
+    find_packages,
+    setup,
+)
 
 
 REQUIREMENTS = [
@@ -30,12 +33,17 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="easypost",
-    version="7.1.0",
+    version="7.1.1",
     description="EasyPost Shipping API Client Library for Python",
     author="EasyPost",
     author_email="support@easypost.com",
     url="https://easypost.com/",
-    packages=["easypost"],
+    packages=find_packages(
+        exclude=[
+            "examples",
+            "tests",
+        ]
+    ),
     install_requires=REQUIREMENTS,
     extras_require={
         "dev": DEV_REQUIREMENTS + CPYTHON_DEV_REQUIREMENTS,

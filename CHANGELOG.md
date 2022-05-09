@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v7.1.1 (2022-05-09)
+
+- Fixes the inclusion of the new `beta` module
+
 ## v7.1.0 (2022-05-09)
 
 - Adds a `lowest_rate()` function to Orders and Pickups
