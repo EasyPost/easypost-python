@@ -9,33 +9,48 @@ interactions:
       Connection:
       - keep-alive
       authorization:
-      - EZTK-NONE
+      - REDACTED
       user-agent:
-      - easypost/v2 pythonclient/suppressed
+      - REDACTED
       x-client-user-agent:
-      - suppressed
+      - REDACTED
     method: GET
     uri: https://api.easypost.com/v2/carrier_accounts?page_size=5
   response:
     body:
-      string: '[{"id":"ca_b25657e9896e4d63ac8151ac346ac41e","object":"CarrierAccount","type":"UspsAccount","clone":false,"created_at":"2017-03-01T03:01:34Z","updated_at":"2018-08-09T02:45:22Z","description":"USPS
-        Account","reference":null,"readable":"USPS","logo":null,"fields":{"credentials":{"company_name":{"visibility":"visible","label":"Account
-        Holder Name","value":""},"address_street":{"visibility":"visible","label":"Street
-        Address","value":""},"address_city":{"visibility":"visible","label":"City","value":""},"address_state":{"visibility":"visible","label":"State","value":""},"address_zip":{"visibility":"visible","label":"ZIP
-        Code","value":""},"phone":{"visibility":"visible","label":"Phone Number","value":""},"email":{"visibility":"visible","label":"Email
-        Address","value":null},"shipper_id":{"visibility":"visible","label":"Shipper
-        Identifier (Optional)","value":""}}},"credentials":{"company_name":"","address_street":"","address_city":"","address_state":"","address_zip":"","phone":"","email":null,"shipper_id":""},"test_credentials":null},{"id":"ca_05ab5a0345634187b52daaf787aa4cd0","object":"CarrierAccount","type":"LsoDefaultAccount","clone":false,"created_at":"2022-04-26T16:58:59Z","updated_at":"2022-04-26T16:58:59Z","description":"LSO
-        Account","reference":null,"readable":"LSO","logo":null,"fields":{"credentials":{}},"credentials":{},"test_credentials":null},{"id":"ca_d38ae88b6edb48ed93c0a16ed068215b","object":"CarrierAccount","type":"DhlExpressDefaultAccount","clone":false,"created_at":"2022-04-26T16:59:02Z","updated_at":"2022-04-26T16:59:02Z","description":"DHL
-        Express Account","reference":null,"readable":"DHL Express","logo":null,"fields":{"credentials":{}},"credentials":{},"test_credentials":null}]'
+      string: '[{"id": "ca_b25657e9896e4d63ac8151ac346ac41e", "object": "CarrierAccount",
+        "type": "UspsAccount", "clone": false, "created_at": "2017-03-01T03:01:34Z",
+        "updated_at": "2018-08-09T02:45:22Z", "description": "USPS Account", "reference":
+        null, "billing_type": "easypost", "readable": "USPS", "logo": null, "fields":
+        {"credentials": {"company_name": {"visibility": "visible", "label": "Account
+        Holder Name", "value": ""}, "address_street": {"visibility": "visible", "label":
+        "Street Address", "value": ""}, "address_city": {"visibility": "visible",
+        "label": "City", "value": ""}, "address_state": {"visibility": "visible",
+        "label": "State", "value": ""}, "address_zip": {"visibility": "visible", "label":
+        "ZIP Code", "value": ""}, "phone": {"visibility": "visible", "label": "Phone
+        Number", "value": ""}, "email": {"visibility": "visible", "label": "Email
+        Address", "value": null}, "shipper_id": {"visibility": "visible", "label":
+        "Shipper Identifier (Optional)", "value": ""}}}, "credentials": ["REDACTED"],
+        "test_credentials": ["REDACTED"]}, {"id": "ca_05ab5a0345634187b52daaf787aa4cd0",
+        "object": "CarrierAccount", "type": "LsoDefaultAccount", "clone": false, "created_at":
+        "2022-04-26T16:58:59Z", "updated_at": "2022-04-26T16:58:59Z", "description":
+        "LSO Account", "reference": null, "billing_type": "easypost", "readable":
+        "LSO", "logo": null, "fields": {"credentials": {}}, "credentials": ["REDACTED"],
+        "test_credentials": ["REDACTED"]}, {"id": "ca_d38ae88b6edb48ed93c0a16ed068215b",
+        "object": "CarrierAccount", "type": "DhlExpressDefaultAccount", "clone": false,
+        "created_at": "2022-04-26T16:59:02Z", "updated_at": "2022-04-26T16:59:02Z",
+        "description": "DHL Express Account", "reference": null, "billing_type": "easypost",
+        "readable": "DHL Express", "logo": null, "fields": {"credentials": {}}, "credentials":
+        ["REDACTED"], "test_credentials": ["REDACTED"]}]'
     headers:
       cache-control:
       - no-cache, no-store
       content-length:
-      - '1719'
+      - '1797'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"4f6bb92cff15e038c9baed713a38dcee"
+      - W/"4b41fc9dbe64525abbd98e69610a3856"
       expires:
       - '0'
       pragma:
@@ -53,20 +68,21 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330b86272e13fe786b85c00161b76
+      - 24b369b2627bc562e7798b6d00097c4c
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb8nuq
+      - bigweb4nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb1nuq fde591f008
+      - intlb2wdc fde591f008
+      - extlb1wdc c51cdb8bf2
       x-runtime:
-      - '0.057637'
+      - '0.050598'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202205110022-b4df6b5700-master
       x-xss-protection:
       - 1; mode=block
     status:

@@ -90,6 +90,20 @@ The test suite in this project was specifically built to produce consistent resu
 
 If you make an addition to this project, the request/response will get recorded automatically for you if the `@pytest.mark.vcr()` decorator is included on the test function. When making changes to this project, you'll need to re-record the associated cassette to force a new live API call for that test which will then record the request/response used on the next run.
 
-The test suite has been populated with various helpful fixtures that are available for use, each completely independent from a particular user **with the exception of the USPS carrier account ID** which has a fallback value to our internal testing user's ID. If you are a non-EasyPost employee and are re-recording cassettes, you may need to provide the `USPS_CARRIER_ACCOUNT_ID` environment variable with the ID associated with your USPS account (which will be associated with your API keys in use) for tests that use this fixture.
+The test suite has been populated with various helpful fixtures that are available for use, each completely independent from a particular user **with the exception of the USPS carrier account ID** (see [Unit Test API Keys](#unit-test-api-keys) for more information) which has a fallback value of our internal testing user's ID.
 
 **Note on dates:** Some fixtures use hard-coded dates that may need to be incremented if cassettes get re-recorded (such as reports or pickups).
+
+#### Unit Test API Keys
+
+The following are required on every test run:
+
+- `EASYPOST_TEST_API_KEY`
+- `EASYPOST_PROD_API_KEY`
+
+The following are required when you need to re-record cassettes for applicable tests (fallback values are used otherwise):
+
+- `USPS_CARRIER_ACCOUNT_ID` (eg: one-call buying a shipment for non-EasyPost employees)
+- `REFERRAL_USER_PROD_API_KEY` (eg: adding a credit card to a referral user)
+
+Some tests may require a user with a particular set of enabled features such as a `Partner` user when creating referrals. We have attempted to call out these functions in their respective docstrings.

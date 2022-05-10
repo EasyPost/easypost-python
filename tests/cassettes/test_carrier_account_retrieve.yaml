@@ -15,27 +15,31 @@ interactions:
       Content-Type:
       - application/json
       authorization:
-      - EZTK-NONE
+      - REDACTED
       user-agent:
-      - easypost/v2 pythonclient/suppressed
+      - REDACTED
       x-client-user-agent:
-      - suppressed
+      - REDACTED
     method: POST
     uri: https://api.easypost.com/v2/carrier_accounts
   response:
     body:
-      string: '{"id":"ca_fd232465a60746f2bf178a7ce82a030f","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-05-04T20:25:35Z","updated_at":"2022-05-04T20:25:35Z","description":"UPS
-        Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
-        Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null}'
+      string: '{"id": "ca_4d00d099e4c7422398ec6a645c9d0314", "object": "CarrierAccount",
+        "type": "UpsAccount", "clone": false, "created_at": "2022-05-10T23:40:58Z",
+        "updated_at": "2022-05-10T23:40:58Z", "description": "UPS Account", "reference":
+        null, "billing_type": "carrier", "readable": "UPS", "logo": null, "fields":
+        {"credentials": {"account_number": {"visibility": "readonly", "label": "UPS
+        Account Number", "value": "A1A1A1"}}}, "credentials": ["REDACTED"], "test_credentials":
+        ["REDACTED"]}'
     headers:
       cache-control:
       - no-cache, no-store
       content-length:
-      - '432'
+      - '457'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"48a1c4ba415618243d5c5a8de4870dc7"
+      - W/"29a24ab380dd544ecffe8958e989479a"
       expires:
       - '0'
       pragma:
@@ -53,20 +57,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330ba6272e13fe786b85b00161b23
+      - f56ecb34627af80aefb5a3560022c52d
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb4nuq
+      - bigweb5nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb2nuq fde591f008
+      - extlb2nuq c51cdb8bf2
       x-runtime:
-      - '0.138783'
+      - '0.122205'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202205100008-b4df6b5700-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -82,27 +86,31 @@ interactions:
       Connection:
       - keep-alive
       authorization:
-      - EZTK-NONE
+      - REDACTED
       user-agent:
-      - easypost/v2 pythonclient/suppressed
+      - REDACTED
       x-client-user-agent:
-      - suppressed
+      - REDACTED
     method: GET
-    uri: https://api.easypost.com/v2/carrier_accounts/ca_fd232465a60746f2bf178a7ce82a030f
+    uri: https://api.easypost.com/v2/carrier_accounts/ca_4d00d099e4c7422398ec6a645c9d0314
   response:
     body:
-      string: '{"id":"ca_fd232465a60746f2bf178a7ce82a030f","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-05-04T20:25:35Z","updated_at":"2022-05-04T20:25:35Z","description":"UPS
-        Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
-        Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null}'
+      string: '{"id": "ca_4d00d099e4c7422398ec6a645c9d0314", "object": "CarrierAccount",
+        "type": "UpsAccount", "clone": false, "created_at": "2022-05-10T23:40:58Z",
+        "updated_at": "2022-05-10T23:40:58Z", "description": "UPS Account", "reference":
+        null, "billing_type": "carrier", "readable": "UPS", "logo": null, "fields":
+        {"credentials": {"account_number": {"visibility": "readonly", "label": "UPS
+        Account Number", "value": "A1A1A1"}}}, "credentials": ["REDACTED"], "test_credentials":
+        ["REDACTED"]}'
     headers:
       cache-control:
       - no-cache, no-store
       content-length:
-      - '432'
+      - '457'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"48a1c4ba415618243d5c5a8de4870dc7"
+      - W/"29a24ab380dd544ecffe8958e989479a"
       expires:
       - '0'
       pragma:
@@ -115,25 +123,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330ba6272e13fe786b85b00161b38
+      - f56ecb34627af80aefb5a3560022c541
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb5nuq
+      - bigweb7nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb2nuq fde591f008
+      - extlb2nuq c51cdb8bf2
       x-runtime:
-      - '0.070562'
+      - '0.028418'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202205100008-b4df6b5700-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -151,13 +161,13 @@ interactions:
       Content-Length:
       - '0'
       authorization:
-      - EZTK-NONE
+      - REDACTED
       user-agent:
-      - easypost/v2 pythonclient/suppressed
+      - REDACTED
       x-client-user-agent:
-      - suppressed
+      - REDACTED
     method: DELETE
-    uri: https://api.easypost.com/v2/carrier_accounts/ca_fd232465a60746f2bf178a7ce82a030f
+    uri: https://api.easypost.com/v2/carrier_accounts/ca_4d00d099e4c7422398ec6a645c9d0314
   response:
     body:
       string: '{}'
@@ -182,27 +192,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330ba6272e13fe786b85b00161b57
+      - f56ecb34627af80aefb5a3560022c543
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb2nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
       - intlb2nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - extlb2nuq c51cdb8bf2
       x-runtime:
-      - '0.119995'
+      - '0.118451'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202205100008-b4df6b5700-master
       x-xss-protection:
       - 1; mode=block
     status:

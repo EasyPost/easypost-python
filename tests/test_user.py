@@ -4,7 +4,6 @@ import easypost
 
 
 @pytest.mark.vcr()
-@pytest.mark.skip(reason="This endpoint returns the child user keys in plain text, do not run this test.")
 def test_user_create(prod_api_key):
     user = easypost.User.create(name="Test User")
 
@@ -12,12 +11,15 @@ def test_user_create(prod_api_key):
     assert str.startswith(user.id, "user_")
     assert user.name == "Test User"
 
+    # Delete the user so we don't clutter up the test environment
+    user.delete()
+
 
 @pytest.mark.vcr()
 def test_user_retrieve(prod_api_key):
     authenticated_user = easypost.User.retrieve_me()
 
-    user = easypost.User.retrieve(authenticated_user["children"][0]["id"])
+    user = easypost.User.retrieve(authenticated_user["id"])
 
     assert isinstance(user, easypost.User)
     assert str.startswith(user.id, "user_")
@@ -46,28 +48,29 @@ def test_user_update(prod_api_key):
 
 
 @pytest.mark.vcr()
-@pytest.mark.skip(
-    reason="Due to our inability to create child users securely, "
-    "we must also skip deleting them as we cannot replace the deleted ones easily."
-)
 def test_user_delete(prod_api_key):
     user = easypost.User.create(name="Test User")
 
+    # Nothing gets returned here, simply ensure no error gets raised
     user.delete()
 
 
 @pytest.mark.vcr()
-@pytest.mark.skip(reason="API keys are returned as plaintext, do not run this test.")
 def test_user_all_api_keys(prod_api_key):
     user = easypost.User.retrieve_me()
-    user.all_api_keys()
+    api_keys = user.all_api_keys()
+
+    assert api_keys["keys"]
+    assert api_keys["children"]
 
 
 @pytest.mark.vcr()
-@pytest.mark.skip(reason="API keys are returned as plaintext, do not run this test.")
 def test_user_api_keys(prod_api_key):
     user = easypost.User.retrieve_me()
-    user.api_keys()
+    api_keys = user.api_keys()
+
+    # This function returns a list of API keys and not an EasyPost object
+    assert type(api_keys) == list
 
 
 @pytest.mark.vcr()

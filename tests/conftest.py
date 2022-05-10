@@ -1,5 +1,10 @@
 import json
 import os
+from typing import (
+    Any,
+    List,
+    Tuple,
+)
 
 import pytest
 
@@ -11,8 +16,9 @@ EASYPOST_PROD_API_KEY = os.environ["EASYPOST_PROD_API_KEY"]
 
 
 def pytest_sessionstart(session):
-    # this is for local unit testing with google appengine, otherwise you get a
-    # 'No api proxy found for service "urlfetch"' response
+    """This is for local unit testing with google appengine, otherwise you get a
+    'No api proxy found for service "urlfetch"' response.
+    """
     try:
         from google.appengine.ext import testbed  # type: ignore
 
@@ -30,31 +36,35 @@ def pytest_sessionfinish(session, exitstatus):
         session.appengine_testbed.deactivate()  # type: ignore
 
 
-# this fixture is auto-loaded by all tests; it sets up the api key
 @pytest.fixture(autouse=True)
 def setup_api_key():
+    """This fixture is auto-loaded by all tests; it sets up the api key."""
     default_key = easypost.api_key
     easypost.api_key = EASYPOST_TEST_API_KEY
     yield
     easypost.api_key = default_key
 
 
-# if a test needs to use the prod api key, make it depend on this fixture
 @pytest.fixture
 def prod_api_key():
+    """If a test needs to use the prod api key, make it depend on this fixture."""
     default_key = easypost.api_key
     easypost.api_key = EASYPOST_PROD_API_KEY
     yield
     easypost.api_key = default_key
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="session")
 def vcr_config():
+    """Setup the VCR config for the test suite."""
+    redacted_list = ["REDACTED"]
+    redacted_string = "REDACTED"
+
     return {
         "filter_headers": [
-            ("authorization", "EZTK-NONE"),
-            ("x-client-user-agent", "suppressed"),
-            ("user-agent", "easypost/v2 pythonclient/suppressed"),
+            ("authorization", redacted_string),
+            ("x-client-user-agent", redacted_string),
+            ("user-agent", redacted_string),
         ],
         "decode_compressed_response": True,
         "match_on": [
@@ -64,18 +74,62 @@ def vcr_config():
             "query",
             "uri",
         ],
+        "before_record_response": scrub_sensitive_responses(
+            scrubbers=[
+                ("api_keys", redacted_list),
+                ("children", redacted_list),
+                ("client_ip", redacted_string),
+                ("credentials", redacted_list),
+                ("email", redacted_string),
+                ("keys", redacted_list),
+                ("phone_number", redacted_string),
+                ("test_credentials", redacted_list),
+            ]
+        ),
     }
 
 
-# We keep the page_size of retrieving `all` records small so cassettes stay small
+def scrub_sensitive_responses(scrubbers: List[Tuple[str, Any]]):
+    """Scrub sensitive data from response bodies (at the root level or in a root list)
+    prior to recording the cassette.
+
+    This function DOES NOT scrub data from nested objects or lists.
+
+    Accepts a list of tuples where the first element is the field to scrub and the
+    second is the value to replace the field with.
+    """
+
+    def before_record_response(response):
+        if response["body"]["string"]:
+            response_body = json.loads(response["body"]["string"].decode())
+            for scrubber in scrubbers:
+                field_to_scrub, replacement_value = scrubber
+
+                if isinstance(response_body, list):
+                    for element in response_body:
+                        if field_to_scrub in element:
+                            element[field_to_scrub] = replacement_value
+                else:
+                    if field_to_scrub in response_body:
+                        response_body[field_to_scrub] = replacement_value
+
+            response["body"]["string"] = json.dumps(response_body).encode()
+        return response
+
+    return before_record_response
+
+
 @pytest.fixture
 def page_size():
+    """We keep the page_size of retrieving `all` records small so cassettes stay small."""
     return 5
 
 
-# This is the USPS carrier account ID that comes with your EasyPost account by default and should be used for all tests
 @pytest.fixture
 def usps_carrier_account_id():
+    """This is the USPS carrier account ID that comes with your
+    EasyPost account by default and should be used for all tests.
+    """
     # Fallback to the EasyPost Python Client Library Test User USPS carrier account ID
     return os.getenv("USPS_CARRIER_ACCOUNT_ID", "ca_b25657e9896e4d63ac8151ac346ac41e")
 
@@ -100,9 +154,9 @@ def report_type():
     return "shipment"
 
 
-# If you need to re-record cassettes, increment this date by 1
 @pytest.fixture
 def report_date():
+    """If you need to re-record cassettes, increment this date by 1."""
     return "2022-05-04"
 
 
@@ -236,11 +290,12 @@ def one_call_buy_shipment(basic_address, basic_parcel, usps_service, usps_carrie
     }
 
 
-# This fixture will require you to add a `shipment` key with a Shipment object from a test.
-# If you need to re-record cassettes, increment the date below and ensure it is one day in the future,
-# USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
 @pytest.fixture
 def basic_pickup(basic_address):
+    """This fixture will require you to add a `shipment` key with a Shipment object from a test.
+    If you need to re-record cassettes, increment the date below and ensure it is one day in the future,
+    USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
+    """
     pickup_date = "2022-05-06"
 
     return {
@@ -264,9 +319,9 @@ def basic_carrier_account():
     }
 
 
-# This fixture will require you to append a `tracking_code` key with the shipment's tracking code
 @pytest.fixture
 def basic_insurance(basic_address, usps):
+    """This fixture will require you to append a `tracking_code` key with the shipment's tracking code."""
     return {
         "to_address": basic_address,
         "from_address": basic_address,

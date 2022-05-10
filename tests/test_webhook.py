@@ -37,9 +37,13 @@ def test_webhook_all(page_size):
 
 
 @pytest.mark.vcr()
-@pytest.mark.skip(reason="Cannot be easily tested - requires a disabled webhook.")
-def test_webhook_update():
-    pass
+def test_webhook_update(webhook_url):
+    webhook = easypost.Webhook.create(url=webhook_url)
+    webhook.update()
+
+    assert isinstance(webhook, easypost.Webhook)
+
+    webhook.delete()  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
 
 
 @pytest.mark.vcr()
