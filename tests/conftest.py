@@ -61,12 +61,6 @@ def vcr_config():
     redacted_string = "REDACTED"
 
     return {
-        "filter_headers": [
-            ("authorization", redacted_string),
-            ("x-client-user-agent", redacted_string),
-            ("user-agent", redacted_string),
-        ],
-        "decode_compressed_response": True,
         "match_on": [
             "body",
             "headers",
@@ -74,26 +68,38 @@ def vcr_config():
             "query",
             "uri",
         ],
-        "before_record_response": scrub_sensitive_responses(
+        "decode_compressed_response": True,
+        "filter_headers": [
+            ("authorization", redacted_string),
+            ("x-client-user-agent", redacted_string),
+            ("user-agent", redacted_string),
+        ],
+        "filter_query_parameters": [
+            "card[number]",
+            "card[cvc]",
+        ],
+        "before_record_response": scrub_response_bodies(
             scrubbers=[
                 ("api_keys", redacted_list),
                 ("children", redacted_list),
                 ("client_ip", redacted_string),
                 ("credentials", redacted_list),
                 ("email", redacted_string),
+                ("key", redacted_string),
                 ("keys", redacted_list),
                 ("phone_number", redacted_string),
+                ("phone", redacted_string),
                 ("test_credentials", redacted_list),
             ]
         ),
     }
 
 
-def scrub_sensitive_responses(scrubbers: List[Tuple[str, Any]]):
+def scrub_response_bodies(scrubbers: List[Tuple[str, Any]]):
     """Scrub sensitive data from response bodies (at the root level or in a root list)
     prior to recording the cassette.
 
-    This function DOES NOT scrub data from nested objects or lists.
+    This function DOES NOT scrub data in nested objects or lists.
 
     Accepts a list of tuples where the first element is the field to scrub and the
     second is the value to replace the field with.
