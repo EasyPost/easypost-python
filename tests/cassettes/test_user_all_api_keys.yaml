@@ -1,8 +1,6 @@
 interactions:
 - request:
-    body: '{"carrier_account": {"type": "UpsAccount", "credentials": {"account_number":
-      "A1A1A1", "user_id": "USERID", "password": "PASSWORD", "access_license_number":
-      "ALN"}}}'
+    body: null
     headers:
       Accept:
       - '*/*'
@@ -10,36 +8,32 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-Length:
-      - '165'
-      Content-Type:
-      - application/json
       authorization:
       - REDACTED
       user-agent:
       - REDACTED
       x-client-user-agent:
       - REDACTED
-    method: POST
-    uri: https://api.easypost.com/v2/carrier_accounts
+    method: GET
+    uri: https://api.easypost.com/v2/users
   response:
     body:
-      string: '{"id": "ca_bb4d18c75a14419cae8756fa9cb1ca60", "object": "CarrierAccount",
-        "type": "UpsAccount", "clone": false, "created_at": "2022-05-10T23:41:00Z",
-        "updated_at": "2022-05-10T23:41:00Z", "description": "UPS Account", "reference":
-        null, "billing_type": "carrier", "readable": "UPS", "logo": null, "fields":
-        {"credentials": {"account_number": {"visibility": "readonly", "label": "UPS
-        Account Number", "value": "A1A1A1"}}}, "credentials": ["REDACTED"], "test_credentials":
-        ["REDACTED"]}'
+      string: '{"id": "user_54356a6b96c940d8913961a3c7b909f2", "object": "User", "parent_id":
+        null, "name": "EasyPost Python Client Library Tests", "phone_number": "REDACTED",
+        "verified": true, "created_at": "2017-03-01T03:01:34Z", "balance": "0.00000",
+        "price_per_shipment": "0.00000", "recharge_amount": null, "secondary_recharge_amount":
+        null, "recharge_threshold": null, "has_billing_method": null, "cc_fee_rate":
+        "0.03", "default_insurance_amount": null, "insurance_fee_rate": "0.01", "insurance_fee_minimum":
+        "1.00", "email": "REDACTED", "children": ["REDACTED"]}'
     headers:
       cache-control:
       - no-cache, no-store
       content-length:
-      - '457'
+      - '8070'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"cbde7f1155b6d5b449a59cdcc667049e"
+      - W/"b0fa578474b6326fde45bf6b1b04aa68"
       expires:
       - '0'
       pragma:
@@ -57,26 +51,25 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 7cc43dc3627af80cefb5a3590021d312
+      - c6ef69be627aca0aefb585500015ba0d
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb2nuq
+      - bigweb4nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
       - intlb1nuq fde591f008
-      - intlb1wdc fde591f008
-      - extlb1wdc c51cdb8bf2
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.119416'
+      - '0.388199'
       x-version-label:
       - easypost-202205100008-b4df6b5700-master
       x-xss-protection:
       - 1; mode=block
     status:
-      code: 201
-      message: Created
+      code: 200
+      message: OK
 - request:
     body: null
     headers:
@@ -86,28 +79,27 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-Length:
-      - '0'
       authorization:
       - REDACTED
       user-agent:
       - REDACTED
       x-client-user-agent:
       - REDACTED
-    method: DELETE
-    uri: https://api.easypost.com/v2/carrier_accounts/ca_bb4d18c75a14419cae8756fa9cb1ca60
+    method: GET
+    uri: https://api.easypost.com/v2/api_keys
   response:
     body:
-      string: '{}'
+      string: '{"id": "user_54356a6b96c940d8913961a3c7b909f2", "keys": ["REDACTED"],
+        "children": ["REDACTED"]}'
     headers:
       cache-control:
       - no-cache, no-store
       content-length:
-      - '2'
+      - '15310'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"44136fa355b3678a1146ad16f7e8649e"
+      - W/"2b9399633f407caf870e23d3d332a48b"
       expires:
       - '0'
       pragma:
@@ -125,19 +117,18 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 7cc43dc3627af80defb5a3590021d335
+      - c6ef69be627aca0befb585500015ba2b
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb1nuq
+      - bigweb8nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
       - intlb1nuq fde591f008
-      - intlb2wdc fde591f008
-      - extlb1wdc c51cdb8bf2
+      - extlb1nuq c51cdb8bf2
       x-runtime:
-      - '0.110960'
+      - '0.042530'
       x-version-label:
       - easypost-202205100008-b4df6b5700-master
       x-xss-protection:

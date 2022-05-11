@@ -10,8 +10,7 @@ def test_error():
     except easypost.Error as error:
         assert error.http_status == 422
         assert (
-            error.http_body == '{"error":{"code":"SHIPMENT.INVALID_PARAMS","message":"Unable to create '
-            'shipment, one or more parameters were invalid.","errors":[{"to_address":"Required and missing."},'
-            '{"from_address":"Required and missing."}]}}'
+            error.http_body
+            == '{"error": {"code": "SHIPMENT.INVALID_PARAMS", "message": "Unable to create shipment, one or more parameters were invalid.", "errors": [{"to_address": "Required and missing."}, {"from_address": "Required and missing."}]}}'  # noqa
         )
         assert error.message == "Unable to create shipment, one or more parameters were invalid."
