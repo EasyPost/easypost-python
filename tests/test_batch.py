@@ -1,4 +1,6 @@
-# import time
+import inspect
+import os
+import time
 
 import pytest
 
@@ -63,13 +65,14 @@ def test_batch_buy(one_call_buy_shipment):
 
 @pytest.mark.vcr()
 def test_batch_create_scanform(one_call_buy_shipment):
+    function_name = inspect.stack()[0][3]
     shipment_data = one_call_buy_shipment
 
     batch = easypost.Batch.create(shipments=[shipment_data])
     batch.buy()
 
-    # Uncomment the following line if you need to re-record the cassette
-    # time.sleep(5)  # Wait enough time for the batch to process buying the shipment
+    if not os.path.exists(os.path.join("tests", "cassettes", f"{function_name}.yaml")):
+        time.sleep(5)  # Wait enough time for the batch to process buying the shipment
 
     batch.create_scan_form()
 
@@ -95,11 +98,13 @@ def test_batch_add_remove_shipment(one_call_buy_shipment):
 
 @pytest.mark.vcr()
 def test_batch_label(one_call_buy_shipment):
+    function_name = inspect.stack()[0][3]
+
     batch = easypost.Batch.create(shipments=[one_call_buy_shipment])
     batch.buy()
 
-    # Uncomment the following line if you need to re-record the cassette
-    # time.sleep(5)  # Wait enough time for the batch to process buying the shipment
+    if not os.path.exists(os.path.join("tests", "cassettes", f"{function_name}.yaml")):
+        time.sleep(5)  # Wait enough time for the batch to process buying the shipment
 
     batch.label(file_format="ZPL")
 
