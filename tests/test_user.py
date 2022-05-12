@@ -69,8 +69,7 @@ def test_user_api_keys(prod_api_key):
     user = easypost.User.retrieve_me()
     api_keys = user.api_keys()
 
-    # This function returns a list of API keys and not an EasyPost object
-    assert type(api_keys) == list
+    assert api_keys
 
 
 @pytest.mark.vcr()

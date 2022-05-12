@@ -1,10 +1,6 @@
 import json
 import os
-from typing import (
-    Any,
-    List,
-    Tuple,
-)
+from typing import List
 
 import pytest
 
@@ -13,6 +9,8 @@ import easypost
 
 EASYPOST_TEST_API_KEY = os.environ["EASYPOST_TEST_API_KEY"]
 EASYPOST_PROD_API_KEY = os.environ["EASYPOST_PROD_API_KEY"]
+
+CASSETTE_REPLACEMENT_VALUE = "<REDACTED>"
 
 
 def pytest_sessionstart(session):
@@ -57,9 +55,6 @@ def prod_api_key():
 @pytest.fixture(scope="session")
 def vcr_config():
     """Setup the VCR config for the test suite."""
-    redacted_list = ["REDACTED"]
-    redacted_string = "REDACTED"
-
     return {
         "match_on": [
             "body",
@@ -70,9 +65,9 @@ def vcr_config():
         ],
         "decode_compressed_response": True,
         "filter_headers": [
-            ("authorization", redacted_string),
-            ("x-client-user-agent", redacted_string),
-            ("user-agent", redacted_string),
+            ("authorization", CASSETTE_REPLACEMENT_VALUE),
+            ("x-client-user-agent", CASSETTE_REPLACEMENT_VALUE),
+            ("user-agent", CASSETTE_REPLACEMENT_VALUE),
         ],
         "filter_query_parameters": [
             "card[number]",
@@ -80,44 +75,39 @@ def vcr_config():
         ],
         "before_record_response": scrub_response_bodies(
             scrubbers=[
-                ("api_keys", redacted_list),
-                ("children", redacted_list),
-                ("client_ip", redacted_string),
-                ("credentials", redacted_list),
-                ("email", redacted_string),
-                ("key", redacted_string),
-                ("keys", redacted_list),
-                ("phone_number", redacted_string),
-                ("phone", redacted_string),
-                ("test_credentials", redacted_list),
+                "api_keys",
+                "children",
+                "client_ip",
+                "credentials",
+                "email",
+                "key",
+                "keys",
+                "phone_number",
+                "phone",
+                "test_credentials",
             ]
         ),
     }
 
 
-def scrub_response_bodies(scrubbers: List[Tuple[str, Any]]):
+def scrub_response_bodies(scrubbers: List[str]):
     """Scrub sensitive data from response bodies (at the root level or in a root list)
     prior to recording the cassette.
 
     This function DOES NOT scrub data in nested objects or lists.
-
-    Accepts a list of tuples where the first element is the field to scrub and the
-    second is the value to replace the field with.
     """
 
     def before_record_response(response):
         if response["body"]["string"]:
             response_body = json.loads(response["body"]["string"].decode())
             for scrubber in scrubbers:
-                field_to_scrub, replacement_value = scrubber
-
                 if isinstance(response_body, list):
                     for element in response_body:
-                        if field_to_scrub in element:
-                            element[field_to_scrub] = replacement_value
+                        if scrubber in element:
+                            element[scrubber] = CASSETTE_REPLACEMENT_VALUE
                 else:
-                    if field_to_scrub in response_body:
-                        response_body[field_to_scrub] = replacement_value
+                    if scrubber in response_body:
+                        response_body[scrubber] = CASSETTE_REPLACEMENT_VALUE
 
             response["body"]["string"] = json.dumps(response_body).encode()
         return response
@@ -381,3 +371,18 @@ def event():
             "object": "Event",
         }
     )
+
+
+@pytest.fixture
+def credit_card_details():
+    """The credit card details below are for a valid proxy card usable
+    for tests only and cannot be used for real transactions.
+
+    DO NOT alter these details with real credit card information.
+    """
+    return {
+        "number": "4536410136126170",
+        "expiration_month": "05",
+        "expiration_year": "2028",
+        "cvc": "778",
+    }

@@ -53,21 +53,16 @@ def test_referral_user_all(prod_api_key, page_size):
         "uri",
     ]
 )
-def test_referral_add_credit_card(prod_api_key):
-    """The credit card details below are for a valid proxy card usable
-    for tests only and cannot be used for real transactions.
-
-    DO NOT alter these details with real credit card information.
-
-    This test requires a partner user's production API key via EASYPOST_PROD_API_KEY
+def test_referral_add_credit_card(prod_api_key, credit_card_details):
+    """This test requires a partner user's production API key via EASYPOST_PROD_API_KEY
     as well as one of that user's referral's production API keys via REFERRAL_USER_PROD_API_KEY.
     """
     added_credit_card = easypost.beta.Referral.add_credit_card(
         referral_api_key=REFERRAL_USER_PROD_API_KEY,
-        number="4536410136126170",
-        expiration_month="05",
-        expiration_year="2028",
-        cvc="778",
+        number=credit_card_details["number"],
+        expiration_month=credit_card_details["expiration_month"],
+        expiration_year=credit_card_details["expiration_year"],
+        cvc=credit_card_details["cvc"],
     )
 
     assert str.startswith(added_credit_card.id, "card_")
