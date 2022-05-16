@@ -90,7 +90,11 @@ class Requestor:
         if params is None:
             params = {}
         http_body, http_status, my_api_key = self.request_raw(
-            method=method, url=url, params=params, api_key_required=api_key_required, beta=beta
+            method=method,
+            url=url,
+            params=params,
+            api_key_required=api_key_required,
+            beta=beta,
         )
         response = self.interpret_response(http_body=http_body, http_status=http_status)
         return response, my_api_key
