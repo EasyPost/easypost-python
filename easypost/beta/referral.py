@@ -28,7 +28,10 @@ class Referral:
         requestor = Requestor(local_api_key=api_key)
         new_params = {"user": params}
         response, api_key = requestor.request(
-            method=RequestMethod.POST, url="/referral_customers", params=new_params, beta=True
+            method=RequestMethod.POST,
+            url="/referral_customers",
+            params=new_params,
+            beta=True,
         )
         return convert_to_easypost_object(response=response, api_key=api_key)
 
@@ -49,7 +52,12 @@ class Referral:
                 "email": email,
             }
         }
-        _, _ = requestor.request(method=RequestMethod.PUT, url=url, params=wrapped_params, beta=True)
+        _, _ = requestor.request(
+            method=RequestMethod.PUT,
+            url=url,
+            params=wrapped_params,
+            beta=True,
+        )
 
         # Return true if succeeds, an error will be thrown if it fails
         return True
@@ -65,7 +73,10 @@ class Referral:
         """
         requestor = Requestor(local_api_key=api_key)
         response, api_key = requestor.request(
-            method=RequestMethod.GET, url="/referral_customers", params=params, beta=True
+            method=RequestMethod.GET,
+            url="/referral_customers",
+            params=params,
+            beta=True,
         )
         return convert_to_easypost_object(response=response, api_key=api_key)
 
@@ -102,7 +113,11 @@ class Referral:
     def _retrieve_easypost_stripe_api_key() -> str:
         """Retrieve EasyPost's Stripe public API key."""
         requestor = Requestor()
-        public_key, _ = requestor.request(method=RequestMethod.GET, url="/partners/stripe_public_key", beta=True)
+        public_key, _ = requestor.request(
+            method=RequestMethod.GET,
+            url="/partners/stripe_public_key",
+            beta=True,
+        )
         return public_key.get("public_key", "")
 
     @staticmethod
@@ -132,7 +147,10 @@ class Referral:
         url = "https://api.stripe.com/v1/tokens"
 
         stripe_response = requests.post(
-            url, params=form_encoded_params, headers=headers, auth=requests.auth.HTTPBasicAuth(easypost_stripe_key, "")
+            url,
+            params=form_encoded_params,
+            headers=headers,
+            auth=requests.auth.HTTPBasicAuth(easypost_stripe_key, ""),
         )
         return stripe_response.json()
 
@@ -152,5 +170,10 @@ class Referral:
             }
         }
 
-        response, _ = requestor.request(method=RequestMethod.POST, params=params, url="/credit_cards", beta=True)
+        response, _ = requestor.request(
+            method=RequestMethod.POST,
+            params=params,
+            url="/credit_cards",
+            beta=True,
+        )
         return response

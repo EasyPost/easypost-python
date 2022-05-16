@@ -18,12 +18,14 @@ from easypost.resource import (
 class User(CreateResource, UpdateResource, DeleteResource):
     @classmethod
     def create(cls, api_key: Optional[str] = None, **params) -> "User":
-        """Create a user."""
+        """Create a child user."""
         requestor = Requestor(local_api_key=api_key)
         url = cls.class_url()
         wrapped_params = {cls.snakecase_name(): params}
         response, api_key = requestor.request(
-            method=RequestMethod.POST, url=url, params=wrapped_params, api_key_required=False
+            method=RequestMethod.POST,
+            url=url,
+            params=wrapped_params,
         )
         return convert_to_easypost_object(response=response, api_key=api_key)
 
