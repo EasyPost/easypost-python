@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## NEXT RELEASE
+
+- Removes the unusable `carrier` param from `Address.verify()` along with the dead `message` conditional check that was missed in v7.0.0
+
 ## v7.1.1 (2022-05-09)
 
 - Fixes the inclusion of the new `beta` module

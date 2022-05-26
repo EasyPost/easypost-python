@@ -56,21 +56,16 @@ class Address(AllResource, CreateResource):
         else:
             return convert_to_easypost_object(response=response, api_key=api_key)
 
-    def verify(self, carrier: Optional[str] = None) -> "Address":
+    def verify(self) -> "Address":
         """Verify an address."""
         requestor = Requestor(local_api_key=self._api_key)
         url = "%s/%s" % (self.instance_url(), "verify")
-        params = {"carrier": carrier}
-        response, api_key = requestor.request(method=RequestMethod.GET, url=url, params=params)
+        response, api_key = requestor.request(method=RequestMethod.GET, url=url)
 
         response_address = response.get("address", None)
-        response_message = response.get("message", None)
 
         if response_address is not None:
             verified_address = convert_to_easypost_object(response=response_address, api_key=api_key)
-            if response_message is not None:
-                verified_address.message = response_message
-                verified_address._immutable_values.update("message")
             return verified_address
         else:
             return convert_to_easypost_object(response=response, api_key=api_key)
