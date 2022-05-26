@@ -1,0 +1,68 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+      x-client-user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/payment_methods
+  response:
+    body:
+      string: '{"id": "cust_4db1c900d4c1413dac9923f236abd16d", "object": "PaymentMethods",
+        "primary_payment_method": null, "secondary_payment_method": null}'
+    headers:
+      cache-control:
+      - no-cache, no-store
+      content-length:
+      - '134'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"a277d1c41444ff822d82b689f991c7c2"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - dc458af5628fafc9e786ab3d0079444c
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb9nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 570dfcbc0a
+      - extlb2nuq fc4d5d217f
+      x-runtime:
+      - '0.020963'
+      x-version-label:
+      - easypost-202205252316-1f08f7be53-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
