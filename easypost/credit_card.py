@@ -26,15 +26,10 @@ class CreditCard(CreateResource, Resource):
 
         primary_or_secondary = params.get("primary_or_secondary")
         payment_method_to_use = payment_method_map.get(primary_or_secondary) if primary_or_secondary else None
+        card_id = payment_methods[payment_method_to_use]["id"] if payment_method_to_use else None
 
-        if (
-            payment_method_to_use is None
-            or payment_methods[payment_method_to_use] is None
-            or "card_" not in payment_methods[payment_method_to_use].get("id")
-        ):
+        if payment_method_to_use is None or card_id is None or "card_" not in card_id:
             raise Error(message="The chosen payment method is not a credit card. Please try again.")
-
-        card_id = payment_method_to_use.get("id")
 
         requestor = Requestor(local_api_key=api_key)
         url = f"{cls.class_url()}/{card_id}/charges"
