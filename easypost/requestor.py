@@ -14,6 +14,7 @@ from typing import (
     Union,
 )
 from urllib.parse import urlencode
+##from urllib.request import Request
 
 from easypost.constant import (
     SUPPORT_EMAIL,
@@ -28,6 +29,7 @@ class RequestMethod(Enum):
     GET = "get"
     POST = "post"
     PUT = "put"
+    PATCH = "patch"
     DELETE = "delete"
 
 
@@ -197,7 +199,7 @@ class Requestor:
         if method in [RequestMethod.GET, RequestMethod.DELETE]:
             url_params = params
             body = None
-        elif method in [RequestMethod.POST, RequestMethod.PUT]:
+        elif method in [RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT]:
             url_params = None
             body = params
         else:
@@ -222,7 +224,7 @@ class Requestor:
         except Exception as e:
             raise Error(
                 "Unexpected error communicating with EasyPost. If this "
-                f"problem persists please let us know at {SUPPORT_EMAIL}.",
+                "problem persists please let us know at {SUPPORT_EMAIL}.",
                 original_exception=e,
             )
         return http_body, http_status

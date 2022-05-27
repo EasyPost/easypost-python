@@ -13,17 +13,17 @@ interactions:
       Content-Type:
       - application/json
       authorization:
-      - REDACTED
+      - <REDACTED>
       user-agent:
-      - REDACTED
+      - <REDACTED>
       x-client-user-agent:
-      - REDACTED
+      - <REDACTED>
     method: POST
     uri: https://api.easypost.com/v2/webhooks
   response:
     body:
-      string: '{"id": "hook_1b7c4472d0b611ec98f0711287adaa77", "object": "Webhook",
-        "mode": "test", "url": "http://example.com", "created_at": "2022-05-10T23:08:31Z",
+      string: '{"id": "hook_9483db6addee11ec9b50775c3c3556d8", "object": "Webhook",
+        "mode": "test", "url": "http://example.com", "created_at": "2022-05-27T18:55:31Z",
         "disabled_at": null}'
     headers:
       cache-control:
@@ -33,7 +33,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"9dc66d611c45ff3ecb2a1d245383a452"
+      - W/"48bad9a7683cbf23600e0a53c6c75564"
       expires:
       - '0'
       pragma:
@@ -51,20 +51,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c6ef69b9627af06eefb59f380021e39c
+      - 92e4d3bf62911ea2ef9b1ccc0002e31a
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb1nuq
+      - bigweb2nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb1nuq 570dfcbc0a
+      - extlb1nuq fc4d5d217f
       x-runtime:
-      - '0.174206'
+      - '0.147992'
       x-version-label:
-      - easypost-202205100008-b4df6b5700-master
+      - easypost-202205262146-0562c799aa-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -84,17 +84,17 @@ interactions:
       Content-Type:
       - application/json
       authorization:
-      - REDACTED
+      - <REDACTED>
       user-agent:
-      - REDACTED
+      - <REDACTED>
       x-client-user-agent:
-      - REDACTED
-    method: PUT
-    uri: https://api.easypost.com/v2/webhooks/hook_1b7c4472d0b611ec98f0711287adaa77
+      - <REDACTED>
+    method: PATCH
+    uri: https://api.easypost.com/v2/webhooks/hook_9483db6addee11ec9b50775c3c3556d8
   response:
     body:
-      string: '{"id": "hook_1b7c4472d0b611ec98f0711287adaa77", "object": "Webhook",
-        "mode": "test", "url": "http://example.com", "created_at": "2022-05-10T23:08:31Z",
+      string: '{"id": "hook_9483db6addee11ec9b50775c3c3556d8", "object": "Webhook",
+        "mode": "test", "url": "http://example.com", "created_at": "2022-05-27T18:55:31Z",
         "disabled_at": null}'
     headers:
       cache-control:
@@ -104,7 +104,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"9dc66d611c45ff3ecb2a1d245383a452"
+      - W/"48bad9a7683cbf23600e0a53c6c75564"
       expires:
       - '0'
       pragma:
@@ -122,20 +122,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c6ef69b9627af06eefb59f380021e3a9
+      - 92e4d3bf62911ea2ef9b1ccc0002e32b
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb9nuq
+      - bigweb6nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb2nuq 570dfcbc0a
+      - extlb1nuq fc4d5d217f
       x-runtime:
-      - '0.425962'
+      - '0.568635'
       x-version-label:
-      - easypost-202205100008-b4df6b5700-master
+      - easypost-202205262146-0562c799aa-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -153,13 +153,13 @@ interactions:
       Content-Length:
       - '0'
       authorization:
-      - REDACTED
+      - <REDACTED>
       user-agent:
-      - REDACTED
+      - <REDACTED>
       x-client-user-agent:
-      - REDACTED
+      - <REDACTED>
     method: DELETE
-    uri: https://api.easypost.com/v2/webhooks/hook_1b7c4472d0b611ec98f0711287adaa77
+    uri: https://api.easypost.com/v2/webhooks/hook_9483db6addee11ec9b50775c3c3556d8
   response:
     body:
       string: '{}'
@@ -189,20 +189,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c6ef69b9627af06fefb59f380021e3cc
+      - 92e4d3bf62911ea3ef9b1ccc0002e358
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb9nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb1nuq 570dfcbc0a
+      - extlb1nuq fc4d5d217f
       x-runtime:
-      - '0.271690'
+      - '0.377760'
       x-version-label:
-      - easypost-202205100008-b4df6b5700-master
+      - easypost-202205262146-0562c799aa-master
       x-xss-protection:
       - 1; mode=block
     status:

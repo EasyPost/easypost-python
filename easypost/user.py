@@ -73,6 +73,6 @@ class User(CreateResource, UpdateResource, DeleteResource):
         """Update the User's Brand."""
         requestor = Requestor(local_api_key=api_key)
         response, api_key = requestor.request(
-            method=RequestMethod.PUT, url=self.instance_url() + "/brand", params=params
+            method=RequestMethod.PATCH, url=self.instance_url() + "/brand", params=params
         )
         return convert_to_easypost_object(response=response, api_key=api_key)
