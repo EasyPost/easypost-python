@@ -14,7 +14,6 @@ from typing import (
     Union,
 )
 from urllib.parse import urlencode
-##from urllib.request import Request
 
 from easypost.constant import (
     SUPPORT_EMAIL,
