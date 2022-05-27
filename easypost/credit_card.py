@@ -15,7 +15,7 @@ from easypost.resource import (
 
 class CreditCard(CreateResource, Resource):
     @classmethod
-    def fund(cls, api_key: Optional[str] = None, **params) -> "CreditCard":
+    def fund(cls, amount: str, primary_or_secondary: str = "primary", api_key: Optional[str] = None) -> "CreditCard":
         """Fund your EasyPost wallet by charging your primary or secondary card on file."""
         payment_methods = PaymentMethod.all()
 
@@ -24,8 +24,7 @@ class CreditCard(CreateResource, Resource):
             "secondary": "secondary_payment_method",
         }
 
-        primary_or_secondary = params.get("primary_or_secondary")
-        payment_method_to_use = payment_method_map.get(primary_or_secondary) if primary_or_secondary else None
+        payment_method_to_use = payment_method_map.get(primary_or_secondary)
         card_id = payment_methods[payment_method_to_use]["id"] if payment_method_to_use else None
 
         if payment_method_to_use is None or card_id is None or "card_" not in card_id:
@@ -33,14 +32,14 @@ class CreditCard(CreateResource, Resource):
 
         requestor = Requestor(local_api_key=api_key)
         url = f"{cls.class_url()}/{card_id}/charges"
-        wrapped_params = {"amount": params.get("amount")}
+        wrapped_params = {"amount": amount}
         response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=wrapped_params)
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     @classmethod
-    def delete(cls, easypost_id: str, api_key: Optional[str] = None):
+    def delete(cls, credit_card_id: str, api_key: Optional[str] = None):
         """Delete a credit card by ID."""
         requestor = Requestor(local_api_key=api_key)
-        url = f"{cls.class_url()}/{easypost_id}"
+        url = f"{cls.class_url()}/{credit_card_id}"
         response, api_key = requestor.request(method=RequestMethod.DELETE, url=url)
         return convert_to_easypost_object(response=response, api_key=api_key)
