@@ -2,6 +2,7 @@
 
 ## NEXT RELEASE
 
+- Adds `PaymentMethod.all()`, `CreditCard.fund()`, and `CreditCard.delete()` functions
 - Removes the unusable `carrier` param from `Address.verify()` along with the dead `message` conditional check that was missed in v7.0.0
 
 ## v7.1.1 (2022-05-09)

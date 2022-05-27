@@ -3,6 +3,7 @@ from easypost.address import Address
 from easypost.batch import Batch
 from easypost.brand import Brand
 from easypost.carrier_account import CarrierAccount
+from easypost.credit_card import CreditCard
 from easypost.customs_info import CustomsInfo
 from easypost.customs_item import CustomsItem
 from easypost.error import Error
@@ -10,6 +11,7 @@ from easypost.event import Event
 from easypost.insurance import Insurance
 from easypost.order import Order
 from easypost.parcel import Parcel
+from easypost.payment_method import PaymentMethod
 from easypost.pickup import Pickup
 from easypost.pickup_rate import PickupRate
 from easypost.postage_label import PostageLabel
