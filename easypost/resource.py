@@ -91,7 +91,7 @@ class UpdateResource(Resource):
                     params[k] = params[k].flatten_unsaved()
             params = {self.snakecase_name(): params}
             url = self.instance_url()
-            response, api_key = requestor.request(method=RequestMethod.PUT, url=url, params=params)
+            response, api_key = requestor.request(method=RequestMethod.PATCH, url=url, params=params)
             self.refresh_from(values=response, api_key=api_key)
 
         return self

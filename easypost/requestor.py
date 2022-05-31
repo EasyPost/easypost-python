@@ -28,6 +28,7 @@ class RequestMethod(Enum):
     GET = "get"
     POST = "post"
     PUT = "put"
+    PATCH = "patch"
     DELETE = "delete"
 
 
@@ -197,7 +198,7 @@ class Requestor:
         if method in [RequestMethod.GET, RequestMethod.DELETE]:
             url_params = params
             body = None
-        elif method in [RequestMethod.POST, RequestMethod.PUT]:
+        elif method in [RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT]:
             url_params = None
             body = params
         else:
