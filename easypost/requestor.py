@@ -223,7 +223,7 @@ class Requestor:
         except Exception as e:
             raise Error(
                 "Unexpected error communicating with EasyPost. If this "
-                "problem persists please let us know at {SUPPORT_EMAIL}.",
+                f"problem persists please let us know at {SUPPORT_EMAIL}.",
                 original_exception=e,
             )
         return http_body, http_status
