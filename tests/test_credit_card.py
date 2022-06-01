@@ -7,8 +7,8 @@ import easypost
 @pytest.mark.skip("Skipping due to the lack of an available real credit card in tests")
 def test_credit_card_fund(prod_api_key):
     credit_card = easypost.CreditCard.fund(
+        amount="20",
         primary_or_secondary="primary",
-        amount="10",
     )
 
     assert credit_card
