@@ -24,8 +24,7 @@ class Error(Exception):
             except Exception:
                 self.json_body = None
 
-        self.param = None
         try:
             self.param = self.json_body["error"].get("param", None)
         except Exception:
-            pass
+            self.param = None

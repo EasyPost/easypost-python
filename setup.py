@@ -10,6 +10,7 @@ REQUIREMENTS = [
 ]
 
 DEV_REQUIREMENTS = [
+    "bandit[toml]==1.7.*",
     "black==22.*",
     "flake8==4.*",
     "isort==5.*",

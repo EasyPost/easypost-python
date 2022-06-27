@@ -8,6 +8,10 @@ TEST_DIR := tests
 help:
 	@cat Makefile | grep '^## ' --color=never | cut -c4- | sed -e "`printf 's/ - /\t- /;'`" | column -s "`printf '\t'`" -t
 
+## bandit - Scans the project for security issues with Bandit
+bandit:
+	$(VIRTUAL_BIN)/bandit -r $(PROJECT_NAME)
+
 ## build - Builds the project in preparation for release
 build:
 	$(VIRTUAL_BIN)/python setup.py sdist bdist_wheel
@@ -74,4 +78,4 @@ test:
 venv:
 	$(PYTHON_BINARY) -m venv $(VIRTUAL_ENV)
 
-.PHONY: help build coverage clean black black-check format format-check install install-dev install-pypy isort isort-check lint mypy publish test
+.PHONY: help bandit build coverage clean black black-check format format-check install install-dev install-pypy isort isort-check lint mypy publish test
