@@ -66,7 +66,6 @@ def vcr_config():
         "decode_compressed_response": True,
         "filter_headers": [
             ("authorization", CASSETTE_REPLACEMENT_VALUE),
-            ("x-client-user-agent", CASSETTE_REPLACEMENT_VALUE),
             ("user-agent", CASSETTE_REPLACEMENT_VALUE),
         ],
         "filter_query_parameters": [

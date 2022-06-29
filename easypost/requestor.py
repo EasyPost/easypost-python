@@ -1,7 +1,6 @@
 import datetime
 import json
 import platform
-import ssl
 import time
 from enum import Enum
 from json import JSONDecodeError
@@ -18,7 +17,6 @@ from urllib.parse import urlencode
 from easypost.constant import (
     SUPPORT_EMAIL,
     TIMEOUT,
-    USER_AGENT,
 )
 from easypost.easypost_object import EasyPostObject
 from easypost.error import Error
@@ -132,31 +130,42 @@ class Requestor:
 
         params = self._objects_to_ids(param=params or {})
 
-        ua = {
+        # Fallback values for the user-agent header
+        user_agent = {
             "client_version": VERSION,
-            "lang": "python",
-            "publisher": "easypost",
-            "request_lib": request_lib,
+            "implementation": "NA",
+            "os_arch": "NA",
+            "os_version": "NA",
+            "os": "NA",
+            "python_version": "NA",
         }
+
+        # Attempt to populate the user-agent header
         for attr, func in (
-            ("lang_version", platform.python_version),
-            ("platform", platform.platform),
-            ("uname", lambda: " ".join(platform.uname())),
             ("implementation", platform.python_implementation),
+            ("os_details", platform.uname),
+            ("python_version", platform.python_version),
         ):
             try:
                 val = func()  # type: ignore
-            except Exception as e:
-                val = "!! %s" % e
-            ua[attr] = val
+                if attr == "os_details":
+                    user_agent["os"] = val[0]
+                    user_agent["os_version"] = val[2]
+                    user_agent["os_arch"] = val[4]
+                else:
+                    user_agent[attr] = val  # type: ignore
+            except Exception:
+                pass
 
-        if hasattr(ssl, "OPENSSL_VERSION"):
-            ua["openssl_version"] = ssl.OPENSSL_VERSION
+        user_agent = (
+            f"EasyPost/v2 PythonClient/{VERSION} Python/{user_agent['python_version']}"  # type: ignore
+            f" OS/{user_agent['os']} OSVersion/{user_agent['os_version']} OSArch/{user_agent['os_arch']}"
+            f" Implementation/{user_agent['implementation']}"
+        )
 
         headers = {
-            "X-Client-User-Agent": json.dumps(ua),
-            "User-Agent": USER_AGENT,
             "Authorization": "Bearer %s" % my_api_key,
+            "User-Agent": user_agent,
         }
 
         if request_lib == "urlfetch":
