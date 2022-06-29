@@ -10,7 +10,7 @@ REQUIREMENTS = [
 ]
 
 DEV_REQUIREMENTS = [
-    "bandit==1.7.*",
+    "bandit==1.7.1",  # Bandit 1.7.2 drops support for Python 3.6
     "black==22.*",
     "flake8==4.*",
     "isort==5.*",
