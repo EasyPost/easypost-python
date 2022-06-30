@@ -154,7 +154,8 @@ class Requestor:
                     user_agent["os_arch"] = val[4]
                 else:
                     user_agent[attr] = val  # type: ignore
-            except Exception:
+            except Exception:  # nosec
+                # If we fail to get OS info, do nothing as we already set fallbacks for these values
                 pass
 
         user_agent = (
