@@ -122,7 +122,9 @@ def test_address_creation_with_verify_strict_failure():
 @pytest.mark.vcr()
 def test_address_unicode():
     # Create an address with unicode field and assert if it was created correctly.
+    # fmt: off
     state = u"DELEGACI\xf3N BENITO JU\xe1REZ"
+    # fmt: on
 
     address = easypost.Address.create(state=state)
     assert address.state == state
@@ -131,7 +133,9 @@ def test_address_unicode():
 @pytest.mark.vcr()
 def test_address_bytestring():
     # Create an address with a bytestring field and assert if it was created correctly.
+    # fmt: off
     state = u"DELEGACI\xf3N BENITO JU\xe1REZ"
+    # fmt: on
 
     address = easypost.Address.create(state=state.encode("utf-8"))
     assert address.state == state

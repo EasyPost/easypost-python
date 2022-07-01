@@ -2,7 +2,6 @@ import datetime
 import json
 import platform
 import re
-import ssl
 import time
 
 import six
@@ -63,9 +62,6 @@ api_key = None
 api_base = "https://api.easypost.com/v2"
 # use our default timeout, or our max timeout if that is less
 timeout = min(60, _max_timeout)
-
-
-USER_AGENT = "EasyPost/v2 PythonClient/{0}".format(VERSION)
 
 
 class Error(Exception):
@@ -223,31 +219,49 @@ class Requestor(object):
         abs_url = "%s%s" % (api_base, url or "")
         params = self._objects_to_ids(params)
 
-        ua = {
+        # Fallback values for the user-agent header
+        user_agent = {
             "client_version": VERSION,
-            "lang": "python",
-            "publisher": "easypost",
-            "request_lib": request_lib,
+            "implementation": "NA",
+            "os_arch": "NA",
+            "os_version": "NA",
+            "os": "NA",
+            "python_version": "NA",
         }
+
+        # Attempt to populate the user-agent header
         for attr, func in (
-            ("lang_version", platform.python_version),
-            ("platform", platform.platform),
-            ("uname", lambda: " ".join(platform.uname())),
+            ("implementation", platform.python_implementation),
+            ("os_details", platform.uname),
+            ("python_version", platform.python_version),
         ):
             try:
                 val = func()
-            except Exception as e:
-                val = "!! %s" % e
-            ua[attr] = val
+                if attr == "os_details":
+                    user_agent["os"] = val[0]
+                    user_agent["os_version"] = val[2]
+                    user_agent["os_arch"] = val[4]
+                else:
+                    user_agent[attr] = val
+            except Exception:
+                # If we fail to get OS info, do nothing as we already set fallbacks for these values
+                pass
 
-        if hasattr(ssl, "OPENSSL_VERSION"):
-            ua["openssl_version"] = ssl.OPENSSL_VERSION
+        user_agent = (
+            "EasyPost/v2 PythonClient/{0} Python/{1} OS/{2} OSVersion/{3} OSArch/{4} Implementation/{5}".format(
+                VERSION,
+                user_agent["python_version"],
+                user_agent["os"],
+                user_agent["os_version"],
+                user_agent["os_arch"],
+                user_agent["implementation"],
+            )
+        )
 
         headers = {
-            "X-Client-User-Agent": json.dumps(ua),
-            "User-Agent": USER_AGENT,
             "Authorization": "Bearer %s" % my_api_key,
             "Content-type": "application/json",
+            "User-Agent": user_agent,
         }
 
         if timeout > _max_timeout:
