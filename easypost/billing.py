@@ -21,7 +21,7 @@ class Billing(CreateResource, Resource):
     @classmethod
     def fund_wallet(cls, amount: str, primary_or_secondary: str = "primary", api_key: Optional[str] = None) -> bool:
         """Fund your EasyPost wallet by charging your primary or secondary payment method on file."""
-        [endpoint, payment_method_id] = Billing._get_payment_method_info(primary_or_secondary)
+        [endpoint, payment_method_id] = Billing.__get_payment_method_info(primary_or_secondary)
 
         requestor = Requestor(local_api_key=api_key)
         url = f"{endpoint}/{payment_method_id}/charges"
