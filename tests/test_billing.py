@@ -6,20 +6,20 @@ import easypost
 @pytest.mark.vcr()
 @pytest.mark.skip("Skipping due to the lack of an available real payment method in tests")
 def test_billing_fund_wallet(prod_api_key):
-    fund = easypost.Billing.fund_wallet(
+    success = easypost.Billing.fund_wallet(
         amount="2000",
         primary_or_secondary="primary",
     )
 
-    assert fund is True
+    assert success is True
 
 
 @pytest.mark.vcr()
 @pytest.mark.skip("Skipping due to the lack of an available real payment method in tests")
 def test_billing_payment_method_delete(prod_api_key):
-    delete = easypost.Billing.delete_payment_method("primary")
+    success = easypost.Billing.delete_payment_method(primary_or_secondary="primary")
 
-    assert delete is True
+    assert success is True
 
 
 @pytest.mark.vcr()

@@ -21,7 +21,7 @@ class Billing(CreateResource, Resource):
     @classmethod
     def fund_wallet(cls, amount: str, primary_or_secondary: str = "primary", api_key: Optional[str] = None) -> bool:
         """Fund your EasyPost wallet by charging your primary or secondary payment method on file."""
-        [endpoint, payment_method_id] = Billing.__get_payment_method_info(primary_or_secondary)
+        [endpoint, payment_method_id] = Billing.__get_payment_method_info(primary_or_secondary=primary_or_secondary)
 
         requestor = Requestor(local_api_key=api_key)
         url = f"{endpoint}/{payment_method_id}/charges"
@@ -34,7 +34,7 @@ class Billing(CreateResource, Resource):
     @classmethod
     def delete_payment_method(cls, primary_or_secondary: str, api_key: Optional[str] = None) -> bool:
         """Delete a payment method."""
-        [endpoint, payment_method_id] = Billing.__get_payment_method_info(primary_or_secondary)
+        [endpoint, payment_method_id] = Billing.__get_payment_method_info(primary_or_secondary=primary_or_secondary)
 
         requestor = Requestor(local_api_key=api_key)
         url = f"{endpoint}/{payment_method_id}"
@@ -67,7 +67,7 @@ class Billing(CreateResource, Resource):
         payment_method_to_use = payment_method_map.get(primary_or_secondary)
         error_string = "The chosen payment method is not a credit card. Please try again."
 
-        if payment_method_to_use is not None and payment_methods[payment_method_to_use] is not None:
+        if not payment_method_to_use and not payment_methods[payment_method_to_use]:
             payment_method_id = payment_methods[payment_method_to_use]["id"]
             if payment_method_id.startswith("card_"):
                 endpoint = "/credit_cards"
