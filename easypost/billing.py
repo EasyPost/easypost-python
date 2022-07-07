@@ -65,9 +65,9 @@ class Billing(CreateResource, Resource):
         }
 
         payment_method_to_use = payment_method_map.get(primary_or_secondary)
-        error_string = "The chosen payment method is not a credit card. Please try again."
+        error_string = "The chosen payment method is not valid. Please try again."
 
-        if not payment_method_to_use and not payment_methods[payment_method_to_use]:
+        if payment_method_to_use and payment_methods[payment_method_to_use]:
             payment_method_id = payment_methods[payment_method_to_use]["id"]
             if payment_method_id.startswith("card_"):
                 endpoint = "/credit_cards"
