@@ -21,7 +21,7 @@ class Billing(CreateResource, Resource):
     @classmethod
     def fund_wallet(cls, amount: str, primary_or_secondary: str = "primary", api_key: Optional[str] = None) -> bool:
         """Fund your EasyPost wallet by charging your primary or secondary payment method on file."""
-        [endpoint, payment_method_id] = Billing.__get_payment_method_info(primary_or_secondary=primary_or_secondary)
+        [endpoint, payment_method_id] = Billing._get_payment_method_info(primary_or_secondary=primary_or_secondary)
 
         requestor = Requestor(local_api_key=api_key)
         url = f"{endpoint}/{payment_method_id}/charges"
@@ -34,7 +34,7 @@ class Billing(CreateResource, Resource):
     @classmethod
     def delete_payment_method(cls, primary_or_secondary: str, api_key: Optional[str] = None) -> bool:
         """Delete a payment method."""
-        [endpoint, payment_method_id] = Billing.__get_payment_method_info(primary_or_secondary=primary_or_secondary)
+        [endpoint, payment_method_id] = Billing._get_payment_method_info(primary_or_secondary=primary_or_secondary)
 
         requestor = Requestor(local_api_key=api_key)
         url = f"{endpoint}/{payment_method_id}"
@@ -55,7 +55,7 @@ class Billing(CreateResource, Resource):
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     @classmethod
-    def __get_payment_method_info(cls, primary_or_secondary: str = "primary") -> List:
+    def _get_payment_method_info(cls, primary_or_secondary: str = "primary") -> List:
         """Get payment info (type of the payment method and ID of the payment method)"""
         payment_methods = Billing.retrieve_payment_methods()
 
