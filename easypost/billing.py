@@ -64,7 +64,7 @@ class Billing(CreateResource, Resource):
             "secondary": "secondary_payment_method",
         }
 
-        payment_method_to_use = payment_method_map.get(primary_or_secondary, None)
+        payment_method_to_use = payment_method_map.get(primary_or_secondary)
         error_string = "The chosen payment method is not valid. Please try again."
 
         if payment_method_to_use and payment_methods[payment_method_to_use]:
