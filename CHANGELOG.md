@@ -2,7 +2,7 @@
 
 ## NEXT RELEASE
 
-- Adds `PaymentMethod.all()`, `CreditCard.fund()`, and `CreditCard.delete()` functions
+- Adds `Billing.retrieve_payment_methods()`, `Billing.fund_wallet()`, and `Billing.delete_payment_method()` functions
 - Removes the unusable `carrier` param from `Address.verify()` along with the dead `message` conditional check that was missed in v7.0.0
 - Adds OS specific details to the user-agent header
 
