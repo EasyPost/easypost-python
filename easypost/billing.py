@@ -55,7 +55,7 @@ class Billing(CreateResource, Resource):
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     @classmethod
-    def _get_payment_method_info(cls, primary_or_secondary: str = "primary") -> List[str, str]:
+    def _get_payment_method_info(cls, primary_or_secondary: str = "primary") -> List[str]:
         """Get payment method info (type of the payment method and ID of the payment method)"""
         payment_methods = Billing.retrieve_payment_methods()
 
