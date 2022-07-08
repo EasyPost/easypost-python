@@ -40,8 +40,11 @@ def test_referral_user_all(prod_api_key, page_size):
     """This test requires a partner user's production API key via EASYPOST_PROD_API_KEY."""
     referral_users = easypost.beta.Referral.all(page_size=page_size)
 
-    assert len(referral_users) <= page_size
-    assert all(isinstance(referral_user, easypost.User) for referral_user in referral_users)
+    referral_users_array = referral_users["referral_customers"]
+
+    assert len(referral_users_array) <= page_size
+    assert referral_users["has_more"] is not None
+    assert all(isinstance(referral_user, easypost.User) for referral_user in referral_users_array)
 
 
 # PyVCR is having troubles matching the body of the form-encoded data here, override the default
