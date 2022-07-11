@@ -74,6 +74,18 @@ class Shipment(AllResource, CreateResource):
 
         return lowest_smartrate
 
+    def generate_form(self, form_type, form_options={}) -> "Shipment":
+        """Generate a form for a Shipment."""
+        params = {"type": form_type}
+        params.update(form_options)
+        wrapped_params = {"form": params}
+
+        requestor = Requestor(local_api_key=self._api_key)
+        url = "%s/%s" % (self.instance_url(), "forms")
+        response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        self.refresh_from(values=response, api_key=api_key)
+        return self
+
     @staticmethod
     def get_lowest_smartrate(smartrates, delivery_days: int, delivery_accuracy: str) -> Rate:
         """Get the lowest smartrate from a list of smartrates."""

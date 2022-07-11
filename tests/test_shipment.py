@@ -226,3 +226,21 @@ def test_shipment_get_lowest_smartrate(basic_shipment):
     with pytest.raises(easypost.Error) as error:
         _ = easypost.Shipment.get_lowest_smartrate(smartrates, delivery_days=3, delivery_accuracy="BAD_ACCURACY")
     assert "Invalid delivery_accuracy value" in str(error.value)
+
+
+@pytest.mark.vcr()
+def test_generate_form(one_call_buy_shipment, rma_form_options):
+    shipment = easypost.Shipment.create(**one_call_buy_shipment)
+    form_type = "return_packing_slip"
+
+    shipment.generate_form(
+        form_type,
+        rma_form_options,
+    )
+
+    assert len(shipment.forms) > 0
+
+    form = shipment.forms[0]
+
+    assert form.form_type == form_type
+    assert form.form_url is not None
