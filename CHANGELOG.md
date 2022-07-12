@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Add `generate_form()` in Shipment class
+
 ## v7.2.0 (2022-07-11)
 
 - Adds `Billing.retrieve_payment_methods()`, `Billing.fund_wallet()`, and `Billing.delete_payment_method()` functions

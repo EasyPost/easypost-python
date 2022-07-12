@@ -1,4 +1,9 @@
-from typing import List
+from typing import (
+    Any,
+    Dict,
+    List,
+    Optional,
+)
 
 from easypost import Rate
 from easypost.error import Error
@@ -73,6 +78,18 @@ class Shipment(AllResource, CreateResource):
         lowest_smartrate = self.get_lowest_smartrate(smartrates, delivery_days, delivery_accuracy)
 
         return lowest_smartrate
+
+    def generate_form(self, form_type: str, form_options: Optional[Dict[str, Any]] = {}) -> "Shipment":
+        """Generate a form for a Shipment."""
+        params = {"type": form_type}
+        params.update(form_options)  # type: ignore
+        wrapped_params = {"form": params}
+
+        requestor = Requestor(local_api_key=self._api_key)
+        url = "%s/%s" % (self.instance_url(), "forms")
+        response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        self.refresh_from(values=response, api_key=api_key)
+        return self
 
     @staticmethod
     def get_lowest_smartrate(smartrates, delivery_days: int, delivery_accuracy: str) -> Rate:

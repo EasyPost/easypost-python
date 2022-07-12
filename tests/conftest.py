@@ -385,3 +385,19 @@ def credit_card_details():
         "expiration_year": "2028",
         "cvc": "778",
     }
+
+
+@pytest.fixture
+def rma_form_options():
+    return {
+        "barcode": "RMA12345678900",
+        "line_items": [
+            {
+                "product": {
+                    "title": "Square Reader",
+                    "barcode": "855658003251",
+                },
+                "units": 8,
+            },
+        ],
+    }
