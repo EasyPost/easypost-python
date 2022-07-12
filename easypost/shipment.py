@@ -75,7 +75,7 @@ class Shipment(AllResource, CreateResource):
     def lowest_smartrate(self, delivery_days: int, delivery_accuracy: str) -> Rate:
         """Get the lowest smartrate of this shipment."""
         smartrates = self.get_smartrates()
-        lowest_smartrate = self.get_lowest_smartrate(smartrates, delivery_days, delivery_accuracy)
+        lowest_smartrate = self.get_lowest_smartrate(smartrates, delivery_days, delivery_accuracy.lower())
 
         return lowest_smartrate
 
