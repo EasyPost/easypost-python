@@ -244,3 +244,34 @@ def test_generate_form(one_call_buy_shipment, rma_form_options):
 
     assert form.form_type == form_type
     assert form.form_url is not None
+
+
+@pytest.mark.vcr()
+def test_shipment_create_with_carbon_offset(carbon_offset_shipment):
+    shipment = easypost.Shipment.create(carbon_offset=True, **carbon_offset_shipment)
+
+    assert all(rate.carbon_offset is not None for rate in shipment.rates)
+
+
+@pytest.mark.vcr()
+def test_shipment_buy_with_carbon_offset(carbon_offset_shipment):
+    shipment = easypost.Shipment.create(**carbon_offset_shipment)
+    shipment.buy(carbon_offset=True, rate=shipment.lowest_rate())
+
+    assert any(fee.type == "CarbonOffsetFee" for fee in shipment.fees)
+
+
+@pytest.mark.vcr()
+def test_shipment_one_call_buy_with_carbon_offset(carbon_offset_shipment_one_call_buy):
+    shipment = easypost.Shipment.create(carbon_offset=True, **carbon_offset_shipment_one_call_buy)
+
+    assert all(rate.carbon_offset is not None for rate in shipment.rates)
+
+
+@pytest.mark.vcr()
+def test_shipment_rerate_with_carbon_offset(carbon_offset_shipment_one_call_buy):
+    shipment = easypost.Shipment.create(**carbon_offset_shipment_one_call_buy)
+
+    rates = shipment.regenerate_rates(carbon_offset=True)
+
+    assert all(rate.carbon_offset is not None for rate in rates.rates)

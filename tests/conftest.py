@@ -438,3 +438,45 @@ def event_body():
     }
 
     return json.dumps(data, separators=(",", ":")).encode()
+
+
+@pytest.fixture
+def carbon_offset_shipment():
+    return {
+        "to_address": {
+            "name": "Dr. Steve Brule",
+            "street1": "179 N Harbor Dr",
+            "city": "Redondo Beach",
+            "state": "CA",
+            "zip": "90277",
+            "country": "US",
+            "phone": "8573875756",
+            "email": "dr_steve_brule@gmail.com",
+        },
+        "from_address": {
+            "name": "EasyPost",
+            "street1": "417 Montgomery Street",
+            "street2": "5th Floor",
+            "city": "San Francisco",
+            "state": "CA",
+            "zip": "94104",
+            "country": "US",
+            "phone": "4153334445",
+            "email": "support@easypost.com",
+        },
+        "parcel": {
+            "length": "20.2",
+            "width": "10.9",
+            "height": "5",
+            "weight": "65.9",
+        },
+    }
+
+
+@pytest.fixture
+def carbon_offset_shipment_one_call_buy(carbon_offset_shipment, usps_service, usps_carrier_account_id, usps):
+    carbon_offset_shipment["service"] = "Priority"
+    carbon_offset_shipment["carrier_accounts"] = [usps_carrier_account_id]
+    carbon_offset_shipment["carrier"] = usps
+
+    return carbon_offset_shipment
