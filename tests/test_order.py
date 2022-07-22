@@ -65,4 +65,4 @@ def test_order_lowest_rate(basic_order):
     # Test lowest rate with carrier filter (should error due to bad carrier)
     with pytest.raises(easypost.Error) as error:
         order.lowest_rate(carriers=["BAD CARRIER"])
-        assert error.message == "No rates found."
+    assert str(error.value) == "No rates found."
