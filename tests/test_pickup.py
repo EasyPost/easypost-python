@@ -86,9 +86,9 @@ def test_pickup_lowest_rate(one_call_buy_shipment, basic_pickup):
     # Test lowest rate with service filter (should error due to bad service)
     with pytest.raises(easypost.Error) as error:
         pickup.lowest_rate(services=["BAD SERVICE"])
-        assert error.message == "No rates found."
+    assert str(error.value) == "No rates found."
 
     # Test lowest rate with carrier filter (should error due to bad carrier)
     with pytest.raises(easypost.Error) as error:
         pickup.lowest_rate(carriers=["BAD CARRIER"])
-        assert error.message == "No rates found."
+    assert str(error.value) == "No rates found."
