@@ -37,7 +37,7 @@ Previously the `shipment.lowest_rate()` function expected a comma separated stri
 shipment.lowest_rate(carriers="USPS,FedEx", services="...")
 
 # Current expectation
-shipment.lowest_rate(carriers=["USPS", "FedEx"], services="...")
+shipment.lowest_rate(carriers=["USPS", "FedEx"], services=["..."])
 ```
 
 ## 7.0 Removal of `get_rates()` Shipment Method
