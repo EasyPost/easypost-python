@@ -291,7 +291,7 @@ def basic_pickup(basic_address):
     If you need to re-record cassettes, increment the date below and ensure it is one day in the future,
     USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
     """
-    pickup_date = "2022-05-06"
+    pickup_date = "2022-07-29"
 
     return {
         "address": basic_address,

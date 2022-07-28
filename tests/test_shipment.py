@@ -188,9 +188,9 @@ def test_shipment_lowest_smartrate(basic_shipment):
     shipment = easypost.Shipment.create(**basic_shipment)
 
     # Test lowest smartrate with valid filters
-    lowest_smartrate_filters = shipment.lowest_smartrate(delivery_days=1, delivery_accuracy="percentile_90")
-    assert lowest_smartrate_filters["service"] == "Priority"
-    assert lowest_smartrate_filters["rate"] == 7.37
+    lowest_smartrate_filters = shipment.lowest_smartrate(delivery_days=2, delivery_accuracy="percentile_90")
+    assert lowest_smartrate_filters["service"] == "First"
+    assert lowest_smartrate_filters["rate"] == 5.49
     assert lowest_smartrate_filters["carrier"] == "USPS"
 
     # Test lowest smartrate with invalid filters (should error due to strict delivery_days)
@@ -211,10 +211,10 @@ def test_shipment_get_lowest_smartrate(basic_shipment):
 
     # Test lowest smartrate with valid filters
     lowest_smartrate_filters = easypost.Shipment.get_lowest_smartrate(
-        smartrates, delivery_days=1, delivery_accuracy="percentile_90"
+        smartrates, delivery_days=2, delivery_accuracy="percentile_90"
     )
-    assert lowest_smartrate_filters["service"] == "Priority"
-    assert lowest_smartrate_filters["rate"] == 7.37
+    assert lowest_smartrate_filters["service"] == "First"
+    assert lowest_smartrate_filters["rate"] == 5.49
     assert lowest_smartrate_filters["carrier"] == "USPS"
 
     # Test lowest smartrate with invalid filters (should error due to strict delivery_days)
@@ -250,6 +250,8 @@ def test_generate_form(one_call_buy_shipment, rma_form_options):
 def test_shipment_create_with_carbon_offset(carbon_offset_shipment):
     shipment = easypost.Shipment.create(carbon_offset=True, **carbon_offset_shipment)
 
+    assert isinstance(shipment, easypost.Shipment)
+    assert shipment.rates is not None
     assert all(rate.carbon_offset is not None for rate in shipment.rates)
 
 
@@ -258,6 +260,7 @@ def test_shipment_buy_with_carbon_offset(carbon_offset_shipment):
     shipment = easypost.Shipment.create(**carbon_offset_shipment)
     shipment.buy(carbon_offset=True, rate=shipment.lowest_rate())
 
+    assert isinstance(shipment, easypost.Shipment)
     assert any(fee.type == "CarbonOffsetFee" for fee in shipment.fees)
 
 
@@ -265,6 +268,7 @@ def test_shipment_buy_with_carbon_offset(carbon_offset_shipment):
 def test_shipment_one_call_buy_with_carbon_offset(carbon_offset_shipment_one_call_buy):
     shipment = easypost.Shipment.create(carbon_offset=True, **carbon_offset_shipment_one_call_buy)
 
+    assert isinstance(shipment, easypost.Shipment)
     assert all(rate.carbon_offset is not None for rate in shipment.rates)
 
 
@@ -272,6 +276,10 @@ def test_shipment_one_call_buy_with_carbon_offset(carbon_offset_shipment_one_cal
 def test_shipment_rerate_with_carbon_offset(carbon_offset_shipment_one_call_buy):
     shipment = easypost.Shipment.create(**carbon_offset_shipment_one_call_buy)
 
-    rates = shipment.regenerate_rates(carbon_offset=True)
+    new_carbon_rates = shipment.regenerate_rates(carbon_offset=True)
 
-    assert all(rate.carbon_offset is not None for rate in rates.rates)
+    assert all(rate.carbon_offset is not None for rate in new_carbon_rates.rates)
+
+    new_non_carbon_rates = shipment.regenerate_rates()
+    with pytest.raises(AttributeError):
+        assert all(rate.carbon_offset is None for rate in new_non_carbon_rates.rates)
