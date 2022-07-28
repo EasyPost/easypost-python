@@ -26,7 +26,7 @@ class Shipment(AllResource, CreateResource):
         requestor = Requestor(local_api_key=api_key)
         url = cls.class_url()
         wrapped_params = {cls.snakecase_name(): params}
-        wrapped_params["carbon_offset"] = carbon_offset
+        wrapped_params["carbon_offset"] = carbon_offset  # type: ignore
         response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=wrapped_params)
         return convert_to_easypost_object(response=response, api_key=api_key)
 
