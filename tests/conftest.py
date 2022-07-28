@@ -401,3 +401,40 @@ def rma_form_options():
             },
         ],
     }
+
+
+@pytest.fixture
+def event_body():
+    data = {
+        "result": {
+            "id": "batch_123...",
+            "object": "Batch",
+            "mode": "test",
+            "state": "created",
+            "num_shipments": 0,
+            "reference": None,
+            "created_at": "2022-07-26T17:22:32Z",
+            "updated_at": "2022-07-26T17:22:32Z",
+            "scan_form": None,
+            "shipments": [],
+            "status": {
+                "created": 0,
+                "queued_for_purchase": 0,
+                "creation_failed": 0,
+                "postage_purchased": 0,
+                "postage_purchase_failed": 0,
+            },
+            "pickup": None,
+            "label_url": None,
+        },
+        "description": "batch.created",
+        "mode": "test",
+        "previous_attributes": None,
+        "completed_urls": None,
+        "user_id": "user_123...",
+        "status": "pending",
+        "object": "Event",
+        "id": "evt_123...",
+    }
+
+    return json.dumps(data, separators=(",", ":")).encode()

@@ -54,3 +54,51 @@ def test_webhook_delete(webhook_url):
 
     # This endpoint/method does not return anything, just make sure the request doesn't fail
     assert isinstance(response, easypost.Webhook)
+
+
+def test_validate_webhook(event_body):
+    webhook_secret = "sécret"
+    expected_hmac_signature = "hmac-sha256-hex=e93977c8ccb20363d51a62b3fe1fc402b7829be1152da9e88cf9e8d07115a46b"
+    headers = {
+        "X-Hmac-Signature": expected_hmac_signature,
+    }
+
+    webhook_body = easypost.Webhook.validate_webhook(
+        event_body=event_body,
+        headers=headers,
+        webhook_secret=webhook_secret,
+    )
+
+    assert webhook_body["description"] == "batch.created"
+
+
+def test_validate_webhook_invalid_secret(event_body):
+    webhook_secret = "invalid_secret"
+    headers = {
+        "X-Hmac-Signature": "some-signature",
+    }
+
+    with pytest.raises(easypost.Error) as error:
+        _ = easypost.Webhook.validate_webhook(
+            event_body=event_body,
+            headers=headers,
+            webhook_secret=webhook_secret,
+        )
+
+    assert str(error.value) == "Webhook received did not originate from EasyPost or had a webhook secret mismatch."
+
+
+def test_validate_webhook_missing_secret(event_body):
+    webhook_secret = "123"
+    headers = {
+        "some-header": "some-value",
+    }
+
+    with pytest.raises(easypost.Error) as error:
+        _ = easypost.Webhook.validate_webhook(
+            event_body=event_body,
+            headers=headers,
+            webhook_secret=webhook_secret,
+        )
+
+    assert str(error.value) == "Webhook received does not contain an HMAC signature."
