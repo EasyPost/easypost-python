@@ -2,7 +2,7 @@ interactions:
 - request:
     body: '{"address": {"name": "Jack Sparrow", "company": "EasyPost", "street1":
       "388 Townsend St", "street2": "Apt 20", "city": "San Francisco", "state": "CA",
-      "zip": "94107", "phone": "5555555555"}, "verify_strict": [true]}'
+      "zip": "94107", "phone": "5555555555"}, "verify_strict": true}'
     headers:
       Accept:
       - '*/*'
@@ -11,7 +11,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '215'
+      - '213'
       Content-Type:
       - application/json
       authorization:
@@ -22,9 +22,15 @@ interactions:
     uri: https://api.easypost.com/v2/addresses
   response:
     body:
-      string: '{"id":"adr_5089554ccbe811ec833eac1f6bc7b362","object":"Address","created_at":"2022-05-04T20:25:18+00:00","updated_at":"2022-05-04T20:25:18+00:00","name":"JACK
-        SPARROW","company":"EASYPOST","street1":"388 TOWNSEND ST APT 20","street2":"","city":"SAN
-        FRANCISCO","state":"CA","zip":"94107-1670","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":true,"federal_tax_id":null,"state_tax_id":null,"verifications":{"zip4":{"success":true,"errors":[],"details":null},"delivery":{"success":true,"errors":[],"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"}}}}'
+      string: '{"id": "adr_3b5a65d70f6511ed98f4ac1f6bc72124", "object": "Address",
+        "created_at": "2022-07-29T17:38:18+00:00", "updated_at": "2022-07-29T17:38:18+00:00",
+        "name": "JACK SPARROW", "company": "EASYPOST", "street1": "388 TOWNSEND ST
+        APT 20", "street2": "", "city": "SAN FRANCISCO", "state": "CA", "zip": "94107-1670",
+        "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test",
+        "carrier_facility": null, "residential": true, "federal_tax_id": null, "state_tax_id":
+        null, "verifications": {"zip4": {"success": true, "errors": [], "details":
+        null}, "delivery": {"success": true, "errors": [], "details": {"latitude":
+        37.77551, "longitude": -122.39697, "time_zone": "America/Los_Angeles"}}}}'
     headers:
       cache-control:
       - no-cache, no-store
@@ -33,11 +39,11 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"c6e8a2eecd3fff24b2ca9757bfaf800e"
+      - W/"22ac1cfa3f1fbe071cad5da66ce774e5"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_5089554ccbe811ec833eac1f6bc7b362
+      - /api/v2/addresses/adr_3b5a65d70f6511ed98f4ac1f6bc72124
       pragma:
       - no-cache
       referrer-policy:
@@ -53,20 +59,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330b86272e12ee786b81d001613ec
+      - 2415913a62e41b09e786b3f90005fc61
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb8nuq
+      - bigweb5nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb2nuq 403f17ff97
+      - extlb2nuq 403f17ff97
       x-runtime:
-      - '0.043825'
+      - '0.045077'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202207282305-ef64fb0c25-master
       x-xss-protection:
       - 1; mode=block
     status:
