@@ -248,7 +248,7 @@ def test_generate_form(one_call_buy_shipment, rma_form_options):
 
 @pytest.mark.vcr()
 def test_shipment_create_with_carbon_offset(carbon_offset_shipment):
-    shipment = easypost.Shipment.create(carbon_offset=True, **carbon_offset_shipment)
+    shipment = easypost.Shipment.create(with_carbon_offset=True, **carbon_offset_shipment)
 
     assert isinstance(shipment, easypost.Shipment)
     assert shipment.rates is not None
@@ -266,7 +266,7 @@ def test_shipment_buy_with_carbon_offset(carbon_offset_shipment):
 
 @pytest.mark.vcr()
 def test_shipment_one_call_buy_with_carbon_offset(carbon_offset_shipment_one_call_buy):
-    shipment = easypost.Shipment.create(carbon_offset=True, **carbon_offset_shipment_one_call_buy)
+    shipment = easypost.Shipment.create(with_carbon_offset=True, **carbon_offset_shipment_one_call_buy)
 
     assert isinstance(shipment, easypost.Shipment)
     assert all(rate.carbon_offset is not None for rate in shipment.rates)

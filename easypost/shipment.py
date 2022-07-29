@@ -21,20 +21,23 @@ from easypost.util import get_lowest_object_rate
 
 class Shipment(AllResource, CreateResource):
     @classmethod
-    def create(cls, api_key: Optional[str] = None, carbon_offset: Optional[bool] = False, **params) -> "Shipment":
+    def create(cls, api_key: Optional[str] = None, with_carbon_offset: Optional[bool] = False, **params) -> "Shipment":
         """Create an Shipment object."""
         requestor = Requestor(local_api_key=api_key)
         url = cls.class_url()
-        wrapped_params = {cls.snakecase_name(): params, "carbon_offset": carbon_offset}
+        wrapped_params = {
+            cls.snakecase_name(): params,
+            "carbon_offset": with_carbon_offset,
+        }
         response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=wrapped_params)
         return convert_to_easypost_object(response=response, api_key=api_key)
 
-    def regenerate_rates(self, carbon_offset: Optional[bool] = False) -> "Shipment":
+    def regenerate_rates(self, with_carbon_offset: Optional[bool] = False) -> "Shipment":
         """Regenerate rates for a shipment."""
         requestor = Requestor(local_api_key=self._api_key)
         url = "%s/%s" % (self.instance_url(), "rerate")
         params = {
-            "carbon_offset": carbon_offset,
+            "carbon_offset": with_carbon_offset,
         }
         response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=params)
         self.refresh_from(values=response, api_key=api_key)
@@ -47,11 +50,11 @@ class Shipment(AllResource, CreateResource):
         response, _ = requestor.request(method=RequestMethod.GET, url=url)
         return response.get("result", [])
 
-    def buy(self, carbon_offset: Optional[bool] = False, **params) -> "Shipment":
+    def buy(self, with_carbon_offset: Optional[bool] = False, **params) -> "Shipment":
         """Buy a shipment."""
         requestor = Requestor(local_api_key=self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
-        params["carbon_offset"] = carbon_offset
+        params["carbon_offset"] = with_carbon_offset
 
         response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=params)
         self.refresh_from(values=response, api_key=api_key)
