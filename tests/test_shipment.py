@@ -258,7 +258,7 @@ def test_shipment_create_with_carbon_offset(carbon_offset_shipment):
 @pytest.mark.vcr()
 def test_shipment_buy_with_carbon_offset(carbon_offset_shipment):
     shipment = easypost.Shipment.create(**carbon_offset_shipment)
-    shipment.buy(carbon_offset=True, rate=shipment.lowest_rate())
+    shipment.buy(rate=shipment.lowest_rate(), carbon_offset=True)
 
     assert isinstance(shipment, easypost.Shipment)
     assert any(fee.type == "CarbonOffsetFee" for fee in shipment.fees)
@@ -279,7 +279,3 @@ def test_shipment_rerate_with_carbon_offset(carbon_offset_shipment_one_call_buy)
     new_carbon_rates = shipment.regenerate_rates(carbon_offset=True)
 
     assert all(rate.carbon_offset is not None for rate in new_carbon_rates.rates)
-
-    new_non_carbon_rates = shipment.regenerate_rates()
-    with pytest.raises(AttributeError):
-        assert all(rate.carbon_offset is None for rate in new_non_carbon_rates.rates)
