@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"shipment": {}}'
+    body: '{"shipment": {}, "carbon_offset": false}'
     headers:
       Accept:
       - '*/*'
@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '16'
+      - '40'
       Content-Type:
       - application/json
       authorization:
@@ -20,9 +20,9 @@ interactions:
     uri: https://api.easypost.com/v2/shipments
   response:
     body:
-      string: '{"error":{"code":"SHIPMENT.INVALID_PARAMS","message":"Unable to create
-        shipment, one or more parameters were invalid.","errors":[{"to_address":"Required
-        and missing."},{"from_address":"Required and missing."}]}}'
+      string: '{"error": {"code": "SHIPMENT.INVALID_PARAMS", "message": "Unable to
+        create shipment, one or more parameters were invalid.", "errors": [{"to_address":
+        "Required and missing."}, {"from_address": "Required and missing."}]}}'
     headers:
       cache-control:
       - no-cache, no-store
@@ -47,20 +47,21 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330ba6272e143e786b86400161cd7
+      - 3843703c62e2e9d7ff23e29a0034322b
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb9nuq
+      - bigweb4nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb1nuq 403f17ff97
+      - intlb1wdc 403f17ff97
+      - extlb4wdc 403f17ff97
       x-runtime:
-      - '0.016675'
+      - '0.018855'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202207272329-7f74c9e58c-master
       x-xss-protection:
       - 1; mode=block
     status:

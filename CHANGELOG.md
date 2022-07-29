@@ -3,6 +3,10 @@
 ## NEXT RELEASE
 
 - Adds `validate_webhook` function that returns your webhook or raises an error if there is a `webhook_secret` mismatch
+- Adds ability to create a shipment with carbon_offset
+- Adds ability to buy a shipment with carbon_offset
+- Adds ability to one-call-buy a shipment with carbon_offset
+- Adds ability to rerate a shipment with carbon_offset
 
 ## v7.3.0 (2022-07-18)
 
