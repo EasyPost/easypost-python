@@ -2,6 +2,7 @@ from typing import (
     Any,
     Dict,
     Optional,
+    Union,
 )
 
 from easypost.easypost_object import convert_to_easypost_object
@@ -20,21 +21,19 @@ class Address(AllResource, CreateResource):
     def create(
         cls,
         api_key: Optional[str] = None,
-        verify: Optional[Dict[str, Any]] = None,
-        verify_strict: Dict[str, Any] = None,
+        verify: Optional[Union[Dict[str, Any], str, bool]] = None,
+        verify_strict: Optional[Union[Dict[str, Any], str, bool]] = None,
         **params
     ) -> "Address":
         """Create an address."""
         requestor = Requestor(local_api_key=api_key)
         url = cls.class_url()
 
-        wrapped_params = {cls.snakecase_name(): params}
-        for key, value in (("verify", verify), ("verify_strict", verify_strict)):
-            if not value:
-                continue
-            elif isinstance(value, (bool, str)):
-                value = [value]
-            wrapped_params[key] = value
+        wrapped_params = {cls.snakecase_name(): params}  # type: Dict[str, Any]
+        if verify:
+            wrapped_params["verify"] = verify
+        if verify_strict:
+            wrapped_params["verify_strict"] = verify_strict
 
         response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=wrapped_params)
         return convert_to_easypost_object(response=response, api_key=api_key)
