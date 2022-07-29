@@ -475,7 +475,7 @@ def carbon_offset_shipment():
 
 @pytest.fixture
 def carbon_offset_shipment_one_call_buy(carbon_offset_shipment, usps_service, usps_carrier_account_id, usps):
-    carbon_offset_shipment["service"] = "Priority"
+    carbon_offset_shipment["service"] = usps_service
     carbon_offset_shipment["carrier_accounts"] = [usps_carrier_account_id]
     carbon_offset_shipment["carrier"] = usps
 
