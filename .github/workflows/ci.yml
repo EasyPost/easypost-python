@@ -33,5 +33,5 @@ jobs:
         run: make ${{ matrix.pythonversion == 'pypy-3.6' && 'install-pypy' || 'install' }}
       - name: Run Tests
         run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 make test
-      - name: Run Bandit
-        run: make bandit
+      - name: Run security analysis
+        run: make scan

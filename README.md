@@ -3,7 +3,7 @@
 [![CI](https://github.com/EasyPost/easypost-python/workflows/CI/badge.svg)](https://github.com/EasyPost/easypost-python/actions?query=workflow%3ACI)
 [![PyPI version](https://badge.fury.io/py/easypost.svg)](https://badge.fury.io/py/easypost)
 
-EasyPost, the simple shipping solution. You can sign up for an account at https://easypost.com.
+EasyPost, the simple shipping solution. You can sign up for an account at <https://easypost.com>.
 
 ## Install
 
@@ -61,7 +61,7 @@ print(shipment)
 
 ## Documentation
 
-API Documentation can be found at: https://easypost.com/docs/api.
+API Documentation can be found at: <https://easypost.com/docs/api>.
 
 Upgrading major versions of this project? Refer to the [Upgrade Guide](UPGRADE_GUIDE.md).
 
@@ -74,14 +74,17 @@ make install
 # Lint project
 make lint
 
+# Format project
+make format
+
 # Run tests
 EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... make test
 
 # Run test coverage
 EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... make coverage
 
-# Get a comprehensive list of development actions
-make help
+# Run security analysis
+make scan
 ```
 
 ### Testing
