@@ -8,22 +8,18 @@ TEST_DIR := tests
 help:
 	@cat Makefile | grep '^## ' --color=never | cut -c4- | sed -e "`printf 's/ - /\t- /;'`" | column -s "`printf '\t'`" -t
 
-## bandit - Scans the project for security issues with Bandit
-bandit:
-	$(VIRTUAL_BIN)/bandit -r $(PROJECT_NAME)
-
 ## build - Builds the project in preparation for release
 build:
 	$(VIRTUAL_BIN)/python setup.py sdist bdist_wheel
-
-## coverage - Test the project and generate an HTML coverage report
-coverage:
-	$(VIRTUAL_BIN)/pytest --cov=$(PROJECT_NAME) --cov-branch --cov-report=html --cov-report=term-missing
 
 ## clean - Remove the virtual environment and clear out .pyc files
 clean:
 	rm -rf $(VIRTUAL_ENV) dist/ build/ *.egg-info/
 	find . -name '*.pyc' -delete
+
+## coverage - Test the project and generate an HTML coverage report
+coverage:
+	$(VIRTUAL_BIN)/pytest --cov=$(PROJECT_NAME) --cov-branch --cov-report=html --cov-report=term-missing
 
 ## black - Runs the Black Python formatter against the project
 black:
@@ -34,7 +30,7 @@ black-check:
 	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/ --check
 
 ## format - Runs all formatting tools against the project
-format: black isort lint mypy
+format: black isort
 
 ## format-check - Checks if the project is formatted correctly against all formatting rules
 format-check: black-check isort-check lint mypy
@@ -70,6 +66,15 @@ mypy:
 publish:
 	$(VIRTUAL_BIN)/twine upload dist/*
 
+## release - Cuts a release for the project on GitHub (requires GitHub CLI)
+# tag = The associated tag title of the release
+release:
+	gh release create ${tag} dist/*
+
+## scan - Scans the project for security issues with Bandit
+scan:
+	$(VIRTUAL_BIN)/bandit -r $(PROJECT_NAME)
+
 ## test - Test the project
 test:
 	$(VIRTUAL_BIN)/pytest
@@ -78,4 +83,4 @@ test:
 venv:
 	$(PYTHON_BINARY) -m venv $(VIRTUAL_ENV)
 
-.PHONY: help bandit build coverage clean black black-check format format-check install install-dev install-pypy isort isort-check lint mypy publish test
+.PHONY: help build clean coverage black black-check format format-check install install-dev install-pypy isort isort-check lint mypy publish release scan test
