@@ -10,13 +10,10 @@ from easypost.requestor import (
     RequestMethod,
     Requestor,
 )
-from easypost.resource import (
-    AllResource,
-    CreateResource,
-)
+from easypost.resource import AllResource
 
 
-class Address(AllResource, CreateResource):
+class Address(AllResource):
     @classmethod
     def create(
         cls,

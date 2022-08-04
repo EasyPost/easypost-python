@@ -5,13 +5,10 @@ from easypost.requestor import (
     RequestMethod,
     Requestor,
 )
-from easypost.resource import (
-    AllResource,
-    CreateResource,
-)
+from easypost.resource import Resource
 
 
-class Report(AllResource, CreateResource):
+class Report(Resource):
     @classmethod
     def create(cls, api_key: Optional[str] = None, **params):
         """Create a report."""
