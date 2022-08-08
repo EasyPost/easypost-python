@@ -11,13 +11,10 @@ from easypost.requestor import (
     RequestMethod,
     Requestor,
 )
-from easypost.resource import (
-    CreateResource,
-    Resource,
-)
+from easypost.resource import Resource
 
 
-class Billing(CreateResource, Resource):
+class Billing(Resource):
     @classmethod
     def fund_wallet(cls, amount: str, primary_or_secondary: str = "primary", api_key: Optional[str] = None) -> bool:
         """Fund your EasyPost wallet by charging your primary or secondary payment method on file."""

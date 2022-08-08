@@ -9,13 +9,12 @@ from easypost.requestor import (
     Requestor,
 )
 from easypost.resource import (
-    CreateResource,
     DeleteResource,
     UpdateResource,
 )
 
 
-class User(CreateResource, UpdateResource, DeleteResource):
+class User(UpdateResource, DeleteResource):
     @classmethod
     def create(cls, api_key: Optional[str] = None, **params) -> "User":
         """Create a child user."""

@@ -12,14 +12,11 @@ from easypost.requestor import (
     RequestMethod,
     Requestor,
 )
-from easypost.resource import (
-    AllResource,
-    CreateResource,
-)
+from easypost.resource import AllResource
 from easypost.util import get_lowest_object_rate
 
 
-class Shipment(AllResource, CreateResource):
+class Shipment(AllResource):
     @classmethod
     def create(cls, api_key: Optional[str] = None, with_carbon_offset: Optional[bool] = False, **params) -> "Shipment":
         """Create an Shipment object."""

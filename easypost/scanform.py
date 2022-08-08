@@ -5,13 +5,10 @@ from easypost.requestor import (
     RequestMethod,
     Requestor,
 )
-from easypost.resource import (
-    AllResource,
-    CreateResource,
-)
+from easypost.resource import AllResource
 
 
-class ScanForm(AllResource, CreateResource):
+class ScanForm(AllResource):
     @classmethod
     def create(cls, api_key: Optional[str] = None, **params):
         """Create a scanform."""

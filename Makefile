@@ -14,7 +14,7 @@ build:
 
 ## clean - Remove the virtual environment and clear out .pyc files
 clean:
-	rm -rf $(VIRTUAL_ENV) dist/ build/ *.egg-info/
+	rm -rf $(VIRTUAL_ENV) dist/ build/ *.egg-info/ .pytest_cache .mypy_cache
 	find . -name '*.pyc' -delete
 
 ## coverage - Test the project and generate an HTML coverage report
