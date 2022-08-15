@@ -9,7 +9,7 @@ def test_customs_item_create(basic_customs_item):
 
     assert isinstance(customs_item, easypost.CustomsItem)
     assert str.startswith(customs_item.id, "cstitem_")
-    assert customs_item.value == "23.0"
+    assert customs_item.value == "23.25"
 
 
 @pytest.mark.vcr()

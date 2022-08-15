@@ -56,7 +56,7 @@ def test_webhook_delete(webhook_url):
     assert isinstance(response, easypost.Webhook)
 
 
-def test_validate_webhook(event_body):
+def test_validate_webhook(event_bytes):
     webhook_secret = "sécret"
     expected_hmac_signature = "hmac-sha256-hex=e93977c8ccb20363d51a62b3fe1fc402b7829be1152da9e88cf9e8d07115a46b"
     headers = {
@@ -64,7 +64,7 @@ def test_validate_webhook(event_body):
     }
 
     webhook_body = easypost.Webhook.validate_webhook(
-        event_body=event_body,
+        event_body=event_bytes,
         headers=headers,
         webhook_secret=webhook_secret,
     )
@@ -72,7 +72,7 @@ def test_validate_webhook(event_body):
     assert webhook_body["description"] == "batch.created"
 
 
-def test_validate_webhook_invalid_secret(event_body):
+def test_validate_webhook_invalid_secret(event_bytes):
     webhook_secret = "invalid_secret"
     headers = {
         "X-Hmac-Signature": "some-signature",
@@ -80,7 +80,7 @@ def test_validate_webhook_invalid_secret(event_body):
 
     with pytest.raises(easypost.Error) as error:
         _ = easypost.Webhook.validate_webhook(
-            event_body=event_body,
+            event_body=event_bytes,
             headers=headers,
             webhook_secret=webhook_secret,
         )
@@ -88,7 +88,7 @@ def test_validate_webhook_invalid_secret(event_body):
     assert str(error.value) == "Webhook received did not originate from EasyPost or had a webhook secret mismatch."
 
 
-def test_validate_webhook_missing_secret(event_body):
+def test_validate_webhook_missing_secret(event_bytes):
     webhook_secret = "123"
     headers = {
         "some-header": "some-value",
@@ -96,7 +96,7 @@ def test_validate_webhook_missing_secret(event_body):
 
     with pytest.raises(easypost.Error) as error:
         _ = easypost.Webhook.validate_webhook(
-            event_body=event_body,
+            event_body=event_bytes,
             headers=headers,
             webhook_secret=webhook_secret,
         )

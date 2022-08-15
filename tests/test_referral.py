@@ -9,7 +9,7 @@ REFERRAL_USER_PROD_API_KEY = os.getenv("REFERRAL_USER_PROD_API_KEY", "123")
 
 
 @pytest.mark.vcr()
-def test_referral_user_create(prod_api_key):
+def test_referral_user_create(partner_prod_api_key):
     """This test requires a partner user's production API key via EASYPOST_PROD_API_KEY."""
     created_referral_user = easypost.beta.Referral.create(
         name="test test",
@@ -23,20 +23,20 @@ def test_referral_user_create(prod_api_key):
 
 
 @pytest.mark.vcr()
-def test_referral_user_update(prod_api_key):
+def test_referral_user_update(partner_prod_api_key):
     """This test requires a partner user's production API key via EASYPOST_PROD_API_KEY."""
     referral_users = easypost.beta.Referral.all()
 
     updated_referral_user = easypost.beta.Referral.update_email(
         "email@example.com",
-        referral_users[0].id,
+        referral_users.referral_customers[0].id,
     )
 
     assert updated_referral_user is True
 
 
 @pytest.mark.vcr()
-def test_referral_user_all(prod_api_key, page_size):
+def test_referral_user_all(partner_prod_api_key, page_size):
     """This test requires a partner user's production API key via EASYPOST_PROD_API_KEY."""
     referral_users = easypost.beta.Referral.all(page_size=page_size)
 
@@ -56,7 +56,7 @@ def test_referral_user_all(prod_api_key, page_size):
         "uri",
     ]
 )
-def test_referral_add_credit_card(prod_api_key, credit_card_details):
+def test_referral_add_credit_card(partner_prod_api_key, credit_card_details):
     """This test requires a partner user's production API key via EASYPOST_PROD_API_KEY
     as well as one of that user's referral's production API keys via REFERRAL_USER_PROD_API_KEY.
     """

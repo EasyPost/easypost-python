@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: '{"customs_item": {"description": "Sweet shirts", "quantity": 2, "weight":
-      11, "value": 23, "hs_tariff_number": "654321", "origin_country": "US"}}'
+      11, "value": 23.25, "hs_tariff_number": "654321", "origin_country": "US"}}'
     headers:
       Accept:
       - '*/*'
@@ -10,7 +10,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '145'
+      - '148'
       Content-Type:
       - application/json
       authorization:
@@ -21,21 +21,25 @@ interactions:
     uri: https://api.easypost.com/v2/customs_items
   response:
     body:
-      string: '{"id":"cstitem_7242129c27bd40d09eaba1758d8add1f","object":"CustomsItem","created_at":"2022-05-04T20:25:38Z","updated_at":"2022-05-04T20:25:38Z","description":"Sweet
-        shirts","hs_tariff_number":"654321","origin_country":"US","quantity":2,"value":"23.0","weight":11.0,"code":null,"mode":"test","manufacturer":null,"currency":null,"eccn":null,"printed_commodity_identifier":null}'
+      string: '{"id": "cstitem_83e1f516d16247439530709b03a2ae38", "object": "CustomsItem",
+        "created_at": "2022-08-15T18:51:41Z", "updated_at": "2022-08-15T18:51:41Z",
+        "description": "Sweet shirts", "hs_tariff_number": "654321", "origin_country":
+        "US", "quantity": 2, "value": "23.25", "weight": 11.0, "code": null, "mode":
+        "test", "manufacturer": null, "currency": null, "eccn": null, "printed_commodity_identifier":
+        null}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
-      - '375'
+      - '376'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"fe92de26d05664ebf9f11ec5fd28c542"
+      - W/"7742cdaffbc569e7d773afb292202d62"
       expires:
       - '0'
       location:
-      - /api/v2/customs_items/cstitem_7242129c27bd40d09eaba1758d8add1f
+      - /api/v2/customs_items/cstitem_83e1f516d16247439530709b03a2ae38
       pragma:
       - no-cache
       referrer-policy:
@@ -51,20 +55,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330bd6272e142e786b86300161cb3
+      - f43af47f62fa95bde79a79be002620fc
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb8nuq
+      - bigweb6nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.025360'
+      - '0.026136'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -84,20 +88,24 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/v2/customs_items/cstitem_7242129c27bd40d09eaba1758d8add1f
+    uri: https://api.easypost.com/v2/customs_items/cstitem_83e1f516d16247439530709b03a2ae38
   response:
     body:
-      string: '{"id":"cstitem_7242129c27bd40d09eaba1758d8add1f","object":"CustomsItem","created_at":"2022-05-04T20:25:38Z","updated_at":"2022-05-04T20:25:38Z","description":"Sweet
-        shirts","hs_tariff_number":"654321","origin_country":"US","quantity":2,"value":"23.0","weight":11.0,"code":null,"mode":"test","manufacturer":null,"currency":null,"eccn":null,"printed_commodity_identifier":null}'
+      string: '{"id": "cstitem_83e1f516d16247439530709b03a2ae38", "object": "CustomsItem",
+        "created_at": "2022-08-15T18:51:41Z", "updated_at": "2022-08-15T18:51:41Z",
+        "description": "Sweet shirts", "hs_tariff_number": "654321", "origin_country":
+        "US", "quantity": 2, "value": "23.25", "weight": 11.0, "code": null, "mode":
+        "test", "manufacturer": null, "currency": null, "eccn": null, "printed_commodity_identifier":
+        null}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
-      - '375'
+      - '376'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"fe92de26d05664ebf9f11ec5fd28c542"
+      - W/"7742cdaffbc569e7d773afb292202d62"
       expires:
       - '0'
       pragma:
@@ -110,27 +118,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330bd6272e142e786b86300161cba
+      - f43af47f62fa95bde79a79be00262108
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb4nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb1nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.020427'
+      - '0.020368'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:

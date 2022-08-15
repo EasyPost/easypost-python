@@ -12,27 +12,26 @@ interactions:
       - <REDACTED>
       user-agent:
       - <REDACTED>
-
     method: GET
     uri: https://api.easypost.com/v2/users
   response:
     body:
-      string: '{"id": "user_2cfd34d1261a4a9b93d56c313a9a824b", "object": "User", "parent_id":
-        null, "name": "Ryan Nguyen", "phone_number": "<REDACTED>", "verified": true,
-        "created_at": "2022-05-23T17:43:47Z", "balance": "0.00000", "price_per_shipment":
-        "0.00000", "recharge_amount": null, "secondary_recharge_amount": null, "recharge_threshold":
-        null, "has_billing_method": null, "cc_fee_rate": "0.0325", "default_insurance_amount":
-        "50.00", "insurance_fee_rate": "0.005", "insurance_fee_minimum": "0.25", "email":
-        "<REDACTED>", "children": "<REDACTED>"}'
+      string: '{"id": "user_54356a6b96c940d8913961a3c7b909f2", "object": "User", "parent_id":
+        null, "name": "EasyPost Python Client Library Tests", "phone_number": "<REDACTED>",
+        "verified": true, "created_at": "2017-03-01T03:01:34Z", "balance": "0.00000",
+        "price_per_shipment": "0.00000", "recharge_amount": "100.00", "secondary_recharge_amount":
+        "100.00", "recharge_threshold": "0.00", "has_billing_method": false, "cc_fee_rate":
+        "0.03", "default_insurance_amount": null, "insurance_fee_rate": "0.01", "insurance_fee_minimum":
+        "1.00", "email": "<REDACTED>", "children": "<REDACTED>"}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
-      - '502'
+      - '8081'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"e67cce23fee900986d910af43877bdf2"
+      - W/"93d966ca847a2ef598ea9d7bd07bb1ee"
       expires:
       - '0'
       pragma:
@@ -50,20 +49,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 92e4d3be62911e28ef9b1c6a0002c027
+      - f43af47962fa9603e79a7e2700263a4d
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb8nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.033582'
+      - '0.530688'
       x-version-label:
-      - easypost-202205262146-0562c799aa-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -86,25 +85,24 @@ interactions:
       - <REDACTED>
       user-agent:
       - <REDACTED>
-
     method: PATCH
-    uri: https://api.easypost.com/v2/users/user_2cfd34d1261a4a9b93d56c313a9a824b/brand
+    uri: https://api.easypost.com/v2/users/user_54356a6b96c940d8913961a3c7b909f2/brand
   response:
     body:
-      string: '{"id": "brd_0e606e55ac73483b9ef26ba2e7dcfec5", "color": "#123456",
+      string: '{"id": "brd_79967d34dc894866850bc8342c84dc41", "color": "#123456",
         "logo": "https://assets.easypost.com/assets/images/branding/easypost-primary-logo-7a2cf535f2.svg",
         "logo_href": "https://www.easypost.com", "name": "EasyPost", "ad": null, "ad_href":
-        null, "object": "Brand", "user_id": "user_2cfd34d1261a4a9b93d56c313a9a824b",
-        "background_color": null, "theme": "theme1"}'
+        null, "object": "Brand", "user_id": "user_54356a6b96c940d8913961a3c7b909f2",
+        "background_color": "#123456", "theme": "theme1"}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
-      - '350'
+      - '355'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"1db759217d34f1d4558f723082035904"
+      - W/"16e14a9b8a995c07e1759f6ca074db4d"
       expires:
       - '0'
       pragma:
@@ -122,20 +120,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 92e4d3be62911e28ef9b1c6a0002c02e
+      - f43af47962fa9604e79a7e2700263a85
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb4nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb1nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.019017'
+      - '0.020552'
       x-version-label:
-      - easypost-202205262146-0562c799aa-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:

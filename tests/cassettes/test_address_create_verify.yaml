@@ -1,8 +1,8 @@
 interactions:
 - request:
-    body: '{"address": {"street1": "417 montgomery street", "street2": "FL 5", "city":
-      "San Francisco", "state": "CA", "zip": "94104", "country": "US", "company":
-      "EasyPost", "phone": "415-123-4567"}, "verify": true}'
+    body: '{"address": {"company": "EasyPost", "street1": "417 montgomery street",
+      "street2": "FL 5", "city": "San Francisco", "state": "CA", "zip": "94104", "country":
+      "US", "email": "test@example.com", "phone": "5555555555"}, "verify": true}'
     headers:
       Accept:
       - '*/*'
@@ -11,7 +11,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '205'
+      - '232'
       Content-Type:
       - application/json
       authorization:
@@ -22,8 +22,8 @@ interactions:
     uri: https://api.easypost.com/v2/addresses
   response:
     body:
-      string: '{"id": "adr_3b3317ee0f6511eda18eac1f6b0a0d1e", "object": "Address",
-        "created_at": "2022-07-29T17:38:17+00:00", "updated_at": "2022-07-29T17:38:17+00:00",
+      string: '{"id": "adr_3f855fd41ccb11edb759ac1f6b0a0d1e", "object": "Address",
+        "created_at": "2022-08-15T18:51:18+00:00", "updated_at": "2022-08-15T18:51:18+00:00",
         "name": null, "company": "EASYPOST", "street1": "417 MONTGOMERY ST FL 5",
         "street2": "", "city": "SAN FRANCISCO", "state": "CA", "zip": "94104-1129",
         "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test",
@@ -36,17 +36,17 @@ interactions:
         {"latitude": 37.79342, "longitude": -122.40288, "time_zone": "America/Los_Angeles"}}}}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
-      - '893'
+      - '907'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"f161e91a2e4f595eed6e976ffb33bf73"
+      - W/"311f0346a92ec4505638f73706d1fa42"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_3b3317ee0f6511eda18eac1f6b0a0d1e
+      - /api/v2/addresses/adr_3f855fd41ccb11edb759ac1f6b0a0d1e
       pragma:
       - no-cache
       referrer-policy:
@@ -62,20 +62,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 2415913f62e41b09e786b3e10005fc45
+      - f43af47b62fa95a6e79a766400261938
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb2nuq
+      - bigweb1nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 403f17ff97
-      - extlb2nuq 403f17ff97
+      - intlb1nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.043328'
+      - '0.043454'
       x-version-label:
-      - easypost-202207282305-ef64fb0c25-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:

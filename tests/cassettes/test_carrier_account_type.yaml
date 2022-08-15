@@ -9,9 +9,9 @@ interactions:
       Connection:
       - keep-alive
       authorization:
-      - REDACTED
+      - <REDACTED>
       user-agent:
-      - REDACTED
+      - <REDACTED>
     method: GET
     uri: https://api.easypost.com/v2/carrier_types
   response:
@@ -71,12 +71,20 @@ interactions:
         "masked", "label": "CanadaPost API Key"}, "contract_id": {"visibility": "visible",
         "label": "CanadaPost Contract ID (contract customers only)"}, "customer_number":
         {"visibility": "visible", "label": "CanadaPost Customer Number"}, "has_credit_card":
-        {"visibility": "checkbox", "label": "CanadaPost account has credit card?"}},
-        "custom_workflow": true}}, {"object": "CarrierType", "type": "CanparAccount",
-        "readable": "Canpar", "logo": null, "fields": {"credentials": {"account_number":
-        {"visibility": "visible", "label": "Canpar Account Number"}, "username": {"visibility":
-        "visible", "label": "Canpar Username"}, "password": {"visibility": "password",
-        "label": "Canpar Password"}}, "test_credentials": {"account_number": {"visibility":
+        {"visibility": "checkbox", "label": "CanadaPost account has credit card?"},
+        "not_platform": {"visibility": "invisible", "label": "CanadaPost account not
+        registered through platform?"}}, "test_credentials": {"api_key": {"visibility":
+        "masked", "label": "CanadaPost Test API Key"}, "contract_id": {"visibility":
+        "visible", "label": "CanadaPost Test Contract ID (contract customers only)"},
+        "customer_number": {"visibility": "visible", "label": "CanadaPost Test Customer
+        Number"}, "has_credit_card": {"visibility": "checkbox", "label": "CanadaPost
+        Test account has credit card?"}, "not_platform": {"visibility": "invisible",
+        "label": "CanadaPost Test account not registered through platform?"}}, "custom_workflow":
+        true}}, {"object": "CarrierType", "type": "CanparAccount", "readable": "Canpar",
+        "logo": null, "fields": {"credentials": {"account_number": {"visibility":
+        "visible", "label": "Canpar Account Number"}, "username": {"visibility": "visible",
+        "label": "Canpar Username"}, "password": {"visibility": "password", "label":
+        "Canpar Password"}}, "test_credentials": {"account_number": {"visibility":
         "visible", "label": "Test Canpar Account Number"}, "username": {"visibility":
         "visible", "label": "Test Canpar Username"}, "password": {"visibility": "password",
         "label": "Test Canpar Password"}}}}, {"object": "CarrierType", "type": "ColumbusLastMileAccount",
@@ -387,9 +395,9 @@ interactions:
         Account Number"}}}}, {"object": "CarrierType", "type": "SendleAccount", "readable":
         "Sendle", "logo": null, "fields": {"credentials": {"api_key": {"visibility":
         "masked", "label": "Sendle API Key"}, "user_id": {"visibility": "visible",
-        "label": "Sendle User ID"}}, "test_credentials": {"api_key": {"visibility":
-        "masked", "label": "Sendle Sandbox API Key"}, "user_id": {"visibility": "visible",
-        "label": "Sendle Sandbox User ID"}}}}, {"object": "CarrierType", "type": "SfExpressAccount",
+        "label": "Sendle ID"}}, "test_credentials": {"api_key": {"visibility": "masked",
+        "label": "Sendle Sandbox API Key"}, "user_id": {"visibility": "visible", "label":
+        "Sendle Sandbox ID"}}}}, {"object": "CarrierType", "type": "SfExpressAccount",
         "readable": "SF Express", "logo": null, "fields": {"credentials": {"checkword":
         {"visibility": "visible", "label": "SF Express checkword"}, "customer_code":
         {"visibility": "visible", "label": "SF Express customer code"}, "customer_id":
@@ -407,15 +415,22 @@ interactions:
         Account Number"}, "api_key": {"visibility": "masked", "label": "StarTrack
         API Key"}, "api_secret": {"visibility": "password", "label": "StarTrack Secret
         Key"}, "print_as_you_go": {"visibility": "checkbox", "label": "Print as you
-        go"}}}}, {"object": "CarrierType", "type": "UdsAccount", "readable": "UDS",
-        "logo": null, "fields": {"credentials": {"ftp_username": {"visibility": "visible",
-        "label": "FTP Username"}, "ftp_password": {"visibility": "password", "label":
-        "FTP Password"}}}}, {"object": "CarrierType", "type": "UpsAccount", "readable":
-        "UPS", "logo": null, "fields": {"credentials": {"access_license_number": {"visibility":
-        "invisible", "label": "UPS Access License Number"}, "account_number": {"visibility":
-        "readonly", "label": "UPS Account Number"}, "user_id": {"visibility": "invisible",
-        "label": "UPS.com User ID"}, "password": {"visibility": "invisible", "label":
-        "UPS.com Password"}}, "custom_workflow": true}}, {"object": "CarrierType",
+        go"}}}}, {"object": "CarrierType", "type": "TforceConciseAccount", "readable":
+        "TForce", "logo": null, "fields": {"credentials": {"username": {"visibility":
+        "visible", "label": "TForce Username"}, "password": {"visibility": "password",
+        "label": "TForce Password"}, "account_number": {"visibility": "visible", "label":
+        "TForce Account Number"}}, "test_credentials": {"username": {"visibility":
+        "visible", "label": "Test TForce Username"}, "password": {"visibility": "password",
+        "label": "Test TForce Password"}, "account_number": {"visibility": "visible",
+        "label": "Test TForce Account Number"}}}}, {"object": "CarrierType", "type":
+        "UdsAccount", "readable": "UDS", "logo": null, "fields": {"credentials": {"ftp_username":
+        {"visibility": "visible", "label": "FTP Username"}, "ftp_password": {"visibility":
+        "password", "label": "FTP Password"}}}}, {"object": "CarrierType", "type":
+        "UpsAccount", "readable": "UPS", "logo": null, "fields": {"credentials": {"access_license_number":
+        {"visibility": "invisible", "label": "UPS Access License Number"}, "account_number":
+        {"visibility": "readonly", "label": "UPS Account Number"}, "user_id": {"visibility":
+        "invisible", "label": "UPS.com User ID"}, "password": {"visibility": "invisible",
+        "label": "UPS.com Password"}}, "custom_workflow": true}}, {"object": "CarrierType",
         "type": "UpsIparcelAccount", "readable": "UPS i-Parcel", "logo": null, "fields":
         {"credentials": {"api_key": {"visibility": "masked", "label": "i-Parcel API
         key"}}}}, {"object": "CarrierType", "type": "UpsMailInnovationsAccount", "readable":
@@ -439,13 +454,13 @@ interactions:
         "Veho Test API Key"}}}}]'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
-      - '31332'
+      - '32455'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"9f3a5d56ccb4183f80d82dd4769ddf9e"
+      - W/"f9f7c974c65e710285fe3c38fe492e01"
       expires:
       - '0'
       pragma:
@@ -463,20 +478,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c6ef69bd627af80defb5a35a0023c985
+      - f43af47e62fa95bbe79a76ac00262058
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb3nuq
+      - bigweb6nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.025618'
+      - '0.038058'
       x-version-label:
-      - easypost-202205100008-b4df6b5700-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:

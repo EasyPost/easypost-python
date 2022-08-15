@@ -3,8 +3,8 @@ interactions:
     body: '{"customs_info": {"eel_pfc": "NOEEI 30.37(a)", "customs_certify": true,
       "customs_signer": "Steve Brule", "contents_type": "merchandise", "contents_explanation":
       "", "restriction_type": "none", "non_delivery_option": "return", "customs_items":
-      [{"description": "Sweet shirts", "quantity": 2, "weight": 11, "value": 23, "hs_tariff_number":
-      "654321", "origin_country": "US"}]}}'
+      [{"description": "Sweet shirts", "quantity": 2, "weight": 11, "value": 23.25,
+      "hs_tariff_number": "654321", "origin_country": "US"}]}}'
     headers:
       Accept:
       - '*/*'
@@ -13,7 +13,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '374'
+      - '377'
       Content-Type:
       - application/json
       authorization:
@@ -24,22 +24,30 @@ interactions:
     uri: https://api.easypost.com/v2/customs_infos
   response:
     body:
-      string: '{"id":"cstinfo_24308ef6c92a416e99b95d1c5cdd0892","object":"CustomsInfo","created_at":"2022-05-04T20:25:38Z","updated_at":"2022-05-04T20:25:38Z","contents_explanation":"","contents_type":"merchandise","customs_certify":true,"customs_signer":"Steve
-        Brule","eel_pfc":"NOEEI 30.37(a)","non_delivery_option":"return","restriction_comments":null,"restriction_type":"none","mode":"test","declaration":null,"customs_items":[{"id":"cstitem_396ee8b0b29f4ae0bfe1d191d83e89c8","object":"CustomsItem","created_at":"2022-05-04T20:25:38Z","updated_at":"2022-05-04T20:25:38Z","description":"Sweet
-        shirts","hs_tariff_number":"654321","origin_country":"US","quantity":2,"value":"23.0","weight":11.0,"code":null,"mode":"test","manufacturer":null,"currency":null,"eccn":null,"printed_commodity_identifier":null}]}'
+      string: '{"id": "cstinfo_3fb6cee61b07404283b596d3c206019a", "object": "CustomsInfo",
+        "created_at": "2022-08-15T18:51:39Z", "updated_at": "2022-08-15T18:51:39Z",
+        "contents_explanation": "", "contents_type": "merchandise", "customs_certify":
+        true, "customs_signer": "Steve Brule", "eel_pfc": "NOEEI 30.37(a)", "non_delivery_option":
+        "return", "restriction_comments": null, "restriction_type": "none", "mode":
+        "test", "declaration": null, "customs_items": [{"id": "cstitem_94c7df06ba9a4b63b501fa2188169069",
+        "object": "CustomsItem", "created_at": "2022-08-15T18:51:39Z", "updated_at":
+        "2022-08-15T18:51:39Z", "description": "Sweet shirts", "hs_tariff_number":
+        "654321", "origin_country": "US", "quantity": 2, "value": "23.25", "weight":
+        11.0, "code": null, "mode": "test", "manufacturer": null, "currency": null,
+        "eccn": null, "printed_commodity_identifier": null}]}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
-      - '793'
+      - '794'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"42e78f385696231427deaeba63cce9cd"
+      - W/"d173872a7aeaa6f31e76053aaaa50c70"
       expires:
       - '0'
       location:
-      - /api/v2/customs_infos/cstinfo_24308ef6c92a416e99b95d1c5cdd0892
+      - /api/v2/customs_infos/cstinfo_3fb6cee61b07404283b596d3c206019a
       pragma:
       - no-cache
       referrer-policy:
@@ -55,20 +63,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330bb6272e141e786b86000161c43
+      - f43af47c62fa95bbe79a76ad0026207b
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb5nuq
+      - bigweb3nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb1nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.169602'
+      - '0.105201'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:

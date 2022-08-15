@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"parcel": {"length": "10", "width": "8", "height": "4", "weight": "15.4"}}'
+    body: '{"parcel": {"length": 10, "width": 8, "height": 4, "weight": 15.4}}'
     headers:
       Accept:
       - '*/*'
@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '75'
+      - '67'
       Content-Type:
       - application/json
       authorization:
@@ -20,20 +20,23 @@ interactions:
     uri: https://api.easypost.com/v2/parcels
   response:
     body:
-      string: '{"id":"prcl_35d1e841750348679b9970c4123d6935","object":"Parcel","created_at":"2022-05-04T20:25:48Z","updated_at":"2022-05-04T20:25:48Z","length":10.0,"width":8.0,"height":4.0,"predefined_package":null,"weight":15.4,"mode":"test"}'
+      string: '{"id": "prcl_c09d06c1c0774d5caa3d4fe62e585df0", "object": "Parcel",
+        "created_at": "2022-08-15T18:51:53Z", "updated_at": "2022-08-15T18:51:53Z",
+        "length": 10.0, "width": 8.0, "height": 4.0, "predefined_package": null, "weight":
+        15.4, "mode": "test"}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
       - '229'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"06105e1638fc6047757fb19d7e0b8209"
+      - W/"b70813f87e076040c66c0c5a90802fb7"
       expires:
       - '0'
       location:
-      - /api/v2/parcels.prcl_35d1e841750348679b9970c4123d6935
+      - /api/v2/parcels.prcl_c09d06c1c0774d5caa3d4fe62e585df0
       pragma:
       - no-cache
       referrer-policy:
@@ -49,20 +52,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330bc6272e14ce786b89e001620a7
+      - f43af47962fa95c9e79a7a2800262530
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb5nuq
+      - bigweb6nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.023991'
+      - '0.023370'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -82,19 +85,22 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/v2/parcels/prcl_35d1e841750348679b9970c4123d6935
+    uri: https://api.easypost.com/v2/parcels/prcl_c09d06c1c0774d5caa3d4fe62e585df0
   response:
     body:
-      string: '{"id":"prcl_35d1e841750348679b9970c4123d6935","object":"Parcel","created_at":"2022-05-04T20:25:48Z","updated_at":"2022-05-04T20:25:48Z","length":10.0,"width":8.0,"height":4.0,"predefined_package":null,"weight":15.4,"mode":"test"}'
+      string: '{"id": "prcl_c09d06c1c0774d5caa3d4fe62e585df0", "object": "Parcel",
+        "created_at": "2022-08-15T18:51:53Z", "updated_at": "2022-08-15T18:51:53Z",
+        "length": 10.0, "width": 8.0, "height": 4.0, "predefined_package": null, "weight":
+        15.4, "mode": "test"}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
       - '229'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"06105e1638fc6047757fb19d7e0b8209"
+      - W/"b70813f87e076040c66c0c5a90802fb7"
       expires:
       - '0'
       pragma:
@@ -112,20 +118,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330bc6272e14ce786b89e001620b3
+      - f43af47962fa95c9e79a7a2800262537
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb8nuq
+      - bigweb3nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb1nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.020743'
+      - '0.018231'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:

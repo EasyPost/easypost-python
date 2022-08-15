@@ -13,27 +13,26 @@ interactions:
       Content-Type:
       - application/json
       authorization:
-      - REDACTED
+      - <REDACTED>
       user-agent:
-      - REDACTED
-
+      - <REDACTED>
     method: POST
     uri: https://api.easypost.com/v2/users
   response:
     body:
-      string: '{"id": "user_5b56c0c9b2fa4942881f333d1001e164", "object": "User", "parent_id":
+      string: '{"id": "user_d4027c145d80495294fc4df2c1edf7f1", "object": "User", "parent_id":
         "user_54356a6b96c940d8913961a3c7b909f2", "name": "Test User", "phone_number":
-        "REDACTED", "verified": true, "created_at": "2022-05-10T20:24:41Z", "children":
-        ["REDACTED"], "api_keys": ["REDACTED"]}'
+        "<REDACTED>", "verified": true, "created_at": "2022-08-15T18:52:49Z", "children":
+        "<REDACTED>", "api_keys": "<REDACTED>"}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
       - '634'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"607a68238df9dfde704e02f7afcc5f2d"
+      - W/"5a53e28089f112f4c26bca846fd6a8da"
       expires:
       - '0'
       pragma:
@@ -51,20 +50,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c6ef69b9627aca09efb5854e0015b9be
+      - f43af47e62fa9600e79a7e240026394f
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb8nuq
+      - bigweb3nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb1nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.556993'
+      - '0.729615'
       x-version-label:
-      - easypost-202205100008-b4df6b5700-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -82,18 +81,17 @@ interactions:
       Content-Length:
       - '0'
       authorization:
-      - REDACTED
+      - <REDACTED>
       user-agent:
-      - REDACTED
-
+      - <REDACTED>
     method: DELETE
-    uri: https://api.easypost.com/v2/users/user_5b56c0c9b2fa4942881f333d1001e164
+    uri: https://api.easypost.com/v2/users/user_d4027c145d80495294fc4df2c1edf7f1
   response:
     body:
       string: ''
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       expires:
       - '0'
       pragma:
@@ -109,20 +107,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c6ef69b9627aca0aefb5854e0015b9f7
+      - f43af47e62fa9601e79a7e240026399b
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb9nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.108854'
+      - '0.124107'
       x-version-label:
-      - easypost-202205100008-b4df6b5700-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:

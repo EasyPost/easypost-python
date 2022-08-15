@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: '{"customs_item": {"description": "Sweet shirts", "quantity": 2, "weight":
-      11, "value": 23, "hs_tariff_number": "654321", "origin_country": "US"}}'
+      11, "value": 23.25, "hs_tariff_number": "654321", "origin_country": "US"}}'
     headers:
       Accept:
       - '*/*'
@@ -10,7 +10,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '145'
+      - '148'
       Content-Type:
       - application/json
       authorization:
@@ -21,21 +21,25 @@ interactions:
     uri: https://api.easypost.com/v2/customs_items
   response:
     body:
-      string: '{"id":"cstitem_018e5efc1eb244b7aa0df5e811cad548","object":"CustomsItem","created_at":"2022-05-04T20:25:38Z","updated_at":"2022-05-04T20:25:38Z","description":"Sweet
-        shirts","hs_tariff_number":"654321","origin_country":"US","quantity":2,"value":"23.0","weight":11.0,"code":null,"mode":"test","manufacturer":null,"currency":null,"eccn":null,"printed_commodity_identifier":null}'
+      string: '{"id": "cstitem_56e2afe402954d3c9764b82fd949cd3b", "object": "CustomsItem",
+        "created_at": "2022-08-15T18:51:40Z", "updated_at": "2022-08-15T18:51:40Z",
+        "description": "Sweet shirts", "hs_tariff_number": "654321", "origin_country":
+        "US", "quantity": 2, "value": "23.25", "weight": 11.0, "code": null, "mode":
+        "test", "manufacturer": null, "currency": null, "eccn": null, "printed_commodity_identifier":
+        null}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
-      - '375'
+      - '376'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"a27bf166e238532131589ce869249dcb"
+      - W/"ddc117b7972f2ae59dd12603ca5f9879"
       expires:
       - '0'
       location:
-      - /api/v2/customs_items/cstitem_018e5efc1eb244b7aa0df5e811cad548
+      - /api/v2/customs_items/cstitem_56e2afe402954d3c9764b82fd949cd3b
       pragma:
       - no-cache
       referrer-policy:
@@ -51,20 +55,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330b96272e142e786b86200161c94
+      - f43af47c62fa95bce79a79bd002620c6
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb8nuq
+      - bigweb2nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.040097'
+      - '0.028220'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:
