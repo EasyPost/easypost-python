@@ -16,16 +16,28 @@ interactions:
     uri: https://api.easypost.com/v2/refunds?page_size=5
   response:
     body:
-      string: '{"refunds":[{"id":"rfnd_75569d36e3d648b893a875a3070ae92a","object":"Refund","created_at":"2022-05-04T20:26:04Z","updated_at":"2022-05-04T20:26:04Z","tracking_code":"9400100109361117768853","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_9e38dcceeaef4d359c38211af1bcca33"},{"id":"rfnd_58872cdfeaa947ec90159407c304f145","object":"Refund","created_at":"2022-05-04T20:23:52Z","updated_at":"2022-05-04T20:23:52Z","tracking_code":"9400100109361117768570","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_6e0a4901556949328e6afb173389a649"},{"id":"rfnd_108eeeb1e97e4ce780cbb0b964c78c75","object":"Refund","created_at":"2022-04-21T22:45:37Z","updated_at":"2022-04-21T23:15:47Z","tracking_code":"9400100109361116088099","confirmation_number":null,"status":"rejected","carrier":"USPS","shipment_id":"shp_961e00cc92cc429eae640f5b88065e82"},{"id":"rfnd_66f5361a75fb423cbb6c8e5e1aefe2d5","object":"Refund","created_at":"2022-04-21T22:45:10Z","updated_at":"2022-04-21T23:15:47Z","tracking_code":"9400100109361116088006","confirmation_number":null,"status":"rejected","carrier":"USPS","shipment_id":"shp_e1b68199c65a4124898739429c12e9a4"},{"id":"rfnd_0646ba87fb3348ba88e1830b54059d9f","object":"Refund","created_at":"2022-04-21T22:40:20Z","updated_at":"2022-04-21T23:15:45Z","tracking_code":"9400100109361116087689","confirmation_number":null,"status":"rejected","carrier":"USPS","shipment_id":"shp_f034681d435a4b16b8a4d8eb84df7819"}],"has_more":true}'
+      string: '{"refunds": [{"id": "rfnd_5b7291ff21f24a00ae36efaeae2487ba", "object":
+        "Refund", "created_at": "2022-08-15T18:52:15Z", "updated_at": "2022-08-15T18:52:15Z",
+        "tracking_code": "9400100109361133189489", "confirmation_number": null, "status":
+        "submitted", "carrier": "USPS", "shipment_id": "shp_704777a6b4664aea8b866a7df01066ed"},
+        {"id": "rfnd_594e574079f5446c9aca582a3d56a845", "object": "Refund", "created_at":
+        "2022-07-28T20:27:02Z", "updated_at": "2022-07-29T20:27:02Z", "tracking_code":
+        "9400100109361130493923", "confirmation_number": null, "status": "rejected",
+        "carrier": "USPS", "shipment_id": "shp_9db138dea626443699553906459b8925"},
+        {"id": "rfnd_3338b57c825f4f518bf728452e6a5a4f", "object": "Refund", "created_at":
+        "2022-07-28T19:56:20Z", "updated_at": "2022-07-29T19:56:20Z", "tracking_code":
+        "9400100109361130483610", "confirmation_number": null, "status": "rejected",
+        "carrier": "USPS", "shipment_id": "shp_d509905bab4e433780ffa09d8f6a0573"}],
+        "has_more": false}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
-      - '1506'
+      - '916'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"cdbddd18863d7d9f533d1f77dad1b62c"
+      - W/"748b8cbde9e32ca8d61cd4f24184be45"
       expires:
       - '0'
       pragma:
@@ -43,20 +55,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330b96272e15de786b8bf001627ae
+      - f43af48062fa95dfe79a7a6300262d87
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb1nuq
+      - bigweb9nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb1nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.185053'
+      - '0.177523'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -76,19 +88,22 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/v2/refunds/rfnd_75569d36e3d648b893a875a3070ae92a
+    uri: https://api.easypost.com/v2/refunds/rfnd_5b7291ff21f24a00ae36efaeae2487ba
   response:
     body:
-      string: '{"id":"rfnd_75569d36e3d648b893a875a3070ae92a","object":"Refund","created_at":"2022-05-04T20:26:04Z","updated_at":"2022-05-04T20:26:04Z","tracking_code":"9400100109361117768853","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_9e38dcceeaef4d359c38211af1bcca33"}'
+      string: '{"id": "rfnd_5b7291ff21f24a00ae36efaeae2487ba", "object": "Refund",
+        "created_at": "2022-08-15T18:52:15Z", "updated_at": "2022-08-15T18:52:15Z",
+        "tracking_code": "9400100109361133189489", "confirmation_number": null, "status":
+        "submitted", "carrier": "USPS", "shipment_id": "shp_704777a6b4664aea8b866a7df01066ed"}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
       - '295'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"3fd681db9c2e80ceb1c8d1b3eaba3e16"
+      - W/"d37e54f4ba79e4d85da59ce32e2900d1"
       expires:
       - '0'
       pragma:
@@ -106,20 +121,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330b96272e15de786b8bf001627d9
+      - f43af48062fa95e0e79a7a6300262da1
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb3nuq
+      - bigweb2nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb1nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.030956'
+      - '0.037767'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:

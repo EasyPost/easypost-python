@@ -9,29 +9,29 @@ interactions:
       Connection:
       - keep-alive
       authorization:
-      - REDACTED
+      - <REDACTED>
       user-agent:
-      - REDACTED
+      - <REDACTED>
     method: GET
     uri: https://api.easypost.com/v2/users
   response:
     body:
       string: '{"id": "user_54356a6b96c940d8913961a3c7b909f2", "object": "User", "parent_id":
-        null, "name": "EasyPost Python Client Library Tests", "phone_number": "REDACTED",
+        null, "name": "EasyPost Python Client Library Tests", "phone_number": "<REDACTED>",
         "verified": true, "created_at": "2017-03-01T03:01:34Z", "balance": "0.00000",
-        "price_per_shipment": "0.00000", "recharge_amount": null, "secondary_recharge_amount":
-        null, "recharge_threshold": null, "has_billing_method": null, "cc_fee_rate":
+        "price_per_shipment": "0.00000", "recharge_amount": "100.00", "secondary_recharge_amount":
+        "100.00", "recharge_threshold": "0.00", "has_billing_method": false, "cc_fee_rate":
         "0.03", "default_insurance_amount": null, "insurance_fee_rate": "0.01", "insurance_fee_minimum":
-        "1.00", "email": "REDACTED", "children": ["REDACTED"]}'
+        "1.00", "email": "<REDACTED>", "children": "<REDACTED>"}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
-      - '8070'
+      - '8081'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"b0fa578474b6326fde45bf6b1b04aa68"
+      - W/"93d966ca847a2ef598ea9d7bd07bb1ee"
       expires:
       - '0'
       pragma:
@@ -49,20 +49,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f56ecb31627aca07efb5854c00141d07
+      - f43af48062fa95fee79a7e22002638ac
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb9nuq
+      - bigweb2nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb2nuq c51cdb8bf2
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.382113'
+      - '0.449663'
       x-version-label:
-      - easypost-202205100008-b4df6b5700-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:

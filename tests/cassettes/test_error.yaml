@@ -20,14 +20,13 @@ interactions:
     uri: https://api.easypost.com/v2/shipments
   response:
     body:
-      string: '{"error": {"code": "SHIPMENT.INVALID_PARAMS", "message": "Unable to
-        create shipment, one or more parameters were invalid.", "errors": [{"to_address":
-        "Required and missing."}, {"from_address": "Required and missing."}]}}'
+      string: '{"error": {"code": "PARAMETER.REQUIRED", "message": "Missing required
+        parameter.", "errors": [{"field": "shipment", "message": "cannot be blank"}]}}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
-      - '211'
+      - '139'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -47,21 +46,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 3843703c62e2e9d7ff23e29a0034322b
+      - f43af47e62fa95bde79a79bf00262123
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb4nuq
+      - bigweb9nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 403f17ff97
-      - intlb1wdc 403f17ff97
-      - extlb4wdc 403f17ff97
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.018855'
+      - '0.030644'
       x-version-label:
-      - easypost-202207272329-7f74c9e58c-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:

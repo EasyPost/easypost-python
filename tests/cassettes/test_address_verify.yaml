@@ -1,8 +1,8 @@
 interactions:
 - request:
-    body: '{"address": {"name": "Jack Sparrow", "company": "EasyPost", "street1":
-      "388 Townsend St", "street2": "Apt 20", "city": "San Francisco", "state": "CA",
-      "zip": "94107", "phone": "5555555555"}}'
+    body: '{"address": {"name": "Jack Sparrow", "street1": "388 Townsend St", "street2":
+      "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+      "US", "email": "test@example.com", "phone": "5555555555"}}'
     headers:
       Accept:
       - '*/*'
@@ -11,7 +11,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '190'
+      - '213'
       Content-Type:
       - application/json
       authorization:
@@ -22,22 +22,26 @@ interactions:
     uri: https://api.easypost.com/v2/addresses
   response:
     body:
-      string: '{"id":"adr_514fe085cbe811ec8c10ac1f6b0a0d1e","object":"Address","created_at":"2022-05-04T20:25:19+00:00","updated_at":"2022-05-04T20:25:19+00:00","name":"Jack
-        Sparrow","company":"EasyPost","street1":"388 Townsend St","street2":"Apt 20","city":"San
-        Francisco","state":"CA","zip":"94107","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}}'
+      string: '{"id": "adr_409182f21ccb11ed9b04ac1f6bc7bdc6", "object": "Address",
+        "created_at": "2022-08-15T18:51:20+00:00", "updated_at": "2022-08-15T18:51:20+00:00",
+        "name": "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
-      - '453'
+      - '461'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"e4644b9a928b326570f7620283ada19a"
+      - W/"ce46db2590a6ceea78fc6e099a8ccac3"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_514fe085cbe811ec8c10ac1f6b0a0d1e
+      - /api/v2/addresses/adr_409182f21ccb11ed9b04ac1f6bc7bdc6
       pragma:
       - no-cache
       referrer-policy:
@@ -48,27 +52,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330bc6272e12fe786b82200161480
+      - f43af47e62fa95a8e79a7686002619c8
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb5nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb1nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.028142'
+      - '0.032584'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -88,25 +90,31 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/v2/addresses/adr_514fe085cbe811ec8c10ac1f6b0a0d1e/verify
+    uri: https://api.easypost.com/v2/addresses/adr_409182f21ccb11ed9b04ac1f6bc7bdc6/verify
   response:
     body:
-      string: '{"address":{"id":"adr_5161c168cbe811eca5aeac1f6bc7bdc6","object":"Address","created_at":"2022-05-04T20:25:19+00:00","updated_at":"2022-05-04T20:25:19+00:00","name":"JACK
-        SPARROW","company":"EASYPOST","street1":"388 TOWNSEND ST APT 20","street2":"","city":"SAN
-        FRANCISCO","state":"CA","zip":"94107-1670","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":true,"federal_tax_id":null,"state_tax_id":null,"verifications":{"zip4":{"success":true,"errors":[],"details":null},"delivery":{"success":true,"errors":[],"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"}}}}}'
+      string: '{"address": {"id": "adr_40a6eec81ccb11edb7c6ac1f6b0a0d1e", "object":
+        "Address", "created_at": "2022-08-15T18:51:20+00:00", "updated_at": "2022-08-15T18:51:20+00:00",
+        "name": "JACK SPARROW", "company": null, "street1": "388 TOWNSEND ST APT 20",
+        "street2": "", "city": "SAN FRANCISCO", "state": "CA", "zip": "94107-1670",
+        "country": "US", "phone": "5555555555", "email": "TEST@EXAMPLE.COM", "mode":
+        "test", "carrier_facility": null, "residential": true, "federal_tax_id": null,
+        "state_tax_id": null, "verifications": {"zip4": {"success": true, "errors":
+        [], "details": null}, "delivery": {"success": true, "errors": [], "details":
+        {"latitude": 37.77551, "longitude": -122.39697, "time_zone": "America/Los_Angeles"}}}}}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
-      - '650'
+      - '658'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"3573a853a362c3ef264aad55e9e4279c"
+      - W/"0e7882b579dc217d5191d84b7090350a"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_5161c168cbe811eca5aeac1f6bc7bdc6
+      - /api/v2/addresses/adr_40a6eec81ccb11edb7c6ac1f6b0a0d1e
       pragma:
       - no-cache
       referrer-policy:
@@ -122,20 +130,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330bc6272e12fe786b82200161492
+      - f43af47e62fa95a8e79a7686002619d7
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb8nuq
+      - bigweb2nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.049251'
+      - '0.056534'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:

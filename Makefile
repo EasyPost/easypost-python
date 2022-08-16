@@ -41,10 +41,14 @@ install: | venv install-dev
 ## install-dev - Install dev requirements
 install-dev: | venv
 	$(VIRTUAL_BIN)/pip install -e ."[dev]"
+	git submodule init
+	git submodule update
 
 ## install-pypy - Install dev requirements for pypy
 install-pypy: | venv
 	$(VIRTUAL_BIN)/pip install -e ."[pypy_dev]"
+	git submodule init
+	git submodule update
 
 ## isort - Sorts imports throughout the project
 isort:

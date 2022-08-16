@@ -11,6 +11,6 @@ def test_error():
         assert error.http_status == 422
         assert (
             error.http_body
-            == '{"error": {"code": "SHIPMENT.INVALID_PARAMS", "message": "Unable to create shipment, one or more parameters were invalid.", "errors": [{"to_address": "Required and missing."}, {"from_address": "Required and missing."}]}}'  # noqa
+            == '{"error": {"code": "PARAMETER.REQUIRED", "message": "Missing required parameter.", "errors": [{"field": "shipment", "message": "cannot be blank"}]}}'  # noqa
         )
-        assert error.message == "Unable to create shipment, one or more parameters were invalid."
+        assert error.message == "Missing required parameter."

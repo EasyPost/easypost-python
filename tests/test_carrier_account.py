@@ -9,7 +9,7 @@ def test_carrier_account_create(prod_api_key, basic_carrier_account):
 
     assert isinstance(carrier_account, easypost.CarrierAccount)
     assert str.startswith(carrier_account.id, "ca_")
-    assert carrier_account.type == "UpsAccount"
+    assert carrier_account.type == "DhlEcsAccount"
 
     carrier_account.delete()  # Delete the carrier account once it's done being tested.
 

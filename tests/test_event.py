@@ -25,8 +25,8 @@ def test_event_retrieve(page_size):
 
 
 @pytest.mark.vcr()
-def test_event_receive(event):
-    event = easypost.Event.receive(event)
+def test_event_receive(event_json):
+    event = easypost.Event.receive(event_json)
 
     assert isinstance(event, easypost.Event)
     assert str.startswith(event.id, "evt_")

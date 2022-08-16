@@ -1,8 +1,9 @@
 interactions:
 - request:
-    body: '{"address": {"name": "Jack Sparrow", "company": "EasyPost", "street1":
-      "388 Townsend St", "street2": "Apt 20", "city": "San Francisco", "state": "CA",
-      "zip": "94107", "phone": "5555555555"}, "verify_strict": true}'
+    body: '{"address": {"name": "Jack Sparrow", "street1": "388 Townsend St", "street2":
+      "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+      "US", "email": "test@example.com", "phone": "5555555555"}, "verify_strict":
+      true}'
     headers:
       Accept:
       - '*/*'
@@ -11,7 +12,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '213'
+      - '236'
       Content-Type:
       - application/json
       authorization:
@@ -22,10 +23,10 @@ interactions:
     uri: https://api.easypost.com/v2/addresses
   response:
     body:
-      string: '{"id": "adr_3b5a65d70f6511ed98f4ac1f6bc72124", "object": "Address",
-        "created_at": "2022-07-29T17:38:18+00:00", "updated_at": "2022-07-29T17:38:18+00:00",
-        "name": "JACK SPARROW", "company": "EASYPOST", "street1": "388 TOWNSEND ST
-        APT 20", "street2": "", "city": "SAN FRANCISCO", "state": "CA", "zip": "94107-1670",
+      string: '{"id": "adr_3fb06f3a1ccb11edb768ac1f6b0a0d1e", "object": "Address",
+        "created_at": "2022-08-15T18:51:19+00:00", "updated_at": "2022-08-15T18:51:19+00:00",
+        "name": "JACK SPARROW", "company": null, "street1": "388 TOWNSEND ST APT 20",
+        "street2": "", "city": "SAN FRANCISCO", "state": "CA", "zip": "94107-1670",
         "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test",
         "carrier_facility": null, "residential": true, "federal_tax_id": null, "state_tax_id":
         null, "verifications": {"zip4": {"success": true, "errors": [], "details":
@@ -33,17 +34,17 @@ interactions:
         37.77551, "longitude": -122.39697, "time_zone": "America/Los_Angeles"}}}}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
-      - '638'
+      - '646'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"22ac1cfa3f1fbe071cad5da66ce774e5"
+      - W/"9d4839a8fe862cfffbafd27a54644ab6"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_3b5a65d70f6511ed98f4ac1f6bc72124
+      - /api/v2/addresses/adr_3fb06f3a1ccb11edb768ac1f6b0a0d1e
       pragma:
       - no-cache
       referrer-policy:
@@ -59,20 +60,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 2415913a62e41b09e786b3f90005fc61
+      - f43af47d62fa95a7e79a76650026194a
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb5nuq
+      - bigweb2nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 403f17ff97
-      - extlb2nuq 403f17ff97
+      - intlb1nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.045077'
+      - '0.044484'
       x-version-label:
-      - easypost-202207282305-ef64fb0c25-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:

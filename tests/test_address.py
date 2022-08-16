@@ -4,8 +4,8 @@ import easypost
 
 
 @pytest.mark.vcr()
-def test_address_create(basic_address):
-    address = easypost.Address.create(**basic_address)
+def test_address_create(ca_address_1):
+    address = easypost.Address.create(**ca_address_1)
 
     assert isinstance(address, easypost.Address)
     assert str.startswith(address.id, "adr_")
@@ -13,14 +13,14 @@ def test_address_create(basic_address):
 
 
 @pytest.mark.vcr()
-def test_address_create_verify(incorrect_address_to_verify):
+def test_address_create_verify(incorrect_address):
     """Test creating an address with the verify param.
 
     We purposefully pass in slightly incorrect data to get the corrected address back once verified.
     """
-    incorrect_address_to_verify["verify"] = True
+    incorrect_address["verify"] = True
 
-    address = easypost.Address.create(**incorrect_address_to_verify)
+    address = easypost.Address.create(**incorrect_address)
 
     assert isinstance(address, easypost.Address)
     assert str.startswith(address.id, "adr_")
@@ -28,12 +28,12 @@ def test_address_create_verify(incorrect_address_to_verify):
 
 
 @pytest.mark.vcr()
-def test_address_create_verify_strict(basic_address):
+def test_address_create_verify_strict(ca_address_1):
     """Test creating an address with the verify_strict param.
 
     We purposefully pass in slightly incorrect data to get the corrected address back once verified.
     """
-    address_data = basic_address
+    address_data = ca_address_1
     address_data["verify_strict"] = True
 
     address = easypost.Address.create(**address_data)
@@ -44,14 +44,14 @@ def test_address_create_verify_strict(basic_address):
 
 
 @pytest.mark.vcr()
-def test_address_create_verify_array(incorrect_address_to_verify):
+def test_address_create_verify_array(incorrect_address):
     """Test creating an address with the verify param as an array.
 
     We purposefully pass in slightly incorrect data to get the corrected address back once verified.
     """
-    incorrect_address_to_verify["verify"] = [True]
+    incorrect_address["verify"] = [True]
 
-    address = easypost.Address.create(**incorrect_address_to_verify)
+    address = easypost.Address.create(**incorrect_address)
 
     assert isinstance(address, easypost.Address)
     assert str.startswith(address.id, "adr_")
@@ -59,8 +59,8 @@ def test_address_create_verify_array(incorrect_address_to_verify):
 
 
 @pytest.mark.vcr()
-def test_address_retrieve(basic_address):
-    address = easypost.Address.create(**basic_address)
+def test_address_retrieve(ca_address_1):
+    address = easypost.Address.create(**ca_address_1)
 
     retrieved_address = easypost.Address.retrieve(address.id)
 
@@ -80,9 +80,9 @@ def test_address_all(page_size):
 
 
 @pytest.mark.vcr()
-def test_address_verify(basic_address):
+def test_address_verify(ca_address_1):
     """Test verifying an already created address."""
-    address = easypost.Address.create(**basic_address)
+    address = easypost.Address.create(**ca_address_1)
     address.verify()
 
     assert isinstance(address, easypost.Address)

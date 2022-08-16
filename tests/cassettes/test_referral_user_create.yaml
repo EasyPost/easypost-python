@@ -13,30 +13,29 @@ interactions:
       Content-Type:
       - application/json
       authorization:
-      - REDACTED
+      - <REDACTED>
       user-agent:
-      - REDACTED
-
+      - <REDACTED>
     method: POST
     uri: https://api.easypost.com/beta/referral_customers
   response:
     body:
-      string: '{"id": "user_c21adae296d44e0d92bd3b3d4f93d12a", "object": "User", "parent_id":
-        null, "name": "test test", "phone_number": "REDACTED", "verified": true, "created_at":
-        "2022-05-10T20:53:02Z", "balance": "0.00000", "price_per_shipment": "0.00000",
-        "recharge_amount": null, "secondary_recharge_amount": null, "recharge_threshold":
-        null, "has_billing_method": null, "cc_fee_rate": "0.0325", "default_insurance_amount":
+      string: '{"id": "user_40d92e3d63874774a52e5ba8d3a265f6", "object": "User", "parent_id":
+        null, "name": "test test", "phone_number": "<REDACTED>", "verified": true,
+        "created_at": "2022-08-15T18:52:11Z", "balance": "0.00000", "price_per_shipment":
+        "0.00000", "recharge_amount": null, "secondary_recharge_amount": null, "recharge_threshold":
+        null, "has_billing_method": null, "cc_fee_rate": "0.0375", "default_insurance_amount":
         "50.00", "insurance_fee_rate": "0.005", "insurance_fee_minimum": "0.25", "email":
-        "REDACTED", "children": ["REDACTED"], "api_keys": ["REDACTED"]}'
+        "<REDACTED>", "children": "<REDACTED>", "api_keys": "<REDACTED>"}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
       - '961'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"2745f70aedc34e78db98ea72a0220b49"
+      - W/"9ca8f753aa7815fbd52a8cec563ba91d"
       expires:
       - '0'
       pragma:
@@ -54,20 +53,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f56ecb35627ad0aeefb58a5500168fb1
+      - f43af47d62fa95dbe79a7a4700262ba2
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb1nuq
+      - bigweb9nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb2nuq c51cdb8bf2
+      - intlb1nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.708505'
+      - '0.987999'
       x-version-label:
-      - easypost-202205100008-b4df6b5700-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:

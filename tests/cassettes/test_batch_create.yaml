@@ -1,12 +1,12 @@
 interactions:
 - request:
-    body: '{"batch": {"shipments": [{"to_address": {"name": "Jack Sparrow", "company":
-      "EasyPost", "street1": "388 Townsend St", "street2": "Apt 20", "city": "San
-      Francisco", "state": "CA", "zip": "94107", "phone": "5555555555"}, "from_address":
-      {"name": "Jack Sparrow", "company": "EasyPost", "street1": "388 Townsend St",
-      "street2": "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107",
-      "phone": "5555555555"}, "parcel": {"length": "10", "width": "8", "height": "4",
-      "weight": "15.4"}, "service": "First", "carrier_accounts": ["ca_b25657e9896e4d63ac8151ac346ac41e"],
+    body: '{"batch": {"shipments": [{"to_address": {"name": "Jack Sparrow", "street1":
+      "388 Townsend St", "street2": "Apt 20", "city": "San Francisco", "state": "CA",
+      "zip": "94107", "country": "US", "email": "test@example.com", "phone": "5555555555"},
+      "from_address": {"name": "Elizabeth Swan", "street1": "179 N Harbor Dr", "city":
+      "Redondo Beach", "state": "CA", "zip": "90277", "country": "US", "email": "test@example.com",
+      "phone": "5555555555"}, "parcel": {"length": 10, "width": 8, "height": 4, "weight":
+      15.4}, "service": "First", "carrier_accounts": ["ca_b25657e9896e4d63ac8151ac346ac41e"],
       "carrier": "USPS"}]}}'
     headers:
       Accept:
@@ -16,7 +16,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '591'
+      - '610'
       Content-Type:
       - application/json
       authorization:
@@ -27,16 +27,21 @@ interactions:
     uri: https://api.easypost.com/v2/batches
   response:
     body:
-      string: '{"id":"batch_6da8c4c8199c4875b670c845f684fb3f","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-05-04T20:25:20Z","updated_at":"2022-05-04T20:25:20Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
+      string: '{"id": "batch_b65b997e02b74bbba53da82e745ca883", "object": "Batch",
+        "mode": "test", "state": "creating", "num_shipments": 1, "reference": null,
+        "created_at": "2022-08-15T18:51:20Z", "updated_at": "2022-08-15T18:51:20Z",
+        "scan_form": null, "shipments": [], "status": {"created": 0, "queued_for_purchase":
+        0, "creation_failed": 0, "postage_purchased": 0, "postage_purchase_failed":
+        0}, "pickup": null, "label_url": null}'
     headers:
       cache-control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       content-length:
       - '384'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"26df610ae1fbc0a0688abe7d0f0474b9"
+      - W/"a120a9255e88a0ea37d8049003fb1949"
       expires:
       - '0'
       pragma:
@@ -54,20 +59,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62b330b76272e130e786b83a001614ae
+      - f43af47d62fa95a8e79a7687002619eb
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb8nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq fde591f008
-      - extlb1nuq c51cdb8bf2
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       x-runtime:
-      - '0.037857'
+      - '0.037520'
       x-version-label:
-      - easypost-202205041833-02730cc398-master
+      - easypost-202208151827-9b2100b5ad-master
       x-xss-protection:
       - 1; mode=block
     status:
