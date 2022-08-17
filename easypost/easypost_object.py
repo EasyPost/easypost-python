@@ -17,6 +17,7 @@ EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP = {
     "cfrep": "Report",
     "cstinfo": "CustomsInfo",
     "cstitem": "CustomsItem",
+    "es": "EndShipper",
     "evt": "Event",
     "hook": "Webhook",
     "ins": "Insurance",
