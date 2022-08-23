@@ -267,14 +267,18 @@ def basic_order():
 
 @pytest.fixture
 def event_json():
-    return json.dumps(read_fixture_data()["event_body"])
+    with open(os.path.join("examples", "official", "fixtures", "event-body.json")) as data:
+        event_body = json.load(data)
+
+    return json.dumps(event_body)
 
 
 @pytest.fixture
 def event_bytes():
-    data = read_fixture_data()["event_body"]
+    with open(os.path.join("examples", "official", "fixtures", "event-body.json")) as data:
+        event_body = json.load(data)
 
-    return json.dumps(data, separators=(",", ":")).encode()
+    return json.dumps(event_body, separators=(",", ":")).encode()
 
 
 @pytest.fixture
