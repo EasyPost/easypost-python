@@ -30,8 +30,7 @@ class EndShipper(AllResource):
                 params[k] = getattr(self, k)
                 if type(params[k]) is EasyPostObject:
                     params[k] = params[k].flatten_unsaved()
-            wrapped_params = {"address": params}
-            # This function is overridden because the wrapped_param key has to be `address`
+            wrapped_params = {"address": params}  # This function is overridden due to the key has to be `address`
             url = self.instance_url()
             response, api_key = requestor.request(method=RequestMethod.PUT, url=url, params=wrapped_params)
             self.refresh_from(values=response, api_key=api_key)

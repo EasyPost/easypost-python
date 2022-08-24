@@ -50,4 +50,4 @@ def test_endshipper_update(prod_api_key, ca_address_1):
 
     assert isinstance(endshipper, easypost.EndShipper)
     assert str.startswith(endshipper.id, "es")
-    assert endshipper.name == "CAPTAIN SPARROW"
+    assert endshipper.name == "CAPTAIN SPARROW"  # Name is capitalized becasue API will autocapitalize response
