@@ -1,3 +1,4 @@
+# flake8: noqa
 import easypost.beta
 from easypost.address import Address
 from easypost.batch import Batch

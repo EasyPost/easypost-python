@@ -36,17 +36,9 @@ format: black isort
 format-check: black-check isort-check lint mypy
 
 ## install - Install the project locally
-install: | venv install-dev
-
-## install-dev - Install dev requirements
-install-dev: | venv
+install:
+	$(PYTHON_BINARY) -m venv $(VIRTUAL_ENV)
 	$(VIRTUAL_BIN)/pip install -e ."[dev]"
-	git submodule init
-	git submodule update
-
-## install-pypy - Install dev requirements for pypy
-install-pypy: | venv
-	$(VIRTUAL_BIN)/pip install -e ."[pypy_dev]"
 	git submodule init
 	git submodule update
 
@@ -83,8 +75,4 @@ scan:
 test:
 	$(VIRTUAL_BIN)/pytest
 
-## venv - Create the virtual environment
-venv:
-	$(PYTHON_BINARY) -m venv $(VIRTUAL_ENV)
-
-.PHONY: help build clean coverage black black-check format format-check install install-dev install-pypy isort isort-check lint mypy publish release scan test
+.PHONY: help build clean coverage black black-check format format-check install isort isort-check lint mypy publish release scan test
