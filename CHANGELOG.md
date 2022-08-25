@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## Next Release
+## v7.5.0 (2022-08-25)
 
-- Adds the `EndShipper` Beta class with `create`, `retrieve`, `all`, and `save` functions
+- Adds the `EndShipper` class with `create`, `retrieve`, `all`, and `save` functions
 
 ## v7.4.0 (2022-08-02)
 
