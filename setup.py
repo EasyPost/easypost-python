@@ -12,8 +12,9 @@ REQUIREMENTS = [
 DEV_REQUIREMENTS = [
     "bandit==1.7.1",  # Bandit 1.7.2 drops support for Python 3.6
     "black==22.*",
-    "flake8==4.*",
+    "flake8==5.*",
     "isort==5.*",
+    "mypy==0.971",
     "pytest-cov==3.*",
     "pytest-vcr==1.*",
     "pytest==7.*",
@@ -22,11 +23,6 @@ DEV_REQUIREMENTS = [
     "types-urllib3",
     "vcrpy==4.*",
     "wheel==0.37.*",
-]
-
-# packages incompatible with PyPy go here
-CPYTHON_DEV_REQUIREMENTS = [
-    "mypy==0.942",
 ]
 
 with open("README.md", encoding="utf-8") as f:
@@ -47,8 +43,7 @@ setup(
     ),
     install_requires=REQUIREMENTS,
     extras_require={
-        "dev": DEV_REQUIREMENTS + CPYTHON_DEV_REQUIREMENTS,
-        "pypy_dev": DEV_REQUIREMENTS,  # no cpython requirements
+        "dev": DEV_REQUIREMENTS,
     },
     package_data={
         "easypost": ["py.typed"],

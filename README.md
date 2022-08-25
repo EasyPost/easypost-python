@@ -7,6 +7,8 @@ EasyPost, the simple shipping solution. You can sign up for an account at <https
 
 ## Install
 
+The library is tested against Python3 and should be compatible with PyPy3.
+
 ```bash
 pip install easypost
 ```
