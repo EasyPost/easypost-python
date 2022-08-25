@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds the `EndShipper` Beta class with `create`, `retrieve`, `all`, and `save` functions
+
 ## v7.4.0 (2022-08-02)
 
 - Adds Carbon Offset support

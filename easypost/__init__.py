@@ -6,6 +6,7 @@ from easypost.brand import Brand
 from easypost.carrier_account import CarrierAccount
 from easypost.customs_info import CustomsInfo
 from easypost.customs_item import CustomsItem
+from easypost.endshipper import EndShipper
 from easypost.error import Error
 from easypost.event import Event
 from easypost.insurance import Insurance
