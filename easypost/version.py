@@ -1,4 +1,4 @@
-VERSION = "7.4.0"
+VERSION = "7.5.0"
 
 elements = VERSION.split("-")
 numbers = [str(v) for v in elements[0].split(".")]
