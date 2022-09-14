@@ -47,11 +47,15 @@ class Shipment(AllResource):
         response, _ = requestor.request(method=RequestMethod.GET, url=url)
         return response.get("result", [])
 
-    def buy(self, with_carbon_offset: Optional[bool] = False, **params) -> "Shipment":
+    def buy(
+        self, with_carbon_offset: Optional[bool] = False, end_shipper_id: Optional[str] = None, **params
+    ) -> "Shipment":
         """Buy a shipment."""
         requestor = Requestor(local_api_key=self._api_key)
         url = "%s/%s" % (self.instance_url(), "buy")
         params["carbon_offset"] = with_carbon_offset
+        if end_shipper_id:
+            params["end_shipper_id"] = end_shipper_id
 
         response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=params)
         self.refresh_from(values=response, api_key=api_key)
