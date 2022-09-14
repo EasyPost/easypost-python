@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## NEXT RELEASE
+
+- Adds support to pass `end_shipper_id` on the buy call of a Shipment
+
 ## v7.5.0 (2022-08-25)
 
 - Adds the `EndShipper` class with `create`, `retrieve`, `all`, and `save` functions
