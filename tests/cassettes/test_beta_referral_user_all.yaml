@@ -13,7 +13,7 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/v2/referral_customers?page_size=5
+    uri: https://api.easypost.com/beta/referral_customers?page_size=5
   response:
     body:
       string: '{"has_more": true, "referral_customers": [{"id": "user_634b6daa05744bfaa205058f06864363",
@@ -71,23 +71,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - fb9a52c063236819e787d97e00082542
+      - fb9a52bd63236812e787d9620008223a
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb2nuq
+      - bigweb7nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
       - intlb1nuq 6aa9972c1e
       - extlb2nuq 9ce216bfac
       x-runtime:
-      - '0.273447'
+      - '0.261582'
       x-version-label:
       - easypost-202209142327-76d51e2e7e-master
       x-xss-protection:

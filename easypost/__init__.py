@@ -17,6 +17,7 @@ from easypost.pickup import Pickup
 from easypost.pickup_rate import PickupRate
 from easypost.postage_label import PostageLabel
 from easypost.rate import Rate
+from easypost.referral import Referral
 from easypost.refund import Refund
 from easypost.report import Report
 from easypost.scanform import ScanForm
