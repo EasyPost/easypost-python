@@ -13,7 +13,7 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/v2/partners/stripe_public_key
+    uri: https://api.easypost.com/beta/partners/stripe_public_key
   response:
     body:
       string: '{"public_key": "pk_x3JSr5eOVWNTLRej8cZDde9VQ0AT5"}'
@@ -43,18 +43,18 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - fb9a52be6323681ae787d97f00082572
+      - fb9a52c063236813e787d9630008228f
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb5nuq
+      - bigweb1nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
       - intlb1nuq 6aa9972c1e
       - extlb2nuq 9ce216bfac
       x-runtime:
-      - '0.016635'
+      - '0.016665'
       x-version-label:
       - easypost-202209142327-76d51e2e7e-master
       x-xss-protection:
@@ -83,14 +83,14 @@ interactions:
     uri: https://api.stripe.com/v1/tokens?card%5Bexp_month%5D=05&card%5Bexp_year%5D=2028
   response:
     body:
-      string: '{"id": "tok_0LiMLuDqT4huGUvdJkBtSAad", "object": "token", "card": {"id":
-        "card_0LiMLuDqT4huGUvdwvFxsoce", "object": "card", "address_city": null, "address_country":
+      string: '{"id": "tok_0LiMLnDqT4huGUvdvZyWIgsK", "object": "token", "card": {"id":
+        "card_0LiMLnDqT4huGUvdGbeEFGjx", "object": "card", "address_city": null, "address_country":
         null, "address_line1": null, "address_line1_check": null, "address_line2":
         null, "address_state": null, "address_zip": null, "address_zip_check": null,
         "brand": "Visa", "country": "US", "cvc_check": "unchecked", "dynamic_last4":
         null, "exp_month": 5, "exp_year": 2028, "funding": "credit", "last4": "6170",
         "name": null, "tokenization_method": null}, "client_ip": "<REDACTED>", "created":
-        1663264794, "livemode": true, "type": "card", "used": false}'
+        1663264787, "livemode": true, "type": "card", "used": false}'
     headers:
       Connection:
       - keep-alive
@@ -99,7 +99,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 15 Sep 2022 17:59:54 GMT
+      - Thu, 15 Sep 2022 17:59:47 GMT
       Server:
       - nginx
       Strict-Transport-Security:
@@ -117,11 +117,11 @@ interactions:
       cache-control:
       - no-cache, no-store
       idempotency-key:
-      - 08669557-88f3-4a81-89b7-79d6b53b98f1
+      - f660924b-9bbb-40ff-ae1a-352c13e90f2c
       original-request:
-      - req_Rjld5zF1YhBeQs
+      - req_YIhWYKCN7zRU06
       request-id:
-      - req_Rjld5zF1YhBeQs
+      - req_YIhWYKCN7zRU06
       stripe-should-retry:
       - 'false'
       stripe-version:
@@ -130,7 +130,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"credit_card": {"stripe_object_id": "tok_0LiMLuDqT4huGUvdJkBtSAad", "priority":
+    body: '{"credit_card": {"stripe_object_id": "tok_0LiMLnDqT4huGUvdvZyWIgsK", "priority":
       "primary"}}'
     headers:
       Accept:
@@ -148,10 +148,10 @@ interactions:
       user-agent:
       - <REDACTED>
     method: POST
-    uri: https://api.easypost.com/v2/credit_cards
+    uri: https://api.easypost.com/beta/credit_cards
   response:
     body:
-      string: '{"id": "card_55b732842711403ca4d34abbae7e6884", "disabled_at": null,
+      string: '{"id": "card_a81abaa3005e49d282cd0d4d1b52cca1", "disabled_at": null,
         "object": "CreditCard", "name": null, "last4": "6170", "exp_month": 5, "exp_year":
         2028, "brand": "Visa"}'
     headers:
@@ -162,7 +162,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"2a6f8717ccd56df83817bc8b10feac63"
+      - W/"2ae1e2cf14e78c251587f5fd465c3ddc"
       expires:
       - '0'
       pragma:
@@ -175,25 +175,23 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - fb9a52be6323681ae787d97f000825b8
+      - fb9a52c063236813e787d963000822d1
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb5nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 6aa9972c1e
+      - intlb1nuq 6aa9972c1e
       - extlb2nuq 9ce216bfac
       x-runtime:
-      - '3.417627'
+      - '3.398040'
       x-version-label:
       - easypost-202209142327-76d51e2e7e-master
       x-xss-protection:
