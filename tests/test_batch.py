@@ -40,7 +40,7 @@ def test_batch_all(page_size):
 
 @pytest.mark.vcr()
 def test_batch_create_and_buy(one_call_buy_shipment):
-    batch = easypost.Batch.create(
+    batch = easypost.Batch.create_and_buy(
         shipments=[
             one_call_buy_shipment,
             one_call_buy_shipment,

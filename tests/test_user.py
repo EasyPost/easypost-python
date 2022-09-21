@@ -26,6 +26,15 @@ def test_user_retrieve(prod_api_key):
 
 
 @pytest.mark.vcr()
+def test_user_retrieve_no_id(prod_api_key):
+    """If no ID is specified when retrieving a user, we'll retrieve the authenticated user."""
+    user = easypost.User.retrieve()
+
+    assert isinstance(user, easypost.User)
+    assert str.startswith(user.id, "user_")
+
+
+@pytest.mark.vcr()
 def test_user_retrieve_me(prod_api_key):
     user = easypost.User.retrieve_me()
 

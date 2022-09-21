@@ -31,12 +31,12 @@ interactions:
       user-agent:
       - <REDACTED>
     method: POST
-    uri: https://api.easypost.com/v2/batches
+    uri: https://api.easypost.com/v2/batches/create_and_buy
   response:
     body:
-      string: '{"id": "batch_b7fabd8269cd4e59b667d0d48c3f3618", "object": "Batch",
+      string: '{"id": "batch_ea9b35241158435e9b9181365473f8c5", "object": "EasyPost::Entity::Batch",
         "mode": "test", "state": "creating", "num_shipments": 2, "reference": null,
-        "created_at": "2022-08-15T18:51:22Z", "updated_at": "2022-08-15T18:51:22Z",
+        "created_at": "2022-09-21T16:04:51Z", "updated_at": "2022-09-21T16:04:51Z",
         "scan_form": null, "shipments": [], "status": {"created": 0, "queued_for_purchase":
         0, "creation_failed": 0, "postage_purchased": 0, "postage_purchase_failed":
         0}, "pickup": null, "label_url": null}'
@@ -44,11 +44,11 @@ interactions:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '384'
+      - '402'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"8f6d41fb81d4d62e1b8d4a9737e314f2"
+      - W/"84b1f91f8c02e4a98499c5ac388a7a90"
       expires:
       - '0'
       pragma:
@@ -66,20 +66,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f43af48062fa95aae79a768a00261a6a
+      - 8aed2207632b3623e2b8777400150196
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb4nuq
+      - bigweb5nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb2nuq 29913d444b
+      - extlb1nuq 29913d444b
       x-runtime:
-      - '0.046740'
+      - '0.098547'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202209210008-610ad55e3f-master
       x-xss-protection:
       - 1; mode=block
     status:

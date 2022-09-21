@@ -1,4 +1,5 @@
 import os
+from unittest.mock import patch
 
 import pytest
 
@@ -70,3 +71,21 @@ def test_referral_add_credit_card(partner_prod_api_key, credit_card_details):
 
     assert str.startswith(added_credit_card.id, "card_")
     assert added_credit_card.last4 == "6170"
+
+
+@patch("easypost.referral.Referral._retrieve_easypost_stripe_api_key")
+@patch("easypost.referral.Referral._create_stripe_token", side_effect=Exception())
+def test_referral_add_credit_card_error(mock_stripe_token, mock_easypost_key, credit_card_details):
+    """This test requires a partner user's production API key via EASYPOST_PROD_API_KEY
+    as well as one of that user's referral's production API keys via REFERRAL_USER_PROD_API_KEY.
+    """
+    with pytest.raises(Exception) as error:
+        _ = easypost.Referral.add_credit_card(
+            referral_api_key=REFERRAL_USER_PROD_API_KEY,
+            number=credit_card_details["number"],
+            expiration_month=credit_card_details["expiration_month"],
+            expiration_year=credit_card_details["expiration_year"],
+            cvc=credit_card_details["cvc"],
+        )
+
+    assert str(error.value) == "Could not send card details to Stripe, please try again later"
