@@ -22,15 +22,15 @@ interactions:
     uri: https://api.easypost.com/v2/addresses/create_and_verify
   response:
     body:
-      string: '{"address": {"id": "adr_8c05b1ae39c211ed9ca9ac1f6bc7b362", "object":
-        "Address", "created_at": "2022-09-21T15:32:05+00:00", "updated_at": "2022-09-21T15:32:05+00:00",
+      string: '{"address": {"id": "adr_a5a2dae939f511eda2e6ac1f6b0a0d1e", "object":
+        "Address", "created_at": "2022-09-21T21:37:52+00:00", "updated_at": "2022-09-21T21:37:52+00:00",
         "name": "JACK SPARROW", "company": null, "street1": "388 TOWNSEND ST APT 20",
         "street2": "", "city": "SAN FRANCISCO", "state": "CA", "zip": "94107-1670",
-        "country": "US", "phone": "5555555555", "email": "TEST@EXAMPLE.COM", "mode":
-        "test", "carrier_facility": null, "residential": true, "federal_tax_id": null,
-        "state_tax_id": null, "verifications": {"zip4": {"success": true, "errors":
-        [], "details": null}, "delivery": {"success": true, "errors": [], "details":
-        {"latitude": 37.77551, "longitude": -122.39697, "time_zone": "America/Los_Angeles"}}}}}'
+        "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test",
+        "carrier_facility": null, "residential": true, "federal_tax_id": null, "state_tax_id":
+        null, "verifications": {"zip4": {"success": true, "errors": [], "details":
+        null}, "delivery": {"success": true, "errors": [], "details": {"latitude":
+        37.77551, "longitude": -122.39697, "time_zone": "America/Los_Angeles"}}}}}'
     headers:
       cache-control:
       - private, no-cache, no-store
@@ -39,11 +39,11 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"7f0d5c8a42581111be5efda828ec08f2"
+      - W/"1c2cb7b110858af28c65c58c0a0f3fa7"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_8c05b1ae39c211ed9ca9ac1f6bc7b362
+      - /api/v2/addresses/adr_a5a2dae939f511eda2e6ac1f6b0a0d1e
       pragma:
       - no-cache
       referrer-policy:
@@ -59,20 +59,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 8aed2204632b2e75e2b861f10012077a
+      - d25912fc632b8430e2aac19600066f49
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb1nuq
+      - bigweb2nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb2nuq 29913d444b
+      - extlb2nuq 29913d444b
       x-runtime:
-      - '0.048029'
+      - '0.042538'
       x-version-label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209212025-b1bc460ca8-master
       x-xss-protection:
       - 1; mode=block
     status:
