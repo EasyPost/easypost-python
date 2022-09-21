@@ -1,9 +1,9 @@
 # CHANGELOG
 
-## NEXT RELEASE
+## v7.6.0 (2022-09-21)
 
 - Adds support to pass `end_shipper_id` on the buy call of a Shipment
-- Migrates the Partner White Label (Referral) function from beta to the general library namespace and deprecates the beta functions
+- Migrates the Partner White Label (Referral) functions from beta to the general library namespace and deprecates the beta functions
 
 ## v7.5.0 (2022-08-25)
 
