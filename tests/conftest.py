@@ -106,10 +106,10 @@ def vcr_config():
     }
 
 
-def scrub_response_bodies(scrubbers: List[Tuple[str, Any]]):
+def scrub_response_bodies(scrubbers: List[Tuple[str, Any]]) -> Any:
     """Scrub sensitive data from response bodies prior to recording the cassette."""
 
-    def before_record_response(response):
+    def before_record_response(response: Any) -> Any:
         """This function fires prior to persisting data to a cassette."""
         if response["body"]["string"]:
             response_body = json.loads(response["body"]["string"].decode())
@@ -119,7 +119,7 @@ def scrub_response_bodies(scrubbers: List[Tuple[str, Any]]):
             response["body"]["string"] = json.dumps(response_body).encode()
         return response
 
-    def scrub_data(data):
+    def scrub_data(data: Any) -> Any:
         """Scrub data from a cassette recursively."""
         for scrubber in scrubbers:
             key = scrubber[0]
