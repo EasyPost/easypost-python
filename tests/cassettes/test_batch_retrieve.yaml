@@ -27,9 +27,9 @@ interactions:
     uri: https://api.easypost.com/v2/batches
   response:
     body:
-      string: '{"id": "batch_952f9f820acc412caa47cfaad5f7a74d", "object": "Batch",
+      string: '{"id": "batch_dce1deacd2bd4b1b876ccdcf0e3d43fa", "object": "EasyPost::Entity::Batch",
         "mode": "test", "state": "creating", "num_shipments": 1, "reference": null,
-        "created_at": "2022-08-15T18:51:21Z", "updated_at": "2022-08-15T18:51:21Z",
+        "created_at": "2022-09-26T19:20:34Z", "updated_at": "2022-09-26T19:20:34Z",
         "scan_form": null, "shipments": [], "status": {"created": 0, "queued_for_purchase":
         0, "creation_failed": 0, "postage_purchased": 0, "postage_purchase_failed":
         0}, "pickup": null, "label_url": null}'
@@ -37,11 +37,11 @@ interactions:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '384'
+      - '402'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"5156a6d03eeed5e43d157fac3441e27e"
+      - W/"105c753b3b2493111b69142b0946d175"
       expires:
       - '0'
       pragma:
@@ -54,25 +54,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f43af47b62fa95a9e79a768800261a0e
+      - 20a8e4af6331fb82e788d944003a324a
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb3nuq
+      - bigweb7nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb1nuq 29913d444b
+      - extlb2nuq 29913d444b
       x-runtime:
-      - '0.141658'
+      - '0.041891'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202209261717-03ecd81b73-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -92,25 +94,25 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/v2/batches/batch_952f9f820acc412caa47cfaad5f7a74d
+    uri: https://api.easypost.com/v2/batches/batch_dce1deacd2bd4b1b876ccdcf0e3d43fa
   response:
     body:
-      string: '{"id": "batch_952f9f820acc412caa47cfaad5f7a74d", "object": "Batch",
-        "mode": "test", "state": "created", "num_shipments": 1, "reference": null,
-        "created_at": "2022-08-15T18:51:21Z", "updated_at": "2022-08-15T18:51:21Z",
+      string: '{"id": "batch_dce1deacd2bd4b1b876ccdcf0e3d43fa", "object": "Batch",
+        "mode": "test", "state": "creating", "num_shipments": 1, "reference": null,
+        "created_at": "2022-09-26T19:20:34Z", "updated_at": "2022-09-26T19:20:34Z",
         "scan_form": null, "shipments": [{"batch_status": "created", "batch_message":
-        null, "reference": null, "tracking_code": null, "id": "shp_0e7137d08db94bbd9ef924c10c1bbe4d"}],
+        null, "reference": null, "tracking_code": null, "id": "shp_76ec156d1db34a5b9920d59fe9042fc0"}],
         "status": {"created": 1, "queued_for_purchase": 0, "creation_failed": 0, "postage_purchased":
         0, "postage_purchase_failed": 0}, "pickup": null, "label_url": null}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '512'
+      - '513'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"bcabc3878b5e40a6a4151d439ce99154"
+      - W/"751db88977e0670fac7756d1e1e9b7a4"
       expires:
       - '0'
       pragma:
@@ -128,7 +130,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f43af47b62fa95a9e79a768800261a1f
+      - 20a8e4af6331fb82e788d944003a325d
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -136,12 +138,12 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb1nuq 29913d444b
+      - extlb2nuq 29913d444b
       x-runtime:
-      - '0.026542'
+      - '0.028564'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202209261717-03ecd81b73-master
       x-xss-protection:
       - 1; mode=block
     status:

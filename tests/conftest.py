@@ -127,23 +127,22 @@ def scrub_response_bodies(scrubbers: List[Tuple[str, Any]]):
 
             # Root-level list scrubbing
             if isinstance(data, list):
-                for element in data:
-                    if key in element:
-                        element[key] = replacement
+                for index, item in enumerate(data):
+                    if key in item:
+                        data[index][key] = replacement
             elif isinstance(data, dict):
                 # Root-level key scrubbing
                 if key in data:
                     data[key] = replacement
-                # Nested scrubbing
                 else:
-                    for key_name in data:
-                        value = data[key_name]
-                        if isinstance(value, list):
-                            for index, element in enumerate(value):
-                                data[index][key] = scrub_data(element)
-                        elif isinstance(value, dict):
-                            value[key] = scrub_data(value)
-
+                    # Nested scrubbing
+                    for index, item in enumerate(data):
+                        element = data[item]
+                        if isinstance(element, list):
+                            for nested_index, nested_item in enumerate(element):
+                                data[item][nested_index] = scrub_data(nested_item)
+                        elif isinstance(element, dict):
+                            data[item] = scrub_data(element)
         return data
 
     return before_record_response

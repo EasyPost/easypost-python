@@ -16,97 +16,96 @@ interactions:
     uri: https://api.easypost.com/v2/batches?page_size=5
   response:
     body:
-      string: '{"batches": [{"id": "batch_c0e129a16d4042de8f408ee88c2a23e1", "object":
-        "Batch", "mode": "test", "state": "created", "num_shipments": 0, "reference":
-        null, "created_at": "2022-07-28T19:50:51Z", "updated_at": "2022-07-28T19:50:52Z",
+      string: '{"batches": [{"id": "batch_c076b20e213b4fb9a23cd785af88d247", "object":
+        "Batch", "mode": "test", "state": "creating", "num_shipments": 1, "reference":
+        null, "created_at": "2022-09-08T21:09:27Z", "updated_at": "2022-09-08T21:09:27Z",
+        "scan_form": null, "shipments": [{"batch_status": "postage_purchased", "batch_message":
+        null, "reference": null, "tracking_code": "9400100109361136572301", "id":
+        "shp_582f72ed6c3f4c668a31b45f322dce15"}], "status": {"created": 0, "queued_for_purchase":
+        0, "creation_failed": 0, "postage_purchased": 1, "postage_purchase_failed":
+        0}, "pickup": {"id": "pickup_9118820e33eb4f2bbc27212e1c28716c", "object":
+        "Pickup", "created_at": "2022-09-08T21:09:27Z", "updated_at": "2022-09-08T21:09:29Z",
+        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-10-17T00:00:00Z",
+        "max_datetime": "2022-10-17T00:00:00Z", "is_account_address": false, "instructions":
+        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
+        "adr_8600c2042fba11eda531ac1f6b0a0d1e", "object": "Address", "created_at":
+        "2022-09-08T21:09:27+00:00", "updated_at": "2022-09-08T21:09:27+00:00", "name":
+        "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}, "carrier_accounts": [], "pickup_rates": [{"mode": "test", "service":
+        "NextDay", "rate": "0.00", "currency": "USD", "created_at": "2022-09-08T21:09:29Z",
+        "updated_at": "2022-09-08T21:09:29Z", "carrier": "USPS", "pickup_id": "pickup_9118820e33eb4f2bbc27212e1c28716c",
+        "id": "pickuprate_5ecc7ea8475d4134b9fd6a6d15b122f1", "object": "PickupRate"}]},
+        "label_url": null}, {"id": "batch_9be5809f1c564cd8af7d984b499d1010", "object":
+        "Batch", "mode": "test", "state": "creating", "num_shipments": 1, "reference":
+        null, "created_at": "2022-09-08T21:10:04Z", "updated_at": "2022-09-08T21:10:04Z",
+        "scan_form": null, "shipments": [{"batch_status": "postage_purchased", "batch_message":
+        null, "reference": null, "tracking_code": "9400100109361136572332", "id":
+        "shp_803f2ad19aa2423cbeca5106d65e2d3c"}], "status": {"created": 0, "queued_for_purchase":
+        0, "creation_failed": 0, "postage_purchased": 1, "postage_purchase_failed":
+        0}, "pickup": {"id": "pickup_cfc0ccd3f0f94c17898e2363b95e026a", "object":
+        "Pickup", "created_at": "2022-09-08T21:10:04Z", "updated_at": "2022-09-08T21:10:05Z",
+        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-10-17T00:00:00Z",
+        "max_datetime": "2022-10-17T00:00:00Z", "is_account_address": false, "instructions":
+        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
+        "adr_9c08382c2fba11edb56fac1f6bc72124", "object": "Address", "created_at":
+        "2022-09-08T21:10:04+00:00", "updated_at": "2022-09-08T21:10:04+00:00", "name":
+        "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}, "carrier_accounts": [], "pickup_rates": [{"mode": "test", "service":
+        "NextDay", "rate": "0.00", "currency": "USD", "created_at": "2022-09-08T21:10:05Z",
+        "updated_at": "2022-09-08T21:10:05Z", "carrier": "USPS", "pickup_id": "pickup_cfc0ccd3f0f94c17898e2363b95e026a",
+        "id": "pickuprate_95a127b2e60e4148ab1e40a677b6bce7", "object": "PickupRate"}]},
+        "label_url": null}, {"id": "batch_55dee91223bc4de087936d3396d6b995", "object":
+        "Batch", "mode": "test", "state": "creating", "num_shipments": 1, "reference":
+        null, "created_at": "2022-09-09T17:18:08Z", "updated_at": "2022-09-09T17:18:08Z",
+        "scan_form": null, "shipments": [{"batch_status": "postage_purchased", "batch_message":
+        null, "reference": null, "tracking_code": "9400100109361136644992", "id":
+        "shp_d87faf075036492984ad1065554288eb"}], "status": {"created": 0, "queued_for_purchase":
+        0, "creation_failed": 0, "postage_purchased": 1, "postage_purchase_failed":
+        0}, "pickup": {"id": "pickup_0dd9c976197b4cc18c9a017a64e6946c", "object":
+        "Pickup", "created_at": "2022-09-09T17:18:08Z", "updated_at": "2022-09-09T17:18:09Z",
+        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-10-17T00:00:00Z",
+        "max_datetime": "2022-10-17T00:00:00Z", "is_account_address": false, "instructions":
+        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
+        "adr_5fc75633306311edb805ac1f6bc7b362", "object": "Address", "created_at":
+        "2022-09-09T17:18:08+00:00", "updated_at": "2022-09-09T17:18:08+00:00", "name":
+        "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}, "carrier_accounts": [], "pickup_rates": [{"mode": "test", "service":
+        "NextDay", "rate": "0.00", "currency": "USD", "created_at": "2022-09-09T17:18:09Z",
+        "updated_at": "2022-09-09T17:18:09Z", "carrier": "USPS", "pickup_id": "pickup_0dd9c976197b4cc18c9a017a64e6946c",
+        "id": "pickuprate_ea8c36e082754264845c0e0f34dcc571", "object": "PickupRate"}]},
+        "label_url": null}, {"id": "batch_ea9b35241158435e9b9181365473f8c5", "object":
+        "Batch", "mode": "test", "state": "purchased", "num_shipments": 2, "reference":
+        null, "created_at": "2022-09-21T16:04:51Z", "updated_at": "2022-09-21T16:04:53Z",
+        "scan_form": null, "shipments": [{"batch_status": "postage_purchased", "batch_message":
+        null, "reference": null, "tracking_code": "9400100109361138690270", "id":
+        "shp_869ba0d2d9bc49318bae282573f22ac7"}, {"batch_status": "postage_purchased",
+        "batch_message": null, "reference": null, "tracking_code": "9400100109361138690300",
+        "id": "shp_b9dd59785f7c48c58be59e0ac70d2f11"}], "status": {"created": 0, "queued_for_purchase":
+        0, "creation_failed": 0, "postage_purchased": 2, "postage_purchase_failed":
+        0}, "pickup": null, "label_url": null}, {"id": "batch_c97a7f289fde42ac89ba388e7bd00107",
+        "object": "Batch", "mode": "test", "state": "creating", "num_shipments": 1,
+        "reference": null, "created_at": "2022-09-26T19:19:08Z", "updated_at": "2022-09-26T19:19:08Z",
         "scan_form": null, "shipments": [], "status": {"created": 0, "queued_for_purchase":
         0, "creation_failed": 0, "postage_purchased": 0, "postage_purchase_failed":
-        0}, "pickup": null, "label_url": null}, {"id": "batch_f87669079a8944009bd943c6c566f325",
-        "object": "Batch", "mode": "test", "state": "creating", "num_shipments": 1,
-        "reference": null, "created_at": "2022-07-28T19:53:55Z", "updated_at": "2022-07-28T19:53:55Z",
-        "scan_form": null, "shipments": [{"batch_status": "postage_purchased", "batch_message":
-        null, "reference": null, "tracking_code": "9400100109361130483061", "id":
-        "shp_059e077684ef42159c789b81359472bb"}], "status": {"created": 0, "queued_for_purchase":
-        0, "creation_failed": 0, "postage_purchased": 1, "postage_purchase_failed":
-        0}, "pickup": {"id": "pickup_b4dd597d63714e239b9d945cc99ca1f4", "object":
-        "Pickup", "created_at": "2022-07-28T19:53:55Z", "updated_at": "2022-07-28T19:53:55Z",
-        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-05-06T00:00:00Z",
-        "max_datetime": "2022-05-06T00:00:00Z", "is_account_address": false, "instructions":
-        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
-        "adr_03151cf60eaf11ed8a48ac1f6bc7b362", "object": "Address", "created_at":
-        "2022-07-28T19:53:55+00:00", "updated_at": "2022-07-28T19:53:55+00:00", "name":
-        "Jack Sparrow", "company": "EasyPost", "street1": "388 Townsend St", "street2":
-        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
-        "US", "phone": "5555555555", "email": null, "mode": "test", "carrier_facility":
-        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
-        {}}, "carrier_accounts": [], "pickup_rates": []}, "label_url": null}, {"id":
-        "batch_af6a109d5e8b47ab971e657ab5c9d8ef", "object": "Batch", "mode": "test",
-        "state": "creating", "num_shipments": 1, "reference": null, "created_at":
-        "2022-07-28T19:53:57Z", "updated_at": "2022-07-28T19:53:57Z", "scan_form":
-        null, "shipments": [{"batch_status": "postage_purchased", "batch_message":
-        null, "reference": null, "tracking_code": "9400100109361130483078", "id":
-        "shp_66650153362f475ea06c81838ee42782"}], "status": {"created": 0, "queued_for_purchase":
-        0, "creation_failed": 0, "postage_purchased": 1, "postage_purchase_failed":
-        0}, "pickup": {"id": "pickup_c32ef1768c85474993ab89dab3b172d9", "object":
-        "Pickup", "created_at": "2022-07-28T19:53:57Z", "updated_at": "2022-07-28T19:53:57Z",
-        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-05-06T00:00:00Z",
-        "max_datetime": "2022-05-06T00:00:00Z", "is_account_address": false, "instructions":
-        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
-        "adr_042f32c80eaf11ed8c51ac1f6bc72124", "object": "Address", "created_at":
-        "2022-07-28T19:53:57+00:00", "updated_at": "2022-07-28T19:53:57+00:00", "name":
-        "Jack Sparrow", "company": "EasyPost", "street1": "388 Townsend St", "street2":
-        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
-        "US", "phone": "5555555555", "email": null, "mode": "test", "carrier_facility":
-        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
-        {}}, "carrier_accounts": [], "pickup_rates": []}, "label_url": null}, {"id":
-        "batch_a186c46585694fb2a1cee2d8d7c17e65", "object": "Batch", "mode": "test",
-        "state": "creating", "num_shipments": 1, "reference": null, "created_at":
-        "2022-07-28T19:53:58Z", "updated_at": "2022-07-28T19:53:58Z", "scan_form":
-        null, "shipments": [{"batch_status": "postage_purchased", "batch_message":
-        null, "reference": null, "tracking_code": "9400100109361130483085", "id":
-        "shp_695ccc1d713642c6b05357a2f6566835"}], "status": {"created": 0, "queued_for_purchase":
-        0, "creation_failed": 0, "postage_purchased": 1, "postage_purchase_failed":
-        0}, "pickup": {"id": "pickup_a842a8e40550432a85bbc321f808bd3e", "object":
-        "Pickup", "created_at": "2022-07-28T19:53:58Z", "updated_at": "2022-07-28T19:53:58Z",
-        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-05-06T00:00:00Z",
-        "max_datetime": "2022-05-06T00:00:00Z", "is_account_address": false, "instructions":
-        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
-        "adr_053b72370eaf11ed9150ac1f6b0a0d1e", "object": "Address", "created_at":
-        "2022-07-28T19:53:58+00:00", "updated_at": "2022-07-28T19:53:58+00:00", "name":
-        "Jack Sparrow", "company": "EasyPost", "street1": "388 Townsend St", "street2":
-        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
-        "US", "phone": "5555555555", "email": null, "mode": "test", "carrier_facility":
-        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
-        {}}, "carrier_accounts": [], "pickup_rates": []}, "label_url": null}, {"id":
-        "batch_5bb14ecff43b47cc92fa8b46409e5aad", "object": "Batch", "mode": "test",
-        "state": "creating", "num_shipments": 1, "reference": null, "created_at":
-        "2022-07-28T19:54:00Z", "updated_at": "2022-07-28T19:54:00Z", "scan_form":
-        null, "shipments": [{"batch_status": "postage_purchased", "batch_message":
-        null, "reference": null, "tracking_code": "9400100109361130483092", "id":
-        "shp_b547fdd9f6f84b07995d6f77c18e4b91"}], "status": {"created": 0, "queued_for_purchase":
-        0, "creation_failed": 0, "postage_purchased": 1, "postage_purchase_failed":
-        0}, "pickup": {"id": "pickup_c696de344edd4055afea95339dde19cc", "object":
-        "Pickup", "created_at": "2022-07-28T19:54:00Z", "updated_at": "2022-07-28T19:54:00Z",
-        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-05-06T00:00:00Z",
-        "max_datetime": "2022-05-06T00:00:00Z", "is_account_address": false, "instructions":
-        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
-        "adr_0643a6f60eaf11ed8da0ac1f6bc7b362", "object": "Address", "created_at":
-        "2022-07-28T19:54:00+00:00", "updated_at": "2022-07-28T19:54:00+00:00", "name":
-        "Jack Sparrow", "company": "EasyPost", "street1": "388 Townsend St", "street2":
-        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
-        "US", "phone": "5555555555", "email": null, "mode": "test", "carrier_facility":
-        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
-        {}}, "carrier_accounts": [], "pickup_rates": []}, "label_url": null}], "has_more":
-        true}'
+        0}, "pickup": null, "label_url": null}], "has_more": true}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '6041'
+      - '6210'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"bc99bfdfb2ef0c1e7a4403495dcd9b3e"
+      - W/"ecad307700cddcc096692f258e6b202e"
       expires:
       - '0'
       pragma:
@@ -124,20 +123,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f43af47962fa95a9e79a768900261a36
+      - 20a8e4af6331fb34e788d926003a0ea8
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb8nuq
+      - bigweb4nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb1nuq 29913d444b
+      - extlb2nuq 29913d444b
       x-runtime:
-      - '0.188348'
+      - '0.106717'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202209261717-03ecd81b73-master
       x-xss-protection:
       - 1; mode=block
     status:

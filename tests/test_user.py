@@ -69,8 +69,7 @@ def test_user_all_api_keys(prod_api_key):
     user = easypost.User.retrieve_me()
     api_keys = user.all_api_keys()
 
-    assert api_keys["keys"]
-    assert api_keys["children"]
+    assert api_keys["keys"] is not None
 
 
 @pytest.mark.vcr()
@@ -78,7 +77,7 @@ def test_user_api_keys(prod_api_key):
     user = easypost.User.retrieve_me()
     api_keys = user.api_keys()
 
-    assert api_keys
+    assert api_keys is not None
 
 
 @pytest.mark.vcr()
