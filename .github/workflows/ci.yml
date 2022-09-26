@@ -32,6 +32,6 @@ jobs:
       - name: Install Dependencies
         run: make install
       - name: Run Tests
-        run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 make test
+        run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 make coverage
       - name: Run security analysis
         run: make scan
