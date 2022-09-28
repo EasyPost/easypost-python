@@ -22,7 +22,10 @@ class EndShipper(AllResource):
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     def save(self) -> "EndShipper":
-        """Update an EndShipper object."""
+        """Update an EndShipper object.
+
+        This function requires all parameters to be present for an EndShipper.
+        """
         if self._unsaved_values:
             requestor = Requestor(local_api_key=self._api_key)
             params = {}

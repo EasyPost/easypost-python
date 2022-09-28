@@ -1,4 +1,5 @@
 import os
+from unittest.mock import patch
 
 import pytest
 
@@ -10,7 +11,7 @@ REFERRAL_USER_PROD_API_KEY = os.getenv("REFERRAL_USER_PROD_API_KEY", "123")
 
 @pytest.mark.vcr()
 def test_beta_referral_user_create(partner_prod_api_key):
-    """This test requires a partner user's production API key via EASYPOST_PROD_API_KEY."""
+    """This test requires a partner user's production API key via PARTNER_USER_PROD_API_KEY."""
     created_referral_user = easypost.beta.Referral.create(
         name="test test",
         email="test@test.com",
@@ -24,7 +25,7 @@ def test_beta_referral_user_create(partner_prod_api_key):
 
 @pytest.mark.vcr()
 def test_beta_referral_user_update(partner_prod_api_key):
-    """This test requires a partner user's production API key via EASYPOST_PROD_API_KEY."""
+    """This test requires a partner user's production API key via PARTNER_USER_PROD_API_KEY."""
     referral_users = easypost.beta.Referral.all()
 
     updated_referral_user = easypost.beta.Referral.update_email(
@@ -37,7 +38,7 @@ def test_beta_referral_user_update(partner_prod_api_key):
 
 @pytest.mark.vcr()
 def test_beta_referral_user_all(partner_prod_api_key, page_size):
-    """This test requires a partner user's production API key via EASYPOST_PROD_API_KEY."""
+    """This test requires a partner user's production API key via PARTNER_USER_PROD_API_KEY."""
     referral_users = easypost.beta.Referral.all(page_size=page_size)
 
     referral_users_array = referral_users["referral_customers"]
@@ -57,7 +58,7 @@ def test_beta_referral_user_all(partner_prod_api_key, page_size):
     ]
 )
 def test_beta_referral_add_credit_card(partner_prod_api_key, credit_card_details):
-    """This test requires a partner user's production API key via EASYPOST_PROD_API_KEY
+    """This test requires a partner user's production API key via PARTNER_USER_PROD_API_KEY
     as well as one of that user's referral's production API keys via REFERRAL_USER_PROD_API_KEY.
     """
     added_credit_card = easypost.beta.Referral.add_credit_card(
@@ -70,3 +71,21 @@ def test_beta_referral_add_credit_card(partner_prod_api_key, credit_card_details
 
     assert str.startswith(added_credit_card.id, "card_")
     assert added_credit_card.last4 == "6170"
+
+
+@patch("easypost.beta.referral.Referral._retrieve_easypost_stripe_api_key")
+@patch("easypost.beta.referral.Referral._create_stripe_token", side_effect=Exception())
+def test_referral_add_credit_card_error(mock_stripe_token, mock_easypost_key, credit_card_details):
+    """This test requires a partner user's production API key via PARTNER_USER_PROD_API_KEY
+    as well as one of that user's referral's production API keys via REFERRAL_USER_PROD_API_KEY.
+    """
+    with pytest.raises(Exception) as error:
+        _ = easypost.beta.Referral.add_credit_card(
+            referral_api_key=REFERRAL_USER_PROD_API_KEY,
+            number=credit_card_details["number"],
+            expiration_month=credit_card_details["expiration_month"],
+            expiration_year=credit_card_details["expiration_year"],
+            cvc=credit_card_details["cvc"],
+        )
+
+    assert str(error.value) == "Could not send card details to Stripe, please try again later"

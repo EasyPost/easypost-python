@@ -17,9 +17,6 @@ from easypost.requestor import (
 
 
 class Resource(EasyPostObject):
-    def _ident(self) -> List[str]:
-        return [self.get("id")]
-
     @classmethod
     def retrieve(cls, easypost_id: str, api_key: Optional[str] = None, **params) -> object:
         """Retrieve an object from the EasyPost API."""

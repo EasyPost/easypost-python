@@ -1,8 +1,6 @@
 interactions:
 - request:
-    body: '{"address": {"name": "Jack Sparrow", "street1": "388 Townsend St", "street2":
-      "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
-      "US", "email": "test@example.com", "phone": "5555555555"}}'
+    body: '{"address": {"street1": "invalid"}}'
     headers:
       Accept:
       - '*/*'
@@ -11,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '213'
+      - '35'
       Content-Type:
       - application/json
       authorization:
@@ -19,26 +17,28 @@ interactions:
       user-agent:
       - <REDACTED>
     method: POST
-    uri: https://api.easypost.com/v2/end_shippers
+    uri: https://api.easypost.com/v2/addresses
   response:
     body:
-      string: '{"id": "es_ba7f7dcc7fb642fb978d2a88ca523232", "object": "EndShipper",
-        "mode": "production", "created_at": "2022-09-21T16:15:51+00:00", "updated_at":
-        "2022-09-21T16:15:51+00:00", "name": "JACK SPARROW", "company": null, "street1":
-        "388 TOWNSEND ST APT 20", "street2": "", "city": "SAN FRANCISCO", "state":
-        "CA", "zip": "94107-1670", "country": "US", "phone": "<REDACTED>", "email":
-        "<REDACTED>"}'
+      string: '{"id": "adr_42e81a9e3dd011edb512ac1f6bc72124", "object": "Address",
+        "created_at": "2022-09-26T19:20:20+00:00", "updated_at": "2022-09-26T19:20:20+00:00",
+        "name": null, "company": null, "street1": "invalid", "street2": null, "city":
+        null, "state": null, "zip": null, "country": "US", "phone": "<REDACTED>",
+        "email": "<REDACTED>", "mode": "test", "carrier_facility": null, "residential":
+        null, "federal_tax_id": null, "state_tax_id": null, "verifications": {}}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '371'
+      - '403'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"d866cb7746d66909d4b513599cf960fb"
+      - W/"c05d89565c2835188f116e785552c71f"
       expires:
       - '0'
+      location:
+      - /api/v2/addresses/adr_42e81a9e3dd011edb512ac1f6bc72124
       pragma:
       - no-cache
       referrer-policy:
@@ -54,29 +54,27 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - ad419056632b38b6e2b8e18a0016568b
+      - 20a8e4aa6331fb74e788d941003a2c49
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb4nuq
+      - bigweb3nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
       - intlb1nuq 29913d444b
       - extlb2nuq 29913d444b
       x-runtime:
-      - '0.176083'
+      - '0.027875'
       x-version-label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209261717-03ecd81b73-master
       x-xss-protection:
       - 1; mode=block
     status:
       code: 201
       message: Created
 - request:
-    body: '{"address": {"email": "test@example.com", "phone": "9999999999", "country":
-      "US", "city": "San Francisco", "street1": "388 Townsend St", "name": "Captain
-      Sparrow", "street2": "Apt 20", "state": "CA", "zip": "94107", "company": "EasyPost"}}'
+    body: null
     headers:
       Accept:
       - '*/*'
@@ -84,33 +82,25 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Content-Length:
-      - '239'
-      Content-Type:
-      - application/json
       authorization:
       - <REDACTED>
       user-agent:
       - <REDACTED>
-    method: PUT
-    uri: https://api.easypost.com/v2/end_shippers/es_ba7f7dcc7fb642fb978d2a88ca523232
+    method: GET
+    uri: https://api.easypost.com/v2/addresses/adr_42e81a9e3dd011edb512ac1f6bc72124/verify
   response:
     body:
-      string: '{"id": "es_ba7f7dcc7fb642fb978d2a88ca523232", "object": "EndShipper",
-        "mode": "production", "created_at": "2022-09-21T16:15:51+00:00", "updated_at":
-        "2022-09-21T16:15:51+00:00", "name": "CAPTAIN SPARROW", "company": "EASYPOST",
-        "street1": "388 TOWNSEND ST APT 20", "street2": "", "city": "SAN FRANCISCO",
-        "state": "CA", "zip": "94107-1670", "country": "US", "phone": "<REDACTED>",
-        "email": "<REDACTED>"}'
+      string: '{"error": {"code": "ADDRESS.VERIFY.FAILURE", "message": "Unable to
+        verify address.", "errors": [{"code": "E.ADDRESS.NOT_FOUND", "field": "address",
+        "message": "Address not found", "suggestion": null}, {"code": "E.HOUSE_NUMBER.MISSING",
+        "field": "street1", "message": "House number is missing", "suggestion": null}]}}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '380'
+      - '295'
       content-type:
       - application/json; charset=utf-8
-      etag:
-      - W/"154c460857fd7508705073f74a357ab0"
       expires:
       - '0'
       pragma:
@@ -123,30 +113,28 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - ad419056632b38b7e2b8e18a001656aa
+      - 20a8e4aa6331fb74e788d941003a2c55
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb1nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
       - intlb2nuq 29913d444b
       - extlb2nuq 29913d444b
       x-runtime:
-      - '0.064271'
+      - '0.040416'
       x-version-label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209261717-03ecd81b73-master
       x-xss-protection:
       - 1; mode=block
     status:
-      code: 200
-      message: OK
+      code: 422
+      message: Unprocessable Entity
 version: 1

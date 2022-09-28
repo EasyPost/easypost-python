@@ -44,13 +44,7 @@ class Address(AllResource):
         wrapped_params = {cls.snakecase_name(): params}
         response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        response_address = response.get("address", None)
-
-        if response_address is not None:
-            verified_address = convert_to_easypost_object(response=response_address, api_key=api_key)
-            return verified_address
-        else:
-            return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response["address"], api_key=api_key)
 
     def verify(self) -> "Address":
         """Verify an address."""
@@ -58,10 +52,4 @@ class Address(AllResource):
         url = "%s/%s" % (self.instance_url(), "verify")
         response, api_key = requestor.request(method=RequestMethod.GET, url=url)
 
-        response_address = response.get("address", None)
-
-        if response_address is not None:
-            verified_address = convert_to_easypost_object(response=response_address, api_key=api_key)
-            return verified_address
-        else:
-            return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response["address"], api_key=api_key)

@@ -20,43 +20,21 @@ interactions:
         "type": "UspsAccount", "clone": false, "created_at": "2017-03-01T03:01:34Z",
         "updated_at": "2018-08-09T02:45:22Z", "description": "USPS Account", "reference":
         null, "billing_type": "easypost", "readable": "USPS", "logo": null, "fields":
-        {"credentials": {"company_name": {"visibility": "visible", "label": "Account
-        Holder Name", "value": ""}, "address_street": {"visibility": "visible", "label":
-        "Street Address", "value": ""}, "address_city": {"visibility": "visible",
-        "label": "City", "value": ""}, "address_state": {"visibility": "visible",
-        "label": "State", "value": ""}, "address_zip": {"visibility": "visible", "label":
-        "ZIP Code", "value": ""}, "phone": {"visibility": "visible", "label": "Phone
-        Number", "value": ""}, "email": {"visibility": "visible", "label": "Email
-        Address", "value": null}, "shipper_id": {"visibility": "visible", "label":
-        "Shipper Identifier (Optional)", "value": ""}}}, "credentials": "<REDACTED>",
-        "test_credentials": "<REDACTED>"}, {"id": "ca_05ab5a0345634187b52daaf787aa4cd0",
+        [], "credentials": {}, "test_credentials": {}}, {"id": "ca_05ab5a0345634187b52daaf787aa4cd0",
         "object": "CarrierAccount", "type": "LsoDefaultAccount", "clone": false, "created_at":
         "2022-04-26T16:58:59Z", "updated_at": "2022-04-26T16:58:59Z", "description":
         "LSO Account", "reference": null, "billing_type": "easypost", "readable":
-        "LSO", "logo": null, "fields": {"credentials": {}}, "credentials": "<REDACTED>",
-        "test_credentials": "<REDACTED>"}, {"id": "ca_d38ae88b6edb48ed93c0a16ed068215b",
-        "object": "CarrierAccount", "type": "DhlExpressDefaultAccount", "clone": false,
-        "created_at": "2022-04-26T16:59:02Z", "updated_at": "2022-04-26T16:59:02Z",
-        "description": "DHL Express Account", "reference": null, "billing_type": "easypost",
-        "readable": "DHL Express", "logo": null, "fields": {"credentials": {}}, "credentials":
-        "<REDACTED>", "test_credentials": "<REDACTED>"}, {"id": "ca_c3cbbd21bc97400bbbaed6d030909476",
-        "object": "CarrierAccount", "type": "DhlEcsAccount", "clone": false, "created_at":
-        "2022-08-15T18:51:36Z", "updated_at": "2022-08-15T18:51:36Z", "description":
-        "DHL eCommerce Solutions Account", "reference": null, "billing_type": "carrier",
-        "readable": "DHL eCommerce Solutions", "logo": null, "fields": {"credentials":
-        {"client_id": {"visibility": "visible", "label": "DHL eCommerce Solutions
-        client ID", "value": "123456"}, "client_secret": {"visibility": "password",
-        "label": "DHL eCommerce Solutions client secret", "value": "********"}, "pickup_id":
-        {"visibility": "visible", "label": "DHL eCommerce Solutions pickup ID", "value":
-        "123456"}, "distribution_center": {"visibility": "visible", "label": "DHL
-        eCommerce Solutions distribution center", "value": "USLAX1"}}, "test_credentials":
-        {"client_id": {"visibility": "visible", "label": "Test DHL eCommerce Solutions
-        client ID", "value": "123456"}, "client_secret": {"visibility": "password",
-        "label": "Test DHL eCommerce Solutions client secret", "value": "********"},
-        "pickup_id": {"visibility": "visible", "label": "Test DHL eCommerce Solutions
-        pickup ID", "value": "123456"}, "distribution_center": {"visibility": "visible",
-        "label": "Test DHL eCommerce Solutions distribution center", "value": "USLAX1"}}},
-        "credentials": "<REDACTED>", "test_credentials": "<REDACTED>"}]'
+        "LSO", "logo": null, "fields": [], "credentials": {}, "test_credentials":
+        {}}, {"id": "ca_d38ae88b6edb48ed93c0a16ed068215b", "object": "CarrierAccount",
+        "type": "DhlExpressDefaultAccount", "clone": false, "created_at": "2022-04-26T16:59:02Z",
+        "updated_at": "2022-04-26T16:59:02Z", "description": "DHL Express Account",
+        "reference": null, "billing_type": "easypost", "readable": "DHL Express",
+        "logo": null, "fields": [], "credentials": {}, "test_credentials": {}}, {"id":
+        "ca_c3cbbd21bc97400bbbaed6d030909476", "object": "CarrierAccount", "type":
+        "DhlEcsAccount", "clone": false, "created_at": "2022-08-15T18:51:36Z", "updated_at":
+        "2022-08-15T18:51:36Z", "description": "DHL eCommerce Solutions Account",
+        "reference": null, "billing_type": "carrier", "readable": "DHL eCommerce Solutions",
+        "logo": null, "fields": [], "credentials": {}, "test_credentials": {}}]'
     headers:
       cache-control:
       - private, no-cache, no-store
@@ -83,7 +61,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f43af47c62fa95b9e79a76a900261fa2
+      - d25912f8632b8442e2aac198000675ab
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -91,12 +69,12 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb1nuq 29913d444b
+      - extlb2nuq 29913d444b
       x-runtime:
-      - '0.124297'
+      - '0.065217'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202209212025-b1bc460ca8-master
       x-xss-protection:
       - 1; mode=block
     status:

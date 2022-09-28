@@ -1,6 +1,11 @@
 import json
 import os
-from typing import List
+from typing import (
+    Any,
+    Dict,
+    List,
+    Tuple,
+)
 
 import pytest
 
@@ -11,7 +16,9 @@ EASYPOST_TEST_API_KEY = os.getenv("EASYPOST_TEST_API_KEY")
 EASYPOST_PROD_API_KEY = os.getenv("EASYPOST_PROD_API_KEY")
 PARTNER_USER_PROD_API_KEY = os.getenv("PARTNER_USER_PROD_API_KEY", "123")
 
-CASSETTE_REPLACEMENT_VALUE = "<REDACTED>"
+SCRUBBED_STRING = "<REDACTED>"
+SCRUBBED_ARRAY: List = []
+SCRUBBED_DICT: Dict = {}
 
 
 def pytest_sessionstart(session):
@@ -75,8 +82,8 @@ def vcr_config():
         ],
         "decode_compressed_response": True,
         "filter_headers": [
-            ("authorization", CASSETTE_REPLACEMENT_VALUE),
-            ("user-agent", CASSETTE_REPLACEMENT_VALUE),
+            ("authorization", SCRUBBED_STRING),
+            ("user-agent", SCRUBBED_STRING),
         ],
         "filter_query_parameters": [
             "card[number]",
@@ -84,42 +91,59 @@ def vcr_config():
         ],
         "before_record_response": scrub_response_bodies(
             scrubbers=[
-                "api_keys",
-                "children",
-                "client_ip",
-                "credentials",
-                "email",
-                "key",
-                "keys",
-                "phone_number",
-                "phone",
-                "test_credentials",
+                ["api_keys", SCRUBBED_ARRAY],
+                ["client_ip", SCRUBBED_STRING],
+                ["credentials", SCRUBBED_DICT],
+                ["email", SCRUBBED_STRING],
+                ["fields", SCRUBBED_ARRAY],
+                ["key", SCRUBBED_STRING],
+                ["keys", SCRUBBED_ARRAY],
+                ["phone_number", SCRUBBED_STRING],
+                ["phone", SCRUBBED_STRING],
+                ["test_credentials", SCRUBBED_DICT],
             ]
         ),
     }
 
 
-def scrub_response_bodies(scrubbers: List[str]):
-    """Scrub sensitive data from response bodies (at the root level or in a root list)
-    prior to recording the cassette.
+def scrub_response_bodies(scrubbers: List[Tuple[str, Any]]) -> Any:
+    """Scrub sensitive data from response bodies prior to recording the cassette."""
 
-    This function DOES NOT scrub data in nested objects or lists.
-    """
-
-    def before_record_response(response):
+    def before_record_response(response: Any) -> Any:
+        """This function fires prior to persisting data to a cassette."""
         if response["body"]["string"]:
             response_body = json.loads(response["body"]["string"].decode())
-            for scrubber in scrubbers:
-                if isinstance(response_body, list):
-                    for element in response_body:
-                        if scrubber in element:
-                            element[scrubber] = CASSETTE_REPLACEMENT_VALUE
-                else:
-                    if scrubber in response_body:
-                        response_body[scrubber] = CASSETTE_REPLACEMENT_VALUE
+
+            response_body = scrub_data(response_body)
 
             response["body"]["string"] = json.dumps(response_body).encode()
         return response
+
+    def scrub_data(data: Any) -> Any:
+        """Scrub data from a cassette recursively."""
+        for scrubber in scrubbers:
+            key = scrubber[0]
+            replacement = scrubber[1]
+
+            # Root-level list scrubbing
+            if isinstance(data, list):
+                for index, item in enumerate(data):
+                    if key in item:
+                        data[index][key] = replacement
+            elif isinstance(data, dict):
+                # Root-level key scrubbing
+                if key in data:
+                    data[key] = replacement
+                else:
+                    # Nested scrubbing
+                    for index, item in enumerate(data):
+                        element = data[item]
+                        if isinstance(element, list):
+                            for nested_index, nested_item in enumerate(element):
+                                data[item][nested_index] = scrub_data(nested_item)
+                        elif isinstance(element, dict):
+                            data[item] = scrub_data(element)
+        return data
 
     return before_record_response
 

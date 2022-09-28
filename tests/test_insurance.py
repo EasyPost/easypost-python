@@ -34,7 +34,7 @@ def test_insurance_retrieve(one_call_buy_shipment, basic_insurance):
 
 
 @pytest.mark.vcr()
-def test_insurance__all(page_size):
+def test_insurance_all(page_size):
     insurances = easypost.Insurance.all(page_size=page_size)
 
     insurance_array = insurances["insurances"]
