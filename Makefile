@@ -19,7 +19,7 @@ clean:
 
 ## coverage - Test the project and generate an HTML coverage report
 coverage:
-	$(VIRTUAL_BIN)/pytest --cov=$(PROJECT_NAME) --cov-branch --cov-report=html --cov-report=term-missing --cov-fail-under=88
+	$(VIRTUAL_BIN)/pytest --cov=$(PROJECT_NAME) --cov-branch --cov-report=html --cov-report=term-missing --cov-fail-under=87
 
 ## black - Runs the Black Python formatter against the project
 black:
