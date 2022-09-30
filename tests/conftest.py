@@ -114,35 +114,35 @@ def scrub_response_bodies(scrubbers: List[Tuple[str, Any]]) -> Any:
         if response["body"]["string"]:
             response_body = json.loads(response["body"]["string"].decode())
 
-            response_body = scrub_data(response_body)
+            for scrubber in scrubbers:
+                response_body = scrub_data(response_body, scrubber)
 
             response["body"]["string"] = json.dumps(response_body).encode()
         return response
 
-    def scrub_data(data: Any) -> Any:
+    def scrub_data(data: Any, scrubber: Tuple[str, Any]) -> Any:
         """Scrub data from a cassette recursively."""
-        for scrubber in scrubbers:
-            key = scrubber[0]
-            replacement = scrubber[1]
+        key = scrubber[0]
+        replacement = scrubber[1]
 
-            # Root-level list scrubbing
-            if isinstance(data, list):
+        # Root-level list scrubbing
+        if isinstance(data, list):
+            for index, item in enumerate(data):
+                if key in item:
+                    data[index][key] = replacement
+        elif isinstance(data, dict):
+            # Root-level key scrubbing
+            if key in data:
+                data[key] = replacement
+            else:
+                # Nested scrubbing
                 for index, item in enumerate(data):
-                    if key in item:
-                        data[index][key] = replacement
-            elif isinstance(data, dict):
-                # Root-level key scrubbing
-                if key in data:
-                    data[key] = replacement
-                else:
-                    # Nested scrubbing
-                    for index, item in enumerate(data):
-                        element = data[item]
-                        if isinstance(element, list):
-                            for nested_index, nested_item in enumerate(element):
-                                data[item][nested_index] = scrub_data(nested_item)
-                        elif isinstance(element, dict):
-                            data[item] = scrub_data(element)
+                    element = data[item]
+                    if isinstance(element, list):
+                        for nested_index, nested_item in enumerate(element):
+                            data[item][nested_index] = scrub_data(nested_item, scrubber)
+                    elif isinstance(element, dict):
+                        data[item] = scrub_data(element, scrubber)
         return data
 
     return before_record_response
