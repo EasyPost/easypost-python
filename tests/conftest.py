@@ -1,6 +1,7 @@
 import datetime
 import json
 import os
+import warnings
 from typing import (
     Any,
     Dict,
@@ -70,26 +71,28 @@ def partner_prod_api_key():
     easypost.api_key = default_key
 
 
-def check_expired_cassettes(expiration_days: int = 180):
+@pytest.fixture(autouse=True)
+def check_expired_cassettes(expiration_days: int = 180, throw_error: bool = False):
     """Checks for expired cassettes and throws errors if they are too old and must be re-recorded."""
     test_name = os.environ.get("PYTEST_CURRENT_TEST").split(":")[-1].split(" ")[0]  # type: ignore
     cassette_filepath = os.path.join("tests", "cassettes", f"{test_name}.yaml")
 
     if os.path.exists(cassette_filepath):
-        expiration_age = datetime.datetime.now() - datetime.timedelta(days=expiration_days)
-        cassette_age = datetime.datetime.fromtimestamp(os.stat(cassette_filepath).st_mtime)
+        cassette_timestamp = datetime.datetime.fromtimestamp(os.stat(cassette_filepath).st_mtime)
+        expiration_timestamp = cassette_timestamp + datetime.timedelta(days=expiration_days)
+        current_timestamp = datetime.datetime.now()
 
-        if cassette_age < expiration_age:
-            raise Exception(
-                f"{cassette_filepath} is older than {expiration_days} and has expired. Please re-record the cassette."
-            )
+        if current_timestamp > expiration_timestamp:
+            error_message = f"{cassette_filepath} is older than {expiration_days} days and has expired. Please re-record the cassette."  # noqa
+            if throw_error:
+                raise Exception(error_message)
+            else:
+                warnings.warn(error_message)
 
 
 @pytest.fixture(scope="session")
 def vcr_config():
     """Setup the VCR config for the test suite."""
-    check_expired_cassettes()
-
     return {
         "match_on": [
             "body",
