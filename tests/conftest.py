@@ -1,3 +1,4 @@
+import datetime
 import json
 import os
 from typing import (
@@ -69,9 +70,26 @@ def partner_prod_api_key():
     easypost.api_key = default_key
 
 
+def check_expired_cassettes(expiration_days: int = 180):
+    """Checks for expired cassettes and throws errors if they are too old and must be re-recorded."""
+    test_name = os.environ.get("PYTEST_CURRENT_TEST").split(":")[-1].split(" ")[0]  # type: ignore
+    cassette_filepath = os.path.join("tests", "cassettes", f"{test_name}.yaml")
+
+    if os.path.exists(cassette_filepath):
+        expiration_age = datetime.datetime.now() - datetime.timedelta(days=expiration_days)
+        cassette_age = datetime.datetime.fromtimestamp(os.stat(cassette_filepath).st_mtime)
+
+        if cassette_age < expiration_age:
+            raise Exception(
+                f"{cassette_filepath} is older than {expiration_days} and has expired. Please re-record the cassette."
+            )
+
+
 @pytest.fixture(scope="session")
 def vcr_config():
     """Setup the VCR config for the test suite."""
+    check_expired_cassettes()
+
     return {
         "match_on": [
             "body",
