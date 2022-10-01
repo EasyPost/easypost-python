@@ -1,5 +1,7 @@
+import datetime
 import json
 import os
+import warnings
 from typing import (
     Any,
     Dict,
@@ -67,6 +69,25 @@ def partner_prod_api_key():
     easypost.api_key = PARTNER_USER_PROD_API_KEY
     yield
     easypost.api_key = default_key
+
+
+@pytest.fixture(autouse=True)
+def check_expired_cassettes(expiration_days: int = 180, throw_error: bool = False):
+    """Checks for expired cassettes and throws errors if they are too old and must be re-recorded."""
+    test_name = os.environ.get("PYTEST_CURRENT_TEST").split(":")[-1].split(" ")[0]  # type: ignore
+    cassette_filepath = os.path.join("tests", "cassettes", f"{test_name}.yaml")
+
+    if os.path.exists(cassette_filepath):
+        cassette_timestamp = datetime.datetime.fromtimestamp(os.stat(cassette_filepath).st_mtime)
+        expiration_timestamp = cassette_timestamp + datetime.timedelta(days=expiration_days)
+        current_timestamp = datetime.datetime.now()
+
+        if current_timestamp > expiration_timestamp:
+            error_message = f"{cassette_filepath} is older than {expiration_days} days and has expired. Please re-record the cassette."  # noqa
+            if throw_error:
+                raise Exception(error_message)
+            else:
+                warnings.warn(error_message)
 
 
 @pytest.fixture(scope="session")
