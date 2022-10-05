@@ -22,8 +22,8 @@ interactions:
     uri: https://api.easypost.com/v2/end_shippers
   response:
     body:
-      string: '{"id": "es_69f2cd9e8c164a1d922f829059869feb", "object": "EndShipper",
-        "created_at": "2022-08-24T20:44:20+00:00", "updated_at": "2022-08-24T20:44:20+00:00",
+      string: '{"id": "es_7aa5429f1c16490bacb6bd8dfd77f42e", "object": "EndShipper",
+        "mode": "test", "created_at": "2022-10-05T19:50:55+00:00", "updated_at": "2022-10-05T19:50:55+00:00",
         "name": "JACK SPARROW", "company": null, "street1": "388 TOWNSEND ST APT 20",
         "street2": "", "city": "SAN FRANCISCO", "state": "CA", "zip": "94107-1670",
         "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>"}'
@@ -31,11 +31,11 @@ interactions:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '351'
+      - '365'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"64b147a32a6413110b934122252e07d2"
+      - W/"8355c22bc926a15a1bf45bde8f391c04"
       expires:
       - '0'
       pragma:
@@ -48,27 +48,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 70da33d763068da4e78a0f8a00845e16
+      - 16580188633de01fe2ba90180008dd03
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb9nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 6aa9972c1e
-      - extlb2nuq 9ce216bfac
+      - intlb1nuq 29913d444b
+      - extlb2nuq 29913d444b
       x-runtime:
-      - '0.044275'
+      - '0.037694'
       x-version-label:
-      - easypost-202208241853-b300c23ebd-master
+      - easypost-202210051807-174cd29491-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -88,11 +86,11 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/v2/end_shippers/es_69f2cd9e8c164a1d922f829059869feb
+    uri: https://api.easypost.com/v2/end_shippers/es_7aa5429f1c16490bacb6bd8dfd77f42e
   response:
     body:
-      string: '{"id": "es_69f2cd9e8c164a1d922f829059869feb", "object": "EndShipper",
-        "created_at": "2022-08-24T20:44:20+00:00", "updated_at": "2022-08-24T20:44:20+00:00",
+      string: '{"id": "es_7aa5429f1c16490bacb6bd8dfd77f42e", "object": "EndShipper",
+        "mode": "test", "created_at": "2022-10-05T19:50:55+00:00", "updated_at": "2022-10-05T19:50:55+00:00",
         "name": "JACK SPARROW", "company": null, "street1": "388 TOWNSEND ST APT 20",
         "street2": null, "city": "SAN FRANCISCO", "state": "CA", "zip": "94107-1670",
         "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>"}'
@@ -100,11 +98,11 @@ interactions:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '353'
+      - '367'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"e3b5e8a0a62a40d25f54a3f28319ede1"
+      - W/"6e0a7f181280099ac0f832ad73610e5a"
       expires:
       - '0'
       pragma:
@@ -117,27 +115,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 70da33d763068da4e78a0f8a00845e61
+      - 16580188633de020e2ba90180008dd1d
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb6nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 6aa9972c1e
-      - extlb2nuq 9ce216bfac
+      - intlb1nuq 29913d444b
+      - extlb2nuq 29913d444b
       x-runtime:
-      - '0.022373'
+      - '0.034057'
       x-version-label:
-      - easypost-202208241853-b300c23ebd-master
+      - easypost-202210051807-174cd29491-master
       x-xss-protection:
       - 1; mode=block
     status:

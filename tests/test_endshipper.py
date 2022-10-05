@@ -4,7 +4,7 @@ import easypost
 
 
 @pytest.mark.vcr()
-def test_endshipper_create(prod_api_key, ca_address_1):
+def test_endshipper_create(ca_address_1):
     endshipper = easypost.EndShipper.create(**ca_address_1)
 
     assert isinstance(endshipper, easypost.EndShipper)
@@ -13,7 +13,7 @@ def test_endshipper_create(prod_api_key, ca_address_1):
 
 
 @pytest.mark.vcr()
-def test_endshipper_retrieve(prod_api_key, ca_address_1):
+def test_endshipper_retrieve(ca_address_1):
     endshipper = easypost.EndShipper.create(**ca_address_1)
 
     retrieved_endshipper = easypost.EndShipper.retrieve(endshipper.id)
@@ -23,7 +23,7 @@ def test_endshipper_retrieve(prod_api_key, ca_address_1):
 
 
 @pytest.mark.vcr()
-def test_endshipper_all(prod_api_key, page_size):
+def test_endshipper_all(page_size):
     endshippers = easypost.EndShipper.all(page_size=page_size)
 
     endshipper_array = endshippers["end_shippers"]
@@ -33,7 +33,7 @@ def test_endshipper_all(prod_api_key, page_size):
 
 
 @pytest.mark.vcr()
-def test_endshipper_update(prod_api_key, ca_address_1):
+def test_endshipper_update(ca_address_1):
     endshipper = easypost.EndShipper.create(**ca_address_1)
 
     endshipper.name = "Captain Sparrow"

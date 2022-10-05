@@ -1,9 +1,6 @@
-from unittest.mock import patch
-
 import pytest
 
 import easypost
-from easypost.requestor import RequestMethod
 
 
 @pytest.mark.vcr()
@@ -284,31 +281,11 @@ def test_shipment_rerate_with_carbon_offset(one_call_buy_shipment):
     assert all(rate.carbon_offset is not None for rate in new_carbon_rates.rates)
 
 
-@patch(
-    "easypost.requestor.Requestor.request",
-    return_value=[
-        {"mock-request": None},
-        "mock-api-key",
-    ],
-)
-def test_shipment_buy_with_end_shipper_id(mock_request):
-    """Because this requires an API call in prod, we mock the request instead of using
-    VCR to ensure test user accounts don't get charged for real postage since we can only
-    guarantee a USPS carrier account will be configured for a user.
-    """
-    shipment_id = "shp_123"
-    end_shipper_id = "es_123"
-    rate_id = "rate_123"
+@pytest.mark.vcr()
+def test_shipment_buy_with_end_shipper_id(ca_address_1, basic_shipment):
+    end_shipper = easypost.EndShipper.create(**ca_address_1)
 
-    mock_shipment = easypost.Shipment(easypost_id=shipment_id)
-    mock_shipment.buy(rate={"id": rate_id}, end_shipper_id=end_shipper_id)
+    shipment = easypost.Shipment.create(**basic_shipment)
+    shipment.buy(rate=shipment.lowest_rate(), end_shipper_id=end_shipper["id"])
 
-    mock_request.assert_called_once_with(
-        method=RequestMethod.POST,
-        url=f"/shipments/{shipment_id}/buy",
-        params={
-            "rate": {"id": rate_id},
-            "carbon_offset": False,
-            "end_shipper_id": end_shipper_id,
-        },
-    )
+    assert shipment.postage_label is not None
