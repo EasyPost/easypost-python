@@ -22,95 +22,20 @@ interactions:
     uri: https://api.easypost.com/v2/end_shippers
   response:
     body:
-      string: '{"id": "es_ba7f7dcc7fb642fb978d2a88ca523232", "object": "EndShipper",
-        "mode": "production", "created_at": "2022-09-21T16:15:51+00:00", "updated_at":
-        "2022-09-21T16:15:51+00:00", "name": "JACK SPARROW", "company": null, "street1":
-        "388 TOWNSEND ST APT 20", "street2": "", "city": "SAN FRANCISCO", "state":
-        "CA", "zip": "94107-1670", "country": "US", "phone": "<REDACTED>", "email":
-        "<REDACTED>"}'
+      string: '{"id": "es_6c4fa53ceec743b697b86598e0d16c4f", "object": "EndShipper",
+        "mode": "test", "created_at": "2022-10-05T19:50:56+00:00", "updated_at": "2022-10-05T19:50:56+00:00",
+        "name": "JACK SPARROW", "company": null, "street1": "388 TOWNSEND ST APT 20",
+        "street2": "", "city": "SAN FRANCISCO", "state": "CA", "zip": "94107-1670",
+        "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>"}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '371'
+      - '365'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"d866cb7746d66909d4b513599cf960fb"
-      expires:
-      - '0'
-      pragma:
-      - no-cache
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains; preload
-      transfer-encoding:
-      - chunked
-      x-backend:
-      - easypost
-      x-content-type-options:
-      - nosniff
-      x-download-options:
-      - noopen
-      x-ep-request-uuid:
-      - ad419056632b38b6e2b8e18a0016568b
-      x-frame-options:
-      - SAMEORIGIN
-      x-node:
-      - bigweb4nuq
-      x-permitted-cross-domain-policies:
-      - none
-      x-proxied:
-      - intlb1nuq 29913d444b
-      - extlb2nuq 29913d444b
-      x-runtime:
-      - '0.176083'
-      x-version-label:
-      - easypost-202209210008-610ad55e3f-master
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 201
-      message: Created
-- request:
-    body: '{"address": {"email": "test@example.com", "phone": "9999999999", "country":
-      "US", "city": "San Francisco", "street1": "388 Townsend St", "name": "Captain
-      Sparrow", "street2": "Apt 20", "state": "CA", "zip": "94107", "company": "EasyPost"}}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '239'
-      Content-Type:
-      - application/json
-      authorization:
-      - <REDACTED>
-      user-agent:
-      - <REDACTED>
-    method: PUT
-    uri: https://api.easypost.com/v2/end_shippers/es_ba7f7dcc7fb642fb978d2a88ca523232
-  response:
-    body:
-      string: '{"id": "es_ba7f7dcc7fb642fb978d2a88ca523232", "object": "EndShipper",
-        "mode": "production", "created_at": "2022-09-21T16:15:51+00:00", "updated_at":
-        "2022-09-21T16:15:51+00:00", "name": "CAPTAIN SPARROW", "company": "EASYPOST",
-        "street1": "388 TOWNSEND ST APT 20", "street2": "", "city": "SAN FRANCISCO",
-        "state": "CA", "zip": "94107-1670", "country": "US", "phone": "<REDACTED>",
-        "email": "<REDACTED>"}'
-    headers:
-      cache-control:
-      - private, no-cache, no-store
-      content-length:
-      - '380'
-      content-type:
-      - application/json; charset=utf-8
-      etag:
-      - W/"154c460857fd7508705073f74a357ab0"
+      - W/"118c58564a8942c882e40eabc460a2d8"
       expires:
       - '0'
       pragma:
@@ -130,7 +55,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - ad419056632b38b7e2b8e18a001656aa
+      - 21b265f4633de020e2ba901a0007f7a1
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -138,12 +63,85 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 29913d444b
-      - extlb2nuq 29913d444b
+      - intlb1nuq 29913d444b
+      - extlb1nuq 29913d444b
       x-runtime:
-      - '0.064271'
+      - '0.045166'
       x-version-label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202210051807-174cd29491-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: '{"address": {"company": "EasyPost", "zip": "94107", "name": "Captain Sparrow",
+      "phone": "9999999999", "email": "test@example.com", "street2": "Apt 20", "city":
+      "San Francisco", "state": "CA", "country": "US", "street1": "388 Townsend St"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '239'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: PUT
+    uri: https://api.easypost.com/v2/end_shippers/es_6c4fa53ceec743b697b86598e0d16c4f
+  response:
+    body:
+      string: '{"id": "es_6c4fa53ceec743b697b86598e0d16c4f", "object": "EndShipper",
+        "mode": "test", "created_at": "2022-10-05T19:50:56+00:00", "updated_at": "2022-10-05T19:50:57+00:00",
+        "name": "CAPTAIN SPARROW", "company": "EASYPOST", "street1": "388 TOWNSEND
+        ST APT 20", "street2": "", "city": "SAN FRANCISCO", "state": "CA", "zip":
+        "94107-1670", "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>"}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '374'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"75dac71068a05999c04021e69373edfe"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 21b265f4633de020e2ba901a0007f7a7
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb4nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 29913d444b
+      - extlb1nuq 29913d444b
+      x-runtime:
+      - '0.084118'
+      x-version-label:
+      - easypost-202210051807-174cd29491-master
       x-xss-protection:
       - 1; mode=block
     status:
