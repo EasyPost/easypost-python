@@ -157,7 +157,7 @@ def scrub_response_bodies(scrubbers: List[Tuple[str, Any]]) -> Any:
                 data[key] = replacement
             else:
                 # Nested scrubbing
-                for index, item in enumerate(data):
+                for item in data:
                     element = data[item]
                     if isinstance(element, list):
                         for nested_index, nested_item in enumerate(element):
