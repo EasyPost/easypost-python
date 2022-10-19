@@ -21,3 +21,12 @@ def test_error_no_json():
     error = easypost.Error(http_body="bad json")
 
     assert error.json_body is None
+
+
+def test_error_list_message():
+    """Tests that we concatenate error messages that are a list (they should be a string from the
+    API but aren't always so we protect against that here).
+    """
+    error = easypost.Error(message=["Error1", "Error2"])
+
+    assert error.message == "Error1, Error2"
