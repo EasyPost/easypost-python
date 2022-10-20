@@ -8,13 +8,15 @@ from typing import (
 class Error(Exception):
     def __init__(
         self,
-        message: Optional[str] = None,
+        message: Optional[
+            Union[str, list]
+        ] = None,  # message should be a string but can sometimes incorrectly come back as a list
         http_status: Optional[int] = None,
         http_body: Optional[Union[str, bytes]] = None,
         original_exception: Optional[Exception] = None,
     ):
         super(Error, self).__init__(message)
-        self.message = message
+        self.message = ", ".join(message) if type(message) == list else message
         self.http_status = http_status
         self.http_body = http_body
         self.original_exception = original_exception

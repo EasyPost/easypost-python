@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## NEXT RELEASE
+
+- Concatenates `error.message` if it incorrectly comes back from the API as a list
+
 ## v7.6.0 (2022-09-21)
 
 - Adds support to pass `end_shipper_id` on the buy call of a Shipment
