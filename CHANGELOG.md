@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## NEXT RELEASE
+## v7.6.1 (2022-10-24)
 
 - Concatenates `error.message` if it incorrectly comes back from the API as a list
 
