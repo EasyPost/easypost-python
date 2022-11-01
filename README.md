@@ -1,6 +1,7 @@
 # EasyPost Python Client Library
 
 [![CI](https://github.com/EasyPost/easypost-python/workflows/CI/badge.svg)](https://github.com/EasyPost/easypost-python/actions?query=workflow%3ACI)
+[![Coverage Status](https://coveralls.io/repos/github/EasyPost/easypost-python/badge.svg)](https://coveralls.io/github/EasyPost/easypost-python)
 [![PyPI version](https://badge.fury.io/py/easypost.svg)](https://badge.fury.io/py/easypost)
 
 EasyPost, the simple shipping solution. You can sign up for an account at <https://easypost.com>.

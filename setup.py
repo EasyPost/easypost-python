@@ -12,6 +12,7 @@ REQUIREMENTS = [
 DEV_REQUIREMENTS = [
     "bandit==1.7.1",  # Bandit 1.7.2 drops support for Python 3.6
     "black==22.*",
+    "coveralls == 3.*",
     "flake8==5.*",
     "isort==5.*",
     "mypy==0.971",
@@ -66,6 +67,7 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
         "License :: OSI Approved :: MIT License",
