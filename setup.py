@@ -14,12 +14,11 @@ DEV_REQUIREMENTS = [
     "black==23.*",
     "build==0.10.*",
     "urllib3==1.*",  # TODO: Pinned because vcrpy did a dumb and didn't pin urllib3
-    "coveralls == 3.*",
     "flake8==5.*",  # TODO: flake8 v6 requires Python 3.8.1+
     "isort==5.*",
     "mypy==1.3.*",
     "pdoc==13.*",
-    "pytest-cov==3.*",
+    "pytest-cov==4.*",
     "pytest-vcr==1.*",
     "pytest==7.*",
     "twine==4.*",
