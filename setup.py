@@ -16,7 +16,7 @@ DEV_REQUIREMENTS = [
     "flake8==5.*",
     "isort==5.*",
     "mypy==0.971",
-    "pdoc==12.*",
+    "pdoc==12.*;python_version>='3.7'",
     "pytest-cov==3.*",
     "pytest-vcr==1.*",
     "pytest==7.*",
