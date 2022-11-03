@@ -8,6 +8,14 @@ TEST_DIR := tests
 help:
 	@cat Makefile | grep '^## ' --color=never | cut -c4- | sed -e "`printf 's/ - /\t- /;'`" | column -s "`printf '\t'`" -t
 
+## black - Runs the Black Python formatter against the project
+black:
+	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/
+
+## black-check - Checks if the project is formatted correctly against the Black rules
+black-check:
+	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/ --check
+
 ## build - Builds the project in preparation for release
 build:
 	$(VIRTUAL_BIN)/python setup.py sdist bdist_wheel
@@ -21,13 +29,9 @@ clean:
 coverage:
 	$(VIRTUAL_BIN)/pytest --cov=$(PROJECT_NAME) --cov-branch --cov-report=html --cov-report=term-missing --cov-fail-under=87
 
-## black - Runs the Black Python formatter against the project
-black:
-	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/
-
-## black-check - Checks if the project is formatted correctly against the Black rules
-black-check:
-	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/ --check
+## docs - Generates docs for the library
+docs:
+	$(VIRTUAL_BIN)/pdoc $(PROJECT_NAME) -o docs
 
 ## format - Runs all formatting tools against the project
 format: black isort
@@ -75,4 +79,4 @@ scan:
 test:
 	$(VIRTUAL_BIN)/pytest
 
-.PHONY: help build clean coverage black black-check format format-check install isort isort-check lint mypy publish release scan test
+.PHONY: help black black-check build clean coverage docs format format-check install isort isort-check lint mypy publish release scan test
