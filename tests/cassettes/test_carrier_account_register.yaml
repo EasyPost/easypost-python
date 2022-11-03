@@ -1,0 +1,78 @@
+interactions:
+- request:
+    body: '{"carrier_account": {"type": "UpsAccount", "registration_data": {}}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '68'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/carrier_accounts/register
+  response:
+    body:
+      string: '{"error": {"code": "UNPROCESSABLE_ENTITY", "message": "The request
+        was understood, but cannot be processed.", "errors": [{"field": "account_number",
+        "message": "must be present and a string"}, {"field": "city", "message": "must
+        be present and a string"}, {"field": "company", "message": "must be present
+        and a string"}, {"field": "country", "message": "must be present and a string"},
+        {"field": "email", "message": "must be present and a string"}, {"field": "name",
+        "message": "must be present and a string"}, {"field": "phone", "message":
+        "must be present and a string"}, {"field": "postal_code", "message": "must
+        be present and a string"}, {"field": "state", "message": "must be present
+        and a string"}, {"field": "street1", "message": "must be present and a string"},
+        {"field": "title", "message": "must be present and a string"}, {"field": "website",
+        "message": "must be present and a string"}]}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '846'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 513791bf636437fee789f242001139c3
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb5nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 29913d444b
+      - extlb1nuq 29913d444b
+      x-runtime:
+      - '0.038035'
+      x-version-label:
+      - easypost-202211032002-79b51b1468-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 422
+      message: Unprocessable Entity
+version: 1

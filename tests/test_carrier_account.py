@@ -63,3 +63,22 @@ def test_carrier_account_type(prod_api_key):
     types = easypost.CarrierAccount.types()
 
     assert isinstance(types, list)
+
+
+@pytest.mark.vcr()
+def test_carrier_account_register(prod_api_key):
+    """Test register a Carrier Account with custom registration such as FedEx or UPS.
+
+    We purposefully don't pass data here because real data is required for this endpoint
+    which we don't have in a test context, simply assert the error matches when no data is passed.
+    """
+    carrier_account = {
+        "type": "UpsAccount",
+        "registration_data": {},
+    }
+
+    try:
+        easypost.CarrierAccount.register(**carrier_account)
+    except easypost.Error as error:
+        # TODO: Assert against error.errors when that property gets added
+        assert '{"field": "account_number", "message": "must be present and a string"}' in error.http_body
