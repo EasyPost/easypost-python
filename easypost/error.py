@@ -20,6 +20,8 @@ class Error(Exception):
         self.http_status = http_status
         self.http_body = http_body
         self.original_exception = original_exception
+        # TODO: add missing `errors` param among others in thread-safe rewrite and update tests
+
         if http_body:
             try:
                 self.json_body = json.loads(http_body)

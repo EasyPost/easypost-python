@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## NEXT RELEASE
+
+- Adds `register` function to CarrierAccount for carriers with custom registration such as FedEx or UPS
+
 ## v7.6.1 (2022-10-24)
 
 - Concatenates `error.message` if it incorrectly comes back from the API as a list
