@@ -1,4 +1,6 @@
 from typing import (
+    Any,
+    Dict,
     List,
     Optional,
 )
@@ -48,21 +50,24 @@ class User(UpdateResource, DeleteResource):
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     @classmethod
-    def all_api_keys(cls, api_key: Optional[str] = None) -> "User":
-        """Get all API keys including child user keys."""
+    def all_api_keys(cls, api_key: Optional[str] = None) -> Dict[str, Any]:
+        """Retrieve a list of all API keys."""
         requestor = Requestor(local_api_key=api_key)
         url = "/api_keys"
         response, api_key = requestor.request(method=RequestMethod.GET, url=url)
         return convert_to_easypost_object(response=response, api_key=api_key)
 
-    def api_keys(self) -> List[str]:
-        """Get the authenticated user's API keys."""
+    def api_keys(self) -> List[Dict[str, Any]]:
+        """Retrieve a list of API keys (works for the authenticated user or a child user)."""
         api_keys = self.all_api_keys()
 
-        if api_keys.id == self.id:
-            return api_keys.keys
+        if api_keys["id"] == self.id:
+            # This function was called on the authenticated user
+            return api_keys["keys"]
         else:
-            for child in api_keys.children:
+            # This function was called on a child user (authenticated as parent, only return
+            # this child user's details).
+            for child in api_keys["children"]:
                 if child.id == self.id:
                     return child.keys
 

@@ -66,6 +66,7 @@ def test_user_delete(prod_api_key):
 
 @pytest.mark.vcr()
 def test_user_all_api_keys(prod_api_key):
+    """Tests that we can retrieve all API keys."""
     user = easypost.User.retrieve_me()
     api_keys = user.all_api_keys()
 
@@ -73,9 +74,21 @@ def test_user_all_api_keys(prod_api_key):
 
 
 @pytest.mark.vcr()
-def test_user_api_keys(prod_api_key):
+def test_authenticated_user_api_keys(prod_api_key):
+    """Tests that we can retrieve the authenticated user's API keys."""
     user = easypost.User.retrieve_me()
     api_keys = user.api_keys()
+
+    assert api_keys is not None
+
+
+@pytest.mark.vcr()
+def test_child_user_api_keys(prod_api_key):
+    """Tests that we can retrieve a child user's API keys as the parent."""
+    user = easypost.User.create(name="Test User")
+    child_user = easypost.User.retrieve(user.id)
+
+    api_keys = child_user.api_keys()
 
     assert api_keys is not None
 
