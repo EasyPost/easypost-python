@@ -24,7 +24,7 @@ def _select_carrier_account_creation_endpoint(carrier_account_type: str) -> str:
     ]
 
     if carrier_account_type in carriers_with_custom_workflows:
-        return f"/carrier_accounts/register"
+        return "/carrier_accounts/register"
 
     return "/carrier_accounts"
 
