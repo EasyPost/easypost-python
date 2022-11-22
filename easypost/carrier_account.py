@@ -1,4 +1,5 @@
 from typing import (
+    Any,
     List,
     Optional,
 )
@@ -16,7 +17,7 @@ from easypost.resource import (
 )
 
 
-def _select_carrier_account_creation_endpoint(carrier_account_type: str) -> str:
+def _select_carrier_account_creation_endpoint(carrier_account_type: Optional[Any]) -> str:
     """Determines which API endpoint to use for the creation call."""
     carriers_with_custom_workflows = [
         "FedExAccount",
