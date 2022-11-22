@@ -23,10 +23,7 @@ from easypost.resource import (
 
 def _select_carrier_account_creation_endpoint(carrier_account_type: Optional[Any]) -> str:
     """Determines which API endpoint to use for the creation call."""
-    carriers_with_custom_workflows = [
-        FEDEX_ACCOUNT_TYPE,
-        UPS_ACCOUNT_TYPE
-    ]
+    carriers_with_custom_workflows = [FEDEX_ACCOUNT_TYPE, UPS_ACCOUNT_TYPE]
 
     if carrier_account_type in carriers_with_custom_workflows:
         return "/carrier_accounts/register"
