@@ -12,7 +12,7 @@ def test_refund_create(one_call_buy_shipment, usps):
 
     refund = easypost.Refund.create(
         carrier=usps,
-        tracking_codes=retrieved_shipment.tracking_code,
+        tracking_codes=[retrieved_shipment.tracking_code],
     )
 
     assert str.startswith(refund[0].id, "rfnd_")
