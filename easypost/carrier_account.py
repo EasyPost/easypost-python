@@ -4,6 +4,10 @@ from typing import (
     Optional,
 )
 
+from easypost.constant import (
+    FEDEX_ACCOUNT_TYPE,
+    UPS_ACCOUNT_TYPE,
+)
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.requestor import (
     RequestMethod,
@@ -20,8 +24,8 @@ from easypost.resource import (
 def _select_carrier_account_creation_endpoint(carrier_account_type: Optional[Any]) -> str:
     """Determines which API endpoint to use for the creation call."""
     carriers_with_custom_workflows = [
-        "FedExAccount",
-        "UpsAccount",
+        FEDEX_ACCOUNT_TYPE,
+        UPS_ACCOUNT_TYPE
     ]
 
     if carrier_account_type in carriers_with_custom_workflows:
@@ -44,10 +48,12 @@ class CarrierAccount(AllResource, CreateResource, UpdateResource, DeleteResource
         """Creates a Carrier Account that requires custom registration (eg: FedEx & UPS)."""
         requestor = Requestor(local_api_key=api_key)
 
-        if params.get("type") is None:
+        carrier_account_type = params.get("type")
+
+        if carrier_account_type is None:
             raise ValueError("Missing required parameter 'type'")
 
-        url = _select_carrier_account_creation_endpoint(params.get("type"))
+        url = _select_carrier_account_creation_endpoint(carrier_account_type=carrier_account_type)
         wrapped_params = {cls.snakecase_name(): params}
         response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=wrapped_params)
         return convert_to_easypost_object(response=response, api_key=api_key)
