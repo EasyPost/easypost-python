@@ -2,7 +2,7 @@
 
 ## NEXT RELEASE
 
-- Adds `register` function to CarrierAccount for carriers with custom registration such as FedEx or UPS
+- [ADDED] `create` function for CarrierAccount now supports carrier accounts with custom workflows (e.g. FedEx, UPS)
 
 ## v7.6.1 (2022-10-24)
 

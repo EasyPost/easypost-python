@@ -66,7 +66,7 @@ def test_carrier_account_type(prod_api_key):
 
 
 @pytest.mark.vcr()
-def test_carrier_account_register(prod_api_key):
+def test_carrier_account_create_with_custom_workflow(prod_api_key):
     """Test register a Carrier Account with custom registration such as FedEx or UPS.
 
     We purposefully don't pass data here because real data is required for this endpoint
@@ -78,7 +78,7 @@ def test_carrier_account_register(prod_api_key):
     }
 
     try:
-        easypost.CarrierAccount.register(**carrier_account)
+        easypost.CarrierAccount.create(**carrier_account)
     except easypost.Error as error:
         # TODO: Assert against error.errors when that property gets added
         assert '{"field": "account_number", "message": "must be present and a string"}' in error.http_body
