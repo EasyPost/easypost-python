@@ -1,0 +1,271 @@
+interactions:
+- request:
+    body: '{"user": {"name": "Test User"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '31'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/users
+  response:
+    body:
+      string: '{"id": "user_6ac14ce1d9844c8cb9650f4502882b74", "object": "User", "parent_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "name": "Test User", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2022-11-23T20:37:06Z", "default_carbon_offset":
+        false, "children": [], "api_keys": [{"object": "ApiKey", "key": "<REDACTED>",
+        "mode": "test", "created_at": "2022-11-23T20:37:06Z", "active": true, "id":
+        "ak_03e2b1d2c5b840fd9353e3eb272f6cec"}, {"object": "ApiKey", "key": "<REDACTED>",
+        "mode": "production", "created_at": "2022-11-23T20:37:06Z", "active": true,
+        "id": "ak_423eeac4dd0e4096a38c12e18acce5e3"}]}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '664'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"d13733503625803c1ad19960defcb95a"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 3dff6286637e8472e787bff8000e9df8
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb11nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 29913d444b
+      - extlb2nuq 29913d444b
+      x-runtime:
+      - '0.694237'
+      x-version-label:
+      - easypost-202211231902-b75422a88e-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/users/user_6ac14ce1d9844c8cb9650f4502882b74
+  response:
+    body:
+      string: '{"id": "user_6ac14ce1d9844c8cb9650f4502882b74", "object": "User", "parent_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "name": "Test User", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2022-11-23T20:37:06Z", "default_carbon_offset":
+        false, "children": []}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '257'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"5176ce0e22970d1a6dcfa66250114a47"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 3dff6286637e8473e787bff8000e9e73
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb8nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 29913d444b
+      - extlb2nuq 29913d444b
+      x-runtime:
+      - '0.034930'
+      x-version-label:
+      - easypost-202211231902-b75422a88e-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/api_keys
+  response:
+    body:
+      string: '{"id": "user_54356a6b96c940d8913961a3c7b909f2", "keys": [{"object":
+        "ApiKey", "active": true, "key": "<REDACTED>", "mode": "test", "created_at":
+        "2022-02-24T20:59:05Z", "id": "ak_16f993eae7984eab94e0957a78bee407"}, {"object":
+        "ApiKey", "active": true, "key": "<REDACTED>", "mode": "production", "created_at":
+        "2022-02-24T20:59:14Z", "id": "ak_62524a9c3f684f65ab9eccbf70950df8"}], "children":
+        [{"id": "user_6ac14ce1d9844c8cb9650f4502882b74", "keys": [{"object": "ApiKey",
+        "active": true, "key": "<REDACTED>", "mode": "test", "created_at": "2022-11-23T20:37:06Z",
+        "id": "ak_03e2b1d2c5b840fd9353e3eb272f6cec"}, {"object": "ApiKey", "active":
+        true, "key": "<REDACTED>", "mode": "production", "created_at": "2022-11-23T20:37:06Z",
+        "id": "ak_423eeac4dd0e4096a38c12e18acce5e3"}], "children": []}]}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '926'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"5209613f3e9233c508698b6e3703b4b0"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 3dff6286637e8473e787bff8000e9e84
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb9nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 29913d444b
+      - extlb2nuq 29913d444b
+      x-runtime:
+      - '0.038706'
+      x-version-label:
+      - easypost-202211231902-b75422a88e-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: DELETE
+    uri: https://api.easypost.com/v2/users/user_6ac14ce1d9844c8cb9650f4502882b74
+  response:
+    body:
+      string: ''
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 3dff6286637e8473e787bff8000e9e95
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb3nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 29913d444b
+      - extlb2nuq 29913d444b
+      x-runtime:
+      - '0.120697'
+      x-version-label:
+      - easypost-202211231902-b75422a88e-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 204
+      message: No Content
+version: 1

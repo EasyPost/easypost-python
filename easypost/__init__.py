@@ -1,6 +1,7 @@
 # flake8: noqa
 import easypost.beta
 from easypost.address import Address
+from easypost.api_key import ApiKey
 from easypost.batch import Batch
 from easypost.billing import Billing
 from easypost.brand import Brand

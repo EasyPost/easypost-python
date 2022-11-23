@@ -1,8 +1,11 @@
 from typing import (
+    Any,
+    Dict,
     List,
     Optional,
 )
 
+from easypost.api_key import ApiKey
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.requestor import (
     RequestMethod,
@@ -48,25 +51,30 @@ class User(UpdateResource, DeleteResource):
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     @classmethod
-    def all_api_keys(cls, api_key: Optional[str] = None) -> "User":
-        """Get all API keys including child user keys."""
+    def all_api_keys(cls, api_key: Optional[str] = None) -> Dict[str, Any]:
+        """Retrieve a list of all API keys."""
         requestor = Requestor(local_api_key=api_key)
         url = "/api_keys"
         response, api_key = requestor.request(method=RequestMethod.GET, url=url)
         return convert_to_easypost_object(response=response, api_key=api_key)
 
-    def api_keys(self) -> List[str]:
-        """Get the authenticated user's API keys."""
+    def api_keys(self) -> List[ApiKey]:
+        """Retrieve a list of API keys (works for the authenticated user or a child user)."""
         api_keys = self.all_api_keys()
+        my_api_keys = []
 
-        if api_keys.id == self.id:
-            return api_keys.keys
+        if api_keys["id"] == self.id:
+            # This function was called on the authenticated user
+            my_api_keys = api_keys["keys"]
         else:
-            for child in api_keys.children:
+            # This function was called on a child user (authenticated as parent, only return
+            # this child user's details).
+            for child in api_keys["children"]:
                 if child.id == self.id:
-                    return child.keys
+                    my_api_keys = child.keys
+                    break
 
-        return []
+        return my_api_keys
 
     def update_brand(self, api_key: Optional[str] = None, **params) -> "User":
         """Update the User's Brand."""
