@@ -5,6 +5,7 @@ from typing import (
     Optional,
 )
 
+from easypost.api_key import ApiKey
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.requestor import (
     RequestMethod,
@@ -57,7 +58,7 @@ class User(UpdateResource, DeleteResource):
         response, api_key = requestor.request(method=RequestMethod.GET, url=url)
         return convert_to_easypost_object(response=response, api_key=api_key)
 
-    def api_keys(self) -> List[Dict[str, Any]]:
+    def api_keys(self) -> List[ApiKey]:
         """Retrieve a list of API keys (works for the authenticated user or a child user)."""
         api_keys = self.all_api_keys()
 

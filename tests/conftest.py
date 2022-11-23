@@ -112,13 +112,11 @@ def vcr_config():
         ],
         "before_record_response": scrub_response_bodies(
             scrubbers=[
-                ["api_keys", SCRUBBED_ARRAY],
                 ["client_ip", SCRUBBED_STRING],
                 ["credentials", SCRUBBED_DICT],
                 ["email", SCRUBBED_STRING],
                 ["fields", SCRUBBED_ARRAY],
                 ["key", SCRUBBED_STRING],
-                ["keys", SCRUBBED_ARRAY],
                 ["phone_number", SCRUBBED_STRING],
                 ["phone", SCRUBBED_STRING],
                 ["test_credentials", SCRUBBED_DICT],

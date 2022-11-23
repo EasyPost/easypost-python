@@ -70,7 +70,9 @@ def test_user_all_api_keys(prod_api_key):
     user = easypost.User.retrieve_me()
     api_keys = user.all_api_keys()
 
-    assert api_keys["keys"] is not None
+    assert all(isinstance(key, easypost.ApiKey) for key in api_keys.keys)
+    for child in api_keys.children:
+        assert all(isinstance(key, easypost.ApiKey) for key in child["keys"])
 
 
 @pytest.mark.vcr()
@@ -79,7 +81,7 @@ def test_authenticated_user_api_keys(prod_api_key):
     user = easypost.User.retrieve_me()
     api_keys = user.api_keys()
 
-    assert api_keys is not None
+    assert all(isinstance(key, easypost.ApiKey) for key in api_keys)
 
 
 @pytest.mark.vcr()
@@ -90,7 +92,10 @@ def test_child_user_api_keys(prod_api_key):
 
     api_keys = child_user.api_keys()
 
-    assert api_keys is not None
+    assert all(isinstance(key, easypost.ApiKey) for key in api_keys)
+
+    # Delete the user so we don't clutter up the test environment
+    user.delete()
 
 
 @pytest.mark.vcr()
