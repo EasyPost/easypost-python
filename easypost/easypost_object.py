@@ -10,6 +10,7 @@ import easypost
 
 
 EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP = {
+    "ak": "ApiKey",
     "adr": "Address",
     "batch": "Batch",
     "brd": "Brand",
