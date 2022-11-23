@@ -4,7 +4,7 @@ from typing import (
     Optional,
 )
 
-from easypost.constant import _CUSTOM_WORKFLOW_CARRIER_ACCOUNT_TYPES
+from easypost.constant import _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_WORKFLOWS
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.requestor import (
     RequestMethod,
@@ -20,7 +20,7 @@ from easypost.resource import (
 
 def _select_carrier_account_creation_endpoint(carrier_account_type: Optional[Any]) -> str:
     """Determines which API endpoint to use for the creation call."""
-    if carrier_account_type in _CUSTOM_WORKFLOW_CARRIER_ACCOUNT_TYPES:
+    if carrier_account_type in _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_WORKFLOWS:
         return "/carrier_accounts/register"
 
     return "/carrier_accounts"
