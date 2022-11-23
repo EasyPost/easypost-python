@@ -61,18 +61,20 @@ class User(UpdateResource, DeleteResource):
     def api_keys(self) -> List[ApiKey]:
         """Retrieve a list of API keys (works for the authenticated user or a child user)."""
         api_keys = self.all_api_keys()
+        my_api_keys = []
 
         if api_keys["id"] == self.id:
             # This function was called on the authenticated user
-            return api_keys["keys"]
+            my_api_keys = api_keys["keys"]
         else:
             # This function was called on a child user (authenticated as parent, only return
             # this child user's details).
             for child in api_keys["children"]:
                 if child.id == self.id:
-                    return child.keys
+                    my_api_keys = child.keys
+                    break
 
-        return []
+        return my_api_keys
 
     def update_brand(self, api_key: Optional[str] = None, **params) -> "User":
         """Update the User's Brand."""
