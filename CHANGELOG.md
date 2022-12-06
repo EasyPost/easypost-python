@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## NEXT RELEASE
+## v7.7.0 (2022-12-07)
 
-- [ADDED] `create` function for CarrierAccount now supports carrier accounts with custom workflows (e.g. FedEx, UPS)
+- Routes requests for creating a carrier account with a custom workflow (eg: FedEx, UPS) to the correct endpoint when using the `create` function
 
 ## v7.6.1 (2022-10-24)
 
