@@ -1,0 +1,72 @@
+interactions:
+- request:
+    body: '{"payment_method": {"stripe_customer_id": "cus_123", "payment_method_reference":
+      "ba_123", "priority": "primary"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '114'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/beta/referral_customers/payment_method
+  response:
+    body:
+      string: '{"error": {"code": "BILLING.INVALID_PAYMENT_GATEWAY_REFERENCE", "message":
+        "Invalid Payment Gateway Reference.", "errors": []}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '121'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-canary:
+      - direct
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 3d038b9d639a04c6e78982e500020a58
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb7nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb3wdc 29913d444b
+      x-runtime:
+      - '0.061146'
+      x-version-label:
+      - easypost-202212132312-d72b368b58-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 422
+      message: Unprocessable Entity
+version: 1

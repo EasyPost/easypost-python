@@ -17,6 +17,7 @@ import easypost
 EASYPOST_TEST_API_KEY = os.getenv("EASYPOST_TEST_API_KEY")
 EASYPOST_PROD_API_KEY = os.getenv("EASYPOST_PROD_API_KEY")
 PARTNER_USER_PROD_API_KEY = os.getenv("PARTNER_USER_PROD_API_KEY", "123")
+REFERRAL_CUSTOMER_PROD_API_KEY = os.getenv("REFERRAL_CUSTOMER_PROD_API_KEY", "123")
 
 SCRUBBED_STRING = "<REDACTED>"
 SCRUBBED_ARRAY: List = []
@@ -67,6 +68,15 @@ def partner_prod_api_key():
     """If a test needs to use the partner prod api key, make it depend on this fixture."""
     default_key = easypost.api_key
     easypost.api_key = PARTNER_USER_PROD_API_KEY
+    yield
+    easypost.api_key = default_key
+
+
+@pytest.fixture
+def referral_customer_prod_api_key():
+    """If a test needs to use the referral customer prod api key, make it depend on this fixture."""
+    default_key = easypost.api_key
+    easypost.api_key = REFERRAL_CUSTOMER_PROD_API_KEY
     yield
     easypost.api_key = default_key
 

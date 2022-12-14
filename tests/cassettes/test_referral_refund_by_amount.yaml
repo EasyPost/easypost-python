@@ -1,0 +1,69 @@
+interactions:
+- request:
+    body: '{"refund_amount": "$20.00"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '27'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/beta/referral_customers/refunds
+  response:
+    body:
+      string: '{"error": {"code": "TRANSACTION.AMOUNT_DOES_NOT_MATCH", "message":
+        "Refund amount doesn''t match. Please escalate this to finance, this is unexpected.",
+        "errors": []}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '160'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 52d122c5639a09fae78a024300089c77
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb1nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 29913d444b
+      - extlb2nuq 29913d444b
+      x-runtime:
+      - '0.482411'
+      x-version-label:
+      - easypost-202212132312-d72b368b58-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 422
+      message: Unprocessable Entity
+version: 1
