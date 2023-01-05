@@ -114,7 +114,7 @@ def test_beta_referral_refund_by_amount(referral_customer_prod_api_key):
     We expect this test to fail because we don't have valid billing details to use. Assert the correct error.
     """
     with pytest.raises(Exception) as error:
-        easypost.beta.Referral.refund_by_amount(refund_amount="2000")
+        easypost.beta.Referral.refund_by_amount(refund_amount=2000)
 
     assert str(error.value) == "Refund amount doesn't match. Please escalate this to finance, this is unexpected."
 

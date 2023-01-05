@@ -141,7 +141,7 @@ class Referral:
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     @staticmethod
-    def refund_by_amount(refund_amount: str) -> Dict[str, Any]:
+    def refund_by_amount(refund_amount: int) -> Dict[str, Any]:
         """Refund a ReferralCustomer wallet by specifying an amount."""
         requestor = Requestor()
         wrapped_params = {"refund_amount": refund_amount}
