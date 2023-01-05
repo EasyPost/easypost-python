@@ -6,7 +6,7 @@ import pytest
 import easypost
 
 
-REFERRAL_USER_PROD_API_KEY = os.getenv("REFERRAL_USER_PROD_API_KEY", "123")
+REFERRAL_CUSTOMER_PROD_API_KEY = os.getenv("REFERRAL_CUSTOMER_PROD_API_KEY", "123")
 
 
 @pytest.mark.vcr()
@@ -59,10 +59,10 @@ def test_beta_referral_user_all(partner_prod_api_key, page_size):
 )
 def test_beta_referral_add_credit_card(partner_prod_api_key, credit_card_details):
     """This test requires a partner user's production API key via PARTNER_USER_PROD_API_KEY
-    as well as one of that user's referral's production API keys via REFERRAL_USER_PROD_API_KEY.
+    as well as one of that user's referral's production API keys via REFERRAL_CUSTOMER_PROD_API_KEY.
     """
     added_credit_card = easypost.beta.Referral.add_credit_card(
-        referral_api_key=REFERRAL_USER_PROD_API_KEY,
+        referral_api_key=REFERRAL_CUSTOMER_PROD_API_KEY,
         number=credit_card_details["number"],
         expiration_month=credit_card_details["expiration_month"],
         expiration_year=credit_card_details["expiration_year"],
@@ -77,11 +77,11 @@ def test_beta_referral_add_credit_card(partner_prod_api_key, credit_card_details
 @patch("easypost.beta.referral.Referral._create_stripe_token", side_effect=Exception())
 def test_beta_referral_add_credit_card_error(mock_stripe_token, mock_easypost_key, credit_card_details):
     """This test requires a partner user's production API key via PARTNER_USER_PROD_API_KEY
-    as well as one of that user's referral's production API keys via REFERRAL_USER_PROD_API_KEY.
+    as well as one of that user's referral's production API keys via REFERRAL_CUSTOMER_PROD_API_KEY.
     """
     with pytest.raises(Exception) as error:
         _ = easypost.beta.Referral.add_credit_card(
-            referral_api_key=REFERRAL_USER_PROD_API_KEY,
+            referral_api_key=REFERRAL_CUSTOMER_PROD_API_KEY,
             number=credit_card_details["number"],
             expiration_month=credit_card_details["expiration_month"],
             expiration_year=credit_card_details["expiration_year"],
