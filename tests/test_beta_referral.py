@@ -116,7 +116,7 @@ def test_beta_referral_refund_by_amount(referral_customer_prod_api_key):
     with pytest.raises(Exception) as error:
         easypost.beta.Referral.refund_by_amount(refund_amount=2000)
 
-    assert str(error.value) == "Refund amount doesn't match. Please escalate this to finance, this is unexpected."
+    assert str(error.value) == "Refund amount is invalid. Please use a valid amount or escalate to finance."
 
 
 @pytest.mark.vcr()

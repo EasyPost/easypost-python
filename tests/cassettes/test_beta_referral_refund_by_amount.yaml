@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"refund_amount": "2000"}'
+    body: '{"refund_amount": 2000}'
     headers:
       Accept:
       - '*/*'
@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '25'
+      - '23'
       Content-Type:
       - application/json
       authorization:
@@ -20,14 +20,14 @@ interactions:
     uri: https://api.easypost.com/beta/referral_customers/refunds
   response:
     body:
-      string: '{"error": {"code": "TRANSACTION.AMOUNT_DOES_NOT_MATCH", "message":
-        "Refund amount doesn''t match. Please escalate this to finance, this is unexpected.",
-        "errors": []}}'
+      string: '{"error": {"code": "TRANSACTION.AMOUNT_INVALID", "message": "Refund
+        amount is invalid. Please use a valid amount or escalate to finance.", "errors":
+        []}}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '160'
+      - '147'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -47,20 +47,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 3ad0bddf639b69bbe78859a700040543
+      - 2244afe763b735a6e78a140a002eb117
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb9nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 29913d444b
+      - intlb2nuq 29913d444b
       - extlb1nuq 29913d444b
       x-runtime:
-      - '0.515727'
+      - '0.479999'
       x-version-label:
-      - easypost-202212141856-b2c38022ed-master
+      - easypost-202301051929-8ead4baefd-master
       x-xss-protection:
       - 1; mode=block
     status:
