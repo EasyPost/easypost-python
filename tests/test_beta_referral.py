@@ -101,7 +101,7 @@ def test_beta_referral_add_payment_method(referral_customer_prod_api_key):
         easypost.beta.Referral.add_payment_method(
             stripe_customer_id="cus_123",
             payment_method_reference="ba_123",
-            priority="primary",
+            primary_or_secondary="primary",
         )
 
     assert str(error.value) == "Invalid Payment Gateway Reference."
