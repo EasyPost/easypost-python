@@ -15,6 +15,7 @@ from easypost.requestor import (
 )
 
 
+# TODO: Rename `Referral` to `ReferralCustomer` and have the module name match as well
 class Referral:
     @staticmethod
     def create(
@@ -94,7 +95,11 @@ class Referral:
 
         try:
             stripe_token = Referral._create_stripe_token(
-                number, expiration_month, expiration_year, cvc, easypost_stripe_api_key
+                number,
+                expiration_month,
+                expiration_year,
+                cvc,
+                easypost_stripe_api_key,
             )
         except Exception:
             raise Error(message="Could not send card details to Stripe, please try again later")

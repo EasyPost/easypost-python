@@ -1,0 +1,69 @@
+interactions:
+- request:
+    body: '{"refund_amount": 2000}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '23'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/beta/referral_customers/refunds
+  response:
+    body:
+      string: '{"error": {"code": "TRANSACTION.AMOUNT_INVALID", "message": "Refund
+        amount is invalid. Please use a valid amount or escalate to finance.", "errors":
+        []}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '147'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 2244afe763b735a6e78a140a002eb117
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb9nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 29913d444b
+      - extlb1nuq 29913d444b
+      x-runtime:
+      - '0.479999'
+      x-version-label:
+      - easypost-202301051929-8ead4baefd-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 422
+      message: Unprocessable Entity
+version: 1
