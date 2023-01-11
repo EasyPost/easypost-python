@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v7.8.0 (2023-01-11)
 
 - Adds new beta billing functionality for ReferralCustomer users
   - `add_payment_method` can add a pre-existing Stripe bank account or credit card to your EasyPost account
