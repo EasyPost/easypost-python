@@ -10,8 +10,8 @@ import easypost
 
 
 EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP = {
-    "ak": "ApiKey",
     "adr": "Address",
+    "ak": "ApiKey",
     "batch": "Batch",
     "brd": "Brand",
     "ca": "CarrierAccount",
@@ -23,6 +23,7 @@ EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP = {
     "hook": "Webhook",
     "ins": "Insurance",
     "order": "Order",
+    "payload": "Payload",
     "pickup": "Pickup",
     "pickuprate": "PickupRate",
     "pl": "PostageLabel",

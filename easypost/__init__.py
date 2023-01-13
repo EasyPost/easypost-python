@@ -14,6 +14,7 @@ from easypost.event import Event
 from easypost.insurance import Insurance
 from easypost.order import Order
 from easypost.parcel import Parcel
+from easypost.payload import Payload
 from easypost.pickup import Pickup
 from easypost.pickup_rate import PickupRate
 from easypost.postage_label import PostageLabel
