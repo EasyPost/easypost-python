@@ -59,11 +59,12 @@ def test_event_retrieve_payload(page_size, webhook_url, one_call_buy_shipment):
 
     events = easypost.Event.all(page_size=page_size)
 
-    with pytest.raises(Exception) as error:
+    try:
         # Need a valid-length, invalid payload ID here
         easypost.Event.retrieve_payload(events["events"][0]["id"], "payload_11111111111111111111111111111111")
-
-    assert str(error.value) == "The payload(s) could not be found."
+    except easypost.Error as error:
+        assert error.message == "The payload(s) could not be found."
+        assert error.http_status == 404
 
     webhook.delete()  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
 
