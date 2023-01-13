@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds `all` function to `Pickup` to retrieve all pickups
+
 ## v7.8.0 (2023-01-11)
 
 - Adds new beta billing functionality for ReferralCustomer users

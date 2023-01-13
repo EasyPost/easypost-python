@@ -18,6 +18,17 @@ def test_pickup_create(one_call_buy_shipment, basic_pickup):
 
 
 @pytest.mark.vcr()
+def test_pickup_all(page_size):
+    pickups = easypost.Pickup.all(page_size=page_size)
+
+    pickup_array = pickups["pickups"]
+
+    assert len(pickup_array) <= page_size
+    assert pickups["has_more"] is not None
+    assert all(isinstance(pickup, easypost.Pickup) for pickup in pickup_array)
+
+
+@pytest.mark.vcr()
 def test_pickup_retrieve(one_call_buy_shipment, basic_pickup):
     shipment = easypost.Shipment.create(**one_call_buy_shipment)
 
