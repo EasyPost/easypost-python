@@ -19,7 +19,7 @@ class Event(AllResource):
         return convert_to_easypost_object(response=json.loads(s=values), api_key=easypost.api_key)
 
     @classmethod
-    def retrieve_payloads(cls, event_id: str, api_key: Optional[str] = None, **params) -> List["easypost.Payload"]:
+    def retrieve_all_payloads(cls, event_id: str, api_key: Optional[str] = None, **params) -> List["easypost.Payload"]:
         """Retrieve a list of Payloads for an Event."""
         requestor = Requestor(local_api_key=api_key)
         url = f"{cls.class_url()}/{event_id}/payloads"

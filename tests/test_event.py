@@ -1,3 +1,7 @@
+import inspect
+import os
+import time
+
 import pytest
 
 import easypost
@@ -25,13 +29,17 @@ def test_event_retrieve(page_size):
 
 
 @pytest.mark.vcr()
-def test_event_retrieve_payloads(page_size, webhook_url, one_call_buy_shipment):
+def test_event_retrieve_all_payloads(page_size, webhook_url, one_call_buy_shipment):
+    function_name = inspect.stack()[0][3]
     webhook = easypost.Webhook.create(url=webhook_url)
 
     easypost.Batch.create(shipments=[one_call_buy_shipment])
 
+    if not os.path.exists(os.path.join("tests", "cassettes", f"{function_name}.yaml")):
+        time.sleep(5)  # Wait enough time for the batch to process before getting events
+
     events = easypost.Event.all(page_size=page_size)
-    payloads = easypost.Event.retrieve_payloads(events["events"][0]["id"])
+    payloads = easypost.Event.retrieve_all_payloads(events["events"][0]["id"])
 
     # Payloads may not be populated due to the webhook delivery system being on a queue
     assert all(isinstance(payload, easypost.Payload) for payload in payloads["payloads"])
@@ -41,9 +49,13 @@ def test_event_retrieve_payloads(page_size, webhook_url, one_call_buy_shipment):
 
 @pytest.mark.vcr()
 def test_event_retrieve_payload(page_size, webhook_url, one_call_buy_shipment):
+    function_name = inspect.stack()[0][3]
     webhook = easypost.Webhook.create(url=webhook_url)
 
     easypost.Batch.create(shipments=[one_call_buy_shipment])
+
+    if not os.path.exists(os.path.join("tests", "cassettes", f"{function_name}.yaml")):
+        time.sleep(5)  # Wait enough time for the batch to process before getting events
 
     events = easypost.Event.all(page_size=page_size)
 
