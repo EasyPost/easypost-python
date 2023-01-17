@@ -1,3 +1,7 @@
+import inspect
+import os
+import time
+
 import pytest
 
 import easypost
@@ -22,6 +26,47 @@ def test_event_retrieve(page_size):
 
     assert isinstance(event, easypost.Event)
     assert str.startswith(event.id, "evt_")
+
+
+@pytest.mark.vcr()
+def test_event_retrieve_all_payloads(page_size, webhook_url, one_call_buy_shipment):
+    function_name = inspect.stack()[0][3]
+    webhook = easypost.Webhook.create(url=webhook_url)
+
+    easypost.Batch.create(shipments=[one_call_buy_shipment])
+
+    if not os.path.exists(os.path.join("tests", "cassettes", f"{function_name}.yaml")):
+        time.sleep(5)  # Wait enough time for the batch to process before getting events
+
+    events = easypost.Event.all(page_size=page_size)
+    payloads = easypost.Event.retrieve_all_payloads(events["events"][0]["id"])
+
+    # Payloads may not be populated due to the webhook delivery system being on a queue
+    assert all(isinstance(payload, easypost.Payload) for payload in payloads["payloads"])
+
+    webhook.delete()  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
+
+
+@pytest.mark.vcr()
+def test_event_retrieve_payload(page_size, webhook_url, one_call_buy_shipment):
+    function_name = inspect.stack()[0][3]
+    webhook = easypost.Webhook.create(url=webhook_url)
+
+    easypost.Batch.create(shipments=[one_call_buy_shipment])
+
+    if not os.path.exists(os.path.join("tests", "cassettes", f"{function_name}.yaml")):
+        time.sleep(5)  # Wait enough time for the batch to process before getting events
+
+    events = easypost.Event.all(page_size=page_size)
+
+    try:
+        # Need a valid-length, invalid payload ID here
+        easypost.Event.retrieve_payload(events["events"][0]["id"], "payload_11111111111111111111111111111111")
+    except easypost.Error as error:
+        assert error.message == "The payload(s) could not be found."
+        assert error.http_status == 404
+
+    webhook.delete()  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
 
 
 def test_event_receive(event_json):

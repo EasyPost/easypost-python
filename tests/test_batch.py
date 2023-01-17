@@ -72,7 +72,7 @@ def test_batch_create_scanform(one_call_buy_shipment):
     batch.buy()
 
     if not os.path.exists(os.path.join("tests", "cassettes", f"{function_name}.yaml")):
-        time.sleep(5)  # Wait enough time for the batch to process buying the shipment
+        time.sleep(5)  # Wait enough time for the batch to process before buying the shipment
 
     batch.create_scan_form()
 
@@ -104,7 +104,7 @@ def test_batch_label(one_call_buy_shipment):
     batch.buy()
 
     if not os.path.exists(os.path.join("tests", "cassettes", f"{function_name}.yaml")):
-        time.sleep(5)  # Wait enough time for the batch to process buying the shipment
+        time.sleep(5)  # Wait enough time for the batch to process before buying the shipment
 
     batch.label(file_format="ZPL")
 

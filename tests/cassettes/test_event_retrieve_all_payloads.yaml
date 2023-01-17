@@ -1,0 +1,356 @@
+interactions:
+- request:
+    body: '{"webhook": {"url": "http://example.com"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '42'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/webhooks
+  response:
+    body:
+      string: '{"id": "hook_bacc5842938311ed876c79cb38d60691", "object": "Webhook",
+        "mode": "test", "url": "http://example.com", "created_at": "2023-01-13T20:49:10Z",
+        "disabled_at": null}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '161'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"ce96433f7c2739dcac01991eda07b57b"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 3ac9ec2963c1c3c6e78a076c000d8e3b
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb12nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 29913d444b
+      - extlb2nuq 29913d444b
+      x-runtime:
+      - '0.125786'
+      x-version-label:
+      - easypost-202301131832-957dabd382-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: '{"batch": {"shipments": [{"to_address": {"name": "Jack Sparrow", "street1":
+      "388 Townsend St", "street2": "Apt 20", "city": "San Francisco", "state": "CA",
+      "zip": "94107", "country": "US", "email": "test@example.com", "phone": "5555555555"},
+      "from_address": {"name": "Elizabeth Swan", "street1": "179 N Harbor Dr", "city":
+      "Redondo Beach", "state": "CA", "zip": "90277", "country": "US", "email": "test@example.com",
+      "phone": "5555555555"}, "parcel": {"length": 10, "width": 8, "height": 4, "weight":
+      15.4}, "service": "First", "carrier_accounts": ["ca_b25657e9896e4d63ac8151ac346ac41e"],
+      "carrier": "USPS"}]}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '610'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/batches
+  response:
+    body:
+      string: '{"id": "batch_3a5546d19c5649c2860c3ed17e70e781", "object": "Batch",
+        "mode": "test", "state": "creating", "num_shipments": 1, "reference": null,
+        "created_at": "2023-01-13T20:49:10Z", "updated_at": "2023-01-13T20:49:10Z",
+        "scan_form": null, "shipments": [], "status": {"created": 0, "queued_for_purchase":
+        0, "creation_failed": 0, "postage_purchased": 0, "postage_purchase_failed":
+        0}, "pickup": null, "label_url": null}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '384'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"0c6837a194d8e0af9eb638ed5369729c"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 3ac9ec2963c1c3c6e78a076c000d8e4c
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb5nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 29913d444b
+      - extlb2nuq 29913d444b
+      x-runtime:
+      - '0.042768'
+      x-version-label:
+      - easypost-202301131832-957dabd382-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/events?page_size=5
+  response:
+    body:
+      string: '{"events": [{"description": "batch.updated", "id": "evt_bb024650938311eda6380912eeaff399",
+        "user_id": "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2023-01-13T20:49:10.584Z", "mode": "test", "object": "Event"}, {"description":
+        "batch.created", "id": "evt_baf344d4938311ed83f831714ec81c86", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2023-01-13T20:49:10.485Z", "mode": "test", "object": "Event"}, {"description":
+        "batch.updated", "id": "evt_04e91f48937811ed8be15d6886e20ff9", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "failed", "created_at":
+        "2023-01-13T19:25:20.609Z", "mode": "test", "object": "Event"}, {"description":
+        "batch.created", "id": "evt_04d0f044937811eda3096527338c049f", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "failed", "created_at":
+        "2023-01-13T19:25:20.451Z", "mode": "test", "object": "Event"}, {"description":
+        "batch.updated", "id": "evt_e800853e937611eda94a533d9c633e56", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "failed", "created_at":
+        "2023-01-13T19:17:22.612Z", "mode": "test", "object": "Event"}], "has_more":
+        true}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '1105'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"2525343edeafa73ddad9f9a21b498b32"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 3ac9ec2963c1c3c6e78a076c000d8e5a
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb8nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 29913d444b
+      - extlb2nuq 29913d444b
+      x-runtime:
+      - '0.177097'
+      x-version-label:
+      - easypost-202301131832-957dabd382-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/events/evt_bb024650938311eda6380912eeaff399/payloads
+  response:
+    body:
+      string: '{"payloads": []}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '15'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"b5e6dd0a7b95afc23c69e9e95aa4ce47"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 3ac9ec2963c1c3c6e78a076c000d8e6b
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb12nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 29913d444b
+      - extlb2nuq 29913d444b
+      x-runtime:
+      - '0.048703'
+      x-version-label:
+      - easypost-202301131832-957dabd382-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: DELETE
+    uri: https://api.easypost.com/v2/webhooks/hook_bacc5842938311ed876c79cb38d60691
+  response:
+    body:
+      string: '{}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '2'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"44136fa355b3678a1146ad16f7e8649e"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 3ac9ec2963c1c3c6e78a076c000d8e72
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb1nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq 29913d444b
+      - extlb2nuq 29913d444b
+      x-runtime:
+      - '0.406553'
+      x-version-label:
+      - easypost-202301131832-957dabd382-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -3,6 +3,7 @@
 ## Next Release
 
 - Adds `all` function to `Pickup` to retrieve all pickups
+- Adds `retrieve_payload` and `retrieve_all_payloads` functions to `Event`
 
 ## v7.8.0 (2023-01-11)
 
