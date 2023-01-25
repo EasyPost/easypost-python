@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds `retrieve_stateless_rates` function to pull stateless rates when shipment data is provided
+
 ## v7.9.0 (2023-01-18)
 
 - Adds `all` function to `Pickup` to retrieve all pickups
