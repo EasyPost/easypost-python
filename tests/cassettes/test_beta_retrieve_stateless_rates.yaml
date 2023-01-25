@@ -1,0 +1,107 @@
+interactions:
+- request:
+    body: '{"shipment": {"from_address": {"name": "Jack Sparrow", "street1": "388
+      Townsend St", "street2": "Apt 20", "city": "San Francisco", "state": "CA", "zip":
+      "94107", "country": "US", "email": "test@example.com", "phone": "5555555555"},
+      "to_address": {"name": "Elizabeth Swan", "street1": "179 N Harbor Dr", "city":
+      "Redondo Beach", "state": "CA", "zip": "90277", "country": "US", "email": "test@example.com",
+      "phone": "5555555555"}, "parcel": {"length": 10, "width": 8, "height": 4, "weight":
+      15.4}}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '496'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/beta/rates
+  response:
+    body:
+      string: '{"from_address": {"object": "Address", "name": "Jack Sparrow", "street1":
+        "388 Townsend St", "street2": "Apt 20", "city": "San Francisco", "state":
+        "CA", "zip": "94107", "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>"},
+        "to_address": {"object": "Address", "name": "Elizabeth Swan", "street1": "179
+        N Harbor Dr", "city": "Redondo Beach", "state": "CA", "zip": "90277", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>"}, "rates": [{"object":
+        "Rate", "mode": "test", "service": "Priority", "carrier": "USPS", "rate":
+        "8.24", "currency": "USD", "retail_rate": "10.20", "retail_currency": "USD",
+        "list_rate": "8.24", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
+        2, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
+        2, "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e"}, {"object":
+        "Rate", "mode": "test", "service": "First", "carrier": "USPS", "rate": "6.07",
+        "currency": "USD", "retail_rate": "6.07", "retail_currency": "USD", "list_rate":
+        "6.07", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
+        3, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
+        3, "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e"}, {"object":
+        "Rate", "mode": "test", "service": "Express", "carrier": "USPS", "rate": "31.25",
+        "currency": "USD", "retail_rate": "35.80", "retail_currency": "USD", "list_rate":
+        "31.25", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
+        null, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
+        null, "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e"}, {"object":
+        "Rate", "mode": "test", "service": "ParcelSelect", "carrier": "USPS", "rate":
+        "7.75", "currency": "USD", "retail_rate": "7.75", "retail_currency": "USD",
+        "list_rate": "7.75", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
+        5, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
+        5, "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e"}], "options":
+        {"currency": "USD", "payment": {"type": "SENDER"}, "date_advance": 0}, "parcel":
+        {"object": "Parcel", "length": 10.0, "width": 8.0, "height": 4.0, "weight":
+        15.4}, "messages": [{"carrier": "DhlEcs", "carrier_account_id": "ca_c3cbbd21bc97400bbbaed6d030909476",
+        "type": "rate_error", "message": "Unauthorized. Please check credentials and
+        try again"}]}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '2236'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"c0cf07a188c4d565d28a80c1841efc5f"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-canary:
+      - direct
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - afb1142f63d185b5e788ea6b00073e5c
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb7nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 29913d444b
+      - extlb1nuq 29913d444b
+      x-runtime:
+      - '0.720155'
+      x-version-label:
+      - easypost-202301251848-057c9f927b-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

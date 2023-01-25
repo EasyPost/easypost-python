@@ -3,6 +3,7 @@
 ## Next Release
 
 - Adds `retrieve_stateless_rates` function to pull stateless rates when shipment data is provided
+- Adds `get_lowest_stateless_rate` function to filter the lowest stateless rate
 
 ## v7.9.0 (2023-01-18)
 
