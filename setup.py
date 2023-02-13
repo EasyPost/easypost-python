@@ -12,6 +12,7 @@ REQUIREMENTS = [
 DEV_REQUIREMENTS = [
     "bandit==1.7.1",  # Bandit 1.7.2 drops support for Python 3.6
     "black==22.*",
+    "build==0.8.*",
     "coveralls == 3.*",
     "flake8==5.*",
     "isort==5.*",
@@ -39,6 +40,7 @@ setup(
     url="https://easypost.com/",
     packages=find_packages(
         exclude=[
+            "docs",
             "examples",
             "tests",
         ]

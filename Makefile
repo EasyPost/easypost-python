@@ -18,7 +18,7 @@ black-check:
 
 ## build - Builds the project in preparation for release
 build:
-	$(VIRTUAL_BIN)/python setup.py sdist bdist_wheel
+	$(VIRTUAL_BIN)/python -m build
 
 ## clean - Remove the virtual environment and clear out .pyc files
 clean:
