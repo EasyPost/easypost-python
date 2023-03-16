@@ -48,6 +48,8 @@ The HTTP method used for the `get_rates` endpoint at the API level has changed f
 
 ## Upgrading from 5.x to 6.0
 
+**NOTICE:** v6 is deprecated.
+
 ### 6.0 High Impact Changes
 
 - [Updating Dependencies](#60-updating-dependencies)
