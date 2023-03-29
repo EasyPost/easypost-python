@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next release
+
+- Add `get_next_page` function that retrieves the next page of results for a paginated collection
+
 ## v7.10.0 (2023-02-17)
 
 - Adds beta `retrieve_stateless_rates` function

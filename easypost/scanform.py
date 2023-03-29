@@ -5,12 +5,15 @@ from easypost.requestor import (
     RequestMethod,
     Requestor,
 )
-from easypost.resource import AllResource
+from easypost.resource import (
+    AllResource,
+    NextPageResource,
+)
 
 
-class ScanForm(AllResource):
+class ScanForm(AllResource, NextPageResource):
     @classmethod
-    def create(cls, api_key: Optional[str] = None, **params):
+    def create(cls, api_key: Optional[str] = None, **params) -> "ScanForm":
         """Create a scanform."""
         requestor = Requestor(local_api_key=api_key)
         url = cls.class_url()

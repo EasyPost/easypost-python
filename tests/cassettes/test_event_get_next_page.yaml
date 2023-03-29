@@ -1,0 +1,74 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/events?page_size=5
+  response:
+    body:
+      string: '{"events": [{"description": "insurance.cancelled", "id": "evt_be084980c8d511ed96575b1c5ecd0a2f",
+        "user_id": "user_04ad194774a54f6c97d1385715721091", "status": "pending", "created_at":
+        "2023-03-22T17:19:46.015Z", "mode": "test", "object": "Event"}, {"description":
+        "tracker.updated", "id": "evt_a60704fcc8d511ed948b07c95113680f", "user_id":
+        "user_04ad194774a54f6c97d1385715721091", "status": "pending", "created_at":
+        "2023-03-22T17:19:05.742Z", "mode": "test", "object": "Event"}, {"description":
+        "tracker.created", "id": "evt_942591c2c8d511eda8217991570cda15", "user_id":
+        "user_04ad194774a54f6c97d1385715721091", "status": "pending", "created_at":
+        "2023-03-22T17:18:35.743Z", "mode": "test", "object": "Event"}], "has_more":
+        false}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '687'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"ce3c2fbcbcbf4cc5f1af6196adf42f75"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 70d4b63d6424b291e78b13040010c512
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb2nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq a29e4ad05c
+      - extlb2nuq a29e4ad05c
+      x-runtime:
+      - '0.225940'
+      x-version-label:
+      - easypost-202303291907-621b84348b-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

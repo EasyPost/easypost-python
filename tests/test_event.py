@@ -5,6 +5,7 @@ import time
 import pytest
 
 import easypost
+from easypost.error import Error
 
 
 @pytest.mark.vcr()
@@ -16,6 +17,21 @@ def test_event_all(page_size):
     assert len(events_array) <= page_size
     assert events["has_more"] is not None
     assert all(isinstance(event, easypost.Event) for event in events_array)
+
+
+@pytest.mark.vcr()
+def test_event_get_next_page(page_size):
+    try:
+        events = easypost.Event.all(page_size=page_size)
+        next_page = easypost.Event.get_next_page(collection=events, page_size=page_size)
+
+        first_id_of_first_page = events["events"][0].id
+        first_id_of_second_page = next_page["events"][0].id
+
+        assert first_id_of_first_page != first_id_of_second_page
+    except Error as e:
+        if e.message != "There are no more pages to retrieve.":
+            raise Error(message="Test failed intentionally.")
 
 
 @pytest.mark.vcr()

@@ -10,10 +10,13 @@ from easypost.requestor import (
     RequestMethod,
     Requestor,
 )
-from easypost.resource import AllResource
+from easypost.resource import (
+    AllResource,
+    NextPageResource,
+)
 
 
-class Event(AllResource):
+class Event(AllResource, NextPageResource):
     @classmethod
     def receive(cls, values: str) -> "Event":
         return convert_to_easypost_object(response=json.loads(s=values), api_key=easypost.api_key)

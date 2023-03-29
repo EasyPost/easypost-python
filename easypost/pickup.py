@@ -7,11 +7,12 @@ from easypost.requestor import (
 from easypost.resource import (
     AllResource,
     CreateResource,
+    NextPageResource,
 )
 from easypost.util import get_lowest_object_rate
 
 
-class Pickup(CreateResource, AllResource):
+class Pickup(CreateResource, AllResource, NextPageResource):
     def buy(self, **params) -> "Pickup":
         """Buy a pickup."""
         requestor = Requestor(local_api_key=self._api_key)

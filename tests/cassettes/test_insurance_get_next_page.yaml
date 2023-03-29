@@ -1,0 +1,107 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/insurances?page_size=5
+  response:
+    body:
+      string: '{"insurances": [{"id": "ins_3c21477902ab4ad8a40af02276409b7c", "object":
+        "Insurance", "mode": "test", "reference": "1", "status": "pending", "amount":
+        "100.00000", "provider": "easypost", "provider_id": null, "to_address": {"id":
+        "adr_82258a32c8d511ed87afac1f6bc72124", "object": "Address", "created_at":
+        "2023-03-22T17:18:05+00:00", "updated_at": "2023-03-22T17:18:05+00:00", "name":
+        null, "company": "EASYPOST", "street1": "417 MONTGOMERY ST FL 5", "street2":
+        null, "city": "SAN FRANCISCO", "state": "CA", "zip": "94104-1129", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": false, "federal_tax_id": null, "state_tax_id": null,
+        "verifications": {"zip4": {"success": true, "errors": [{"code": "E.SECONDARY_INFORMATION.INVALID",
+        "field": "street2", "message": "Invalid secondary information(Apt/Suite#)",
+        "suggestion": null}], "details": null}, "delivery": {"success": true, "errors":
+        [{"code": "E.SECONDARY_INFORMATION.INVALID", "field": "street2", "message":
+        "Invalid secondary information(Apt/Suite#)", "suggestion": null}], "details":
+        {"latitude": 37.79342, "longitude": -122.40288, "time_zone": "America/Los_Angeles"}}}},
+        "from_address": {"id": "adr_822ac797c8d511ed87b2ac1f6bc72124", "object": "Address",
+        "created_at": "2023-03-22T17:18:05+00:00", "updated_at": "2023-03-22T17:18:05+00:00",
+        "name": null, "company": "EASYPOST", "street1": "417 MONTGOMERY ST FL 2",
+        "street2": null, "city": "SAN FRANCISCO", "state": "CA", "zip": "94104-1129",
+        "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test",
+        "carrier_facility": null, "residential": false, "federal_tax_id": null, "state_tax_id":
+        null, "verifications": {"zip4": {"success": true, "errors": [{"code": "E.SECONDARY_INFORMATION.INVALID",
+        "field": "street2", "message": "Invalid secondary information(Apt/Suite#)",
+        "suggestion": null}], "details": null}, "delivery": {"success": true, "errors":
+        [{"code": "E.SECONDARY_INFORMATION.INVALID", "field": "street2", "message":
+        "Invalid secondary information(Apt/Suite#)", "suggestion": null}], "details":
+        {"latitude": 37.79342, "longitude": -122.40288, "time_zone": "America/Los_Angeles"}}}},
+        "shipment_id": null, "tracker": {"id": "trk_e1e33a61f02846cb80905b1a50ea5ba0",
+        "object": "Tracker", "mode": "test", "tracking_code": "9400110898825022579493",
+        "status": "error", "status_detail": null, "created_at": "2023-03-22T17:18:05Z",
+        "updated_at": "2023-03-22T17:18:05Z", "signed_by": null, "weight": null, "est_delivery_date":
+        null, "shipment_id": null, "carrier": "USPS", "tracking_details": [{"object":
+        "TrackingDetail", "message": "In test mode, only test tracking numbers are
+        valid. Test tracking numbers are EZ1000000001, EZ2000000002, ... , EZ7000000007",
+        "description": null, "status": "error", "status_detail": null, "datetime":
+        "2023-03-22T17:18:05Z", "source": "ProcessingError", "carrier_code": null,
+        "tracking_location": {"object": "TrackingLocation", "city": null, "state":
+        null, "country": null, "zip": null}}], "carrier_detail": null, "finalized":
+        true, "is_return": false, "public_url": "https://track.easypost.com/djE6dHJrX2UxZTMzYTYxZjAyODQ2Y2I4MDkwNWIxYTUwZWE1YmEw",
+        "fees": []}, "tracking_code": "9400110898825022579493", "fee": {"object":
+        "Fee", "type": "InsuranceFee", "amount": "0.50000", "charged": true, "refunded":
+        false}, "messages": [], "created_at": "2023-03-22T17:18:05Z", "updated_at":
+        "2023-03-22T17:18:05Z"}], "has_more": false}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '3192'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"85d4c36eb2536a20c3745da19f4bb044"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 70d4b6396424b2c0e78b13250010cf58
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb3nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq a29e4ad05c
+      - extlb2nuq a29e4ad05c
+      x-runtime:
+      - '0.069147'
+      x-version-label:
+      - easypost-202303291907-621b84348b-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
