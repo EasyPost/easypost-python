@@ -1,0 +1,168 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/reports/shipment?page_size=5
+  response:
+    body:
+      string: '{"reports": [{"id": "shprep_6b5d983d5c724d2e8a377fb2f6ab4a19", "object":
+        "ShipmentReport", "created_at": "2023-02-21T18:52:01Z", "updated_at": "2023-02-21T18:52:08Z",
+        "start_date": "2022-05-04", "end_date": "2022-05-04", "mode": "test", "status":
+        "empty", "url": null, "url_expires_at": null, "include_children": false},
+        {"id": "shprep_61d188258a634375b2a48e9ac208ac83", "object": "ShipmentReport",
+        "created_at": "2023-02-21T18:52:00Z", "updated_at": "2023-02-21T18:52:09Z",
+        "start_date": "2022-05-04", "end_date": "2022-05-04", "mode": "test", "status":
+        "empty", "url": null, "url_expires_at": null, "include_children": false},
+        {"id": "shprep_05700560c1f74ead8491a515e024fc9d", "object": "ShipmentReport",
+        "created_at": "2023-02-21T18:51:59Z", "updated_at": "2023-02-21T18:52:03Z",
+        "start_date": "2022-05-04", "end_date": "2022-05-04", "mode": "test", "status":
+        "empty", "url": null, "url_expires_at": null, "include_children": false},
+        {"id": "shprep_4f2cace880c248e388dcb6414579e0db", "object": "ShipmentReport",
+        "created_at": "2023-02-21T18:51:59Z", "updated_at": "2023-02-21T18:52:05Z",
+        "start_date": "2022-05-04", "end_date": "2022-05-04", "mode": "test", "status":
+        "empty", "url": null, "url_expires_at": null, "include_children": false},
+        {"id": "shprep_82eb786d2ac84c6ab33db97f460c130c", "object": "ShipmentReport",
+        "created_at": "2023-02-21T18:47:16Z", "updated_at": "2023-02-21T18:48:25Z",
+        "start_date": "2022-05-04", "end_date": "2022-05-04", "mode": "test", "status":
+        "empty", "url": null, "url_expires_at": null, "include_children": false}],
+        "has_more": true}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '1459'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"ef425bf24828e8f15ca6690dae568fd0"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 730d5da76424b7e0e78b20080013552a
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb12nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq a29e4ad05c
+      - extlb1nuq a29e4ad05c
+      x-runtime:
+      - '0.031987'
+      x-version-label:
+      - easypost-202303292153-e778646023-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/reports/shipment?before_id=shprep_82eb786d2ac84c6ab33db97f460c130c&page_size=5
+  response:
+    body:
+      string: '{"reports": [{"id": "shprep_02b1f4e804dd419e8fcde596a598cf4e", "object":
+        "ShipmentReport", "created_at": "2023-02-21T18:47:15Z", "updated_at": "2023-02-21T18:48:28Z",
+        "start_date": "2022-05-04", "end_date": "2022-05-04", "mode": "test", "status":
+        "empty", "url": null, "url_expires_at": null, "include_children": false},
+        {"id": "shprep_712c9948497d44aea53fd582e37fad39", "object": "ShipmentReport",
+        "created_at": "2023-02-21T18:47:14Z", "updated_at": "2023-02-21T18:48:18Z",
+        "start_date": "2022-05-04", "end_date": "2022-05-04", "mode": "test", "status":
+        "empty", "url": null, "url_expires_at": null, "include_children": false},
+        {"id": "shprep_e0d598d0f11141d59f6867523f5465e2", "object": "ShipmentReport",
+        "created_at": "2023-02-21T18:47:13Z", "updated_at": "2023-02-21T18:48:18Z",
+        "start_date": "2022-05-04", "end_date": "2022-05-04", "mode": "test", "status":
+        "empty", "url": null, "url_expires_at": null, "include_children": false},
+        {"id": "shprep_2f566b8eeb79457d8b5b7495fc158c73", "object": "ShipmentReport",
+        "created_at": "2023-02-16T21:13:48Z", "updated_at": "2023-02-16T21:14:02Z",
+        "start_date": "2022-05-04", "end_date": "2022-05-04", "mode": "test", "status":
+        "empty", "url": null, "url_expires_at": null, "include_children": false},
+        {"id": "shprep_6558ffa09d16451abf75ca06e033c3ea", "object": "ShipmentReport",
+        "created_at": "2023-02-16T21:13:47Z", "updated_at": "2023-02-16T21:14:04Z",
+        "start_date": "2022-05-04", "end_date": "2022-05-04", "mode": "test", "status":
+        "empty", "url": null, "url_expires_at": null, "include_children": false}],
+        "has_more": true}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '1459'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"55a591a02301b6968cdb33f7175d0cc7"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 730d5da76424b7e1e78b200800135539
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb12nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq a29e4ad05c
+      - extlb1nuq a29e4ad05c
+      x-runtime:
+      - '0.053674'
+      x-version-label:
+      - easypost-202303292153-e778646023-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

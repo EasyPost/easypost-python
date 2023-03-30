@@ -4,6 +4,7 @@ from unittest.mock import patch
 import pytest
 
 import easypost
+from easypost.error import Error
 
 
 REFERRAL_CUSTOMER_PROD_API_KEY = os.getenv("REFERRAL_CUSTOMER_PROD_API_KEY", "123")
@@ -47,6 +48,21 @@ def test_referral_user_all(partner_prod_api_key, page_size):
     assert len(referral_users_array) <= page_size
     assert referral_users["has_more"] is not None
     assert all(isinstance(referral_user, easypost.User) for referral_user in referral_users_array)
+
+
+@pytest.mark.vcr()
+def test_referral_get_next_page(partner_prod_api_key, page_size):
+    try:
+        referrals = easypost.Referral.all(page_size=page_size)
+        next_page = easypost.Referral.get_next_page(referrals=referrals, page_size=page_size)
+
+        first_id_of_first_page = referrals["referral_customers"][0].id
+        first_id_of_second_page = next_page["referral_customers"][0].id
+
+        assert first_id_of_first_page != first_id_of_second_page
+    except Error as e:
+        if e.message != "There are no more pages to retrieve.":
+            raise Error(message="Test failed intentionally.")
 
 
 # PyVCR is having troubles matching the body of the form-encoded data here, override the default

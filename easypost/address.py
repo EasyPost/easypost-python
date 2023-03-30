@@ -10,10 +10,13 @@ from easypost.requestor import (
     RequestMethod,
     Requestor,
 )
-from easypost.resource import AllResource
+from easypost.resource import (
+    AllResource,
+    NextPageResource,
+)
 
 
-class Address(AllResource):
+class Address(AllResource, NextPageResource):
     @classmethod
     def create(
         cls,

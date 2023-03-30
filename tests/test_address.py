@@ -1,6 +1,7 @@
 import pytest
 
 import easypost
+from easypost.error import Error
 
 
 @pytest.mark.vcr()
@@ -86,6 +87,21 @@ def test_address_all(page_size):
     assert len(addresses_array) <= page_size
     assert addresses["has_more"] is not None
     assert all(isinstance(address, easypost.Address) for address in addresses_array)
+
+
+@pytest.mark.vcr()
+def test_address_get_next_page(page_size):
+    try:
+        addresses = easypost.Address.all(page_size=page_size)
+        next_page = easypost.Address.get_next_page(collection=addresses, page_size=page_size)
+
+        first_id_of_first_page = addresses["addresses"][0].id
+        first_id_of_second_page = next_page["addresses"][0].id
+
+        assert first_id_of_first_page != first_id_of_second_page
+    except Error as e:
+        if e.message != "There are no more pages to retrieve.":
+            raise Error(message="Test failed intentionally.")
 
 
 @pytest.mark.vcr()

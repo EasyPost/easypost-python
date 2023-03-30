@@ -78,6 +78,32 @@ class Referral:
         )
         return convert_to_easypost_object(response=response, api_key=api_key)
 
+    @classmethod
+    def get_next_page(
+        cls,
+        referrals: Dict[str, Any],
+        page_size: int,
+        api_key: Optional[str] = None,
+    ) -> List["Referral"]:
+        """Retrieve next page of a referral customers."""
+        requestor = Requestor(local_api_key=api_key)
+        url = "/referral_customers"
+        referral_array = referrals["referral_customers"]
+
+        if referral_array is None or len(referral_array) == 0 or not referrals.get("has_more"):
+            raise Error(message="There are no more pages to retrieve.")
+
+        params = {
+            "before_id": referral_array[-1].id,
+            "page_size": page_size,
+        }
+
+        response, api_key = requestor.request(method=RequestMethod.GET, url=url, params=params)
+        if response is None or len(response["referral_customers"]) == 0 or not response["has_more"]:
+            raise Error(message="There are no more pages to retrieve.")
+
+        return convert_to_easypost_object(response=response, api_key=api_key)
+
     @staticmethod
     def add_credit_card(
         referral_api_key: str,

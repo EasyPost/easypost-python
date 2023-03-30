@@ -1,6 +1,7 @@
 import pytest
 
 import easypost
+from easypost.error import Error
 
 
 @pytest.mark.vcr()
@@ -26,6 +27,21 @@ def test_pickup_all(page_size):
     assert len(pickup_array) <= page_size
     assert pickups["has_more"] is not None
     assert all(isinstance(pickup, easypost.Pickup) for pickup in pickup_array)
+
+
+@pytest.mark.vcr()
+def test_pickup_get_next_page(page_size):
+    try:
+        pickups = easypost.Pickup.all(page_size=page_size)
+        next_page = easypost.Pickup.get_next_page(collection=pickups, page_size=page_size)
+
+        first_id_of_first_page = pickups["pickups"][0].id
+        first_id_of_second_page = next_page["pickups"][0].id
+
+        assert first_id_of_first_page != first_id_of_second_page
+    except Error as e:
+        if e.message != "There are no more pages to retrieve.":
+            raise Error(message="Test failed intentionally.")
 
 
 @pytest.mark.vcr()

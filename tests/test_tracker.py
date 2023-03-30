@@ -1,6 +1,7 @@
 import pytest
 
 import easypost
+from easypost.error import Error
 
 
 @pytest.mark.vcr()
@@ -32,6 +33,21 @@ def test_tracker_all(page_size):
     assert len(trackers_array) <= page_size
     assert trackers["has_more"] is not None
     assert all(isinstance(tracker, easypost.Tracker) for tracker in trackers_array)
+
+
+@pytest.mark.vcr()
+def test_tracker_get_next_page(page_size):
+    try:
+        trackers = easypost.Tracker.all(page_size=page_size)
+        next_page = easypost.Tracker.get_next_page(trackers=trackers, page_size=page_size)
+
+        first_id_of_first_page = trackers["trackers"][0].id
+        first_id_of_second_page = next_page["trackers"][0].id
+
+        assert first_id_of_first_page != first_id_of_second_page
+    except Error as e:
+        if e.message != "There are no more pages to retrieve.":
+            raise Error(message="Test failed intentionally.")
 
 
 @pytest.mark.vcr()

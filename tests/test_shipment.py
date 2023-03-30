@@ -1,6 +1,7 @@
 import pytest
 
 import easypost
+from easypost.error import Error
 
 
 @pytest.mark.vcr()
@@ -34,6 +35,21 @@ def test_shipment_all(page_size):
     assert len(shipment_array) <= page_size
     assert shipments["has_more"] is not None
     assert all(isinstance(shipment, easypost.Shipment) for shipment in shipment_array)
+
+
+@pytest.mark.vcr()
+def test_shipment_get_next_page(page_size):
+    try:
+        shipments = easypost.Shipment.all(page_size=page_size)
+        next_page = easypost.Shipment.get_next_page(shipments=shipments, page_size=page_size)
+
+        first_id_of_first_page = shipments["shipments"][0].id
+        first_id_of_second_page = next_page["shipments"][0].id
+
+        assert first_id_of_first_page != first_id_of_second_page
+    except Error as e:
+        if e.message != "There are no more pages to retrieve.":
+            raise Error(message="Test failed intentionally.")
 
 
 @pytest.mark.vcr()

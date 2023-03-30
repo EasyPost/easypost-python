@@ -1,0 +1,238 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/pickups?page_size=5
+  response:
+    body:
+      string: '{"pickups": [{"id": "pickup_4d4c8bafdce64084b7a815a635797e9b", "object":
+        "Pickup", "created_at": "2023-02-21T18:51:28Z", "updated_at": "2023-02-21T18:51:28Z",
+        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-12-01T00:00:00Z",
+        "max_datetime": "2022-12-01T00:00:00Z", "is_account_address": false, "instructions":
+        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
+        "adr_bff004d6b21811ed8cecac1f6bc7b362", "object": "Address", "created_at":
+        "2023-02-21T18:51:28+00:00", "updated_at": "2023-02-21T18:51:28+00:00", "name":
+        "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}, "carrier_accounts": [], "pickup_rates": []}, {"id": "pickup_b2a278f971c3408bb266f399637cfa58",
+        "object": "Pickup", "created_at": "2023-02-21T18:51:26Z", "updated_at": "2023-02-21T18:51:26Z",
+        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-12-01T00:00:00Z",
+        "max_datetime": "2022-12-01T00:00:00Z", "is_account_address": false, "instructions":
+        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
+        "adr_be4943d7b21811ed8438ac1f6bc7b362", "object": "Address", "created_at":
+        "2023-02-21T18:51:25+00:00", "updated_at": "2023-02-21T18:51:25+00:00", "name":
+        "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}, "carrier_accounts": [], "pickup_rates": []}, {"id": "pickup_8132c4a9253043eca5ecd9ad55cc5b5f",
+        "object": "Pickup", "created_at": "2023-02-21T18:51:22Z", "updated_at": "2023-02-21T18:51:22Z",
+        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-12-01T00:00:00Z",
+        "max_datetime": "2022-12-01T00:00:00Z", "is_account_address": false, "instructions":
+        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
+        "adr_bc68c137b21811edbaeaac1f6bc7b362", "object": "Address", "created_at":
+        "2023-02-21T18:51:22+00:00", "updated_at": "2023-02-21T18:51:22+00:00", "name":
+        "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}, "carrier_accounts": [], "pickup_rates": []}, {"id": "pickup_d98952c545aa4b4bbf8c169790777077",
+        "object": "Pickup", "created_at": "2023-02-21T18:51:20Z", "updated_at": "2023-02-21T18:51:20Z",
+        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-12-01T00:00:00Z",
+        "max_datetime": "2022-12-01T00:00:00Z", "is_account_address": false, "instructions":
+        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
+        "adr_bacd9863b21811edb00cac1f6bc7bdc6", "object": "Address", "created_at":
+        "2023-02-21T18:51:20+00:00", "updated_at": "2023-02-21T18:51:20+00:00", "name":
+        "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}, "carrier_accounts": [], "pickup_rates": []}, {"id": "pickup_b652a826916a4f01aedcc0a00f05324b",
+        "object": "Pickup", "created_at": "2023-02-21T18:51:17Z", "updated_at": "2023-02-21T18:51:17Z",
+        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-12-01T00:00:00Z",
+        "max_datetime": "2022-12-01T00:00:00Z", "is_account_address": false, "instructions":
+        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
+        "adr_b8ef617cb21811ed9b89ac1f6bc72124", "object": "Address", "created_at":
+        "2023-02-21T18:51:17+00:00", "updated_at": "2023-02-21T18:51:17+00:00", "name":
+        "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}, "carrier_accounts": [], "pickup_rates": []}], "has_more": true}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '4409'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"6be8946b3e6df917e6633c6bf6b49686"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 70d4b63c6424b2f0e78b132b0010db12
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb1nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq a29e4ad05c
+      - extlb2nuq a29e4ad05c
+      x-runtime:
+      - '0.096695'
+      x-version-label:
+      - easypost-202303291907-621b84348b-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/pickups?before_id=pickup_b652a826916a4f01aedcc0a00f05324b&page_size=5
+  response:
+    body:
+      string: '{"pickups": [{"id": "pickup_68086ed0d88541b6802122527a59fce1", "object":
+        "Pickup", "created_at": "2023-02-21T18:51:13Z", "updated_at": "2023-02-21T18:51:13Z",
+        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-12-01T00:00:00Z",
+        "max_datetime": "2022-12-01T00:00:00Z", "is_account_address": false, "instructions":
+        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
+        "adr_b6c0cdb9b21811ed9dd9ac1f6bc7b362", "object": "Address", "created_at":
+        "2023-02-21T18:51:13+00:00", "updated_at": "2023-02-21T18:51:13+00:00", "name":
+        "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}, "carrier_accounts": [], "pickup_rates": []}, {"id": "pickup_700dbfe746ef44ad9890514975a256e3",
+        "object": "Pickup", "created_at": "2023-02-21T18:46:39Z", "updated_at": "2023-02-21T18:46:39Z",
+        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-12-01T00:00:00Z",
+        "max_datetime": "2022-12-01T00:00:00Z", "is_account_address": false, "instructions":
+        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
+        "adr_13907777b21811edbec4ac1f6bc7bdc6", "object": "Address", "created_at":
+        "2023-02-21T18:46:39+00:00", "updated_at": "2023-02-21T18:46:39+00:00", "name":
+        "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}, "carrier_accounts": [], "pickup_rates": []}, {"id": "pickup_5cee0e6f6a7e4516829d673f38225b93",
+        "object": "Pickup", "created_at": "2023-02-21T18:46:37Z", "updated_at": "2023-02-21T18:46:37Z",
+        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-12-01T00:00:00Z",
+        "max_datetime": "2022-12-01T00:00:00Z", "is_account_address": false, "instructions":
+        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
+        "adr_11ef1953b21811ed8730ac1f6b0a0d1e", "object": "Address", "created_at":
+        "2023-02-21T18:46:36+00:00", "updated_at": "2023-02-21T18:46:36+00:00", "name":
+        "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}, "carrier_accounts": [], "pickup_rates": []}, {"id": "pickup_def6afc81c60407f9f1cb54453336768",
+        "object": "Pickup", "created_at": "2023-02-21T18:46:33Z", "updated_at": "2023-02-21T18:46:33Z",
+        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-12-01T00:00:00Z",
+        "max_datetime": "2022-12-01T00:00:00Z", "is_account_address": false, "instructions":
+        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
+        "adr_0ff61eb2b21811edaabfac1f6bc72124", "object": "Address", "created_at":
+        "2023-02-21T18:46:33+00:00", "updated_at": "2023-02-21T18:46:33+00:00", "name":
+        "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}, "carrier_accounts": [], "pickup_rates": []}, {"id": "pickup_4b1d89dce80c4a799fb87ab41e96825a",
+        "object": "Pickup", "created_at": "2023-02-21T18:46:30Z", "updated_at": "2023-02-21T18:46:30Z",
+        "mode": "test", "status": "unknown", "reference": null, "min_datetime": "2022-12-01T00:00:00Z",
+        "max_datetime": "2022-12-01T00:00:00Z", "is_account_address": false, "instructions":
+        "Pickup at front door", "messages": [], "confirmation": null, "address": {"id":
+        "adr_0e3eb835b21811edb3c1ac1f6bc7b362", "object": "Address", "created_at":
+        "2023-02-21T18:46:30+00:00", "updated_at": "2023-02-21T18:46:30+00:00", "name":
+        "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}, "carrier_accounts": [], "pickup_rates": []}], "has_more": true}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '4409'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"b5d2222548d6b69d0cbebeab520f7619"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 70d4b63c6424b2f1e78b132b0010db1a
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb5nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq a29e4ad05c
+      - extlb2nuq a29e4ad05c
+      x-runtime:
+      - '0.079687'
+      x-version-label:
+      - easypost-202303291907-621b84348b-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

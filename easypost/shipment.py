@@ -12,11 +12,35 @@ from easypost.requestor import (
     RequestMethod,
     Requestor,
 )
-from easypost.resource import AllResource
+from easypost.resource import NextPageResource
 from easypost.util import get_lowest_object_rate
 
 
-class Shipment(AllResource):
+class Shipment(NextPageResource):
+    @classmethod
+    def all(cls, api_key: Optional[str] = None, **params) -> List["Shipment"]:
+        """Retrieve a list of Shipments."""
+        requestor = Requestor(local_api_key=api_key)
+        response, api_key = requestor.request(method=RequestMethod.GET, url="/shipments", params=params)
+        response["include_children"] = params.get("include_children")
+        response["purchased"] = params.get("purchased")
+        return convert_to_easypost_object(response=response, api_key=api_key)
+
+    @classmethod
+    def get_next_page(
+        cls,
+        shipments: Dict[str, Any],
+        page_size: int,
+        api_key: Optional[str] = None,
+        optional_params: Optional[Dict[str, Any]] = None,
+    ) -> List["Shipment"]:
+        """Get next page of shipment collection."""
+        optional_params = {
+            "include_children": shipments.get("include_children"),
+            "purchased": shipments.get("purchased"),
+        }
+        return super().get_next_page(shipments, page_size, api_key, optional_params)
+
     @classmethod
     def create(cls, api_key: Optional[str] = None, with_carbon_offset: Optional[bool] = False, **params) -> "Shipment":
         """Create an Shipment object."""

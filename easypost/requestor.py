@@ -84,7 +84,7 @@ class Requestor:
         params: Optional[Dict[str, Any]] = None,
         api_key_required: bool = True,
         beta: bool = False,
-    ) -> Tuple[dict, Optional[str]]:
+    ) -> Tuple[Dict[str, Any], Optional[str]]:
         """Make a request to the EasyPost API."""
         if params is None:
             params = {}
