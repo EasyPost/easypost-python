@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next release
+## v7.11.0 (2023-04-04)
 
 - Add `get_next_page` function that retrieves the next page of results for a paginated collection
 
