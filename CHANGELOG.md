@@ -1,8 +1,12 @@
 # CHANGELOG
 
+## Next release
+
+- Improves error deserialization to handle bad format returned from the JSON
+
 ## v7.11.0 (2023-04-04)
 
-- Add `get_next_page` function that retrieves the next page of results for a paginated collection
+- Adds `get_next_page` function that retrieves the next page of results for a paginated collection
 
 ## v7.10.0 (2023-02-17)
 

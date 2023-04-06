@@ -30,3 +30,30 @@ def test_error_list_message():
     error = easypost.Error(message=["Error1", "Error2"])
 
     assert error.message == "Error1, Error2"
+
+
+def test_error_dict_message():
+    """Tests that we concatenate error messages that are a dict (they should be a string from the
+    API but aren't always so we protect against that here).
+    """
+    message_data = {"errors": ["Bad format 1", "Bad format 2"]}
+
+    error = easypost.Error(message=message_data)
+
+    assert error.message == "Bad format 1, Bad format 2"
+
+
+def test_error_bad_format_message():
+    """Tests that we concatenate error messages that has really bad format
+    (they should be a string from the API but aren't always so we protect against that here).
+    """
+    message_data = {
+        "errors": ["Bad format 1", "Bad format 2"],
+        "bad_data": [
+            {"first_message": "Bad format 3", "second_message": "Bad format 4", "thrid_message": "Bad format 5"}
+        ],
+    }
+
+    error = easypost.Error(message=message_data)
+
+    assert error.message == "Bad format 1, Bad format 2, Bad format 3, Bad format 4, Bad format 5"
