@@ -1,0 +1,123 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/beta/metadata?carriers=usps&types=service_levels%2Cpredefined_packages
+  response:
+    body:
+      string: '{"carriers": [{"human_readable": "USPS", "name": "usps", "predefined_packages":
+        [{"carrier": "usps", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "Card"}, {"carrier": "usps", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "Letter"}, {"carrier": "usps", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "Flat"}, {"carrier": "usps", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "FlatRateEnvelope"}, {"carrier": "usps", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "FlatRateLegalEnvelope"},
+        {"carrier": "usps", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "FlatRatePaddedEnvelope"}, {"carrier": "usps",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "FlatRateGiftCardEnvelope"}, {"carrier": "usps", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "FlatRateWindowEnvelope"}, {"carrier": "usps", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "FlatRateCardboardEnvelope"},
+        {"carrier": "usps", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "SmallFlatRateEnvelope"}, {"carrier": "usps",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "Parcel"}, {"carrier": "usps", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "SoftPack"}, {"carrier":
+        "usps", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "SmallFlatRateBox"}, {"carrier": "usps", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "MediumFlatRateBox"},
+        {"carrier": "usps", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "LargeFlatRateBox"}, {"carrier": "usps",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "LargeFlatRateBoxAPOFPO"}, {"carrier": "usps", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "FlatTubTrayBox"}, {"carrier": "usps", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "EMMTrayBox"}, {"carrier":
+        "usps", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "FullTrayBox"}, {"carrier": "usps", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "HalfTrayBox"}, {"carrier":
+        "usps", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "PMODSack"}], "service_levels": [{"carrier": "usps", "description":
+        "1-3 days", "dimensions": ["22in x 18in x 15in"], "human_readable": null,
+        "max_weight": 15.99, "name": "First"}, {"carrier": "usps", "description":
+        "2-3 days", "dimensions": ["Combined Length and Girth < 108in"], "human_readable":
+        null, "max_weight": 1120.0, "name": "Priority"}, {"carrier": "usps", "description":
+        "1-2 days", "dimensions": ["Combined Length and Girth < 108in"], "human_readable":
+        null, "max_weight": 1120.0, "name": "Express"}, {"carrier": "usps", "description":
+        "2-8 business days", "dimensions": ["Combined Length and Girth < 108in"],
+        "human_readable": null, "max_weight": 1120.0, "name": "ParcelSelect"}, {"carrier":
+        "usps", "description": "2-8 business days", "dimensions": ["Combined Length
+        and Girth < 108in"], "human_readable": null, "max_weight": 1120.0, "name":
+        "LibraryMail"}, {"carrier": "usps", "description": "2-8 business days", "dimensions":
+        ["Combined Length and Girth < 108in"], "human_readable": null, "max_weight":
+        1120.0, "name": "MediaMail"}, {"carrier": "usps", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "FirstClassMailInternational"},
+        {"carrier": "usps", "description": "7-21 days", "dimensions": ["Combined Length
+        and Girth < 108in"], "human_readable": null, "max_weight": 64.0, "name": "FirstClassPackageInternationalService"},
+        {"carrier": "usps", "description": "6-10 business days", "dimensions": ["Combined
+        Length and Girth < 108in"], "human_readable": null, "max_weight": 1120.0,
+        "name": "PriorityMailInternational"}, {"carrier": "usps", "description": "3-5
+        business days", "dimensions": ["Combined Length and Girth < 108in"], "human_readable":
+        null, "max_weight": 1120.0, "name": "ExpressMailInternational"}]}]}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '4207'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"a842c1378a5f4d5f9ad9956312671ebe"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - eebf4dfe643dcd0fe7885da30016a3dd
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb1nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq a29e4ad05c
+      - extlb1nuq a29e4ad05c
+      x-runtime:
+      - '0.027778'
+      x-version-label:
+      - easypost-202304172058-4c7088be6d-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
