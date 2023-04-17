@@ -1,5 +1,6 @@
 from typing import (
     Any,
+    Dict,
     List,
     Optional,
 )
@@ -15,7 +16,7 @@ class CarrierMetadata:
     @classmethod
     def retrieve_carrier_metadata(
         cls, api_key: Optional[str] = None, carriers: Optional[List[str]] = None, types: Optional[List[str]] = None
-    ) -> List[dict[str, Any]]:
+    ) -> List[Dict[str, Any]]:
         """Get carrier metadata for all carriers on the EasyPost platform."""
         requestor = Requestor(local_api_key=api_key)
         params = {
