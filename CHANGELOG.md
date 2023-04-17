@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next release
+## v7.11.1 (2023-04-18)
 
 - Improves error deserialization to handle bad format returned from the JSON
 
