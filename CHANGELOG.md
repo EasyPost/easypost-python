@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## v7.11.1 (2023-04-18)
+## v7.12.0 (2023-04-18)
 
+- Adds beta `retrieve_carrier_metadata` function
 - Improves error deserialization to handle bad format returned from the JSON
 
 ## v7.11.0 (2023-04-04)
