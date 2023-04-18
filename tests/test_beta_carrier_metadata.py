@@ -15,9 +15,10 @@ def test_beta_retrieve_carrier_metadata():
 
 @pytest.mark.vcr()
 def test_beta_retrieve_carrier_metadata_with_filters():
-    """Tests that we can retrieve all carriers and all metadata from the API when no params are provided."""
+    """Tests that we can retrieve metadata based on the filters provided."""
     carrier_metadata = easypost.beta.CarrierMetadata.retrieve_carrier_metadata(
-        carriers=["usps"], types=["service_levels", "predefined_packages"]
+        carriers=["usps"],
+        types=["service_levels", "predefined_packages"],
     )
 
     # Assert we get the single carrier we asked for and only the types we asked for
