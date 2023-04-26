@@ -161,3 +161,13 @@ class Shipment(NextPageResource):
             raise Error(message="No rates found.")
 
         return lowest_smartrate
+
+    def retrieve_estimated_delivery_date(self, planned_ship_date: str) -> List[Dict[str, Any]]:
+        """Retrieves the estimated delivery date of each Rate via SmartRate."""
+        requestor = Requestor(local_api_key=self._api_key)
+        url = "%s/%s" % (self.instance_url(), "smartrate/delivery_date")
+        params = {
+            "planned_ship_date": planned_ship_date,
+        }
+        response, api_key = requestor.request(method=RequestMethod.GET, url=url, params=params)
+        return convert_to_easypost_object(response=response.get("rates", []), api_key=api_key)
