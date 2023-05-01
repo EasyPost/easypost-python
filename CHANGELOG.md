@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v7.13.0 (2023-05-02)
 
 - Adds `retrieve_estimated_delivery_date` function to the Shipment class
 
