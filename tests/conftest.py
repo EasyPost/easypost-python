@@ -347,3 +347,8 @@ def credit_card_details():
 @pytest.fixture
 def rma_form_options():
     return read_fixture_data()["form_options"]["rma"]
+
+
+@pytest.fixture
+def planned_ship_date():
+    return "2023-04-28"

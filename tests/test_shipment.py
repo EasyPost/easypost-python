@@ -308,10 +308,10 @@ def test_shipment_buy_with_end_shipper_id(ca_address_1, basic_shipment):
 
 
 @pytest.mark.vcr()
-def test_retrieve_estimated_delivery_date(basic_shipment):
+def test_retrieve_estimated_delivery_date(basic_shipment, planned_ship_date):
     """Tests that we retrieve time-in-transit data for each of the Rates of a Shipment."""
     shipment = easypost.Shipment.create(**basic_shipment)
 
-    rates = shipment.retrieve_estimated_delivery_date(planned_ship_date="2023-04-28")
+    rates = shipment.retrieve_estimated_delivery_date(planned_ship_date=planned_ship_date)
 
     assert all(entry.get("easypost_time_in_transit_data") for entry in rates)
