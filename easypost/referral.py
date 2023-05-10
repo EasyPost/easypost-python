@@ -112,7 +112,7 @@ class Referral:
         expiration_month: int,
         expiration_year: int,
         cvc: str,
-        primary_or_secondary: str = "primary",
+        priority: str = "primary",
     ) -> Dict[str, Any]:
         """Add credit card to a referral user.
 
@@ -134,7 +134,7 @@ class Referral:
         response = Referral._create_easypost_credit_card(
             referral_api_key,
             stripe_token.get("id", ""),
-            priority=primary_or_secondary,
+            priority=priority,
         )
         return convert_to_easypost_object(response)
 
