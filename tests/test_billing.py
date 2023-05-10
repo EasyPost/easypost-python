@@ -8,32 +8,37 @@ import easypost
 @patch("easypost.billing.Billing._get_payment_method_info", return_value=["endpoint", "card_123"])
 @patch("easypost.billing.Requestor.request", return_value=[{"mock": "response"}, "mock-api-key"])
 def test_billing_fund_wallet(mock_request, mock_get_payment_info):
-    success = easypost.Billing.fund_wallet(
-        amount="2000",
-        priority="primary",
-    )
-
-    assert success is True
+    try:
+        easypost.Billing.fund_wallet(
+            amount="2000",
+            priority="primary",
+        )
+    except Exception:
+        assert False
 
 
 @patch("easypost.billing.Billing.retrieve_payment_methods", return_value={"primary_payment_method": {"id": "card_123"}})
 @patch("easypost.billing.Requestor.request", return_value=[{"mock": "response"}, "mock-api-key"])
 def test_billing_payment_method_delete_credit_card(mock_request, mock_payment_methods):
     """Tests we make a valid call to delete a credit card."""
-    success = easypost.Billing.delete_payment_method(priority="primary")
+    try:
+        easypost.Billing.delete_payment_method(priority="primary")
+    except Exception:
+        assert False
 
     mock_request.assert_called_once_with(method=easypost.requestor.RequestMethod.DELETE, url="/credit_cards/card_123")
-    assert success is True
 
 
 @patch("easypost.billing.Billing.retrieve_payment_methods", return_value={"primary_payment_method": {"id": "bank_123"}})
 @patch("easypost.billing.Requestor.request", return_value=[{"mock": "response"}, "mock-api-key"])
 def test_billing_payment_method_delete_bank_account(mock_request, mock_payment_methods):
     """Tests we make a valid call to delete a bank account."""
-    success = easypost.Billing.delete_payment_method(priority="primary")
+    try:
+        easypost.Billing.delete_payment_method(priority="primary")
+    except Exception:
+        assert False
 
     mock_request.assert_called_once_with(method=easypost.requestor.RequestMethod.DELETE, url="/bank_accounts/bank_123")
-    assert success is True
 
 
 @patch("easypost.billing.Billing.retrieve_payment_methods", return_value={"primary_payment_method": {"id": "bad_id"}})

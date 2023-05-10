@@ -18,11 +18,8 @@ from easypost.requestor import (
 
 class ReferralCustomer:
     @staticmethod
-    def create(
-        api_key: Optional[str] = None,
-        **params,
-    ) -> Dict[str, Any]:
-        """Create a referral customer.
+    def create(api_key: Optional[str] = None, **params) -> Dict[str, Any]:
+        """Create a referral user.
 
         This function requires the Partner User's API key.
         """
@@ -36,12 +33,8 @@ class ReferralCustomer:
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     @staticmethod
-    def update_email(
-        email,
-        user_id,
-        api_key: Optional[str] = None,
-    ) -> bool:
-        """Update a referral customer.
+    def update_email(email, user_id, api_key: Optional[str] = None) -> None:
+        """Update a referral user.
 
         This function requires the Partner User's API key.
         """
@@ -58,15 +51,9 @@ class ReferralCustomer:
             params=wrapped_params,
         )
 
-        # Return true if succeeds, an error will be thrown if it fails
-        return True
-
     @staticmethod
-    def all(
-        api_key: Optional[str] = None,
-        **params,
-    ) -> List:
-        """Retrieve a list of referral customers.
+    def all(api_key: Optional[str] = None, **params) -> List:
+        """Retrieve a list of referral users.
 
         This function requires the Partner User's API key.
         """

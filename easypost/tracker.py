@@ -19,13 +19,12 @@ from easypost.resource import (
 
 class Tracker(AllResource, CreateResource, NextPageResource):
     @classmethod
-    def create_list(cls, trackers: List[Dict[str, Any]], api_key: Optional[str] = None) -> bool:
+    def create_list(cls, trackers: List[Dict[str, Any]], api_key: Optional[str] = None) -> None:
         """Create a list of trackers."""
         requestor = Requestor(local_api_key=api_key)
         url = "%s/%s" % (cls.class_url(), "create_list")
         new_params = {"trackers": trackers}
         _, _ = requestor.request(method=RequestMethod.POST, url=url, params=new_params)
-        return True
 
     @classmethod
     def all(cls, api_key: Optional[str] = None, **params) -> List["Tracker"]:

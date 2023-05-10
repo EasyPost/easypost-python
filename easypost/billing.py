@@ -16,7 +16,7 @@ from easypost.resource import Resource
 
 class Billing(Resource):
     @classmethod
-    def fund_wallet(cls, amount: str, priority: str = "primary", api_key: Optional[str] = None) -> bool:
+    def fund_wallet(cls, amount: str, priority: str = "primary", api_key: Optional[str] = None) -> None:
         """Fund your EasyPost wallet by charging your primary or secondary payment method on file."""
         endpoint, payment_method_id = Billing._get_payment_method_info(priority=priority)
 
@@ -25,20 +25,14 @@ class Billing(Resource):
         wrapped_params = {"amount": amount}
         requestor.request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        # Return true if the request succeeds, an error will be thrown if it fails
-        return True
-
     @classmethod
-    def delete_payment_method(cls, priority: str, api_key: Optional[str] = None) -> bool:
+    def delete_payment_method(cls, priority: str, api_key: Optional[str] = None) -> None:
         """Delete a payment method."""
         endpoint, payment_method_id = Billing._get_payment_method_info(priority=priority)
 
         requestor = Requestor(local_api_key=api_key)
         url = f"{endpoint}/{payment_method_id}"
         requestor.request(method=RequestMethod.DELETE, url=url)
-
-        # Return true if the request succeeds, an error will be thrown if it fails
-        return True
 
     @classmethod
     def retrieve_payment_methods(cls, api_key: Optional[str] = None, **params) -> Dict[str, Any]:

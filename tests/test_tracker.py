@@ -53,13 +53,13 @@ def test_tracker_get_next_page(page_size):
 @pytest.mark.vcr()
 def test_tracker_create_list():
     """Tests that we can create a list of trackers in bulk."""
-    response = easypost.Tracker.create_list(
-        {
-            "0": {"tracking_code": "EZ1000000001"},
-            "1": {"tracking_code": "EZ1000000002"},
-            "2": {"tracking_code": "EZ1000000003"},
-        }
-    )
-
-    # This endpoint/method does not return anything, just make sure the request doesn't fail
-    assert response is True
+    try:
+        easypost.Tracker.create_list(
+            {
+                "0": {"tracking_code": "EZ1000000001"},
+                "1": {"tracking_code": "EZ1000000002"},
+                "2": {"tracking_code": "EZ1000000003"},
+            }
+        )
+    except Exception:
+        assert False
