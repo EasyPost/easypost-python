@@ -1,4 +1,7 @@
-from typing import List
+from typing import (
+    List,
+    Optional,
+)
 
 from easypost.requestor import (
     RequestMethod,
@@ -25,7 +28,7 @@ class Order(CreateResource):
         self.refresh_from(values=response, api_key=api_key)
         return self
 
-    def lowest_rate(self, carriers: List[str] = None, services: List[str] = None):
+    def lowest_rate(self, carriers: Optional[List[str]] = None, services: Optional[List[str]] = None):
         """Get the lowest rate of this order."""
         lowest_rate = get_lowest_object_rate(self, carriers, services)
 

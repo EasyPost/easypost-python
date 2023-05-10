@@ -206,7 +206,7 @@ class EasyPostObject(object):
             return False
         return self.__str__() == other.__str__()
 
-    def to_json(self, indent: int = None) -> str:
+    def to_json(self, indent: Optional[int] = None) -> str:
         """Convert current object to json string."""
         return json.dumps(obj=self.to_dict(), sort_keys=True, indent=indent, cls=EasyPostObjectEncoder)
 

@@ -2,6 +2,7 @@ from typing import (
     Any,
     Dict,
     List,
+    Optional,
 )
 
 from easypost.easypost_object import EasyPostObject
@@ -10,8 +11,8 @@ from easypost.error import Error
 
 def get_lowest_object_rate(
     easypost_object: EasyPostObject,
-    carriers: List[str] = None,
-    services: List[str] = None,
+    carriers: Optional[List[str]] = None,
+    services: Optional[List[str]] = None,
     rates_key: str = "rates",
 ):
     """Gets the lowest rate of an EasyPost object such as a Shipment, Order, or Pickup."""
@@ -36,7 +37,7 @@ def get_lowest_object_rate(
 
 
 def get_lowest_stateless_rate(
-    stateless_rates: List[Dict[str, Any]], carriers: List[str] = None, services: List[str] = None
+    stateless_rates: List[Dict[str, Any]], carriers: Optional[List[str]] = None, services: Optional[List[str]] = None
 ) -> Dict[str, Any]:
     """Get the lowest stateless rate."""
     carriers = carriers or []
