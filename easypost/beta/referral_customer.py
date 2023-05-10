@@ -15,7 +15,7 @@ class ReferralCustomer:
     def add_payment_method(
         stripe_customer_id: str,
         payment_method_reference: str,
-        primary_or_secondary: str = "primary",
+        priority: str = "primary",
     ) -> Dict[str, Any]:
         """Add a Stripe payment method to your EasyPost account.
 
@@ -29,7 +29,7 @@ class ReferralCustomer:
             "payment_method": {
                 "stripe_customer_id": stripe_customer_id,
                 "payment_method_reference": payment_method_reference,
-                "priority": primary_or_secondary,
+                "priority": priority,
             }
         }
 
