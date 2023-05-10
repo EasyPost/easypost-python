@@ -42,7 +42,7 @@ class Requestor:
             return {"id": param.id}
         elif isinstance(param, dict):
             data = {}
-            for (k, v) in param.items():
+            for k, v in param.items():
                 if isinstance(v, list):
                     data[k] = [cls._objects_to_ids(item) for item in v]  # type: ignore
                 else:
@@ -52,7 +52,9 @@ class Requestor:
             return param
 
     @staticmethod
-    def form_encode_params(data: Dict, parent_keys: List[str] = None, parent_dict: Dict = None) -> Dict:
+    def form_encode_params(
+        data: Dict, parent_keys: Optional[List[str]] = None, parent_dict: Optional[Dict] = None
+    ) -> Dict:
         """Form-encode a multi-layer dictionary to a one-layer dictionary."""
         result = parent_dict or {}
         keys = parent_keys or []

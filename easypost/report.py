@@ -36,7 +36,7 @@ class Report(Resource):
     def get_next_page(
         cls,
         reports: Dict[str, Any],
-        page_size: int = None,
+        page_size: Optional[int] = None,
         api_key: Optional[str] = None,
     ) -> List["Report"]:
         """Get next page of Report collection"""

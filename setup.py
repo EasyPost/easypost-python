@@ -10,22 +10,23 @@ REQUIREMENTS = [
 ]
 
 DEV_REQUIREMENTS = [
-    "bandit==1.7.1",  # Bandit 1.7.2 drops support for Python 3.6
-    "black==22.*",
-    "build==0.8.*",
+    "bandit==1.7.5",
+    "black==23.*",
+    "build==0.10.*",
+    "urllib3==1.*",  # TODO: Pinned because vcrpy did a dumb and didn't pin urllib3
     "coveralls == 3.*",
-    "flake8==5.*",
+    "flake8==5.*",  # TODO: flake8 v6 requires Python 3.8.1+
     "isort==5.*",
-    "mypy==0.971",
-    "pdoc==12.*;python_version>='3.7'",
+    "mypy==1.3.*",
+    "pdoc==13.*",
     "pytest-cov==3.*",
     "pytest-vcr==1.*",
     "pytest==7.*",
-    "twine==3.8.*",  # Twine 4.0 drops support for Python 3.6
+    "twine==4.*",
     "types-requests",
     "types-urllib3",
     "vcrpy==4.*",
-    "wheel==0.37.*",
+    "wheel==0.40.*",
 ]
 
 with open("README.md", encoding="utf-8") as f:
@@ -60,12 +61,11 @@ setup(
         "Tracker": "https://github.com/EasyPost/easypost-python/issues",
         "Source": "https://github.com/EasyPost/easypost-python",
     },
-    python_requires=">=3.6, <4",
+    python_requires=">=3.7, <4",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
