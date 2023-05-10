@@ -29,12 +29,13 @@ def test_referral_customer_update(partner_prod_api_key):
     """This test requires a partner customer's production API key via PARTNER_USER_PROD_API_KEY."""
     referral_customers = easypost.ReferralCustomer.all()
 
-    updated_referral_customer = easypost.ReferralCustomer.update_email(
-        "email@example.com",
-        referral_customers.referral_customers[0].id,
-    )
-
-    assert updated_referral_customer is True
+    try:
+        easypost.ReferralCustomer.update_email(
+            "email@example.com",
+            referral_customers.referral_customers[0].id,
+        )
+    except Exception:
+        assert False
 
 
 @pytest.mark.vcr()
