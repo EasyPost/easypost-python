@@ -88,7 +88,7 @@ class Referral:
         expiration_month: int,
         expiration_year: int,
         cvc: str,
-        primary_or_secondary: str = "primary",
+        priority: str = "primary",
     ) -> Dict[str, Any]:
         """Add credit card to a referral user.
 
@@ -106,7 +106,7 @@ class Referral:
         response = Referral._create_easypost_credit_card(
             referral_api_key,
             stripe_token.get("id", ""),
-            priority=primary_or_secondary,
+            priority=priority,
         )
         return convert_to_easypost_object(response)
 
@@ -114,7 +114,7 @@ class Referral:
     def add_payment_method(
         stripe_customer_id: str,
         payment_method_reference: str,
-        primary_or_secondary: str = "primary",
+        priority: str = "primary",
     ) -> Dict[str, Any]:
         """Add a Stripe payment method to your EasyPost account.
 
@@ -128,7 +128,7 @@ class Referral:
             "payment_method": {
                 "stripe_customer_id": stripe_customer_id,
                 "payment_method_reference": payment_method_reference,
-                "priority": primary_or_secondary,
+                "priority": priority,
             }
         }
 

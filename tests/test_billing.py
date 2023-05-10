@@ -10,7 +10,7 @@ import easypost
 def test_billing_fund_wallet(mock_request, mock_get_payment_info):
     success = easypost.Billing.fund_wallet(
         amount="2000",
-        primary_or_secondary="primary",
+        priority="primary",
     )
 
     assert success is True
@@ -20,7 +20,7 @@ def test_billing_fund_wallet(mock_request, mock_get_payment_info):
 @patch("easypost.billing.Requestor.request", return_value=[{"mock": "response"}, "mock-api-key"])
 def test_billing_payment_method_delete_credit_card(mock_request, mock_payment_methods):
     """Tests we make a valid call to delete a credit card."""
-    success = easypost.Billing.delete_payment_method(primary_or_secondary="primary")
+    success = easypost.Billing.delete_payment_method(priority="primary")
 
     mock_request.assert_called_once_with(method=easypost.requestor.RequestMethod.DELETE, url="/credit_cards/card_123")
     assert success is True
@@ -30,7 +30,7 @@ def test_billing_payment_method_delete_credit_card(mock_request, mock_payment_me
 @patch("easypost.billing.Requestor.request", return_value=[{"mock": "response"}, "mock-api-key"])
 def test_billing_payment_method_delete_bank_account(mock_request, mock_payment_methods):
     """Tests we make a valid call to delete a bank account."""
-    success = easypost.Billing.delete_payment_method(primary_or_secondary="primary")
+    success = easypost.Billing.delete_payment_method(priority="primary")
 
     mock_request.assert_called_once_with(method=easypost.requestor.RequestMethod.DELETE, url="/bank_accounts/bank_123")
     assert success is True
@@ -41,7 +41,7 @@ def test_billing_payment_method_delete_bank_account(mock_request, mock_payment_m
 def test_billing_payment_method_delete_invalid(mock_request, mock_payment_methods):
     """Tests we raise an error when we receive an invalid payment method"""
     with pytest.raises(easypost.Error):
-        _ = easypost.Billing.delete_payment_method(primary_or_secondary="primary")
+        _ = easypost.Billing.delete_payment_method(priority="primary")
 
 
 @patch("easypost.billing.Billing.retrieve_payment_methods", return_value={"primary_payment_methods": {"id": "bad_id"}})
@@ -49,7 +49,7 @@ def test_billing_payment_method_delete_invalid(mock_request, mock_payment_method
 def test_billing_payment_method_delete_bad_request(mock_request, mock_payment_methods):
     """Tests we raise an error when we cannot retrieve a payment method."""
     with pytest.raises(easypost.Error):
-        _ = easypost.Billing.delete_payment_method(primary_or_secondary="tertiary")
+        _ = easypost.Billing.delete_payment_method(priority="tertiary")
 
 
 @patch("easypost.billing.Requestor.request", return_value=[{"id": "card_123"}, "mock-api-key"])

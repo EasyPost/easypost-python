@@ -16,9 +16,9 @@ from easypost.resource import Resource
 
 class Billing(Resource):
     @classmethod
-    def fund_wallet(cls, amount: str, primary_or_secondary: str = "primary", api_key: Optional[str] = None) -> bool:
+    def fund_wallet(cls, amount: str, priority: str = "primary", api_key: Optional[str] = None) -> bool:
         """Fund your EasyPost wallet by charging your primary or secondary payment method on file."""
-        endpoint, payment_method_id = Billing._get_payment_method_info(primary_or_secondary=primary_or_secondary)
+        endpoint, payment_method_id = Billing._get_payment_method_info(priority=priority)
 
         requestor = Requestor(local_api_key=api_key)
         url = f"{endpoint}/{payment_method_id}/charges"
@@ -29,9 +29,9 @@ class Billing(Resource):
         return True
 
     @classmethod
-    def delete_payment_method(cls, primary_or_secondary: str, api_key: Optional[str] = None) -> bool:
+    def delete_payment_method(cls, priority: str, api_key: Optional[str] = None) -> bool:
         """Delete a payment method."""
-        endpoint, payment_method_id = Billing._get_payment_method_info(primary_or_secondary=primary_or_secondary)
+        endpoint, payment_method_id = Billing._get_payment_method_info(priority=priority)
 
         requestor = Requestor(local_api_key=api_key)
         url = f"{endpoint}/{payment_method_id}"
@@ -52,7 +52,7 @@ class Billing(Resource):
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     @classmethod
-    def _get_payment_method_info(cls, primary_or_secondary: str = "primary") -> List[str]:
+    def _get_payment_method_info(cls, priority: str = "primary") -> List[str]:
         """Get payment method info (type of the payment method and ID of the payment method)"""
         payment_methods = Billing.retrieve_payment_methods()
 
@@ -61,7 +61,7 @@ class Billing(Resource):
             "secondary": "secondary_payment_method",
         }
 
-        payment_method_to_use = payment_method_map.get(primary_or_secondary)
+        payment_method_to_use = payment_method_map.get(priority)
         error_string = "The chosen payment method is not valid. Please try again."
 
         if payment_method_to_use and payment_methods[payment_method_to_use]:
