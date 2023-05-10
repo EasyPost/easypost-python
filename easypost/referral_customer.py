@@ -7,6 +7,7 @@ from typing import (
 
 import requests
 
+from easypost.constant import TIMEOUT
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.error import Error
 from easypost.requestor import (
@@ -177,6 +178,7 @@ class ReferralCustomer:
             params=form_encoded_params,
             headers=headers,
             auth=requests.auth.HTTPBasicAuth(easypost_stripe_key, ""),
+            timeout=TIMEOUT,
         )
         return stripe_response.json()
 
