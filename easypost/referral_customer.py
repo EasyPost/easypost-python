@@ -16,14 +16,13 @@ from easypost.requestor import (
 )
 
 
-# TODO: Rename `Referral` to `ReferralCustomer` and have the module name match as well
-class Referral:
+class ReferralCustomer:
     @staticmethod
     def create(
         api_key: Optional[str] = None,
         **params,
     ) -> Dict[str, Any]:
-        """Create a referral user.
+        """Create a referral customer.
 
         This function requires the Partner User's API key.
         """
@@ -42,7 +41,7 @@ class Referral:
         user_id,
         api_key: Optional[str] = None,
     ) -> bool:
-        """Update a referral user.
+        """Update a referral customer.
 
         This function requires the Partner User's API key.
         """
@@ -67,7 +66,7 @@ class Referral:
         api_key: Optional[str] = None,
         **params,
     ) -> List:
-        """Retrieve a list of referral users.
+        """Retrieve a list of referral customers.
 
         This function requires the Partner User's API key.
         """
@@ -85,7 +84,7 @@ class Referral:
         referrals: Dict[str, Any],
         page_size: int,
         api_key: Optional[str] = None,
-    ) -> List["Referral"]:
+    ) -> List["ReferralCustomer"]:
         """Retrieve next page of a referral customers."""
         requestor = Requestor(local_api_key=api_key)
         url = "/referral_customers"
@@ -114,14 +113,14 @@ class Referral:
         cvc: str,
         priority: str = "primary",
     ) -> Dict[str, Any]:
-        """Add credit card to a referral user.
+        """Add credit card to a referral customer.
 
-        This function requires the Referral User's API key.
+        This function requires the ReferralCustomer User's API key.
         """
-        easypost_stripe_api_key = Referral._retrieve_easypost_stripe_api_key()
+        easypost_stripe_api_key = ReferralCustomer._retrieve_easypost_stripe_api_key()
 
         try:
-            stripe_token = Referral._create_stripe_token(
+            stripe_token = ReferralCustomer._create_stripe_token(
                 number,
                 expiration_month,
                 expiration_year,
@@ -131,7 +130,7 @@ class Referral:
         except Exception:
             raise Error(message="Could not send card details to Stripe, please try again later")
 
-        response = Referral._create_easypost_credit_card(
+        response = ReferralCustomer._create_easypost_credit_card(
             referral_api_key,
             stripe_token.get("id", ""),
             priority=priority,
