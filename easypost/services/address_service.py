@@ -16,6 +16,9 @@ from easypost.services.base_service import BaseService
 
 
 class AddressService(BaseService):
+    def __init__(self, client):
+        self.model_class = "address"
+
     def create(
         self,
         verify: Optional[Union[Dict[str, Any], str, bool]] = None,
@@ -23,9 +26,9 @@ class AddressService(BaseService):
         **params,
     ) -> Address:
         """Create an Address."""
-        url = self.class_url("address")
+        url = self.class_url(self.model_class)
 
-        wrapped_params = {self.snakecase_name("address"): params}  # type: Dict[str, Any]
+        wrapped_params = {self.snakecase_name(self.model_class): params}  # type: Dict[str, Any]
         if verify:
             wrapped_params["verify"] = verify
         if verify_strict:
@@ -37,16 +40,16 @@ class AddressService(BaseService):
 
     def all(self, **params) -> List[Any]:
         """Retrieve a list of Addresses."""
-        return self.all_resources("address", **params)
+        return self.all_resources(self.model_class, **params)
 
     def retrieve(self, id) -> Address:
         """Retrieve an Address."""
-        return self.retrieve_resource("address", id)
+        return self.retrieve_resource(self.model_class, id)
 
     def create_and_verify(self, **params) -> Address:
         """Create and verify an Address."""
         url = f"{self.class_url('address')}/create_and_verify"
-        wrapped_params = {self.snakecase_name("address"): params}
+        wrapped_params = {self.snakecase_name(self.model_class): params}
 
         response, api_key = Requestor().request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
@@ -66,4 +69,4 @@ class AddressService(BaseService):
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> List[Any]:
-        return self.get_next_page_resources("address", collection, page_size, optional_params)
+        return self.get_next_page_resources(self.model_class, collection, page_size, optional_params)
