@@ -32,7 +32,10 @@ class RequestMethod(Enum):
 
 class Requestor:
     def __init__(self, client=None, local_api_key: Optional[str] = None):
-        self._api_key = client.api_key if client else local_api_key  # TODO: Remove the local_api_key here
+        self.client = client
+        self._api_key = (
+            client.api_key if client else local_api_key
+        )  # TODO: Remove the local_api_key here, eventually move to using `client.api_key throughout this file`
 
     @classmethod
     def _objects_to_ids(cls, param: Dict[str, Any]) -> Dict[str, Any]:
@@ -116,7 +119,7 @@ class Requestor:
             api_key,
         )
 
-        my_api_key = self._api_key or api_key
+        my_api_key = self._api_key or api_key  # TODO: Use `self.client.api_base` eventually
 
         if api_key_required and my_api_key is None:
             raise Error(
@@ -128,7 +131,7 @@ class Requestor:
         if beta:
             abs_url = f"https://api.easypost.com/beta{url}"
         else:
-            abs_url = f"{api_base}{url}"
+            abs_url = f"{self.client.api_base if self.client else api_base}{url}"  # TODO: Remove fallback
 
         params = self._objects_to_ids(param=params or {})
 
@@ -227,7 +230,7 @@ class Requestor:
                 params=url_params,
                 headers=headers,
                 json=body,
-                timeout=timeout,
+                timeout=self.client.timeout if self.client else timeout,  # TODO: Remove fallback
                 verify=True,
             )
             http_body = result.text
@@ -248,7 +251,12 @@ class Requestor:
         params: Dict[str, Any],
     ) -> Tuple[str, int]:
         """Make a request by using the `urlfetch` library."""
-        fetch_args = {"method": method.value, "headers": headers, "validate_certificate": False, "deadline": timeout}
+        fetch_args = {
+            "method": method.value,
+            "headers": headers,
+            "validate_certificate": False,
+            "deadline": self.client.timeout if self.client else timeout,  # TODO: Remove fallback
+        }
         if method in [RequestMethod.GET, RequestMethod.DELETE]:
             # GET/DELETE requests use query params
             fetch_args["url"] = self.add_params_to_url(url=abs_url, params=params, method=method)
@@ -321,9 +329,9 @@ try:
 
     request_lib = "urlfetch"
     # use the GAE application-wide "deadline" (or its default)
-    timeout = urlfetch.get_default_fetch_deadline() or TIMEOUT
+    timeout = urlfetch.get_default_fetch_deadline() or TIMEOUT  # TODO: Use client timeout
 except ImportError:
-    timeout = TIMEOUT
+    timeout = TIMEOUT  # TODO: Use client timeout
     try:
         import requests
 
