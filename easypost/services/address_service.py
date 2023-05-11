@@ -65,8 +65,9 @@ class AddressService(BaseService):
 
     def get_next_page(
         self,
-        collection: Dict[str, Any],
+        addresses: Dict[str, Any],
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> List[Any]:
-        return self.get_next_page_resources(self.model_class, collection, page_size, optional_params)
+        """Retrieve the next page of the List Addresses response."""
+        return self.get_next_page_resources(self.model_class, addresses, page_size, optional_params)
