@@ -8,6 +8,7 @@ from easypost.brand import Brand
 from easypost.carrier_account import CarrierAccount
 from easypost.customs_info import CustomsInfo
 from easypost.customs_item import CustomsItem
+from easypost.easypost_client import EasyPostClient
 from easypost.endshipper import EndShipper
 from easypost.error import Error
 from easypost.event import Event
@@ -39,6 +40,6 @@ __author__ = "EasyPost <oss@easypost.com>"
 __version__ = VERSION
 version_info = VERSION_INFO
 
-# config
+# TODO: Remove these once rewrite is complete
 api_key = None
 api_base = "https://api.easypost.com/v2"

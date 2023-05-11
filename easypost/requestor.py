@@ -31,8 +31,8 @@ class RequestMethod(Enum):
 
 
 class Requestor:
-    def __init__(self, local_api_key: Optional[str] = None):
-        self._api_key = local_api_key
+    def __init__(self, client=None, local_api_key: Optional[str] = None):
+        self._api_key = client.api_key if client else local_api_key  # TODO: Remove the local_api_key here
 
     @classmethod
     def _objects_to_ids(cls, param: Dict[str, Any]) -> Dict[str, Any]:
