@@ -16,46 +16,54 @@ from easypost.services.base_service import BaseService
 
 
 class AddressService(BaseService):
-    # @classmethod
-    # def create(
-    #     cls,
-    #     api_key: Optional[str] = None,
-    #     verify: Optional[Union[Dict[str, Any], str, bool]] = None,
-    #     verify_strict: Optional[Union[Dict[str, Any], str, bool]] = None,
-    #     **params
-    # ) -> Address:
-    #     """Create an address."""
-    #     requestor = Requestor(local_api_key=api_key)
-    #     url = cls.class_url()
+    def create(
+        self,
+        verify: Optional[Union[Dict[str, Any], str, bool]] = None,
+        verify_strict: Optional[Union[Dict[str, Any], str, bool]] = None,
+        **params,
+    ) -> Address:
+        """Create an Address."""
+        url = self.class_url("address")
 
-    #     wrapped_params = {cls.snakecase_name(): params}  # type: Dict[str, Any]
-    #     if verify:
-    #         wrapped_params["verify"] = verify
-    #     if verify_strict:
-    #         wrapped_params["verify_strict"] = verify_strict
+        wrapped_params = {self.snakecase_name("address"): params}  # type: Dict[str, Any]
+        if verify:
+            wrapped_params["verify"] = verify
+        if verify_strict:
+            wrapped_params["verify_strict"] = verify_strict
 
-    #     response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=wrapped_params)
-    #     return convert_to_easypost_object(response=response, api_key=api_key)
+        response, api_key = Requestor().request(method=RequestMethod.POST, url=url, params=wrapped_params)
+
+        return convert_to_easypost_object(response=response, api_key=api_key)
 
     def all(self, **params) -> List[Any]:
         """Retrieve a list of Addresses."""
         return self.all_resources("address", **params)
 
-    # @classmethod
-    # def create_and_verify(cls, api_key: Optional[str] = None, **params) -> "Address":
-    #     """Create and verify an address."""
-    #     requestor = Requestor(local_api_key=api_key)
-    #     url = "%s/%s" % (cls.class_url(), "create_and_verify")
+    def retrieve(self, id) -> Address:
+        """Retrieve an Address."""
+        return self.retrieve_resource("address", id)
 
-    #     wrapped_params = {cls.snakecase_name(): params}
-    #     response, api_key = requestor.request(method=RequestMethod.POST, url=url, params=wrapped_params)
+    def create_and_verify(self, **params) -> Address:
+        """Create and verify an Address."""
+        url = f"{self.class_url('address')}/create_and_verify"
+        wrapped_params = {self.snakecase_name("address"): params}
 
-    #     return convert_to_easypost_object(response=response["address"], api_key=api_key)
+        response, api_key = Requestor().request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-    # def verify(self) -> "Address":
-    #     """Verify an address."""
-    #     requestor = Requestor(local_api_key=self._api_key)
-    #     url = "%s/%s" % (self.instance_url(), "verify")
-    #     response, api_key = requestor.request(method=RequestMethod.GET, url=url)
+        return convert_to_easypost_object(response=response["address"], api_key=api_key)
 
-    #     return convert_to_easypost_object(response=response["address"], api_key=api_key)
+    def verify(self, id) -> Address:
+        """Verify an address."""
+        url = f"{self.instance_url('address', id)}/verify"
+
+        response, api_key = Requestor().request(method=RequestMethod.GET, url=url)
+
+        return convert_to_easypost_object(response=response["address"], api_key=api_key)
+
+    def get_next_page(
+        self,
+        collection: Dict[str, Any],
+        page_size: int,
+        optional_params: Optional[Dict[str, Any]] = None,
+    ) -> List[Any]:
+        return self.get_next_page_resources("address", collection, page_size, optional_params)
