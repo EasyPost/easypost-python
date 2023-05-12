@@ -45,6 +45,13 @@ def pytest_sessionfinish(session, exitstatus):
         session.appengine_testbed.deactivate()  # type: ignore
 
 
+@pytest.fixture
+def test_client():
+    """If a test needs to use the EasyPost test mode, make it depend on this fixture."""
+    return easypost.EasyPostClient(EASYPOST_TEST_API_KEY)
+
+
+# TODO: Remove
 @pytest.fixture(autouse=True)
 def setup_api_key():
     """This fixture is auto-loaded by all tests; it sets up the api key."""
@@ -54,6 +61,7 @@ def setup_api_key():
     easypost.api_key = default_key
 
 
+# TODO: Remove
 @pytest.fixture
 def prod_api_key():
     """If a test needs to use the prod api key, make it depend on this fixture."""
@@ -63,6 +71,7 @@ def prod_api_key():
     easypost.api_key = default_key
 
 
+# TODO: Remove
 @pytest.fixture
 def partner_prod_api_key():
     """If a test needs to use the partner prod api key, make it depend on this fixture."""
@@ -72,6 +81,7 @@ def partner_prod_api_key():
     easypost.api_key = default_key
 
 
+# TODO: Remove
 @pytest.fixture
 def referral_customer_prod_api_key():
     """If a test needs to use the referral customer prod api key, make it depend on this fixture."""
