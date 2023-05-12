@@ -32,9 +32,9 @@ class RequestMethod(Enum):
 
 class Requestor:
     def __init__(self, client=None, local_api_key: Optional[str] = None):
-        self.client = client
+        self._client = client
         self._api_key = (
-            client.api_key if client else local_api_key
+            self._client.api_key if self._client else local_api_key
         )  # TODO: Remove the local_api_key here, eventually move to using `client.api_key throughout this file`
 
     @classmethod
@@ -119,7 +119,7 @@ class Requestor:
             api_key,
         )
 
-        my_api_key = self._api_key or api_key  # TODO: Use `self.client.api_base` eventually
+        my_api_key = self._api_key or api_key  # TODO: Use `self._client.api_key` eventually
 
         if api_key_required and my_api_key is None:
             raise Error(
@@ -131,7 +131,7 @@ class Requestor:
         if beta:
             abs_url = f"https://api.easypost.com/beta{url}"
         else:
-            abs_url = f"{self.client.api_base if self.client else api_base}{url}"  # TODO: Remove fallback
+            abs_url = f"{self._client.api_base if self._client else api_base}{url}"  # TODO: Remove fallback
 
         params = self._objects_to_ids(param=params or {})
 
@@ -230,7 +230,7 @@ class Requestor:
                 params=url_params,
                 headers=headers,
                 json=body,
-                timeout=self.client.timeout if self.client else timeout,  # TODO: Remove fallback
+                timeout=self._client.timeout if self._client else timeout,  # TODO: Remove fallback
                 verify=True,
             )
             http_body = result.text
@@ -255,7 +255,7 @@ class Requestor:
             "method": method.value,
             "headers": headers,
             "validate_certificate": False,
-            "deadline": self.client.timeout if self.client else timeout,  # TODO: Remove fallback
+            "deadline": self._client.timeout if self._client else timeout,  # TODO: Remove fallback
         }
         if method in [RequestMethod.GET, RequestMethod.DELETE]:
             # GET/DELETE requests use query params

@@ -18,7 +18,7 @@ class BaseService:
     """The base service that all other services inherit."""
 
     def __init__(self, client):
-        self.client = client
+        self._client = client
 
     def _snakecase_name(self, class_name) -> str:
         """Return the class name as snake_case."""
@@ -46,8 +46,8 @@ class BaseService:
         url = self._class_url(class_name)
         wrapped_params = {self._snakecase_name(class_name): params}
 
-        # TODO: Don't instantiate the Requestor class
-        response, api_key = Requestor().request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        # TODO: Don't instantiate the Requestor class, pass the client directly to the request
+        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
         # TODO: Get rid of the api_key
         return convert_to_easypost_object(response=response, api_key=api_key)
@@ -55,8 +55,8 @@ class BaseService:
     def _all_resources(self, class_name: str, **params) -> List[Any]:
         """Retrieve a list of records from the EasyPost API."""
         url = self._class_url(class_name)
-        # TODO: Don't instantiate the Requestor class
-        response, api_key = Requestor().request(method=RequestMethod.GET, url=url, params=params)
+        # TODO: Don't instantiate the Requestor class, pass the client directly to the request
+        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
         # TODO: Get rid of the api_key
         return convert_to_easypost_object(response=response, api_key=api_key)
@@ -64,8 +64,8 @@ class BaseService:
     def _retrieve_resource(self, class_name: str, id: str) -> Any:
         """Retrieve an object from the EasyPost API."""
         url = self._instance_url(class_name, id)
-        # TODO: Don't instantiate the Requestor class
-        response, api_key = Requestor().request(method=RequestMethod.GET, url=url)
+        # TODO: Don't instantiate the Requestor class, pass the client directly to the request
+        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url)
 
         # TODO: Get rid of the api_key
         return convert_to_easypost_object(response=response, api_key=api_key)
@@ -92,8 +92,8 @@ class BaseService:
         if optional_params:
             params.update(optional_params)
 
-        # TODO: Don't instantiate the Requestor class
-        response, api_key = Requestor().request(method=RequestMethod.GET, url=url, params=params)
+        # TODO: Don't instantiate the Requestor class, pass the client directly to the request
+        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
         response_array: List[Any] = response.get(url[1:])  # type: ignore
         if response is None or len(response_array) == 0 or not response.get("has_more"):

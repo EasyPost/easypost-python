@@ -17,6 +17,7 @@ from easypost.services.base_service import BaseService
 
 class AddressService(BaseService):
     def __init__(self, client):
+        self._client = client
         self._model_class = Address.__name__
 
     def create(
@@ -34,7 +35,7 @@ class AddressService(BaseService):
         if verify_strict:
             wrapped_params["verify_strict"] = verify_strict
 
-        response, api_key = Requestor().request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
         return convert_to_easypost_object(response=response, api_key=api_key)
 
@@ -51,7 +52,7 @@ class AddressService(BaseService):
         url = f"{self._class_url('address')}/create_and_verify"
         wrapped_params = {self._snakecase_name(self._model_class): params}
 
-        response, api_key = Requestor().request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
         return convert_to_easypost_object(response=response["address"], api_key=api_key)
 
@@ -59,7 +60,7 @@ class AddressService(BaseService):
         """Verify an address."""
         url = f"{self._instance_url('address', id)}/verify"
 
-        response, api_key = Requestor().request(method=RequestMethod.GET, url=url)
+        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url)
 
         return convert_to_easypost_object(response=response["address"], api_key=api_key)
 
