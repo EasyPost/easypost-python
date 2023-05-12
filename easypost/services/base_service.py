@@ -26,11 +26,11 @@ class BaseService:
 
     def _class_url(self, class_name) -> str:
         """Generate a URL based on class name."""
-        lower_class_name = class_name.lower()
-        if lower_class_name[-1:] in ("s", "h"):
-            return f"/{lower_class_name}es"
+        transformed_class_name = self._snakecase_name(class_name)
+        if transformed_class_name[-1:] in ("s", "h"):
+            return f"/{transformed_class_name}es"
         else:
-            return f"/{lower_class_name}s"
+            return f"/{transformed_class_name}s"
 
     def _instance_url(self, class_name, id) -> str:
         """Generate an instance URL based on the ID of the object."""
@@ -66,6 +66,26 @@ class BaseService:
         url = self._instance_url(class_name, id)
         # TODO: Don't instantiate the Requestor class, pass the client directly to the request
         response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url)
+
+        # TODO: Get rid of the api_key
+        return convert_to_easypost_object(response=response, api_key=api_key)
+
+    def _update_resource(self, class_name: str, id: str, method: RequestMethod = RequestMethod.PATCH, **params) -> Any:
+        """Update an EasyPost object."""
+        url = self._instance_url(class_name, id)
+        wrapped_params = {self._snakecase_name(class_name): params}
+
+        # TODO: Don't instantiate the Requestor class, pass the client directly to the request
+        response, api_key = Requestor(self._client).request(method=method, url=url, params=wrapped_params)
+
+        # TODO: Get rid of the api_key
+        return convert_to_easypost_object(response=response, api_key=api_key)
+
+    def _delete_resource(self, class_name: str, id: str) -> Any:
+        """Delete an EasyPost object."""
+        url = self._instance_url(class_name, id)
+        # TODO: Don't instantiate the Requestor class, pass the client directly to the request
+        response, api_key = Requestor(self._client).request(method=RequestMethod.DELETE, url=url)
 
         # TODO: Get rid of the api_key
         return convert_to_easypost_object(response=response, api_key=api_key)
