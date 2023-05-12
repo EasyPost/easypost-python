@@ -3,6 +3,7 @@ from easypost.constant import (
     TIMEOUT,
 )
 from easypost.services.address_service import AddressService
+from easypost.services.batch_service import BatchService
 
 
 class EasyPostClient:
@@ -16,3 +17,4 @@ class EasyPostClient:
 
         # Services
         self.address = AddressService(self)
+        self.batch = BatchService(self)

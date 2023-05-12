@@ -22,8 +22,8 @@ interactions:
     uri: https://api.easypost.com/v2/addresses
   response:
     body:
-      string: '{"id": "adr_3fdcc8731ccb11ed9adbac1f6bc7bdc6", "object": "Address",
-        "created_at": "2022-08-15T18:51:19+00:00", "updated_at": "2022-08-15T18:51:19+00:00",
+      string: '{"id": "adr_7857b92df0fb11eda67cac1f6bc7b362", "object": "Address",
+        "created_at": "2023-05-12T19:30:36+00:00", "updated_at": "2023-05-12T19:30:36+00:00",
         "name": null, "company": "EASYPOST", "street1": "417 MONTGOMERY ST FL 5",
         "street2": "", "city": "SAN FRANCISCO", "state": "CA", "zip": "94104-1129",
         "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test",
@@ -42,11 +42,11 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"060977240ba719752f81f2130f58b1cb"
+      - W/"9ddf629be3716817f7b636f120d08876"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_3fdcc8731ccb11ed9adbac1f6bc7bdc6
+      - /api/v2/addresses/adr_7857b92df0fb11eda67cac1f6bc7b362
       pragma:
       - no-cache
       referrer-policy:
@@ -57,25 +57,28 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f43af47a62fa95a7e79a766600261960
+      - fe8d8709645e93dce2cc315d0005fc3d
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb9nuq
+      - bigweb7nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb1nuq a29e4ad05c
+      - intlb2wdc a29e4ad05c
+      - extlb4wdc 5ab12a3ed2
       x-runtime:
-      - '0.055526'
+      - '0.041322'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202305121849-b449e9bf47-master
       x-xss-protection:
       - 1; mode=block
     status:

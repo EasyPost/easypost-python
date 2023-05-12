@@ -27,9 +27,9 @@ interactions:
     uri: https://api.easypost.com/v2/batches
   response:
     body:
-      string: '{"id": "batch_b65b997e02b74bbba53da82e745ca883", "object": "Batch",
+      string: '{"id": "batch_5c5da8c23c3c48549a381da43d7ef9f9", "object": "Batch",
         "mode": "test", "state": "creating", "num_shipments": 1, "reference": null,
-        "created_at": "2022-08-15T18:51:20Z", "updated_at": "2022-08-15T18:51:20Z",
+        "created_at": "2023-05-12T19:30:43Z", "updated_at": "2023-05-12T19:30:43Z",
         "scan_form": null, "shipments": [], "status": {"created": 0, "queued_for_purchase":
         0, "creation_failed": 0, "postage_purchased": 0, "postage_purchase_failed":
         0}, "pickup": null, "label_url": null}'
@@ -41,7 +41,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"a120a9255e88a0ea37d8049003fb1949"
+      - W/"e524acc3c8f610239b800f5ddb62d104"
       expires:
       - '0'
       pragma:
@@ -54,25 +54,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f43af47d62fa95a8e79a7687002619eb
+      - 4eb6f00c645e93e3e2cc317c0005d45c
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb8nuq
+      - bigweb7nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb1nuq a29e4ad05c
+      - extlb1nuq 5ab12a3ed2
       x-runtime:
-      - '0.037520'
+      - '0.039433'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202305121849-b449e9bf47-master
       x-xss-protection:
       - 1; mode=block
     status:
