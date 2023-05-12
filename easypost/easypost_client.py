@@ -6,6 +6,8 @@ from easypost.services.address_service import AddressService
 from easypost.services.batch_service import BatchService
 from easypost.services.billing_service import BillingService
 from easypost.services.carrier_account_service import CarrierAccountService
+from easypost.services.customs_info_service import CustomsInfoService
+from easypost.services.customs_item_service import CustomsItemService
 
 
 class EasyPostClient:
@@ -22,3 +24,5 @@ class EasyPostClient:
         self.batch = BatchService(self)
         self.billing = BillingService(self)
         self.carrier_account = CarrierAccountService(self)
+        self.customs_info = CustomsInfoService(self)
+        self.customs_item = CustomsItemService(self)
