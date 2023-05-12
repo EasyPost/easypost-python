@@ -4,6 +4,7 @@ from easypost.constant import (
 )
 from easypost.services.address_service import AddressService
 from easypost.services.batch_service import BatchService
+from easypost.services.billing_service import BillingService
 
 
 class EasyPostClient:
@@ -18,3 +19,4 @@ class EasyPostClient:
         # Services
         self.address = AddressService(self)
         self.batch = BatchService(self)
+        self.billing = BillingService(self)

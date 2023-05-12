@@ -57,6 +57,12 @@ def test_client():
     return easypost.EasyPostClient(EASYPOST_TEST_API_KEY)
 
 
+@pytest.fixture
+def prod_client():
+    """If a test needs to use the EasyPost prod mode, make it depend on this fixture."""
+    return easypost.EasyPostClient(EASYPOST_PROD_API_KEY)
+
+
 # TODO: Remove
 @pytest.fixture(autouse=True)
 def setup_api_key():
