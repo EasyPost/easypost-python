@@ -40,6 +40,8 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       transfer-encoding:
       - chunked
+      vary:
+      - Origin
       x-backend:
       - easypost
       x-canary:
@@ -49,7 +51,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 3d038b9d639a04c6e78982e500020a58
+      - 477e8d7f64626273e786c9260019fe0e
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -57,13 +59,13 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb3wdc 29913d444b
+      - intlb2nuq a29e4ad05c
+      - intlb2wdc a29e4ad05c
+      - extlb3wdc 5ab12a3ed2
       x-runtime:
-      - '0.061146'
+      - '0.135282'
       x-version-label:
-      - easypost-202212132312-d72b368b58-master
+      - easypost-202305122104-29dd2d738a-master
       x-xss-protection:
       - 1; mode=block
     status:

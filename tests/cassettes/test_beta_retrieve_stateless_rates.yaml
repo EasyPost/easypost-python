@@ -33,7 +33,7 @@ interactions:
         N Harbor Dr", "city": "Redondo Beach", "state": "CA", "zip": "90277", "country":
         "US", "phone": "<REDACTED>", "email": "<REDACTED>"}, "rates": [{"object":
         "Rate", "mode": "test", "service": "Priority", "carrier": "USPS", "rate":
-        "8.24", "currency": "USD", "retail_rate": "10.20", "retail_currency": "USD",
+        "7.15", "currency": "USD", "retail_rate": "10.20", "retail_currency": "USD",
         "list_rate": "8.24", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
         2, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
         2, "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e"}, {"object":
@@ -48,24 +48,34 @@ interactions:
         null, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
         null, "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e"}, {"object":
         "Rate", "mode": "test", "service": "ParcelSelect", "carrier": "USPS", "rate":
-        "7.75", "currency": "USD", "retail_rate": "7.75", "retail_currency": "USD",
+        "6.76", "currency": "USD", "retail_rate": "7.75", "retail_currency": "USD",
         "list_rate": "7.75", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
         5, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
         5, "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e"}], "options":
         {"currency": "USD", "payment": {"type": "SENDER"}, "date_advance": 0}, "parcel":
         {"object": "Parcel", "length": 10.0, "width": 8.0, "height": 4.0, "weight":
-        15.4}, "messages": [{"carrier": "DhlEcs", "carrier_account_id": "ca_c3cbbd21bc97400bbbaed6d030909476",
+        15.4}, "messages": [{"carrier": "DhlEcs", "carrier_account_id": "ca_99007e1aeb66421faf82676f1199481e",
+        "type": "rate_error", "message": "Unauthorized. Please check credentials and
+        try again"}, {"carrier": "DhlEcs", "carrier_account_id": "ca_c7b4cfaf671b4984b84023d77561394a",
+        "type": "rate_error", "message": "Unauthorized. Please check credentials and
+        try again"}, {"carrier": "DhlEcs", "carrier_account_id": "ca_0d64fd488c1444cf9bc16f858703e28f",
+        "type": "rate_error", "message": "Unauthorized. Please check credentials and
+        try again"}, {"carrier": "DhlEcs", "carrier_account_id": "ca_b1a0a1bc45844159812e0224d53948ea",
+        "type": "rate_error", "message": "Unauthorized. Please check credentials and
+        try again"}, {"carrier": "DhlEcs", "carrier_account_id": "ca_711d8c4f9be54801b984e5dc9f2b5a7c",
+        "type": "rate_error", "message": "Unauthorized. Please check credentials and
+        try again"}, {"carrier": "DhlEcs", "carrier_account_id": "ca_c3cbbd21bc97400bbbaed6d030909476",
         "type": "rate_error", "message": "Unauthorized. Please check credentials and
         try again"}]}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '2236'
+      - '3061'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"c0cf07a188c4d565d28a80c1841efc5f"
+      - W/"046736d5146c150a74222e444529b376"
       expires:
       - '0'
       pragma:
@@ -76,29 +86,30 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       transfer-encoding:
       - chunked
+      vary:
+      - Origin
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - afb1142f63d185b5e788ea6b00073e5c
+      - 477e8d8364626271e786c9230019fce9
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb5nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb2nuq a29e4ad05c
+      - intlb1wdc a29e4ad05c
+      - extlb3wdc 5ab12a3ed2
       x-runtime:
-      - '0.720155'
+      - '0.826286'
       x-version-label:
-      - easypost-202301251848-057c9f927b-master
+      - easypost-202305122104-29dd2d738a-master
       x-xss-protection:
       - 1; mode=block
     status:

@@ -4,6 +4,9 @@ from easypost.constant import (
 )
 from easypost.services.address_service import AddressService
 from easypost.services.batch_service import BatchService
+from easypost.services.beta_carrier_metadata_service import BetaCarrierMetadataService
+from easypost.services.beta_rate_service import BetaRateService
+from easypost.services.beta_referral_customer_service import BetaReferralCustomerService
 from easypost.services.billing_service import BillingService
 from easypost.services.carrier_account_service import CarrierAccountService
 from easypost.services.customs_info_service import CustomsInfoService
@@ -22,6 +25,9 @@ class EasyPostClient:
         # Services
         self.address = AddressService(self)
         self.batch = BatchService(self)
+        self.beta_carrier_metadata = BetaCarrierMetadataService(self)
+        self.beta_rate = BetaRateService(self)
+        self.beta_referral_customer = BetaReferralCustomerService(self)
         self.billing = BillingService(self)
         self.carrier_account = CarrierAccountService(self)
         self.customs_info = CustomsInfoService(self)
