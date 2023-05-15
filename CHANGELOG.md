@@ -8,6 +8,7 @@
 - Empty API response functions return `None` instead of `True`
 - References to `Referral` are now `ReferralCustomer` to match the API and docs
 - `primary_or_secondary` paramater name for billing functions is now called `priority` to match the API and docs
+- The `update_email` function of the `referral_customer` service had the parameter order switched so `id` (previosly called `user_id`) is first which matches the rest of the library
 - Dropped Python 3.6 support
 - Bumps all dependencies
 

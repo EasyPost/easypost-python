@@ -20,26 +20,16 @@ interactions:
     uri: https://api.easypost.com/v2/referral_customers
   response:
     body:
-      string: '{"id": "user_7c9e4c44e93c4a0da732778b91530198", "object": "User", "parent_id":
-        null, "name": "test test", "phone_number": "<REDACTED>", "verified": true,
-        "created_at": "2023-05-10T17:57:26Z", "default_carbon_offset": false, "has_elevate_access":
-        false, "balance": "0.00000", "price_per_shipment": "0.00000", "recharge_amount":
-        null, "secondary_recharge_amount": null, "recharge_threshold": null, "has_billing_method":
-        null, "cc_fee_rate": "0.0375", "default_insurance_amount": "50.00", "insurance_fee_rate":
-        "0.005", "insurance_fee_minimum": "0.25", "email": "<REDACTED>", "children":
-        [], "api_keys": [{"object": "ApiKey", "key": "<REDACTED>", "mode": "test",
-        "created_at": "2023-05-10T17:57:26Z", "active": true, "id": "ak_c72d8904501643ffb897215c5343233e"},
-        {"object": "ApiKey", "key": "<REDACTED>", "mode": "production", "created_at":
-        "2023-05-10T17:57:26Z", "active": true, "id": "ak_c9645d1c4bf34bd5a957962b442ca245"}]}'
+      string: '{"error": {"code": "UNAUTHORIZED", "message": "Your account is not
+        enabled to access the Partner White Label API. Contact EasyPost to request
+        access.", "errors": []}}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '1018'
+      - '160'
       content-type:
       - application/json; charset=utf-8
-      etag:
-      - W/"e10e0963ef315935bcf5d541de7d438d"
       expires:
       - '0'
       pragma:
@@ -57,7 +47,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - c20c6533645bdb06e2b8e677002062b2
+      - 36ec0a8e6462b3d4e2ba02d2003b0df4
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -66,14 +56,15 @@ interactions:
       - none
       x-proxied:
       - intlb1nuq a29e4ad05c
-      - extlb1nuq a29e4ad05c
+      - intlb1wdc a29e4ad05c
+      - extlb4wdc 5ab12a3ed2
       x-runtime:
-      - '1.043958'
+      - '0.046659'
       x-version-label:
-      - easypost-202305091956-464aa0b59c-master
+      - easypost-202305152107-770224374c-master
       x-xss-protection:
       - 1; mode=block
     status:
-      code: 201
-      message: Created
+      code: 401
+      message: Unauthorized
 version: 1

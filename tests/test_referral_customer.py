@@ -11,9 +11,9 @@ REFERRAL_CUSTOMER_PROD_API_KEY = os.getenv("REFERRAL_CUSTOMER_PROD_API_KEY", "12
 
 
 @pytest.mark.vcr()
-def test_referral_customer_create(partner_prod_api_key):
+def test_referral_customer_create(referral_customer_prod_client):
     """This test requires a partner customer's production API key via PARTNER_USER_PROD_API_KEY."""
-    created_referral_customer = easypost.ReferralCustomer.create(
+    created_referral_customer = referral_customer_prod_client.referral_customer.create(
         name="test test",
         email="test@test.com",
         phone="8888888888",
@@ -25,23 +25,23 @@ def test_referral_customer_create(partner_prod_api_key):
 
 
 @pytest.mark.vcr()
-def test_referral_customer_update(partner_prod_api_key):
+def test_referral_customer_update(referral_customer_prod_client):
     """This test requires a partner customer's production API key via PARTNER_USER_PROD_API_KEY."""
-    referral_customers = easypost.ReferralCustomer.all()
+    referral_customers = referral_customer_prod_client.referral_customer.all()
 
     try:
-        easypost.ReferralCustomer.update_email(
-            "email@example.com",
+        referral_customer_prod_client.referral_customer.update_email(
             referral_customers.referral_customers[0].id,
+            "email@example.com",
         )
     except Exception:
         assert False
 
 
 @pytest.mark.vcr()
-def test_referral_customer_all(partner_prod_api_key, page_size):
+def test_referral_customer_all(referral_customer_prod_client, page_size):
     """This test requires a partner customer's production API key via PARTNER_USER_PROD_API_KEY."""
-    referral_customers = easypost.ReferralCustomer.all(page_size=page_size)
+    referral_customers = referral_customer_prod_client.referral_customer.all(page_size=page_size)
 
     referral_customers_array = referral_customers["referral_customers"]
 
@@ -51,10 +51,12 @@ def test_referral_customer_all(partner_prod_api_key, page_size):
 
 
 @pytest.mark.vcr()
-def test_referral_get_next_page(partner_prod_api_key, page_size):
+def test_referral_get_next_page(referral_customer_prod_client, page_size):
     try:
-        referrals = easypost.ReferralCustomer.all(page_size=page_size)
-        next_page = easypost.ReferralCustomer.get_next_page(referrals=referrals, page_size=page_size)
+        referrals = referral_customer_prod_client.referral_customer.all(page_size=page_size)
+        next_page = referral_customer_prod_client.referral_customer.get_next_page(
+            referrals=referrals, page_size=page_size
+        )
 
         first_id_of_first_page = referrals["referral_customers"][0].id
         first_id_of_second_page = next_page["referral_customers"][0].id
@@ -74,11 +76,11 @@ def test_referral_get_next_page(partner_prod_api_key, page_size):
         "uri",
     ]
 )
-def test_referral_customer_add_credit_card(partner_prod_api_key, credit_card_details):
+def test_referral_customer_add_credit_card(referral_customer_prod_client, credit_card_details):
     """This test requires a partner customer's production API key via PARTNER_USER_PROD_API_KEY
     as well as one of that customer's referral's production API keys via REFERRAL_CUSTOMER_PROD_API_KEY.
     """
-    added_credit_card = easypost.ReferralCustomer.add_credit_card(
+    added_credit_card = referral_customer_prod_client.referral_customer.add_credit_card(
         referral_api_key=REFERRAL_CUSTOMER_PROD_API_KEY,
         number=credit_card_details["number"],
         expiration_month=credit_card_details["expiration_month"],
@@ -92,12 +94,17 @@ def test_referral_customer_add_credit_card(partner_prod_api_key, credit_card_det
 
 @patch("easypost.referral_customer.ReferralCustomer._retrieve_easypost_stripe_api_key")
 @patch("easypost.referral_customer.ReferralCustomer._create_stripe_token", side_effect=Exception())
-def test_referral_add_credit_card_error(mock_stripe_token, mock_easypost_key, credit_card_details):
+def test_referral_add_credit_card_error(
+    mock_stripe_token,
+    mock_easypost_key,
+    credit_card_details,
+    referral_customer_prod_client,
+):
     """This test requires a partner customer's production API key via PARTNER_USER_PROD_API_KEY
     as well as one of that customer's referral's production API keys via REFERRAL_CUSTOMER_PROD_API_KEY.
     """
     with pytest.raises(Exception) as error:
-        _ = easypost.ReferralCustomer.add_credit_card(
+        _ = referral_customer_prod_client.referral_customer.add_credit_card(
             referral_api_key=REFERRAL_CUSTOMER_PROD_API_KEY,
             number=credit_card_details["number"],
             expiration_month=credit_card_details["expiration_month"],
