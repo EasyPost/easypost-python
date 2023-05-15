@@ -1,3 +1,4 @@
+import json
 from typing import (
     Any,
     Dict,
@@ -5,8 +6,12 @@ from typing import (
     Optional,
 )
 
-from easypost.easypost_object import EasyPostObject
+from easypost.easypost_object import (
+    EasyPostObject,
+    convert_to_easypost_object,
+)
 from easypost.error import Error
+from easypost.models.event import Event
 
 
 def get_lowest_object_rate(
@@ -60,3 +65,9 @@ def get_lowest_stateless_rate(
         raise Error(message="No rates found.")
 
     return lowest_rate
+
+
+def receive_event(values: str) -> Event:
+    """Receives a raw Webhook event and converts it to JSON."""
+    # TODO: Remove api_key
+    return convert_to_easypost_object(response=json.loads(s=values), api_key=None)

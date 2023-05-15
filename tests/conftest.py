@@ -63,6 +63,12 @@ def prod_client():
     return easypost.EasyPostClient(EASYPOST_PROD_API_KEY)
 
 
+@pytest.fixture
+def referral_customer_prod_client():
+    """If a test needs to use prod mode with a referral customer API key, make it depend on this fixture."""
+    return easypost.EasyPostClient(REFERRAL_CUSTOMER_PROD_API_KEY)
+
+
 # TODO: Remove
 @pytest.fixture(autouse=True)
 def setup_api_key():

@@ -6,11 +6,12 @@ import pytest
 
 import easypost
 from easypost.error import Error
+from easypost.util import receive_event
 
 
 @pytest.mark.vcr()
-def test_event_all(page_size):
-    events = easypost.Event.all(page_size=page_size)
+def test_event_all(page_size, test_client):
+    events = test_client.event.all(page_size=page_size)
 
     events_array = events["events"]
 
@@ -20,10 +21,10 @@ def test_event_all(page_size):
 
 
 @pytest.mark.vcr()
-def test_event_get_next_page(page_size):
+def test_event_get_next_page(page_size, test_client):
     try:
-        events = easypost.Event.all(page_size=page_size)
-        next_page = easypost.Event.get_next_page(collection=events, page_size=page_size)
+        events = test_client.event.all(page_size=page_size)
+        next_page = test_client.event.get_next_page(events=events, page_size=page_size)
 
         first_id_of_first_page = events["events"][0].id
         first_id_of_second_page = next_page["events"][0].id
@@ -35,8 +36,8 @@ def test_event_get_next_page(page_size):
 
 
 @pytest.mark.vcr()
-def test_event_retrieve(page_size):
-    events = easypost.Event.all(page_size=page_size)
+def test_event_retrieve(page_size, test_client):
+    events = test_client.event.all(page_size=page_size)
 
     event = events["events"][0]
 
@@ -45,17 +46,19 @@ def test_event_retrieve(page_size):
 
 
 @pytest.mark.vcr()
-def test_event_retrieve_all_payloads(page_size, webhook_url, one_call_buy_shipment, synchronous_sleep_seconds):
+def test_event_retrieve_all_payloads(
+    page_size, webhook_url, one_call_buy_shipment, synchronous_sleep_seconds, test_client
+):
     function_name = inspect.stack()[0][3]
-    webhook = easypost.Webhook.create(url=webhook_url)
+    webhook = easypost.Webhook.create(url=webhook_url)  # TODO: Use new syntax when service exists
 
-    easypost.Batch.create(shipments=[one_call_buy_shipment])
+    test_client.batch.create(shipments=[one_call_buy_shipment])
 
     if not os.path.exists(os.path.join("tests", "cassettes", f"{function_name}.yaml")):
         time.sleep(synchronous_sleep_seconds)  # Wait enough time for the batch to process before getting events
 
-    events = easypost.Event.all(page_size=page_size)
-    payloads = easypost.Event.retrieve_all_payloads(events["events"][0]["id"])
+    events = test_client.event.all(page_size=page_size)
+    payloads = test_client.event.retrieve_all_payloads(events["events"][0]["id"])
 
     # Payloads may not be populated due to the webhook delivery system being on a queue
     assert all(isinstance(payload, easypost.Payload) for payload in payloads["payloads"])
@@ -64,20 +67,20 @@ def test_event_retrieve_all_payloads(page_size, webhook_url, one_call_buy_shipme
 
 
 @pytest.mark.vcr()
-def test_event_retrieve_payload(page_size, webhook_url, one_call_buy_shipment, synchronous_sleep_seconds):
+def test_event_retrieve_payload(page_size, webhook_url, one_call_buy_shipment, synchronous_sleep_seconds, test_client):
     function_name = inspect.stack()[0][3]
-    webhook = easypost.Webhook.create(url=webhook_url)
+    webhook = easypost.Webhook.create(url=webhook_url)  # TODO: Use new syntax when service exists
 
-    easypost.Batch.create(shipments=[one_call_buy_shipment])
+    test_client.batch.create(shipments=[one_call_buy_shipment])
 
     if not os.path.exists(os.path.join("tests", "cassettes", f"{function_name}.yaml")):
         time.sleep(synchronous_sleep_seconds)  # Wait enough time for the batch to process before getting events
 
-    events = easypost.Event.all(page_size=page_size)
+    events = test_client.event.all(page_size=page_size)
 
     try:
         # Need a valid-length, invalid payload ID here
-        easypost.Event.retrieve_payload(events["events"][0]["id"], "payload_11111111111111111111111111111111")
+        test_client.event.retrieve_payload(events["events"][0]["id"], "payload_11111111111111111111111111111111")
     except easypost.Error as error:
         assert error.message == "The payload(s) could not be found."
         assert error.http_status == 404
@@ -86,7 +89,7 @@ def test_event_retrieve_payload(page_size, webhook_url, one_call_buy_shipment, s
 
 
 def test_event_receive(event_json):
-    event = easypost.Event.receive(event_json)
+    event = receive_event(event_json)
 
     assert isinstance(event, easypost.Event)
     assert str.startswith(event.id, "evt_")

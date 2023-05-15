@@ -8,11 +8,12 @@ from easypost.requestor import (
     RequestMethod,
     Requestor,
 )
+from easypost.services.base_service import BaseService
 
 
-class ReferralCustomer:
-    @staticmethod
+class BetaReferralCustomerService(BaseService):
     def add_payment_method(
+        self,
         stripe_customer_id: str,
         payment_method_reference: str,
         priority: str = "primary",
@@ -24,7 +25,6 @@ class ReferralCustomer:
         EasyPost, we will associate your Stripe payment method with either your primary
         or secondary EasyPost payment method.
         """
-        requestor = Requestor()
         wrapped_params = {
             "payment_method": {
                 "stripe_customer_id": stripe_customer_id,
@@ -33,7 +33,7 @@ class ReferralCustomer:
             }
         }
 
-        response, api_key = requestor.request(
+        response, api_key = Requestor(self._client).request(
             method=RequestMethod.POST,
             url="/referral_customers/payment_method",
             params=wrapped_params,
@@ -42,13 +42,11 @@ class ReferralCustomer:
 
         return convert_to_easypost_object(response=response, api_key=api_key)
 
-    @staticmethod
-    def refund_by_amount(refund_amount: int) -> Dict[str, Any]:
+    def refund_by_amount(self, refund_amount: int) -> Dict[str, Any]:
         """Refund a ReferralCustomer wallet by specifying an amount."""
-        requestor = Requestor()
         wrapped_params = {"refund_amount": refund_amount}
 
-        response, api_key = requestor.request(
+        response, api_key = Requestor(self._client).request(
             method=RequestMethod.POST,
             url="/referral_customers/refunds",
             params=wrapped_params,
@@ -57,13 +55,11 @@ class ReferralCustomer:
 
         return convert_to_easypost_object(response=response, api_key=api_key)
 
-    @staticmethod
-    def refund_by_payment_log(payment_log_id: str) -> Dict[str, Any]:
+    def refund_by_payment_log(self, payment_log_id: str) -> Dict[str, Any]:
         """Refund a ReferralCustomer wallet by specifying a payment log ID to completely refund."""
-        requestor = Requestor()
         wrapped_params = {"payment_log_id": payment_log_id}
 
-        response, api_key = requestor.request(
+        response, api_key = Requestor(self._client).request(
             method=RequestMethod.POST,
             url="/referral_customers/refunds",
             params=wrapped_params,

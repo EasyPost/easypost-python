@@ -16,25 +16,31 @@ interactions:
     uri: https://api.easypost.com/v2/events?page_size=5
   response:
     body:
-      string: '{"events": [{"description": "insurance.cancelled", "id": "evt_be084980c8d511ed96575b1c5ecd0a2f",
-        "user_id": "user_04ad194774a54f6c97d1385715721091", "status": "pending", "created_at":
-        "2023-03-22T17:19:46.015Z", "mode": "test", "object": "Event"}, {"description":
-        "tracker.updated", "id": "evt_a60704fcc8d511ed948b07c95113680f", "user_id":
-        "user_04ad194774a54f6c97d1385715721091", "status": "pending", "created_at":
-        "2023-03-22T17:19:05.742Z", "mode": "test", "object": "Event"}, {"description":
-        "tracker.created", "id": "evt_942591c2c8d511eda8217991570cda15", "user_id":
-        "user_04ad194774a54f6c97d1385715721091", "status": "pending", "created_at":
-        "2023-03-22T17:18:35.743Z", "mode": "test", "object": "Event"}], "has_more":
-        false}'
+      string: '{"events": [{"description": "tracker.updated", "id": "evt_10273e48f0fd11ed84793ba5a8eedd27",
+        "user_id": "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2023-05-12T19:42:00.675Z", "mode": "test", "object": "Event"}, {"description":
+        "tracker.updated", "id": "evt_09ce2606f0fd11edbdad75c323776192", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2023-05-12T19:41:50.025Z", "mode": "test", "object": "Event"}, {"description":
+        "tracker.updated", "id": "evt_ec52b330f0fc11ed8fb25952d8250621", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2023-05-12T19:41:00.562Z", "mode": "test", "object": "Event"}, {"description":
+        "tracker.updated", "id": "evt_e5fa84d6f0fc11ed8a553172f33bdada", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2023-05-12T19:40:49.917Z", "mode": "test", "object": "Event"}, {"description":
+        "tracker.updated", "id": "evt_c87dfcdaf0fc11ed853c153e3118e97d", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2023-05-12T19:40:00.447Z", "mode": "test", "object": "Event"}], "has_more":
+        true}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '687'
+      - '1118'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"ce3c2fbcbcbf4cc5f1af6196adf42f75"
+      - W/"61a0f7c32156b73ff33fabdb5284da68"
       expires:
       - '0'
       pragma:
@@ -52,20 +58,98 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 70d4b63d6424b291e78b13040010c512
+      - 3f02a2d064626ba0e7874084002057f4
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb2nuq
+      - bigweb5nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq a29e4ad05c
-      - extlb2nuq a29e4ad05c
+      - intlb2nuq a29e4ad05c
+      - extlb1nuq 5ab12a3ed2
       x-runtime:
-      - '0.225940'
+      - '0.170665'
       x-version-label:
-      - easypost-202303291907-621b84348b-master
+      - easypost-202305151637-e5ce91ee24-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/events?before_id=evt_c87dfcdaf0fc11ed853c153e3118e97d&page_size=5
+  response:
+    body:
+      string: '{"events": [{"description": "tracker.updated", "id": "evt_c22867d0f0fc11edbf5125fe92c43377",
+        "user_id": "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2023-05-12T19:39:49.820Z", "mode": "test", "object": "Event"}, {"description":
+        "tracker.updated", "id": "evt_a4a7e438f0fc11edbb1f752a305029e8", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2023-05-12T19:39:00.324Z", "mode": "test", "object": "Event"}, {"description":
+        "tracker.updated", "id": "evt_9e56d940f0fc11edbe666751f31c23c9", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2023-05-12T19:38:49.727Z", "mode": "test", "object": "Event"}, {"description":
+        "tracker.updated", "id": "evt_9817a12cf0fc11eda7595724f9200c12", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2023-05-12T19:38:39.246Z", "mode": "test", "object": "Event"}, {"description":
+        "tracker.created", "id": "evt_92c775f8f0fc11edbe070b24beca53c4", "user_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "status": "pending", "created_at":
+        "2023-05-12T19:38:30.332Z", "mode": "test", "object": "Event"}], "has_more":
+        true}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '1118'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"7d718e919329335c52fb8ef7535143e3"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 3f02a2d064626ba1e78740840020580c
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb8nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq a29e4ad05c
+      - extlb1nuq 5ab12a3ed2
+      x-runtime:
+      - '0.180954'
+      x-version-label:
+      - easypost-202305151637-e5ce91ee24-master
       x-xss-protection:
       - 1; mode=block
     status:

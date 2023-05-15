@@ -4,8 +4,8 @@ import easypost
 
 
 @pytest.mark.vcr()
-def test_order_create(basic_order):
-    order = easypost.Order.create(**basic_order)
+def test_order_create(basic_order, test_client):
+    order = test_client.order.create(**basic_order)
 
     assert isinstance(order, easypost.Order)
     assert str.startswith(order.id, "order_")
@@ -13,10 +13,10 @@ def test_order_create(basic_order):
 
 
 @pytest.mark.vcr()
-def test_order_retrieve(basic_order):
-    order = easypost.Order.create(**basic_order)
+def test_order_retrieve(basic_order, test_client):
+    order = test_client.order.create(**basic_order)
 
-    retrieved_order = easypost.Order.retrieve(order.id)
+    retrieved_order = test_client.order.retrieve(order.id)
 
     assert isinstance(retrieved_order, easypost.Order)
     # status changes between creation and retrieval, so we can't compare the whole object
@@ -24,10 +24,10 @@ def test_order_retrieve(basic_order):
 
 
 @pytest.mark.vcr()
-def test_order_get_rates(basic_order):
-    order = easypost.Order.create(**basic_order)
+def test_order_get_rates(basic_order, test_client):
+    order = test_client.order.create(**basic_order)
 
-    rates = order.get_rates()
+    rates = test_client.order.get_rates(order.id)
 
     rates_array = rates["rates"]
 
@@ -36,30 +36,30 @@ def test_order_get_rates(basic_order):
 
 
 @pytest.mark.vcr()
-def test_order_buy(usps, usps_service, basic_order):
-    order = easypost.Order.create(**basic_order)
-    order.buy(carrier=usps, service=usps_service)
+def test_order_buy(usps, usps_service, basic_order, test_client):
+    order = test_client.order.create(**basic_order)
+    bought_order = test_client.order.buy(order.id, carrier=usps, service=usps_service)
 
-    shipment_array = order["shipments"]
+    shipment_array = bought_order["shipments"]
 
     assert all(shipment.postage_label is not None for shipment in shipment_array)
 
 
 @pytest.mark.vcr()
-def test_order_lowest_rate(basic_order):
+def test_order_lowest_rate(basic_order, test_client):
     """Test various usage alterations of the lowest_rate method."""
-    order = easypost.Order.create(**basic_order)
+    order = test_client.order.create(**basic_order)
 
     # Test lowest rate with no filters
     lowest_rate = order.lowest_rate()
     assert lowest_rate.service == "First"
-    assert lowest_rate.rate == "5.57"
+    assert lowest_rate.rate == "6.07"
     assert lowest_rate.carrier == "USPS"
 
     # Test lowest rate with service filter (this rate is higher than the lowest but should filter)
     lowest_rate_service = order.lowest_rate(services=["Priority"])
     assert lowest_rate_service.service == "Priority"
-    assert lowest_rate_service.rate == "7.90"
+    assert lowest_rate_service.rate == "7.15"
     assert lowest_rate_service.carrier == "USPS"
 
     # Test lowest rate with carrier filter (should error due to bad carrier)
