@@ -22,8 +22,8 @@ interactions:
     uri: https://api.easypost.com/v2/end_shippers
   response:
     body:
-      string: '{"id": "es_6c4fa53ceec743b697b86598e0d16c4f", "object": "EndShipper",
-        "mode": "test", "created_at": "2022-10-05T19:50:56+00:00", "updated_at": "2022-10-05T19:50:56+00:00",
+      string: '{"id": "es_2544052ddb324b189db927d9fc2c57a8", "object": "EndShipper",
+        "mode": "test", "created_at": "2023-05-15T17:12:14+00:00", "updated_at": "2023-05-15T17:12:14+00:00",
         "name": "JACK SPARROW", "company": null, "street1": "388 TOWNSEND ST APT 20",
         "street2": "", "city": "SAN FRANCISCO", "state": "CA", "zip": "94107-1670",
         "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>"}'
@@ -35,7 +35,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"118c58564a8942c882e40eabc460a2d8"
+      - W/"537d10fcc17cf9fa0dbd4baa596adc3b"
       expires:
       - '0'
       pragma:
@@ -48,36 +48,34 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 21b265f4633de020e2ba901a0007f7a1
+      - 44e495b0646267eee787345e001e0ae8
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb11nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb2nuq a29e4ad05c
+      - extlb2nuq 5ab12a3ed2
       x-runtime:
-      - '0.045166'
+      - '0.047672'
       x-version-label:
-      - easypost-202210051807-174cd29491-master
+      - easypost-202305122104-29dd2d738a-master
       x-xss-protection:
       - 1; mode=block
     status:
       code: 201
       message: Created
 - request:
-    body: '{"address": {"company": "EasyPost", "zip": "94107", "name": "Captain Sparrow",
-      "phone": "9999999999", "email": "test@example.com", "street2": "Apt 20", "city":
-      "San Francisco", "state": "CA", "country": "US", "street1": "388 Townsend St"}}'
+    body: '{"address": {"name": "Captain Sparrow", "company": "EasyPost", "street1":
+      "388 Townsend St", "street2": "Apt 20", "city": "San Francisco", "state": "CA",
+      "zip": "94107", "country": "US", "phone": "9999999999", "email": "test@example.com"}}'
     headers:
       Accept:
       - '*/*'
@@ -94,11 +92,11 @@ interactions:
       user-agent:
       - <REDACTED>
     method: PUT
-    uri: https://api.easypost.com/v2/end_shippers/es_6c4fa53ceec743b697b86598e0d16c4f
+    uri: https://api.easypost.com/v2/end_shippers/es_2544052ddb324b189db927d9fc2c57a8
   response:
     body:
-      string: '{"id": "es_6c4fa53ceec743b697b86598e0d16c4f", "object": "EndShipper",
-        "mode": "test", "created_at": "2022-10-05T19:50:56+00:00", "updated_at": "2022-10-05T19:50:57+00:00",
+      string: '{"id": "es_2544052ddb324b189db927d9fc2c57a8", "object": "EndShipper",
+        "mode": "test", "created_at": "2023-05-15T17:12:14+00:00", "updated_at": "2023-05-15T17:12:14+00:00",
         "name": "CAPTAIN SPARROW", "company": "EASYPOST", "street1": "388 TOWNSEND
         ST APT 20", "street2": "", "city": "SAN FRANCISCO", "state": "CA", "zip":
         "94107-1670", "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>"}'
@@ -110,7 +108,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"75dac71068a05999c04021e69373edfe"
+      - W/"249c4184f944522a4d47509c626a0bd3"
       expires:
       - '0'
       pragma:
@@ -128,20 +126,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 21b265f4633de020e2ba901a0007f7a7
+      - 44e495b0646267eee787345e001e0b11
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb4nuq
+      - bigweb2nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb1nuq a29e4ad05c
+      - extlb2nuq 5ab12a3ed2
       x-runtime:
-      - '0.084118'
+      - '0.047896'
       x-version-label:
-      - easypost-202210051807-174cd29491-master
+      - easypost-202305122104-29dd2d738a-master
       x-xss-protection:
       - 1; mode=block
     status:

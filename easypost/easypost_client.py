@@ -11,6 +11,7 @@ from easypost.services.billing_service import BillingService
 from easypost.services.carrier_account_service import CarrierAccountService
 from easypost.services.customs_info_service import CustomsInfoService
 from easypost.services.customs_item_service import CustomsItemService
+from easypost.services.end_shipper_service import EndShipperService
 
 
 class EasyPostClient:
@@ -32,3 +33,4 @@ class EasyPostClient:
         self.carrier_account = CarrierAccountService(self)
         self.customs_info = CustomsInfoService(self)
         self.customs_item = CustomsItemService(self)
+        self.end_shipper = EndShipperService(self)
