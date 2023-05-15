@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Next Major Release
+
+- New client object
+  - Services and models
+- Beta namespace changed from `easypost.beta.x` to `client.beta_x`
+- Empty API response functions return `None` instead of `True`
+- References to `Referral` are now `ReferralCustomer` to match the API and docs
+- `primary_or_secondary` paramater name for billing functions is now called `priority` to match the API and docs
+- Dropped Python 3.6 support
+- Bumps all dependencies
+
 ## v7.13.0 (2023-05-02)
 
 - Adds `retrieve_estimated_delivery_date` function to the Shipment class
