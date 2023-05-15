@@ -1,6 +1,8 @@
 from typing import (
     Any,
+    Dict,
     List,
+    Optional,
 )
 
 from easypost.easypost_object import convert_to_easypost_object
@@ -77,3 +79,12 @@ class BatchService(BaseService):
         response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
         return convert_to_easypost_object(response=response, api_key=api_key)
+
+    def get_next_page(
+        self,
+        batches: Dict[str, Any],
+        page_size: int,
+        optional_params: Optional[Dict[str, Any]] = None,
+    ) -> List[Any]:
+        """Retrieve the next page of the List Batch response."""
+        return self._get_next_page_resources(self._model_class, batches, page_size, optional_params)
