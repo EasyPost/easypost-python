@@ -16,6 +16,7 @@ from easypost.services.event_service import EventService
 from easypost.services.insurance_service import InsuranceService
 from easypost.services.order_service import OrderService
 from easypost.services.parcel_service import ParcelService
+from easypost.services.pickup_service import PickupService
 from easypost.services.rate_service import RateService
 
 
@@ -44,3 +45,4 @@ class EasyPostClient:
         self.order = OrderService(self)
         self.parcel = ParcelService(self)
         self.rate = RateService(self)
+        self.pickup = PickupService(self)

@@ -32,7 +32,7 @@ class OrderService(BaseService):
         insurances: Dict[str, Any],
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
-    ) -> List[Any]:
+    ) -> List[Order]:
         """Retrieve the next page of the List Order response."""
         return self._get_next_page_resources(self._model_class, insurances, page_size, optional_params)
 
