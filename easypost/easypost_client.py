@@ -14,6 +14,7 @@ from easypost.services.customs_item_service import CustomsItemService
 from easypost.services.end_shipper_service import EndShipperService
 from easypost.services.event_service import EventService
 from easypost.services.insurance_service import InsuranceService
+from easypost.services.order_service import OrderService
 
 
 class EasyPostClient:
@@ -38,3 +39,4 @@ class EasyPostClient:
         self.end_shipper = EndShipperService(self)
         self.event = EventService(self)
         self.insurance = InsuranceService(self)
+        self.order = OrderService(self)
