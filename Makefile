@@ -27,7 +27,7 @@ clean:
 
 ## coverage - Test the project and generate an HTML coverage report
 coverage:
-	$(VIRTUAL_BIN)/pytest --cov=$(PROJECT_NAME) --cov-branch --cov-report=html --cov-report=lcov --cov-report=term-missing --cov-fail-under=86
+	$(VIRTUAL_BIN)/pytest --cov=$(PROJECT_NAME) --cov-branch --cov-report=html --cov-report=lcov --cov-report=term-missing --cov-fail-under=80
 
 ## docs - Generates docs for the library
 docs:

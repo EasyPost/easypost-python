@@ -23,24 +23,12 @@ interactions:
     uri: https://api.easypost.com/v2/carrier_accounts
   response:
     body:
-      string: '{"id": "ca_56cd65aaf56a47218f381dad05e2514a", "object": "CarrierAccount",
-        "type": "DhlEcsAccount", "clone": false, "created_at": "2022-08-15T18:59:31Z",
-        "updated_at": "2022-08-15T18:59:31Z", "description": "DHL eCommerce Solutions
+      string: '{"id": "ca_812a1e8411fe44f18a3e7b2f8abab3de", "object": "CarrierAccount",
+        "type": "DhlEcsAccount", "clone": false, "created_at": "2023-05-12T21:18:17Z",
+        "updated_at": "2023-05-12T21:18:17Z", "description": "DHL eCommerce Solutions
         Account", "reference": null, "billing_type": "carrier", "readable": "DHL eCommerce
-        Solutions", "logo": null, "fields": {"credentials": {"client_id": {"visibility":
-        "visible", "label": "DHL eCommerce Solutions client ID", "value": "123456"},
-        "client_secret": {"visibility": "password", "label": "DHL eCommerce Solutions
-        client secret", "value": "********"}, "pickup_id": {"visibility": "visible",
-        "label": "DHL eCommerce Solutions pickup ID", "value": "123456"}, "distribution_center":
-        {"visibility": "visible", "label": "DHL eCommerce Solutions distribution center",
-        "value": "USLAX1"}}, "test_credentials": {"client_id": {"visibility": "visible",
-        "label": "Test DHL eCommerce Solutions client ID", "value": "123456"}, "client_secret":
-        {"visibility": "password", "label": "Test DHL eCommerce Solutions client secret",
-        "value": "********"}, "pickup_id": {"visibility": "visible", "label": "Test
-        DHL eCommerce Solutions pickup ID", "value": "123456"}, "distribution_center":
-        {"visibility": "visible", "label": "Test DHL eCommerce Solutions distribution
-        center", "value": "USLAX1"}}}, "credentials": "<REDACTED>", "test_credentials":
-        "<REDACTED>"}'
+        Solutions", "logo": null, "fields": [], "credentials": {}, "test_credentials":
+        {}}'
     headers:
       cache-control:
       - private, no-cache, no-store
@@ -49,7 +37,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"264d014cdc4e334d79b6b8181d879474"
+      - W/"da1ce6607939be1dbe95953bf72baed1"
       expires:
       - '0'
       pragma:
@@ -67,20 +55,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 042f43e262fa9793e79afa040024f864
+      - 4eb6f00d645ead19e2aabe7d000daa09
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb1nuq
+      - bigweb8nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 6aa9972c1e
-      - extlb2nuq 9ce216bfac
+      - intlb2nuq a29e4ad05c
+      - extlb1nuq 5ab12a3ed2
       x-runtime:
-      - '0.115952'
+      - '0.110163'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202305121849-b449e9bf47-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -102,7 +90,7 @@ interactions:
       user-agent:
       - <REDACTED>
     method: DELETE
-    uri: https://api.easypost.com/v2/carrier_accounts/ca_56cd65aaf56a47218f381dad05e2514a
+    uri: https://api.easypost.com/v2/carrier_accounts/ca_812a1e8411fe44f18a3e7b2f8abab3de
   response:
     body:
       string: '{}'
@@ -132,7 +120,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 042f43e262fa9793e79afa040024f876
+      - 4eb6f00d645ead19e2aabe7d000daa11
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -140,12 +128,12 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 6aa9972c1e
-      - extlb2nuq 9ce216bfac
+      - intlb2nuq a29e4ad05c
+      - extlb1nuq 5ab12a3ed2
       x-runtime:
-      - '0.117933'
+      - '0.114758'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202305121849-b449e9bf47-master
       x-xss-protection:
       - 1; mode=block
     status:

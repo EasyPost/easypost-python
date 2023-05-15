@@ -19,20 +19,20 @@ interactions:
       string: '{"id": "user_54356a6b96c940d8913961a3c7b909f2", "object": "User", "parent_id":
         null, "name": "EasyPost Python Client Library Tests", "phone_number": "<REDACTED>",
         "verified": true, "created_at": "2017-03-01T03:01:34Z", "default_carbon_offset":
-        false, "balance": "0.00000", "price_per_shipment": "0.00000", "recharge_amount":
-        "100.00", "secondary_recharge_amount": "100.00", "recharge_threshold": "0.00",
-        "has_billing_method": false, "cc_fee_rate": "0.03", "default_insurance_amount":
-        null, "insurance_fee_rate": "0.01", "insurance_fee_minimum": "1.00", "email":
-        "<REDACTED>", "children": []}'
+        false, "has_elevate_access": false, "balance": "0.00000", "price_per_shipment":
+        "0.00000", "recharge_amount": "100.00", "secondary_recharge_amount": "100.00",
+        "recharge_threshold": "0.00", "has_billing_method": false, "cc_fee_rate":
+        "0.03", "default_insurance_amount": null, "insurance_fee_rate": "0.01", "insurance_fee_minimum":
+        "1.00", "email": "<REDACTED>", "children": []}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '574'
+      - '601'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"9e7ae0ab30ea88df786ab67e713eedae"
+      - W/"37fad0de2fa69ce547baa7b7ecd8f745"
       expires:
       - '0'
       pragma:
@@ -45,25 +45,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 3dff6283637e8471e787bfdf000e9db1
+      - 52975b54645e93e8e2cc319b00062464
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb11nuq
+      - bigweb7nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 29913d444b
-      - extlb2nuq 29913d444b
+      - intlb2nuq a29e4ad05c
+      - extlb2nuq 5ab12a3ed2
       x-runtime:
-      - '0.036115'
+      - '0.050837'
       x-version-label:
-      - easypost-202211231902-b75422a88e-master
+      - easypost-202305121849-b449e9bf47-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -113,27 +115,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 3dff6283637e8472e787bfdf000e9dc9
+      - 52975b54645e93e8e2cc319b0006246e
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb1nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 29913d444b
-      - extlb2nuq 29913d444b
+      - intlb2nuq a29e4ad05c
+      - extlb2nuq 5ab12a3ed2
       x-runtime:
-      - '0.028225'
+      - '0.031562'
       x-version-label:
-      - easypost-202211231902-b75422a88e-master
+      - easypost-202305121849-b449e9bf47-master
       x-xss-protection:
       - 1; mode=block
     status:

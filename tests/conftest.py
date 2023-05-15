@@ -46,9 +46,21 @@ def pytest_sessionfinish(session, exitstatus):
 
 
 @pytest.fixture
+def synchronous_sleep_seconds():
+    """Use this fixture for sleeping between API calls where synchronous flows happen."""
+    return 5
+
+
+@pytest.fixture
 def test_client():
     """If a test needs to use the EasyPost test mode, make it depend on this fixture."""
     return easypost.EasyPostClient(EASYPOST_TEST_API_KEY)
+
+
+@pytest.fixture
+def prod_client():
+    """If a test needs to use the EasyPost prod mode, make it depend on this fixture."""
+    return easypost.EasyPostClient(EASYPOST_PROD_API_KEY)
 
 
 # TODO: Remove
