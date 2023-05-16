@@ -7,7 +7,7 @@ from typing import (
 )
 
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.models.address import Address
+from easypost.models import Address
 from easypost.requestor import (
     RequestMethod,
     Requestor,

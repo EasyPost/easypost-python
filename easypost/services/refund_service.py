@@ -5,7 +5,7 @@ from typing import (
     Optional,
 )
 
-from easypost.models.refund import Refund
+from easypost.models import Refund
 from easypost.services.base_service import BaseService
 
 

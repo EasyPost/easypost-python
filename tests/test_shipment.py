@@ -59,7 +59,7 @@ def test_shipment_get_next_page(page_size, test_client):
 @pytest.mark.vcr()
 def test_shipment_buy(full_shipment, test_client):
     shipment = test_client.shipment.create(**full_shipment)
-    bought_shipment = shipment.buy(shipment.id, rate=shipment.lowest_rate())
+    bought_shipment = test_client.shipment.buy(shipment.id, rate=shipment.lowest_rate())
 
     assert bought_shipment.postage_label is not None
 

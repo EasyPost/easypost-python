@@ -1,4 +1,4 @@
-from easypost.models.customs_info import CustomsInfo
+from easypost.models import CustomsInfo
 from easypost.services.base_service import BaseService
 
 

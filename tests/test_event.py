@@ -66,7 +66,9 @@ def test_event_retrieve_all_payloads(
     # Payloads may not be populated due to the webhook delivery system being on a queue
     assert all(isinstance(payload, Payload) for payload in payloads["payloads"])
 
-    webhook.delete()  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
+    test_client.webhook.delete(
+        webhook.id
+    )  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
 
 
 @pytest.mark.vcr()
@@ -88,7 +90,9 @@ def test_event_retrieve_payload(page_size, webhook_url, one_call_buy_shipment, s
         assert error.message == "The payload(s) could not be found."
         assert error.http_status == 404
 
-    webhook.delete()  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
+    test_client.webhook.delete(
+        webhook.id
+    )  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
 
 
 def test_event_receive(event_json):

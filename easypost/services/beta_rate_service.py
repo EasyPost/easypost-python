@@ -5,7 +5,7 @@ from typing import (
 )
 
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.models.rate import Rate
+from easypost.models import Rate
 from easypost.requestor import (
     RequestMethod,
     Requestor,

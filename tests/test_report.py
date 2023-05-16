@@ -52,7 +52,7 @@ def test_report_retrieve_shipment_report(report_type, report_date, test_client):
         end_date=report_date,
     )
 
-    retrieved_report = Report.retrieve(report.id)
+    retrieved_report = test_client.report.retrieve(report.id)
 
     assert isinstance(retrieved_report, Report)
     assert report.start_date == retrieved_report.start_date

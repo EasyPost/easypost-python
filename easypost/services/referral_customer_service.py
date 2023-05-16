@@ -10,7 +10,7 @@ import requests
 from easypost.constant import TIMEOUT
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.error import Error
-from easypost.models.user import User
+from easypost.models import User
 from easypost.requestor import (
     RequestMethod,
     Requestor,

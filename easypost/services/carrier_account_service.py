@@ -6,7 +6,7 @@ from typing import (
 
 from easypost.constant import _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_WORKFLOWS
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.models.carrier_account import CarrierAccount
+from easypost.models import CarrierAccount
 from easypost.requestor import (
     RequestMethod,
     Requestor,

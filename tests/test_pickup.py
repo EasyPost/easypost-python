@@ -85,9 +85,9 @@ def test_pickup_cancel(usps, one_call_buy_shipment, basic_pickup, pickup_service
 
     pickup = test_client.pickup.create(**pickup_data)
 
-    bought_pickup = pickup.buy(carrier=usps, service=pickup_service)
+    bought_pickup = test_client.pickup.buy(pickup.id, carrier=usps, service=pickup_service)
 
-    cancelled_pickup = bought_pickup.cancel()
+    cancelled_pickup = test_client.pickup.cancel(bought_pickup.id)
 
     assert isinstance(cancelled_pickup, Pickup)
     assert str.startswith(cancelled_pickup.id, "pickup_")

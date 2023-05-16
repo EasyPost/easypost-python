@@ -1,4 +1,6 @@
+import importlib
 import json
+import re
 from typing import (
     Any,
     Dict,
@@ -6,7 +8,84 @@ from typing import (
     Optional,
 )
 
-from easypost.util import convert_to_easypost_object
+
+EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP: Dict[str, Any] = {
+    "adr": "Address",
+    "ak": "ApiKey",
+    "batch": "Batch",
+    "brd": "Brand",
+    "ca": "CarrierAccount",
+    "cfrep": "Report",
+    "cstinfo": "CustomsInfo",
+    "cstitem": "CustomsItem",
+    "es": "EndShipper",
+    "evt": "Event",
+    "hook": "Webhook",
+    "ins": "Insurance",
+    "order": "Order",
+    "payload": "Payload",
+    "pickup": "Pickup",
+    "pickuprate": "PickupRate",
+    "pl": "PostageLabel",
+    "plrep": "Report",
+    "prcl": "Parcel",
+    "rate": "Rate",
+    "refrep": "Report",
+    "rfnd": "Refund",
+    "sf": "ScanForm",
+    "shp": "Shipment",
+    "shpinvrep": "Report",
+    "shprep": "Report",
+    "trk": "Tracker",
+    "trkrep": "Report",
+    "user": "User",
+}
+
+OBJECT_CLASS_NAME_OVERRIDES: Dict[str, Any] = {
+    "CashFlowReport": "Report",
+    "PaymentLogReport": "Report",
+    "RefundReport": "Report",
+    "ShipmentInvoiceReport": "Report",
+    "ShipmentReport": "Report",
+    "TrackerReport": "Report",
+}
+
+
+def convert_to_easypost_object(
+    response: Dict[str, Any],
+    api_key: Optional[str] = None,
+    parent: object = None,
+    name: Optional[str] = None,
+):
+    """Convert a response to an EasyPost object."""
+    if isinstance(response, list):
+        return [convert_to_easypost_object(response=item, api_key=api_key, parent=parent) for item in response]
+    elif isinstance(response, dict):
+        response = response.copy()
+        object_type_str = response.get("object", EasyPostObject)
+        class_name = OBJECT_CLASS_NAME_OVERRIDES.get(object_type_str, EasyPostObject)
+        object_id = response.get("id", None)
+
+        if object_id is not None:
+            # If an object ID is present, use it to find the class type instead.
+            object_id_prefix = object_id.split("_")[0]
+            class_name = EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP.get(object_id_prefix, EasyPostObject)
+
+        # Dynamically import class models due to circular imports of EasyPostObject
+        class_model = (
+            getattr(
+                importlib.import_module(f'easypost.models.{re.sub(r"(?<!^)(?=[A-Z])", "_", class_name).lower()}'),
+                class_name,
+            )
+            if class_name != EasyPostObject
+            else EasyPostObject
+        )
+
+        obj = class_model.construct_from(values=response, api_key=api_key, parent=parent, name=name)
+
+        return obj
+    else:
+        return response
 
 
 class EasyPostObject(object):

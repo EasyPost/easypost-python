@@ -5,7 +5,7 @@ from typing import (
     Optional,
 )
 
-from easypost.models.insurance import Insurance
+from easypost.models import Insurance
 from easypost.services.base_service import BaseService
 
 

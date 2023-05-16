@@ -6,8 +6,10 @@ from typing import (
 )
 
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.models.event import Event
-from easypost.models.payload import Payload
+from easypost.models import (
+    Event,
+    Payload,
+)
 from easypost.requestor import (
     RequestMethod,
     Requestor,

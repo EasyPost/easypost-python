@@ -6,7 +6,7 @@ from typing import (
 )
 
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.models.pickup import Pickup
+from easypost.models import Pickup
 from easypost.requestor import (
     RequestMethod,
     Requestor,
