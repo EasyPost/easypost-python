@@ -76,12 +76,11 @@ def test_referral_get_next_page(partner_user_prod_client, page_size):
         "uri",
     ]
 )
-@pytest.mark.skip()
-def test_referral_customer_add_credit_card(stripe_connect_prod_client, credit_card_details):
-    """This test requires a partner customer's production API key via STRIPE_CONNECT_USER_PROD_API_KEY
+def test_referral_customer_add_credit_card(partner_user_prod_client, credit_card_details):
+    """This test requires a partner customer's production API key via PARTNER_USER_PROD_API_KEY
     as well as one of that customer's referral's production API keys via REFERRAL_CUSTOMER_PROD_API_KEY.
     """
-    added_credit_card = stripe_connect_prod_client.referral_customer.add_credit_card(
+    added_credit_card = partner_user_prod_client.referral_customer.add_credit_card(
         referral_api_key=REFERRAL_CUSTOMER_PROD_API_KEY,
         number=credit_card_details["number"],
         expiration_month=credit_card_details["expiration_month"],
@@ -101,13 +100,13 @@ def test_referral_add_credit_card_error(
     mock_stripe_token,
     mock_easypost_key,
     credit_card_details,
-    stripe_connect_prod_client,
+    partner_user_prod_client,
 ):
-    """This test requires a partner customer's production API key via STRIPE_CONNECT_USER_PROD_API_KEY
+    """This test requires a partner customer's production API key via PARTNER_USER_PROD_API_KEY
     as well as one of that customer's referral's production API keys via REFERRAL_CUSTOMER_PROD_API_KEY.
     """
     with pytest.raises(Exception) as error:
-        _ = stripe_connect_prod_client.referral_customer.add_credit_card(
+        _ = partner_user_prod_client.referral_customer.add_credit_card(
             referral_api_key=REFERRAL_CUSTOMER_PROD_API_KEY,
             number=credit_card_details["number"],
             expiration_month=credit_card_details["expiration_month"],

@@ -113,11 +113,11 @@ class ReferralCustomerService(BaseService):
 
     def _retrieve_easypost_stripe_api_key(self) -> str:
         """Retrieve EasyPost's Stripe public API key."""
-        requestor = Requestor()
-        public_key, _ = requestor.request(
+        public_key, _ = Requestor(self._client).request(
             method=RequestMethod.GET,
             url="/partners/stripe_public_key",
         )
+
         return public_key.get("public_key", "")
 
     def _create_stripe_token(
@@ -153,6 +153,7 @@ class ReferralCustomerService(BaseService):
             auth=requests.auth.HTTPBasicAuth(easypost_stripe_key, ""),
             timeout=TIMEOUT,
         )
+
         return stripe_response.json()
 
     def _create_easypost_credit_card(
@@ -162,8 +163,6 @@ class ReferralCustomerService(BaseService):
         priority: str = "primary",
     ) -> Dict[str, Any]:
         """Submit Stripe credit card token to EasyPost."""
-        requestor = Requestor(local_api_key=referral_api_key)
-
         params = {
             "credit_card": {
                 "stripe_object_id": stripe_object_id,
@@ -171,9 +170,10 @@ class ReferralCustomerService(BaseService):
             }
         }
 
-        response, _ = requestor.request(
+        response, _ = Requestor(self._client).request(
             method=RequestMethod.POST,
             params=params,
             url="/credit_cards",
         )
+
         return response
