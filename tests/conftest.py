@@ -76,12 +76,6 @@ def referral_customer_prod_client():
     return EasyPostClient(REFERRAL_CUSTOMER_PROD_API_KEY)
 
 
-@pytest.fixture
-def stripe_connect_prod_client():
-    """If a test needs to use prod mode with the stripe connect user's API key, make it depend on this fixture."""
-    return EasyPostClient(STRIPE_CONNECT_USER_PROD_API_KEY)
-
-
 @pytest.fixture(autouse=True)
 def check_expired_cassettes(expiration_days: int = 180, throw_error: bool = False):
     """Checks for expired cassettes and throws errors if they are too old and must be re-recorded."""
