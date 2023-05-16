@@ -16,16 +16,86 @@ interactions:
     uri: https://api.easypost.com/v2/referral_customers
   response:
     body:
-      string: '{"error": {"code": "UNAUTHORIZED", "message": "Your account is not
-        enabled to access the Partner White Label API. Contact EasyPost to request
-        access.", "errors": []}}'
+      string: '{"has_more": true, "referral_customers": [{"id": "user_634b6daa05744bfaa205058f06864363",
+        "object": "User", "parent_id": null, "name": "Firstname Lastname", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2022-04-26T15:50:28Z", "default_carbon_offset":
+        false, "has_elevate_access": false, "balance": "0.00000", "price_per_shipment":
+        "0.00000", "recharge_amount": null, "secondary_recharge_amount": null, "recharge_threshold":
+        null, "has_billing_method": null, "cc_fee_rate": "0.0325", "default_insurance_amount":
+        "50.00", "insurance_fee_rate": "0.005", "insurance_fee_minimum": "0.25", "email":
+        "<REDACTED>", "children": []}, {"id": "user_35cb81fb8af1454dabf1f6afa7330634",
+        "object": "User", "parent_id": null, "name": "Firstname Lastname", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2022-04-27T20:20:52Z", "default_carbon_offset":
+        false, "has_elevate_access": false, "balance": "0.00000", "price_per_shipment":
+        "0.00000", "recharge_amount": "100.00", "secondary_recharge_amount": "100.00",
+        "recharge_threshold": "0.00", "has_billing_method": true, "cc_fee_rate": "0.0325",
+        "default_insurance_amount": "50.00", "insurance_fee_rate": "0.005", "insurance_fee_minimum":
+        "0.25", "email": "<REDACTED>", "children": []}, {"id": "user_fa93cc16bcc24c078ee057ce82f38eed",
+        "object": "User", "parent_id": null, "name": "test test", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2022-04-28T22:34:38Z", "default_carbon_offset":
+        false, "has_elevate_access": false, "balance": "0.00000", "price_per_shipment":
+        "0.00000", "recharge_amount": null, "secondary_recharge_amount": null, "recharge_threshold":
+        null, "has_billing_method": null, "cc_fee_rate": "0.0325", "default_insurance_amount":
+        "50.00", "insurance_fee_rate": "0.005", "insurance_fee_minimum": "0.25", "email":
+        "<REDACTED>", "children": []}, {"id": "user_4a22730cdc844ce1bc2efbed999c869f",
+        "object": "User", "parent_id": null, "name": "test test", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2022-04-29T19:35:33Z", "default_carbon_offset":
+        false, "has_elevate_access": false, "balance": "0.00000", "price_per_shipment":
+        "0.00000", "recharge_amount": null, "secondary_recharge_amount": null, "recharge_threshold":
+        null, "has_billing_method": null, "cc_fee_rate": "0.0325", "default_insurance_amount":
+        "50.00", "insurance_fee_rate": "0.005", "insurance_fee_minimum": "0.25", "email":
+        "<REDACTED>", "children": []}, {"id": "user_488e391395f4416196a31965fecac409",
+        "object": "User", "parent_id": null, "name": "Firstname Lastname", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2022-05-02T18:48:22Z", "default_carbon_offset":
+        false, "has_elevate_access": false, "balance": "0.00000", "price_per_shipment":
+        "0.00000", "recharge_amount": "100.00", "secondary_recharge_amount": "100.00",
+        "recharge_threshold": "0.00", "has_billing_method": true, "cc_fee_rate": "0.0325",
+        "default_insurance_amount": "50.00", "insurance_fee_rate": "0.005", "insurance_fee_minimum":
+        "0.25", "email": "<REDACTED>", "children": []}, {"id": "user_91b120087ff843349b9a3f0675572bb1",
+        "object": "User", "parent_id": null, "name": "test test", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2022-05-02T19:04:10Z", "default_carbon_offset":
+        false, "has_elevate_access": false, "balance": "0.00000", "price_per_shipment":
+        "0.00000", "recharge_amount": null, "secondary_recharge_amount": null, "recharge_threshold":
+        null, "has_billing_method": null, "cc_fee_rate": "0.0325", "default_insurance_amount":
+        "50.00", "insurance_fee_rate": "0.005", "insurance_fee_minimum": "0.25", "email":
+        "<REDACTED>", "children": []}, {"id": "user_4ae0d572fbe542deb7efa51935a5b826",
+        "object": "User", "parent_id": null, "name": "test test", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2022-05-02T23:08:40Z", "default_carbon_offset":
+        false, "has_elevate_access": false, "balance": "0.00000", "price_per_shipment":
+        "0.00000", "recharge_amount": "100.00", "secondary_recharge_amount": "100.00",
+        "recharge_threshold": "0.00", "has_billing_method": true, "cc_fee_rate": "0.0325",
+        "default_insurance_amount": "50.00", "insurance_fee_rate": "0.005", "insurance_fee_minimum":
+        "0.25", "email": "<REDACTED>", "children": []}, {"id": "user_71189529eba747ce83aa69303e22c7df",
+        "object": "User", "parent_id": null, "name": "Firstname Lastname", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2022-05-04T22:05:27Z", "default_carbon_offset":
+        false, "has_elevate_access": false, "balance": "0.00000", "price_per_shipment":
+        "0.00000", "recharge_amount": null, "secondary_recharge_amount": null, "recharge_threshold":
+        null, "has_billing_method": null, "cc_fee_rate": "0.0325", "default_insurance_amount":
+        "50.00", "insurance_fee_rate": "0.005", "insurance_fee_minimum": "0.25", "email":
+        "<REDACTED>", "children": []}, {"id": "user_c13290f1f6a442d79657b8bfe5daeeba",
+        "object": "User", "parent_id": null, "name": "test test", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2022-05-05T16:54:58Z", "default_carbon_offset":
+        false, "has_elevate_access": false, "balance": "0.00000", "price_per_shipment":
+        "0.00000", "recharge_amount": null, "secondary_recharge_amount": null, "recharge_threshold":
+        null, "has_billing_method": null, "cc_fee_rate": "0.0325", "default_insurance_amount":
+        "50.00", "insurance_fee_rate": "0.005", "insurance_fee_minimum": "0.25", "email":
+        "<REDACTED>", "children": []}, {"id": "user_b73fdc6c6a58421ea884a82ad14520a5",
+        "object": "User", "parent_id": null, "name": "test test", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2022-05-05T16:55:59Z", "default_carbon_offset":
+        false, "has_elevate_access": false, "balance": "0.00000", "price_per_shipment":
+        "0.00000", "recharge_amount": "100.00", "secondary_recharge_amount": "100.00",
+        "recharge_threshold": "0.00", "has_billing_method": true, "cc_fee_rate": "0.0325",
+        "default_insurance_amount": "50.00", "insurance_fee_rate": "0.005", "insurance_fee_minimum":
+        "0.25", "email": "<REDACTED>", "children": []}]}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '160'
+      - '5655'
       content-type:
       - application/json; charset=utf-8
+      etag:
+      - W/"834ca010c325c971c352617c1c28433b"
       expires:
       - '0'
       pragma:
@@ -43,11 +113,11 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 477e8d816462b3d4e2ba02d300391606
+      - 79cc3dbb64639737e2aac1fa001fe001
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb4nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
@@ -55,12 +125,80 @@ interactions:
       - intlb1wdc a29e4ad05c
       - extlb3wdc 5ab12a3ed2
       x-runtime:
-      - '0.047463'
+      - '0.499590'
       x-version-label:
-      - easypost-202305152107-770224374c-master
+      - easypost-202305152249-750e1e7d95-master
       x-xss-protection:
       - 1; mode=block
     status:
-      code: 401
-      message: Unauthorized
+      code: 200
+      message: OK
+- request:
+    body: '{"user": {"email": "email@example.com"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '40'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: PUT
+    uri: https://api.easypost.com/v2/referral_customers/user_634b6daa05744bfaa205058f06864363
+  response:
+    body:
+      string: '{"message": "Referral Customer email updated successfully"}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '59'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"7b30d603e3257aee787616dc99d6d4af"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 79cc3dbb64639737e2aac1fa001fe053
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb5nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq a29e4ad05c
+      - intlb2wdc a29e4ad05c
+      - extlb3wdc 5ab12a3ed2
+      x-runtime:
+      - '0.117815'
+      x-version-label:
+      - easypost-202305152249-750e1e7d95-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
 version: 1
