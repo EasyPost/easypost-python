@@ -16,16 +16,20 @@ interactions:
     uri: https://api.easypost.com/v2/refunds?page_size=5
   response:
     body:
-      string: '{"refunds": [], "has_more": false}'
+      string: '{"refunds": [{"id": "rfnd_bad47afb0a9743b6acbf1ecfad761aa5", "object":
+        "Refund", "created_at": "2023-05-16T15:09:03Z", "updated_at": "2023-05-16T15:09:03Z",
+        "tracking_code": "9400100104262210314976", "confirmation_number": null, "status":
+        "submitted", "carrier": "USPS", "shipment_id": "shp_9543343d31b44ec4863e3679570d73c2"}],
+        "has_more": false}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '31'
+      - '326'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"b7f27d1ea29478c50d2e1a7ab8bcb58a"
+      - W/"9201c691d2cf85a3b6d58c01209062c9"
       expires:
       - '0'
       pragma:
@@ -43,20 +47,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 70d4b6366424b791e78b1fa7001201a3
+      - 23bee7e164639c8fe786a73900200920
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb2nuq
+      - bigweb6nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq a29e4ad05c
-      - extlb2nuq a29e4ad05c
+      - intlb2nuq a29e4ad05c
+      - extlb2nuq 5ab12a3ed2
       x-runtime:
-      - '0.023823'
+      - '0.044923'
       x-version-label:
-      - easypost-202303292153-e778646023-master
+      - easypost-202305152249-750e1e7d95-master
       x-xss-protection:
       - 1; mode=block
     status:

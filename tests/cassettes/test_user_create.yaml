@@ -20,19 +20,23 @@ interactions:
     uri: https://api.easypost.com/v2/users
   response:
     body:
-      string: '{"id": "user_81d5e0b785544a4ea8dc6e9bfd4229d1", "object": "User", "parent_id":
+      string: '{"id": "user_ac05e2551db340168b5d6ecc5cd42555", "object": "User", "parent_id":
         "user_54356a6b96c940d8913961a3c7b909f2", "name": "Test User", "phone_number":
-        "<REDACTED>", "verified": true, "created_at": "2022-08-15T18:52:44Z", "children":
-        "<REDACTED>", "api_keys": "<REDACTED>"}'
+        "<REDACTED>", "verified": true, "created_at": "2023-05-16T17:00:53Z", "default_carbon_offset":
+        false, "has_elevate_access": false, "children": [], "api_keys": [{"object":
+        "ApiKey", "key": "<REDACTED>", "mode": "test", "created_at": "2023-05-16T17:00:53Z",
+        "active": true, "id": "ak_e7be6b181c294e03a565b11a63e5c3ff"}, {"object": "ApiKey",
+        "key": "<REDACTED>", "mode": "production", "created_at": "2023-05-16T17:00:53Z",
+        "active": true, "id": "ak_374b72e593704d20b2935ecb209cca4e"}]}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '634'
+      - '691'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"6a7b61ff964291a2a9fd9e7a07334e73"
+      - W/"1111a1c2566ee91693d65041b3e68349"
       expires:
       - '0'
       pragma:
@@ -50,20 +54,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f43af48062fa95fce79a7e20002637dc
+      - de846e086463b6c4e787407c002d8a1e
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb9nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb1nuq a29e4ad05c
+      - extlb1nuq 5ab12a3ed2
       x-runtime:
-      - '0.729790'
+      - '0.849864'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202305161623-0a285b6b1b-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -85,7 +89,7 @@ interactions:
       user-agent:
       - <REDACTED>
     method: DELETE
-    uri: https://api.easypost.com/v2/users/user_81d5e0b785544a4ea8dc6e9bfd4229d1
+    uri: https://api.easypost.com/v2/users/user_ac05e2551db340168b5d6ecc5cd42555
   response:
     body:
       string: ''
@@ -102,27 +106,25 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f43af48062fa95fde79a7e2000263827
+      - de846e086463b6c5e787407c002d8aa0
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb1nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb2nuq a29e4ad05c
+      - extlb1nuq 5ab12a3ed2
       x-runtime:
-      - '0.138307'
+      - '0.264345'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202305161623-0a285b6b1b-master
       x-xss-protection:
       - 1; mode=block
     status:

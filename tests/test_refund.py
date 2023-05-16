@@ -5,13 +5,13 @@ from easypost.error import Error
 
 
 @pytest.mark.vcr()
-def test_refund_create(one_call_buy_shipment, usps):
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)
+def test_refund_create(one_call_buy_shipment, usps, test_client):
+    shipment = easypost.Shipment.create(**one_call_buy_shipment)  # TODO: Use new syntax
 
     # We need to retrieve the shipment so that the tracking_code has time to populate
     retrieved_shipment = easypost.Shipment.retrieve(shipment["id"])
 
-    refund = easypost.Refund.create(
+    refund = test_client.refund.create(
         carrier=usps,
         tracking_codes=[retrieved_shipment.tracking_code],
     )
@@ -21,8 +21,8 @@ def test_refund_create(one_call_buy_shipment, usps):
 
 
 @pytest.mark.vcr()
-def test_refund_all(page_size):
-    refunds = easypost.Refund.all(page_size=page_size)
+def test_refund_all(page_size, test_client):
+    refunds = test_client.refund.all(page_size=page_size)
 
     refunds_array = refunds["refunds"]
 
@@ -32,10 +32,10 @@ def test_refund_all(page_size):
 
 
 @pytest.mark.vcr()
-def test_refund_get_next_page(page_size):
+def test_refund_get_next_page(page_size, test_client):
     try:
-        refunds = easypost.Refund.all(page_size=page_size)
-        next_page = easypost.Refund.get_next_page(collection=refunds, page_size=page_size)
+        refunds = test_client.refund.all(page_size=page_size)
+        next_page = test_client.refund.get_next_page(refunds=refunds, page_size=page_size)
 
         first_id_of_first_page = refunds["refunds"][0].id
         first_id_of_second_page = next_page["refunds"][0].id
@@ -47,10 +47,10 @@ def test_refund_get_next_page(page_size):
 
 
 @pytest.mark.vcr()
-def test_refund_retrieve(page_size):
-    refunds = easypost.Refund.all(page_size=page_size)
+def test_refund_retrieve(page_size, test_client):
+    refunds = test_client.refund.all(page_size=page_size)
 
-    retrieved_refund = easypost.Refund.retrieve(refunds["refunds"][0]["id"])
+    retrieved_refund = test_client.refund.retrieve(refunds["refunds"][0]["id"])
 
     assert isinstance(retrieved_refund, easypost.Refund)
     assert retrieved_refund.id == refunds["refunds"][0].id

@@ -18,6 +18,7 @@ EASYPOST_TEST_API_KEY = os.getenv("EASYPOST_TEST_API_KEY")
 EASYPOST_PROD_API_KEY = os.getenv("EASYPOST_PROD_API_KEY")
 PARTNER_USER_PROD_API_KEY = os.getenv("PARTNER_USER_PROD_API_KEY", "123")
 REFERRAL_CUSTOMER_PROD_API_KEY = os.getenv("REFERRAL_CUSTOMER_PROD_API_KEY", "123")
+STRIPE_CONNECT_USER_PROD_API_KEY = os.getenv("STRIPE_CONNECT_USER_PROD_API_KEY", "123")
 
 SCRUBBED_STRING = "<REDACTED>"
 SCRUBBED_ARRAY: List = []
@@ -64,9 +65,21 @@ def prod_client():
 
 
 @pytest.fixture
+def partner_user_prod_client():
+    """If a test needs to use prod mode with a partner user's API key, make it depend on this fixture."""
+    return easypost.EasyPostClient(PARTNER_USER_PROD_API_KEY)
+
+
+@pytest.fixture
 def referral_customer_prod_client():
     """If a test needs to use prod mode with a referral customer API key, make it depend on this fixture."""
     return easypost.EasyPostClient(REFERRAL_CUSTOMER_PROD_API_KEY)
+
+
+@pytest.fixture
+def stripe_connect_prod_client():
+    """If a test needs to use prod mode with the stripe connect user's API key, make it depend on this fixture."""
+    return easypost.EasyPostClient(STRIPE_CONNECT_USER_PROD_API_KEY)
 
 
 # TODO: Remove
@@ -321,7 +334,7 @@ def basic_pickup():
     If you need to re-record cassettes, increment the date below and ensure it is one day in the future,
     USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
     """
-    pickup_date = "2022-08-17"
+    pickup_date = "2023-05-17"
 
     pickup_data = read_fixture_data()["pickups"]["basic"]
     pickup_data["min_datetime"] = pickup_date

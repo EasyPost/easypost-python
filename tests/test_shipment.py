@@ -2,11 +2,12 @@ import pytest
 
 import easypost
 from easypost.error import Error
+from easypost.util import get_lowest_smart_rate
 
 
 @pytest.mark.vcr()
-def test_shipment_create(full_shipment):
-    shipment = easypost.Shipment.create(**full_shipment)
+def test_shipment_create(full_shipment, test_client):
+    shipment = test_client.shipment.create(**full_shipment)
 
     assert isinstance(shipment, easypost.Shipment)
     assert str.startswith(shipment.id, "shp_")
@@ -17,18 +18,18 @@ def test_shipment_create(full_shipment):
 
 
 @pytest.mark.vcr()
-def test_shipment_retrieve(full_shipment):
-    shipment = easypost.Shipment.create(**full_shipment)
+def test_shipment_retrieve(full_shipment, test_client):
+    shipment = test_client.shipment.create(**full_shipment)
 
-    retrieved_shipment = easypost.Shipment.retrieve(shipment.id)
+    retrieved_shipment = test_client.shipment.retrieve(shipment.id)
 
     assert isinstance(retrieved_shipment, easypost.Shipment)
     assert retrieved_shipment == shipment
 
 
 @pytest.mark.vcr()
-def test_shipment_all(page_size):
-    shipments = easypost.Shipment.all(page_size=page_size)
+def test_shipment_all(page_size, test_client):
+    shipments = test_client.shipment.all(page_size=page_size)
 
     shipment_array = shipments["shipments"]
 
@@ -38,10 +39,10 @@ def test_shipment_all(page_size):
 
 
 @pytest.mark.vcr()
-def test_shipment_get_next_page(page_size):
+def test_shipment_get_next_page(page_size, test_client):
     try:
-        shipments = easypost.Shipment.all(page_size=page_size)
-        next_page = easypost.Shipment.get_next_page(shipments=shipments, page_size=page_size)
+        shipments = test_client.shipment.all(page_size=page_size)
+        next_page = test_client.shipment.get_next_page(shipments=shipments, page_size=page_size)
 
         first_id_of_first_page = shipments["shipments"][0].id
         first_id_of_second_page = next_page["shipments"][0].id
@@ -53,18 +54,18 @@ def test_shipment_get_next_page(page_size):
 
 
 @pytest.mark.vcr()
-def test_shipment_buy(full_shipment):
-    shipment = easypost.Shipment.create(**full_shipment)
-    shipment.buy(rate=shipment.lowest_rate())
+def test_shipment_buy(full_shipment, test_client):
+    shipment = test_client.shipment.create(**full_shipment)
+    bought_shipment = shipment.buy(shipment.id, rate=shipment.lowest_rate())
 
-    assert shipment.postage_label is not None
+    assert bought_shipment.postage_label is not None
 
 
 @pytest.mark.vcr()
-def test_shipment_regenerate_rates(full_shipment):
-    shipment = easypost.Shipment.create(**full_shipment)
+def test_shipment_regenerate_rates(full_shipment, test_client):
+    shipment = test_client.shipment.create(**full_shipment)
 
-    rates = shipment.regenerate_rates()
+    rates = test_client.shipment.regenerate_rates(shipment.id)
 
     rates_array = rates["rates"]
 
@@ -73,16 +74,16 @@ def test_shipment_regenerate_rates(full_shipment):
 
 
 @pytest.mark.vcr()
-def test_shipment_convert_label(full_shipment):
-    shipment = easypost.Shipment.create(**full_shipment)
-    shipment.buy(rate=shipment.lowest_rate())
-    shipment.label(file_format="ZPL")
+def test_shipment_convert_label(full_shipment, test_client):
+    shipment = test_client.shipment.create(**full_shipment)
+    bought_shipment = test_client.shipment.buy(shipment.id, rate=shipment.lowest_rate())
+    shipment_with_label = test_client.shipment.label(bought_shipment.id, file_format="ZPL")
 
-    assert shipment.postage_label.label_zpl_url is not None
+    assert shipment_with_label.postage_label.label_zpl_url is not None
 
 
 @pytest.mark.vcr()
-def test_shipment_insure(one_call_buy_shipment):
+def test_shipment_insure(one_call_buy_shipment, test_client):
     """Set insurnace to `0` when buying a shipment.
 
     If the shipment was purchased with a USPS rate, it must have had its insurance set to `0` when bought
@@ -91,51 +92,51 @@ def test_shipment_insure(one_call_buy_shipment):
     # Set to 0 so USPS doesn't insure this automatically and we can insure the shipment manually
     one_call_buy_shipment["insurance"] = 0
 
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)
-    shipment.insure(amount="100")
+    shipment = test_client.shipment.create(**one_call_buy_shipment)
+    insured_shipment = test_client.shipment.insure(shipment.id, amount="100")
 
-    assert shipment.insurance == "100.00"
+    assert insured_shipment.insurance == "100.00"
 
 
 @pytest.mark.vcr()
-def test_shipment_refund(one_call_buy_shipment):
+def test_shipment_refund(one_call_buy_shipment, test_client):
     """Refunding a test shipment must happen within seconds of the shipment being created as test shipments naturally.
 
     Follow a flow of created -> delivered to cycle through tracking events in test mode - as such anything older
     than a few seconds in test mode may not be refundable.
     """
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)
-    shipment.refund()
+    shipment = test_client.shipment.create(**one_call_buy_shipment)
+    refunded_shipment = test_client.shipment.refund(shipment.id)
 
-    assert shipment.refund_status == "submitted"
+    assert refunded_shipment.refund_status == "submitted"
 
 
 @pytest.mark.vcr()
-def test_shipment_smartrate(basic_shipment):
-    shipment = easypost.Shipment.create(**basic_shipment)
+def test_shipment_smart_rate(basic_shipment, test_client):
+    shipment = test_client.shipment.create(**basic_shipment)
 
     assert shipment.rates is not None
 
-    smartrates = shipment.get_smartrates()
+    smart_rates = test_client.shipment.get_smart_rates(shipment.id)
 
-    assert smartrates[0]["time_in_transit"]["percentile_50"] is not None
-    assert smartrates[0]["time_in_transit"]["percentile_75"] is not None
-    assert smartrates[0]["time_in_transit"]["percentile_85"] is not None
-    assert smartrates[0]["time_in_transit"]["percentile_90"] is not None
-    assert smartrates[0]["time_in_transit"]["percentile_95"] is not None
-    assert smartrates[0]["time_in_transit"]["percentile_97"] is not None
-    assert smartrates[0]["time_in_transit"]["percentile_99"] is not None
+    assert smart_rates[0]["time_in_transit"]["percentile_50"] is not None
+    assert smart_rates[0]["time_in_transit"]["percentile_75"] is not None
+    assert smart_rates[0]["time_in_transit"]["percentile_85"] is not None
+    assert smart_rates[0]["time_in_transit"]["percentile_90"] is not None
+    assert smart_rates[0]["time_in_transit"]["percentile_95"] is not None
+    assert smart_rates[0]["time_in_transit"]["percentile_97"] is not None
+    assert smart_rates[0]["time_in_transit"]["percentile_99"] is not None
 
 
 @pytest.mark.vcr()
-def test_shipment_create_empty_objects(basic_shipment):
+def test_shipment_create_empty_objects(basic_shipment, test_client):
     shipment_data = basic_shipment
     shipment_data["customs_info"] = {}
     shipment_data["options"] = None
     shipment_data["tax_identifiers"] = None
     shipment_data["reference"] = ""
 
-    shipment = easypost.Shipment.create(**shipment_data)
+    shipment = test_client.shipment.create(**shipment_data)
 
     assert isinstance(shipment, easypost.Shipment)
     assert str.startswith(shipment.id, "shp_")
@@ -145,11 +146,11 @@ def test_shipment_create_empty_objects(basic_shipment):
 
 
 @pytest.mark.vcr()
-def test_shipment_create_tax_identifier(basic_shipment, tax_identifier):
+def test_shipment_create_tax_identifier(basic_shipment, tax_identifier, test_client):
     shipment_data = basic_shipment
     shipment_data["tax_identifiers"] = [tax_identifier]
 
-    shipment = easypost.Shipment.create(**shipment_data)
+    shipment = test_client.shipment.create(**shipment_data)
 
     assert isinstance(shipment, easypost.Shipment)
     assert str.startswith(shipment.id, "shp_")
@@ -157,12 +158,12 @@ def test_shipment_create_tax_identifier(basic_shipment, tax_identifier):
 
 
 @pytest.mark.vcr()
-def test_shipment_create_with_ids(ca_address_1, basic_parcel):
+def test_shipment_create_with_ids(ca_address_1, basic_parcel, test_client):
     from_address = easypost.Address.create(**ca_address_1)
     to_address = easypost.Address.create(**ca_address_1)
     parcel = easypost.Parcel.create(**basic_parcel)
 
-    shipment = easypost.Shipment.create(
+    shipment = test_client.shipment.create(
         from_address={"id": from_address.id},
         to_address={"id": to_address.id},
         parcel={"id": parcel.id},
@@ -177,20 +178,20 @@ def test_shipment_create_with_ids(ca_address_1, basic_parcel):
 
 
 @pytest.mark.vcr()
-def test_shipment_lowest_rate(full_shipment):
+def test_shipment_lowest_rate(full_shipment, test_client):
     """Test various usage alterations of the lowest_rate method."""
-    shipment = easypost.Shipment.create(**full_shipment)
+    shipment = test_client.shipment.create(**full_shipment)
 
     # Test lowest rate with no filters
     lowest_rate = shipment.lowest_rate()
     assert lowest_rate.service == "First"
-    assert lowest_rate.rate == "5.57"
+    assert lowest_rate.rate == "6.07"
     assert lowest_rate.carrier == "USPS"
 
     # Test lowest rate with service filter (this rate is higher than the lowest but should filter)
     lowest_rate_service = shipment.lowest_rate(services=["Priority"])
     assert lowest_rate_service.service == "Priority"
-    assert lowest_rate_service.rate == "7.90"
+    assert lowest_rate_service.rate == "7.15"
     assert lowest_rate_service.carrier == "USPS"
 
     # Test lowest rate with carrier filter (should error due to bad carrier)
@@ -200,71 +201,94 @@ def test_shipment_lowest_rate(full_shipment):
 
 
 @pytest.mark.vcr()
-def test_shipment_lowest_smartrate(basic_shipment):
-    shipment = easypost.Shipment.create(**basic_shipment)
+def test_shipment_lowest_smart_rate(basic_shipment, test_client):
+    shipment = test_client.shipment.create(**basic_shipment)
 
-    # Test lowest smartrate with valid filters
-    lowest_smartrate_filters = shipment.lowest_smartrate(delivery_days=2, delivery_accuracy="percentile_90")
-    assert lowest_smartrate_filters["service"] == "First"
-    assert lowest_smartrate_filters["rate"] == 5.57
-    assert lowest_smartrate_filters["carrier"] == "USPS"
-
-    # Test lowest smartrate with invalid filters (should error due to strict delivery_days)
-    with pytest.raises(easypost.Error) as error:
-        _ = shipment.lowest_smartrate(delivery_days=0, delivery_accuracy="percentile_90")
-    assert str(error.value) == "No rates found."
-
-    # Test lowest smartrate with invalid filters (should error due to invalid delivery_accuracy)
-    with pytest.raises(easypost.Error) as error:
-        _ = shipment.lowest_smartrate(delivery_days=3, delivery_accuracy="BAD_ACCURACY")
-    assert "Invalid delivery_accuracy value" in str(error.value)
-
-
-@pytest.mark.vcr()
-def test_shipment_get_lowest_smartrate(basic_shipment):
-    shipment = easypost.Shipment.create(**basic_shipment)
-    smartrates = shipment.get_smartrates()
-
-    # Test lowest smartrate with valid filters
-    lowest_smartrate_filters = easypost.Shipment.get_lowest_smartrate(
-        smartrates, delivery_days=2, delivery_accuracy="percentile_90"
+    # Test lowest smart_rate with valid filters
+    lowest_smart_rate_filters = test_client.shipment.lowest_smart_rate(
+        shipment.id,
+        delivery_days=2,
+        delivery_accuracy="percentile_90",
     )
-    assert lowest_smartrate_filters["service"] == "First"
-    assert lowest_smartrate_filters["rate"] == 5.57
-    assert lowest_smartrate_filters["carrier"] == "USPS"
+    assert lowest_smart_rate_filters["service"] == "First"
+    assert lowest_smart_rate_filters["rate"] == 6.07
+    assert lowest_smart_rate_filters["carrier"] == "USPS"
 
-    # Test lowest smartrate with invalid filters (should error due to strict delivery_days)
+    # Test lowest smart_rate with invalid filters (should error due to strict delivery_days)
     with pytest.raises(easypost.Error) as error:
-        _ = easypost.Shipment.get_lowest_smartrate(smartrates, delivery_days=0, delivery_accuracy="percentile_90")
+        _ = test_client.shipment.lowest_smart_rate(
+            shipment.id,
+            delivery_days=0,
+            delivery_accuracy="percentile_90",
+        )
     assert str(error.value) == "No rates found."
 
-    # Test lowest smartrate with invalid filters (should error due to bad delivery_accuracy)
+    # Test lowest smart_rate with invalid filters (should error due to invalid delivery_accuracy)
     with pytest.raises(easypost.Error) as error:
-        _ = easypost.Shipment.get_lowest_smartrate(smartrates, delivery_days=3, delivery_accuracy="BAD_ACCURACY")
+        _ = test_client.shipment.lowest_smart_rate(
+            shipment.id,
+            delivery_days=3,
+            delivery_accuracy="BAD_ACCURACY",
+        )
     assert "Invalid delivery_accuracy value" in str(error.value)
 
 
 @pytest.mark.vcr()
-def test_generate_form(one_call_buy_shipment, rma_form_options):
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)
+def test_shipment_get_lowest_smart_rate(basic_shipment, test_client):
+    shipment = test_client.shipment.create(**basic_shipment)
+    smart_rates = test_client.shipment.get_smart_rates(shipment.id)
+
+    # Test lowest smart_rate with valid filters
+    lowest_smart_rate_filters = get_lowest_smart_rate(
+        smart_rates,
+        delivery_days=2,
+        delivery_accuracy="percentile_90",
+    )
+    assert lowest_smart_rate_filters["service"] == "First"
+    assert lowest_smart_rate_filters["rate"] == 6.07
+    assert lowest_smart_rate_filters["carrier"] == "USPS"
+
+    # Test lowest smart_rate with invalid filters (should error due to strict delivery_days)
+    with pytest.raises(easypost.Error) as error:
+        _ = get_lowest_smart_rate(
+            smart_rates,
+            delivery_days=0,
+            delivery_accuracy="percentile_90",
+        )
+    assert str(error.value) == "No rates found."
+
+    # Test lowest smart_rate with invalid filters (should error due to bad delivery_accuracy)
+    with pytest.raises(easypost.Error) as error:
+        _ = get_lowest_smart_rate(
+            smart_rates,
+            delivery_days=3,
+            delivery_accuracy="BAD_ACCURACY",
+        )
+    assert "Invalid delivery_accuracy value" in str(error.value)
+
+
+@pytest.mark.vcr()
+def test_generate_form(one_call_buy_shipment, rma_form_options, test_client):
+    shipment = test_client.shipment.create(**one_call_buy_shipment)
     form_type = "return_packing_slip"
 
-    shipment.generate_form(
+    shipment_with_form = test_client.shipment.generate_form(
+        shipment.id,
         form_type,
         rma_form_options,
     )
 
-    assert len(shipment.forms) > 0
+    assert len(shipment_with_form.forms) > 0
 
-    form = shipment.forms[0]
+    form = shipment_with_form.forms[0]
 
     assert form.form_type == form_type
     assert form.form_url is not None
 
 
 @pytest.mark.vcr()
-def test_shipment_create_with_carbon_offset(basic_shipment):
-    shipment = easypost.Shipment.create(with_carbon_offset=True, **basic_shipment)
+def test_shipment_create_with_carbon_offset(basic_shipment, test_client):
+    shipment = test_client.shipment.create(with_carbon_offset=True, **basic_shipment)
 
     assert isinstance(shipment, easypost.Shipment)
     assert shipment.rates is not None
@@ -272,46 +296,48 @@ def test_shipment_create_with_carbon_offset(basic_shipment):
 
 
 @pytest.mark.vcr()
-def test_shipment_buy_with_carbon_offset(basic_shipment):
-    shipment = easypost.Shipment.create(**basic_shipment)
-    shipment.buy(rate=shipment.lowest_rate(), with_carbon_offset=True)
+def test_shipment_buy_with_carbon_offset(basic_shipment, test_client):
+    shipment = test_client.shipment.create(**basic_shipment)
+    bought_shipment = test_client.shipment.buy(shipment.id, rate=shipment.lowest_rate(), with_carbon_offset=True)
 
-    assert isinstance(shipment, easypost.Shipment)
-    assert any(fee.type == "CarbonOffsetFee" for fee in shipment.fees)
+    assert isinstance(bought_shipment, easypost.Shipment)
+    assert any(fee.type == "CarbonOffsetFee" for fee in bought_shipment.fees)
 
 
 @pytest.mark.vcr()
-def test_shipment_one_call_buy_with_carbon_offset(one_call_buy_shipment):
-    shipment = easypost.Shipment.create(with_carbon_offset=True, **one_call_buy_shipment)
+def test_shipment_one_call_buy_with_carbon_offset(one_call_buy_shipment, test_client):
+    shipment = test_client.shipment.create(with_carbon_offset=True, **one_call_buy_shipment)
 
     assert isinstance(shipment, easypost.Shipment)
     assert all(rate.carbon_offset is not None for rate in shipment.rates)
 
 
 @pytest.mark.vcr()
-def test_shipment_rerate_with_carbon_offset(one_call_buy_shipment):
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)
+def test_shipment_rerate_with_carbon_offset(one_call_buy_shipment, test_client):
+    shipment = test_client.shipment.create(**one_call_buy_shipment)
 
-    new_carbon_rates = shipment.regenerate_rates(with_carbon_offset=True)
+    new_carbon_rates = test_client.shipment.regenerate_rates(shipment.id, with_carbon_offset=True)
 
     assert all(rate.carbon_offset is not None for rate in new_carbon_rates.rates)
 
 
 @pytest.mark.vcr()
-def test_shipment_buy_with_end_shipper_id(ca_address_1, basic_shipment):
+def test_shipment_buy_with_end_shipper_id(ca_address_1, basic_shipment, test_client):
     end_shipper = easypost.EndShipper.create(**ca_address_1)
 
-    shipment = easypost.Shipment.create(**basic_shipment)
-    shipment.buy(rate=shipment.lowest_rate(), end_shipper_id=end_shipper["id"])
+    shipment = test_client.shipment.create(**basic_shipment)
+    bought_shipment = test_client.shipment.buy(
+        shipment.id, rate=shipment.lowest_rate(), end_shipper_id=end_shipper["id"]
+    )
 
-    assert shipment.postage_label is not None
+    assert bought_shipment.postage_label is not None
 
 
 @pytest.mark.vcr()
-def test_retrieve_estimated_delivery_date(basic_shipment, planned_ship_date):
+def test_retrieve_estimated_delivery_date(basic_shipment, planned_ship_date, test_client):
     """Tests that we retrieve time-in-transit data for each of the Rates of a Shipment."""
-    shipment = easypost.Shipment.create(**basic_shipment)
+    shipment = test_client.shipment.create(**basic_shipment)
 
-    rates = shipment.retrieve_estimated_delivery_date(planned_ship_date=planned_ship_date)
+    rates = test_client.shipment.retrieve_estimated_delivery_date(shipment.id, planned_ship_date=planned_ship_date)
 
     assert all(entry.get("easypost_time_in_transit_data") for entry in rates)

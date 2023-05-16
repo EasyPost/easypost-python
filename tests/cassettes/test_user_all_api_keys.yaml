@@ -13,76 +13,6 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/v2/users
-  response:
-    body:
-      string: '{"id": "user_54356a6b96c940d8913961a3c7b909f2", "object": "User", "parent_id":
-        null, "name": "EasyPost Python Client Library Tests", "phone_number": "<REDACTED>",
-        "verified": true, "created_at": "2017-03-01T03:01:34Z", "default_carbon_offset":
-        false, "balance": "0.00000", "price_per_shipment": "0.00000", "recharge_amount":
-        "100.00", "secondary_recharge_amount": "100.00", "recharge_threshold": "0.00",
-        "has_billing_method": false, "cc_fee_rate": "0.03", "default_insurance_amount":
-        null, "insurance_fee_rate": "0.01", "insurance_fee_minimum": "1.00", "email":
-        "<REDACTED>", "children": []}'
-    headers:
-      cache-control:
-      - private, no-cache, no-store
-      content-length:
-      - '574'
-      content-type:
-      - application/json; charset=utf-8
-      etag:
-      - W/"9e7ae0ab30ea88df786ab67e713eedae"
-      expires:
-      - '0'
-      pragma:
-      - no-cache
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains; preload
-      transfer-encoding:
-      - chunked
-      x-backend:
-      - easypost
-      x-content-type-options:
-      - nosniff
-      x-download-options:
-      - noopen
-      x-ep-request-uuid:
-      - 3dff6282637e8471e787bfde000e9d63
-      x-frame-options:
-      - SAMEORIGIN
-      x-node:
-      - bigweb9nuq
-      x-permitted-cross-domain-policies:
-      - none
-      x-proxied:
-      - intlb1nuq 29913d444b
-      - extlb2nuq 29913d444b
-      x-runtime:
-      - '0.033940'
-      x-version-label:
-      - easypost-202211231902-b75422a88e-master
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      authorization:
-      - <REDACTED>
-      user-agent:
-      - <REDACTED>
-    method: GET
     uri: https://api.easypost.com/v2/api_keys
   response:
     body:
@@ -118,20 +48,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 3dff6282637e8471e787bfde000e9d77
+      - de846e086463b6c8e787409c002d8c1b
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb11nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 29913d444b
-      - extlb2nuq 29913d444b
+      - intlb1nuq a29e4ad05c
+      - extlb1nuq 5ab12a3ed2
       x-runtime:
-      - '0.033430'
+      - '0.184135'
       x-version-label:
-      - easypost-202211231902-b75422a88e-master
+      - easypost-202305161623-0a285b6b1b-master
       x-xss-protection:
       - 1; mode=block
     status:

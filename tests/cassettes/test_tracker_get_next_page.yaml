@@ -16,28 +16,230 @@ interactions:
     uri: https://api.easypost.com/v2/trackers?page_size=5
   response:
     body:
-      string: '{"trackers": [{"id": "trk_e1e33a61f02846cb80905b1a50ea5ba0", "object":
-        "Tracker", "mode": "test", "tracking_code": "9400110898825022579493", "status":
-        "error", "status_detail": "unknown", "created_at": "2023-03-22T17:18:05Z",
-        "updated_at": "2023-03-22T17:18:05Z", "signed_by": null, "weight": null, "est_delivery_date":
-        null, "shipment_id": null, "carrier": "USPS", "tracking_details": [{"object":
-        "TrackingDetail", "message": "In test mode, only test tracking numbers are
-        valid. Test tracking numbers are EZ1000000001, EZ2000000002, ... , EZ7000000007",
-        "description": null, "status": "error", "status_detail": null, "datetime":
-        "2023-03-22T17:18:05Z", "source": "ProcessingError", "carrier_code": null,
+      string: '{"trackers": [{"id": "trk_8de54ec569444a0eabd75bd9dcecc96b", "object":
+        "Tracker", "mode": "test", "tracking_code": "EZ1000000001", "status": "pre_transit",
+        "status_detail": "status_update", "created_at": "2023-05-16T16:44:03Z", "updated_at":
+        "2023-05-16T16:44:03Z", "signed_by": null, "weight": null, "est_delivery_date":
+        "2023-05-16T16:44:03Z", "shipment_id": null, "carrier": "USPS", "tracking_details":
+        [{"object": "TrackingDetail", "message": "Pre-Shipment Info Sent to USPS",
+        "description": null, "status": "pre_transit", "status_detail": "status_update",
+        "datetime": "2023-04-16T16:44:03Z", "source": "USPS", "carrier_code": null,
         "tracking_location": {"object": "TrackingLocation", "city": null, "state":
-        null, "country": null, "zip": null}}], "fees": [], "carrier_detail": null,
-        "public_url": "https://track.easypost.com/djE6dHJrX2UxZTMzYTYxZjAyODQ2Y2I4MDkwNWIxYTUwZWE1YmEw"}],
-        "has_more": false}'
+        null, "country": null, "zip": null}}, {"object": "TrackingDetail", "message":
+        "Shipping Label Created", "description": null, "status": "pre_transit", "status_detail":
+        "status_update", "datetime": "2023-04-17T05:21:03Z", "source": "USPS", "carrier_code":
+        null, "tracking_location": {"object": "TrackingLocation", "city": "HOUSTON",
+        "state": "TX", "country": null, "zip": "77063"}}], "fees": [{"object": "Fee",
+        "type": "TrackerFee", "amount": "0.02000", "charged": false, "refunded": false}],
+        "carrier_detail": {"object": "CarrierDetail", "service": "First-Class Package
+        Service", "container_type": null, "est_delivery_date_local": null, "est_delivery_time_local":
+        null, "origin_location": "HOUSTON TX, 77001", "origin_tracking_location":
+        {"object": "TrackingLocation", "city": "HOUSTON", "state": "TX", "country":
+        null, "zip": "77063"}, "destination_location": "CHARLESTON SC, 29401", "destination_tracking_location":
+        null, "guaranteed_delivery_date": null, "alternate_identifier": null, "initial_delivery_attempt":
+        null}, "public_url": "https://track.easypost.com/djE6dHJrXzhkZTU0ZWM1Njk0NDRhMGVhYmQ3NWJkOWRjZWNjOTZi"},
+        {"id": "trk_1c719471026e4f858de8762ac10884f4", "object": "Tracker", "mode":
+        "test", "tracking_code": "9400100104262210342375", "status": "delivered",
+        "status_detail": "arrived_at_destination", "created_at": "2023-05-16T16:34:01Z",
+        "updated_at": "2023-05-16T16:37:01Z", "signed_by": "John Tester", "weight":
+        null, "est_delivery_date": "2023-05-16T16:37:01Z", "shipment_id": "shp_bed157bf505f4c4a82302cc9e09619e4",
+        "carrier": "USPS", "tracking_details": [{"object": "TrackingDetail", "message":
+        "Pre-Shipment Info Sent to USPS", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-16T16:37:01Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": null, "state": null, "country": null, "zip": null}}, {"object": "TrackingDetail",
+        "message": "Shipping Label Created", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-17T05:14:01Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "HOUSTON", "state": "TX", "country": null, "zip": "77063"}}, {"object":
+        "TrackingDetail", "message": "Arrived at USPS Origin Facility", "description":
+        null, "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-17T15:19:01Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}}, {"object": "TrackingDetail", "message": "Arrived at
+        USPS Facility", "description": null, "status": "in_transit", "status_detail":
+        "arrived_at_facility", "datetime": "2023-04-18T16:55:01Z", "source": "USPS",
+        "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "COLUMBIA", "state": "SC", "country": null, "zip": "29201"}}, {"object":
+        "TrackingDetail", "message": "Arrived at Post Office", "description": null,
+        "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-18T19:46:01Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}}, {"object": "TrackingDetail", "message": "Sorting Complete",
+        "description": null, "status": "in_transit", "status_detail": "status_update",
+        "datetime": "2023-04-19T01:26:01Z", "source": "USPS", "carrier_code": null,
+        "tracking_location": {"object": "TrackingLocation", "city": "CHARLESTON",
+        "state": "SC", "country": null, "zip": "29407"}}, {"object": "TrackingDetail",
+        "message": "Out for Delivery", "description": null, "status": "out_for_delivery",
+        "status_detail": "out_for_delivery", "datetime": "2023-04-19T01:36:01Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}, {"object":
+        "TrackingDetail", "message": "Delivered", "description": null, "status": "delivered",
+        "status_detail": "arrived_at_destination", "datetime": "2023-04-19T06:28:01Z",
+        "source": "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}], "fees":
+        [], "carrier_detail": {"object": "CarrierDetail", "service": "First-Class
+        Package Service", "container_type": null, "est_delivery_date_local": null,
+        "est_delivery_time_local": null, "origin_location": "HOUSTON TX, 77001", "origin_tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}, "destination_location": "CHARLESTON SC, 29401", "destination_tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}, "guaranteed_delivery_date": null, "alternate_identifier":
+        null, "initial_delivery_attempt": "2023-04-19T06:28:01Z"}, "public_url": "https://track.easypost.com/djE6dHJrXzFjNzE5NDcxMDI2ZTRmODU4ZGU4NzYyYWMxMDg4NGY0"},
+        {"id": "trk_e1f75c88864041ef92d1ba0fd4c9a7ed", "object": "Tracker", "mode":
+        "test", "tracking_code": "9400100104262210342023", "status": "delivered",
+        "status_detail": "arrived_at_destination", "created_at": "2023-05-16T16:32:38Z",
+        "updated_at": "2023-05-16T16:35:38Z", "signed_by": "John Tester", "weight":
+        null, "est_delivery_date": "2023-05-16T16:35:38Z", "shipment_id": "shp_73a181c595d24125a958ea82288c2248",
+        "carrier": "USPS", "tracking_details": [{"object": "TrackingDetail", "message":
+        "Pre-Shipment Info Sent to USPS", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-16T16:35:38Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": null, "state": null, "country": null, "zip": null}}, {"object": "TrackingDetail",
+        "message": "Shipping Label Created", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-17T05:12:38Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "HOUSTON", "state": "TX", "country": null, "zip": "77063"}}, {"object":
+        "TrackingDetail", "message": "Arrived at USPS Origin Facility", "description":
+        null, "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-17T15:17:38Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}}, {"object": "TrackingDetail", "message": "Arrived at
+        USPS Facility", "description": null, "status": "in_transit", "status_detail":
+        "arrived_at_facility", "datetime": "2023-04-18T16:53:38Z", "source": "USPS",
+        "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "COLUMBIA", "state": "SC", "country": null, "zip": "29201"}}, {"object":
+        "TrackingDetail", "message": "Arrived at Post Office", "description": null,
+        "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-18T19:44:38Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}}, {"object": "TrackingDetail", "message": "Sorting Complete",
+        "description": null, "status": "in_transit", "status_detail": "status_update",
+        "datetime": "2023-04-19T01:24:38Z", "source": "USPS", "carrier_code": null,
+        "tracking_location": {"object": "TrackingLocation", "city": "CHARLESTON",
+        "state": "SC", "country": null, "zip": "29407"}}, {"object": "TrackingDetail",
+        "message": "Out for Delivery", "description": null, "status": "out_for_delivery",
+        "status_detail": "out_for_delivery", "datetime": "2023-04-19T01:34:38Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}, {"object":
+        "TrackingDetail", "message": "Delivered", "description": null, "status": "delivered",
+        "status_detail": "arrived_at_destination", "datetime": "2023-04-19T06:26:38Z",
+        "source": "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}], "fees":
+        [], "carrier_detail": {"object": "CarrierDetail", "service": "First-Class
+        Package Service", "container_type": null, "est_delivery_date_local": null,
+        "est_delivery_time_local": null, "origin_location": "HOUSTON TX, 77001", "origin_tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}, "destination_location": "CHARLESTON SC, 29401", "destination_tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}, "guaranteed_delivery_date": null, "alternate_identifier":
+        null, "initial_delivery_attempt": "2023-04-19T06:26:38Z"}, "public_url": "https://track.easypost.com/djE6dHJrX2UxZjc1Yzg4ODY0MDQxZWY5MmQxYmEwZmQ0YzlhN2Vk"},
+        {"id": "trk_4f2f427fc4554663b6a6121710218198", "object": "Tracker", "mode":
+        "test", "tracking_code": "9400100104262210341828", "status": "delivered",
+        "status_detail": "arrived_at_destination", "created_at": "2023-05-16T16:31:56Z",
+        "updated_at": "2023-05-16T16:34:57Z", "signed_by": "John Tester", "weight":
+        null, "est_delivery_date": "2023-05-16T16:34:57Z", "shipment_id": "shp_9fd8372a9e274d25bb150a4c480733dc",
+        "carrier": "USPS", "tracking_details": [{"object": "TrackingDetail", "message":
+        "Pre-Shipment Info Sent to USPS", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-16T16:34:57Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": null, "state": null, "country": null, "zip": null}}, {"object": "TrackingDetail",
+        "message": "Shipping Label Created", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-17T05:11:57Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "HOUSTON", "state": "TX", "country": null, "zip": "77063"}}, {"object":
+        "TrackingDetail", "message": "Arrived at USPS Origin Facility", "description":
+        null, "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-17T15:16:57Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}}, {"object": "TrackingDetail", "message": "Arrived at
+        USPS Facility", "description": null, "status": "in_transit", "status_detail":
+        "arrived_at_facility", "datetime": "2023-04-18T16:52:57Z", "source": "USPS",
+        "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "COLUMBIA", "state": "SC", "country": null, "zip": "29201"}}, {"object":
+        "TrackingDetail", "message": "Arrived at Post Office", "description": null,
+        "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-18T19:43:57Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}}, {"object": "TrackingDetail", "message": "Sorting Complete",
+        "description": null, "status": "in_transit", "status_detail": "status_update",
+        "datetime": "2023-04-19T01:23:57Z", "source": "USPS", "carrier_code": null,
+        "tracking_location": {"object": "TrackingLocation", "city": "CHARLESTON",
+        "state": "SC", "country": null, "zip": "29407"}}, {"object": "TrackingDetail",
+        "message": "Out for Delivery", "description": null, "status": "out_for_delivery",
+        "status_detail": "out_for_delivery", "datetime": "2023-04-19T01:33:57Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}, {"object":
+        "TrackingDetail", "message": "Delivered", "description": null, "status": "delivered",
+        "status_detail": "arrived_at_destination", "datetime": "2023-04-19T06:25:57Z",
+        "source": "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}], "fees":
+        [], "carrier_detail": {"object": "CarrierDetail", "service": "First-Class
+        Package Service", "container_type": null, "est_delivery_date_local": null,
+        "est_delivery_time_local": null, "origin_location": "HOUSTON TX, 77001", "origin_tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}, "destination_location": "CHARLESTON SC, 29401", "destination_tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}, "guaranteed_delivery_date": null, "alternate_identifier":
+        null, "initial_delivery_attempt": "2023-04-19T06:25:57Z"}, "public_url": "https://track.easypost.com/djE6dHJrXzRmMmY0MjdmYzQ1NTQ2NjNiNmE2MTIxNzEwMjE4MTk4"},
+        {"id": "trk_33b91297097d4ad28fe0207dae34fca5", "object": "Tracker", "mode":
+        "test", "tracking_code": "9400100104262210341804", "status": "delivered",
+        "status_detail": "arrived_at_destination", "created_at": "2023-05-16T16:31:54Z",
+        "updated_at": "2023-05-16T16:34:54Z", "signed_by": "John Tester", "weight":
+        null, "est_delivery_date": "2023-05-16T16:34:54Z", "shipment_id": "shp_8d961782f9174b70a46c6fe4b179e4b1",
+        "carrier": "USPS", "tracking_details": [{"object": "TrackingDetail", "message":
+        "Pre-Shipment Info Sent to USPS", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-16T16:34:54Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": null, "state": null, "country": null, "zip": null}}, {"object": "TrackingDetail",
+        "message": "Shipping Label Created", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-17T05:11:54Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "HOUSTON", "state": "TX", "country": null, "zip": "77063"}}, {"object":
+        "TrackingDetail", "message": "Arrived at USPS Origin Facility", "description":
+        null, "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-17T15:16:54Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}}, {"object": "TrackingDetail", "message": "Arrived at
+        USPS Facility", "description": null, "status": "in_transit", "status_detail":
+        "arrived_at_facility", "datetime": "2023-04-18T16:52:54Z", "source": "USPS",
+        "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "COLUMBIA", "state": "SC", "country": null, "zip": "29201"}}, {"object":
+        "TrackingDetail", "message": "Arrived at Post Office", "description": null,
+        "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-18T19:43:54Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}}, {"object": "TrackingDetail", "message": "Sorting Complete",
+        "description": null, "status": "in_transit", "status_detail": "status_update",
+        "datetime": "2023-04-19T01:23:54Z", "source": "USPS", "carrier_code": null,
+        "tracking_location": {"object": "TrackingLocation", "city": "CHARLESTON",
+        "state": "SC", "country": null, "zip": "29407"}}, {"object": "TrackingDetail",
+        "message": "Out for Delivery", "description": null, "status": "out_for_delivery",
+        "status_detail": "out_for_delivery", "datetime": "2023-04-19T01:33:54Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}, {"object":
+        "TrackingDetail", "message": "Delivered", "description": null, "status": "delivered",
+        "status_detail": "arrived_at_destination", "datetime": "2023-04-19T06:25:54Z",
+        "source": "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}], "fees":
+        [], "carrier_detail": {"object": "CarrierDetail", "service": "First-Class
+        Package Service", "container_type": null, "est_delivery_date_local": null,
+        "est_delivery_time_local": null, "origin_location": "HOUSTON TX, 77001", "origin_tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}, "destination_location": "CHARLESTON SC, 29401", "destination_tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}, "guaranteed_delivery_date": null, "alternate_identifier":
+        null, "initial_delivery_attempt": "2023-04-19T06:25:54Z"}, "public_url": "https://track.easypost.com/djE6dHJrXzMzYjkxMjk3MDk3ZDRhZDI4ZmUwMjA3ZGFlMzRmY2E1"}],
+        "has_more": true}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '910'
+      - '16532'
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"78f0ff69612d63e807594ae5196cfe3d"
+      - W/"e91403a5e38f7fccf2f1710f832ebb64"
       expires:
       - '0'
       pragma:
@@ -55,7 +257,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 70d4b6376424b73fe78b1c110011ed97
+      - de846e076463b2d4e787383e002bd738
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -63,12 +265,315 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq a29e4ad05c
-      - extlb2nuq a29e4ad05c
+      - intlb1nuq a29e4ad05c
+      - extlb1nuq 5ab12a3ed2
       x-runtime:
-      - '0.035501'
+      - '0.220044'
       x-version-label:
-      - easypost-202303292153-e778646023-master
+      - easypost-202305161623-0a285b6b1b-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/trackers?before_id=trk_33b91297097d4ad28fe0207dae34fca5&page_size=5
+  response:
+    body:
+      string: '{"trackers": [{"id": "trk_04ee4a941e8e4a5588055b6c888a1e0a", "object":
+        "Tracker", "mode": "test", "tracking_code": "9400100104262210341798", "status":
+        "delivered", "status_detail": "arrived_at_destination", "created_at": "2023-05-16T16:31:52Z",
+        "updated_at": "2023-05-16T16:34:52Z", "signed_by": "John Tester", "weight":
+        null, "est_delivery_date": "2023-05-16T16:34:52Z", "shipment_id": "shp_1f8bcc1d9de543d6b459de624fcccd3d",
+        "carrier": "USPS", "tracking_details": [{"object": "TrackingDetail", "message":
+        "Pre-Shipment Info Sent to USPS", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-16T16:34:52Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": null, "state": null, "country": null, "zip": null}}, {"object": "TrackingDetail",
+        "message": "Shipping Label Created", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-17T05:11:52Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "HOUSTON", "state": "TX", "country": null, "zip": "77063"}}, {"object":
+        "TrackingDetail", "message": "Arrived at USPS Origin Facility", "description":
+        null, "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-17T15:16:52Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}}, {"object": "TrackingDetail", "message": "Arrived at
+        USPS Facility", "description": null, "status": "in_transit", "status_detail":
+        "arrived_at_facility", "datetime": "2023-04-18T16:52:52Z", "source": "USPS",
+        "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "COLUMBIA", "state": "SC", "country": null, "zip": "29201"}}, {"object":
+        "TrackingDetail", "message": "Arrived at Post Office", "description": null,
+        "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-18T19:43:52Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}}, {"object": "TrackingDetail", "message": "Sorting Complete",
+        "description": null, "status": "in_transit", "status_detail": "status_update",
+        "datetime": "2023-04-19T01:23:52Z", "source": "USPS", "carrier_code": null,
+        "tracking_location": {"object": "TrackingLocation", "city": "CHARLESTON",
+        "state": "SC", "country": null, "zip": "29407"}}, {"object": "TrackingDetail",
+        "message": "Out for Delivery", "description": null, "status": "out_for_delivery",
+        "status_detail": "out_for_delivery", "datetime": "2023-04-19T01:33:52Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}, {"object":
+        "TrackingDetail", "message": "Delivered", "description": null, "status": "delivered",
+        "status_detail": "arrived_at_destination", "datetime": "2023-04-19T06:25:52Z",
+        "source": "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}], "fees":
+        [], "carrier_detail": {"object": "CarrierDetail", "service": "First-Class
+        Package Service", "container_type": null, "est_delivery_date_local": null,
+        "est_delivery_time_local": null, "origin_location": "HOUSTON TX, 77001", "origin_tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}, "destination_location": "CHARLESTON SC, 29401", "destination_tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}, "guaranteed_delivery_date": null, "alternate_identifier":
+        null, "initial_delivery_attempt": "2023-04-19T06:25:52Z"}, "public_url": "https://track.easypost.com/djE6dHJrXzA0ZWU0YTk0MWU4ZTRhNTU4ODA1NWI2Yzg4OGExZTBh"},
+        {"id": "trk_ea5f9707a5a942c785a32081bd79e1c4", "object": "Tracker", "mode":
+        "test", "tracking_code": "9400100104262210341637", "status": "delivered",
+        "status_detail": "arrived_at_destination", "created_at": "2023-05-16T16:31:38Z",
+        "updated_at": "2023-05-16T16:34:39Z", "signed_by": "John Tester", "weight":
+        null, "est_delivery_date": "2023-05-16T16:34:39Z", "shipment_id": "shp_6202abb22874490ab3631a413493bdeb",
+        "carrier": "USPS", "tracking_details": [{"object": "TrackingDetail", "message":
+        "Pre-Shipment Info Sent to USPS", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-16T16:34:39Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": null, "state": null, "country": null, "zip": null}}, {"object": "TrackingDetail",
+        "message": "Shipping Label Created", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-17T05:11:39Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "HOUSTON", "state": "TX", "country": null, "zip": "77063"}}, {"object":
+        "TrackingDetail", "message": "Arrived at USPS Origin Facility", "description":
+        null, "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-17T15:16:39Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}}, {"object": "TrackingDetail", "message": "Arrived at
+        USPS Facility", "description": null, "status": "in_transit", "status_detail":
+        "arrived_at_facility", "datetime": "2023-04-18T16:52:39Z", "source": "USPS",
+        "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "COLUMBIA", "state": "SC", "country": null, "zip": "29201"}}, {"object":
+        "TrackingDetail", "message": "Arrived at Post Office", "description": null,
+        "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-18T19:43:39Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}}, {"object": "TrackingDetail", "message": "Sorting Complete",
+        "description": null, "status": "in_transit", "status_detail": "status_update",
+        "datetime": "2023-04-19T01:23:39Z", "source": "USPS", "carrier_code": null,
+        "tracking_location": {"object": "TrackingLocation", "city": "CHARLESTON",
+        "state": "SC", "country": null, "zip": "29407"}}, {"object": "TrackingDetail",
+        "message": "Out for Delivery", "description": null, "status": "out_for_delivery",
+        "status_detail": "out_for_delivery", "datetime": "2023-04-19T01:33:39Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}, {"object":
+        "TrackingDetail", "message": "Delivered", "description": null, "status": "delivered",
+        "status_detail": "arrived_at_destination", "datetime": "2023-04-19T06:25:39Z",
+        "source": "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}], "fees":
+        [], "carrier_detail": {"object": "CarrierDetail", "service": "First-Class
+        Package Service", "container_type": null, "est_delivery_date_local": null,
+        "est_delivery_time_local": null, "origin_location": "HOUSTON TX, 77001", "origin_tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}, "destination_location": "CHARLESTON SC, 29401", "destination_tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}, "guaranteed_delivery_date": null, "alternate_identifier":
+        null, "initial_delivery_attempt": "2023-04-19T06:25:39Z"}, "public_url": "https://track.easypost.com/djE6dHJrX2VhNWY5NzA3YTVhOTQyYzc4NWEzMjA4MWJkNzllMWM0"},
+        {"id": "trk_b6607dd3b1ee487e81a804d42383628c", "object": "Tracker", "mode":
+        "test", "tracking_code": "9400100104262210341620", "status": "delivered",
+        "status_detail": "arrived_at_destination", "created_at": "2023-05-16T16:31:37Z",
+        "updated_at": "2023-05-16T16:34:37Z", "signed_by": "John Tester", "weight":
+        null, "est_delivery_date": "2023-05-16T16:34:37Z", "shipment_id": "shp_3afa3dc2ef6c4d008cac6ccc08e4aef7",
+        "carrier": "USPS", "tracking_details": [{"object": "TrackingDetail", "message":
+        "Pre-Shipment Info Sent to USPS", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-16T16:34:37Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": null, "state": null, "country": null, "zip": null}}, {"object": "TrackingDetail",
+        "message": "Shipping Label Created", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-17T05:11:37Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "HOUSTON", "state": "TX", "country": null, "zip": "77063"}}, {"object":
+        "TrackingDetail", "message": "Arrived at USPS Origin Facility", "description":
+        null, "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-17T15:16:37Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}}, {"object": "TrackingDetail", "message": "Arrived at
+        USPS Facility", "description": null, "status": "in_transit", "status_detail":
+        "arrived_at_facility", "datetime": "2023-04-18T16:52:37Z", "source": "USPS",
+        "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "COLUMBIA", "state": "SC", "country": null, "zip": "29201"}}, {"object":
+        "TrackingDetail", "message": "Arrived at Post Office", "description": null,
+        "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-18T19:43:37Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}}, {"object": "TrackingDetail", "message": "Sorting Complete",
+        "description": null, "status": "in_transit", "status_detail": "status_update",
+        "datetime": "2023-04-19T01:23:37Z", "source": "USPS", "carrier_code": null,
+        "tracking_location": {"object": "TrackingLocation", "city": "CHARLESTON",
+        "state": "SC", "country": null, "zip": "29407"}}, {"object": "TrackingDetail",
+        "message": "Out for Delivery", "description": null, "status": "out_for_delivery",
+        "status_detail": "out_for_delivery", "datetime": "2023-04-19T01:33:37Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}, {"object":
+        "TrackingDetail", "message": "Delivered", "description": null, "status": "delivered",
+        "status_detail": "arrived_at_destination", "datetime": "2023-04-19T06:25:37Z",
+        "source": "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}], "fees":
+        [], "carrier_detail": {"object": "CarrierDetail", "service": "First-Class
+        Package Service", "container_type": null, "est_delivery_date_local": null,
+        "est_delivery_time_local": null, "origin_location": "HOUSTON TX, 77001", "origin_tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}, "destination_location": "CHARLESTON SC, 29401", "destination_tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}, "guaranteed_delivery_date": null, "alternate_identifier":
+        null, "initial_delivery_attempt": "2023-04-19T06:25:37Z"}, "public_url": "https://track.easypost.com/djE6dHJrX2I2NjA3ZGQzYjFlZTQ4N2U4MWE4MDRkNDIzODM2Mjhj"},
+        {"id": "trk_93e5cabacc4441caaf5b9c2df096e1c2", "object": "Tracker", "mode":
+        "test", "tracking_code": "9400100104262210341583", "status": "delivered",
+        "status_detail": "arrived_at_destination", "created_at": "2023-05-16T16:31:35Z",
+        "updated_at": "2023-05-16T16:34:36Z", "signed_by": "John Tester", "weight":
+        null, "est_delivery_date": "2023-05-16T16:34:36Z", "shipment_id": "shp_1201cff4ea724643b6ca18a80024fd8b",
+        "carrier": "USPS", "tracking_details": [{"object": "TrackingDetail", "message":
+        "Pre-Shipment Info Sent to USPS", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-16T16:34:36Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": null, "state": null, "country": null, "zip": null}}, {"object": "TrackingDetail",
+        "message": "Shipping Label Created", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-17T05:11:36Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "HOUSTON", "state": "TX", "country": null, "zip": "77063"}}, {"object":
+        "TrackingDetail", "message": "Arrived at USPS Origin Facility", "description":
+        null, "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-17T15:16:36Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}}, {"object": "TrackingDetail", "message": "Arrived at
+        USPS Facility", "description": null, "status": "in_transit", "status_detail":
+        "arrived_at_facility", "datetime": "2023-04-18T16:52:36Z", "source": "USPS",
+        "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "COLUMBIA", "state": "SC", "country": null, "zip": "29201"}}, {"object":
+        "TrackingDetail", "message": "Arrived at Post Office", "description": null,
+        "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-18T19:43:36Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}}, {"object": "TrackingDetail", "message": "Sorting Complete",
+        "description": null, "status": "in_transit", "status_detail": "status_update",
+        "datetime": "2023-04-19T01:23:36Z", "source": "USPS", "carrier_code": null,
+        "tracking_location": {"object": "TrackingLocation", "city": "CHARLESTON",
+        "state": "SC", "country": null, "zip": "29407"}}, {"object": "TrackingDetail",
+        "message": "Out for Delivery", "description": null, "status": "out_for_delivery",
+        "status_detail": "out_for_delivery", "datetime": "2023-04-19T01:33:36Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}, {"object":
+        "TrackingDetail", "message": "Delivered", "description": null, "status": "delivered",
+        "status_detail": "arrived_at_destination", "datetime": "2023-04-19T06:25:36Z",
+        "source": "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}], "fees":
+        [], "carrier_detail": {"object": "CarrierDetail", "service": "First-Class
+        Package Service", "container_type": null, "est_delivery_date_local": null,
+        "est_delivery_time_local": null, "origin_location": "HOUSTON TX, 77001", "origin_tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}, "destination_location": "CHARLESTON SC, 29401", "destination_tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}, "guaranteed_delivery_date": null, "alternate_identifier":
+        null, "initial_delivery_attempt": "2023-04-19T06:25:36Z"}, "public_url": "https://track.easypost.com/djE6dHJrXzkzZTVjYWJhY2M0NDQxY2FhZjViOWMyZGYwOTZlMWMy"},
+        {"id": "trk_ee0265f7091641c99538b787cad56e1e", "object": "Tracker", "mode":
+        "test", "tracking_code": "9400100104262210341552", "status": "delivered",
+        "status_detail": "arrived_at_destination", "created_at": "2023-05-16T16:31:32Z",
+        "updated_at": "2023-05-16T16:34:33Z", "signed_by": "John Tester", "weight":
+        null, "est_delivery_date": "2023-05-16T16:34:33Z", "shipment_id": "shp_1c7388a907eb47208f9aafbff063d773",
+        "carrier": "USPS", "tracking_details": [{"object": "TrackingDetail", "message":
+        "Pre-Shipment Info Sent to USPS", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-16T16:34:33Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": null, "state": null, "country": null, "zip": null}}, {"object": "TrackingDetail",
+        "message": "Shipping Label Created", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-17T05:11:33Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "HOUSTON", "state": "TX", "country": null, "zip": "77063"}}, {"object":
+        "TrackingDetail", "message": "Arrived at USPS Origin Facility", "description":
+        null, "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-17T15:16:33Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}}, {"object": "TrackingDetail", "message": "Arrived at
+        USPS Facility", "description": null, "status": "in_transit", "status_detail":
+        "arrived_at_facility", "datetime": "2023-04-18T16:52:33Z", "source": "USPS",
+        "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "COLUMBIA", "state": "SC", "country": null, "zip": "29201"}}, {"object":
+        "TrackingDetail", "message": "Arrived at Post Office", "description": null,
+        "status": "in_transit", "status_detail": "arrived_at_facility", "datetime":
+        "2023-04-18T19:43:33Z", "source": "USPS", "carrier_code": null, "tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}}, {"object": "TrackingDetail", "message": "Sorting Complete",
+        "description": null, "status": "in_transit", "status_detail": "status_update",
+        "datetime": "2023-04-19T01:23:33Z", "source": "USPS", "carrier_code": null,
+        "tracking_location": {"object": "TrackingLocation", "city": "CHARLESTON",
+        "state": "SC", "country": null, "zip": "29407"}}, {"object": "TrackingDetail",
+        "message": "Out for Delivery", "description": null, "status": "out_for_delivery",
+        "status_detail": "out_for_delivery", "datetime": "2023-04-19T01:33:33Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}, {"object":
+        "TrackingDetail", "message": "Delivered", "description": null, "status": "delivered",
+        "status_detail": "arrived_at_destination", "datetime": "2023-04-19T06:25:33Z",
+        "source": "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "CHARLESTON", "state": "SC", "country": null, "zip": "29407"}}], "fees":
+        [], "carrier_detail": {"object": "CarrierDetail", "service": "First-Class
+        Package Service", "container_type": null, "est_delivery_date_local": null,
+        "est_delivery_time_local": null, "origin_location": "HOUSTON TX, 77001", "origin_tracking_location":
+        {"object": "TrackingLocation", "city": "NORTH HOUSTON", "state": "TX", "country":
+        null, "zip": "77315"}, "destination_location": "CHARLESTON SC, 29401", "destination_tracking_location":
+        {"object": "TrackingLocation", "city": "CHARLESTON", "state": "SC", "country":
+        null, "zip": "29407"}, "guaranteed_delivery_date": null, "alternate_identifier":
+        null, "initial_delivery_attempt": "2023-04-19T06:25:33Z"}, "public_url": "https://track.easypost.com/djE6dHJrX2VlMDI2NWY3MDkxNjQxYzk5NTM4Yjc4N2NhZDU2ZTFl"}],
+        "has_more": true}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '18545'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"41d05cf444b93214ec9e6d01baa076df"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - de846e076463b2d4e787383e002bd75f
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb2nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq a29e4ad05c
+      - extlb1nuq 5ab12a3ed2
+      x-runtime:
+      - '0.146037'
+      x-version-label:
+      - easypost-202305161623-0a285b6b1b-master
       x-xss-protection:
       - 1; mode=block
     status:

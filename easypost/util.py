@@ -1,4 +1,7 @@
+import hashlib
+import hmac
 import json
+import unicodedata
 from typing import (
     Any,
     Dict,
@@ -12,6 +15,7 @@ from easypost.easypost_object import (
 )
 from easypost.error import Error
 from easypost.models.event import Event
+from easypost.models.rate import Rate
 
 
 def get_lowest_object_rate(
@@ -41,6 +45,34 @@ def get_lowest_object_rate(
     return lowest_rate
 
 
+def get_lowest_smart_rate(smart_rates, delivery_days: int, delivery_accuracy: str) -> Rate:
+    """Get the lowest SmartRate from a list of SmartRates."""
+    valid_delivery_accuracy_values = {
+        "percentile_50",
+        "percentile_75",
+        "percentile_85",
+        "percentile_90",
+        "percentile_95",
+        "percentile_97",
+        "percentile_99",
+    }
+    lowest_smart_rate = None
+
+    if delivery_accuracy.lower() not in valid_delivery_accuracy_values:
+        raise Error(message=f"Invalid delivery_accuracy value, must be one of: {valid_delivery_accuracy_values}")
+
+    for rate in smart_rates:
+        if rate["time_in_transit"][delivery_accuracy] > delivery_days:
+            continue
+        elif lowest_smart_rate is None or float(rate["rate"]) < float(lowest_smart_rate["rate"]):
+            lowest_smart_rate = rate
+
+    if lowest_smart_rate is None:
+        raise Error(message="No rates found.")
+
+    return lowest_smart_rate
+
+
 def get_lowest_stateless_rate(
     stateless_rates: List[Dict[str, Any]], carriers: Optional[List[str]] = None, services: Optional[List[str]] = None
 ) -> Dict[str, Any]:
@@ -67,7 +99,37 @@ def get_lowest_stateless_rate(
     return lowest_rate
 
 
-def receive_event(values: str) -> Event:
+def receive_event(raw_input: str) -> Event:
     """Receives a raw Webhook event and converts it to JSON."""
     # TODO: Remove api_key
-    return convert_to_easypost_object(response=json.loads(s=values), api_key=None)
+    return convert_to_easypost_object(response=json.loads(raw_input), api_key=None)
+
+
+def validate_webhook(event_body: bytes, headers: Dict[str, Any], webhook_secret: str) -> Dict[str, Any]:
+    """Validate a webhook by comparing the HMAC signature header sent from EasyPost to your shared secret.
+    If the signatures do not match, an error will be raised signifying the webhook either did not originate
+    from EasyPost or the secrets do not match. If the signatures do match, the `event_body` will be returned
+    as JSON.
+    """
+    easypost_hmac_signature = headers.get("X-Hmac-Signature")
+
+    if easypost_hmac_signature:
+        normalized_secret = unicodedata.normalize("NFKD", webhook_secret)
+        encoded_secret = bytes(normalized_secret, "utf8")
+
+        expected_signature = hmac.new(
+            key=encoded_secret,
+            msg=event_body,
+            digestmod=hashlib.sha256,
+        )
+
+        digest = "hmac-sha256-hex=" + expected_signature.hexdigest()
+
+        if hmac.compare_digest(digest, easypost_hmac_signature):
+            webhook_body = json.loads(event_body)
+        else:
+            raise Error(message="Webhook received did not originate from EasyPost or had a webhook secret mismatch.")
+    else:
+        raise Error(message="Webhook received does not contain an HMAC signature.")
+
+    return webhook_body

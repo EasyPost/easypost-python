@@ -15,7 +15,17 @@ from easypost.services.end_shipper_service import EndShipperService
 from easypost.services.event_service import EventService
 from easypost.services.insurance_service import InsuranceService
 from easypost.services.order_service import OrderService
+from easypost.services.parcel_service import ParcelService
+from easypost.services.pickup_service import PickupService
 from easypost.services.rate_service import RateService
+from easypost.services.referral_customer_service import ReferralCustomerService
+from easypost.services.refund_service import RefundService
+from easypost.services.report_service import ReportService
+from easypost.services.scan_form_service import ScanFormService
+from easypost.services.shipment_service import ShipmentService
+from easypost.services.tracker_service import TrackerService
+from easypost.services.user_service import UserService
+from easypost.services.webhook_service import WebhookService
 
 
 class EasyPostClient:
@@ -41,4 +51,14 @@ class EasyPostClient:
         self.event = EventService(self)
         self.insurance = InsuranceService(self)
         self.order = OrderService(self)
+        self.parcel = ParcelService(self)
         self.rate = RateService(self)
+        self.pickup = PickupService(self)
+        self.referral_customer = ReferralCustomerService(self)
+        self.refund = RefundService(self)
+        self.report = ReportService(self)
+        self.scan_form = ScanFormService(self)
+        self.shipment = ShipmentService(self)
+        self.tracker = TrackerService(self)
+        self.user = UserService(self)
+        self.webhook = WebhookService(self)

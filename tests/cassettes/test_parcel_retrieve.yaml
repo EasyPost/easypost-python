@@ -20,8 +20,8 @@ interactions:
     uri: https://api.easypost.com/v2/parcels
   response:
     body:
-      string: '{"id": "prcl_c09d06c1c0774d5caa3d4fe62e585df0", "object": "Parcel",
-        "created_at": "2022-08-15T18:51:53Z", "updated_at": "2022-08-15T18:51:53Z",
+      string: '{"id": "prcl_7777c681ff90424f9ac2ee9b05c3e791", "object": "Parcel",
+        "created_at": "2023-05-15T21:03:26Z", "updated_at": "2023-05-15T21:03:26Z",
         "length": 10.0, "width": 8.0, "height": 4.0, "predefined_package": null, "weight":
         15.4, "mode": "test"}'
     headers:
@@ -32,11 +32,11 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"b70813f87e076040c66c0c5a90802fb7"
+      - W/"4f084e94361e31e106f58be10a1ad081"
       expires:
       - '0'
       location:
-      - /api/v2/parcels.prcl_c09d06c1c0774d5caa3d4fe62e585df0
+      - /api/prcl_7777c681ff90424f9ac2ee9b05c3e791/parcels
       pragma:
       - no-cache
       referrer-policy:
@@ -47,25 +47,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f43af47962fa95c9e79a7a2800262530
+      - 44e495b364629e1ee2b976d3003563cd
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb7nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb2nuq a29e4ad05c
+      - extlb2nuq 5ab12a3ed2
       x-runtime:
-      - '0.023370'
+      - '0.041070'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202305151948-2ffaad026d-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -85,11 +87,11 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/v2/parcels/prcl_c09d06c1c0774d5caa3d4fe62e585df0
+    uri: https://api.easypost.com/v2/parcels/prcl_7777c681ff90424f9ac2ee9b05c3e791
   response:
     body:
-      string: '{"id": "prcl_c09d06c1c0774d5caa3d4fe62e585df0", "object": "Parcel",
-        "created_at": "2022-08-15T18:51:53Z", "updated_at": "2022-08-15T18:51:53Z",
+      string: '{"id": "prcl_7777c681ff90424f9ac2ee9b05c3e791", "object": "Parcel",
+        "created_at": "2023-05-15T21:03:26Z", "updated_at": "2023-05-15T21:03:26Z",
         "length": 10.0, "width": 8.0, "height": 4.0, "predefined_package": null, "weight":
         15.4, "mode": "test"}'
     headers:
@@ -100,7 +102,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"b70813f87e076040c66c0c5a90802fb7"
+      - W/"4f084e94361e31e106f58be10a1ad081"
       expires:
       - '0'
       pragma:
@@ -118,20 +120,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f43af47962fa95c9e79a7a2800262537
+      - 44e495b364629e1fe2b976d3003563f5
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb3nuq
+      - bigweb9nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb1nuq a29e4ad05c
+      - extlb2nuq 5ab12a3ed2
       x-runtime:
-      - '0.018231'
+      - '0.018883'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202305151948-2ffaad026d-master
       x-xss-protection:
       - 1; mode=block
     status:

@@ -4,8 +4,8 @@ import easypost
 
 
 @pytest.mark.vcr()
-def test_parcel_create(basic_parcel):
-    parcel = easypost.Parcel.create(**basic_parcel)
+def test_parcel_create(basic_parcel, test_client):
+    parcel = test_client.parcel.create(**basic_parcel)
 
     assert isinstance(parcel, easypost.Parcel)
     assert str.startswith(parcel.id, "prcl_")
@@ -13,10 +13,10 @@ def test_parcel_create(basic_parcel):
 
 
 @pytest.mark.vcr()
-def test_parcel_retrieve(basic_parcel):
-    parcel = easypost.Parcel.create(**basic_parcel)
+def test_parcel_retrieve(basic_parcel, test_client):
+    parcel = test_client.parcel.create(**basic_parcel)
 
-    retrieved_parcel = easypost.Parcel.retrieve(parcel.id)
+    retrieved_parcel = test_client.parcel.retrieve(parcel.id)
 
     assert isinstance(retrieved_parcel, easypost.Parcel)
     assert retrieved_parcel == parcel
