@@ -22,6 +22,7 @@ from easypost.services.referral_customer_service import ReferralCustomerService
 from easypost.services.refund_service import RefundService
 from easypost.services.report_service import ReportService
 from easypost.services.scan_form_service import ScanFormService
+from easypost.services.shipment_service import ShipmentService
 
 
 class EasyPostClient:
@@ -54,3 +55,4 @@ class EasyPostClient:
         self.refund = RefundService(self)
         self.report = ReportService(self)
         self.scan_form = ScanFormService(self)
+        self.shipment = ShipmentService(self)

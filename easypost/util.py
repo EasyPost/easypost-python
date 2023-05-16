@@ -12,6 +12,7 @@ from easypost.easypost_object import (
 )
 from easypost.error import Error
 from easypost.models.event import Event
+from easypost.models.rate import Rate
 
 
 def get_lowest_object_rate(
@@ -39,6 +40,34 @@ def get_lowest_object_rate(
         raise Error(message="No rates found.")
 
     return lowest_rate
+
+
+def get_lowest_smart_rate(smart_rates, delivery_days: int, delivery_accuracy: str) -> Rate:
+    """Get the lowest SmartRate from a list of SmartRates."""
+    valid_delivery_accuracy_values = {
+        "percentile_50",
+        "percentile_75",
+        "percentile_85",
+        "percentile_90",
+        "percentile_95",
+        "percentile_97",
+        "percentile_99",
+    }
+    lowest_smart_rate = None
+
+    if delivery_accuracy.lower() not in valid_delivery_accuracy_values:
+        raise Error(message=f"Invalid delivery_accuracy value, must be one of: {valid_delivery_accuracy_values}")
+
+    for rate in smart_rates:
+        if rate["time_in_transit"][delivery_accuracy] > delivery_days:
+            continue
+        elif lowest_smart_rate is None or float(rate["rate"]) < float(lowest_smart_rate["rate"]):
+            lowest_smart_rate = rate
+
+    if lowest_smart_rate is None:
+        raise Error(message="No rates found.")
+
+    return lowest_smart_rate
 
 
 def get_lowest_stateless_rate(
