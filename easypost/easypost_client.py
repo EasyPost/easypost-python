@@ -25,6 +25,7 @@ from easypost.services.scan_form_service import ScanFormService
 from easypost.services.shipment_service import ShipmentService
 from easypost.services.tracker_service import TrackerService
 from easypost.services.user_service import UserService
+from easypost.services.webhook_service import WebhookService
 
 
 class EasyPostClient:
@@ -60,3 +61,4 @@ class EasyPostClient:
         self.shipment = ShipmentService(self)
         self.tracker = TrackerService(self)
         self.user = UserService(self)
+        self.webhook = WebhookService(self)

@@ -1,34 +1,39 @@
 import pytest
 
 import easypost
+from easypost.util import validate_webhook
 
 
 @pytest.mark.vcr()
-def test_webhook_create(webhook_url):
-    webhook = easypost.Webhook.create(url=webhook_url)
+def test_webhook_create(webhook_url, test_client):
+    webhook = test_client.webhook.create(url=webhook_url)
 
     assert isinstance(webhook, easypost.Webhook)
     assert str.startswith(webhook.id, "hook_")
     assert webhook.url == webhook_url
 
-    webhook.delete()  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
+    test_client.webhook.delete(
+        webhook.id
+    )  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
 
 
 @pytest.mark.vcr()
-def test_webhook_retrieve(webhook_url):
-    webhook = easypost.Webhook.create(url=webhook_url)
+def test_webhook_retrieve(webhook_url, test_client):
+    webhook = test_client.webhook.create(url=webhook_url)
 
-    retrieved_webhook = easypost.Webhook.retrieve(webhook.id)
+    retrieved_webhook = test_client.webhook.retrieve(webhook.id)
 
     assert isinstance(retrieved_webhook, easypost.Webhook)
     assert retrieved_webhook == webhook
 
-    retrieved_webhook.delete()  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
+    test_client.webhook.delete(
+        retrieved_webhook.id
+    )  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
 
 
 @pytest.mark.vcr()
-def test_webhook_all(page_size):
-    webhooks = easypost.Webhook.all(page_size=page_size)
+def test_webhook_all(page_size, test_client):
+    webhooks = test_client.webhook.all(page_size=page_size)
 
     webhooks_array = webhooks["webhooks"]
 
@@ -37,23 +42,25 @@ def test_webhook_all(page_size):
 
 
 @pytest.mark.vcr()
-def test_webhook_update(webhook_url):
-    webhook = easypost.Webhook.create(url=webhook_url)
-    webhook.update()
+def test_webhook_update(webhook_url, test_client):
+    webhook = test_client.webhook.create(url=webhook_url)
+    test_client.webhook.update(webhook.id)
 
     assert isinstance(webhook, easypost.Webhook)
 
-    webhook.delete()  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
+    test_client.webhook.delete(
+        webhook.id
+    )  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
 
 
 @pytest.mark.vcr()
-def test_webhook_delete(webhook_url):
-    webhook = easypost.Webhook.create(url=webhook_url)
+def test_webhook_delete(webhook_url, test_client):
+    webhook = test_client.webhook.create(url=webhook_url)
 
-    response = webhook.delete()
-
-    # This endpoint/method does not return anything, just make sure the request doesn't fail
-    assert isinstance(response, easypost.Webhook)
+    try:
+        test_client.webhook.delete(webhook.id)
+    except Exception:
+        assert False
 
 
 def test_validate_webhook(event_bytes):
@@ -63,7 +70,7 @@ def test_validate_webhook(event_bytes):
         "X-Hmac-Signature": expected_hmac_signature,
     }
 
-    webhook_body = easypost.Webhook.validate_webhook(
+    webhook_body = validate_webhook(
         event_body=event_bytes,
         headers=headers,
         webhook_secret=webhook_secret,
@@ -79,7 +86,7 @@ def test_validate_webhook_invalid_secret(event_bytes):
     }
 
     with pytest.raises(easypost.Error) as error:
-        _ = easypost.Webhook.validate_webhook(
+        _ = validate_webhook(
             event_body=event_bytes,
             headers=headers,
             webhook_secret=webhook_secret,
@@ -95,7 +102,7 @@ def test_validate_webhook_missing_secret(event_bytes):
     }
 
     with pytest.raises(easypost.Error) as error:
-        _ = easypost.Webhook.validate_webhook(
+        _ = validate_webhook(
             event_body=event_bytes,
             headers=headers,
             webhook_secret=webhook_secret,

@@ -5,8 +5,8 @@ from typing import (
     Optional,
 )
 
-from easypost.api_key import ApiKey
 from easypost.easypost_object import convert_to_easypost_object
+from easypost.models.api_key import ApiKey
 from easypost.models.user import User
 from easypost.requestor import (
     RequestMethod,
