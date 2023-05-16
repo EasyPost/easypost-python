@@ -14,10 +14,10 @@ from typing import (
 )
 from urllib.parse import urlencode
 
-from easypost import VERSION
 from easypost.constant import (
     SUPPORT_EMAIL,
     TIMEOUT,
+    VERSION,
 )
 from easypost.easypost_object import EasyPostObject
 from easypost.error import Error
