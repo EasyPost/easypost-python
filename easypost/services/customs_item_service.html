@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="pdoc 13.1.1"/>
-    <title>easypost API documentation</title>
+    <title>easypost.services.customs_item_service API documentation</title>
 
     <style>/*! * Bootstrap Reboot v5.0.0 (https://getbootstrap.com/) * Copyright 2011-2021 The Bootstrap Authors * Copyright 2011-2021 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md) */*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;background-color:currentColor;border:0;opacity:.25}hr:not([size]){height:1px}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-top:0;margin-bottom:1rem}abbr[data-bs-original-title],abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted;cursor:help;-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}dl,ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}dt{font-weight:700}dd{margin-bottom:.5rem;margin-left:0}blockquote{margin:0 0 1rem}b,strong{font-weight:bolder}small{font-size:.875em}mark{padding:.2em;background-color:#fcf8e3}sub,sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}a{color:#0d6efd;text-decoration:underline}a:hover{color:#0a58ca}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,kbd,pre,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em;direction:ltr;unicode-bidi:bidi-override}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}pre code{font-size:inherit;color:inherit;word-break:normal}code{font-size:.875em;color:#d63384;word-wrap:break-word}a>code{color:inherit}kbd{padding:.2rem .4rem;font-size:.875em;color:#fff;background-color:#212529;border-radius:.2rem}kbd kbd{padding:0;font-size:1em;font-weight:700}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}caption{padding-top:.5rem;padding-bottom:.5rem;color:#6c757d;text-align:left}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,tfoot,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}label{display:inline-block}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,select{text-transform:none}[role=button]{cursor:pointer}select{word-wrap:normal}select:disabled{opacity:1}[list]::-webkit-calendar-picker-indicator{display:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}textarea{resize:vertical}fieldset{min-width:0;padding:0;margin:0;border:0}legend{float:left;width:100%;padding:0;margin-bottom:.5rem;font-size:calc(1.275rem + .3vw);line-height:inherit}@media (min-width:1200px){legend{font-size:1.5rem}}legend+*{clear:left}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::file-selector-button{font:inherit}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}output{display:inline-block}iframe{border:0}summary{display:list-item;cursor:pointer}progress{vertical-align:baseline}[hidden]{display:none!important}</style>
     <style>/*! syntax-highlighting.css */pre{line-height:125%;}span.linenos{color:inherit; background-color:transparent; padding-left:5px; padding-right:20px;}.pdoc-code .hll{background-color:#ffffcc}.pdoc-code{background:#f8f8f8;}.pdoc-code .c{color:#3D7B7B; font-style:italic}.pdoc-code .err{border:1px solid #FF0000}.pdoc-code .k{color:#008000; font-weight:bold}.pdoc-code .o{color:#666666}.pdoc-code .ch{color:#3D7B7B; font-style:italic}.pdoc-code .cm{color:#3D7B7B; font-style:italic}.pdoc-code .cp{color:#9C6500}.pdoc-code .cpf{color:#3D7B7B; font-style:italic}.pdoc-code .c1{color:#3D7B7B; font-style:italic}.pdoc-code .cs{color:#3D7B7B; font-style:italic}.pdoc-code .gd{color:#A00000}.pdoc-code .ge{font-style:italic}.pdoc-code .gr{color:#E40000}.pdoc-code .gh{color:#000080; font-weight:bold}.pdoc-code .gi{color:#008400}.pdoc-code .go{color:#717171}.pdoc-code .gp{color:#000080; font-weight:bold}.pdoc-code .gs{font-weight:bold}.pdoc-code .gu{color:#800080; font-weight:bold}.pdoc-code .gt{color:#0044DD}.pdoc-code .kc{color:#008000; font-weight:bold}.pdoc-code .kd{color:#008000; font-weight:bold}.pdoc-code .kn{color:#008000; font-weight:bold}.pdoc-code .kp{color:#008000}.pdoc-code .kr{color:#008000; font-weight:bold}.pdoc-code .kt{color:#B00040}.pdoc-code .m{color:#666666}.pdoc-code .s{color:#BA2121}.pdoc-code .na{color:#687822}.pdoc-code .nb{color:#008000}.pdoc-code .nc{color:#0000FF; font-weight:bold}.pdoc-code .no{color:#880000}.pdoc-code .nd{color:#AA22FF}.pdoc-code .ni{color:#717171; font-weight:bold}.pdoc-code .ne{color:#CB3F38; font-weight:bold}.pdoc-code .nf{color:#0000FF}.pdoc-code .nl{color:#767600}.pdoc-code .nn{color:#0000FF; font-weight:bold}.pdoc-code .nt{color:#008000; font-weight:bold}.pdoc-code .nv{color:#19177C}.pdoc-code .ow{color:#AA22FF; font-weight:bold}.pdoc-code .w{color:#bbbbbb}.pdoc-code .mb{color:#666666}.pdoc-code .mf{color:#666666}.pdoc-code .mh{color:#666666}.pdoc-code .mi{color:#666666}.pdoc-code .mo{color:#666666}.pdoc-code .sa{color:#BA2121}.pdoc-code .sb{color:#BA2121}.pdoc-code .sc{color:#BA2121}.pdoc-code .dl{color:#BA2121}.pdoc-code .sd{color:#BA2121; font-style:italic}.pdoc-code .s2{color:#BA2121}.pdoc-code .se{color:#AA5D1F; font-weight:bold}.pdoc-code .sh{color:#BA2121}.pdoc-code .si{color:#A45A77; font-weight:bold}.pdoc-code .sx{color:#008000}.pdoc-code .sr{color:#A45A77}.pdoc-code .s1{color:#BA2121}.pdoc-code .ss{color:#19177C}.pdoc-code .bp{color:#008000}.pdoc-code .fm{color:#0000FF}.pdoc-code .vc{color:#19177C}.pdoc-code .vg{color:#19177C}.pdoc-code .vi{color:#19177C}.pdoc-code .vm{color:#19177C}.pdoc-code .il{color:#666666}</style>
@@ -16,55 +16,35 @@
     <nav class="pdoc">
         <label id="navtoggle" for="togglestate" class="pdoc-button"><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke-linecap='round' stroke="currentColor" stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg></label>
         <input id="togglestate" type="checkbox" aria-hidden="true" tabindex="-1">
-        <div>
+        <div>            <a class="pdoc-button module-list-button" href="../services.html">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
+  <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+</svg>                &nbsp;easypost.services</a>
+
 
             <input type="search" placeholder="Search..." role="searchbox" aria-label="search"
                    pattern=".+" required>
 
 
-            <h2>Submodules</h2>
-            <ul>
-                    <li><a href="easypost/address.html">address</a></li>
-                    <li><a href="easypost/api_key.html">api_key</a></li>
-                    <li><a href="easypost/batch.html">batch</a></li>
-                    <li><a href="easypost/billing.html">billing</a></li>
-                    <li><a href="easypost/brand.html">brand</a></li>
-                    <li><a href="easypost/carrier_account.html">carrier_account</a></li>
-                    <li><a href="easypost/constant.html">constant</a></li>
-                    <li><a href="easypost/customs_info.html">customs_info</a></li>
-                    <li><a href="easypost/customs_item.html">customs_item</a></li>
-                    <li><a href="easypost/easypost_client.html">easypost_client</a></li>
-                    <li><a href="easypost/easypost_object.html">easypost_object</a></li>
-                    <li><a href="easypost/endshipper.html">endshipper</a></li>
-                    <li><a href="easypost/error.html">error</a></li>
-                    <li><a href="easypost/event.html">event</a></li>
-                    <li><a href="easypost/insurance.html">insurance</a></li>
-                    <li><a href="easypost/models.html">models</a></li>
-                    <li><a href="easypost/order.html">order</a></li>
-                    <li><a href="easypost/parcel.html">parcel</a></li>
-                    <li><a href="easypost/payload.html">payload</a></li>
-                    <li><a href="easypost/pickup.html">pickup</a></li>
-                    <li><a href="easypost/pickup_rate.html">pickup_rate</a></li>
-                    <li><a href="easypost/postage_label.html">postage_label</a></li>
-                    <li><a href="easypost/rate.html">rate</a></li>
-                    <li><a href="easypost/referral_customer.html">referral_customer</a></li>
-                    <li><a href="easypost/refund.html">refund</a></li>
-                    <li><a href="easypost/report.html">report</a></li>
-                    <li><a href="easypost/requestor.html">requestor</a></li>
-                    <li><a href="easypost/resource.html">resource</a></li>
-                    <li><a href="easypost/scanform.html">scanform</a></li>
-                    <li><a href="easypost/services.html">services</a></li>
-                    <li><a href="easypost/shipment.html">shipment</a></li>
-                    <li><a href="easypost/tax_identifier.html">tax_identifier</a></li>
-                    <li><a href="easypost/tracker.html">tracker</a></li>
-                    <li><a href="easypost/user.html">user</a></li>
-                    <li><a href="easypost/util.html">util</a></li>
-                    <li><a href="easypost/version.html">version</a></li>
-                    <li><a href="easypost/webhook.html">webhook</a></li>
-            </ul>
 
             <h2>API Documentation</h2>
                 <ul class="memberlist">
+            <li>
+                    <a class="class" href="#CustomsItemService">CustomsItemService</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#CustomsItemService.__init__">CustomsItemService</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#CustomsItemService.create">create</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#CustomsItemService.retrieve">retrieve</a>
+                        </li>
+                </ul>
+
+            </li>
     </ul>
 
 
@@ -79,61 +59,127 @@
     <main class="pdoc">
             <section class="module-info">
                     <h1 class="modulename">
-easypost    </h1>
+<a href="./../../easypost.html">easypost</a><wbr>.<a href="./../services.html">services</a><wbr>.customs_item_service    </h1>
 
                 
-                        <input id="mod-easypost-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                        <input id="mod-customs_item_service-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 
-                        <label class="view-source-button" for="mod-easypost-view-source"><span>View Source</span></label>
+                        <label class="view-source-button" for="mod-customs_item_service-view-source"><span>View Source</span></label>
 
-                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="c1"># flake8: noqa</span>
-</span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a><span class="kn">from</span> <span class="nn">easypost.address</span> <span class="kn">import</span> <span class="n">Address</span>
-</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="kn">from</span> <span class="nn">easypost.api_key</span> <span class="kn">import</span> <span class="n">ApiKey</span>
-</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="kn">from</span> <span class="nn">easypost.batch</span> <span class="kn">import</span> <span class="n">Batch</span>
-</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="kn">from</span> <span class="nn">easypost.billing</span> <span class="kn">import</span> <span class="n">Billing</span>
-</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="kn">from</span> <span class="nn">easypost.brand</span> <span class="kn">import</span> <span class="n">Brand</span>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span> <span class="nn">easypost.carrier_account</span> <span class="kn">import</span> <span class="n">CarrierAccount</span>
-</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="kn">from</span> <span class="nn">easypost.customs_info</span> <span class="kn">import</span> <span class="n">CustomsInfo</span>
-</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="kn">from</span> <span class="nn">easypost.customs_item</span> <span class="kn">import</span> <span class="n">CustomsItem</span>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="kn">from</span> <span class="nn">easypost.easypost_client</span> <span class="kn">import</span> <span class="n">EasyPostClient</span>
-</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a><span class="kn">from</span> <span class="nn">easypost.endshipper</span> <span class="kn">import</span> <span class="n">EndShipper</span>
-</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="kn">from</span> <span class="nn">easypost.error</span> <span class="kn">import</span> <span class="n">Error</span>
-</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="kn">from</span> <span class="nn">easypost.event</span> <span class="kn">import</span> <span class="n">Event</span>
-</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="kn">from</span> <span class="nn">easypost.insurance</span> <span class="kn">import</span> <span class="n">Insurance</span>
-</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a><span class="kn">from</span> <span class="nn">easypost.order</span> <span class="kn">import</span> <span class="n">Order</span>
-</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a><span class="kn">from</span> <span class="nn">easypost.parcel</span> <span class="kn">import</span> <span class="n">Parcel</span>
-</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a><span class="kn">from</span> <span class="nn">easypost.payload</span> <span class="kn">import</span> <span class="n">Payload</span>
-</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a><span class="kn">from</span> <span class="nn">easypost.pickup</span> <span class="kn">import</span> <span class="n">Pickup</span>
-</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a><span class="kn">from</span> <span class="nn">easypost.pickup_rate</span> <span class="kn">import</span> <span class="n">PickupRate</span>
-</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a><span class="kn">from</span> <span class="nn">easypost.postage_label</span> <span class="kn">import</span> <span class="n">PostageLabel</span>
-</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a><span class="kn">from</span> <span class="nn">easypost.rate</span> <span class="kn">import</span> <span class="n">Rate</span>
-</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a><span class="kn">from</span> <span class="nn">easypost.referral_customer</span> <span class="kn">import</span> <span class="n">ReferralCustomer</span>
-</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a><span class="kn">from</span> <span class="nn">easypost.refund</span> <span class="kn">import</span> <span class="n">Refund</span>
-</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a><span class="kn">from</span> <span class="nn">easypost.report</span> <span class="kn">import</span> <span class="n">Report</span>
-</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a><span class="kn">from</span> <span class="nn">easypost.scanform</span> <span class="kn">import</span> <span class="n">ScanForm</span>
-</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a><span class="kn">from</span> <span class="nn">easypost.shipment</span> <span class="kn">import</span> <span class="n">Shipment</span>
-</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a><span class="kn">from</span> <span class="nn">easypost.tax_identifier</span> <span class="kn">import</span> <span class="n">TaxIdentifier</span>
-</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a><span class="kn">from</span> <span class="nn">easypost.tracker</span> <span class="kn">import</span> <span class="n">Tracker</span>
-</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a><span class="kn">from</span> <span class="nn">easypost.user</span> <span class="kn">import</span> <span class="n">User</span>
-</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a><span class="kn">from</span> <span class="nn">easypost.webhook</span> <span class="kn">import</span> <span class="n">Webhook</span>
-</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a>
-</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a><span class="kn">from</span> <span class="nn">.version</span> <span class="kn">import</span> <span class="p">(</span>
-</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a>    <span class="n">VERSION</span><span class="p">,</span>
-</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a>    <span class="n">VERSION_INFO</span><span class="p">,</span>
-</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a><span class="p">)</span>
-</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a>
-</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a>
-</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a><span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;EasyPost &lt;oss@easypost.com&gt;&quot;</span>
-</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a><span class="n">__version__</span> <span class="o">=</span> <span class="n">VERSION</span>
-</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a><span class="n">version_info</span> <span class="o">=</span> <span class="n">VERSION_INFO</span>
-</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a>
-</span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a><span class="c1"># TODO: Remove these once rewrite is complete</span>
-</span><span id="L-43"><a href="#L-43"><span class="linenos">43</span></a><span class="n">api_key</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="L-44"><a href="#L-44"><span class="linenos">44</span></a><span class="n">api_base</span> <span class="o">=</span> <span class="s2">&quot;https://api.easypost.com/v2&quot;</span>
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="kn">from</span> <span class="nn">easypost.models.customs_item</span> <span class="kn">import</span> <span class="n">CustomsItem</span>
+</span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a><span class="kn">from</span> <span class="nn">easypost.services.base_service</span> <span class="kn">import</span> <span class="n">BaseService</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a>
+</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a>
+</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="k">class</span> <span class="nc">CustomsItemService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">):</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">client</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span> <span class="o">=</span> <span class="n">CustomsItem</span><span class="o">.</span><span class="vm">__name__</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CustomsItem</span><span class="p">:</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a CustomsItem.&quot;&quot;&quot;</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_resource</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>
+</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a>    <span class="k">def</span> <span class="nf">retrieve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CustomsItem</span><span class="p">:</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a CustomsItem.&quot;&quot;&quot;</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve_resource</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
 </span></pre></div>
 
 
             </section>
+                <section id="CustomsItemService">
+                            <input id="CustomsItemService-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">CustomsItemService</span><wbr>(<span class="base"><a href="base_service.html#BaseService">easypost.services.base_service.BaseService</a></span>):
+
+                <label class="view-source-button" for="CustomsItemService-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#CustomsItemService"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CustomsItemService-6"><a href="#CustomsItemService-6"><span class="linenos"> 6</span></a><span class="k">class</span> <span class="nc">CustomsItemService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
+</span><span id="CustomsItemService-7"><a href="#CustomsItemService-7"><span class="linenos"> 7</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">):</span>
+</span><span id="CustomsItemService-8"><a href="#CustomsItemService-8"><span class="linenos"> 8</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">client</span>
+</span><span id="CustomsItemService-9"><a href="#CustomsItemService-9"><span class="linenos"> 9</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span> <span class="o">=</span> <span class="n">CustomsItem</span><span class="o">.</span><span class="vm">__name__</span>
+</span><span id="CustomsItemService-10"><a href="#CustomsItemService-10"><span class="linenos">10</span></a>
+</span><span id="CustomsItemService-11"><a href="#CustomsItemService-11"><span class="linenos">11</span></a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CustomsItem</span><span class="p">:</span>
+</span><span id="CustomsItemService-12"><a href="#CustomsItemService-12"><span class="linenos">12</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a CustomsItem.&quot;&quot;&quot;</span>
+</span><span id="CustomsItemService-13"><a href="#CustomsItemService-13"><span class="linenos">13</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_resource</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+</span><span id="CustomsItemService-14"><a href="#CustomsItemService-14"><span class="linenos">14</span></a>
+</span><span id="CustomsItemService-15"><a href="#CustomsItemService-15"><span class="linenos">15</span></a>    <span class="k">def</span> <span class="nf">retrieve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CustomsItem</span><span class="p">:</span>
+</span><span id="CustomsItemService-16"><a href="#CustomsItemService-16"><span class="linenos">16</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a CustomsItem.&quot;&quot;&quot;</span>
+</span><span id="CustomsItemService-17"><a href="#CustomsItemService-17"><span class="linenos">17</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve_resource</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>The base service that all other services inherit.</p>
+</div>
+
+
+                            <div id="CustomsItemService.__init__" class="classattr">
+                                        <input id="CustomsItemService.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="name">CustomsItemService</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">client</span></span>)</span>
+
+                <label class="view-source-button" for="CustomsItemService.__init__-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#CustomsItemService.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CustomsItemService.__init__-7"><a href="#CustomsItemService.__init__-7"><span class="linenos">7</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">):</span>
+</span><span id="CustomsItemService.__init__-8"><a href="#CustomsItemService.__init__-8"><span class="linenos">8</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">client</span>
+</span><span id="CustomsItemService.__init__-9"><a href="#CustomsItemService.__init__-9"><span class="linenos">9</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span> <span class="o">=</span> <span class="n">CustomsItem</span><span class="o">.</span><span class="vm">__name__</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="CustomsItemService.create" class="classattr">
+                                        <input id="CustomsItemService.create-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">create</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="o">**</span><span class="n">params</span></span><span class="return-annotation">) -> <span class="n"><a href="../models/customs_item.html#CustomsItem">easypost.models.customs_item.CustomsItem</a></span>:</span></span>
+
+                <label class="view-source-button" for="CustomsItemService.create-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#CustomsItemService.create"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CustomsItemService.create-11"><a href="#CustomsItemService.create-11"><span class="linenos">11</span></a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CustomsItem</span><span class="p">:</span>
+</span><span id="CustomsItemService.create-12"><a href="#CustomsItemService.create-12"><span class="linenos">12</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a CustomsItem.&quot;&quot;&quot;</span>
+</span><span id="CustomsItemService.create-13"><a href="#CustomsItemService.create-13"><span class="linenos">13</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_resource</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Create a CustomsItem.</p>
+</div>
+
+
+                            </div>
+                            <div id="CustomsItemService.retrieve" class="classattr">
+                                        <input id="CustomsItemService.retrieve-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">retrieve</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="nb">id</span></span><span class="return-annotation">) -> <span class="n"><a href="../models/customs_item.html#CustomsItem">easypost.models.customs_item.CustomsItem</a></span>:</span></span>
+
+                <label class="view-source-button" for="CustomsItemService.retrieve-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#CustomsItemService.retrieve"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CustomsItemService.retrieve-15"><a href="#CustomsItemService.retrieve-15"><span class="linenos">15</span></a>    <span class="k">def</span> <span class="nf">retrieve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CustomsItem</span><span class="p">:</span>
+</span><span id="CustomsItemService.retrieve-16"><a href="#CustomsItemService.retrieve-16"><span class="linenos">16</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a CustomsItem.&quot;&quot;&quot;</span>
+</span><span id="CustomsItemService.retrieve-17"><a href="#CustomsItemService.retrieve-17"><span class="linenos">17</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve_resource</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retrieve a CustomsItem.</p>
+</div>
+
+
+                            </div>
+                </section>
     </main>
 <script>
     function escapeHTML(html) {
@@ -187,7 +233,7 @@ easypost    </h1>
                 script.async = true;
                 script.onload = () => resolve(window.pdocSearch);
                 script.onerror = (e) => reject(e);
-                script.src = "search.js";
+                script.src = "../../search.js";
                 document.getElementsByTagName("head")[0].appendChild(script);
             });
         } catch (e) {
@@ -229,7 +275,7 @@ easypost    </h1>
             }
             for (let result of results.slice(0, 10)) {
                 let doc = result.doc;
-                let url = `${doc.modulename.replaceAll(".", "/")}.html`;
+                let url = `../../${doc.modulename.replaceAll(".", "/")}.html`;
                 if (doc.qualname) {
                     url += `#${doc.qualname}`;
                 }
