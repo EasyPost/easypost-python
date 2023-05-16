@@ -86,5 +86,5 @@ class BatchService(BaseService):
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> List[Any]:
-        """Retrieve the next page of the List Batch response."""
+        """Retrieve the next page of the list Batch response."""
         return self._get_next_page_resources(self._model_class, batches, page_size, optional_params)

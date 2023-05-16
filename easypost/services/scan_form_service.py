@@ -32,5 +32,5 @@ class ScanFormService(BaseService):
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> List[ScanForm]:
-        """Retrieve the next page of the List ScanForm response."""
+        """Retrieve the next page of the list ScanForm response."""
         return self._get_next_page_resources(self._model_class, scan_forms, page_size, optional_params)

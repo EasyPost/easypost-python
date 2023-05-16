@@ -47,7 +47,7 @@ class ReportService(BaseService):
         page_size: Optional[int] = None,
         api_key: Optional[str] = None,
     ) -> List[Report]:
-        """Retrieve the next page of the List Report response."""
+        """Retrieve the next page of the list Report response."""
         type = reports.get("type")
         url = f"{self._class_url(self._model_class)}/{type}"
         params = {

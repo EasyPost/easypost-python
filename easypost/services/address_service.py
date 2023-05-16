@@ -70,5 +70,5 @@ class AddressService(BaseService):
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> List[Any]:
-        """Retrieve the next page of the List Addresses response."""
+        """Retrieve the next page of the list Addresses response."""
         return self._get_next_page_resources(self._model_class, addresses, page_size, optional_params)

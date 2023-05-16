@@ -54,5 +54,5 @@ class EventService(BaseService):
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> List[Any]:
-        """Retrieve the next page of the List Events response."""
+        """Retrieve the next page of the list Events response."""
         return self._get_next_page_resources(self._model_class, events, page_size, optional_params)

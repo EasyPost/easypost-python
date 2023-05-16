@@ -37,7 +37,7 @@ class PickupService(BaseService):
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> List[Pickup]:
-        """Retrieve the next page of the List Pickup response."""
+        """Retrieve the next page of the list Pickup response."""
         return self._get_next_page_resources(self._model_class, pickups, page_size, optional_params)
 
     def buy(self, id: str, **params) -> Pickup:

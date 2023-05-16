@@ -32,5 +32,5 @@ class InsuranceService(BaseService):
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> List[Any]:
-        """Retrieve the next page of the List Insurance response."""
+        """Retrieve the next page of the list Insurance response."""
         return self._get_next_page_resources(self._model_class, insurances, page_size, optional_params)
