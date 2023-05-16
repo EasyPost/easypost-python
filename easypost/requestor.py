@@ -14,6 +14,7 @@ from typing import (
 )
 from urllib.parse import urlencode
 
+from easypost import VERSION
 from easypost.constant import (
     SUPPORT_EMAIL,
     TIMEOUT,
@@ -31,11 +32,8 @@ class RequestMethod(Enum):
 
 
 class Requestor:
-    def __init__(self, client=None, local_api_key: Optional[str] = None):
+    def __init__(self, client=None):
         self._client = client
-        self._api_key = (
-            self._client.api_key if self._client else local_api_key
-        )  # TODO: Remove the local_api_key here, eventually move to using `client.api_key throughout this file`
 
     @classmethod
     def _objects_to_ids(cls, param: Dict[str, Any]) -> Dict[str, Any]:
@@ -112,16 +110,7 @@ class Requestor:
         beta: bool = False,
     ) -> Tuple[str, int, Optional[str]]:
         """Internal logic required to make a request to the EasyPost API."""
-        # Importing here to avoid circular imports
-        from easypost import (
-            VERSION,
-            api_base,
-            api_key,
-        )
-
-        my_api_key = self._api_key or api_key  # TODO: Use `self._client.api_key` eventually
-
-        if api_key_required and my_api_key is None:
+        if self._client.api_key is None:
             raise Error(
                 "No API key provided. Set an API key via \"easypost.api_key = 'APIKEY'. "
                 "Your API keys can be found in your EasyPost dashboard, or you can email us "
@@ -131,7 +120,7 @@ class Requestor:
         if beta:
             abs_url = f"https://api.easypost.com/beta{url}"
         else:
-            abs_url = f"{self._client.api_base if self._client else api_base}{url}"  # TODO: Remove fallback
+            abs_url = f"{self._client.api_base}{url}"
 
         params = self._objects_to_ids(param=params or {})
 
@@ -170,7 +159,7 @@ class Requestor:
         )
 
         headers = {
-            "Authorization": "Bearer %s" % my_api_key,
+            "Authorization": "Bearer %s" % self._client.api_key,
             "User-Agent": user_agent,
         }
 
@@ -185,7 +174,7 @@ class Requestor:
         else:
             raise Error(f"Bug discovered: invalid request_lib: {request_lib}. Please report to {SUPPORT_EMAIL}.")
 
-        return http_body, http_status, my_api_key
+        return http_body, http_status, self._client.api_key
 
     def interpret_response(self, http_body: str, http_status: int) -> Dict[str, Any]:
         """Interpret the response body we receive from the API."""
@@ -230,7 +219,7 @@ class Requestor:
                 params=url_params,
                 headers=headers,
                 json=body,
-                timeout=self._client.timeout if self._client else timeout,  # TODO: Remove fallback
+                timeout=self._client.timeout,
                 verify=True,
             )
             http_body = result.text
@@ -255,7 +244,7 @@ class Requestor:
             "method": method.value,
             "headers": headers,
             "validate_certificate": False,
-            "deadline": self._client.timeout if self._client else timeout,  # TODO: Remove fallback
+            "deadline": self._client.timeout,
         }
         if method in [RequestMethod.GET, RequestMethod.DELETE]:
             # GET/DELETE requests use query params
@@ -338,6 +327,7 @@ except ImportError:
         request_lib = "requests"
         requests_session = requests.Session()
         requests_http_adapter = requests.adapters.HTTPAdapter(max_retries=3)
+        # TODO: Use constant for prefix
         requests_session.mount(prefix="https://api.easypost.com", adapter=requests_http_adapter)
     except Exception:
         raise ImportError(

@@ -6,77 +6,7 @@ from typing import (
     Optional,
 )
 
-import easypost
-
-
-# TODO: Use the actual models here as the classes
-EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP = {
-    "adr": "Address",
-    "ak": "ApiKey",
-    "batch": "Batch",
-    "brd": "Brand",
-    "ca": "CarrierAccount",
-    "cfrep": "Report",
-    "cstinfo": "CustomsInfo",
-    "cstitem": "CustomsItem",
-    "es": "EndShipper",
-    "evt": "Event",
-    "hook": "Webhook",
-    "ins": "Insurance",
-    "order": "Order",
-    "payload": "Payload",
-    "pickup": "Pickup",
-    "pickuprate": "PickupRate",
-    "pl": "PostageLabel",
-    "plrep": "Report",
-    "prcl": "Parcel",
-    "rate": "Rate",
-    "refrep": "Report",
-    "rfnd": "Refund",
-    "sf": "ScanForm",
-    "shp": "Shipment",
-    "shpinvrep": "Report",
-    "shprep": "Report",
-    "trk": "Tracker",
-    "trkrep": "Report",
-    "user": "User",
-}
-
-OBJECT_CLASS_NAME_OVERRIDES = {
-    "CashFlowReport": "Report",
-    "PaymentLogReport": "Report",
-    "RefundReport": "Report",
-    "ShipmentInvoiceReport": "Report",
-    "ShipmentReport": "Report",
-    "TrackerReport": "Report",
-}
-
-
-def convert_to_easypost_object(
-    response: Dict[str, Any],
-    api_key: Optional[str] = None,
-    parent: object = None,
-    name: Optional[str] = None,
-):
-    """Convert a response to an EasyPost object."""
-    if isinstance(response, list):
-        return [convert_to_easypost_object(response=item, api_key=api_key, parent=parent) for item in response]
-    elif isinstance(response, dict):
-        response = response.copy()
-        object_type_str = response.get("object", "EasyPostObject")
-        class_name = OBJECT_CLASS_NAME_OVERRIDES.get(object_type_str, object_type_str)
-
-        object_id = response.get("id", None)
-        if object_id is not None:
-            # If an object ID is present, use it to find the class type instead.
-            object_id_prefix = object_id.split("_")[0]
-            class_name = EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP.get(object_id_prefix, "EasyPostObject")
-
-        cls = getattr(easypost, class_name, EasyPostObject)
-        obj = cls.construct_from(values=response, api_key=api_key, parent=parent, name=name)
-        return obj
-    else:
-        return response
+from easypost.util import convert_to_easypost_object
 
 
 class EasyPostObject(object):
@@ -88,6 +18,7 @@ class EasyPostObject(object):
         name: Optional[str] = None,
         **params,
     ):
+        # TODO: Revisit these values and entire file since many aren't needed now that we don't update local objects
         self.__dict__["_values"] = set()
         self.__dict__["_unsaved_values"] = set()
         self.__dict__["_transient_values"] = set()

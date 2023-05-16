@@ -1,13 +1,17 @@
 import pytest
 
-import easypost
+from easypost.error import Error
+from easypost.models import (
+    Order,
+    Rate,
+)
 
 
 @pytest.mark.vcr()
 def test_order_create(basic_order, test_client):
     order = test_client.order.create(**basic_order)
 
-    assert isinstance(order, easypost.Order)
+    assert isinstance(order, Order)
     assert str.startswith(order.id, "order_")
     assert order.rates is not None
 
@@ -18,7 +22,7 @@ def test_order_retrieve(basic_order, test_client):
 
     retrieved_order = test_client.order.retrieve(order.id)
 
-    assert isinstance(retrieved_order, easypost.Order)
+    assert isinstance(retrieved_order, Order)
     # status changes between creation and retrieval, so we can't compare the whole object
     assert retrieved_order.id == order.id
 
@@ -32,7 +36,7 @@ def test_order_get_rates(basic_order, test_client):
     rates_array = rates["rates"]
 
     assert isinstance(rates_array, list)
-    assert all(isinstance(rate, easypost.Rate) for rate in rates_array)
+    assert all(isinstance(rate, Rate) for rate in rates_array)
 
 
 @pytest.mark.vcr()
@@ -63,6 +67,6 @@ def test_order_lowest_rate(basic_order, test_client):
     assert lowest_rate_service.carrier == "USPS"
 
     # Test lowest rate with carrier filter (should error due to bad carrier)
-    with pytest.raises(easypost.Error) as error:
+    with pytest.raises(Error) as error:
         order.lowest_rate(carriers=["BAD CARRIER"])
     assert str(error.value) == "No rates found."

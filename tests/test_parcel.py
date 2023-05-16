@@ -1,13 +1,13 @@
 import pytest
 
-import easypost
+from easypost.models import Parcel
 
 
 @pytest.mark.vcr()
 def test_parcel_create(basic_parcel, test_client):
     parcel = test_client.parcel.create(**basic_parcel)
 
-    assert isinstance(parcel, easypost.Parcel)
+    assert isinstance(parcel, Parcel)
     assert str.startswith(parcel.id, "prcl_")
     assert parcel.weight == 15.4
 
@@ -18,5 +18,5 @@ def test_parcel_retrieve(basic_parcel, test_client):
 
     retrieved_parcel = test_client.parcel.retrieve(parcel.id)
 
-    assert isinstance(retrieved_parcel, easypost.Parcel)
+    assert isinstance(retrieved_parcel, Parcel)
     assert retrieved_parcel == parcel

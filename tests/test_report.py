@@ -1,7 +1,7 @@
 import pytest
 
-import easypost
 from easypost.error import Error
+from easypost.models import Report
 
 
 @pytest.mark.vcr()
@@ -12,7 +12,7 @@ def test_report_create_report(report_type, report_date, test_client):
         end_date=report_date,
     )
 
-    assert isinstance(report, easypost.Report)
+    assert isinstance(report, Report)
     assert str.startswith(report.id, "shprep_")
 
 
@@ -27,7 +27,7 @@ def test_report_create_with_additional_columns(report_type, report_date, test_cl
 
     # Reports are queued, so we can't wait for completion.
     # Verifying columns would require parsing CSV. Verify correct parameters via URL in cassette
-    assert isinstance(report, easypost.Report)
+    assert isinstance(report, Report)
 
 
 @pytest.mark.vcr()
@@ -41,7 +41,7 @@ def test_report_create_with_columns(report_type, report_date, test_client):
 
     # Reports are queued, so we can't wait for completion.
     # Verifying columns would require parsing CSV. Verify correct parameters via URL in cassette
-    assert isinstance(report, easypost.Report)
+    assert isinstance(report, Report)
 
 
 @pytest.mark.vcr()
@@ -52,9 +52,9 @@ def test_report_retrieve_shipment_report(report_type, report_date, test_client):
         end_date=report_date,
     )
 
-    retrieved_report = easypost.Report.retrieve(report.id)
+    retrieved_report = Report.retrieve(report.id)
 
-    assert isinstance(retrieved_report, easypost.Report)
+    assert isinstance(retrieved_report, Report)
     assert report.start_date == retrieved_report.start_date
     assert report.end_date == retrieved_report.end_date
 
@@ -67,7 +67,7 @@ def test_report_all(report_type, page_size, test_client):
 
     assert len(reports_array) <= page_size
     assert reports["has_more"] is not None
-    assert all(isinstance(report, easypost.Report) for report in reports_array)
+    assert all(isinstance(report, Report) for report in reports_array)
 
 
 @pytest.mark.vcr()

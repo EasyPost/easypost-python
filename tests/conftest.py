@@ -82,46 +82,6 @@ def stripe_connect_prod_client():
     return easypost.EasyPostClient(STRIPE_CONNECT_USER_PROD_API_KEY)
 
 
-# TODO: Remove
-@pytest.fixture(autouse=True)
-def setup_api_key():
-    """This fixture is auto-loaded by all tests; it sets up the api key."""
-    default_key = easypost.api_key
-    easypost.api_key = EASYPOST_TEST_API_KEY
-    yield
-    easypost.api_key = default_key
-
-
-# TODO: Remove
-@pytest.fixture
-def prod_api_key():
-    """If a test needs to use the prod api key, make it depend on this fixture."""
-    default_key = easypost.api_key
-    easypost.api_key = EASYPOST_PROD_API_KEY
-    yield
-    easypost.api_key = default_key
-
-
-# TODO: Remove
-@pytest.fixture
-def partner_prod_api_key():
-    """If a test needs to use the partner prod api key, make it depend on this fixture."""
-    default_key = easypost.api_key
-    easypost.api_key = PARTNER_USER_PROD_API_KEY
-    yield
-    easypost.api_key = default_key
-
-
-# TODO: Remove
-@pytest.fixture
-def referral_customer_prod_api_key():
-    """If a test needs to use the referral customer prod api key, make it depend on this fixture."""
-    default_key = easypost.api_key
-    easypost.api_key = REFERRAL_CUSTOMER_PROD_API_KEY
-    yield
-    easypost.api_key = default_key
-
-
 @pytest.fixture(autouse=True)
 def check_expired_cassettes(expiration_days: int = 180, throw_error: bool = False):
     """Checks for expired cassettes and throws errors if they are too old and must be re-recorded."""

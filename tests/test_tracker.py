@@ -1,14 +1,14 @@
 import pytest
 
-import easypost
 from easypost.error import Error
+from easypost.models import Tracker
 
 
 @pytest.mark.vcr()
 def test_tracker_create(test_client):
     tracker = test_client.tracker.create(tracking_code="EZ1000000001")
 
-    assert isinstance(tracker, easypost.Tracker)
+    assert isinstance(tracker, Tracker)
     assert str.startswith(tracker.id, "trk_")
     assert tracker.status == "pre_transit"
 
@@ -19,7 +19,7 @@ def test_tracker_retrieve(test_client):
 
     retrieved_tracker = test_client.tracker.retrieve(tracker.id)
 
-    assert isinstance(retrieved_tracker, easypost.Tracker)
+    assert isinstance(retrieved_tracker, Tracker)
     # status changes between creation and retrieval, so we can't compare the whole object
     assert retrieved_tracker.id == tracker.id
 
@@ -32,7 +32,7 @@ def test_tracker_all(page_size, test_client):
 
     assert len(trackers_array) <= page_size
     assert trackers["has_more"] is not None
-    assert all(isinstance(tracker, easypost.Tracker) for tracker in trackers_array)
+    assert all(isinstance(tracker, Tracker) for tracker in trackers_array)
 
 
 @pytest.mark.vcr()

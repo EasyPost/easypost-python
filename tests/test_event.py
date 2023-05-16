@@ -4,8 +4,11 @@ import time
 
 import pytest
 
-import easypost
 from easypost.error import Error
+from easypost.models import (
+    Event,
+    Payload,
+)
 from easypost.util import receive_event
 
 
@@ -17,7 +20,7 @@ def test_event_all(page_size, test_client):
 
     assert len(events_array) <= page_size
     assert events["has_more"] is not None
-    assert all(isinstance(event, easypost.Event) for event in events_array)
+    assert all(isinstance(event, Event) for event in events_array)
 
 
 @pytest.mark.vcr()
@@ -41,7 +44,7 @@ def test_event_retrieve(page_size, test_client):
 
     event = events["events"][0]
 
-    assert isinstance(event, easypost.Event)
+    assert isinstance(event, Event)
     assert str.startswith(event.id, "evt_")
 
 
@@ -50,7 +53,7 @@ def test_event_retrieve_all_payloads(
     page_size, webhook_url, one_call_buy_shipment, synchronous_sleep_seconds, test_client
 ):
     function_name = inspect.stack()[0][3]
-    webhook = easypost.Webhook.create(url=webhook_url)  # TODO: Use new syntax when service exists
+    webhook = test_client.webhook.create(url=webhook_url)
 
     test_client.batch.create(shipments=[one_call_buy_shipment])
 
@@ -61,7 +64,7 @@ def test_event_retrieve_all_payloads(
     payloads = test_client.event.retrieve_all_payloads(events["events"][0]["id"])
 
     # Payloads may not be populated due to the webhook delivery system being on a queue
-    assert all(isinstance(payload, easypost.Payload) for payload in payloads["payloads"])
+    assert all(isinstance(payload, Payload) for payload in payloads["payloads"])
 
     webhook.delete()  # we are deleting the webhook here so we don't keep sending events to a dead webhook.
 
@@ -69,7 +72,7 @@ def test_event_retrieve_all_payloads(
 @pytest.mark.vcr()
 def test_event_retrieve_payload(page_size, webhook_url, one_call_buy_shipment, synchronous_sleep_seconds, test_client):
     function_name = inspect.stack()[0][3]
-    webhook = easypost.Webhook.create(url=webhook_url)  # TODO: Use new syntax when service exists
+    webhook = test_client.webhook.create(url=webhook_url)
 
     test_client.batch.create(shipments=[one_call_buy_shipment])
 
@@ -81,7 +84,7 @@ def test_event_retrieve_payload(page_size, webhook_url, one_call_buy_shipment, s
     try:
         # Need a valid-length, invalid payload ID here
         test_client.event.retrieve_payload(events["events"][0]["id"], "payload_11111111111111111111111111111111")
-    except easypost.Error as error:
+    except Error as error:
         assert error.message == "The payload(s) could not be found."
         assert error.http_status == 404
 
@@ -91,5 +94,5 @@ def test_event_retrieve_payload(page_size, webhook_url, one_call_buy_shipment, s
 def test_event_receive(event_json):
     event = receive_event(event_json)
 
-    assert isinstance(event, easypost.Event)
+    assert isinstance(event, Event)
     assert str.startswith(event.id, "evt_")

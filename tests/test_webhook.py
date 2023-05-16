@@ -1,6 +1,7 @@
 import pytest
 
-import easypost
+from easypost.error import Error
+from easypost.models import Webhook
 from easypost.util import validate_webhook
 
 
@@ -8,7 +9,7 @@ from easypost.util import validate_webhook
 def test_webhook_create(webhook_url, test_client):
     webhook = test_client.webhook.create(url=webhook_url)
 
-    assert isinstance(webhook, easypost.Webhook)
+    assert isinstance(webhook, Webhook)
     assert str.startswith(webhook.id, "hook_")
     assert webhook.url == webhook_url
 
@@ -23,7 +24,7 @@ def test_webhook_retrieve(webhook_url, test_client):
 
     retrieved_webhook = test_client.webhook.retrieve(webhook.id)
 
-    assert isinstance(retrieved_webhook, easypost.Webhook)
+    assert isinstance(retrieved_webhook, Webhook)
     assert retrieved_webhook == webhook
 
     test_client.webhook.delete(
@@ -38,7 +39,7 @@ def test_webhook_all(page_size, test_client):
     webhooks_array = webhooks["webhooks"]
 
     assert len(webhooks_array) <= page_size
-    assert all(isinstance(webhook, easypost.Webhook) for webhook in webhooks_array)
+    assert all(isinstance(webhook, Webhook) for webhook in webhooks_array)
 
 
 @pytest.mark.vcr()
@@ -46,7 +47,7 @@ def test_webhook_update(webhook_url, test_client):
     webhook = test_client.webhook.create(url=webhook_url)
     test_client.webhook.update(webhook.id)
 
-    assert isinstance(webhook, easypost.Webhook)
+    assert isinstance(webhook, Webhook)
 
     test_client.webhook.delete(
         webhook.id
@@ -85,7 +86,7 @@ def test_validate_webhook_invalid_secret(event_bytes):
         "X-Hmac-Signature": "some-signature",
     }
 
-    with pytest.raises(easypost.Error) as error:
+    with pytest.raises(Error) as error:
         _ = validate_webhook(
             event_body=event_bytes,
             headers=headers,
@@ -101,7 +102,7 @@ def test_validate_webhook_missing_secret(event_bytes):
         "some-header": "some-value",
     }
 
-    with pytest.raises(easypost.Error) as error:
+    with pytest.raises(Error) as error:
         _ = validate_webhook(
             event_body=event_bytes,
             headers=headers,

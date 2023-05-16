@@ -1,19 +1,19 @@
 import pytest
 
-import easypost
 from easypost.error import Error
+from easypost.models import Pickup
 
 
 @pytest.mark.vcr()
 def test_pickup_create(one_call_buy_shipment, basic_pickup, test_client):
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)
+    shipment = test_client.shipment.create(**one_call_buy_shipment)
 
     pickup_data = basic_pickup
     pickup_data["shipment"] = shipment
 
     pickup = test_client.pickup.create(**pickup_data)
 
-    assert isinstance(pickup, easypost.Pickup)
+    assert isinstance(pickup, Pickup)
     assert str.startswith(pickup.id, "pickup_")
     assert pickup.pickup_rates is not None
 
@@ -26,7 +26,7 @@ def test_pickup_all(page_size, test_client):
 
     assert len(pickup_array) <= page_size
     assert pickups["has_more"] is not None
-    assert all(isinstance(pickup, easypost.Pickup) for pickup in pickup_array)
+    assert all(isinstance(pickup, Pickup) for pickup in pickup_array)
 
 
 @pytest.mark.vcr()
@@ -46,7 +46,7 @@ def test_pickup_get_next_page(page_size, test_client):
 
 @pytest.mark.vcr()
 def test_pickup_retrieve(one_call_buy_shipment, basic_pickup, test_client):
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)  # TODO: Use new syntax
+    shipment = test_client.shipment.create(**one_call_buy_shipment)
 
     pickup_data = basic_pickup
     pickup_data["shipment"] = shipment
@@ -55,13 +55,13 @@ def test_pickup_retrieve(one_call_buy_shipment, basic_pickup, test_client):
 
     retrieved_pickup = test_client.pickup.retrieve(pickup.id)
 
-    assert isinstance(retrieved_pickup, easypost.Pickup)
+    assert isinstance(retrieved_pickup, Pickup)
     assert retrieved_pickup == pickup
 
 
 @pytest.mark.vcr()
 def test_pickup_buy(usps, one_call_buy_shipment, basic_pickup, pickup_service, test_client):
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)  # TODO: Use new syntax
+    shipment = test_client.shipment.create(**one_call_buy_shipment)
 
     pickup_data = basic_pickup
     pickup_data["shipment"] = shipment
@@ -70,7 +70,7 @@ def test_pickup_buy(usps, one_call_buy_shipment, basic_pickup, pickup_service, t
 
     bought_pickup = test_client.pickup.buy(pickup.id, carrier=usps, service=pickup_service)
 
-    assert isinstance(bought_pickup, easypost.Pickup)
+    assert isinstance(bought_pickup, Pickup)
     assert str.startswith(bought_pickup.id, "pickup_")
     assert bought_pickup.confirmation is not None
     assert bought_pickup.status == "scheduled"
@@ -78,7 +78,7 @@ def test_pickup_buy(usps, one_call_buy_shipment, basic_pickup, pickup_service, t
 
 @pytest.mark.vcr()
 def test_pickup_cancel(usps, one_call_buy_shipment, basic_pickup, pickup_service, test_client):
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)  # TODO: Use new syntax
+    shipment = test_client.shipment.create(**one_call_buy_shipment)
 
     pickup_data = basic_pickup
     pickup_data["shipment"] = shipment
@@ -89,7 +89,7 @@ def test_pickup_cancel(usps, one_call_buy_shipment, basic_pickup, pickup_service
 
     cancelled_pickup = bought_pickup.cancel()
 
-    assert isinstance(cancelled_pickup, easypost.Pickup)
+    assert isinstance(cancelled_pickup, Pickup)
     assert str.startswith(cancelled_pickup.id, "pickup_")
     assert cancelled_pickup.status == "canceled"
 
@@ -97,7 +97,7 @@ def test_pickup_cancel(usps, one_call_buy_shipment, basic_pickup, pickup_service
 @pytest.mark.vcr()
 def test_pickup_lowest_rate(one_call_buy_shipment, basic_pickup, test_client):
     """Test various usage alterations of the lowest_rate method."""
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)  # TODO: Use new syntax
+    shipment = test_client.shipment.create(**one_call_buy_shipment)
 
     pickup_data = basic_pickup
     pickup_data["shipment"] = shipment
@@ -111,11 +111,11 @@ def test_pickup_lowest_rate(one_call_buy_shipment, basic_pickup, test_client):
     assert lowest_rate.carrier == "USPS"
 
     # Test lowest rate with service filter (should error due to bad service)
-    with pytest.raises(easypost.Error) as error:
+    with pytest.raises(Error) as error:
         pickup.lowest_rate(services=["BAD SERVICE"])
     assert str(error.value) == "No rates found."
 
     # Test lowest rate with carrier filter (should error due to bad carrier)
-    with pytest.raises(easypost.Error) as error:
+    with pytest.raises(Error) as error:
         pickup.lowest_rate(carriers=["BAD CARRIER"])
     assert str(error.value) == "No rates found."

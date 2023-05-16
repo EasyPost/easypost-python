@@ -1,13 +1,17 @@
 import pytest
 
-import easypost
+from easypost.models import (
+    ApiKey,
+    Brand,
+    User,
+)
 
 
 @pytest.mark.vcr()
 def test_user_create(prod_client):
     user = prod_client.user.create(name="Test User")
 
-    assert isinstance(user, easypost.User)
+    assert isinstance(user, User)
     assert str.startswith(user.id, "user_")
     assert user.name == "Test User"
 
@@ -21,7 +25,7 @@ def test_user_retrieve(prod_client):
 
     user = prod_client.user.retrieve(authenticated_user["id"])
 
-    assert isinstance(user, easypost.User)
+    assert isinstance(user, User)
     assert str.startswith(user.id, "user_")
 
 
@@ -30,7 +34,7 @@ def test_user_retrieve_no_id(prod_client):
     """If no ID is specified when retrieving a user, we'll retrieve the authenticated user."""
     user = prod_client.user.retrieve()
 
-    assert isinstance(user, easypost.User)
+    assert isinstance(user, User)
     assert str.startswith(user.id, "user_")
 
 
@@ -38,7 +42,7 @@ def test_user_retrieve_no_id(prod_client):
 def test_user_retrieve_me(prod_client):
     user = prod_client.user.retrieve_me()
 
-    assert isinstance(user, easypost.User)
+    assert isinstance(user, User)
     assert str.startswith(user.id, "user_")
 
 
@@ -50,7 +54,7 @@ def test_user_update(prod_client):
 
     updated_user = prod_client.user.update(user.id, name=test_name)
 
-    assert isinstance(updated_user, easypost.User)
+    assert isinstance(updated_user, User)
     assert str.startswith(updated_user.id, "user_")
     assert updated_user.name == test_name
 
@@ -68,9 +72,9 @@ def test_user_all_api_keys(prod_client):
     """Tests that we can retrieve all API keys."""
     api_keys = prod_client.user.all_api_keys()
 
-    assert all(isinstance(key, easypost.ApiKey) for key in api_keys.keys)
+    assert all(isinstance(key, ApiKey) for key in api_keys.keys)
     for child in api_keys.children:
-        assert all(isinstance(key, easypost.ApiKey) for key in child["keys"])
+        assert all(isinstance(key, ApiKey) for key in child["keys"])
 
 
 @pytest.mark.vcr()
@@ -79,7 +83,7 @@ def test_authenticated_user_api_keys(prod_client):
     user = prod_client.user.retrieve_me()
     api_keys = prod_client.user.api_keys(user.id)
 
-    assert all(isinstance(key, easypost.ApiKey) for key in api_keys)
+    assert all(isinstance(key, ApiKey) for key in api_keys)
 
 
 @pytest.mark.vcr()
@@ -90,7 +94,7 @@ def test_child_user_api_keys(prod_client):
 
     api_keys = prod_client.user.api_keys(child_user.id)
 
-    assert all(isinstance(key, easypost.ApiKey) for key in api_keys)
+    assert all(isinstance(key, ApiKey) for key in api_keys)
 
     # Delete the user so we don't clutter up the test environment
     prod_client.user.delete(child_user.id)
@@ -104,6 +108,6 @@ def test_user_update_brand(prod_client):
 
     brand = prod_client.user.update_brand(user.id, color=color)
 
-    assert isinstance(brand, easypost.Brand)
+    assert isinstance(brand, Brand)
     assert str.startswith(brand.id, "brd_")
     assert brand.color == color

@@ -1,44 +1,11 @@
 # flake8: noqa
-from easypost.address import Address
-from easypost.api_key import ApiKey
-from easypost.batch import Batch
-from easypost.billing import Billing
-from easypost.brand import Brand
-from easypost.carrier_account import CarrierAccount
-from easypost.customs_info import CustomsInfo
-from easypost.customs_item import CustomsItem
-from easypost.easypost_client import EasyPostClient
-from easypost.endshipper import EndShipper
-from easypost.error import Error
-from easypost.event import Event
-from easypost.insurance import Insurance
-from easypost.order import Order
-from easypost.parcel import Parcel
-from easypost.payload import Payload
-from easypost.pickup import Pickup
-from easypost.pickup_rate import PickupRate
-from easypost.postage_label import PostageLabel
-from easypost.rate import Rate
-from easypost.referral_customer import ReferralCustomer
-from easypost.refund import Refund
-from easypost.report import Report
-from easypost.scanform import ScanForm
-from easypost.shipment import Shipment
-from easypost.tax_identifier import TaxIdentifier
-from easypost.tracker import Tracker
-from easypost.user import User
-from easypost.webhook import Webhook
-
-from .version import (
+from easypost.constant import (
     VERSION,
     VERSION_INFO,
 )
+from easypost.easypost_client import EasyPostClient
 
 
 __author__ = "EasyPost <oss@easypost.com>"
 __version__ = VERSION
 version_info = VERSION_INFO
-
-# TODO: Remove these once rewrite is complete
-api_key = None
-api_base = "https://api.easypost.com/v2"
