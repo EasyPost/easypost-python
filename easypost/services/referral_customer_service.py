@@ -24,21 +24,22 @@ class ReferralCustomerService(BaseService):
         self._model_class = User.__name__
 
     def create(self, **params) -> Dict[str, Any]:
-        """Create a referral user.
+        """Create a referral customer.
 
         This function requires the Partner User's API key.
         """
-        new_params = {"user": params}
+        wrapped_params = {"user": params}
+
         response, api_key = Requestor(self._client).request(
             method=RequestMethod.POST,
             url="/referral_customers",
-            params=new_params,
+            params=wrapped_params,
         )
 
         return convert_to_easypost_object(response=response, api_key=api_key)
 
     def update_email(self, id: str, email: str) -> None:
-        """Update a referral user.
+        """Update a referral customer.
 
         This function requires the Partner User's API key.
         """
@@ -56,7 +57,7 @@ class ReferralCustomerService(BaseService):
         )
 
     def all(self, **params) -> List[Any]:
-        """Retrieve a list of referral users.
+        """Retrieve a list of referral customers.
 
         This function requires the Partner User's API key.
         """
