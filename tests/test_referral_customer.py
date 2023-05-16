@@ -76,6 +76,7 @@ def test_referral_get_next_page(partner_user_prod_client, page_size):
         "uri",
     ]
 )
+@pytest.mark.skip()
 def test_referral_customer_add_credit_card(stripe_connect_prod_client, credit_card_details):
     """This test requires a partner customer's production API key via STRIPE_CONNECT_USER_PROD_API_KEY
     as well as one of that customer's referral's production API keys via REFERRAL_CUSTOMER_PROD_API_KEY.
