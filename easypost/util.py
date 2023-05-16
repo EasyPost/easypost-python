@@ -14,10 +14,6 @@ from easypost.easypost_object import (
     convert_to_easypost_object,
 )
 from easypost.error import Error
-from easypost.models import (
-    Event,
-    Rate,
-)
 
 
 def get_lowest_object_rate(
@@ -47,7 +43,7 @@ def get_lowest_object_rate(
     return lowest_rate
 
 
-def get_lowest_smart_rate(smart_rates, delivery_days: int, delivery_accuracy: str) -> "Rate":
+def get_lowest_smart_rate(smart_rates, delivery_days: int, delivery_accuracy: str):
     """Get the lowest SmartRate from a list of SmartRates."""
     valid_delivery_accuracy_values = {
         "percentile_50",
@@ -101,7 +97,7 @@ def get_lowest_stateless_rate(
     return lowest_rate
 
 
-def receive_event(raw_input: str) -> "Event":
+def receive_event(raw_input: str):
     """Receives a raw Webhook event and converts it to JSON."""
     # TODO: Remove api_key
     return convert_to_easypost_object(response=json.loads(raw_input), api_key=None)
