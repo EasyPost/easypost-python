@@ -4,71 +4,69 @@ import easypost
 
 
 @pytest.mark.vcr()
-def test_user_create(prod_api_key):
-    user = easypost.User.create(name="Test User")
+def test_user_create(prod_client):
+    user = prod_client.user.create(name="Test User")
 
     assert isinstance(user, easypost.User)
     assert str.startswith(user.id, "user_")
     assert user.name == "Test User"
 
     # Delete the user so we don't clutter up the test environment
-    user.delete()
+    prod_client.user.delete(user.id)
 
 
 @pytest.mark.vcr()
-def test_user_retrieve(prod_api_key):
-    authenticated_user = easypost.User.retrieve_me()
+def test_user_retrieve(prod_client):
+    authenticated_user = prod_client.user.retrieve_me()
 
-    user = easypost.User.retrieve(authenticated_user["id"])
+    user = prod_client.user.retrieve(authenticated_user["id"])
 
     assert isinstance(user, easypost.User)
     assert str.startswith(user.id, "user_")
 
 
 @pytest.mark.vcr()
-def test_user_retrieve_no_id(prod_api_key):
+def test_user_retrieve_no_id(prod_client):
     """If no ID is specified when retrieving a user, we'll retrieve the authenticated user."""
-    user = easypost.User.retrieve()
+    user = prod_client.user.retrieve()
 
     assert isinstance(user, easypost.User)
     assert str.startswith(user.id, "user_")
 
 
 @pytest.mark.vcr()
-def test_user_retrieve_me(prod_api_key):
-    user = easypost.User.retrieve_me()
+def test_user_retrieve_me(prod_client):
+    user = prod_client.user.retrieve_me()
 
     assert isinstance(user, easypost.User)
     assert str.startswith(user.id, "user_")
 
 
 @pytest.mark.vcr()
-def test_user_update(prod_api_key):
-    user = easypost.User.retrieve_me()
+def test_user_update(prod_client):
+    user = prod_client.user.retrieve_me()
 
-    test_phone = "5555555555"
+    test_name = "New Name"
 
-    user.phone = test_phone
-    user.save()
+    updated_user = prod_client.user.update(user.id, name=test_name)
 
-    assert isinstance(user, easypost.User)
-    assert str.startswith(user.id, "user_")
-    assert user.phone == test_phone
+    assert isinstance(updated_user, easypost.User)
+    assert str.startswith(updated_user.id, "user_")
+    assert updated_user.name == test_name
 
 
 @pytest.mark.vcr()
-def test_user_delete(prod_api_key):
-    user = easypost.User.create(name="Test User")
+def test_user_delete(prod_client):
+    user = prod_client.user.create(name="Test User")
 
     # Nothing gets returned here, simply ensure no error gets raised
-    user.delete()
+    prod_client.user.delete(user.id)
 
 
 @pytest.mark.vcr()
-def test_user_all_api_keys(prod_api_key):
+def test_user_all_api_keys(prod_client):
     """Tests that we can retrieve all API keys."""
-    user = easypost.User.retrieve_me()
-    api_keys = user.all_api_keys()
+    api_keys = prod_client.user.all_api_keys()
 
     assert all(isinstance(key, easypost.ApiKey) for key in api_keys.keys)
     for child in api_keys.children:
@@ -76,35 +74,35 @@ def test_user_all_api_keys(prod_api_key):
 
 
 @pytest.mark.vcr()
-def test_authenticated_user_api_keys(prod_api_key):
+def test_authenticated_user_api_keys(prod_client):
     """Tests that we can retrieve the authenticated user's API keys."""
-    user = easypost.User.retrieve_me()
-    api_keys = user.api_keys()
+    user = prod_client.user.retrieve_me()
+    api_keys = prod_client.user.api_keys(user.id)
 
     assert all(isinstance(key, easypost.ApiKey) for key in api_keys)
 
 
 @pytest.mark.vcr()
-def test_child_user_api_keys(prod_api_key):
+def test_child_user_api_keys(prod_client):
     """Tests that we can retrieve a child user's API keys as the parent."""
-    user = easypost.User.create(name="Test User")
-    child_user = easypost.User.retrieve(user.id)
+    user = prod_client.user.create(name="Test User")
+    child_user = prod_client.user.retrieve(user.id)
 
-    api_keys = child_user.api_keys()
+    api_keys = prod_client.user.api_keys(child_user.id)
 
     assert all(isinstance(key, easypost.ApiKey) for key in api_keys)
 
     # Delete the user so we don't clutter up the test environment
-    user.delete()
+    prod_client.user.delete(child_user.id)
 
 
 @pytest.mark.vcr()
-def test_user_update_brand(prod_api_key):
-    user = easypost.User.retrieve_me()
+def test_user_update_brand(prod_client):
+    user = prod_client.user.retrieve_me()
 
     color = "#123456"
 
-    brand = user.update_brand(color=color)
+    brand = prod_client.user.update_brand(user.id, color=color)
 
     assert isinstance(brand, easypost.Brand)
     assert str.startswith(brand.id, "brd_")
