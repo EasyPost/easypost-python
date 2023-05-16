@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"type": "shipment", "start_date": "2022-05-04", "end_date": "2022-05-04"}'
+    body: '{"start_date": "2022-05-04", "end_date": "2022-05-04"}'
     headers:
       Accept:
       - '*/*'
@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '74'
+      - '54'
       Content-Type:
       - application/json
       authorization:
@@ -20,8 +20,8 @@ interactions:
     uri: https://api.easypost.com/v2/reports/shipment
   response:
     body:
-      string: '{"id": "shprep_bffdbee1e86943a88f9a57711aa8f40d", "object": "ShipmentReport",
-        "created_at": "2022-08-15T18:52:16Z", "updated_at": "2022-08-15T18:52:16Z",
+      string: '{"id": "shprep_60c43d5d13bb4b34bfe4fa4c937a2ef1", "object": "ShipmentReport",
+        "created_at": "2023-05-16T15:28:52Z", "updated_at": "2023-05-16T15:28:52Z",
         "start_date": "2022-05-04", "end_date": "2022-05-04", "mode": "test", "status":
         "new", "url": null, "url_expires_at": null, "include_children": false}'
     headers:
@@ -32,7 +32,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"1d66ff1726e723bf27d3926ae38e3ed5"
+      - W/"80d9da60e6cc1fa9d4774b8ac3b5ef23"
       expires:
       - '0'
       pragma:
@@ -50,20 +50,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f43af47a62fa95e0e79a7a6400262dc9
+      - 23bee7e16463a134e786afbb0021bb80
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb2nuq
+      - bigweb6nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb2nuq a29e4ad05c
+      - extlb2nuq 5ab12a3ed2
       x-runtime:
-      - '0.116291'
+      - '0.076758'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202305152249-750e1e7d95-master
       x-xss-protection:
       - 1; mode=block
     status:

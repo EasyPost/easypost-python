@@ -20,6 +20,7 @@ from easypost.services.pickup_service import PickupService
 from easypost.services.rate_service import RateService
 from easypost.services.referral_customer_service import ReferralCustomerService
 from easypost.services.refund_service import RefundService
+from easypost.services.report_service import ReportService
 
 
 class EasyPostClient:
@@ -50,3 +51,4 @@ class EasyPostClient:
         self.pickup = PickupService(self)
         self.referral_customer = ReferralCustomerService(self)
         self.refund = RefundService(self)
+        self.report = ReportService(self)

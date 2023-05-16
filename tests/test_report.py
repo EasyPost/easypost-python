@@ -5,8 +5,8 @@ from easypost.error import Error
 
 
 @pytest.mark.vcr()
-def test_report_create_report(report_type, report_date):
-    report = easypost.Report.create(
+def test_report_create_report(report_type, report_date, test_client):
+    report = test_client.report.create(
         type=report_type,
         start_date=report_date,
         end_date=report_date,
@@ -17,8 +17,8 @@ def test_report_create_report(report_type, report_date):
 
 
 @pytest.mark.vcr()
-def test_report_create_with_additional_columns(report_type, report_date):
-    report = easypost.Report.create(
+def test_report_create_with_additional_columns(report_type, report_date, test_client):
+    report = test_client.report.create(
         type=report_type,
         start_date=report_date,
         end_date=report_date,
@@ -31,8 +31,8 @@ def test_report_create_with_additional_columns(report_type, report_date):
 
 
 @pytest.mark.vcr()
-def test_report_create_with_columns(report_type, report_date):
-    report = easypost.Report.create(
+def test_report_create_with_columns(report_type, report_date, test_client):
+    report = test_client.report.create(
         type=report_type,
         start_date=report_date,
         end_date=report_date,
@@ -45,8 +45,8 @@ def test_report_create_with_columns(report_type, report_date):
 
 
 @pytest.mark.vcr()
-def test_report_retrieve_shipment_report(report_type, report_date):
-    report = easypost.Report.create(
+def test_report_retrieve_shipment_report(report_type, report_date, test_client):
+    report = test_client.report.create(
         type=report_type,
         start_date=report_date,
         end_date=report_date,
@@ -60,8 +60,8 @@ def test_report_retrieve_shipment_report(report_type, report_date):
 
 
 @pytest.mark.vcr()
-def test_report_all(report_type, page_size):
-    reports = easypost.Report.all(type=report_type, page_size=page_size)
+def test_report_all(report_type, page_size, test_client):
+    reports = test_client.report.all(type=report_type, page_size=page_size)
 
     reports_array = reports["reports"]
 
@@ -71,10 +71,10 @@ def test_report_all(report_type, page_size):
 
 
 @pytest.mark.vcr()
-def test_report_get_next_page(report_type, page_size):
+def test_report_get_next_page(report_type, page_size, test_client):
     try:
-        reports = easypost.Report.all(type=report_type, page_size=page_size)
-        next_page = easypost.Report.get_next_page(reports=reports, page_size=page_size)
+        reports = test_client.report.all(type=report_type, page_size=page_size)
+        next_page = test_client.report.get_next_page(reports=reports, page_size=page_size)
 
         first_id_of_first_page = reports["reports"][0].id
         first_id_of_second_page = next_page["reports"][0].id

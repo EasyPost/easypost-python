@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"type": "shipment", "start_date": "2022-05-04", "end_date": "2022-05-04"}'
+    body: '{"start_date": "2022-05-04", "end_date": "2022-05-04"}'
     headers:
       Accept:
       - '*/*'
@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '74'
+      - '54'
       Content-Type:
       - application/json
       authorization:
@@ -20,8 +20,8 @@ interactions:
     uri: https://api.easypost.com/v2/reports/shipment
   response:
     body:
-      string: '{"id": "shprep_3073ac71a1534442bb56e86f25f0e130", "object": "ShipmentReport",
-        "created_at": "2022-08-15T18:52:17Z", "updated_at": "2022-08-15T18:52:17Z",
+      string: '{"id": "shprep_2d2aa29b059e4f908df1470a6508d20a", "object": "ShipmentReport",
+        "created_at": "2023-05-16T15:28:53Z", "updated_at": "2023-05-16T15:28:53Z",
         "start_date": "2022-05-04", "end_date": "2022-05-04", "mode": "test", "status":
         "new", "url": null, "url_expires_at": null, "include_children": false}'
     headers:
@@ -32,7 +32,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"bc74235f13f09ea97511cbedddcf970a"
+      - W/"a3c67c1df59fc7c90bb642adaf2342a8"
       expires:
       - '0'
       pragma:
@@ -50,20 +50,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f43af47962fa95e1e79a7a6700262e54
+      - 23bee7e56463a135e786afbe0021bbc9
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb8nuq
+      - bigweb1nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb2nuq a29e4ad05c
+      - extlb2nuq 5ab12a3ed2
       x-runtime:
-      - '0.066660'
+      - '0.051877'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202305152249-750e1e7d95-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -83,11 +83,11 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/v2/reports/shprep_3073ac71a1534442bb56e86f25f0e130
+    uri: https://api.easypost.com/v2/reports/shprep_2d2aa29b059e4f908df1470a6508d20a
   response:
     body:
-      string: '{"id": "shprep_3073ac71a1534442bb56e86f25f0e130", "object": "ShipmentReport",
-        "created_at": "2022-08-15T18:52:17Z", "updated_at": "2022-08-15T18:52:17Z",
+      string: '{"id": "shprep_2d2aa29b059e4f908df1470a6508d20a", "object": "ShipmentReport",
+        "created_at": "2023-05-16T15:28:53Z", "updated_at": "2023-05-16T15:28:53Z",
         "start_date": "2022-05-04", "end_date": "2022-05-04", "mode": "test", "status":
         "new", "url": null, "url_expires_at": null, "include_children": false}'
     headers:
@@ -98,7 +98,7 @@ interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"bc74235f13f09ea97511cbedddcf970a"
+      - W/"a3c67c1df59fc7c90bb642adaf2342a8"
       expires:
       - '0'
       pragma:
@@ -116,20 +116,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - f43af47962fa95e1e79a7a6700262e63
+      - 23bee7e56463a135e786afbe0021bbcf
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb5nuq
+      - bigweb4nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb2nuq a29e4ad05c
+      - extlb2nuq 5ab12a3ed2
       x-runtime:
-      - '0.032021'
+      - '0.031563'
       x-version-label:
-      - easypost-202208151827-9b2100b5ad-master
+      - easypost-202305152249-750e1e7d95-master
       x-xss-protection:
       - 1; mode=block
     status:
