@@ -26,7 +26,7 @@ class BetaCarrierMetadataService(BaseService):
             "types": ",".join(types) if types else None,
         }
 
-        response, api_key = Requestor(self._client).request(
+        response = Requestor(self._client).request(
             method=RequestMethod.GET,
             url="/metadata",
             params=params,

@@ -38,7 +38,7 @@ class EventService(BaseService):
         """Retrieve a list of Payloads for an Event."""
         url = f"{self._class_url(self._model_class)}/{event_id}/payloads"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
         return convert_to_easypost_object(response=response)
 
@@ -46,7 +46,7 @@ class EventService(BaseService):
         """Retrieve a Payload of an Event."""
         url = f"{self._class_url(self._model_class)}/{event_id}/payloads/{payload_id}"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
         return convert_to_easypost_object(response=response)
 

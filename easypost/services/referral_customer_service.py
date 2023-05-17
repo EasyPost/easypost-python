@@ -1,3 +1,4 @@
+from copy import deepcopy
 from typing import (
     Any,
     Dict,
@@ -30,7 +31,7 @@ class ReferralCustomerService(BaseService):
         """
         wrapped_params = {"user": params}
 
-        response, api_key = Requestor(self._client).request(
+        response = Requestor(self._client).request(
             method=RequestMethod.POST,
             url="/referral_customers",
             params=wrapped_params,
@@ -50,7 +51,7 @@ class ReferralCustomerService(BaseService):
             }
         }
 
-        _, _ = Requestor(self._client).request(
+        Requestor(self._client).request(
             method=RequestMethod.PUT,
             url=url,
             params=wrapped_params,
@@ -61,7 +62,7 @@ class ReferralCustomerService(BaseService):
 
         This function requires the Partner User's API key.
         """
-        response, api_key = Requestor(self._client).request(
+        response = Requestor(self._client).request(
             method=RequestMethod.GET,
             url="/referral_customers",
             params=params,
@@ -109,11 +110,12 @@ class ReferralCustomerService(BaseService):
             stripe_token.get("id", ""),
             priority=priority,
         )
+
         return convert_to_easypost_object(response)
 
     def _retrieve_easypost_stripe_api_key(self) -> str:
         """Retrieve EasyPost's Stripe public API key."""
-        public_key, _ = Requestor(self._client).request(
+        public_key = Requestor(self._client).request(
             method=RequestMethod.GET,
             url="/partners/stripe_public_key",
         )
@@ -170,7 +172,11 @@ class ReferralCustomerService(BaseService):
             }
         }
 
-        response, _ = Requestor(self._client).request(
+        # Override the API key to use the referral's for this single request
+        referral_client = deepcopy(self._client)
+        referral_client.api_key = referral_api_key
+
+        response = Requestor(referral_client).request(
             method=RequestMethod.POST,
             params=params,
             url="/credit_cards",

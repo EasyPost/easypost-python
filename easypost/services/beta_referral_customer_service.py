@@ -33,7 +33,7 @@ class BetaReferralCustomerService(BaseService):
             }
         }
 
-        response, api_key = Requestor(self._client).request(
+        response = Requestor(self._client).request(
             method=RequestMethod.POST,
             url="/referral_customers/payment_method",
             params=wrapped_params,
@@ -46,7 +46,7 @@ class BetaReferralCustomerService(BaseService):
         """Refund a ReferralCustomer wallet by specifying an amount."""
         wrapped_params = {"refund_amount": refund_amount}
 
-        response, api_key = Requestor(self._client).request(
+        response = Requestor(self._client).request(
             method=RequestMethod.POST,
             url="/referral_customers/refunds",
             params=wrapped_params,
@@ -59,7 +59,7 @@ class BetaReferralCustomerService(BaseService):
         """Refund a ReferralCustomer wallet by specifying a payment log ID to completely refund."""
         wrapped_params = {"payment_log_id": payment_log_id}
 
-        response, api_key = Requestor(self._client).request(
+        response = Requestor(self._client).request(
             method=RequestMethod.POST,
             url="/referral_customers/refunds",
             params=wrapped_params,

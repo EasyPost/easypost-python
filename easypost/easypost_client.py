@@ -1,5 +1,7 @@
 from easypost.constant import (
     API_BASE,
+    API_VERSION,
+    SUPPORT_EMAIL,
     TIMEOUT,
 )
 from easypost.services import (
@@ -33,7 +35,7 @@ from easypost.services import (
 class EasyPostClient:
     """A client object used to authenticate and configure all HTTP calls to the EasyPost API."""
 
-    def __init__(self, api_key: str, api_base: str = API_BASE, timeout: int = TIMEOUT):
+    def __init__(self, api_key: str, api_base: str = f"{API_BASE}/{API_VERSION}", timeout: int = TIMEOUT):
         # Client configuration
         self.api_key = api_key
         self.api_base = api_base
@@ -64,3 +66,46 @@ class EasyPostClient:
         self.tracker = TrackerService(self)
         self.user = UserService(self)
         self.webhook = WebhookService(self)
+
+        # use urlfetch as request_lib on google app engine, otherwise use requests
+        self._request_lib = None
+        try:
+            from google.appengine.api import urlfetch
+
+            self._request_lib = "urlfetch"
+            # use the GAE application-wide "deadline" (or its default)
+            timeout = urlfetch.get_default_fetch_deadline() or self.timeout
+        except ImportError:
+            try:
+                import requests
+
+                self._request_lib = "requests"
+                self._requests_session = requests.Session()
+                requests_http_adapter = requests.adapters.HTTPAdapter(max_retries=3)
+                self._requests_session.mount(
+                    prefix=self.api_base.split(f"/{API_VERSION}")[0],
+                    adapter=requests_http_adapter,
+                )
+            except Exception:
+                raise ImportError(
+                    "EasyPost requires an up to date requests library. "
+                    'Update requests via "pip install -U requests" or '
+                    f"contact us at {SUPPORT_EMAIL}."
+                )
+
+            try:
+                requests_version = requests.__version__
+                major_version, _, _ = [int(i) for i in requests_version.split(".")]
+            except Exception:
+                raise ImportError(
+                    "EasyPost requires an up to date requests library. "
+                    'Update requests via "pip install -U requests" or contact '
+                    f"us at {SUPPORT_EMAIL}."
+                )
+            else:
+                if major_version < 1:
+                    raise ImportError(
+                        "EasyPost requires an up to date requests library. Update "
+                        'requests via "pip install -U requests" or contact us '
+                        f"at {SUPPORT_EMAIL}."
+                    )

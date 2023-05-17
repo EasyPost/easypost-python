@@ -1,0 +1,348 @@
+interactions:
+- request:
+    body: '{"shipment": {"to_address": {"name": "Jack Sparrow", "street1": "388 Townsend
+      St", "street2": "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107",
+      "country": "US", "email": "test@example.com", "phone": "5555555555"}, "from_address":
+      {"name": "Elizabeth Swan", "street1": "179 N Harbor Dr", "city": "Redondo Beach",
+      "state": "CA", "zip": "90277", "country": "US", "email": "test@example.com",
+      "phone": "5555555555"}, "parcel": {"length": 10, "width": 8, "height": 4, "weight":
+      15.4}, "service": "First", "carrier_accounts": ["ca_b25657e9896e4d63ac8151ac346ac41e"],
+      "carrier": "USPS"}, "carbon_offset": false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '620'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/shipments
+  response:
+    body:
+      string: '{"created_at": "2023-05-17T18:58:12Z", "is_return": false, "messages":
+        [], "mode": "test", "options": {"currency": "USD", "payment": {"type": "SENDER"},
+        "date_advance": 0}, "reference": null, "status": "unknown", "tracking_code":
+        "9400100104262210683546", "updated_at": "2023-05-17T18:58:13Z", "batch_id":
+        null, "batch_status": null, "batch_message": null, "customs_info": null, "from_address":
+        {"id": "adr_c5d53968f4e411edba4fac1f6bc539aa", "object": "Address", "created_at":
+        "2023-05-17T18:58:12+00:00", "updated_at": "2023-05-17T18:58:12+00:00", "name":
+        "Elizabeth Swan", "company": null, "street1": "179 N Harbor Dr", "street2":
+        null, "city": "Redondo Beach", "state": "CA", "zip": "90277", "country": "US",
+        "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}, "insurance": null, "order_id": null, "parcel": {"id": "prcl_1ad6b1612be345b299fcee511292cb0d",
+        "object": "Parcel", "created_at": "2023-05-17T18:58:12Z", "updated_at": "2023-05-17T18:58:12Z",
+        "length": 10.0, "width": 8.0, "height": 4.0, "predefined_package": null, "weight":
+        15.4, "mode": "test"}, "postage_label": {"object": "PostageLabel", "id": "pl_86da939159154290825909b37e23e5a3",
+        "created_at": "2023-05-17T18:58:13Z", "updated_at": "2023-05-17T18:58:13Z",
+        "date_advance": 0, "integrated_form": "none", "label_date": "2023-05-17T18:58:13Z",
+        "label_resolution": 300, "label_size": "4x6", "label_type": "default", "label_file_type":
+        "image/png", "label_url": "https://easypost-files.s3.us-west-2.amazonaws.com/files/postage_label/20230517/65f74d778056428ebd4a973194ad5130.png",
+        "label_pdf_url": null, "label_zpl_url": null, "label_epl2_url": null, "label_file":
+        null}, "rates": [{"id": "rate_f817f8b56c6d43759f1411a21e1f93a9", "object":
+        "Rate", "created_at": "2023-05-17T18:58:12Z", "updated_at": "2023-05-17T18:58:12Z",
+        "mode": "test", "service": "Express", "carrier": "USPS", "rate": "31.25",
+        "currency": "USD", "retail_rate": "35.80", "retail_currency": "USD", "list_rate":
+        "31.25", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
+        null, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
+        null, "shipment_id": "shp_f708cc50d42842a0a4a8faf14bb6ece0", "carrier_account_id":
+        "ca_b25657e9896e4d63ac8151ac346ac41e"}, {"id": "rate_dd2a6bdb194a4326bd3a7bf0095cb48a",
+        "object": "Rate", "created_at": "2023-05-17T18:58:12Z", "updated_at": "2023-05-17T18:58:12Z",
+        "mode": "test", "service": "ParcelSelect", "carrier": "USPS", "rate": "6.76",
+        "currency": "USD", "retail_rate": "7.75", "retail_currency": "USD", "list_rate":
+        "7.75", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
+        5, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
+        5, "shipment_id": "shp_f708cc50d42842a0a4a8faf14bb6ece0", "carrier_account_id":
+        "ca_b25657e9896e4d63ac8151ac346ac41e"}, {"id": "rate_29eaa652527e4ca0b590111693d039fa",
+        "object": "Rate", "created_at": "2023-05-17T18:58:12Z", "updated_at": "2023-05-17T18:58:12Z",
+        "mode": "test", "service": "Priority", "carrier": "USPS", "rate": "7.15",
+        "currency": "USD", "retail_rate": "10.20", "retail_currency": "USD", "list_rate":
+        "8.24", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
+        2, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
+        2, "shipment_id": "shp_f708cc50d42842a0a4a8faf14bb6ece0", "carrier_account_id":
+        "ca_b25657e9896e4d63ac8151ac346ac41e"}, {"id": "rate_b6f2cbc7aec146bda313bd4725f44462",
+        "object": "Rate", "created_at": "2023-05-17T18:58:12Z", "updated_at": "2023-05-17T18:58:12Z",
+        "mode": "test", "service": "First", "carrier": "USPS", "rate": "6.07", "currency":
+        "USD", "retail_rate": "6.07", "retail_currency": "USD", "list_rate": "6.07",
+        "list_currency": "USD", "billing_type": "easypost", "delivery_days": 3, "delivery_date":
+        null, "delivery_date_guaranteed": false, "est_delivery_days": 3, "shipment_id":
+        "shp_f708cc50d42842a0a4a8faf14bb6ece0", "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e"}],
+        "refund_status": null, "scan_form": null, "selected_rate": {"id": "rate_b6f2cbc7aec146bda313bd4725f44462",
+        "object": "Rate", "created_at": "2023-05-17T18:58:13Z", "updated_at": "2023-05-17T18:58:13Z",
+        "mode": "test", "service": "First", "carrier": "USPS", "rate": "6.07", "currency":
+        "USD", "retail_rate": "6.07", "retail_currency": "USD", "list_rate": "6.07",
+        "list_currency": "USD", "billing_type": "easypost", "delivery_days": 3, "delivery_date":
+        null, "delivery_date_guaranteed": false, "est_delivery_days": 3, "shipment_id":
+        "shp_f708cc50d42842a0a4a8faf14bb6ece0", "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e"},
+        "tracker": {"id": "trk_8006ff4bd9f24efcbff082b19237ac25", "object": "Tracker",
+        "mode": "test", "tracking_code": "9400100104262210683546", "status": "unknown",
+        "status_detail": "unknown", "created_at": "2023-05-17T18:58:13Z", "updated_at":
+        "2023-05-17T18:58:13Z", "signed_by": null, "weight": null, "est_delivery_date":
+        null, "shipment_id": "shp_f708cc50d42842a0a4a8faf14bb6ece0", "carrier": "USPS",
+        "tracking_details": [], "fees": [], "carrier_detail": null, "public_url":
+        "https://track.easypost.com/djE6dHJrXzgwMDZmZjRiZDlmMjRlZmNiZmYwODJiMTkyMzdhYzI1"},
+        "to_address": {"id": "adr_c5d27137f4e411eda1c8ac1f6bc72124", "object": "Address",
+        "created_at": "2023-05-17T18:58:12+00:00", "updated_at": "2023-05-17T18:58:13+00:00",
+        "name": "JACK SPARROW", "company": null, "street1": "388 TOWNSEND ST APT 20",
+        "street2": null, "city": "SAN FRANCISCO", "state": "CA", "zip": "94107-1670",
+        "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test",
+        "carrier_facility": null, "residential": true, "federal_tax_id": null, "state_tax_id":
+        null, "verifications": {"zip4": {"success": true, "errors": [], "details":
+        null}, "delivery": {"success": true, "errors": [], "details": {"latitude":
+        37.77551, "longitude": -122.39697, "time_zone": "America/Los_Angeles"}}}},
+        "usps_zone": 4, "return_address": {"id": "adr_c5d53968f4e411edba4fac1f6bc539aa",
+        "object": "Address", "created_at": "2023-05-17T18:58:12+00:00", "updated_at":
+        "2023-05-17T18:58:12+00:00", "name": "Elizabeth Swan", "company": null, "street1":
+        "179 N Harbor Dr", "street2": null, "city": "Redondo Beach", "state": "CA",
+        "zip": "90277", "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>",
+        "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
+        null, "state_tax_id": null, "verifications": {}}, "buyer_address": {"id":
+        "adr_c5d27137f4e411eda1c8ac1f6bc72124", "object": "Address", "created_at":
+        "2023-05-17T18:58:12+00:00", "updated_at": "2023-05-17T18:58:13+00:00", "name":
+        "JACK SPARROW", "company": null, "street1": "388 TOWNSEND ST APT 20", "street2":
+        null, "city": "SAN FRANCISCO", "state": "CA", "zip": "94107-1670", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": true, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {"zip4": {"success": true, "errors": [], "details": null}, "delivery": {"success":
+        true, "errors": [], "details": {"latitude": 37.77551, "longitude": -122.39697,
+        "time_zone": "America/Los_Angeles"}}}}, "forms": [], "fees": [{"object": "Fee",
+        "type": "LabelFee", "amount": "0.00000", "charged": true, "refunded": false},
+        {"object": "Fee", "type": "PostageFee", "amount": "6.07000", "charged": true,
+        "refunded": false}], "id": "shp_f708cc50d42842a0a4a8faf14bb6ece0", "object":
+        "Shipment"}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '6985'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"fe4ce36a88058b86f179ab08351ffa04"
+      expires:
+      - '0'
+      location:
+      - /api/v2/shipments/shp_f708cc50d42842a0a4a8faf14bb6ece0
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - a4ae9a09646523c4e2b9045e0003478a
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb12nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq a29e4ad05c
+      - intlb2wdc a29e4ad05c
+      - extlb4wdc 5ab12a3ed2
+      x-runtime:
+      - '1.168833'
+      x-version-label:
+      - easypost-202305171805-88442329bc-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: '{"form": {"type": "return_packing_slip", "barcode": "RMA12345678900", "line_items":
+      [{"product": {"title": "Square Reader", "barcode": "855658003251"}, "units":
+      8}]}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '166'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/shipments/shp_f708cc50d42842a0a4a8faf14bb6ece0/forms
+  response:
+    body:
+      string: '{"created_at": "2023-05-17T18:58:12Z", "is_return": false, "messages":
+        [], "mode": "test", "options": {"currency": "USD", "payment": {"type": "SENDER"},
+        "date_advance": 0}, "reference": null, "status": "unknown", "tracking_code":
+        "9400100104262210683546", "updated_at": "2023-05-17T18:58:13Z", "batch_id":
+        null, "batch_status": null, "batch_message": null, "customs_info": null, "from_address":
+        {"id": "adr_c5d53968f4e411edba4fac1f6bc539aa", "object": "Address", "created_at":
+        "2023-05-17T18:58:12+00:00", "updated_at": "2023-05-17T18:58:12+00:00", "name":
+        "Elizabeth Swan", "company": null, "street1": "179 N Harbor Dr", "street2":
+        null, "city": "Redondo Beach", "state": "CA", "zip": "90277", "country": "US",
+        "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}, "insurance": null, "order_id": null, "parcel": {"id": "prcl_1ad6b1612be345b299fcee511292cb0d",
+        "object": "Parcel", "created_at": "2023-05-17T18:58:12Z", "updated_at": "2023-05-17T18:58:12Z",
+        "length": 10.0, "width": 8.0, "height": 4.0, "predefined_package": null, "weight":
+        15.4, "mode": "test"}, "postage_label": {"object": "PostageLabel", "id": "pl_86da939159154290825909b37e23e5a3",
+        "created_at": "2023-05-17T18:58:13Z", "updated_at": "2023-05-17T18:58:13Z",
+        "date_advance": 0, "integrated_form": "none", "label_date": "2023-05-17T18:58:13Z",
+        "label_resolution": 300, "label_size": "4x6", "label_type": "default", "label_file_type":
+        "image/png", "label_url": "https://easypost-files.s3.us-west-2.amazonaws.com/files/postage_label/20230517/65f74d778056428ebd4a973194ad5130.png",
+        "label_pdf_url": null, "label_zpl_url": null, "label_epl2_url": null, "label_file":
+        null}, "rates": [{"id": "rate_f817f8b56c6d43759f1411a21e1f93a9", "object":
+        "Rate", "created_at": "2023-05-17T18:58:12Z", "updated_at": "2023-05-17T18:58:12Z",
+        "mode": "test", "service": "Express", "carrier": "USPS", "rate": "31.25",
+        "currency": "USD", "retail_rate": "35.80", "retail_currency": "USD", "list_rate":
+        "31.25", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
+        null, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
+        null, "shipment_id": "shp_f708cc50d42842a0a4a8faf14bb6ece0", "carrier_account_id":
+        "ca_b25657e9896e4d63ac8151ac346ac41e"}, {"id": "rate_dd2a6bdb194a4326bd3a7bf0095cb48a",
+        "object": "Rate", "created_at": "2023-05-17T18:58:12Z", "updated_at": "2023-05-17T18:58:12Z",
+        "mode": "test", "service": "ParcelSelect", "carrier": "USPS", "rate": "6.76",
+        "currency": "USD", "retail_rate": "7.75", "retail_currency": "USD", "list_rate":
+        "7.75", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
+        5, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
+        5, "shipment_id": "shp_f708cc50d42842a0a4a8faf14bb6ece0", "carrier_account_id":
+        "ca_b25657e9896e4d63ac8151ac346ac41e"}, {"id": "rate_29eaa652527e4ca0b590111693d039fa",
+        "object": "Rate", "created_at": "2023-05-17T18:58:12Z", "updated_at": "2023-05-17T18:58:12Z",
+        "mode": "test", "service": "Priority", "carrier": "USPS", "rate": "7.15",
+        "currency": "USD", "retail_rate": "10.20", "retail_currency": "USD", "list_rate":
+        "8.24", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
+        2, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
+        2, "shipment_id": "shp_f708cc50d42842a0a4a8faf14bb6ece0", "carrier_account_id":
+        "ca_b25657e9896e4d63ac8151ac346ac41e"}, {"id": "rate_b6f2cbc7aec146bda313bd4725f44462",
+        "object": "Rate", "created_at": "2023-05-17T18:58:12Z", "updated_at": "2023-05-17T18:58:12Z",
+        "mode": "test", "service": "First", "carrier": "USPS", "rate": "6.07", "currency":
+        "USD", "retail_rate": "6.07", "retail_currency": "USD", "list_rate": "6.07",
+        "list_currency": "USD", "billing_type": "easypost", "delivery_days": 3, "delivery_date":
+        null, "delivery_date_guaranteed": false, "est_delivery_days": 3, "shipment_id":
+        "shp_f708cc50d42842a0a4a8faf14bb6ece0", "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e"}],
+        "refund_status": null, "scan_form": null, "selected_rate": {"id": "rate_b6f2cbc7aec146bda313bd4725f44462",
+        "object": "Rate", "created_at": "2023-05-17T18:58:13Z", "updated_at": "2023-05-17T18:58:13Z",
+        "mode": "test", "service": "First", "carrier": "USPS", "rate": "6.07", "currency":
+        "USD", "retail_rate": "6.07", "retail_currency": "USD", "list_rate": "6.07",
+        "list_currency": "USD", "billing_type": "easypost", "delivery_days": 3, "delivery_date":
+        null, "delivery_date_guaranteed": false, "est_delivery_days": 3, "shipment_id":
+        "shp_f708cc50d42842a0a4a8faf14bb6ece0", "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e"},
+        "tracker": {"id": "trk_8006ff4bd9f24efcbff082b19237ac25", "object": "Tracker",
+        "mode": "test", "tracking_code": "9400100104262210683546", "status": "pre_transit",
+        "status_detail": "status_update", "created_at": "2023-05-17T18:58:13Z", "updated_at":
+        "2023-05-17T18:58:13Z", "signed_by": null, "weight": null, "est_delivery_date":
+        "2023-05-17T18:58:13Z", "shipment_id": "shp_f708cc50d42842a0a4a8faf14bb6ece0",
+        "carrier": "USPS", "tracking_details": [{"object": "TrackingDetail", "message":
+        "Pre-Shipment Info Sent to USPS", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-17T18:58:13Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": null, "state": null, "country": null, "zip": null}}, {"object": "TrackingDetail",
+        "message": "Shipping Label Created", "description": null, "status": "pre_transit",
+        "status_detail": "status_update", "datetime": "2023-04-18T07:35:13Z", "source":
+        "USPS", "carrier_code": null, "tracking_location": {"object": "TrackingLocation",
+        "city": "HOUSTON", "state": "TX", "country": null, "zip": "77063"}}], "fees":
+        [], "carrier_detail": {"object": "CarrierDetail", "service": "First-Class
+        Package Service", "container_type": null, "est_delivery_date_local": null,
+        "est_delivery_time_local": null, "origin_location": "HOUSTON TX, 77001", "origin_tracking_location":
+        {"object": "TrackingLocation", "city": "HOUSTON", "state": "TX", "country":
+        null, "zip": "77063"}, "destination_location": "CHARLESTON SC, 29401", "destination_tracking_location":
+        null, "guaranteed_delivery_date": null, "alternate_identifier": null, "initial_delivery_attempt":
+        null}, "public_url": "https://track.easypost.com/djE6dHJrXzgwMDZmZjRiZDlmMjRlZmNiZmYwODJiMTkyMzdhYzI1"},
+        "to_address": {"id": "adr_c5d27137f4e411eda1c8ac1f6bc72124", "object": "Address",
+        "created_at": "2023-05-17T18:58:12+00:00", "updated_at": "2023-05-17T18:58:13+00:00",
+        "name": "JACK SPARROW", "company": null, "street1": "388 TOWNSEND ST APT 20",
+        "street2": null, "city": "SAN FRANCISCO", "state": "CA", "zip": "94107-1670",
+        "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test",
+        "carrier_facility": null, "residential": true, "federal_tax_id": null, "state_tax_id":
+        null, "verifications": {"zip4": {"success": true, "errors": [], "details":
+        null}, "delivery": {"success": true, "errors": [], "details": {"latitude":
+        37.77551, "longitude": -122.39697, "time_zone": "America/Los_Angeles"}}}},
+        "usps_zone": 4, "return_address": {"id": "adr_c5d53968f4e411edba4fac1f6bc539aa",
+        "object": "Address", "created_at": "2023-05-17T18:58:12+00:00", "updated_at":
+        "2023-05-17T18:58:12+00:00", "name": "Elizabeth Swan", "company": null, "street1":
+        "179 N Harbor Dr", "street2": null, "city": "Redondo Beach", "state": "CA",
+        "zip": "90277", "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>",
+        "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
+        null, "state_tax_id": null, "verifications": {}}, "buyer_address": {"id":
+        "adr_c5d27137f4e411eda1c8ac1f6bc72124", "object": "Address", "created_at":
+        "2023-05-17T18:58:12+00:00", "updated_at": "2023-05-17T18:58:13+00:00", "name":
+        "JACK SPARROW", "company": null, "street1": "388 TOWNSEND ST APT 20", "street2":
+        null, "city": "SAN FRANCISCO", "state": "CA", "zip": "94107-1670", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": true, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {"zip4": {"success": true, "errors": [], "details": null}, "delivery": {"success":
+        true, "errors": [], "details": {"latitude": 37.77551, "longitude": -122.39697,
+        "time_zone": "America/Los_Angeles"}}}}, "forms": [{"object": "Form", "id":
+        "form_c86e2b588bf04a6aa1a0d4b8db8e1a06", "created_at": "2023-05-17T18:58:14Z",
+        "updated_at": "2023-05-17T18:58:14Z", "mode": "test", "form_type": "return_packing_slip",
+        "form_url": "https://easypost-files.s3-us-west-2.amazonaws.com/files/form/20230517/a545b8ccf0db40b6a83a1f4dfab8e7ea.pdf",
+        "submitted_electronically": null}], "fees": [{"object": "Fee", "type": "LabelFee",
+        "amount": "0.00000", "charged": true, "refunded": false}, {"object": "Fee",
+        "type": "PostageFee", "amount": "6.07000", "charged": true, "refunded": false}],
+        "id": "shp_f708cc50d42842a0a4a8faf14bb6ece0", "object": "Shipment"}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '8453'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"6f9b19c55e00b36937e7c94d3f99afc2"
+      expires:
+      - '0'
+      location:
+      - /api/v2/shipments/shp_f708cc50d42842a0a4a8faf14bb6ece0/forms/return_packing_slip
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - a4ae9a09646523c5e2b9045e00034805
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb6nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq a29e4ad05c
+      - intlb1wdc a29e4ad05c
+      - extlb4wdc 5ab12a3ed2
+      x-runtime:
+      - '0.713464'
+      x-version-label:
+      - easypost-202305171805-88442329bc-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1

@@ -38,7 +38,7 @@ class BillingService(BaseService):
 
     def retrieve_payment_methods(self, **params) -> Dict[str, Any]:
         """Retrieve payment methods."""
-        response, api_key = Requestor(self._client).request(
+        response = Requestor(self._client).request(
             method=RequestMethod.GET,
             url="/payment_methods",
             params=params,
