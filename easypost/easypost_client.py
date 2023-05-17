@@ -70,7 +70,7 @@ class EasyPostClient:
         # use urlfetch as request_lib on google app engine, otherwise use requests
         self._request_lib = None
         try:
-            from google.appengine.api import urlfetch
+            from google.appengine.api import urlfetch  # type: ignore
 
             self._request_lib = "urlfetch"
             # use the GAE application-wide "deadline" (or its default)
