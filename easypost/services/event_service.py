@@ -40,7 +40,7 @@ class EventService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def retrieve_payload(self, event_id: str, payload_id: str, api_key: Optional[str] = None, **params) -> Payload:
         """Retrieve a Payload of an Event."""
@@ -48,7 +48,7 @@ class EventService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def get_next_page(
         self,

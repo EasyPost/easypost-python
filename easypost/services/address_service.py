@@ -37,7 +37,7 @@ class AddressService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def all(self, **params) -> List[Any]:
         """Retrieve a list of Addresses."""
@@ -54,7 +54,7 @@ class AddressService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response["address"], api_key=api_key)
+        return convert_to_easypost_object(response=response["address"])
 
     def verify(self, id) -> Address:
         """Verify an address."""
@@ -62,7 +62,7 @@ class AddressService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url)
 
-        return convert_to_easypost_object(response=response["address"], api_key=api_key)
+        return convert_to_easypost_object(response=response["address"])
 
     def get_next_page(
         self,

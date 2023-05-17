@@ -28,7 +28,7 @@ class EndShipperService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def all(self, **params) -> List[Address]:
         """Retrieve a list of EndShippers."""
@@ -48,4 +48,4 @@ class EndShipperService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.PUT, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)

@@ -42,7 +42,7 @@ class OrderService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def buy(self, id: str, **params) -> Order:
         """Buy an Order."""
@@ -50,4 +50,4 @@ class OrderService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)

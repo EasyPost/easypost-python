@@ -38,7 +38,7 @@ class BatchService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def buy(self, id: str, **params) -> Batch:
         """Buy a Batch."""
@@ -46,7 +46,7 @@ class BatchService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def label(self, id: str, **params) -> Batch:
         """Create a Batch label."""
@@ -54,7 +54,7 @@ class BatchService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def remove_shipments(self, id: str, **params) -> Batch:
         """Remove Shipments from a Batch."""
@@ -62,7 +62,7 @@ class BatchService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def add_shipments(self, id: str, **params) -> Batch:
         """Add Shipments to a Batch."""
@@ -70,7 +70,7 @@ class BatchService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def create_scan_form(self, id: str, **params) -> Batch:
         """Create a ScanForm for a Batch."""
@@ -78,7 +78,7 @@ class BatchService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def get_next_page(
         self,

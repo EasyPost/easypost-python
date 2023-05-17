@@ -47,7 +47,7 @@ class BillingService(BaseService):
         if response.get("id") is None:
             raise Error(message="Billing has not been setup for this user. Please add a payment method.")
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def _get_payment_method_info(self, priority: str = "primary") -> List[str]:
         """Get payment method info (type of the payment method and ID of the payment method)"""

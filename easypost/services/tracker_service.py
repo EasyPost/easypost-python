@@ -31,7 +31,7 @@ class TrackerService(BaseService):
         response["tracking_code"] = params.get("tracking_code")
         response["carrier"] = params.get("carrier")
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def retrieve(self, id) -> Tracker:
         """Retrieve a Tracker."""

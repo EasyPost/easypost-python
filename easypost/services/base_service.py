@@ -49,8 +49,7 @@ class BaseService:
         # TODO: Don't instantiate the Requestor class, pass the client directly to the request
         response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        # TODO: Get rid of the api_key
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def _all_resources(self, class_name: str, **params) -> List[Any]:
         """Retrieve a list of records from the EasyPost API."""
@@ -58,8 +57,7 @@ class BaseService:
         # TODO: Don't instantiate the Requestor class, pass the client directly to the request
         response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
-        # TODO: Get rid of the api_key
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def _retrieve_resource(self, class_name: str, id: str) -> Any:
         """Retrieve an object from the EasyPost API."""
@@ -67,8 +65,7 @@ class BaseService:
         # TODO: Don't instantiate the Requestor class, pass the client directly to the request
         response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url)
 
-        # TODO: Get rid of the api_key
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def _update_resource(self, class_name: str, id: str, method: RequestMethod = RequestMethod.PATCH, **params) -> Any:
         """Update an EasyPost object."""
@@ -78,8 +75,7 @@ class BaseService:
         # TODO: Don't instantiate the Requestor class, pass the client directly to the request
         response, api_key = Requestor(self._client).request(method=method, url=url, params=wrapped_params)
 
-        # TODO: Get rid of the api_key
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def _delete_resource(self, class_name: str, id: str) -> Any:
         """Delete an EasyPost object."""
@@ -87,8 +83,7 @@ class BaseService:
         # TODO: Don't instantiate the Requestor class, pass the client directly to the request
         response, api_key = Requestor(self._client).request(method=RequestMethod.DELETE, url=url)
 
-        # TODO: Get rid of the api_key
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def _get_next_page_resources(
         self,
@@ -119,4 +114,4 @@ class BaseService:
         if response is None or len(response_array) == 0 or not response.get("has_more"):
             raise Error(message="There are no more pages to retrieve.")
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)

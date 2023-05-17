@@ -40,7 +40,7 @@ class BetaReferralCustomerService(BaseService):
             beta=True,
         )
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def refund_by_amount(self, refund_amount: int) -> Dict[str, Any]:
         """Refund a ReferralCustomer wallet by specifying an amount."""
@@ -53,7 +53,7 @@ class BetaReferralCustomerService(BaseService):
             beta=True,
         )
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def refund_by_payment_log(self, payment_log_id: str) -> Dict[str, Any]:
         """Refund a ReferralCustomer wallet by specifying a payment log ID to completely refund."""
@@ -66,4 +66,4 @@ class BetaReferralCustomerService(BaseService):
             beta=True,
         )
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)

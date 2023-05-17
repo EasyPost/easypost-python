@@ -45,7 +45,7 @@ class UserService(BaseService):
             url=url,
         )
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def update(self, id, **params) -> User:
         """Update a User."""
@@ -63,7 +63,7 @@ class UserService(BaseService):
             url=url,
         )
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def all_api_keys(self) -> Dict[str, Any]:
         """Retrieve a list of all API keys."""
@@ -71,7 +71,7 @@ class UserService(BaseService):
 
         response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def api_keys(self, id: str) -> List[ApiKey]:
         """Retrieve a list of API keys (works for the authenticated User or a child User)."""
@@ -101,4 +101,4 @@ class UserService(BaseService):
             params=params,
         )
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)

@@ -36,7 +36,7 @@ class ReferralCustomerService(BaseService):
             params=wrapped_params,
         )
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def update_email(self, id: str, email: str) -> None:
         """Update a referral customer.
@@ -67,7 +67,7 @@ class ReferralCustomerService(BaseService):
             params=params,
         )
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def get_next_page(
         self,

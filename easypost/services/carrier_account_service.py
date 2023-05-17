@@ -30,7 +30,7 @@ class CarrierAccountService(BaseService):
         wrapped_params = {self._snakecase_name(self._model_class): params}
         response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def all(self, **params) -> List[Any]:
         """Retrieve a list of CarrierAccounts."""
@@ -52,7 +52,7 @@ class CarrierAccountService(BaseService):
         """Get the types of CarrierAccounts available to the User."""
         response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url="/carrier_types")
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def _select_carrier_account_creation_endpoint(self, carrier_account_type: Optional[Any]) -> str:
         """Determines which API endpoint to use for the creation call."""

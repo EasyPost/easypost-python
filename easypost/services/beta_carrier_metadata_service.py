@@ -33,4 +33,4 @@ class BetaCarrierMetadataService(BaseService):
             beta=True,
         )
 
-        return convert_to_easypost_object(response=response.get("carriers", []), api_key=api_key)
+        return convert_to_easypost_object(response=response.get("carriers", []))

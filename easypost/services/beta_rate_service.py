@@ -30,4 +30,4 @@ class BetaRateService(BaseService):
             beta=True,
         )
 
-        return convert_to_easypost_object(response=response.get("rates", None), api_key=api_key)
+        return convert_to_easypost_object(response=response.get("rates", None))

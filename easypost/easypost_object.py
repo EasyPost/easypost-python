@@ -53,13 +53,12 @@ OBJECT_CLASS_NAME_OVERRIDES: Dict[str, Any] = {
 
 def convert_to_easypost_object(
     response: Dict[str, Any],
-    api_key: Optional[str] = None,
     parent: object = None,
     name: Optional[str] = None,
 ):
     """Convert a response to an EasyPost object."""
     if isinstance(response, list):
-        return [convert_to_easypost_object(response=item, api_key=api_key, parent=parent) for item in response]
+        return [convert_to_easypost_object(response=item, parent=parent) for item in response]
     elif isinstance(response, dict):
         response = response.copy()
         object_type_str = response.get("object", EasyPostObject)
@@ -81,7 +80,7 @@ def convert_to_easypost_object(
             else EasyPostObject
         )
 
-        obj = class_model.construct_from(values=response, api_key=api_key, parent=parent, name=name)
+        obj = class_model.construct_from(values=response, parent=parent, name=name)
 
         return obj
     else:
@@ -170,20 +169,18 @@ class EasyPostObject(object):
         name: Optional[str] = None,
     ) -> object:
         """Construct an object."""
-        instance = cls(easypost_id=values.get("id"), api_key=api_key, parent=parent, name=name)
-        instance.refresh_from(values=values, api_key=api_key)
+        instance = cls(easypost_id=values.get("id"), parent=parent, name=name)
+        instance.refresh_from(values=values)
         return instance
 
-    def refresh_from(self, values: Dict[str, Any], api_key: Optional[str] = None) -> None:
+    def refresh_from(self, values: Dict[str, Any]) -> None:
         """Update local object with changes from the API."""
-        self._api_key = api_key
-
         for k, v in sorted(values.items()):
             if k == "id" and self.id != v:
                 self.id = v
             if k in self._immutable_values:
                 continue
-            self.__dict__[k] = convert_to_easypost_object(response=v, api_key=api_key, parent=self, name=k)
+            self.__dict__[k] = convert_to_easypost_object(response=v, parent=self, name=k)
             self._values.add(k)
             self._transient_values.discard(k)
             self._unsaved_values.discard(k)
