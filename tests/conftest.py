@@ -11,7 +11,7 @@ from typing import (
 
 import pytest
 
-import easypost
+from easypost.easypost_client import EasyPostClient
 
 
 EASYPOST_TEST_API_KEY = os.getenv("EASYPOST_TEST_API_KEY")
@@ -55,71 +55,25 @@ def synchronous_sleep_seconds():
 @pytest.fixture
 def test_client():
     """If a test needs to use the EasyPost test mode, make it depend on this fixture."""
-    return easypost.EasyPostClient(EASYPOST_TEST_API_KEY)
+    return EasyPostClient(EASYPOST_TEST_API_KEY)
 
 
 @pytest.fixture
 def prod_client():
     """If a test needs to use the EasyPost prod mode, make it depend on this fixture."""
-    return easypost.EasyPostClient(EASYPOST_PROD_API_KEY)
+    return EasyPostClient(EASYPOST_PROD_API_KEY)
 
 
 @pytest.fixture
 def partner_user_prod_client():
     """If a test needs to use prod mode with a partner user's API key, make it depend on this fixture."""
-    return easypost.EasyPostClient(PARTNER_USER_PROD_API_KEY)
+    return EasyPostClient(PARTNER_USER_PROD_API_KEY)
 
 
 @pytest.fixture
 def referral_customer_prod_client():
     """If a test needs to use prod mode with a referral customer API key, make it depend on this fixture."""
-    return easypost.EasyPostClient(REFERRAL_CUSTOMER_PROD_API_KEY)
-
-
-@pytest.fixture
-def stripe_connect_prod_client():
-    """If a test needs to use prod mode with the stripe connect user's API key, make it depend on this fixture."""
-    return easypost.EasyPostClient(STRIPE_CONNECT_USER_PROD_API_KEY)
-
-
-# TODO: Remove
-@pytest.fixture(autouse=True)
-def setup_api_key():
-    """This fixture is auto-loaded by all tests; it sets up the api key."""
-    default_key = easypost.api_key
-    easypost.api_key = EASYPOST_TEST_API_KEY
-    yield
-    easypost.api_key = default_key
-
-
-# TODO: Remove
-@pytest.fixture
-def prod_api_key():
-    """If a test needs to use the prod api key, make it depend on this fixture."""
-    default_key = easypost.api_key
-    easypost.api_key = EASYPOST_PROD_API_KEY
-    yield
-    easypost.api_key = default_key
-
-
-# TODO: Remove
-@pytest.fixture
-def partner_prod_api_key():
-    """If a test needs to use the partner prod api key, make it depend on this fixture."""
-    default_key = easypost.api_key
-    easypost.api_key = PARTNER_USER_PROD_API_KEY
-    yield
-    easypost.api_key = default_key
-
-
-# TODO: Remove
-@pytest.fixture
-def referral_customer_prod_api_key():
-    """If a test needs to use the referral customer prod api key, make it depend on this fixture."""
-    default_key = easypost.api_key
-    easypost.api_key = REFERRAL_CUSTOMER_PROD_API_KEY
-    yield
-    easypost.api_key = default_key
+    return EasyPostClient(REFERRAL_CUSTOMER_PROD_API_KEY)
 
 
 @pytest.fixture(autouse=True)

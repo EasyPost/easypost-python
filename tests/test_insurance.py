@@ -1,26 +1,26 @@
 import pytest
 
-import easypost
 from easypost.error import Error
+from easypost.models import Insurance
 
 
 @pytest.mark.vcr()
 def test_insurance_create(one_call_buy_shipment, basic_insurance, test_client):
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)  # TODO: Use new syntax when service exists
+    shipment = test_client.shipment.create(**one_call_buy_shipment)
 
     insurance_data = basic_insurance
     insurance_data["tracking_code"] = shipment.tracking_code
 
     insurance = test_client.insurance.create(**insurance_data)
 
-    assert isinstance(insurance, easypost.Insurance)
+    assert isinstance(insurance, Insurance)
     assert str.startswith(insurance.id, "ins_")
     assert insurance.amount == "100.00000"
 
 
 @pytest.mark.vcr()
 def test_insurance_retrieve(one_call_buy_shipment, basic_insurance, test_client):
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)  # TODO: Use new syntax when it exists
+    shipment = test_client.shipment.create(**one_call_buy_shipment)
 
     insurance_data = basic_insurance
     insurance_data["tracking_code"] = shipment.tracking_code
@@ -29,7 +29,7 @@ def test_insurance_retrieve(one_call_buy_shipment, basic_insurance, test_client)
 
     retrieved_insurance = test_client.insurance.retrieve(insurance.id)
 
-    assert isinstance(retrieved_insurance, easypost.Insurance)
+    assert isinstance(retrieved_insurance, Insurance)
     # status changes between creation and retrieval, so we can't compare the whole object
     assert insurance.id == retrieved_insurance.id
 
@@ -42,7 +42,7 @@ def test_insurance_all(page_size, test_client):
 
     assert len(insurance_array) <= page_size
     assert insurances["has_more"] is not None
-    assert all(isinstance(insurance, easypost.Insurance) for insurance in insurance_array)
+    assert all(isinstance(insurance, Insurance) for insurance in insurance_array)
 
 
 @pytest.mark.vcr()

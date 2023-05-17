@@ -1,4 +1,4 @@
-from easypost.models.parcel import Parcel
+from easypost.models import Parcel
 from easypost.services.base_service import BaseService
 
 

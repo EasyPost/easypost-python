@@ -1,4 +1,6 @@
+import importlib
 import json
+import re
 from typing import (
     Any,
     Dict,
@@ -6,11 +8,8 @@ from typing import (
     Optional,
 )
 
-import easypost
 
-
-# TODO: Use the actual models here as the classes
-EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP = {
+EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP: Dict[str, Any] = {
     "adr": "Address",
     "ak": "ApiKey",
     "batch": "Batch",
@@ -42,7 +41,7 @@ EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP = {
     "user": "User",
 }
 
-OBJECT_CLASS_NAME_OVERRIDES = {
+OBJECT_CLASS_NAME_OVERRIDES: Dict[str, Any] = {
     "CashFlowReport": "Report",
     "PaymentLogReport": "Report",
     "RefundReport": "Report",
@@ -63,17 +62,27 @@ def convert_to_easypost_object(
         return [convert_to_easypost_object(response=item, api_key=api_key, parent=parent) for item in response]
     elif isinstance(response, dict):
         response = response.copy()
-        object_type_str = response.get("object", "EasyPostObject")
-        class_name = OBJECT_CLASS_NAME_OVERRIDES.get(object_type_str, object_type_str)
-
+        object_type_str = response.get("object", EasyPostObject)
+        class_name = OBJECT_CLASS_NAME_OVERRIDES.get(object_type_str, EasyPostObject)
         object_id = response.get("id", None)
+
         if object_id is not None:
             # If an object ID is present, use it to find the class type instead.
             object_id_prefix = object_id.split("_")[0]
-            class_name = EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP.get(object_id_prefix, "EasyPostObject")
+            class_name = EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP.get(object_id_prefix, EasyPostObject)
 
-        cls = getattr(easypost, class_name, EasyPostObject)
-        obj = cls.construct_from(values=response, api_key=api_key, parent=parent, name=name)
+        # Dynamically import class models due to circular imports of EasyPostObject
+        class_model = (
+            getattr(
+                importlib.import_module(f'easypost.models.{re.sub(r"(?<!^)(?=[A-Z])", "_", class_name).lower()}'),
+                class_name,
+            )
+            if class_name != EasyPostObject
+            else EasyPostObject
+        )
+
+        obj = class_model.construct_from(values=response, api_key=api_key, parent=parent, name=name)
+
         return obj
     else:
         return response
@@ -88,6 +97,7 @@ class EasyPostObject(object):
         name: Optional[str] = None,
         **params,
     ):
+        # TODO: Revisit these values and entire file since many aren't needed now that we don't update local objects
         self.__dict__["_values"] = set()
         self.__dict__["_unsaved_values"] = set()
         self.__dict__["_transient_values"] = set()

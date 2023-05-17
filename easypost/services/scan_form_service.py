@@ -5,7 +5,7 @@ from typing import (
     Optional,
 )
 
-from easypost.models.scan_form import ScanForm
+from easypost.models import ScanForm
 from easypost.services.base_service import BaseService
 
 

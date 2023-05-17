@@ -1,13 +1,14 @@
 import pytest
 
-import easypost
+from easypost.error import Error
+from easypost.models import CarrierAccount
 
 
 @pytest.mark.vcr()
 def test_carrier_account_create(prod_client, basic_carrier_account):
     carrier_account = prod_client.carrier_account.create(**basic_carrier_account)
 
-    assert isinstance(carrier_account, easypost.CarrierAccount)
+    assert isinstance(carrier_account, CarrierAccount)
     assert str.startswith(carrier_account.id, "ca_")
     assert carrier_account.type == "DhlEcsAccount"
 
@@ -20,7 +21,7 @@ def test_carrier_account_retrieve(prod_client, basic_carrier_account):
 
     retrieved_carrier_account = prod_client.carrier_account.retrieve(carrier_account.id)
 
-    assert isinstance(retrieved_carrier_account, easypost.CarrierAccount)
+    assert isinstance(retrieved_carrier_account, CarrierAccount)
     # status changes between creation and retrieval, so we can't compare the whole object
     assert carrier_account.id == retrieved_carrier_account.id
 
@@ -33,7 +34,7 @@ def test_carrier_account_retrieve(prod_client, basic_carrier_account):
 def test_carrier_account_all(prod_client, page_size):
     carrier_accounts = prod_client.carrier_account.all(page_size=page_size)
 
-    assert all(isinstance(carrier_account, easypost.CarrierAccount) for carrier_account in carrier_accounts)
+    assert all(isinstance(carrier_account, CarrierAccount) for carrier_account in carrier_accounts)
 
 
 @pytest.mark.vcr()
@@ -47,7 +48,7 @@ def test_carrier_account_update(prod_client, basic_carrier_account):
         description=test_description,
     )
 
-    assert isinstance(updated_carrier_account, easypost.CarrierAccount)
+    assert isinstance(updated_carrier_account, CarrierAccount)
     assert str.startswith(updated_carrier_account.id, "ca_")
     assert updated_carrier_account.description == test_description
 
@@ -87,6 +88,6 @@ def test_carrier_account_create_with_custom_workflow(prod_client):
 
     try:
         prod_client.carrier_account.create(**carrier_account)
-    except easypost.Error as error:
+    except Error as error:
         # TODO: Assert against error.errors when that property gets added
         assert '{"field": "account_number", "message": "must be present and a string"}' in error.http_body

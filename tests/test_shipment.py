@@ -1,7 +1,10 @@
 import pytest
 
-import easypost
 from easypost.error import Error
+from easypost.models import (
+    Rate,
+    Shipment,
+)
 from easypost.util import get_lowest_smart_rate
 
 
@@ -9,7 +12,7 @@ from easypost.util import get_lowest_smart_rate
 def test_shipment_create(full_shipment, test_client):
     shipment = test_client.shipment.create(**full_shipment)
 
-    assert isinstance(shipment, easypost.Shipment)
+    assert isinstance(shipment, Shipment)
     assert str.startswith(shipment.id, "shp_")
     assert shipment.rates is not None
     assert shipment.options.label_format == "PNG"
@@ -23,7 +26,7 @@ def test_shipment_retrieve(full_shipment, test_client):
 
     retrieved_shipment = test_client.shipment.retrieve(shipment.id)
 
-    assert isinstance(retrieved_shipment, easypost.Shipment)
+    assert isinstance(retrieved_shipment, Shipment)
     assert retrieved_shipment == shipment
 
 
@@ -35,7 +38,7 @@ def test_shipment_all(page_size, test_client):
 
     assert len(shipment_array) <= page_size
     assert shipments["has_more"] is not None
-    assert all(isinstance(shipment, easypost.Shipment) for shipment in shipment_array)
+    assert all(isinstance(shipment, Shipment) for shipment in shipment_array)
 
 
 @pytest.mark.vcr()
@@ -56,7 +59,7 @@ def test_shipment_get_next_page(page_size, test_client):
 @pytest.mark.vcr()
 def test_shipment_buy(full_shipment, test_client):
     shipment = test_client.shipment.create(**full_shipment)
-    bought_shipment = shipment.buy(shipment.id, rate=shipment.lowest_rate())
+    bought_shipment = test_client.shipment.buy(shipment.id, rate=shipment.lowest_rate())
 
     assert bought_shipment.postage_label is not None
 
@@ -70,7 +73,7 @@ def test_shipment_regenerate_rates(full_shipment, test_client):
     rates_array = rates["rates"]
 
     assert isinstance(rates_array, list)
-    assert all(isinstance(rate, easypost.Rate) for rate in rates_array)
+    assert all(isinstance(rate, Rate) for rate in rates_array)
 
 
 @pytest.mark.vcr()
@@ -138,7 +141,7 @@ def test_shipment_create_empty_objects(basic_shipment, test_client):
 
     shipment = test_client.shipment.create(**shipment_data)
 
-    assert isinstance(shipment, easypost.Shipment)
+    assert isinstance(shipment, Shipment)
     assert str.startswith(shipment.id, "shp_")
     assert shipment.options is not None
     assert shipment.customs_info is None
@@ -152,16 +155,16 @@ def test_shipment_create_tax_identifier(basic_shipment, tax_identifier, test_cli
 
     shipment = test_client.shipment.create(**shipment_data)
 
-    assert isinstance(shipment, easypost.Shipment)
+    assert isinstance(shipment, Shipment)
     assert str.startswith(shipment.id, "shp_")
     assert shipment.tax_identifiers[0]["tax_id_type"] == "IOSS"
 
 
 @pytest.mark.vcr()
 def test_shipment_create_with_ids(ca_address_1, basic_parcel, test_client):
-    from_address = easypost.Address.create(**ca_address_1)
-    to_address = easypost.Address.create(**ca_address_1)
-    parcel = easypost.Parcel.create(**basic_parcel)
+    from_address = test_client.address.create(**ca_address_1)
+    to_address = test_client.address.create(**ca_address_1)
+    parcel = test_client.parcel.create(**basic_parcel)
 
     shipment = test_client.shipment.create(
         from_address={"id": from_address.id},
@@ -169,7 +172,7 @@ def test_shipment_create_with_ids(ca_address_1, basic_parcel, test_client):
         parcel={"id": parcel.id},
     )
 
-    assert isinstance(shipment, easypost.Shipment)
+    assert isinstance(shipment, Shipment)
     assert str.startswith(shipment.id, "shp_")
     assert str.startswith(shipment.from_address.id, "adr_")
     assert str.startswith(shipment.to_address.id, "adr_")
@@ -195,7 +198,7 @@ def test_shipment_lowest_rate(full_shipment, test_client):
     assert lowest_rate_service.carrier == "USPS"
 
     # Test lowest rate with carrier filter (should error due to bad carrier)
-    with pytest.raises(easypost.Error) as error:
+    with pytest.raises(Error) as error:
         shipment.lowest_rate(carriers=["BAD CARRIER"])
     assert str(error.value) == "No rates found."
 
@@ -215,7 +218,7 @@ def test_shipment_lowest_smart_rate(basic_shipment, test_client):
     assert lowest_smart_rate_filters["carrier"] == "USPS"
 
     # Test lowest smart_rate with invalid filters (should error due to strict delivery_days)
-    with pytest.raises(easypost.Error) as error:
+    with pytest.raises(Error) as error:
         _ = test_client.shipment.lowest_smart_rate(
             shipment.id,
             delivery_days=0,
@@ -224,7 +227,7 @@ def test_shipment_lowest_smart_rate(basic_shipment, test_client):
     assert str(error.value) == "No rates found."
 
     # Test lowest smart_rate with invalid filters (should error due to invalid delivery_accuracy)
-    with pytest.raises(easypost.Error) as error:
+    with pytest.raises(Error) as error:
         _ = test_client.shipment.lowest_smart_rate(
             shipment.id,
             delivery_days=3,
@@ -249,7 +252,7 @@ def test_shipment_get_lowest_smart_rate(basic_shipment, test_client):
     assert lowest_smart_rate_filters["carrier"] == "USPS"
 
     # Test lowest smart_rate with invalid filters (should error due to strict delivery_days)
-    with pytest.raises(easypost.Error) as error:
+    with pytest.raises(Error) as error:
         _ = get_lowest_smart_rate(
             smart_rates,
             delivery_days=0,
@@ -258,7 +261,7 @@ def test_shipment_get_lowest_smart_rate(basic_shipment, test_client):
     assert str(error.value) == "No rates found."
 
     # Test lowest smart_rate with invalid filters (should error due to bad delivery_accuracy)
-    with pytest.raises(easypost.Error) as error:
+    with pytest.raises(Error) as error:
         _ = get_lowest_smart_rate(
             smart_rates,
             delivery_days=3,
@@ -290,7 +293,7 @@ def test_generate_form(one_call_buy_shipment, rma_form_options, test_client):
 def test_shipment_create_with_carbon_offset(basic_shipment, test_client):
     shipment = test_client.shipment.create(with_carbon_offset=True, **basic_shipment)
 
-    assert isinstance(shipment, easypost.Shipment)
+    assert isinstance(shipment, Shipment)
     assert shipment.rates is not None
     assert all(rate.carbon_offset is not None for rate in shipment.rates)
 
@@ -300,7 +303,7 @@ def test_shipment_buy_with_carbon_offset(basic_shipment, test_client):
     shipment = test_client.shipment.create(**basic_shipment)
     bought_shipment = test_client.shipment.buy(shipment.id, rate=shipment.lowest_rate(), with_carbon_offset=True)
 
-    assert isinstance(bought_shipment, easypost.Shipment)
+    assert isinstance(bought_shipment, Shipment)
     assert any(fee.type == "CarbonOffsetFee" for fee in bought_shipment.fees)
 
 
@@ -308,7 +311,7 @@ def test_shipment_buy_with_carbon_offset(basic_shipment, test_client):
 def test_shipment_one_call_buy_with_carbon_offset(one_call_buy_shipment, test_client):
     shipment = test_client.shipment.create(with_carbon_offset=True, **one_call_buy_shipment)
 
-    assert isinstance(shipment, easypost.Shipment)
+    assert isinstance(shipment, Shipment)
     assert all(rate.carbon_offset is not None for rate in shipment.rates)
 
 
@@ -323,7 +326,7 @@ def test_shipment_rerate_with_carbon_offset(one_call_buy_shipment, test_client):
 
 @pytest.mark.vcr()
 def test_shipment_buy_with_end_shipper_id(ca_address_1, basic_shipment, test_client):
-    end_shipper = easypost.EndShipper.create(**ca_address_1)
+    end_shipper = test_client.end_shipper.create(**ca_address_1)
 
     shipment = test_client.shipment.create(**basic_shipment)
     bought_shipment = test_client.shipment.buy(

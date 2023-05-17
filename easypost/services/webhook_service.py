@@ -3,7 +3,7 @@ from typing import (
     List,
 )
 
-from easypost.models.webhook import Webhook
+from easypost.models import Webhook
 from easypost.services.base_service import BaseService
 
 

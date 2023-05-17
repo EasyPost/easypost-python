@@ -1,28 +1,28 @@
 import pytest
 
-import easypost
 from easypost.error import Error
+from easypost.models import ScanForm
 
 
 @pytest.mark.vcr()
 def test_scanform_create(one_call_buy_shipment, test_client):
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)  # TODO: Use new syntax
+    shipment = test_client.shipment.create(**one_call_buy_shipment)
 
     scanform = test_client.scan_form.create(shipment=[shipment])
 
-    assert isinstance(scanform, easypost.ScanForm)
+    assert isinstance(scanform, ScanForm)
     assert str.startswith(scanform.id, "sf_")
 
 
 @pytest.mark.vcr()
 def test_scanform_retrieve(one_call_buy_shipment, test_client):
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)  # TODO: Use new syntax
+    shipment = test_client.shipment.create(**one_call_buy_shipment)
 
     scanform = test_client.scan_form.create(shipment=[shipment])
 
     retrieved_scanform = test_client.scan_form.retrieve(scanform.id)
 
-    assert isinstance(retrieved_scanform, easypost.ScanForm)
+    assert isinstance(retrieved_scanform, ScanForm)
     assert retrieved_scanform == scanform
 
 
@@ -34,7 +34,7 @@ def test_scanform_all(page_size, test_client):
 
     assert len(scanforms_array) <= page_size
     assert scanforms["has_more"] is not None
-    assert all(isinstance(scanform, easypost.ScanForm) for scanform in scanforms_array)
+    assert all(isinstance(scanform, ScanForm) for scanform in scanforms_array)
 
 
 @pytest.mark.vcr()

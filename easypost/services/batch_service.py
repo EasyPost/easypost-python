@@ -6,7 +6,7 @@ from typing import (
 )
 
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.models.batch import Batch
+from easypost.models import Batch
 from easypost.requestor import (
     RequestMethod,
     Requestor,

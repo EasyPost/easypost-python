@@ -16,15 +16,16 @@ interactions:
     uri: https://api.easypost.com/v2/partners/stripe_public_key
   response:
     body:
-      string: '{"error": {"code": "MODE.UNAUTHORIZED", "message": "This resource requires
-        a production API Key to access.", "errors": []}}'
+      string: '{"public_key": "pk_x3JSr5eOVWNTLRej8cZDde9VQ0AT5"}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '117'
+      - '49'
       content-type:
       - application/json; charset=utf-8
+      etag:
+      - W/"86cc970265a111486b443bf66ef85e91"
       expires:
       - '0'
       pragma:
@@ -37,30 +38,165 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 23bee7e064639c8de786a73600200869
+      - 23bee7e26463d02ae787d9a600340738
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb12nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq a29e4ad05c
+      - intlb2nuq a29e4ad05c
       - extlb2nuq 5ab12a3ed2
       x-runtime:
-      - '0.031099'
+      - '0.014255'
       x-version-label:
-      - easypost-202305152249-750e1e7d95-master
+      - easypost-202305161731-3a88337a74-master
       x-xss-protection:
       - 1; mode=block
     status:
-      code: 403
-      message: Forbidden
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-type:
+      - application/x-www-form-urlencoded
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.stripe.com/v1/tokens?card%5Bexp_month%5D=05&card%5Bexp_year%5D=2028
+  response:
+    body:
+      string: '{"id": "tok_0N8SvuDqT4huGUvdQzq2RjAj", "object": "token", "card": {"id":
+        "card_0N8SvuDqT4huGUvdh2Usi31i", "object": "card", "address_city": null, "address_country":
+        null, "address_line1": null, "address_line1_check": null, "address_line2":
+        null, "address_state": null, "address_zip": null, "address_zip_check": null,
+        "brand": "Visa", "country": "US", "cvc_check": "unchecked", "dynamic_last4":
+        null, "exp_month": 5, "exp_year": 2028, "funding": "credit", "last4": "6170",
+        "name": null, "tokenization_method": null, "wallet": null}, "client_ip": "<REDACTED>",
+        "created": 1684262954, "livemode": true, "type": "card", "used": false}'
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '739'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 16 May 2023 18:49:14 GMT
+      Idempotency-Key:
+      - b1fa9637-7528-40c3-8c10-401114571781
+      Original-Request:
+      - req_mZ4fDlnwWczYVU
+      Request-Id:
+      - req_mZ4fDlnwWczYVU
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+      Stripe-Should-Retry:
+      - 'false'
+      Stripe-Version:
+      - '2020-08-27'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"credit_card": {"stripe_object_id": "tok_0N8SvuDqT4huGUvdQzq2RjAj", "priority":
+      "primary"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '92'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/credit_cards
+  response:
+    body:
+      string: '{"id": "card_01c526a7012f4d35b1e849c44529fded", "disabled_at": null,
+        "object": "CreditCard", "name": null, "last4": "6170", "exp_month": 5, "exp_year":
+        2028, "brand": "Visa"}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '159'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"09a287defb2f677abf5de0d7cbce895d"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 23bee7e26463d02ae787d9a600340757
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb3nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2nuq a29e4ad05c
+      - extlb2nuq 5ab12a3ed2
+      x-runtime:
+      - '2.988953'
+      x-version-label:
+      - easypost-202305161731-3a88337a74-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
 version: 1

@@ -1,4 +1,4 @@
-from easypost.models.rate import Rate
+from easypost.models import Rate
 from easypost.services.base_service import BaseService
 
 

@@ -1,15 +1,15 @@
 import pytest
 
-import easypost
 from easypost.error import Error
+from easypost.models import Refund
 
 
 @pytest.mark.vcr()
 def test_refund_create(one_call_buy_shipment, usps, test_client):
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)  # TODO: Use new syntax
+    shipment = test_client.shipment.create(**one_call_buy_shipment)
 
     # We need to retrieve the shipment so that the tracking_code has time to populate
-    retrieved_shipment = easypost.Shipment.retrieve(shipment["id"])
+    retrieved_shipment = test_client.shipment.retrieve(shipment["id"])
 
     refund = test_client.refund.create(
         carrier=usps,
@@ -28,7 +28,7 @@ def test_refund_all(page_size, test_client):
 
     assert len(refunds_array) <= page_size
     assert refunds["has_more"] is not None
-    assert all(isinstance(refund, easypost.Refund) for refund in refunds_array)
+    assert all(isinstance(refund, Refund) for refund in refunds_array)
 
 
 @pytest.mark.vcr()
@@ -52,5 +52,5 @@ def test_refund_retrieve(page_size, test_client):
 
     retrieved_refund = test_client.refund.retrieve(refunds["refunds"][0]["id"])
 
-    assert isinstance(retrieved_refund, easypost.Refund)
+    assert isinstance(retrieved_refund, Refund)
     assert retrieved_refund.id == refunds["refunds"][0].id

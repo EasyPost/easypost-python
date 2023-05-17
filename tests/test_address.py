@@ -1,14 +1,14 @@
 import pytest
 
-import easypost
 from easypost.error import Error
+from easypost.models import Address
 
 
 @pytest.mark.vcr()
 def test_address_create(ca_address_1, test_client):
     address = test_client.address.create(**ca_address_1)
 
-    assert isinstance(address, easypost.Address)
+    assert isinstance(address, Address)
     assert str.startswith(address.id, "adr_")
     assert address.street1 == "388 Townsend St"
 
@@ -23,7 +23,7 @@ def test_address_create_verify(incorrect_address, test_client):
 
     address = test_client.address.create(**incorrect_address)
 
-    assert isinstance(address, easypost.Address)
+    assert isinstance(address, Address)
     assert str.startswith(address.id, "adr_")
     assert address.street1 == "417 MONTGOMERY ST FL 5"
 
@@ -39,7 +39,7 @@ def test_address_create_verify_strict(ca_address_1, test_client):
 
     address = test_client.address.create(**address_data)
 
-    assert isinstance(address, easypost.Address)
+    assert isinstance(address, Address)
     assert str.startswith(address.id, "adr_")
     assert address.street1 == "388 TOWNSEND ST APT 20"
 
@@ -54,7 +54,7 @@ def test_address_create_verify_array(incorrect_address, test_client):
 
     address = test_client.address.create(**incorrect_address)
 
-    assert isinstance(address, easypost.Address)
+    assert isinstance(address, Address)
     assert str.startswith(address.id, "adr_")
     assert address.street1 == "417 MONTGOMERY ST FL 5"
 
@@ -63,7 +63,7 @@ def test_address_create_verify_array(incorrect_address, test_client):
 def test_address_create_and_verify(ca_address_1, test_client):
     address = test_client.address.create_and_verify(**ca_address_1)
 
-    assert isinstance(address, easypost.Address)
+    assert isinstance(address, Address)
     assert str.startswith(address.id, "adr_")
     assert address.street1 == "388 TOWNSEND ST APT 20"
 
@@ -74,7 +74,7 @@ def test_address_retrieve(ca_address_1, test_client):
 
     retrieved_address = test_client.address.retrieve(address.id)
 
-    assert isinstance(retrieved_address, easypost.Address)
+    assert isinstance(retrieved_address, Address)
     assert retrieved_address == address
 
 
@@ -86,7 +86,7 @@ def test_address_all(page_size, test_client):
 
     assert len(addresses_array) <= page_size
     assert addresses["has_more"] is not None
-    assert all(isinstance(address, easypost.Address) for address in addresses_array)
+    assert all(isinstance(address, Address) for address in addresses_array)
 
 
 @pytest.mark.vcr()
@@ -108,9 +108,9 @@ def test_address_get_next_page(page_size, test_client):
 def test_address_verify(ca_address_1, test_client):
     """Test verifying an already created address."""
     address = test_client.address.create(**ca_address_1)
-    address.verify()
+    test_client.address.verify(address.id)
 
-    assert isinstance(address, easypost.Address)
+    assert isinstance(address, Address)
     assert str.startswith(address.id, "adr_")
     assert address.street1 == "388 Townsend St"
 
@@ -118,10 +118,10 @@ def test_address_verify(ca_address_1, test_client):
 @pytest.mark.vcr()
 def test_address_verify_invalid_address(test_client):
     """Test verifying an already created address."""
-    with pytest.raises(easypost.Error) as error:
+    with pytest.raises(Error) as error:
         address = test_client.address.create(
             street1="invalid",
         )
-        address.verify()
+        test_client.address.verify(address.id)
 
     assert str(error.value) == "Unable to verify address."

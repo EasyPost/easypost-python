@@ -6,7 +6,7 @@ from typing import (
 
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.error import Error
-from easypost.models.billing import Billing
+from easypost.models import Billing
 from easypost.requestor import (
     RequestMethod,
     Requestor,

@@ -4,14 +4,14 @@ import time
 
 import pytest
 
-import easypost
+from easypost.models import Batch
 
 
 @pytest.mark.vcr()
 def test_batch_create(one_call_buy_shipment, test_client):
     batch = test_client.batch.create(shipments=[one_call_buy_shipment])
 
-    assert isinstance(batch, easypost.Batch)
+    assert isinstance(batch, Batch)
     assert str.startswith(batch.id, "batch_")
     assert batch.shipments is not None
 
@@ -22,7 +22,7 @@ def test_batch_retrieve(one_call_buy_shipment, test_client):
 
     retrieved_batch = test_client.batch.retrieve(batch.id)
 
-    assert isinstance(batch, easypost.Batch)
+    assert isinstance(batch, Batch)
     # status changes between creation and retrieval, so we can't compare the whole object
     assert retrieved_batch.id == batch.id
 
@@ -35,7 +35,7 @@ def test_batch_all(page_size, test_client):
 
     assert len(batches_array) <= page_size
     assert batches["has_more"] is not None
-    assert all(isinstance(batch, easypost.Batch) for batch in batches_array)
+    assert all(isinstance(batch, Batch) for batch in batches_array)
 
 
 @pytest.mark.vcr()
@@ -47,7 +47,7 @@ def test_batch_create_and_buy(one_call_buy_shipment, test_client):
         ],
     )
 
-    assert isinstance(batch, easypost.Batch)
+    assert isinstance(batch, Batch)
     assert str.startswith(batch.id, "batch_")
     assert batch.num_shipments == 2
 
@@ -64,7 +64,7 @@ def test_batch_buy(one_call_buy_shipment, test_client, synchronous_sleep_seconds
 
     bought_batch = test_client.batch.buy(batch.id)
 
-    assert isinstance(bought_batch, easypost.Batch)
+    assert isinstance(bought_batch, Batch)
     assert bought_batch.num_shipments == 1
 
 
@@ -87,12 +87,12 @@ def test_batch_create_scanform(one_call_buy_shipment, test_client, synchronous_s
 
     # We can't assert anything meaningful here because the scanform gets queued
     # for generation and may not be immediately available
-    assert isinstance(batch_with_scanform, easypost.Batch)
+    assert isinstance(batch_with_scanform, Batch)
 
 
 @pytest.mark.vcr()
 def test_batch_add_remove_shipment(one_call_buy_shipment, test_client):
-    shipment = easypost.Shipment.create(**one_call_buy_shipment)
+    shipment = test_client.shipment.create(**one_call_buy_shipment)
 
     batch = test_client.batch.create()
 
@@ -123,4 +123,4 @@ def test_batch_label(one_call_buy_shipment, test_client, synchronous_sleep_secon
 
     # We can't assert anything meaningful here because the label gets queued
     # for generation and may not be immediately available
-    assert isinstance(batch_with_label, easypost.Batch)
+    assert isinstance(batch_with_label, Batch)

@@ -3,8 +3,8 @@ from unittest.mock import patch
 
 import pytest
 
-import easypost
 from easypost.error import Error
+from easypost.models import User
 
 
 REFERRAL_CUSTOMER_PROD_API_KEY = os.getenv("REFERRAL_CUSTOMER_PROD_API_KEY", "123")
@@ -19,7 +19,7 @@ def test_referral_customer_create(partner_user_prod_client):
         phone="8888888888",
     )
 
-    assert isinstance(created_referral_customer, easypost.User)
+    assert isinstance(created_referral_customer, User)
     assert str.startswith(created_referral_customer.id, "user_")
     assert created_referral_customer.name == "test test"
 
@@ -47,7 +47,7 @@ def test_referral_customer_all(partner_user_prod_client, page_size):
 
     assert len(referral_customers_array) <= page_size
     assert referral_customers["has_more"] is not None
-    assert all(isinstance(referral_customer, easypost.User) for referral_customer in referral_customers_array)
+    assert all(isinstance(referral_customer, User) for referral_customer in referral_customers_array)
 
 
 @pytest.mark.vcr()
@@ -76,12 +76,11 @@ def test_referral_get_next_page(partner_user_prod_client, page_size):
         "uri",
     ]
 )
-@pytest.mark.skip()
-def test_referral_customer_add_credit_card(stripe_connect_prod_client, credit_card_details):
-    """This test requires a partner customer's production API key via STRIPE_CONNECT_USER_PROD_API_KEY
+def test_referral_customer_add_credit_card(partner_user_prod_client, credit_card_details):
+    """This test requires a partner customer's production API key via PARTNER_USER_PROD_API_KEY
     as well as one of that customer's referral's production API keys via REFERRAL_CUSTOMER_PROD_API_KEY.
     """
-    added_credit_card = stripe_connect_prod_client.referral_customer.add_credit_card(
+    added_credit_card = partner_user_prod_client.referral_customer.add_credit_card(
         referral_api_key=REFERRAL_CUSTOMER_PROD_API_KEY,
         number=credit_card_details["number"],
         expiration_month=credit_card_details["expiration_month"],
@@ -101,13 +100,13 @@ def test_referral_add_credit_card_error(
     mock_stripe_token,
     mock_easypost_key,
     credit_card_details,
-    stripe_connect_prod_client,
+    partner_user_prod_client,
 ):
-    """This test requires a partner customer's production API key via STRIPE_CONNECT_USER_PROD_API_KEY
+    """This test requires a partner customer's production API key via PARTNER_USER_PROD_API_KEY
     as well as one of that customer's referral's production API keys via REFERRAL_CUSTOMER_PROD_API_KEY.
     """
     with pytest.raises(Exception) as error:
-        _ = stripe_connect_prod_client.referral_customer.add_credit_card(
+        _ = partner_user_prod_client.referral_customer.add_credit_card(
             referral_api_key=REFERRAL_CUSTOMER_PROD_API_KEY,
             number=credit_card_details["number"],
             expiration_month=credit_card_details["expiration_month"],
