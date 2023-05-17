@@ -36,49 +36,49 @@ class BatchService(BaseService):
         url = f"{self._class_url(self._model_class)}/create_and_buy"
         wrapped_params = {self._snakecase_name(self._model_class): params}
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def buy(self, id: str, **params) -> Batch:
         """Buy a Batch."""
         url = f"{self._instance_url(self._model_class, id)}/buy"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def label(self, id: str, **params) -> Batch:
         """Create a Batch label."""
         url = f"{self._instance_url(self._model_class, id)}/label"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def remove_shipments(self, id: str, **params) -> Batch:
         """Remove Shipments from a Batch."""
         url = f"{self._instance_url(self._model_class, id)}/remove_shipments"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def add_shipments(self, id: str, **params) -> Batch:
         """Add Shipments to a Batch."""
         url = f"{self._instance_url(self._model_class, id)}/add_shipments"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def create_scan_form(self, id: str, **params) -> Batch:
         """Create a ScanForm for a Batch."""
         url = f"{self._instance_url(self._model_class, id)}/scan_form"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def get_next_page(
         self,

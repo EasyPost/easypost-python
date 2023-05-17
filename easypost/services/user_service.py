@@ -40,12 +40,12 @@ class UserService(BaseService):
         else:
             url = self._class_url(self._model_class)
 
-        response, api_key = Requestor(self._client).request(
+        response = Requestor(self._client).request(
             method=RequestMethod.GET,
             url=url,
         )
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def update(self, id, **params) -> User:
         """Update a User."""
@@ -58,20 +58,21 @@ class UserService(BaseService):
     def retrieve_me(self) -> User:
         """Retrieve the authenticated User."""
         url = self._class_url(self._model_class)
-        response, api_key = Requestor(self._client).request(
+
+        response = Requestor(self._client).request(
             method=RequestMethod.GET,
             url=url,
         )
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def all_api_keys(self) -> Dict[str, Any]:
         """Retrieve a list of all API keys."""
         url = "/api_keys"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def api_keys(self, id: str) -> List[ApiKey]:
         """Retrieve a list of API keys (works for the authenticated User or a child User)."""
@@ -95,10 +96,10 @@ class UserService(BaseService):
         """Update a User's Brand."""
         url = self._instance_url(self._model_class, id) + "/brand"
 
-        response, api_key = Requestor(self._client).request(
+        response = Requestor(self._client).request(
             method=RequestMethod.PATCH,
             url=url,
             params=params,
         )
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)

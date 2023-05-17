@@ -35,9 +35,9 @@ class AddressService(BaseService):
         if verify_strict:
             wrapped_params["verify_strict"] = verify_strict
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def all(self, **params) -> List[Any]:
         """Retrieve a list of Addresses."""
@@ -52,17 +52,17 @@ class AddressService(BaseService):
         url = f"{self._class_url('address')}/create_and_verify"
         wrapped_params = {self._snakecase_name(self._model_class): params}
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response["address"], api_key=api_key)
+        return convert_to_easypost_object(response=response["address"])
 
     def verify(self, id) -> Address:
         """Verify an address."""
         url = f"{self._instance_url('address', id)}/verify"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url)
 
-        return convert_to_easypost_object(response=response["address"], api_key=api_key)
+        return convert_to_easypost_object(response=response["address"])
 
     def get_next_page(
         self,

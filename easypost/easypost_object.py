@@ -53,18 +53,16 @@ OBJECT_CLASS_NAME_OVERRIDES: Dict[str, Any] = {
 
 def convert_to_easypost_object(
     response: Dict[str, Any],
-    api_key: Optional[str] = None,
     parent: object = None,
     name: Optional[str] = None,
 ):
-    """Convert a response to an EasyPost object."""
+    """Convert a response to an EasyPostObject."""
     if isinstance(response, list):
-        return [convert_to_easypost_object(response=item, api_key=api_key, parent=parent) for item in response]
+        return [convert_to_easypost_object(response=item, parent=parent) for item in response]
     elif isinstance(response, dict):
-        response = response.copy()
         object_type_str = response.get("object", EasyPostObject)
         class_name = OBJECT_CLASS_NAME_OVERRIDES.get(object_type_str, EasyPostObject)
-        object_id = response.get("id", None)
+        object_id = response.get("id")
 
         if object_id is not None:
             # If an object ID is present, use it to find the class type instead.
@@ -81,7 +79,7 @@ def convert_to_easypost_object(
             else EasyPostObject
         )
 
-        obj = class_model.construct_from(values=response, api_key=api_key, parent=parent, name=name)
+        obj = class_model.construct_from(values=response, parent=parent, name=name)
 
         return obj
     else:
@@ -91,26 +89,18 @@ def convert_to_easypost_object(
 class EasyPostObject(object):
     def __init__(
         self,
-        easypost_id: Optional[str] = None,
-        api_key: Optional[str] = None,
-        parent: object = None,
+        id: Optional[str] = None,
+        parent: Optional[object] = None,
         name: Optional[str] = None,
         **params,
     ):
-        # TODO: Revisit these values and entire file since many aren't needed now that we don't update local objects
         self.__dict__["_values"] = set()
-        self.__dict__["_unsaved_values"] = set()
-        self.__dict__["_transient_values"] = set()
-        self.__dict__["_immutable_values"] = {"_api_key", "id"}
-        self.__dict__["_retrieve_params"] = params
-
+        self.__dict__["_immutable_values"] = {"id"}
         self.__dict__["_parent"] = parent
         self.__dict__["_name"] = name
 
-        self.__dict__["_api_key"] = api_key
-
-        if easypost_id:
-            self.id = easypost_id
+        if id:
+            self.id = id
 
     def __setattr__(self, k, v: Any) -> None:
         self.__dict__[k] = v
@@ -118,9 +108,9 @@ class EasyPostObject(object):
         if k not in self._immutable_values:
             self._values.add(k)
             self._unsaved_values.add(k)
-
             cur = self
             cur_parent = self._parent
+
             while cur_parent:
                 if cur._name:
                     cur_parent._unsaved_values.add(cur._name)
@@ -165,41 +155,27 @@ class EasyPostObject(object):
     def construct_from(
         cls,
         values: Dict[str, Any],
-        api_key: Optional[str] = None,
         parent: object = None,
         name: Optional[str] = None,
     ) -> object:
-        """Construct an object."""
-        instance = cls(easypost_id=values.get("id"), api_key=api_key, parent=parent, name=name)
-        instance.refresh_from(values=values, api_key=api_key)
+        """Construct an EasyPostObject from values returned by the API."""
+        instance = cls(id=values.get("id"), parent=parent, name=name)
+        instance.convert_each_value(values=values)
+
         return instance
 
-    def refresh_from(self, values: Dict[str, Any], api_key: Optional[str] = None) -> None:
-        """Update local object with changes from the API."""
-        self._api_key = api_key
-
+    def convert_each_value(self, values: Dict[str, Any]) -> None:
+        """Convert each value of a response into an EasyPostObject."""
         for k, v in sorted(values.items()):
             if k == "id" and self.id != v:
                 self.id = v
             if k in self._immutable_values:
                 continue
-            self.__dict__[k] = convert_to_easypost_object(response=v, api_key=api_key, parent=self, name=k)
+            self.__dict__[k] = convert_to_easypost_object(response=v, parent=self, name=k)
             self._values.add(k)
-            self._transient_values.discard(k)
-            self._unsaved_values.discard(k)
-
-    def flatten_unsaved(self) -> Dict[str, Any]:
-        """Return a dict of `_unsaved_values` values from the current object."""
-        values = {}
-        for key in self._unsaved_values:
-            value = self.get(key)
-            if type(value) is EasyPostObject:
-                values[key] = value.flatten_unsaved()
-            else:
-                values[key] = value
-        return values
 
     def __repr__(self) -> str:
+        """String representation of an EasyPostObject."""
         type_string = ""
 
         if isinstance(self.get("object"), str):
@@ -241,7 +217,7 @@ class EasyPostObject(object):
 
 class EasyPostObjectEncoder(json.JSONEncoder):
     def default(self, obj: Any) -> Any:
-        """Convert easypost object to a dict."""
+        """Convert an EasyPostObject to a dict."""
         if isinstance(obj, EasyPostObject):
             return obj.to_dict()
         else:

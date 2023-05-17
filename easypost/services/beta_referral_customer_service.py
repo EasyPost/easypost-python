@@ -33,37 +33,37 @@ class BetaReferralCustomerService(BaseService):
             }
         }
 
-        response, api_key = Requestor(self._client).request(
+        response = Requestor(self._client).request(
             method=RequestMethod.POST,
             url="/referral_customers/payment_method",
             params=wrapped_params,
             beta=True,
         )
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def refund_by_amount(self, refund_amount: int) -> Dict[str, Any]:
         """Refund a ReferralCustomer wallet by specifying an amount."""
         wrapped_params = {"refund_amount": refund_amount}
 
-        response, api_key = Requestor(self._client).request(
+        response = Requestor(self._client).request(
             method=RequestMethod.POST,
             url="/referral_customers/refunds",
             params=wrapped_params,
             beta=True,
         )
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def refund_by_payment_log(self, payment_log_id: str) -> Dict[str, Any]:
         """Refund a ReferralCustomer wallet by specifying a payment log ID to completely refund."""
         wrapped_params = {"payment_log_id": payment_log_id}
 
-        response, api_key = Requestor(self._client).request(
+        response = Requestor(self._client).request(
             method=RequestMethod.POST,
             url="/referral_customers/refunds",
             params=wrapped_params,
             beta=True,
         )
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)

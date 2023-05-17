@@ -40,14 +40,14 @@ class OrderService(BaseService):
         """Get rates for an Order."""
         url = f"{self._instance_url(self._model_class, id)}/rates"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def buy(self, id: str, **params) -> Order:
         """Buy an Order."""
         url = f"{self._instance_url(self._model_class, id)}/buy"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)

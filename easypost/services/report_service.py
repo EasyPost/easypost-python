@@ -23,19 +23,19 @@ class ReportService(BaseService):
         """Create a Report."""
         url = f"{self._class_url(self._model_class)}/{params.pop('type')}"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def all(self, **params) -> List[Report]:
         """Retrieve a list of all Reports."""
         type = params.pop("type")
         url = f"{self._class_url(self._model_class)}/{type}"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
         response["type"] = type  # Needed for retrieving the next page
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def retrieve(self, id) -> Report:
         """Retrieve a Report."""
@@ -55,6 +55,6 @@ class ReportService(BaseService):
             "page_size": page_size,
         }
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)

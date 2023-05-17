@@ -99,8 +99,7 @@ def get_lowest_stateless_rate(
 
 def receive_event(raw_input: str):
     """Receives a raw Webhook event and converts it to JSON."""
-    # TODO: Remove api_key
-    return convert_to_easypost_object(response=json.loads(raw_input), api_key=None)
+    return convert_to_easypost_object(response=json.loads(raw_input))
 
 
 def validate_webhook(event_body: bytes, headers: Dict[str, Any], webhook_secret: str) -> Dict[str, Any]:

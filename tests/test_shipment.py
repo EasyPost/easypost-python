@@ -271,7 +271,7 @@ def test_shipment_get_lowest_smart_rate(basic_shipment, test_client):
 
 
 @pytest.mark.vcr()
-def test_generate_form(one_call_buy_shipment, rma_form_options, test_client):
+def test_shipment_generate_form(one_call_buy_shipment, rma_form_options, test_client):
     shipment = test_client.shipment.create(**one_call_buy_shipment)
     form_type = "return_packing_slip"
 

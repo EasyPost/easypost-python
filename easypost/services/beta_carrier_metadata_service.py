@@ -26,11 +26,11 @@ class BetaCarrierMetadataService(BaseService):
             "types": ",".join(types) if types else None,
         }
 
-        response, api_key = Requestor(self._client).request(
+        response = Requestor(self._client).request(
             method=RequestMethod.GET,
             url="/metadata",
             params=params,
             beta=True,
         )
 
-        return convert_to_easypost_object(response=response.get("carriers", []), api_key=api_key)
+        return convert_to_easypost_object(response=response.get("carriers", []))

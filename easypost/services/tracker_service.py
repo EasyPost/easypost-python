@@ -27,11 +27,11 @@ class TrackerService(BaseService):
         """Retrieve a list of Trackers."""
         url = self._class_url(self._model_class)
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
         response["tracking_code"] = params.get("tracking_code")
         response["carrier"] = params.get("carrier")
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def retrieve(self, id) -> Tracker:
         """Retrieve a Tracker."""
@@ -56,4 +56,4 @@ class TrackerService(BaseService):
         url = f"{self._class_url(self._model_class)}/create_list"
         wrapped_params = {"trackers": trackers}
 
-        _, _ = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)

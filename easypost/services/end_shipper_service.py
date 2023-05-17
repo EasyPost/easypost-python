@@ -26,9 +26,9 @@ class EndShipperService(BaseService):
         url = self._class_url(self._service_class)
         wrapped_params = {self._snakecase_name(self._model_class): params}
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def all(self, **params) -> List[Address]:
         """Retrieve a list of EndShippers."""
@@ -46,6 +46,6 @@ class EndShipperService(BaseService):
         url = self._instance_url(self._service_class, id)
         wrapped_params = {self._snakecase_name(self._model_class): params}
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.PUT, url=url, params=wrapped_params)
+        response = Requestor(self._client).request(method=RequestMethod.PUT, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)

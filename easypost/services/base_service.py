@@ -46,49 +46,42 @@ class BaseService:
         url = self._class_url(class_name)
         wrapped_params = {self._snakecase_name(class_name): params}
 
-        # TODO: Don't instantiate the Requestor class, pass the client directly to the request
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        # TODO: Get rid of the api_key
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def _all_resources(self, class_name: str, **params) -> List[Any]:
         """Retrieve a list of records from the EasyPost API."""
         url = self._class_url(class_name)
-        # TODO: Don't instantiate the Requestor class, pass the client directly to the request
-        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
-        # TODO: Get rid of the api_key
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
+
+        return convert_to_easypost_object(response=response)
 
     def _retrieve_resource(self, class_name: str, id: str) -> Any:
         """Retrieve an object from the EasyPost API."""
         url = self._instance_url(class_name, id)
-        # TODO: Don't instantiate the Requestor class, pass the client directly to the request
-        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url)
 
-        # TODO: Get rid of the api_key
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url)
+
+        return convert_to_easypost_object(response=response)
 
     def _update_resource(self, class_name: str, id: str, method: RequestMethod = RequestMethod.PATCH, **params) -> Any:
         """Update an EasyPost object."""
         url = self._instance_url(class_name, id)
         wrapped_params = {self._snakecase_name(class_name): params}
 
-        # TODO: Don't instantiate the Requestor class, pass the client directly to the request
-        response, api_key = Requestor(self._client).request(method=method, url=url, params=wrapped_params)
+        response = Requestor(self._client).request(method=method, url=url, params=wrapped_params)
 
-        # TODO: Get rid of the api_key
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def _delete_resource(self, class_name: str, id: str) -> Any:
         """Delete an EasyPost object."""
         url = self._instance_url(class_name, id)
-        # TODO: Don't instantiate the Requestor class, pass the client directly to the request
-        response, api_key = Requestor(self._client).request(method=RequestMethod.DELETE, url=url)
 
-        # TODO: Get rid of the api_key
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        response = Requestor(self._client).request(method=RequestMethod.DELETE, url=url)
+
+        return convert_to_easypost_object(response=response)
 
     def _get_next_page_resources(
         self,
@@ -112,11 +105,10 @@ class BaseService:
         if optional_params:
             params.update(optional_params)
 
-        # TODO: Don't instantiate the Requestor class, pass the client directly to the request
-        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
         response_array: List[Any] = response.get(url[1:])  # type: ignore
         if response is None or len(response_array) == 0 or not response.get("has_more"):
             raise Error(message="There are no more pages to retrieve.")
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)

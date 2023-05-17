@@ -31,17 +31,17 @@ class ShipmentService(BaseService):
             "carbon_offset": with_carbon_offset,
         }
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def all(self, **params) -> List[Shipment]:
         """Retrieve a list of Shipments."""
-        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url="/shipments", params=params)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url="/shipments", params=params)
         response["include_children"] = params.get("include_children")
         response["purchased"] = params.get("purchased")
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def retrieve(self, id) -> Shipment:
         """Retrieve a Shipment."""
@@ -66,17 +66,17 @@ class ShipmentService(BaseService):
         url = f"{self._instance_url(self._model_class, id)}/rerate"
         wrapped_params = {"carbon_offset": with_carbon_offset}
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def get_smart_rates(self, id: str) -> List[object]:
         """Get SmartRates for a Shipment."""
         url = f"{self._instance_url(self._model_class, id)}/smartrate"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url)
 
-        return convert_to_easypost_object(response=response.get("result", []), api_key=api_key)
+        return convert_to_easypost_object(response=response.get("result", []))
 
     def buy(
         self,
@@ -91,33 +91,33 @@ class ShipmentService(BaseService):
         if end_shipper_id:
             params["end_shipper_id"] = end_shipper_id
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def refund(self, id: str, **params) -> Shipment:
         """Refund a Shipment."""
         url = f"{self._instance_url(self._model_class, id)}/refund"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def insure(self, id: str, **params) -> Shipment:
         """Insure a Shipment."""
         url = f"{self._instance_url(self._model_class, id)}/insure"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def label(self, id: str, **params) -> Shipment:
         """Convert the label format of a Shipment."""
         url = f"{self._instance_url(self._model_class, id)}/label"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def lowest_smart_rate(self, id: str, delivery_days: int, delivery_accuracy: str) -> Rate:
         """Get the lowest SmartRate of a Shipment."""
@@ -133,15 +133,15 @@ class ShipmentService(BaseService):
         wrapped_params = {"form": params}
         url = f"{self._instance_url(self._model_class, id)}/forms"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def retrieve_estimated_delivery_date(self, id: str, planned_ship_date: str) -> List[Dict[str, Any]]:
         """Retrieves the estimated delivery date of each Rate via SmartRate."""
         url = f"{self._instance_url(self._model_class, id)}/smartrate/delivery_date"
         wrapped_params = {"planned_ship_date": planned_ship_date}
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=wrapped_params)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response.get("rates", []), api_key=api_key)
+        return convert_to_easypost_object(response=response.get("rates", []))

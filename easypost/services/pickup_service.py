@@ -44,14 +44,14 @@ class PickupService(BaseService):
         """Buy a Pickup."""
         url = f"{self._instance_url(self._model_class, id)}/buy"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)
 
     def cancel(self, id: str, **params) -> Pickup:
         """Cancel a Pickup."""
         url = f"{self._instance_url(self._model_class, id)}/cancel"
 
-        response, api_key = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=response)

@@ -23,11 +23,11 @@ class BetaRateService(BaseService):
         url = self._class_url(self._model_class)
         wrapped_params = {"shipment": params}
 
-        response, api_key = Requestor(self._client).request(
+        response = Requestor(self._client).request(
             method=RequestMethod.POST,
             url=url,
             params=wrapped_params,
             beta=True,
         )
 
-        return convert_to_easypost_object(response=response.get("rates", None), api_key=api_key)
+        return convert_to_easypost_object(response=response.get("rates", None))
