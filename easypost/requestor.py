@@ -27,6 +27,7 @@ from easypost.constant import (
 from easypost.easypost_object import EasyPostObject
 from easypost.errors import (
     EasyPostError,
+    ForbiddenError,
     GatewayTimeoutError,
     HttpError,
     InternalServerError,
@@ -47,7 +48,7 @@ from easypost.errors import (
 STATUS_CODE_TO_ERROR_MAPPING: Dict[int, Any] = {
     401: UnauthorizedError,
     402: PaymentError,
-    403: UnauthorizedError,
+    403: ForbiddenError,
     404: NotFoundError,
     405: MethodNotAllowedError,
     408: TimeoutError,
