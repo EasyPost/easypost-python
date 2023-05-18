@@ -21,6 +21,7 @@ class ReportService(BaseService):
 
     def create(self, **params) -> Report:
         """Create a Report."""
+        # TODO: throw an error for missing type
         url = f"{self._class_url(self._model_class)}/{params.pop('type')}"
 
         response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
@@ -48,6 +49,7 @@ class ReportService(BaseService):
         api_key: Optional[str] = None,
     ) -> List[Report]:
         """Retrieve the next page of the list Report response."""
+        # TODO: throw an error for missing type
         type = reports.get("type")
         url = f"{self._class_url(self._model_class)}/{type}"
         params = {

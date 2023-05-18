@@ -20,7 +20,7 @@ from easypost.constant import (
     VERSION,
 )
 from easypost.easypost_object import EasyPostObject
-from easypost.error import Error
+from easypost.errors import JsonError
 
 
 class RequestMethod(Enum):
@@ -286,7 +286,11 @@ class Requestor:
         try:
             error = response["error"]
         except (KeyError, TypeError):
-            raise Error("Invalid response from API: (%d) %r " % (http_status, http_body), http_status, http_body)
+            raise JsonError(
+                message=f"Invalid response from API: ({http_status}) {http_body}",
+                http_status=http_status,
+                http_body=http_body,
+            )
 
         try:
             raise Error(message=error.get("message", ""), http_status=http_status, http_body=http_body)

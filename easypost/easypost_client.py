@@ -35,7 +35,12 @@ from easypost.services import (
 class EasyPostClient:
     """A client object used to authenticate and configure all HTTP calls to the EasyPost API."""
 
-    def __init__(self, api_key: str, api_base: str = f"{API_BASE}/{API_VERSION}", timeout: int = TIMEOUT):
+    def __init__(
+        self,
+        api_key: str,
+        api_base: str = f"{API_BASE}/{API_VERSION}",
+        timeout: int = TIMEOUT,
+    ):
         # Client configuration
         self.api_key = api_key
         self.api_base = api_base
