@@ -4,7 +4,7 @@ from easypost.constant import (
     _TEST_FAILED_INTENTIONALLY_ERROR,
     NO_MORE_PAGES_ERROR,
 )
-from easypost.errors import EasyPostError
+from easypost.errors.general.easypost_error import EasyPostError
 from easypost.models import Refund
 
 

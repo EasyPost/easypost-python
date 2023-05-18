@@ -6,7 +6,7 @@ from typing import (
     Union,
 )
 
-from easypost.errors import ApiError
+from easypost.errors.api.api_error import ApiError
 
 
 class InvalidRequestError(ApiError):

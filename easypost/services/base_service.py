@@ -102,7 +102,7 @@ class BaseService:
         collection_array = collection.get(url[1:])
 
         if collection_array is None or len(collection_array) == 0 or not collection.get("has_more"):
-            raise EndOfPaginationError(message=NO_MORE_PAGES_ERROR)
+            raise EndOfPaginationError(NO_MORE_PAGES_ERROR)
 
         params = {
             "before_id": collection_array[-1].id,
@@ -116,6 +116,6 @@ class BaseService:
 
         response_array: List[Any] = response.get(url[1:])  # type: ignore
         if response is None or len(response_array) == 0 or not response.get("has_more"):
-            raise EndOfPaginationError(message=NO_MORE_PAGES_ERROR)
+            raise EndOfPaginationError(NO_MORE_PAGES_ERROR)
 
         return convert_to_easypost_object(response=response)

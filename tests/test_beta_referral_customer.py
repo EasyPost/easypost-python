@@ -1,6 +1,6 @@
 import pytest
 
-from easypost.errors import ApiError
+from easypost.errors.api.api_error import ApiError
 
 
 @pytest.mark.vcr()
