@@ -34,7 +34,7 @@ class EventService(BaseService):
         """Retrieve an Event."""
         return self._retrieve_resource(self._model_class, id)
 
-    def retrieve_all_payloads(self, event_id: str, api_key: Optional[str] = None, **params) -> List[Payload]:
+    def retrieve_all_payloads(self, event_id: str, **params) -> List[Payload]:
         """Retrieve a list of Payloads for an Event."""
         url = f"{self._class_url(self._model_class)}/{event_id}/payloads"
 
@@ -42,7 +42,7 @@ class EventService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def retrieve_payload(self, event_id: str, payload_id: str, api_key: Optional[str] = None, **params) -> Payload:
+    def retrieve_payload(self, event_id: str, payload_id: str, **params) -> Payload:
         """Retrieve a Payload of an Event."""
         url = f"{self._class_url(self._model_class)}/{event_id}/payloads/{payload_id}"
 

@@ -5,7 +5,9 @@ from typing import (
     Optional,
 )
 
+from easypost.constant import MISSING_PARAMETER_ERROR
 from easypost.easypost_object import convert_to_easypost_object
+from easypost.errors import MissingParameterError
 from easypost.models import Report
 from easypost.requestor import (
     RequestMethod,
@@ -21,8 +23,12 @@ class ReportService(BaseService):
 
     def create(self, **params) -> Report:
         """Create a Report."""
-        # TODO: throw an error for missing type
-        url = f"{self._class_url(self._model_class)}/{params.pop('type')}"
+        refund_type = params.pop("type")
+
+        if refund_type is None:
+            raise MissingParameterError(MISSING_PARAMETER_ERROR.format("type"))
+
+        url = f"{self._class_url(self._model_class)}/{refund_type}"
 
         response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
@@ -30,11 +36,15 @@ class ReportService(BaseService):
 
     def all(self, **params) -> List[Report]:
         """Retrieve a list of all Reports."""
-        type = params.pop("type")
-        url = f"{self._class_url(self._model_class)}/{type}"
+        refund_type = params.pop("type")
+
+        if refund_type is None:
+            raise MissingParameterError(MISSING_PARAMETER_ERROR.format("type"))
+
+        url = f"{self._class_url(self._model_class)}/{refund_type}"
 
         response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
-        response["type"] = type  # Needed for retrieving the next page
+        response["type"] = refund_type  # Needed for retrieving the next page
 
         return convert_to_easypost_object(response=response)
 
@@ -46,12 +56,14 @@ class ReportService(BaseService):
         self,
         reports: Dict[str, Any],
         page_size: Optional[int] = None,
-        api_key: Optional[str] = None,
     ) -> List[Report]:
         """Retrieve the next page of the list Report response."""
-        # TODO: throw an error for missing type
-        type = reports.get("type")
-        url = f"{self._class_url(self._model_class)}/{type}"
+        refund_type = reports.get("type")
+
+        if refund_type is None:
+            raise MissingParameterError(MISSING_PARAMETER_ERROR.format("type"))
+
+        url = f"{self._class_url(self._model_class)}/{refund_type}"
         params = {
             "before_id": reports["reports"][-1].id,
             "page_size": page_size,

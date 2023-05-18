@@ -7,7 +7,6 @@ from easypost.constant import (
     _TEST_FAILED_INTENTIONALLY_ERROR,
     NO_MORE_PAGES_ERROR,
 )
-from easypost.errors.general.easypost_error import EasyPostError
 from easypost.models import User
 
 
@@ -68,7 +67,7 @@ def test_referral_get_next_page(partner_user_prod_client, page_size):
         assert first_id_of_first_page != first_id_of_second_page
     except Exception as e:
         if e.message != NO_MORE_PAGES_ERROR:
-            raise EasyPostError(message=_TEST_FAILED_INTENTIONALLY_ERROR)
+            raise Exception(message=_TEST_FAILED_INTENTIONALLY_ERROR)
 
 
 # PyVCR is having troubles matching the body of the form-encoded data here, override the default

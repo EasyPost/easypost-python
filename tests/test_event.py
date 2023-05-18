@@ -8,10 +8,7 @@ from easypost.constant import (
     _TEST_FAILED_INTENTIONALLY_ERROR,
     NO_MORE_PAGES_ERROR,
 )
-from easypost.errors import (
-    ApiError,
-    EasyPostError,
-)
+from easypost.errors import ApiError
 from easypost.models import (
     Event,
     Payload,
@@ -42,7 +39,7 @@ def test_event_get_next_page(page_size, test_client):
         assert first_id_of_first_page != first_id_of_second_page
     except Exception as e:
         if e.message != NO_MORE_PAGES_ERROR:
-            raise EasyPostError(message=_TEST_FAILED_INTENTIONALLY_ERROR)
+            raise Exception(message=_TEST_FAILED_INTENTIONALLY_ERROR)
 
 
 @pytest.mark.vcr()
