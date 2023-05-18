@@ -23,7 +23,7 @@ class ApiError(EasyPostError):
         http_status: Optional[int] = None,
         http_body: Optional[Union[str, bytes]] = None,
     ):
-        super().__init__(message)
+        super().__init__(message)  # type: ignore
         message_list: List[str] = []
         self._traverse_json_element(message, message_list)
         self.message = ", ".join(message_list)
@@ -33,12 +33,24 @@ class ApiError(EasyPostError):
         self.http_body = http_body
 
         if http_body:
+            # Setup `json_body` property
             try:
                 self.json_body = json.loads(http_body)
             except Exception:
                 self.json_body = None
 
-        # TODO: Setup errors
+            if self.json_body is not None:
+                # Setup `errors` property
+                try:
+                    self.errors = self.json_body["error"]["errors"]
+                except Exception:
+                    self.errors = None
+
+                # Setup `code` property
+                try:
+                    self.code = self.json_body["error"]["code"]
+                except Exception:
+                    self.code = None
 
     def _traverse_json_element(
         self,
