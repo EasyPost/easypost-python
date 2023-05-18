@@ -3,7 +3,7 @@ from unittest.mock import patch
 import pytest
 
 import easypost
-from easypost.error import Error
+from easypost.errors import PaymentError
 
 
 @patch(
@@ -54,7 +54,7 @@ def test_billing_payment_method_delete_bank_account(mock_request, mock_payment_m
 @patch("easypost.services.billing_service.Requestor.request", return_value={"mock": "response"})
 def test_billing_payment_method_delete_invalid(mock_request, mock_payment_methods, prod_client):
     """Tests we raise an error when we receive an invalid payment method"""
-    with pytest.raises(Error):
+    with pytest.raises(PaymentError):
         _ = prod_client.billing.delete_payment_method(priority="primary")
 
 
@@ -65,7 +65,7 @@ def test_billing_payment_method_delete_invalid(mock_request, mock_payment_method
 @patch("easypost.services.billing_service.Requestor.request", return_value={"mock": "response"})
 def test_billing_payment_method_delete_bad_request(mock_request, mock_payment_methods, prod_client):
     """Tests we raise an error when we cannot retrieve a payment method."""
-    with pytest.raises(Error):
+    with pytest.raises(PaymentError):
         _ = prod_client.billing.delete_payment_method(priority="tertiary")
 
 
@@ -81,7 +81,7 @@ def test_billing_retrieve_payment_methods(mock_request, prod_client):
 @patch("easypost.services.billing_service.Requestor.request", return_value={"mock": "response"})
 def test_billing_retrieve_payment_methods_no_billing_setup(mock_request, prod_client):
     """Tests that we throw an error when we cannot retrieve payment methods due to no billing being setup."""
-    with pytest.raises(Error) as error:
+    with pytest.raises(PaymentError) as error:
         _ = prod_client.billing.retrieve_payment_methods()
 
     mock_request.assert_called_once()

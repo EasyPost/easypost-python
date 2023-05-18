@@ -1,9 +1,12 @@
 from easypost.constant import (
     API_BASE,
     API_VERSION,
+    INVALID_REQUESTS_VERSION_ERROR,
+    NO_API_KEY_ERROR,
     SUPPORT_EMAIL,
     TIMEOUT,
 )
+from easypost.errors import MissingParameterError
 from easypost.services import (
     AddressService,
     BatchService,
@@ -72,6 +75,9 @@ class EasyPostClient:
         self.user = UserService(self)
         self.webhook = WebhookService(self)
 
+        if self.api_key is None:
+            raise MissingParameterError(NO_API_KEY_ERROR.format(SUPPORT_EMAIL))
+
         # use urlfetch as request_lib on google app engine, otherwise use requests
         self._request_lib = None
         try:
@@ -92,25 +98,13 @@ class EasyPostClient:
                     adapter=requests_http_adapter,
                 )
             except Exception:
-                raise ImportError(
-                    "EasyPost requires an up to date requests library. "
-                    'Update requests via "pip install -U requests" or '
-                    f"contact us at {SUPPORT_EMAIL}."
-                )
+                raise ImportError(INVALID_REQUESTS_VERSION_ERROR.format(SUPPORT_EMAIL))
 
             try:
                 requests_version = requests.__version__
                 major_version, _, _ = [int(i) for i in requests_version.split(".")]
             except Exception:
-                raise ImportError(
-                    "EasyPost requires an up to date requests library. "
-                    'Update requests via "pip install -U requests" or contact '
-                    f"us at {SUPPORT_EMAIL}."
-                )
+                raise ImportError(INVALID_REQUESTS_VERSION_ERROR.format(SUPPORT_EMAIL))
             else:
                 if major_version < 1:
-                    raise ImportError(
-                        "EasyPost requires an up to date requests library. Update "
-                        'requests via "pip install -U requests" or contact us '
-                        f"at {SUPPORT_EMAIL}."
-                    )
+                    raise ImportError(INVALID_REQUESTS_VERSION_ERROR.format(SUPPORT_EMAIL))

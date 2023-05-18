@@ -1,6 +1,6 @@
 import pytest
 
-from easypost.error import Error
+from easypost.errors import ApiError
 from easypost.models import CarrierAccount
 
 
@@ -88,6 +88,9 @@ def test_carrier_account_create_with_custom_workflow(prod_client):
 
     try:
         prod_client.carrier_account.create(**carrier_account)
-    except Error as error:
-        # TODO: Assert against error.errors when that property gets added
-        assert '{"field": "account_number", "message": "must be present and a string"}' in error.http_body
+    except ApiError as error:
+        assert error.http_status == 422
+        assert any(
+            [error["field"] == "account_number" and error["message"] == "must be present and a string"]
+            for error in error.errors
+        )

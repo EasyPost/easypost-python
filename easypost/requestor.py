@@ -16,11 +16,47 @@ from urllib.parse import urlencode
 
 from easypost.constant import (
     API_VERSION,
+    COMMUNICATION_ERROR,
+    INVALID_REQUEST_LIB_ERROR,
+    INVALID_REQUEST_METHOD_ERROR,
+    INVALID_REQUEST_PARAMETERS_ERROR,
+    INVALID_RESPONSE_BODY_ERROR,
     SUPPORT_EMAIL,
     VERSION,
 )
 from easypost.easypost_object import EasyPostObject
-from easypost.errors import JsonError
+from easypost.errors import (
+    EasyPostError,
+    GatewayTimeoutError,
+    HttpError,
+    InternalServerError,
+    InvalidRequestError,
+    JsonError,
+    MethodNotAllowedError,
+    NotFoundError,
+    PaymentError,
+    RateLimitError,
+    RedirectError,
+    ServiceUnavailableError,
+    TimeoutError,
+    UnauthorizedError,
+    UnknownApiError,
+)
+
+
+STATUS_CODE_TO_ERROR_MAPPING: Dict[int, Any] = {
+    401: UnauthorizedError,
+    402: PaymentError,
+    403: UnauthorizedError,
+    404: NotFoundError,
+    405: MethodNotAllowedError,
+    408: TimeoutError,
+    422: InvalidRequestError,
+    429: RateLimitError,
+    500: InternalServerError,
+    503: ServiceUnavailableError,
+    504: GatewayTimeoutError,
+}
 
 
 class RequestMethod(Enum):
@@ -115,13 +151,6 @@ class Requestor:
         beta: bool = False,
     ) -> Tuple[str, int]:
         """Internal logic required to make a request to the EasyPost API."""
-        if self._client.api_key is None:
-            raise Error(
-                "No API key provided. Set an API key via \"EasyPostClient('EASYPOST_API_KEY'). "
-                "Your API keys can be found in your EasyPost dashboard, or you can email us "
-                f"at {SUPPORT_EMAIL} for assistance."
-            )
-
         abs_url = f"{self._client.api_base}{url}"
 
         if beta:
@@ -177,9 +206,7 @@ class Requestor:
                 method=method, abs_url=abs_url, headers=headers, params=params
             )
         else:
-            raise Error(
-                f"Bug discovered: invalid request_lib: {self._client._request_lib}. Please report to {SUPPORT_EMAIL}."
-            )
+            raise EasyPostError(INVALID_REQUEST_LIB_ERROR.format(self._client._request_lib, SUPPORT_EMAIL))
 
         return http_body, http_status
 
@@ -192,11 +219,9 @@ class Requestor:
         try:
             response = json.loads(http_body)
         except JSONDecodeError:
-            raise Exception(
-                f"Unable to parse response body from API: {http_body}\nHTTP response code was: {http_status}"
-            )
+            raise JsonError(INVALID_RESPONSE_BODY_ERROR.format(http_body, http_status))
 
-        if not (200 <= http_status < 300):
+        if http_status < 200 or http_status >= 300:
             self.handle_api_error(http_status=http_status, http_body=http_body, response=response)
 
         return response
@@ -216,10 +241,10 @@ class Requestor:
             url_params = None
             body = params
         else:
-            raise Error(f"Bug discovered: invalid request method: {method}. Please report to {SUPPORT_EMAIL}.")
+            raise EasyPostError(INVALID_REQUEST_METHOD_ERROR.format(method, SUPPORT_EMAIL))
 
         if url_params and method not in [RequestMethod.GET, RequestMethod.DELETE]:
-            raise Error("Only GET and DELETE requests support parameters.")
+            raise EasyPostError(INVALID_REQUEST_PARAMETERS_ERROR)
 
         try:
             result = self._client._requests_session.request(
@@ -234,11 +259,7 @@ class Requestor:
             http_body = result.text
             http_status = result.status_code
         except Exception as e:
-            raise Error(
-                "Unexpected error communicating with EasyPost. If this "
-                f"problem persists please let us know at {SUPPORT_EMAIL}.",
-                original_exception=e,
-            )
+            raise HttpError(COMMUNICATION_ERROR.format(SUPPORT_EMAIL, e))
 
         return http_body, http_status
 
@@ -265,37 +286,34 @@ class Requestor:
             # POST/PUT requests use body params
             fetch_args["payload"] = json.dumps(params, default=self._utf8)
         else:
-            # how did you reach here with an enum?
-            raise Error(f"Bug discovered: invalid request method: {method}. Please report to {SUPPORT_EMAIL}.")
+            raise EasyPostError(INVALID_REQUEST_METHOD_ERROR.format(method, SUPPORT_EMAIL))
 
         try:
             from google.appengine.api import urlfetch  # type: ignore
 
             result = urlfetch.fetch(**fetch_args)  # type: ignore
         except Exception as e:
-            raise Error(
-                "Unexpected error communicating with EasyPost. "
-                f"If this problem persists, let us know at {SUPPORT_EMAIL}.",
-                original_exception=e,
-            )
+            raise HttpError(COMMUNICATION_ERROR.format(SUPPORT_EMAIL, e))
 
         return result.content, result.status_code
 
     def handle_api_error(self, http_status: int, http_body: str, response: Dict[str, Any]) -> None:
-        """Handles API errors returned from EasyPost."""
+        """Handles API errors returned from the EasyPost API."""
         try:
             error = response["error"]
         except (KeyError, TypeError):
             raise JsonError(
-                message=f"Invalid response from API: ({http_status}) {http_body}",
+                message=INVALID_RESPONSE_BODY_ERROR.format(http_status, http_body),
                 http_status=http_status,
                 http_body=http_body,
             )
 
-        try:
-            raise Error(message=error.get("message", ""), http_status=http_status, http_body=http_body)
-        except AttributeError:
-            raise Error(message=error, http_status=http_status, http_body=http_body)
+        if http_status >= 300 and http_status < 400:
+            raise RedirectError(message=error, http_status=http_status, http_body=http_body)
+
+        error_type = STATUS_CODE_TO_ERROR_MAPPING.get(http_status, UnknownApiError)
+
+        raise error_type(message=error.get("message", ""), http_status=http_status, http_body=http_body)
 
     def _utf8(self, value: Union[str, bytes]) -> str:
         # Python3's str(bytestring) returns "b'bytestring'" so we use .decode instead
@@ -306,7 +324,7 @@ class Requestor:
     def encode_url_params(self, params: Dict[str, Any], method: RequestMethod) -> Union[str, None]:
         """Encode params for a URL."""
         if method not in [RequestMethod.GET, RequestMethod.DELETE]:
-            raise Error("Only GET and DELETE requests support parameters.")
+            raise EasyPostError(INVALID_REQUEST_PARAMETERS_ERROR)
 
         converted_params = []
 
@@ -322,7 +340,7 @@ class Requestor:
     def add_params_to_url(self, url: str, params: Dict[str, Any], method: RequestMethod) -> str:
         """Add params to the URL."""
         if method not in [RequestMethod.GET, RequestMethod.DELETE]:
-            raise Error("Only GET and DELETE requests support parameters.")
+            raise EasyPostError(INVALID_REQUEST_PARAMETERS_ERROR)
 
         encoded_params = self.encode_url_params(params=params, method=method)
 

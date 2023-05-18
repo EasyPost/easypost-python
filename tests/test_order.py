@@ -1,6 +1,6 @@
 import pytest
 
-from easypost.error import Error
+from easypost.errors import FilteringError
 from easypost.models import (
     Order,
     Rate,
@@ -67,6 +67,6 @@ def test_order_lowest_rate(basic_order, test_client):
     assert lowest_rate_service.carrier == "USPS"
 
     # Test lowest rate with carrier filter (should error due to bad carrier)
-    with pytest.raises(Error) as error:
+    with pytest.raises(FilteringError) as error:
         order.lowest_rate(carriers=["BAD CARRIER"])
     assert str(error.value) == "No rates found."
