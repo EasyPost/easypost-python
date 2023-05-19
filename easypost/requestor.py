@@ -14,6 +14,8 @@ from typing import (
 )
 from urllib.parse import urlencode
 
+import requests
+
 from easypost.constant import (
     API_VERSION,
     COMMUNICATION_ERROR,
@@ -22,6 +24,7 @@ from easypost.constant import (
     INVALID_REQUEST_PARAMETERS_ERROR,
     INVALID_RESPONSE_BODY_ERROR,
     SUPPORT_EMAIL,
+    TIMEOUT_ERROR,
     VERSION,
 )
 from easypost.easypost_object import EasyPostObject
@@ -69,7 +72,7 @@ class RequestMethod(Enum):
 
 
 class Requestor:
-    def __init__(self, client=None):
+    def __init__(self, client):
         self._client = client
 
     @classmethod
@@ -92,9 +95,9 @@ class Requestor:
 
     @staticmethod
     def form_encode_params(
-        data: Dict,
+        data: Dict[str, Any],
         parent_keys: Optional[List[str]] = None,
-        parent_dict: Optional[Dict] = None,
+        parent_dict: Optional[Dict[str, Any]] = None,
     ) -> Dict:
         """Form-encode a multi-layer dictionary to a one-layer dictionary."""
         result = parent_dict or {}
@@ -259,6 +262,8 @@ class Requestor:
             )
             http_body = result.text
             http_status = result.status_code
+        except requests.exceptions.Timeout:
+            raise TimeoutError(TIMEOUT_ERROR)
         except Exception as e:
             raise HttpError(COMMUNICATION_ERROR.format(SUPPORT_EMAIL, e))
 

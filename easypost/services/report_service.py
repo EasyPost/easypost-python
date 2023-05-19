@@ -1,7 +1,6 @@
 from typing import (
     Any,
     Dict,
-    List,
     Optional,
 )
 
@@ -34,8 +33,8 @@ class ReportService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def all(self, **params) -> List[Report]:
-        """Retrieve a list of all Reports."""
+    def all(self, **params) -> Dict[str, Any]:
+        """Retrieve a list of Reports."""
         refund_type = params.pop("type")
 
         if refund_type is None:
@@ -48,7 +47,7 @@ class ReportService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def retrieve(self, id) -> Report:
+    def retrieve(self, id: str) -> Report:
         """Retrieve a Report."""
         return self._retrieve_resource(self._model_class, id)
 
@@ -56,7 +55,7 @@ class ReportService(BaseService):
         self,
         reports: Dict[str, Any],
         page_size: Optional[int] = None,
-    ) -> List[Report]:
+    ) -> Dict[str, Any]:
         """Retrieve the next page of the list Report response."""
         refund_type = reports.get("type")
 

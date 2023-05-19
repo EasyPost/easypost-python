@@ -117,4 +117,4 @@ def test_referral_add_credit_card_error(
             cvc=credit_card_details["cvc"],
         )
 
-    assert str(error.value) == "Could not send card details to Stripe, please try again later"
+    assert str(error.value) == "Could not send card details to Stripe, please try again later."

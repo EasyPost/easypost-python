@@ -1,5 +1,6 @@
 from typing import (
     Any,
+    Dict,
     List,
     Optional,
 )
@@ -24,7 +25,7 @@ class CarrierAccountService(BaseService):
         self._model_class = CarrierAccount.__name__
 
     def create(self, **params) -> CarrierAccount:
-        """Creates a CarrierAccount."""
+        """Create a CarrierAccount."""
         carrier_account_type = params.get("type")
 
         if carrier_account_type is None:
@@ -37,23 +38,23 @@ class CarrierAccountService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def all(self, **params) -> List[Any]:
+    def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of CarrierAccounts."""
         return self._all_resources(self._model_class, **params)
 
-    def retrieve(self, id) -> CarrierAccount:
+    def retrieve(self, id: str) -> CarrierAccount:
         """Retrieve a CarrierAccount."""
         return self._retrieve_resource(self._model_class, id)
 
-    def update(self, id, **params) -> CarrierAccount:
+    def update(self, id: str, **params) -> CarrierAccount:
         """Update a CarrierAccount."""
         return self._update_resource(self._model_class, id, **params)
 
-    def delete(self, id):
+    def delete(self, id: str) -> None:
         """Delete a CarrierAccount."""
         self._delete_resource(self._model_class, id)
 
-    def types(self) -> List[str]:
+    def types(self) -> List[Dict[str, Any]]:
         """Get the types of CarrierAccounts available to the User."""
         response = Requestor(self._client).request(method=RequestMethod.GET, url="/carrier_types")
 

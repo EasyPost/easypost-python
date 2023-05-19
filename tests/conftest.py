@@ -45,36 +45,6 @@ def pytest_sessionfinish(session, exitstatus):
         session.appengine_testbed.deactivate()  # type: ignore
 
 
-@pytest.fixture
-def synchronous_sleep_seconds():
-    """Use this fixture for sleeping between API calls where synchronous flows happen."""
-    return 5
-
-
-@pytest.fixture
-def test_client():
-    """If a test needs to use the EasyPost test mode, make it depend on this fixture."""
-    return EasyPostClient(EASYPOST_TEST_API_KEY)
-
-
-@pytest.fixture
-def prod_client():
-    """If a test needs to use the EasyPost prod mode, make it depend on this fixture."""
-    return EasyPostClient(EASYPOST_PROD_API_KEY)
-
-
-@pytest.fixture
-def partner_user_prod_client():
-    """If a test needs to use prod mode with a partner user's API key, make it depend on this fixture."""
-    return EasyPostClient(PARTNER_USER_PROD_API_KEY)
-
-
-@pytest.fixture
-def referral_customer_prod_client():
-    """If a test needs to use prod mode with a referral customer API key, make it depend on this fixture."""
-    return EasyPostClient(REFERRAL_CUSTOMER_PROD_API_KEY)
-
-
 @pytest.fixture(autouse=True)
 def check_expired_cassettes(expiration_days: int = 180, throw_error: bool = False):
     """Checks for expired cassettes and throws errors if they are too old and must be re-recorded."""
@@ -169,6 +139,36 @@ def scrub_response_bodies(scrubbers: List[Tuple[str, Any]]) -> Any:
         return data
 
     return before_record_response
+
+
+@pytest.fixture
+def synchronous_sleep_seconds():
+    """Use this fixture for sleeping between API calls where synchronous flows happen."""
+    return 5
+
+
+@pytest.fixture
+def test_client():
+    """If a test needs to use the EasyPost test mode, make it depend on this fixture."""
+    return EasyPostClient(EASYPOST_TEST_API_KEY)
+
+
+@pytest.fixture
+def prod_client():
+    """If a test needs to use the EasyPost prod mode, make it depend on this fixture."""
+    return EasyPostClient(EASYPOST_PROD_API_KEY)
+
+
+@pytest.fixture
+def partner_user_prod_client():
+    """If a test needs to use prod mode with a partner user's API key, make it depend on this fixture."""
+    return EasyPostClient(PARTNER_USER_PROD_API_KEY)
+
+
+@pytest.fixture
+def referral_customer_prod_client():
+    """If a test needs to use prod mode with a referral customer API key, make it depend on this fixture."""
+    return EasyPostClient(REFERRAL_CUSTOMER_PROD_API_KEY)
 
 
 def read_fixture_data():

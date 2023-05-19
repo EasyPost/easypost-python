@@ -11,6 +11,6 @@ class CustomsInfoService(BaseService):
         """Create a CustomsInfo."""
         return self._create_resource(self._model_class, **params)
 
-    def retrieve(self, id) -> CustomsInfo:
+    def retrieve(self, id: str) -> CustomsInfo:
         """Retrieve a CustomsInfo."""
         return self._retrieve_resource(self._model_class, id)

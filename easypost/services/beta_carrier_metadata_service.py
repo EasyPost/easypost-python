@@ -18,9 +18,11 @@ class BetaCarrierMetadataService(BaseService):
         self._client = client
 
     def retrieve_carrier_metadata(
-        self, carriers: Optional[List[str]] = None, types: Optional[List[str]] = None
+        self,
+        carriers: Optional[List[str]] = None,
+        types: Optional[List[str]] = None,
     ) -> List[Dict[str, Any]]:
-        """Get carrier metadata for all carriers on the EasyPost platform."""
+        """Get metadata for all carriers on the EasyPost platform."""
         params = {
             "carriers": ",".join(carriers) if carriers else None,
             "types": ",".join(types) if types else None,

@@ -23,7 +23,7 @@ class TrackerService(BaseService):
         """Create a Tracker."""
         return self._create_resource(self._model_class, **params)
 
-    def all(self, **params) -> List[Tracker]:
+    def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of Trackers."""
         url = self._class_url(self._model_class)
 
@@ -33,7 +33,7 @@ class TrackerService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def retrieve(self, id) -> Tracker:
+    def retrieve(self, id: str) -> Tracker:
         """Retrieve a Tracker."""
         return self._retrieve_resource(self._model_class, id)
 
@@ -42,7 +42,7 @@ class TrackerService(BaseService):
         trackers: Dict[str, Any],
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
-    ) -> List["Tracker"]:
+    ) -> Dict[str, Any]:
         """Retrieve the next page of the list Tracker response."""
         optional_params = {
             "tracking_code": trackers.get("tracking_code"),

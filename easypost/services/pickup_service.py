@@ -1,7 +1,6 @@
 from typing import (
     Any,
     Dict,
-    List,
     Optional,
 )
 
@@ -23,11 +22,11 @@ class PickupService(BaseService):
         """Create a Pickup."""
         return self._create_resource(self._model_class, **params)
 
-    def all(self, **params) -> List[Pickup]:
+    def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of Pickups."""
         return self._all_resources(self._model_class, **params)
 
-    def retrieve(self, id) -> Pickup:
+    def retrieve(self, id: str) -> Pickup:
         """Retrieve a Pickup."""
         return self._retrieve_resource(self._model_class, id)
 
@@ -36,7 +35,7 @@ class PickupService(BaseService):
         pickups: Dict[str, Any],
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
-    ) -> List[Pickup]:
+    ) -> Dict[str, Any]:
         """Retrieve the next page of the list Pickup response."""
         return self._get_next_page_resources(self._model_class, pickups, page_size, optional_params)
 

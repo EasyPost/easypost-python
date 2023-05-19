@@ -2,7 +2,6 @@ from copy import deepcopy
 from typing import (
     Any,
     Dict,
-    List,
     Optional,
 )
 
@@ -27,7 +26,7 @@ class ReferralCustomerService(BaseService):
         self._client = client
         self._model_class = User.__name__
 
-    def create(self, **params) -> Dict[str, Any]:
+    def create(self, **params) -> User:
         """Create a referral customer.
 
         This function requires the Partner User's API key.
@@ -60,7 +59,7 @@ class ReferralCustomerService(BaseService):
             params=wrapped_params,
         )
 
-    def all(self, **params) -> List[Any]:
+    def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of referral customers.
 
         This function requires the Partner User's API key.
@@ -78,7 +77,7 @@ class ReferralCustomerService(BaseService):
         referral_customers: Dict[str, Any],
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
-    ) -> List[Any]:
+    ) -> Dict[str, Any]:
         """Retrieve next page of referral customers."""
         return self._get_next_page_resources("referral_customers", referral_customers, page_size, optional_params)
 

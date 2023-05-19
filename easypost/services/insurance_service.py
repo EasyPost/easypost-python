@@ -1,7 +1,6 @@
 from typing import (
     Any,
     Dict,
-    List,
     Optional,
 )
 
@@ -18,11 +17,11 @@ class InsuranceService(BaseService):
         """Create an Insurance."""
         return self._create_resource(self._model_class, **params)
 
-    def all(self, **params) -> List[Insurance]:
+    def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of Insurances."""
         return self._all_resources(self._model_class, **params)
 
-    def retrieve(self, id) -> Insurance:
+    def retrieve(self, id: str) -> Insurance:
         """Retrieve an Insurance."""
         return self._retrieve_resource(self._model_class, id)
 
@@ -31,6 +30,6 @@ class InsuranceService(BaseService):
         insurances: Dict[str, Any],
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
-    ) -> List[Any]:
+    ) -> Dict[str, Any]:
         """Retrieve the next page of the list Insurance response."""
         return self._get_next_page_resources(self._model_class, insurances, page_size, optional_params)

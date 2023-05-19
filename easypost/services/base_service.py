@@ -6,15 +6,9 @@ from typing import (
     Optional,
 )
 
-from easypost.constant import (
-    MISSING_PARAMETER_ERROR,
-    NO_MORE_PAGES_ERROR,
-)
+from easypost.constant import NO_MORE_PAGES_ERROR
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.errors import (
-    EndOfPaginationError,
-    MissingParameterError,
-)
+from easypost.errors import EndOfPaginationError
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -22,16 +16,16 @@ from easypost.requestor import (
 
 
 class BaseService:
-    """The base service that all other services inherit."""
+    """The base service that all other services inherit containing shared logic."""
 
     def __init__(self, client):
         self._client = client
 
-    def _snakecase_name(self, class_name) -> str:
+    def _snakecase_name(self, class_name: str) -> str:
         """Return the class name as snake_case."""
         return re.sub(r"(?<!^)(?=[A-Z])", "_", class_name).lower()
 
-    def _class_url(self, class_name) -> str:
+    def _class_url(self, class_name: str) -> str:
         """Generate a URL based on class name."""
         transformed_class_name = self._snakecase_name(class_name)
         if transformed_class_name[-1:] in ("s", "h"):
@@ -39,17 +33,12 @@ class BaseService:
         else:
             return f"/{transformed_class_name}s"
 
-    def _instance_url(self, class_name, id) -> str:
-        """Generate an instance URL based on the ID of the object."""
-        if not id:
-            raise MissingParameterError(MISSING_PARAMETER_ERROR.format("id"))
-
-        _class_url = self._class_url(class_name)
-
-        return f"{_class_url}/{id}"
+    def _instance_url(self, class_name: str, id: str) -> str:
+        """Generate an instance URL based on a class name and ID."""
+        return f"{self._class_url(class_name)}/{id}"
 
     def _create_resource(self, class_name: str, **params) -> Any:
-        """Create an EasyPost object."""
+        """Create an EasyPost object via the EasyPost API."""
         url = self._class_url(class_name)
         wrapped_params = {self._snakecase_name(class_name): params}
 
@@ -57,8 +46,8 @@ class BaseService:
 
         return convert_to_easypost_object(response=response)
 
-    def _all_resources(self, class_name: str, **params) -> List[Any]:
-        """Retrieve a list of records from the EasyPost API."""
+    def _all_resources(self, class_name: str, **params) -> Any:
+        """Retrieve a list of EasyPostObjects from the EasyPost API."""
         url = self._class_url(class_name)
 
         response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
@@ -74,7 +63,7 @@ class BaseService:
         return convert_to_easypost_object(response=response)
 
     def _update_resource(self, class_name: str, id: str, method: RequestMethod = RequestMethod.PATCH, **params) -> Any:
-        """Update an EasyPost object."""
+        """Update an EasyPost object via the EasyPost API."""
         url = self._instance_url(class_name, id)
         wrapped_params = {self._snakecase_name(class_name): params}
 
@@ -83,7 +72,7 @@ class BaseService:
         return convert_to_easypost_object(response=response)
 
     def _delete_resource(self, class_name: str, id: str) -> Any:
-        """Delete an EasyPost object."""
+        """Delete an EasyPost object via the EasyPost API."""
         url = self._instance_url(class_name, id)
 
         response = Requestor(self._client).request(method=RequestMethod.DELETE, url=url)
@@ -96,8 +85,8 @@ class BaseService:
         collection: Dict[str, Any],
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
-    ) -> List[Any]:
-        """Retrieve next page of a specific collection."""
+    ) -> Dict[str, Any]:
+        """Retrieve next page of EasyPostObjects via the EasyPost API."""
         url = self._class_url(class_name)
         collection_array = collection.get(url[1:])
 

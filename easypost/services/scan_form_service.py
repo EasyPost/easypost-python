@@ -1,7 +1,6 @@
 from typing import (
     Any,
     Dict,
-    List,
     Optional,
 )
 
@@ -18,11 +17,11 @@ class ScanFormService(BaseService):
         """Create a ScanForm."""
         return self._create_resource(self._model_class, **params)
 
-    def all(self, **params) -> List[ScanForm]:
+    def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of ScanForms."""
         return self._all_resources(self._model_class, **params)
 
-    def retrieve(self, id) -> ScanForm:
+    def retrieve(self, id: str) -> ScanForm:
         """Retrieve a ScanForm."""
         return self._retrieve_resource(self._model_class, id)
 
@@ -31,6 +30,6 @@ class ScanFormService(BaseService):
         scan_forms: Dict[str, Any],
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
-    ) -> List[ScanForm]:
+    ) -> Dict[str, Any]:
         """Retrieve the next page of the list ScanForm response."""
         return self._get_next_page_resources(self._model_class, scan_forms, page_size, optional_params)

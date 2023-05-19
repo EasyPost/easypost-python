@@ -35,7 +35,7 @@ class ShipmentService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def all(self, **params) -> List[Shipment]:
+    def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of Shipments."""
         response = Requestor(self._client).request(method=RequestMethod.GET, url="/shipments", params=params)
         response["include_children"] = params.get("include_children")
@@ -43,7 +43,7 @@ class ShipmentService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def retrieve(self, id) -> Shipment:
+    def retrieve(self, id: str) -> Shipment:
         """Retrieve a Shipment."""
         return self._retrieve_resource(self._model_class, id)
 
@@ -52,7 +52,7 @@ class ShipmentService(BaseService):
         shipments: Dict[str, Any],
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
-    ) -> List[Shipment]:
+    ) -> Dict[str, Any]:
         """Get next page of shipment collection."""
         optional_params = {
             "include_children": shipments.get("include_children"),
@@ -70,7 +70,7 @@ class ShipmentService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def get_smart_rates(self, id: str) -> List[object]:
+    def get_smart_rates(self, id: str) -> List[Rate]:
         """Get SmartRates for a Shipment."""
         url = f"{self._instance_url(self._model_class, id)}/smartrate"
 

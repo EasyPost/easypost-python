@@ -1,7 +1,6 @@
 from typing import (
     Any,
     Dict,
-    List,
     Optional,
 )
 
@@ -23,7 +22,7 @@ class OrderService(BaseService):
         """Create an Order."""
         return self._create_resource(self._model_class, **params)
 
-    def retrieve(self, id) -> Order:
+    def retrieve(self, id: str) -> Order:
         """Retrieve an Order."""
         return self._retrieve_resource(self._model_class, id)
 
@@ -32,7 +31,7 @@ class OrderService(BaseService):
         insurances: Dict[str, Any],
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
-    ) -> List[Order]:
+    ) -> Dict[str, Any]:
         """Retrieve the next page of the list Order response."""
         return self._get_next_page_resources(self._model_class, insurances, page_size, optional_params)
 

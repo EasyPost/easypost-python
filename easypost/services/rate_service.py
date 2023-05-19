@@ -7,6 +7,6 @@ class RateService(BaseService):
         self._client = client
         self._model_class = Rate.__name__
 
-    def retrieve(self, id) -> Rate:
+    def retrieve(self, id: str) -> Rate:
         """Retrieve a Rate."""
         return self._retrieve_resource(self._model_class, id)
