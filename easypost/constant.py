@@ -6,6 +6,7 @@ VERSION_INFO = [str(number) for number in VERSION.split(".")]
 # Client defaults
 API_BASE = "https://api.easypost.com"
 API_VERSION = "v2"
+AUTHOR = "EasyPost <oss@easypost.com>"
 SUPPORT_EMAIL = "support@easypost.com"
 TIMEOUT = 60
 

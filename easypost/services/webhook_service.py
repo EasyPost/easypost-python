@@ -1,6 +1,6 @@
 from typing import (
     Any,
-    List,
+    Dict,
 )
 
 from easypost.models import Webhook
@@ -16,18 +16,18 @@ class WebhookService(BaseService):
         """Create a Webhook."""
         return self._create_resource(self._model_class, **params)
 
-    def all(self, **params) -> List[Any]:
+    def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of Webhooks."""
         return self._all_resources(self._model_class, **params)
 
-    def retrieve(self, id) -> Webhook:
+    def retrieve(self, id: str) -> Webhook:
         """Retrieve a Webhook."""
         return self._retrieve_resource(self._model_class, id)
 
-    def update(self, id, **params) -> Webhook:
+    def update(self, id: str, **params) -> Webhook:
         """Update a Webhook."""
         return self._update_resource(self._model_class, id, **params)
 
-    def delete(self, id):
+    def delete(self, id: str) -> None:
         """Delete a Webhook."""
         self._delete_resource(self._model_class, id)

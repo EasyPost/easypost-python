@@ -26,7 +26,7 @@ class UserService(BaseService):
         """Create a User."""
         return self._create_resource(self._model_class, **params)
 
-    def all(self, **params) -> List[User]:
+    def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of Users."""
         return self._all_resources(self._model_class, **params)
 
@@ -47,11 +47,11 @@ class UserService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def update(self, id, **params) -> User:
+    def update(self, id: str, **params) -> User:
         """Update a User."""
         return self._update_resource(self._model_class, id, **params)
 
-    def delete(self, id):
+    def delete(self, id: str) -> None:
         """Delete a User."""
         self._delete_resource(self._model_class, id)
 

@@ -82,7 +82,9 @@ def get_lowest_smart_rate(smart_rates, delivery_days: int, delivery_accuracy: st
 
 
 def get_lowest_stateless_rate(
-    stateless_rates: List[Dict[str, Any]], carriers: Optional[List[str]] = None, services: Optional[List[str]] = None
+    stateless_rates: List[Dict[str, Any]],
+    carriers: Optional[List[str]] = None,
+    services: Optional[List[str]] = None,
 ) -> Dict[str, Any]:
     """Get the lowest stateless rate."""
     carriers = carriers or []

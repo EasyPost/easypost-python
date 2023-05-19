@@ -1,4 +1,7 @@
-from typing import List
+from typing import (
+    Any,
+    Dict,
+)
 
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.models import (
@@ -27,11 +30,11 @@ class EndShipperService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def all(self, **params) -> List[Address]:
+    def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of EndShippers."""
         return self._all_resources(self._service_class, **params)
 
-    def retrieve(self, id) -> Address:
+    def retrieve(self, id: str) -> Address:
         """Retrieve an EndShipper."""
         return self._retrieve_resource(self._service_class, id)
 

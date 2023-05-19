@@ -11,6 +11,6 @@ class ParcelService(BaseService):
         """Create a Parcel."""
         return self._create_resource(self._model_class, **params)
 
-    def retrieve(self, id) -> Parcel:
+    def retrieve(self, id: str) -> Parcel:
         """Retrieve a Parcel."""
         return self._retrieve_resource(self._model_class, id)

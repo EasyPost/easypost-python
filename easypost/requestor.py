@@ -69,7 +69,7 @@ class RequestMethod(Enum):
 
 
 class Requestor:
-    def __init__(self, client=None):
+    def __init__(self, client):
         self._client = client
 
     @classmethod
@@ -92,9 +92,9 @@ class Requestor:
 
     @staticmethod
     def form_encode_params(
-        data: Dict,
+        data: Dict[str, Any],
         parent_keys: Optional[List[str]] = None,
-        parent_dict: Optional[Dict] = None,
+        parent_dict: Optional[Dict[str, Any]] = None,
     ) -> Dict:
         """Form-encode a multi-layer dictionary to a one-layer dictionary."""
         result = parent_dict or {}

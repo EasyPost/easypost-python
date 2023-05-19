@@ -1,5 +1,6 @@
 # flake8: noqa
 from easypost.constant import (
+    AUTHOR,
     VERSION,
     VERSION_INFO,
 )
@@ -13,6 +14,6 @@ from easypost.util import (
 )
 
 
-__author__ = "EasyPost <oss@easypost.com>"
+__author__ = AUTHOR
 __version__ = VERSION
 version_info = VERSION_INFO
