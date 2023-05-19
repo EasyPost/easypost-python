@@ -22,7 +22,7 @@ def test_no_api_key():
     with pytest.raises(TypeError) as error:
         EasyPostClient()
 
-    assert str(error.value) == "EasyPostClient.__init__() missing 1 required positional argument: 'api_key'"
+    assert "missing 1 required positional argument: 'api_key'" in str(error.value)
 
 
 def test_invalid_client_property():
