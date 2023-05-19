@@ -9,7 +9,7 @@ from easypost.constant import (
     NO_BILLING_ERROR,
 )
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.errors import PaymentError
+from easypost.errors import InvalidObjectError
 from easypost.models import Billing
 from easypost.requestor import (
     RequestMethod,
@@ -49,7 +49,7 @@ class BillingService(BaseService):
         )
 
         if response.get("id") is None:
-            raise PaymentError(message=NO_BILLING_ERROR)
+            raise InvalidObjectError(message=NO_BILLING_ERROR)
 
         return convert_to_easypost_object(response=response)
 
@@ -71,8 +71,8 @@ class BillingService(BaseService):
             elif payment_method_id.startswith("bank_"):
                 endpoint = "/bank_accounts"
             else:
-                raise PaymentError(message=INVALID_PAYMENT_METHOD_ERROR)
+                raise InvalidObjectError(message=INVALID_PAYMENT_METHOD_ERROR)
         else:
-            raise PaymentError(message=INVALID_PAYMENT_METHOD_ERROR)
+            raise InvalidObjectError(message=INVALID_PAYMENT_METHOD_ERROR)
 
         return [endpoint, payment_method_id]
