@@ -2,11 +2,9 @@ from easypost.constant import (
     API_BASE,
     API_VERSION,
     INVALID_REQUESTS_VERSION_ERROR,
-    NO_API_KEY_ERROR,
     SUPPORT_EMAIL,
     TIMEOUT,
 )
-from easypost.errors import MissingParameterError
 from easypost.services import (
     AddressService,
     BatchService,
@@ -74,9 +72,6 @@ class EasyPostClient:
         self.tracker = TrackerService(self)
         self.user = UserService(self)
         self.webhook = WebhookService(self)
-
-        if self.api_key is None:
-            raise MissingParameterError(NO_API_KEY_ERROR.format(SUPPORT_EMAIL))
 
         # use urlfetch as request_lib on google app engine, otherwise use requests
         self._request_lib = None

@@ -14,6 +14,8 @@ from typing import (
 )
 from urllib.parse import urlencode
 
+import requests
+
 from easypost.constant import (
     API_VERSION,
     COMMUNICATION_ERROR,
@@ -22,6 +24,7 @@ from easypost.constant import (
     INVALID_REQUEST_PARAMETERS_ERROR,
     INVALID_RESPONSE_BODY_ERROR,
     SUPPORT_EMAIL,
+    TIMEOUT_ERROR,
     VERSION,
 )
 from easypost.easypost_object import EasyPostObject
@@ -259,6 +262,8 @@ class Requestor:
             )
             http_body = result.text
             http_status = result.status_code
+        except requests.exceptions.Timeout:
+            raise TimeoutError(TIMEOUT_ERROR)
         except Exception as e:
             raise HttpError(COMMUNICATION_ERROR.format(SUPPORT_EMAIL, e))
 

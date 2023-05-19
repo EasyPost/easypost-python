@@ -1,6 +1,9 @@
 import os
 
+import pytest
+
 from easypost.easypost_client import EasyPostClient
+from easypost.errors import TimeoutError
 
 
 def test_api_key():
@@ -12,6 +15,22 @@ def test_api_key():
     assert client2.api_key == "456"
 
 
+def test_no_api_key():
+    """Tests that we raise an error when no API key is passed to the client."""
+    with pytest.raises(TypeError) as error:
+        EasyPostClient()
+
+    assert str(error.value) == "EasyPostClient.__init__() missing 1 required positional argument: 'api_key'"
+
+
+def test_invalid_client_property():
+    """Tests that we throw an error when attempting to use an invalid property of a client."""
+    with pytest.raises(AttributeError) as error:
+        EasyPostClient("123").invalid_property()
+
+    assert str(error.value) == "'EasyPostClient' object has no attribute 'invalid_property'"
+
+
 def test_api_base():
     """Tests that we can override the API base of the client object."""
     client1 = EasyPostClient(api_key="123")
@@ -21,15 +40,15 @@ def test_api_base():
     assert client2.api_base == "http://example.com"
 
 
-def test_client_timeout():
-    """Tests that we override the timeout of a client."""
-    # TODO: Make an actual API call to ensure these get passed down to the request once the dust settles
-    client = EasyPostClient(api_key=os.getenv("EASYPOST_TEST_API_KEY"))
-    assert client.timeout == 60
+def test_client_timeout(basic_shipment):
+    """Tests that the timeout gets used properly in requests when set.
 
-    client = EasyPostClient(api_key=os.getenv("EASYPOST_TEST_API_KEY"), timeout=1)
-    assert client.timeout == 1
+    NOTE: Because this times out, we cannot record a cassette so this attempts a live call each time.
+    """
+    client = EasyPostClient(api_key=os.getenv("EASYPOST_TEST_API_KEY"), timeout=0.1)
 
-
-# TODO: Add a test for no API key once that logic gets moved to the client
-# TODO: Add a test for invalid property on a client once the dust settles
+    try:
+        client.shipment.create(**basic_shipment)
+        assert False
+    except TimeoutError as error:
+        assert error.message == "Request timed out."
