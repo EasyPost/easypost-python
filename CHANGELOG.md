@@ -1,15 +1,19 @@
 # CHANGELOG
 
-## Next Major Release
+## v8.0.0 (2023-05-22)
 
-- New client object
-  - Services and models
+- New `EasyPostClient` object
+  - Logic is grouped together in Services and each EasyPost object has a new model (eg: `client.shipment.create()`)
+- Error handling overhaul
+  - Introduces ~2 dozen new error types that extend from either `ApiError` or `EasyPostError`
+  - ApiErrors behave like the previous `Error` class did. They will include a `message`, `http_status`, and `http_body`. Additionally, a new `code` and `errors` keys are present and populate when available
 - Beta namespace changed from `easypost.beta.x` to `client.beta_x`
 - Empty API response functions return `None` instead of `True`
-- References to `Referral` are now `ReferralCustomer` and `referral_customer` to match the API and docs
-- References to `Smartrate` are now `SmartRate` and `smart_rate` to match the API and docs
-- References to `Scanform` are now `ScanForm` and `scan_form`
-- `primary_or_secondary` paramater name for billing functions is now called `priority` to match the API and docs
+- Corrected naming conventions
+  - References to `Referral` are now `ReferralCustomer` and `referral_customer` to match the API and docs
+  - References to `Smartrate` are now `SmartRate` and `smart_rate` to match the API and docs
+  - References to `Scanform` are now `ScanForm` and `scan_form`
+  - `primary_or_secondary` paramater name for billing functions is now called `priority` to match the API and docs
 - The `update_email` function of the `referral_customer` service had the parameter order switched so `id` (previously called `user_id`) is first which matches the rest of the library
 - Dropped Python 3.6 support
 - Bumps all dependencies

@@ -27,9 +27,9 @@ A simple create & buy shipment example:
 import os
 import easypost
 
-easypost.api_key = os.getenv('EASYPOST_API_KEY')
+client = easypost.EasyPostClient(os.getenv('EASYPOST_API_KEY'))
 
-shipment = easypost.Shipment.create(
+shipment = client.shipment.create(
     from_address = {
         "name": "EasyPost",
         "street1": "118 2nd Street",
@@ -57,9 +57,9 @@ shipment = easypost.Shipment.create(
     },
 )
 
-shipment.buy(rate=shipment.lowest_rate())
+bought_shipment = client.shipment.buy(shipment.id, rate=shipment.lowest_rate())
 
-print(shipment)
+print(bought_shipment)
 ```
 
 ## Documentation
