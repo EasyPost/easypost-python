@@ -42,10 +42,11 @@ def test_api_base():
     assert client2.api_base == "http://example.com"
 
 
-@patch("requests.Session.request", side_effect=requests.exceptions.Timeout())
-def test_client_timeout(mock_request, basic_shipment):
+@patch("requests.Session")
+def test_client_timeout(mock_session, basic_shipment):
     """Tests that the timeout gets used properly in requests when set."""
-    client = EasyPostClient(api_key=os.getenv("EASYPOST_TEST_API_KEY"), timeout=0.001)
+    mock_session().request.side_effect = requests.exceptions.Timeout()
+    client = EasyPostClient(api_key=os.getenv("EASYPOST_TEST_API_KEY"), timeout=0.1)
 
     try:
         client.shipment.create(**basic_shipment)
