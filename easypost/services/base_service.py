@@ -6,8 +6,15 @@ from typing import (
     Optional,
 )
 
+from easypost.constant import (
+    MISSING_PARAMETER_ERROR,
+    NO_MORE_PAGES_ERROR,
+)
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.error import Error
+from easypost.errors import (
+    EndOfPaginationError,
+    MissingParameterError,
+)
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -35,7 +42,7 @@ class BaseService:
     def _instance_url(self, class_name, id) -> str:
         """Generate an instance URL based on the ID of the object."""
         if not id:
-            raise Error(f"{class_name} instance has invalid ID: {id}")
+            raise MissingParameterError(MISSING_PARAMETER_ERROR.format("id"))
 
         _class_url = self._class_url(class_name)
 
@@ -95,7 +102,7 @@ class BaseService:
         collection_array = collection.get(url[1:])
 
         if collection_array is None or len(collection_array) == 0 or not collection.get("has_more"):
-            raise Error(message="There are no more pages to retrieve.")
+            raise EndOfPaginationError(NO_MORE_PAGES_ERROR)
 
         params = {
             "before_id": collection_array[-1].id,
@@ -109,6 +116,6 @@ class BaseService:
 
         response_array: List[Any] = response.get(url[1:])  # type: ignore
         if response is None or len(response_array) == 0 or not response.get("has_more"):
-            raise Error(message="There are no more pages to retrieve.")
+            raise EndOfPaginationError(NO_MORE_PAGES_ERROR)
 
         return convert_to_easypost_object(response=response)

@@ -4,8 +4,12 @@ from typing import (
     List,
 )
 
+from easypost.constant import (
+    INVALID_PAYMENT_METHOD_ERROR,
+    NO_BILLING_ERROR,
+)
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.error import Error
+from easypost.errors import PaymentError
 from easypost.models import Billing
 from easypost.requestor import (
     RequestMethod,
@@ -45,7 +49,7 @@ class BillingService(BaseService):
         )
 
         if response.get("id") is None:
-            raise Error(message="Billing has not been setup for this user. Please add a payment method.")
+            raise PaymentError(message=NO_BILLING_ERROR)
 
         return convert_to_easypost_object(response=response)
 
@@ -59,7 +63,6 @@ class BillingService(BaseService):
         }
 
         payment_method_to_use = payment_method_map.get(priority)
-        error_string = "The chosen payment method is not valid. Please try again."
 
         if payment_method_to_use and payment_methods[payment_method_to_use]:
             payment_method_id = payment_methods[payment_method_to_use]["id"]
@@ -68,8 +71,8 @@ class BillingService(BaseService):
             elif payment_method_id.startswith("bank_"):
                 endpoint = "/bank_accounts"
             else:
-                raise Error(message=error_string)
+                raise PaymentError(message=INVALID_PAYMENT_METHOD_ERROR)
         else:
-            raise Error(message=error_string)
+            raise PaymentError(message=INVALID_PAYMENT_METHOD_ERROR)
 
         return [endpoint, payment_method_id]

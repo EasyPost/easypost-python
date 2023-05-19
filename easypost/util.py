@@ -9,11 +9,21 @@ from typing import (
     Optional,
 )
 
+from easypost.constant import (
+    INVALID_DELIVER_ACCURACY_ERROR,
+    INVALID_SIGNATURE_ERROR,
+    INVALID_WEBHOOK_VALIDATION_ERROR,
+    NO_RATES_ERROR,
+)
 from easypost.easypost_object import (
     EasyPostObject,
     convert_to_easypost_object,
 )
-from easypost.error import Error
+from easypost.errors import (
+    FilteringError,
+    InvalidParameterError,
+    SignatureVerificationError,
+)
 
 
 def get_lowest_object_rate(
@@ -38,7 +48,7 @@ def get_lowest_object_rate(
             lowest_rate = rate
 
     if lowest_rate is None:
-        raise Error(message="No rates found.")
+        raise FilteringError(message=NO_RATES_ERROR)
 
     return lowest_rate
 
@@ -57,7 +67,7 @@ def get_lowest_smart_rate(smart_rates, delivery_days: int, delivery_accuracy: st
     lowest_smart_rate = None
 
     if delivery_accuracy.lower() not in valid_delivery_accuracy_values:
-        raise Error(message=f"Invalid delivery_accuracy value, must be one of: {valid_delivery_accuracy_values}")
+        raise InvalidParameterError(message=INVALID_DELIVER_ACCURACY_ERROR.format(valid_delivery_accuracy_values))
 
     for rate in smart_rates:
         if rate["time_in_transit"][delivery_accuracy] > delivery_days:
@@ -66,7 +76,7 @@ def get_lowest_smart_rate(smart_rates, delivery_days: int, delivery_accuracy: st
             lowest_smart_rate = rate
 
     if lowest_smart_rate is None:
-        raise Error(message="No rates found.")
+        raise FilteringError(message=NO_RATES_ERROR)
 
     return lowest_smart_rate
 
@@ -92,7 +102,7 @@ def get_lowest_stateless_rate(
             lowest_rate = rate
 
     if lowest_rate is None:
-        raise Error(message="No rates found.")
+        raise FilteringError(message=NO_RATES_ERROR)
 
     return lowest_rate
 
@@ -125,8 +135,8 @@ def validate_webhook(event_body: bytes, headers: Dict[str, Any], webhook_secret:
         if hmac.compare_digest(digest, easypost_hmac_signature):
             webhook_body = json.loads(event_body)
         else:
-            raise Error(message="Webhook received did not originate from EasyPost or had a webhook secret mismatch.")
+            raise SignatureVerificationError(message=INVALID_WEBHOOK_VALIDATION_ERROR)
     else:
-        raise Error(message="Webhook received does not contain an HMAC signature.")
+        raise SignatureVerificationError(message=INVALID_SIGNATURE_ERROR)
 
     return webhook_body

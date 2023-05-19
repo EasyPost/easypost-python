@@ -1,6 +1,6 @@
 import pytest
 
-from easypost.error import Error
+from easypost.errors import SignatureVerificationError
 from easypost.models import Webhook
 from easypost.util import validate_webhook
 
@@ -86,7 +86,7 @@ def test_validate_webhook_invalid_secret(event_bytes):
         "X-Hmac-Signature": "some-signature",
     }
 
-    with pytest.raises(Error) as error:
+    with pytest.raises(SignatureVerificationError) as error:
         _ = validate_webhook(
             event_body=event_bytes,
             headers=headers,
@@ -102,7 +102,7 @@ def test_validate_webhook_missing_secret(event_bytes):
         "some-header": "some-value",
     }
 
-    with pytest.raises(Error) as error:
+    with pytest.raises(SignatureVerificationError) as error:
         _ = validate_webhook(
             event_body=event_bytes,
             headers=headers,

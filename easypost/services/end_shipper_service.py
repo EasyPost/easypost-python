@@ -1,7 +1,4 @@
-from typing import (
-    List,
-    Optional,
-)
+from typing import List
 
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.models import (
@@ -21,7 +18,7 @@ class EndShipperService(BaseService):
         self._model_class = Address.__name__
         self._service_class = EndShipper.__name__
 
-    def create(self, api_key: Optional[str] = None, **params) -> Address:
+    def create(self, **params) -> Address:
         """Create an EndShipper."""
         url = self._class_url(self._service_class)
         wrapped_params = {self._snakecase_name(self._model_class): params}

@@ -1,6 +1,9 @@
 import pytest
 
-from easypost.error import Error
+from easypost.constant import (
+    _TEST_FAILED_INTENTIONALLY_ERROR,
+    NO_MORE_PAGES_ERROR,
+)
 from easypost.models import ScanForm
 
 
@@ -47,6 +50,6 @@ def test_scanform_get_next_page(page_size, test_client):
         first_id_of_second_page = next_page["scan_forms"][0].id
 
         assert first_id_of_first_page != first_id_of_second_page
-    except Error as e:
-        if e.message != "There are no more pages to retrieve.":
-            raise Error(message="Test failed intentionally.")
+    except Exception as e:
+        if e.message != NO_MORE_PAGES_ERROR:
+            raise Exception(message=_TEST_FAILED_INTENTIONALLY_ERROR)

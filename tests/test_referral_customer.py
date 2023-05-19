@@ -3,7 +3,10 @@ from unittest.mock import patch
 
 import pytest
 
-from easypost.error import Error
+from easypost.constant import (
+    _TEST_FAILED_INTENTIONALLY_ERROR,
+    NO_MORE_PAGES_ERROR,
+)
 from easypost.models import User
 
 
@@ -62,9 +65,9 @@ def test_referral_get_next_page(partner_user_prod_client, page_size):
         first_id_of_second_page = next_page["referral_customers"][0].id
 
         assert first_id_of_first_page != first_id_of_second_page
-    except Error as e:
-        if e.message != "There are no more pages to retrieve.":
-            raise Error(message="Test failed intentionally.")
+    except Exception as e:
+        if e.message != NO_MORE_PAGES_ERROR:
+            raise Exception(message=_TEST_FAILED_INTENTIONALLY_ERROR)
 
 
 # PyVCR is having troubles matching the body of the form-encoded data here, override the default

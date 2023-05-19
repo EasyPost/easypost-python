@@ -8,9 +8,12 @@ from typing import (
 
 import requests
 
-from easypost.constant import TIMEOUT
+from easypost.constant import (
+    SEND_STRIPE_DETAILS_ERROR,
+    TIMEOUT,
+)
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.error import Error
+from easypost.errors import ExternalApiError
 from easypost.models import User
 from easypost.requestor import (
     RequestMethod,
@@ -103,7 +106,7 @@ class ReferralCustomerService(BaseService):
                 easypost_stripe_api_key,
             )
         except Exception:
-            raise Error(message="Could not send card details to Stripe, please try again later")
+            raise ExternalApiError(message=SEND_STRIPE_DETAILS_ERROR)
 
         response = self._create_easypost_credit_card(
             referral_api_key,

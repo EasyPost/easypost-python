@@ -4,8 +4,12 @@ from typing import (
     Optional,
 )
 
-from easypost.constant import _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_WORKFLOWS
+from easypost.constant import (
+    _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_WORKFLOWS,
+    MISSING_PARAMETER_ERROR,
+)
 from easypost.easypost_object import convert_to_easypost_object
+from easypost.errors import MissingParameterError
 from easypost.models import CarrierAccount
 from easypost.requestor import (
     RequestMethod,
@@ -24,7 +28,7 @@ class CarrierAccountService(BaseService):
         carrier_account_type = params.get("type")
 
         if carrier_account_type is None:
-            raise ValueError("Missing required parameter 'type'")
+            raise MissingParameterError(MISSING_PARAMETER_ERROR.format("type"))
 
         url = self._select_carrier_account_creation_endpoint(carrier_account_type=carrier_account_type)
         wrapped_params = {self._snakecase_name(self._model_class): params}

@@ -1,7 +1,6 @@
 from typing import (
     Any,
     Dict,
-    Optional,
 )
 
 from easypost.easypost_object import convert_to_easypost_object
@@ -18,7 +17,7 @@ class BetaRateService(BaseService):
         self._client = client
         self._model_class = Rate.__name__
 
-    def retrieve_stateless_rates(self, api_key: Optional[str] = None, **params) -> Dict[str, Any]:
+    def retrieve_stateless_rates(self, **params) -> Dict[str, Any]:
         """Retrieves stateless rates by passing shipment data."""
         url = self._class_url(self._model_class)
         wrapped_params = {"shipment": params}

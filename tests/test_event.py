@@ -4,7 +4,11 @@ import time
 
 import pytest
 
-from easypost.error import Error
+from easypost.constant import (
+    _TEST_FAILED_INTENTIONALLY_ERROR,
+    NO_MORE_PAGES_ERROR,
+)
+from easypost.errors import ApiError
 from easypost.models import (
     Event,
     Payload,
@@ -33,9 +37,9 @@ def test_event_get_next_page(page_size, test_client):
         first_id_of_second_page = next_page["events"][0].id
 
         assert first_id_of_first_page != first_id_of_second_page
-    except Error as e:
-        if e.message != "There are no more pages to retrieve.":
-            raise Error(message="Test failed intentionally.")
+    except Exception as e:
+        if e.message != NO_MORE_PAGES_ERROR:
+            raise Exception(message=_TEST_FAILED_INTENTIONALLY_ERROR)
 
 
 @pytest.mark.vcr()
@@ -86,7 +90,7 @@ def test_event_retrieve_payload(page_size, webhook_url, one_call_buy_shipment, s
     try:
         # Need a valid-length, invalid payload ID here
         test_client.event.retrieve_payload(events["events"][0]["id"], "payload_11111111111111111111111111111111")
-    except Error as error:
+    except ApiError as error:
         assert error.message == "The payload(s) could not be found."
         assert error.http_status == 404
 

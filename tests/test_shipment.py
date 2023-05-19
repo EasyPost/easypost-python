@@ -1,6 +1,13 @@
 import pytest
 
-from easypost.error import Error
+from easypost.constant import (
+    _TEST_FAILED_INTENTIONALLY_ERROR,
+    NO_MORE_PAGES_ERROR,
+)
+from easypost.errors import (
+    FilteringError,
+    InvalidParameterError,
+)
 from easypost.models import (
     Rate,
     Shipment,
@@ -51,9 +58,9 @@ def test_shipment_get_next_page(page_size, test_client):
         first_id_of_second_page = next_page["shipments"][0].id
 
         assert first_id_of_first_page != first_id_of_second_page
-    except Error as e:
-        if e.message != "There are no more pages to retrieve.":
-            raise Error(message="Test failed intentionally.")
+    except Exception as e:
+        if e.message != NO_MORE_PAGES_ERROR:
+            raise Exception(message=_TEST_FAILED_INTENTIONALLY_ERROR)
 
 
 @pytest.mark.vcr()
@@ -198,7 +205,7 @@ def test_shipment_lowest_rate(full_shipment, test_client):
     assert lowest_rate_service.carrier == "USPS"
 
     # Test lowest rate with carrier filter (should error due to bad carrier)
-    with pytest.raises(Error) as error:
+    with pytest.raises(FilteringError) as error:
         shipment.lowest_rate(carriers=["BAD CARRIER"])
     assert str(error.value) == "No rates found."
 
@@ -218,7 +225,7 @@ def test_shipment_lowest_smart_rate(basic_shipment, test_client):
     assert lowest_smart_rate_filters["carrier"] == "USPS"
 
     # Test lowest smart_rate with invalid filters (should error due to strict delivery_days)
-    with pytest.raises(Error) as error:
+    with pytest.raises(FilteringError) as error:
         _ = test_client.shipment.lowest_smart_rate(
             shipment.id,
             delivery_days=0,
@@ -227,7 +234,7 @@ def test_shipment_lowest_smart_rate(basic_shipment, test_client):
     assert str(error.value) == "No rates found."
 
     # Test lowest smart_rate with invalid filters (should error due to invalid delivery_accuracy)
-    with pytest.raises(Error) as error:
+    with pytest.raises(InvalidParameterError) as error:
         _ = test_client.shipment.lowest_smart_rate(
             shipment.id,
             delivery_days=3,
@@ -252,7 +259,7 @@ def test_shipment_get_lowest_smart_rate(basic_shipment, test_client):
     assert lowest_smart_rate_filters["carrier"] == "USPS"
 
     # Test lowest smart_rate with invalid filters (should error due to strict delivery_days)
-    with pytest.raises(Error) as error:
+    with pytest.raises(FilteringError) as error:
         _ = get_lowest_smart_rate(
             smart_rates,
             delivery_days=0,
@@ -261,7 +268,7 @@ def test_shipment_get_lowest_smart_rate(basic_shipment, test_client):
     assert str(error.value) == "No rates found."
 
     # Test lowest smart_rate with invalid filters (should error due to bad delivery_accuracy)
-    with pytest.raises(Error) as error:
+    with pytest.raises(InvalidParameterError) as error:
         _ = get_lowest_smart_rate(
             smart_rates,
             delivery_days=3,

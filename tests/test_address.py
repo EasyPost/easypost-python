@@ -1,6 +1,10 @@
 import pytest
 
-from easypost.error import Error
+from easypost.constant import (
+    _TEST_FAILED_INTENTIONALLY_ERROR,
+    NO_MORE_PAGES_ERROR,
+)
+from easypost.errors import ApiError
 from easypost.models import Address
 
 
@@ -99,9 +103,9 @@ def test_address_get_next_page(page_size, test_client):
         first_id_of_second_page = next_page["addresses"][0].id
 
         assert first_id_of_first_page != first_id_of_second_page
-    except Error as e:
-        if e.message != "There are no more pages to retrieve.":
-            raise Error(message="Test failed intentionally.")
+    except Exception as e:
+        if e.message != NO_MORE_PAGES_ERROR:
+            raise Exception(message=_TEST_FAILED_INTENTIONALLY_ERROR)
 
 
 @pytest.mark.vcr()
@@ -118,7 +122,7 @@ def test_address_verify(ca_address_1, test_client):
 @pytest.mark.vcr()
 def test_address_verify_invalid_address(test_client):
     """Test verifying an already created address."""
-    with pytest.raises(Error) as error:
+    with pytest.raises(ApiError) as error:
         address = test_client.address.create(
             street1="invalid",
         )

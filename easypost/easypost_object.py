@@ -8,6 +8,8 @@ from typing import (
     Optional,
 )
 
+from easypost.constant import NO_ATTRIBUTE_ERROR
+
 
 EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP: Dict[str, Any] = {
     "adr": "Address",
@@ -122,7 +124,7 @@ class EasyPostObject(object):
             return self.__dict__[k]
         except KeyError:
             pass
-        raise AttributeError("%r object has no attribute %r" % (type(self).__name__, k))
+        raise AttributeError(NO_ATTRIBUTE_ERROR.format(type(self).__name__, k))
 
     def __getitem__(self, k):
         return self.__dict__[k]
