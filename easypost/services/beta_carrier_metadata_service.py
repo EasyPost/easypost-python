@@ -22,7 +22,7 @@ class BetaCarrierMetadataService(BaseService):
         carriers: Optional[List[str]] = None,
         types: Optional[List[str]] = None,
     ) -> List[Dict[str, Any]]:
-        """Get CarrierMetadata for all carriers on the EasyPost platform."""
+        """Get metadata for all carriers on the EasyPost platform."""
         params = {
             "carriers": ",".join(carriers) if carriers else None,
             "types": ",".join(types) if types else None,
