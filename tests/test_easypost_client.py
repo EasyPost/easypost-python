@@ -45,7 +45,7 @@ def test_api_base():
 @patch("requests.Session.request", side_effect=requests.exceptions.Timeout())
 def test_client_timeout(mock_request, basic_shipment):
     """Tests that the timeout gets used properly in requests when set."""
-    client = EasyPostClient(api_key=os.getenv("EASYPOST_TEST_API_KEY"), timeout=0.1)
+    client = EasyPostClient(api_key=os.getenv("EASYPOST_TEST_API_KEY"), timeout=0.001)
 
     try:
         client.shipment.create(**basic_shipment)
