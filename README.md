@@ -132,8 +132,9 @@ Some tests may require an EasyPost user with a particular set of enabled feature
 
 To run the test suite with the Google Cloud SDK (`urlfetch` instead of the `requests` library), you'll need the following:
 
+1. Install the appengine Python package to this virtual environment: `venv/bin/pip install appengine-python-standard`
 1. Install the Google Cloud SDK
-   1. [Google Link](https://cloud.google.com/sdk/docs/install)
-   2. [Homebrew](https://formulae.brew.sh/cask/google-cloud-sdk)
-2. Point the `PYTHONPATH` environment variable to the path of the newly installed `google-cloud-sdk` directory. For Homebrew, this is `"$(brew --prefix)/share/google-cloud-sdk"`
-3. Run the test suite with the commands listed in this README
+   - [Direct Download](https://cloud.google.com/sdk/docs/install)
+   - [Homebrew](https://formulae.brew.sh/cask/google-cloud-sdk)
+1. Point the `PYTHONPATH` environment variable to the path of the newly installed `google-cloud-sdk` directory. For Homebrew, this is `"$(brew --prefix)/share/google-cloud-sdk"`
+1. Run the test suite with the commands listed in this README
