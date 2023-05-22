@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## v8.0.0 (2023-05-22)
+## v8.0.0 (2023-05-30)
 
 - New `EasyPostClient` object
   - Logic is grouped together in Services and each EasyPost object has a new model (eg: `client.shipment.create()`)
