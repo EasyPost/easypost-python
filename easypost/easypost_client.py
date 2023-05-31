@@ -13,6 +13,7 @@ from easypost.services import (
     BetaReferralCustomerService,
     BillingService,
     CarrierAccountService,
+    CarrierMetadataService,
     CustomsInfoService,
     CustomsItemService,
     EndShipperService,
@@ -55,6 +56,7 @@ class EasyPostClient:
         self.beta_referral_customer = BetaReferralCustomerService(self)
         self.billing = BillingService(self)
         self.carrier_account = CarrierAccountService(self)
+        self.carrier_metadata = CarrierMetadataService(self)
         self.customs_info = CustomsInfoService(self)
         self.customs_item = CustomsItemService(self)
         self.end_shipper = EndShipperService(self)

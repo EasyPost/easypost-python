@@ -15,6 +15,7 @@
   - References to `Scanform` are now `ScanForm` and `scan_form`
   - `primary_or_secondary` paramater name for billing functions is now called `priority` to match the API and docs
 - The `update_email` function of the `referral_customer` service had the parameter order switched so `id` (previously called `user_id`) is first which matches the rest of the library
+- Retrieving carrier metadata is now in GA
 - Dropped Python 3.6 support
 - Bumps all dependencies
 
