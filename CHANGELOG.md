@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v7.13.1 (2023-05-31)
+
+- Fixes a bug where `Payload` didn't inherit `EasyPostObject` which could throw errors when retrieving event payloads (closes #284)
+
 ## v7.13.0 (2023-05-02)
 
 - Adds `retrieve_estimated_delivery_date` function to the Shipment class
