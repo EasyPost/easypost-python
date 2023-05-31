@@ -6,6 +6,7 @@ from easypost.services.beta_rate_service import BetaRateService
 from easypost.services.beta_referral_customer_service import BetaReferralCustomerService
 from easypost.services.billing_service import BillingService
 from easypost.services.carrier_account_service import CarrierAccountService
+from easypost.services.carrier_metadata_service import CarrierMetadataService
 from easypost.services.customs_info_service import CustomsInfoService
 from easypost.services.customs_item_service import CustomsItemService
 from easypost.services.end_shipper_service import EndShipperService
