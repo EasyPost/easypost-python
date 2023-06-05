@@ -39,8 +39,15 @@ format: black isort
 ## format-check - Checks if the project is formatted correctly against all formatting rules
 format-check: black-check isort-check lint mypy
 
+# TODO: Change branch to master once examples repo is updated
+## install-style - Download style guides
+install-style:
+	curl -LJs https://raw.githubusercontent.com/EasyPost/examples/style_guides/pyproject.toml -o pyproject.toml
+	curl -LJs https://raw.githubusercontent.com/EasyPost/examples/style_guides/.flake8 -o .flake8
+	sh adjust_python_style_guide.sh
+
 ## install - Install the project locally
-install:
+install: | install-style
 	$(PYTHON_BINARY) -m venv $(VIRTUAL_ENV)
 	$(VIRTUAL_BIN)/pip install -e ."[dev]"
 	git submodule init
@@ -79,4 +86,4 @@ scan:
 test:
 	$(VIRTUAL_BIN)/pytest
 
-.PHONY: help black black-check build clean coverage docs format format-check install isort isort-check lint mypy publish release scan test
+.PHONY: help black black-check build clean coverage docs format format-check install install-style isort isort-check lint mypy publish release scan test
