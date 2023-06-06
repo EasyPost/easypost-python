@@ -1,6 +1,8 @@
 # CHANGELOG
 
-## v8.0.0 (2023-05-30)
+## v8.0.0 (2023-06-06)
+
+See our [Upgrade Guide](UPGRADE_GUIDE.md#upgrading-from-7x-to-80) for more details.
 
 - New `EasyPostClient` object
   - Logic is grouped together in Services and each EasyPost object has a new model (eg: `client.shipment.create()`)
