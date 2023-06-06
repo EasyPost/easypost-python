@@ -10,7 +10,7 @@ Use the following guide to assist in the upgrade process of the `easypost-python
 
 ### 8.0 High Impact Changes
 
-- [Updating Dependencies](#80-updating-dependencies)
+- [Updated Dependencies](#80-updated-dependencies)
 - [EasyPostClient](#80-easypostclient)
 - [Improved Error Handling](#80-improved-error-handling)
 
@@ -23,7 +23,7 @@ Use the following guide to assist in the upgrade process of the `easypost-python
 - [Beta Namespace Changed](#80-beta-namespace-changed)
 - [Changed Function Parameter Order and Return Types](#80-changed-function-parameter-order-and-return-types)
 
-## 8.0 Updating Dependencies
+## 8.0 Updated Dependencies
 
 Likelihood of Impact: High
 
