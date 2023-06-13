@@ -3,7 +3,6 @@ import os
 import time
 
 import pytest
-
 from easypost.models import Batch
 
 

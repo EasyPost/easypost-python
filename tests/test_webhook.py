@@ -1,5 +1,4 @@
 import pytest
-
 from easypost.errors import SignatureVerificationError
 from easypost.models import Webhook
 from easypost.util import validate_webhook

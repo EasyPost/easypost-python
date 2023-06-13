@@ -15,7 +15,6 @@ from typing import (
 from urllib.parse import urlencode
 
 import requests
-
 from easypost.constant import (
     API_VERSION,
     COMMUNICATION_ERROR,

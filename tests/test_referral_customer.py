@@ -2,7 +2,6 @@ import os
 from unittest.mock import patch
 
 import pytest
-
 from easypost.constant import (
     _TEST_FAILED_INTENTIONALLY_ERROR,
     NO_MORE_PAGES_ERROR,
