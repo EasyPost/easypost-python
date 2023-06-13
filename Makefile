@@ -10,11 +10,11 @@ help:
 
 ## black - Runs the Black Python formatter against the project
 black:
-	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/
+	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/ --config examples/style_guides/python/pyproject.toml
 
 ## black-check - Checks if the project is formatted correctly against the Black rules
 black-check:
-	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/ --check
+	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/ --config examples/style_guides/python/pyproject.toml --check
 
 ## build - Builds the project in preparation for release
 build:
@@ -39,35 +39,31 @@ format: black isort
 ## format-check - Checks if the project is formatted correctly against all formatting rules
 format-check: black-check isort-check lint mypy
 
-# TODO: Change branch to master once examples repo is updated
-## install-style - Download style guides
-install-style:
-	curl -LJs https://raw.githubusercontent.com/EasyPost/examples/style_guides/pyproject.toml -o pyproject.toml
-	curl -LJs https://raw.githubusercontent.com/EasyPost/examples/style_guides/.flake8 -o .flake8
-	sh adjust_python_style_guide.sh
-
 ## install - Install the project locally
-install: | install-style
+install: | update-examples-submodule
 	$(PYTHON_BINARY) -m venv $(VIRTUAL_ENV)
 	$(VIRTUAL_BIN)/pip install -e ."[dev]"
+
+## update-examples-submodule - Update the examples submodule
+update-examples-submodule:
 	git submodule init
-	git submodule update
+	git submodule update --remote
 
 ## isort - Sorts imports throughout the project
 isort:
-	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/
+	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/ --settings-file examples/style_guides/python/pyproject.toml
 
 ## isort-check - Checks that imports throughout the project are sorted correctly
 isort-check:
-	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/ --check-only
+	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/ --settings-file examples/style_guides/python/pyproject.toml --check-only
 
 ## lint - Lint the project
 lint:
-	$(VIRTUAL_BIN)/flake8 $(PROJECT_NAME)/ $(TEST_DIR)/
+	$(VIRTUAL_BIN)/flake8 $(PROJECT_NAME)/ $(TEST_DIR)/ --append-config examples/style_guides/python/.flake8
 
 ## mypy - Run mypy type checking on the project
 mypy:
-	$(VIRTUAL_BIN)/mypy $(PROJECT_NAME)/ $(TEST_DIR)/
+	$(VIRTUAL_BIN)/mypy $(PROJECT_NAME)/ $(TEST_DIR)/ --config-file examples/style_guides/python/pyproject.toml
 
 ## publish - Publish the project to PyPI
 publish:
@@ -86,4 +82,4 @@ scan:
 test:
 	$(VIRTUAL_BIN)/pytest
 
-.PHONY: help black black-check build clean coverage docs format format-check install install-style isort isort-check lint mypy publish release scan test
+.PHONY: help black black-check build clean coverage docs format format-check install install-styleguide isort isort-check lint mypy publish release scan test update-examples-submodule
