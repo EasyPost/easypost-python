@@ -6,7 +6,6 @@ from typing import (
 )
 
 import requests
-
 from easypost.constant import (
     SEND_STRIPE_DETAILS_ERROR,
     TIMEOUT,

@@ -3,7 +3,6 @@ from unittest.mock import patch
 
 import pytest
 import requests
-
 from easypost.easypost_client import EasyPostClient
 from easypost.errors import TimeoutError
 

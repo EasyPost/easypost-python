@@ -10,7 +10,6 @@ from typing import (
 )
 
 import pytest
-
 from easypost.easypost_client import EasyPostClient
 
 

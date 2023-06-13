@@ -1,5 +1,4 @@
 import pytest
-
 from easypost.models import Parcel
 
 
