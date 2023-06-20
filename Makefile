@@ -33,11 +33,9 @@ coverage:
 docs:
 	$(VIRTUAL_BIN)/pdoc $(PROJECT_NAME) -o docs
 
-## format - Runs all formatting tools against the project
-format: black isort
-
-## format-check - Checks if the project is formatted correctly against all formatting rules
-format-check: black-check isort-check lint mypy
+## flake8 - Lint the project with flake8
+flake8:
+	$(VIRTUAL_BIN)/flake8 $(PROJECT_NAME)/ $(TEST_DIR)/ --append-config examples/style_guides/python/.flake8
 
 ## install - Install the project locally
 install: | update-examples-submodule
@@ -57,9 +55,11 @@ isort:
 isort-check:
 	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/ --settings-file examples/style_guides/python/pyproject.toml --check-only
 
-## lint - Lint the project
-lint:
-	$(VIRTUAL_BIN)/flake8 $(PROJECT_NAME)/ $(TEST_DIR)/ --append-config examples/style_guides/python/.flake8
+## lint - Run linters on the project
+lint: black-check isort-check flake8 mypy scan
+
+## lint-fix - Runs all formatting tools against the project
+lint-fix: black isort
 
 ## mypy - Run mypy type checking on the project
 mypy:
@@ -82,4 +82,4 @@ scan:
 test:
 	$(VIRTUAL_BIN)/pytest
 
-.PHONY: help black black-check build clean coverage docs format format-check install isort isort-check lint mypy publish release scan test update-examples-submodule
+.PHONY: help black black-check build clean coverage docs flake8 install isort isort-check lint lint-fix mypy publish release scan test
