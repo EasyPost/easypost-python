@@ -17,8 +17,8 @@ jobs:
           python-version: '3.11'
       - name: Install Dependencies
         run: make install
-      - name: Check format
-        run: make format-check
+      - name: Lint
+        run: make lint
   run-tests:
     runs-on: ubuntu-latest
     strategy:
@@ -39,7 +39,7 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: "./coverage.lcov"
+          path-to-lcov: './coverage.lcov'
       - name: Run security analysis
         run: make scan
   docs:
