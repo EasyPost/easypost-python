@@ -11,14 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: extractions/setup-just@v1
       - name: set up python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
       - name: Install Dependencies
-        run: make install
+        run: just install
       - name: Lint
-        run: make lint
+        run: just lint
   run-tests:
     runs-on: ubuntu-latest
     strategy:
@@ -26,14 +27,15 @@ jobs:
         pythonversion: ['3.7', '3.8', '3.9', '3.10', '3.11']
     steps:
       - uses: actions/checkout@v3
+      - uses: extractions/setup-just@v1
       - name: set up python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.pythonversion }}
       - name: Install Dependencies
-        run: make install
+        run: just install
       - name: Run Tests
-        run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 make coverage
+        run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 just coverage
       - name: Coveralls
         if: github.ref == 'refs/heads/master'
         uses: coverallsapp/github-action@master
@@ -41,21 +43,21 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: './coverage.lcov'
       - name: Run security analysis
-        run: make scan
+        run: just scan
   docs:
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: extractions/setup-just@v1
       - name: set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
       - name: Install Dependencies
-        run: make install
+        run: just install
       - name: Generate Docs
-        run: make docs
+        run: just docs
       - name: Deploy Docs
         uses: peaceiris/actions-gh-pages@v3
         with:
