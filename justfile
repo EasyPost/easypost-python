@@ -1,6 +1,6 @@
 PYTHON_BINARY := "python3"
 VIRTUAL_ENV := "venv"
-VIRTUAL_BIN := VIRTUAL_ENV + "/bin"
+VIRTUAL_BIN := VIRTUAL_ENV / "bin"
 PROJECT_NAME := "easypost"
 TEST_DIR := "tests"
 
