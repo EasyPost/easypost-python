@@ -66,7 +66,7 @@ print(bought_shipment)
 
 API documentation can be found at: <https://easypost.com/docs/api>.
 
-Library documentation can be found on the web at: <https://easypost.github.io/easypost-python/> or by building them locally via the `make docs` command.
+Library documentation can be found on the web at: <https://easypost.github.io/easypost-python/> or by building them locally via the `just docs` command.
 
 Upgrading major versions of this project? Refer to the [Upgrade Guide](UPGRADE_GUIDE.md).
 
@@ -80,24 +80,24 @@ For additional support, see our [org-wide support policy](https://github.com/Eas
 
 ```bash
 # Install dependencies
-make install
+just install
 
 # Lint project
-make lint
-make lint-fix
+just lint
+just lint-fix
 
 # Run tests
-EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... make test
-EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... make coverage
+EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... just test
+EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... just coverage
 
 # Run security analysis
-make scan
+just scan
 
 # Generate library documentation
-make docs
+just docs
 
 # Update submodules
-make update-examples-submodule
+just update-examples-submodule
 ```
 
 ### Testing
