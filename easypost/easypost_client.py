@@ -80,8 +80,8 @@ class EasyPostClient:
         self.webhook = WebhookService(self)
 
         # Hooks
-        self._request_event = RequestHook()
-        self._response_event = ResponseHook()
+        self._request_hook = RequestHook()
+        self._response_hook = ResponseHook()
 
         # use urlfetch as request_lib on google app engine, otherwise use requests
         self._request_lib = None
@@ -115,17 +115,17 @@ class EasyPostClient:
                     raise ImportError(INVALID_REQUESTS_VERSION_ERROR.format(SUPPORT_EMAIL))
 
     def subscribe_to_request_hook(self, function):
-        """Subscribe functions to run when a request event occurs."""
-        self._request_event += function
+        """Subscribe functions to run when a request occurs."""
+        self._request_hook += function
 
     def unsubscribe_from_request_hook(self, function):
-        """Unsubscribe functions from running when a request even occurs."""
-        self._request_event -= function
+        """Unsubscribe functions from running when a request occurs."""
+        self._request_hook -= function
 
     def subscribe_to_response_hook(self, function):
-        """Subscribe functions to run when a response event occurs."""
-        self._response_event += function
+        """Subscribe functions to run when a response occurs."""
+        self._response_hook += function
 
     def unsubscribe_from_response_hook(self, function):
-        """Unsubscribe functions from running when a response even occurs."""
-        self._response_event -= function
+        """Unsubscribe functions from running when a response occurs."""
+        self._response_hook -= function

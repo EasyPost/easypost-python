@@ -203,7 +203,7 @@ class Requestor:
 
         request_timestamp = datetime.datetime.now(datetime.timezone.utc)
         request_uuid = uuid.uuid4()
-        self._client._request_event(
+        self._client._request_hook(
             method=method,
             path=abs_url,
             headers=headers,
@@ -224,7 +224,7 @@ class Requestor:
             raise EasyPostError(INVALID_REQUEST_LIB_ERROR.format(self._client._request_lib, SUPPORT_EMAIL))
 
         response_timestamp = datetime.datetime.now(datetime.timezone.utc)
-        self._client._response_event(
+        self._client._response_hook(
             http_status=http_status,
             method=method,
             path=abs_url,
