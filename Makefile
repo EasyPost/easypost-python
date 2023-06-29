@@ -20,9 +20,9 @@ black-check:
 build:
 	$(VIRTUAL_BIN)/python -m build
 
-## clean - Remove the virtual environment and clear out .pyc files
+## clean - Clean the project
 clean:
-	rm -rf $(VIRTUAL_ENV) dist/ build/ *.egg-info/ .pytest_cache .mypy_cache
+	rm -rf $(VIRTUAL_ENV) dist/ *.egg-info/ .*cache htmlcov *.lcov .coverage
 	find . -name '*.pyc' -delete
 
 ## coverage - Test the project and generate an HTML coverage report

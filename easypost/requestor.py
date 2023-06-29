@@ -2,6 +2,7 @@ import datetime
 import json
 import platform
 import time
+import uuid
 from enum import Enum
 from json import JSONDecodeError
 from typing import (
@@ -200,16 +201,39 @@ class Requestor:
             "User-Agent": user_agent,
         }
 
+        request_timestamp = datetime.datetime.now(datetime.timezone.utc)
+        request_uuid = uuid.uuid4()
+        self._client._request_event(
+            method=method,
+            path=abs_url,
+            headers=headers,
+            data=params,
+            request_timestamp=request_timestamp,
+            request_uuid=request_uuid,
+        )
+
         if self._client._request_lib == "urlfetch":
-            http_body, http_status = self.urlfetch_request(
+            http_body, http_status, http_headers = self.urlfetch_request(
                 method=method, abs_url=abs_url, headers=headers, params=params
             )
         elif self._client._request_lib == "requests":
-            http_body, http_status = self.requests_request(
+            http_body, http_status, http_headers = self.requests_request(
                 method=method, abs_url=abs_url, headers=headers, params=params
             )
         else:
             raise EasyPostError(INVALID_REQUEST_LIB_ERROR.format(self._client._request_lib, SUPPORT_EMAIL))
+
+        response_timestamp = datetime.datetime.now(datetime.timezone.utc)
+        self._client._response_event(
+            http_status=http_status,
+            method=method,
+            path=abs_url,
+            headers=http_headers,
+            response_body=http_body,
+            request_timestamp=request_timestamp,
+            response_timestamp=response_timestamp,
+            request_uuid=request_uuid,
+        )
 
         return http_body, http_status
 
@@ -235,7 +259,7 @@ class Requestor:
         abs_url: str,
         headers: Dict[str, Any],
         params: Dict[str, Any],
-    ) -> Tuple[str, int]:
+    ) -> Tuple[str, int, Dict[str, Any]]:
         """Make a request by using the `request` library."""
         if method in [RequestMethod.GET, RequestMethod.DELETE]:
             url_params = params
@@ -261,12 +285,13 @@ class Requestor:
             )
             http_body = result.text
             http_status = result.status_code
+            http_headers = result.headers
         except requests.exceptions.Timeout:
             raise TimeoutError(TIMEOUT_ERROR)
         except Exception as e:
             raise HttpError(COMMUNICATION_ERROR.format(SUPPORT_EMAIL, e))
 
-        return http_body, http_status
+        return http_body, http_status, http_headers
 
     def urlfetch_request(
         self,
@@ -274,7 +299,7 @@ class Requestor:
         abs_url: str,
         headers: Dict[str, Any],
         params: Dict[str, Any],
-    ) -> Tuple[str, int]:
+    ) -> Tuple[str, int, Dict[str, Any]]:
         """Make a request by using the `urlfetch` library."""
         fetch_args = {
             "method": method.value,
@@ -300,7 +325,7 @@ class Requestor:
         except Exception as e:
             raise HttpError(COMMUNICATION_ERROR.format(SUPPORT_EMAIL, e))
 
-        return result.content, result.status_code
+        return result.content, result.status_code, result.headers
 
     def handle_api_error(self, http_status: int, http_body: str, response: Dict[str, Any]) -> None:
         """Handles API errors returned from the EasyPost API."""
@@ -318,7 +343,11 @@ class Requestor:
 
         error_type = STATUS_CODE_TO_ERROR_MAPPING.get(http_status, UnknownApiError)
 
-        raise error_type(message=error.get("message", ""), http_status=http_status, http_body=http_body)
+        raise error_type(
+            message=error.get("message", ""),
+            http_status=http_status,
+            http_body=http_body,
+        )
 
     def _utf8(self, value: Union[str, bytes]) -> str:
         # Python3's str(bytestring) returns "b'bytestring'" so we use .decode instead
