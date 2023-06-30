@@ -207,7 +207,7 @@ class Requestor:
             method=method,
             path=abs_url,
             headers=headers,
-            data=params,
+            request_body=params,
             request_timestamp=request_timestamp,
             request_uuid=request_uuid,
         )

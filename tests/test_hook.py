@@ -8,7 +8,7 @@ def assert_request(**kwargs):
     """Make assertions about a request once the RequestHook fires."""
     assert kwargs.get("method").value == "post"
     assert kwargs.get("path") == "https://api.easypost.com/v2/parcels"
-    assert "parcel" in kwargs.get("data")
+    assert "parcel" in kwargs.get("request_body")
     assert "Authorization" in kwargs.get("headers")
     assert type(kwargs.get("request_timestamp")) == datetime.datetime
     assert uuid.UUID(str(kwargs.get("request_uuid")))
