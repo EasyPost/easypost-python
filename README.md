@@ -62,6 +62,24 @@ bought_shipment = client.shipment.buy(shipment.id, rate=shipment.lowest_rate())
 print(bought_shipment)
 ```
 
+### HTTP Hooks
+
+Users can subscribe to HTTP requests and responses via the `RequestHook` and `ResponseHook` objects. To do so, pass a function to the `subscribe_to_request_hook` or `subscribe_to_response_hook` methods of an `EasyPostClient` object:
+
+```python
+def custom_function(**kwargs):
+    """Pass your code here, data about the request/response is contained within `kwargs`."""
+    print(f"Received a request with the status code of: {kwargs.get('http_status')}")
+
+client = easypost.EasyPostClient(os.getenv('EASYPOST_API_KEY'))
+
+client.subscribe_to_response_hook(custom_function)
+
+# Make your API calls here, your custom_function will trigger once a response is received
+```
+
+You can also unsubscribe your functions in a similar manner by using the `unsubscribe_from_request_hook` and `unsubscribe_from_response_hook` methods of a client object.
+
 ## Documentation
 
 API documentation can be found at: <https://easypost.com/docs/api>.
