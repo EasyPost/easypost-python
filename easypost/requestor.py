@@ -201,8 +201,8 @@ class Requestor:
             "User-Agent": user_agent,
         }
 
-        request_timestamp = datetime.datetime.now(datetime.timezone.utc)
         request_uuid = uuid.uuid4()
+        request_timestamp = datetime.datetime.now(datetime.timezone.utc)
         self._client._request_hook(
             method=method,
             path=abs_url,
