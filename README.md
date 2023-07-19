@@ -151,3 +151,7 @@ To run the test suite with the Google Cloud SDK (`urlfetch` instead of the `requ
    - [Homebrew](https://formulae.brew.sh/cask/google-cloud-sdk)
 1. Point the `PYTHONPATH` environment variable to the path of the newly installed `google-cloud-sdk` directory. For Homebrew, this is `"$(brew --prefix)/share/google-cloud-sdk"`
 1. Run the test suite with the commands listed in this README
+
+### Releasing
+
+To release a new version of this library, bump the version in code and cut a new [GitHub Release](https://github.com/EasyPost/easypost-python/releases/new). This will automatically trigger a workflow via GitHub Actions to release the built binaries to PyPi and upload those assets to the new GitHub release.
