@@ -1,5 +1,6 @@
 # flake8: noqa
 from easypost.errors.api.api_error import ApiError
+from easypost.errors.api.bad_request_error import BadRequestError
 from easypost.errors.api.encoding_error import EncodingError
 from easypost.errors.api.external_api_error import ExternalApiError
 from easypost.errors.api.forbidden_error import ForbiddenError

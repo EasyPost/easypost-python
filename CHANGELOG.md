@@ -3,6 +3,7 @@
 ## Next Release
 
 - Adds new `RequestHook` and `ResponseHook` events. (un)subscribe to them with the new `subscribe_to_request_hook`, `subscribe_to_response_hook`, `unsubscribe_from_request_hook`, or `unsubscribe_from_response_hook` methods of an `EasyPostClient`
+- Maps 400 status codes to new `BadRequestError` class
 
 ## v8.0.0 (2023-06-06)
 
