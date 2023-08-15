@@ -6,7 +6,6 @@ from setuptools import (
 
 REQUIREMENTS = [
     "requests >= 2.4.3",
-    "typing-extensions",
 ]
 
 DEV_REQUIREMENTS = [
