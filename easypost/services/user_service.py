@@ -84,7 +84,7 @@ class UserService(BaseService):
     def api_keys(self, id: str) -> List[ApiKey]:
         """Retrieve a list of API keys (works for the authenticated User or a child User)."""
         warn(
-            'This method is deprecated, use the "retrieve_api_keys_for" function of "api_keys" on the client instead.',
+            'This method is deprecated, use the "retrieve_api_keys_for_user" function of "api_keys" on the client instead.',
             DeprecationWarning,
             stacklevel=2,
         )

@@ -26,7 +26,7 @@ class ApiKeyService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def retrieve_api_keys_for(self, id: str) -> List[ApiKey]:
+    def retrieve_api_keys_for_user(self, id: str) -> List[ApiKey]:
         """Retrieve a list of API keys (works for the authenticated User or a child User)."""
         api_keys = self.all()
         my_api_keys = []
