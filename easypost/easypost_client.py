@@ -11,6 +11,7 @@ from easypost.hooks import (
 )
 from easypost.services import (
     AddressService,
+    ApiKeyService,
     BatchService,
     BetaCarrierMetadataService,
     BetaRateService,
@@ -54,6 +55,7 @@ class EasyPostClient:
 
         # Services
         self.address = AddressService(self)
+        self.api_keys = ApiKeyService(self)
         self.batch = BatchService(self)
         self.beta_carrier_metadata = BetaCarrierMetadataService(self)
         self.beta_rate = BetaRateService(self)

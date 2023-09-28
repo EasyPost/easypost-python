@@ -4,6 +4,7 @@ from typing import (
     List,
     Optional,
 )
+from warnings import warn
 
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.models import (
@@ -68,6 +69,12 @@ class UserService(BaseService):
 
     def all_api_keys(self) -> Dict[str, Any]:
         """Retrieve a list of all API keys."""
+        warn(
+            'This method is deprecated, use the "all" function of "api_keys" on the client instead.',
+            DeprecationWarning,
+            stacklevel=2,
+        )
+
         url = "/api_keys"
 
         response = Requestor(self._client).request(method=RequestMethod.GET, url=url)
@@ -76,6 +83,13 @@ class UserService(BaseService):
 
     def api_keys(self, id: str) -> List[ApiKey]:
         """Retrieve a list of API keys (works for the authenticated User or a child User)."""
+        warn(
+            'This method is deprecated, use the "retrieve_api_keys_for_user" function '
+            'of "api_keys" on the client instead.',
+            DeprecationWarning,
+            stacklevel=2,
+        )
+
         api_keys = self.all_api_keys()
         my_api_keys = []
 

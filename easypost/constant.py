@@ -26,6 +26,7 @@ NO_ATTRIBUTE_ERROR = "{} object has no attribute {}"
 NO_BILLING_ERROR = "Billing has not been setup for this user. Please add a payment method."
 NO_MORE_PAGES_ERROR = "There are no more pages to retrieve."
 NO_RATES_ERROR = "No rates found."
+NO_USER_FOUND = "No user found with the given id."
 SEND_STRIPE_DETAILS_ERROR = "Could not send card details to Stripe, please try again later."
 TIMEOUT_ERROR = "Request timed out."
 
