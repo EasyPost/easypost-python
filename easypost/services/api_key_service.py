@@ -4,7 +4,9 @@ from typing import (
     List,
 )
 
+from easypost.constant import NO_USER_FOUND
 from easypost.easypost_object import convert_to_easypost_object
+from easypost.errors import FilteringError
 from easypost.models import ApiKey
 from easypost.requestor import (
     RequestMethod,
@@ -29,17 +31,15 @@ class ApiKeyService(BaseService):
     def retrieve_api_keys_for_user(self, id: str) -> List[ApiKey]:
         """Retrieve a list of API keys (works for the authenticated User or a child User)."""
         api_keys = self.all()
-        my_api_keys = []
 
         if api_keys["id"] == id:
             # This function was called on the authenticated user
-            my_api_keys = api_keys["keys"]
-        else:
-            # This function was called on a child user (authenticated as parent, only return
-            # this child user's details).
-            for child in api_keys["children"]:
-                if child.id == id:
-                    my_api_keys = child.keys
-                    break
+            return api_keys["keys"]
 
-        return my_api_keys
+        # This function was called on a child user (authenticated as parent, only return
+        # this child user's details).
+        for child in api_keys["children"]:
+            if child.id == id:
+                return child.keys
+
+        raise FilteringError(message=NO_USER_FOUND)
