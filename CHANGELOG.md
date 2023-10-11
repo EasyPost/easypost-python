@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## v8.2.0 (2023-10-11)
+
 - Add dedicated API Key-related service, available via the `api_keys` property of a client
   - NOTE: Please note the naming. The `api_key` property of a client is the currently-used API key string, while the `api_keys` property is the service for managing API keys.
 - Migrated API Key-related functionality to `api_keys` service, deprecated old methods in `user` service
