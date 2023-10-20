@@ -2,6 +2,7 @@ import pytest
 
 import easypost
 
+
 @pytest.mark.vcr()
 def test_beta_user_retrieve_all_children(prod_api_key, page_size):
     children_data = easypost.beta.User.retrieve_all_children(page_size=page_size)
@@ -12,6 +13,7 @@ def test_beta_user_retrieve_all_children(prod_api_key, page_size):
 
     has_more = children_data["has_more"]
     assert isinstance(has_more, bool)
+
 
 @pytest.mark.vcr()
 def test_beta_user_get_next_page(prod_api_key, page_size):

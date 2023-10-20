@@ -1,11 +1,12 @@
 from typing import (
     Any,
+    Dict,
+    List,
     Optional,
-    List, Dict,
 )
 
-from easypost.error import Error
 from easypost.easypost_object import convert_to_easypost_object
+from easypost.error import Error
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -24,15 +25,15 @@ class User(Resource):
 
     @classmethod
     def get_next_page_of_children(
-            cls,
-            children: Dict[str, Any],
-            page_size: int,
-            api_key: Optional[str] = None,
+        cls,
+        children: Dict[str, Any],
+        page_size: int,
+        api_key: Optional[str] = None,
     ) -> List["User"]:
         """Get next page of children."""
         requestor = Requestor(local_api_key=api_key)
         url = "/users/children"
-        children_array = children.get('children', [])
+        children_array = children.get("children", [])
 
         if children_array is None or len(children_array) == 0 or not children.get("has_more"):
             raise Error(message="There are no more pages to retrieve.")
