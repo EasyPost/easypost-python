@@ -1,0 +1,67 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/beta/users/children?page_size=5
+  response:
+    body:
+      string: '{"children": [], "has_more": false}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '32'
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"3e2ec6a518ba813e2b978a9e1e34e8f6"
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 9c098db16532e6e0e786b4a20051d0f3
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb39nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq 5a08ab70b2
+      - extlb2nuq 003ad9bca0
+      x-runtime:
+      - '0.034338'
+      x-version-label:
+      - easypost-202310201725-2922e4b728-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
