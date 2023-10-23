@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v7.14.0 (2023-10-23)
+
+- Adds beta `all_children` function to the User class for retrieving paginated lists of children users
+
 ## v7.13.1 (2023-05-31)
 
 - Fixes a bug where `Payload` didn't inherit `EasyPostObject` which could throw errors when retrieving event payloads (closes #284)
