@@ -4,8 +4,8 @@ import easypost
 
 
 @pytest.mark.vcr()
-def test_beta_user_retrieve_all_children(prod_api_key, page_size):
-    children_data = easypost.beta.User.retrieve_all_children(page_size=page_size)
+def test_beta_user_all_children(prod_api_key, page_size):
+    children_data = easypost.beta.User.all_children(page_size=page_size)
 
     children_array = children_data["children"]
     assert len(children_array) <= page_size
@@ -18,7 +18,7 @@ def test_beta_user_retrieve_all_children(prod_api_key, page_size):
 @pytest.mark.vcr()
 def test_beta_user_get_next_page(prod_api_key, page_size):
     try:
-        children = easypost.beta.User.retrieve_all_children(page_size=page_size)
+        children = easypost.beta.User.all_children(page_size=page_size)
         next_page = easypost.beta.User.get_next_page_of_children(children=children, page_size=page_size)
 
         first_id_of_first_page = children["children"][0].id

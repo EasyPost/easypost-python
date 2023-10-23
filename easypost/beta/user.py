@@ -16,8 +16,8 @@ from easypost.resource import Resource
 
 class User(Resource):
     @classmethod
-    def retrieve_all_children(cls, api_key: Optional[str] = None, **params) -> Dict[str, Any]:
-        """Retrieve a list of children from the API."""
+    def all_children(cls, api_key: Optional[str] = None, **params) -> Dict[str, Any]:
+        """Retrieve a paginated list of children from the API."""
         requestor = Requestor(local_api_key=api_key)
         url = "/users/children"
         response, api_key = requestor.request(method=RequestMethod.GET, url=url, params=params, beta=True)
@@ -35,7 +35,7 @@ class User(Resource):
         url = "/users/children"
         children_array = children.get("children", [])
 
-        if children_array is None or len(children_array) == 0 or not children.get("has_more"):
+        if len(children_array) == 0 or not children.get("has_more", False):
             raise Error(message="There are no more pages to retrieve.")
 
         params = {
@@ -43,9 +43,9 @@ class User(Resource):
             "page_size": page_size,
         }
 
-        response, api_key = requestor.request(method=RequestMethod.GET, url=url, params=params, beta=True)
-        response_array: List[Any] = response.get(url[1:])  # type: ignore
-        if response is None or len(response_array) == 0 or not response.get("has_more"):
+        data, api_key = requestor.request(method=RequestMethod.GET, url=url, params=params, beta=True)
+        next_children_array: List[Any] = data.get("children", [])
+        if len(next_children_array) == 0 or not data.get("has_more", False):
             raise Error(message="There are no more pages to retrieve.")
 
-        return convert_to_easypost_object(response=response, api_key=api_key)
+        return convert_to_easypost_object(response=data, api_key=api_key)
