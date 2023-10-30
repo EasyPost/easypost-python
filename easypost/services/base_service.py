@@ -104,7 +104,7 @@ class BaseService:
         response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
         response_array: List[Any] = response.get(url[1:])  # type: ignore
-        if response is None or len(response_array) == 0 or not response.get("has_more"):
+        if response is None or len(response_array) == 0:
             raise EndOfPaginationError(NO_MORE_PAGES_ERROR)
 
         return convert_to_easypost_object(response=response)
