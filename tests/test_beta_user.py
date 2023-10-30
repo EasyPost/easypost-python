@@ -66,8 +66,9 @@ def test_beta_user_get_next_page_collect_all(prod_api_key):
     # (current page "has_more" = True, next page "has_more" = True)
     return_value = (second_page_response, prod_api_key)
     with patch("easypost.requestor.Requestor.request", return_value=return_value):
-        next_page = easypost.beta.User.get_next_page_of_children(children=previous_page,  # type: ignore
-                                                                 page_size=page_size)
+        next_page = easypost.beta.User.get_next_page_of_children(
+            children=previous_page, page_size=page_size  # type: ignore
+        )
         all_children += next_page["children"]
         previous_page = next_page
 
@@ -84,8 +85,9 @@ def test_beta_user_get_next_page_collect_all(prod_api_key):
     # (current page "has_more" = True, next page "has_more" = False)
     return_value = (third_page_response, prod_api_key)
     with patch("easypost.requestor.Requestor.request", return_value=return_value):
-        next_page = easypost.beta.User.get_next_page_of_children(children=previous_page,  # type: ignore
-                                                                 page_size=page_size)
+        next_page = easypost.beta.User.get_next_page_of_children(
+            children=previous_page, page_size=page_size  # type: ignore
+        )
         all_children += next_page["children"]
         previous_page = next_page
 
@@ -95,8 +97,6 @@ def test_beta_user_get_next_page_collect_all(prod_api_key):
 
     # Now that the previous page has "has_more" = False, it should throw an error before even making the API call
     with pytest.raises(easypost.Error) as error:
-        _ = easypost.beta.User.get_next_page_of_children(children=previous_page,  # type: ignore
-                                                         page_size=page_size)
+        _ = easypost.beta.User.get_next_page_of_children(children=previous_page, page_size=page_size)  # type: ignore
 
     assert str(error.value) == "There are no more pages to retrieve."
-
