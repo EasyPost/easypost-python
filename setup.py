@@ -32,7 +32,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="easypost",
-    version="8.2.0",
+    version="8.2.1",
     description="EasyPost Shipping API Client Library for Python",
     author="EasyPost",
     author_email="support@easypost.com",
