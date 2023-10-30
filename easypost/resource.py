@@ -93,7 +93,7 @@ class NextPageResource(Resource):
 
         response, api_key = requestor.request(method=RequestMethod.GET, url=url, params=params)
         response_array: List[Any] = response.get(url[1:])  # type: ignore
-        if response is None or len(response_array) == 0 or not response.get("has_more"):
+        if response is None or len(response_array) == 0:
             raise Error(message="There are no more pages to retrieve.")
 
         return convert_to_easypost_object(response=response, api_key=api_key)
