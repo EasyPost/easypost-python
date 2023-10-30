@@ -32,7 +32,7 @@ def test_beta_user_get_next_page(prod_api_key, page_size):
             raise easypost.Error(message="Test failed intentionally.")
 
 
-@pytest.mark.vcr()
+@pytest.mark.vcr()  # Cassette not needed due to mocking, but used to avoid making real bogus API calls
 def test_beta_user_get_next_page_collect_all(prod_api_key):
     page_size = 1  # Doesn't matter what this is, we're mocking the response
     all_children = []
