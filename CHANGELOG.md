@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v7.14.1 (2023-10-30)
+
+- Fixes a bug where `get_next_page` functions threw an error, preventing users from retrieving the final page of results
+
 ## v7.14.0 (2023-10-23)
 
 - Adds beta `all_children` function to the User class for retrieving paginated lists of children users
