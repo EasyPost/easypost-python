@@ -45,7 +45,7 @@ class User(Resource):
 
         data, api_key = requestor.request(method=RequestMethod.GET, url=url, params=params, beta=True)
         next_children_array: List[Any] = data.get("children", [])
-        if len(next_children_array) == 0 or not data.get("has_more", False):
+        if len(next_children_array) == 0:
             raise Error(message="There are no more pages to retrieve.")
 
         return convert_to_easypost_object(response=data, api_key=api_key)
