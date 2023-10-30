@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v8.2.1 (2023-10-30)
+
+- Fixes a bug where `get_next_page` functions threw an error, preventing users from retrieving the final page of results
+
 ## v8.2.0 (2023-10-11)
 
 - Add dedicated API Key-related service, available via the `api_keys` property of a client
