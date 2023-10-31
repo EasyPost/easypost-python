@@ -28,12 +28,12 @@ class OrderService(BaseService):
 
     def get_next_page(
         self,
-        insurances: Dict[str, Any],
+        orders: Dict[str, Any],
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """Retrieve the next page of the list Order response."""
-        return self._get_next_page_resources(self._model_class, insurances, page_size, optional_params)
+        raise NotImplementedError
 
     def get_rates(self, id: str) -> Order:
         """Get rates for an Order."""

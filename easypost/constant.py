@@ -37,3 +37,4 @@ _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_WORKFLOWS = [
     "FedexSmartpostAccount",
     "UpsAccount",
 ]
+_FILTERS_KEY = "filters"

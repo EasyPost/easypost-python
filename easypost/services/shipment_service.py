@@ -14,6 +14,9 @@ from easypost.requestor import (
     RequestMethod,
     Requestor,
 )
+from easypost.constant import (
+    _FILTERS_KEY,
+)
 from easypost.services.base_service import BaseService
 from easypost.util import get_lowest_smart_rate
 
@@ -37,11 +40,13 @@ class ShipmentService(BaseService):
 
     def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of Shipments."""
-        response = Requestor(self._client).request(method=RequestMethod.GET, url="/shipments", params=params)
-        response["include_children"] = params.get("include_children")
-        response["purchased"] = params.get("purchased")
+        filters = {
+            "key": "shipments",
+            "include_children": params.get("include_children"),
+            "purchased": params.get("purchased"),
+        }
 
-        return convert_to_easypost_object(response=response)
+        return self._all_resources(self._model_class, filters, **params)
 
     def retrieve(self, id: str) -> Shipment:
         """Retrieve a Shipment."""
@@ -54,12 +59,19 @@ class ShipmentService(BaseService):
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """Get next page of shipment collection."""
-        optional_params = {
-            "include_children": shipments.get("include_children"),
-            "purchased": shipments.get("purchased"),
+        self._check_has_next_page(collection=shipments)
+
+        params = {
+            "before_id": shipments["shipments"][-1].id,
+            "page_size": page_size,
+            "include_children": shipments.get(_FILTERS_KEY, {}).get("include_children", None), # Use the same include_children as the last page
+            "purchased": shipments.get(_FILTERS_KEY, {}).get("purchased", None), # Use the same purchased as the last page
         }
 
-        return self._get_next_page_resources(self._model_class, shipments, page_size, optional_params)
+        if optional_params:
+            params.update(optional_params)
+
+        return self.all(**params)
 
     def regenerate_rates(self, id: str, with_carbon_offset: Optional[bool] = False) -> Shipment:
         """Regenerate Rates for a Shipment."""

@@ -5,7 +5,7 @@ import time
 import pytest
 from easypost.constant import (
     _TEST_FAILED_INTENTIONALLY_ERROR,
-    NO_MORE_PAGES_ERROR,
+    NO_MORE_PAGES_ERROR, _FILTERS_KEY,
 )
 from easypost.errors import ApiError
 from easypost.models import (
@@ -29,16 +29,19 @@ def test_event_all(page_size, test_client):
 @pytest.mark.vcr()
 def test_event_get_next_page(page_size, test_client):
     try:
-        events = test_client.event.all(page_size=page_size)
-        next_page = test_client.event.get_next_page(events=events, page_size=page_size)
+        first_page = test_client.event.all(page_size=page_size)
+        next_page = test_client.event.get_next_page(events=first_page, page_size=page_size)
 
-        first_id_of_first_page = events["events"][0].id
+        first_id_of_first_page = first_page["events"][0].id
         first_id_of_second_page = next_page["events"][0].id
 
         assert first_id_of_first_page != first_id_of_second_page
+
+        # Verify that the filters are being passed along for behind-the-scenes reference
+        assert first_page[_FILTERS_KEY] == next_page[_FILTERS_KEY]
     except Exception as e:
         if e.message != NO_MORE_PAGES_ERROR:
-            raise Exception(message=_TEST_FAILED_INTENTIONALLY_ERROR)
+            raise Exception(_TEST_FAILED_INTENTIONALLY_ERROR)
 
 
 @pytest.mark.vcr()

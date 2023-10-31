@@ -1,7 +1,7 @@
 import pytest
 from easypost.constant import (
     _TEST_FAILED_INTENTIONALLY_ERROR,
-    NO_MORE_PAGES_ERROR,
+    NO_MORE_PAGES_ERROR, _FILTERS_KEY,
 )
 from easypost.models import ScanForm
 
@@ -42,13 +42,16 @@ def test_scanform_all(page_size, test_client):
 @pytest.mark.vcr()
 def test_scanform_get_next_page(page_size, test_client):
     try:
-        scanforms = test_client.scan_form.all(page_size=page_size)
-        next_page = test_client.scan_form.get_next_page(scan_forms=scanforms, page_size=page_size)
+        first_page = test_client.scan_form.all(page_size=page_size)
+        next_page = test_client.scan_form.get_next_page(scan_forms=first_page, page_size=page_size)
 
-        first_id_of_first_page = scanforms["scan_forms"][0].id
+        first_id_of_first_page = first_page["scan_forms"][0].id
         first_id_of_second_page = next_page["scan_forms"][0].id
 
         assert first_id_of_first_page != first_id_of_second_page
+
+        # Verify that the filters are being passed along for behind-the-scenes reference
+        assert first_page[_FILTERS_KEY] == next_page[_FILTERS_KEY]
     except Exception as e:
         if e.message != NO_MORE_PAGES_ERROR:
-            raise Exception(message=_TEST_FAILED_INTENTIONALLY_ERROR)
+            raise Exception(_TEST_FAILED_INTENTIONALLY_ERROR)

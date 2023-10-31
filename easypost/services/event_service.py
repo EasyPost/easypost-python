@@ -27,7 +27,11 @@ class EventService(BaseService):
 
     def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of Events."""
-        return self._all_resources(self._model_class, **params)
+        filters = {
+            "key": "events",
+        }
+
+        return self._all_resources(self._model_class, filters, **params)
 
     def retrieve(self, id: str) -> Event:
         """Retrieve an Event."""
@@ -56,4 +60,14 @@ class EventService(BaseService):
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """Retrieve the next page of the list Events response."""
-        return self._get_next_page_resources(self._model_class, events, page_size, optional_params)
+        self._check_has_next_page(collection=events)
+
+        params = {
+            "before_id": events["events"][-1].id,
+            "page_size": page_size,
+        }
+
+        if optional_params:
+            params.update(optional_params)
+
+        return self.all(**params)

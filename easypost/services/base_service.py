@@ -6,7 +6,10 @@ from typing import (
     Optional,
 )
 
-from easypost.constant import NO_MORE_PAGES_ERROR
+from easypost.constant import (
+    NO_MORE_PAGES_ERROR,
+    _FILTERS_KEY,
+)
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.errors import EndOfPaginationError
 from easypost.requestor import (
@@ -46,11 +49,14 @@ class BaseService:
 
         return convert_to_easypost_object(response=response)
 
-    def _all_resources(self, class_name: str, **params) -> Any:
+    def _all_resources(self, class_name: str, filters: Dict[str, Any] = None, **params) -> Any:
         """Retrieve a list of EasyPostObjects from the EasyPost API."""
         url = self._class_url(class_name)
-
         response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
+
+        if filters: # presence of filters indicates we are dealing with a paginated response
+            self._check_has_current_page(response=response, filters=filters)
+            response[_FILTERS_KEY] = filters # Save the filters used to reference in potential get_next_page call
 
         return convert_to_easypost_object(response=response)
 
@@ -79,32 +85,20 @@ class BaseService:
 
         return convert_to_easypost_object(response=response)
 
-    def _get_next_page_resources(
-        self,
-        class_name: str,
-        collection: Dict[str, Any],
-        page_size: int,
-        optional_params: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
-        """Retrieve next page of EasyPostObjects via the EasyPost API."""
-        url = self._class_url(class_name)
-        collection_array = collection.get(url[1:])
-
-        if collection_array is None or len(collection_array) == 0 or not collection.get("has_more"):
+    def _check_has_next_page(self, collection: Dict[str, Any]) -> None:
+        """Raise exception if there is no next page of a collection."""
+        if not collection.get("has_more", False):
             raise EndOfPaginationError(NO_MORE_PAGES_ERROR)
 
-        params = {
-            "before_id": collection_array[-1].id,
-            "page_size": page_size,
-        }
-
-        if optional_params:
-            params.update(optional_params)
-
-        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
-
-        response_array: List[Any] = response.get(url[1:])  # type: ignore
-        if response is None or len(response_array) == 0:
+    def _check_has_current_page(self, response: Dict[str, Any], filters: Dict[str, Any]) -> None:
+        """Raise exception if there is no current page of a collection."""
+        if not response:
             raise EndOfPaginationError(NO_MORE_PAGES_ERROR)
 
-        return convert_to_easypost_object(response=response)
+        entries_key = filters.get("key", None)
+        if not entries_key:
+            raise EndOfPaginationError(NO_MORE_PAGES_ERROR)
+
+        entries = response.get(entries_key, [])
+        if not entries or len(entries) == 0:
+            raise EndOfPaginationError(NO_MORE_PAGES_ERROR)

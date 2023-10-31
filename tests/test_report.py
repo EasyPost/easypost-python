@@ -1,7 +1,7 @@
 import pytest
 from easypost.constant import (
     _TEST_FAILED_INTENTIONALLY_ERROR,
-    NO_MORE_PAGES_ERROR,
+    NO_MORE_PAGES_ERROR, _FILTERS_KEY,
 )
 from easypost.models import Report
 
@@ -75,13 +75,20 @@ def test_report_all(report_type, page_size, test_client):
 @pytest.mark.vcr()
 def test_report_get_next_page(report_type, page_size, test_client):
     try:
-        reports = test_client.report.all(type=report_type, page_size=page_size)
-        next_page = test_client.report.get_next_page(reports=reports, page_size=page_size)
+        first_page = test_client.report.all(type=report_type, page_size=page_size)
+        next_page = test_client.report.get_next_page(reports=first_page, page_size=page_size)
 
-        first_id_of_first_page = reports["reports"][0].id
+        first_id_of_first_page = first_page["reports"][0].id
         first_id_of_second_page = next_page["reports"][0].id
 
         assert first_id_of_first_page != first_id_of_second_page
+
+        # Verify that the filters are being passed along for behind-the-scenes reference
+        assert first_page[_FILTERS_KEY] == next_page[_FILTERS_KEY]
+
+        # Verify that the report type is being passed along for behind-the-scenes reference
+        assert first_page["filters"]["type"] == report_type
+        assert next_page["filters"]["type"] == report_type
     except Exception as e:
         if e.message != NO_MORE_PAGES_ERROR:
-            raise Exception(message=_TEST_FAILED_INTENTIONALLY_ERROR)
+            raise Exception(_TEST_FAILED_INTENTIONALLY_ERROR)

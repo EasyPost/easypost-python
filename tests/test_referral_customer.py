@@ -4,7 +4,7 @@ from unittest.mock import patch
 import pytest
 from easypost.constant import (
     _TEST_FAILED_INTENTIONALLY_ERROR,
-    NO_MORE_PAGES_ERROR,
+    NO_MORE_PAGES_ERROR, _FILTERS_KEY,
 )
 from easypost.models import User
 
@@ -55,18 +55,21 @@ def test_referral_customer_all(partner_user_prod_client, page_size):
 @pytest.mark.vcr()
 def test_referral_get_next_page(partner_user_prod_client, page_size):
     try:
-        referral_customers = partner_user_prod_client.referral_customer.all(page_size=page_size)
+        first_page = partner_user_prod_client.referral_customer.all(page_size=page_size)
         next_page = partner_user_prod_client.referral_customer.get_next_page(
-            referral_customers=referral_customers, page_size=page_size
+            referral_customers=first_page, page_size=page_size
         )
 
-        first_id_of_first_page = referral_customers["referral_customers"][0].id
+        first_id_of_first_page = first_page["referral_customers"][0].id
         first_id_of_second_page = next_page["referral_customers"][0].id
 
         assert first_id_of_first_page != first_id_of_second_page
+
+        # Verify that the filters are being passed along for behind-the-scenes reference
+        assert first_page[_FILTERS_KEY] == next_page[_FILTERS_KEY]
     except Exception as e:
         if e.message != NO_MORE_PAGES_ERROR:
-            raise Exception(message=_TEST_FAILED_INTENTIONALLY_ERROR)
+            raise Exception(_TEST_FAILED_INTENTIONALLY_ERROR)
 
 
 # PyVCR is having troubles matching the body of the form-encoded data here, override the default

@@ -1,7 +1,7 @@
 import pytest
 from easypost.constant import (
     _TEST_FAILED_INTENTIONALLY_ERROR,
-    NO_MORE_PAGES_ERROR,
+    NO_MORE_PAGES_ERROR, _FILTERS_KEY,
 )
 from easypost.errors import ApiError
 from easypost.models import Address
@@ -18,7 +18,7 @@ def test_address_create(ca_address_1, test_client):
 
 @pytest.mark.vcr()
 def test_address_create_verify(incorrect_address, test_client):
-    """Test creating an address with the verify param.
+    """Test creating an address with the `verify` param.
 
     We purposefully pass in slightly incorrect data to get the corrected address back once verified.
     """
@@ -33,7 +33,7 @@ def test_address_create_verify(incorrect_address, test_client):
 
 @pytest.mark.vcr()
 def test_address_create_verify_strict(ca_address_1, test_client):
-    """Test creating an address with the verify_strict param.
+    """Test creating an address with the `verify_strict` param.
 
     We purposefully pass in slightly incorrect data to get the corrected address back once verified.
     """
@@ -49,7 +49,7 @@ def test_address_create_verify_strict(ca_address_1, test_client):
 
 @pytest.mark.vcr()
 def test_address_create_verify_array(incorrect_address, test_client):
-    """Test creating an address with the verify param as an array.
+    """Test creating an address with the `verify` param as an array.
 
     We purposefully pass in slightly incorrect data to get the corrected address back once verified.
     """
@@ -95,16 +95,19 @@ def test_address_all(page_size, test_client):
 @pytest.mark.vcr()
 def test_address_get_next_page(page_size, test_client):
     try:
-        addresses = test_client.address.all(page_size=page_size)
-        next_page = test_client.address.get_next_page(addresses=addresses, page_size=page_size)
+        first_page = test_client.address.all(page_size=page_size)
+        next_page = test_client.address.get_next_page(addresses=first_page, page_size=page_size)
 
-        first_id_of_first_page = addresses["addresses"][0].id
+        first_id_of_first_page = first_page["addresses"][0].id
         first_id_of_second_page = next_page["addresses"][0].id
 
         assert first_id_of_first_page != first_id_of_second_page
+
+        # Verify that the filters are being passed along for behind-the-scenes reference
+        assert first_page[_FILTERS_KEY] == next_page[_FILTERS_KEY]
     except Exception as e:
         if e.message != NO_MORE_PAGES_ERROR:
-            raise Exception(message=_TEST_FAILED_INTENTIONALLY_ERROR)
+            raise Exception(_TEST_FAILED_INTENTIONALLY_ERROR)
 
 
 @pytest.mark.vcr()

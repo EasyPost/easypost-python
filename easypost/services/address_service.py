@@ -39,7 +39,11 @@ class AddressService(BaseService):
 
     def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of Addresses."""
-        return self._all_resources(self._model_class, **params)
+        filters = {
+            "key": "addresses",
+        }
+
+        return self._all_resources(self._model_class, filters, **params)
 
     def retrieve(self, id) -> Address:
         """Retrieve an Address."""
@@ -69,4 +73,14 @@ class AddressService(BaseService):
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """Retrieve the next page of the list Addresses response."""
-        return self._get_next_page_resources(self._model_class, addresses, page_size, optional_params)
+        self._check_has_next_page(collection=addresses)
+
+        params = {
+            "before_id": addresses["addresses"][-1].id,
+            "page_size": page_size,
+        }
+
+        if optional_params:
+            params.update(optional_params)
+
+        return self.all(**params)

@@ -19,7 +19,11 @@ class InsuranceService(BaseService):
 
     def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of Insurances."""
-        return self._all_resources(self._model_class, **params)
+        filters = {
+            "key": "insurances",
+        }
+
+        return self._all_resources(self._model_class, filters, **params)
 
     def retrieve(self, id: str) -> Insurance:
         """Retrieve an Insurance."""
@@ -32,4 +36,14 @@ class InsuranceService(BaseService):
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """Retrieve the next page of the list Insurance response."""
-        return self._get_next_page_resources(self._model_class, insurances, page_size, optional_params)
+        self._check_has_next_page(collection=insurances)
+
+        params = {
+            "before_id": insurances["insurances"][-1].id,
+            "page_size": page_size,
+        }
+
+        if optional_params:
+            params.update(optional_params)
+
+        return self.all(**params)

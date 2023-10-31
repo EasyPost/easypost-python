@@ -11,6 +11,9 @@ from easypost.requestor import (
     RequestMethod,
     Requestor,
 )
+from easypost.constant import (
+    _FILTERS_KEY,
+)
 from easypost.services.base_service import BaseService
 
 
@@ -25,13 +28,14 @@ class TrackerService(BaseService):
 
     def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of Trackers."""
-        url = self._class_url(self._model_class)
+        filters = {
+            "key": "trackers",
+            "tracking_code": params.get("tracking_code"),
+            "carrier": params.get("carrier"),
+        }
 
-        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
-        response["tracking_code"] = params.get("tracking_code")
-        response["carrier"] = params.get("carrier")
+        return self._all_resources(self._model_class, filters, **params)
 
-        return convert_to_easypost_object(response=response)
 
     def retrieve(self, id: str) -> Tracker:
         """Retrieve a Tracker."""
@@ -44,12 +48,20 @@ class TrackerService(BaseService):
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """Retrieve the next page of the list Tracker response."""
-        optional_params = {
-            "tracking_code": trackers.get("tracking_code"),
-            "carrier": trackers.get("carrier"),
+        self._check_has_next_page(collection=trackers)
+
+        params = {
+            "before_id": trackers["trackers"][-1].id,
+            "page_size": page_size,
+            "tracking_code": trackers.get(_FILTERS_KEY, {}).get("tracking_code", None), # Use the same tracking_code as the last page
+            "carrier": trackers.get(_FILTERS_KEY, {}).get("carrier", None), # Use the same carrier as the last page
         }
 
-        return self._get_next_page_resources(self._model_class, trackers, page_size, optional_params)
+        if optional_params:
+            params.update(optional_params)
+
+        return self.all(**params)
+
 
     def create_list(self, trackers: List[Dict[str, Any]]) -> None:
         """Create a list of Trackers."""
