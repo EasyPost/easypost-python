@@ -5,14 +5,11 @@ from typing import (
     Optional,
 )
 
-from easypost.easypost_object import convert_to_easypost_object
+from easypost.constant import _FILTERS_KEY
 from easypost.models import Tracker
 from easypost.requestor import (
     RequestMethod,
     Requestor,
-)
-from easypost.constant import (
-    _FILTERS_KEY,
 )
 from easypost.services.base_service import BaseService
 
@@ -36,7 +33,6 @@ class TrackerService(BaseService):
 
         return self._all_resources(self._model_class, filters, **params)
 
-
     def retrieve(self, id: str) -> Tracker:
         """Retrieve a Tracker."""
         return self._retrieve_resource(self._model_class, id)
@@ -53,15 +49,16 @@ class TrackerService(BaseService):
         params = {
             "before_id": trackers["trackers"][-1].id,
             "page_size": page_size,
-            "tracking_code": trackers.get(_FILTERS_KEY, {}).get("tracking_code", None), # Use the same tracking_code as the last page
-            "carrier": trackers.get(_FILTERS_KEY, {}).get("carrier", None), # Use the same carrier as the last page
+            "tracking_code": trackers.get(_FILTERS_KEY, {}).get(
+                "tracking_code", None
+            ),  # Use the same tracking_code as the last page
+            "carrier": trackers.get(_FILTERS_KEY, {}).get("carrier", None),  # Use the same carrier as the last page
         }
 
         if optional_params:
             params.update(optional_params)
 
         return self.all(**params)
-
 
     def create_list(self, trackers: List[Dict[str, Any]]) -> None:
         """Create a list of Trackers."""

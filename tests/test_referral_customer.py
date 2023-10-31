@@ -3,8 +3,9 @@ from unittest.mock import patch
 
 import pytest
 from easypost.constant import (
+    _FILTERS_KEY,
     _TEST_FAILED_INTENTIONALLY_ERROR,
-    NO_MORE_PAGES_ERROR, _FILTERS_KEY,
+    NO_MORE_PAGES_ERROR,
 )
 from easypost.models import User
 

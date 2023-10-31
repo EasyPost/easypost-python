@@ -5,8 +5,8 @@ from typing import (
 )
 
 from easypost.constant import (
-    MISSING_PARAMETER_ERROR,
     _FILTERS_KEY,
+    MISSING_PARAMETER_ERROR,
 )
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.errors import MissingParameterError
@@ -73,7 +73,7 @@ class ReportService(BaseService):
         params = {
             "before_id": reports["reports"][-1].id,
             "page_size": page_size,
-            "type": reports.get(_FILTERS_KEY, {}).get("type", None), # Use the same type as the last page
+            "type": reports.get(_FILTERS_KEY, {}).get("type", None),  # Use the same type as the last page
         }
 
         if optional_params:

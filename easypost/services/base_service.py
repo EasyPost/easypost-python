@@ -2,13 +2,11 @@ import re
 from typing import (
     Any,
     Dict,
-    List,
-    Optional,
 )
 
 from easypost.constant import (
-    NO_MORE_PAGES_ERROR,
     _FILTERS_KEY,
+    NO_MORE_PAGES_ERROR,
 )
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.errors import EndOfPaginationError
@@ -49,14 +47,14 @@ class BaseService:
 
         return convert_to_easypost_object(response=response)
 
-    def _all_resources(self, class_name: str, filters: Dict[str, Any] = None, **params) -> Any:
+    def _all_resources(self, class_name: str, filters: Dict[str, Any] = None, **params) -> Any:  # type: ignore
         """Retrieve a list of EasyPostObjects from the EasyPost API."""
         url = self._class_url(class_name)
         response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
-        if filters: # presence of filters indicates we are dealing with a paginated response
+        if filters:  # presence of filters indicates we are dealing with a paginated response
             self._check_has_current_page(response=response, filters=filters)
-            response[_FILTERS_KEY] = filters # Save the filters used to reference in potential get_next_page call
+            response[_FILTERS_KEY] = filters  # Save the filters used to reference in potential get_next_page call
 
         return convert_to_easypost_object(response=response)
 

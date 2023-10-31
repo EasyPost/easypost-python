@@ -7,8 +7,9 @@ from typing import (
 
 import requests
 from easypost.constant import (
+    _FILTERS_KEY,
     SEND_STRIPE_DETAILS_ERROR,
-    TIMEOUT, _FILTERS_KEY,
+    TIMEOUT,
 )
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.errors import ExternalApiError
@@ -75,7 +76,6 @@ class ReferralCustomerService(BaseService):
         response[_FILTERS_KEY] = filters  # Save the filters used to reference in potential get_next_page call
 
         return convert_to_easypost_object(response=response)
-
 
     def get_next_page(
         self,

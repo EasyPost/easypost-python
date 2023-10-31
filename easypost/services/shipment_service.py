@@ -5,6 +5,7 @@ from typing import (
     Optional,
 )
 
+from easypost.constant import _FILTERS_KEY
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.models import (
     Rate,
@@ -13,9 +14,6 @@ from easypost.models import (
 from easypost.requestor import (
     RequestMethod,
     Requestor,
-)
-from easypost.constant import (
-    _FILTERS_KEY,
 )
 from easypost.services.base_service import BaseService
 from easypost.util import get_lowest_smart_rate
@@ -64,8 +62,12 @@ class ShipmentService(BaseService):
         params = {
             "before_id": shipments["shipments"][-1].id,
             "page_size": page_size,
-            "include_children": shipments.get(_FILTERS_KEY, {}).get("include_children", None), # Use the same include_children as the last page
-            "purchased": shipments.get(_FILTERS_KEY, {}).get("purchased", None), # Use the same purchased as the last page
+            "include_children": shipments.get(_FILTERS_KEY, {}).get(
+                "include_children", None
+            ),  # Use the same include_children as the last page
+            "purchased": shipments.get(_FILTERS_KEY, {}).get(
+                "purchased", None
+            ),  # Use the same purchased as the last page
         }
 
         if optional_params:
