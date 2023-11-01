@@ -1,9 +1,3 @@
-from typing import (
-    Any,
-    Dict,
-    Optional,
-)
-
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.models import Order
 from easypost.requestor import (
@@ -25,15 +19,6 @@ class OrderService(BaseService):
     def retrieve(self, id: str) -> Order:
         """Retrieve an Order."""
         return self._retrieve_resource(self._model_class, id)
-
-    def get_next_page(
-        self,
-        orders: Dict[str, Any],
-        page_size: int,
-        optional_params: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
-        """Retrieve the next page of the list Order response."""
-        raise NotImplementedError
 
     def get_rates(self, id: str) -> Order:
         """Get rates for an Order."""

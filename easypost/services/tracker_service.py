@@ -50,9 +50,9 @@ class TrackerService(BaseService):
             "before_id": trackers["trackers"][-1].id,
             "page_size": page_size,
             "tracking_code": trackers.get(_FILTERS_KEY, {}).get(
-                "tracking_code", None
+                "tracking_code"
             ),  # Use the same tracking_code as the last page
-            "carrier": trackers.get(_FILTERS_KEY, {}).get("carrier", None),  # Use the same carrier as the last page
+            "carrier": trackers.get(_FILTERS_KEY, {}).get("carrier"),  # Use the same carrier as the last page
         }
 
         if optional_params:

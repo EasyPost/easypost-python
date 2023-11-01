@@ -72,7 +72,7 @@ class ReportService(BaseService):
         params = {
             "before_id": reports["reports"][-1].id,
             "page_size": page_size,
-            "type": reports.get(_FILTERS_KEY, {}).get("type", None),  # Use the same type as the last page
+            "type": reports.get(_FILTERS_KEY, {}).get("type"),  # Use the same type as the last page
         }
 
         if optional_params:

@@ -2,6 +2,7 @@ import re
 from typing import (
     Any,
     Dict,
+    Optional,
 )
 
 from easypost.constant import (
@@ -47,7 +48,7 @@ class BaseService:
 
         return convert_to_easypost_object(response=response)
 
-    def _all_resources(self, class_name: str, filters: Dict[str, Any] = None, **params) -> Any:  # type: ignore
+    def _all_resources(self, class_name: str, filters: Optional[Dict[str, Any]] = None, **params) -> Any:
         """Retrieve a list of EasyPostObjects from the EasyPost API."""
         url = self._class_url(class_name)
         response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)

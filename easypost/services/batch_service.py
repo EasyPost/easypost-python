@@ -95,4 +95,14 @@ class BatchService(BaseService):
         NOTE: This function has known issues and should not be used.
         """
         # API doesn't return batches newest to oldest, so these parameters don't work as expected
-        raise NotImplementedError
+        self._check_has_next_page(collection=batches)
+
+        params = {
+            "before_id": batches["batches"][-1].id,
+            "page_size": page_size,
+        }
+
+        if optional_params:
+            params.update(optional_params)
+
+        return self.all(**params)
