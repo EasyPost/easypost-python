@@ -92,7 +92,8 @@ class BatchService(BaseService):
         """
         Retrieve the next page of the list Batch response.
 
-        NOTE: This function has known issues and should not be used.
+        NOTE: This function has known issues with retrieving pages in order due to server-side issues.
+        It is not recommended to be used currently.
         """
         # API doesn't return batches newest to oldest, so these parameters don't work as expected
         self._check_has_next_page(collection=batches)

@@ -62,9 +62,10 @@ class ShipmentService(BaseService):
         params = {
             "before_id": shipments["shipments"][-1].id,
             "page_size": page_size,
-            "include_children": shipments.get(_FILTERS_KEY, {}).get("include_children"),
             # Use the same include_children as the last page
-            "purchased": shipments.get(_FILTERS_KEY, {}).get("purchased"),  # Use the same purchased as the last page
+            "include_children": shipments.get(_FILTERS_KEY, {}).get("include_children"),
+            # Use the same purchased as the last page
+            "purchased": shipments.get(_FILTERS_KEY, {}).get("purchased"),
         }
 
         if optional_params:
