@@ -53,7 +53,6 @@ class BaseService:
         response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
         if filters:  # presence of filters indicates we are dealing with a paginated response
-            self._check_has_current_page(response=response, filters=filters)
             response[_FILTERS_KEY] = filters  # Save the filters used to reference in potential get_next_page call
 
         return convert_to_easypost_object(response=response)
@@ -86,17 +85,4 @@ class BaseService:
     def _check_has_next_page(self, collection: Dict[str, Any]) -> None:
         """Raise exception if there is no next page of a collection."""
         if not collection.get("has_more", False):
-            raise EndOfPaginationError(NO_MORE_PAGES_ERROR)
-
-    def _check_has_current_page(self, response: Dict[str, Any], filters: Dict[str, Any]) -> None:
-        """Raise exception if there is no current page of a collection."""
-        if not response:
-            raise EndOfPaginationError(NO_MORE_PAGES_ERROR)
-
-        entries_key = filters.get("key", None)
-        if not entries_key:
-            raise EndOfPaginationError(NO_MORE_PAGES_ERROR)
-
-        entries = response.get(entries_key, [])
-        if not entries or len(entries) == 0:
             raise EndOfPaginationError(NO_MORE_PAGES_ERROR)

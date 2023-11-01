@@ -51,7 +51,6 @@ class ReportService(BaseService):
         url = f"{self._class_url(self._model_class)}/{report_type}"
 
         response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
-        self._check_has_current_page(response=response, filters=filters)
 
         response[_FILTERS_KEY] = filters  # Save the filters used to reference in potential get_next_page call
 
