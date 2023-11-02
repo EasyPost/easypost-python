@@ -4,7 +4,10 @@ from typing import (
     Optional,
 )
 
-from easypost.constant import MISSING_PARAMETER_ERROR
+from easypost.constant import (
+    _FILTERS_KEY,
+    MISSING_PARAMETER_ERROR,
+)
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.errors import MissingParameterError
 from easypost.models import Report
@@ -35,15 +38,21 @@ class ReportService(BaseService):
 
     def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of Reports."""
-        refund_type = params.pop("type")
+        # Capture some of the parameters used for later reference
+        filters = {
+            "key": "reports",
+            "type": params.get("type", None),
+        }
 
-        if refund_type is None:
+        report_type = params.pop("type")
+        if report_type is None:
             raise MissingParameterError(MISSING_PARAMETER_ERROR.format("type"))
 
-        url = f"{self._class_url(self._model_class)}/{refund_type}"
+        url = f"{self._class_url(self._model_class)}/{report_type}"
 
         response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
-        response["type"] = refund_type  # Needed for retrieving the next page
+
+        response[_FILTERS_KEY] = filters  # Save the filters used to reference in potential get_next_page call
 
         return convert_to_easypost_object(response=response)
 
@@ -55,19 +64,18 @@ class ReportService(BaseService):
         self,
         reports: Dict[str, Any],
         page_size: Optional[int] = None,
+        optional_params: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """Retrieve the next page of the list Report response."""
-        refund_type = reports.get("type")
+        self._check_has_next_page(collection=reports)
 
-        if refund_type is None:
-            raise MissingParameterError(MISSING_PARAMETER_ERROR.format("type"))
-
-        url = f"{self._class_url(self._model_class)}/{refund_type}"
         params = {
             "before_id": reports["reports"][-1].id,
             "page_size": page_size,
+            "type": reports.get(_FILTERS_KEY, {}).get("type"),  # Use the same type as the last page
         }
 
-        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
+        if optional_params:
+            params.update(optional_params)
 
-        return convert_to_easypost_object(response=response)
+        return self.all(**params)

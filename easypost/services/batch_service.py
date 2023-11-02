@@ -24,7 +24,11 @@ class BatchService(BaseService):
 
     def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of Batches."""
-        return self._all_resources(self._model_class, **params)
+        filters = {
+            "key": "batches",
+        }
+
+        return self._all_resources(self._model_class, filters, **params)
 
     def retrieve(self, id: str) -> Batch:
         """Retrieve a Batch."""
@@ -85,5 +89,21 @@ class BatchService(BaseService):
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
-        """Retrieve the next page of the list Batch response."""
-        return self._get_next_page_resources(self._model_class, batches, page_size, optional_params)
+        """
+        Retrieve the next page of the list Batch response.
+
+        NOTE: This function has known issues with retrieving pages in order due to server-side issues.
+        It is not recommended to be used currently.
+        """
+        # API doesn't return batches newest to oldest, so these parameters don't work as expected
+        self._check_has_next_page(collection=batches)
+
+        params = {
+            "before_id": batches["batches"][-1].id,
+            "page_size": page_size,
+        }
+
+        if optional_params:
+            params.update(optional_params)
+
+        return self.all(**params)

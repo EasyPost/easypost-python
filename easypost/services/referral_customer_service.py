@@ -7,6 +7,7 @@ from typing import (
 
 import requests
 from easypost.constant import (
+    _FILTERS_KEY,
     SEND_STRIPE_DETAILS_ERROR,
     TIMEOUT,
 )
@@ -63,11 +64,15 @@ class ReferralCustomerService(BaseService):
 
         This function requires the Partner User's API key.
         """
-        response = Requestor(self._client).request(
-            method=RequestMethod.GET,
-            url="/referral_customers",
-            params=params,
-        )
+        filters = {
+            "key": "referral_customers",
+        }
+
+        url = "/referral_customers"
+
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
+
+        response[_FILTERS_KEY] = filters  # Save the filters used to reference in potential get_next_page call
 
         return convert_to_easypost_object(response=response)
 
@@ -78,7 +83,17 @@ class ReferralCustomerService(BaseService):
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """Retrieve next page of referral customers."""
-        return self._get_next_page_resources("referral_customers", referral_customers, page_size, optional_params)
+        self._check_has_next_page(collection=referral_customers)
+
+        params = {
+            "before_id": referral_customers["referral_customers"][-1].id,
+            "page_size": page_size,
+        }
+
+        if optional_params:
+            params.update(optional_params)
+
+        return self.all(**params)
 
     def add_credit_card(
         self,

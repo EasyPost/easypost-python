@@ -1,7 +1,6 @@
 from typing import (
     Any,
     Dict,
-    List,
     Optional,
 )
 
@@ -18,9 +17,13 @@ class RefundService(BaseService):
         """Create a Shipment Refund."""
         return self._create_resource(self._model_class, **params)
 
-    def all(self, **params) -> List[Refund]:
+    def all(self, **params) -> Dict[str, Any]:
         """Retrieve a list of Shipment Refunds."""
-        return self._all_resources(self._model_class, **params)
+        filters = {
+            "key": "refunds",
+        }
+
+        return self._all_resources(self._model_class, filters, **params)
 
     def retrieve(self, id: str) -> Refund:
         """Retrieve a Shipment Refund."""
@@ -33,4 +36,14 @@ class RefundService(BaseService):
         optional_params: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """Retrieve the next page of the list Refund response."""
-        return self._get_next_page_resources(self._model_class, refunds, page_size, optional_params)
+        self._check_has_next_page(collection=refunds)
+
+        params = {
+            "before_id": refunds["refunds"][-1].id,
+            "page_size": page_size,
+        }
+
+        if optional_params:
+            params.update(optional_params)
+
+        return self.all(**params)
