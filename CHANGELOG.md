@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next major release
+
+- Removed `withCarbonOffset` parameter from `create`, `buy`, and `regenerateRates` functions of the Shipment service as EasyPost now offers Carbon Neutral shipments by default for free
+
 ## v8.2.1 (2023-10-30)
 
 - Fixes a bug where `get_next_page` functions threw an error, preventing users from retrieving the final page of results

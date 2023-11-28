@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"shipment": {}, "carbon_offset": false}'
+    body: '{"shipment": {}}'
     headers:
       Accept:
       - '*/*'
@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '40'
+      - '16'
       Content-Type:
       - application/json
       authorization:
@@ -41,25 +41,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - b4a2ea09646523c3e2b9045d00039312
+      - ae35d0b865666398e78a9788003e6bcc
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb32nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq a29e4ad05c
-      - extlb2nuq 5ab12a3ed2
+      - intlb1nuq b3de2c47ef
+      - extlb2nuq 003ad9bca0
       x-runtime:
-      - '0.038655'
+      - '0.037568'
       x-version-label:
-      - easypost-202305171805-88442329bc-master
+      - easypost-202311250013-a0f06fbc2c-master
       x-xss-protection:
       - 1; mode=block
     status:

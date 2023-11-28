@@ -24,12 +24,11 @@ class ShipmentService(BaseService):
         self._client = client
         self._model_class = Shipment.__name__
 
-    def create(self, with_carbon_offset: Optional[bool] = False, **params) -> Shipment:
+    def create(self, **params) -> Shipment:
         """Create a Shipment."""
         url = self._class_url(self._model_class)
         wrapped_params = {
             self._snakecase_name(self._model_class): params,
-            "carbon_offset": with_carbon_offset,
         }
 
         response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
@@ -73,12 +72,11 @@ class ShipmentService(BaseService):
 
         return self.all(**params)
 
-    def regenerate_rates(self, id: str, with_carbon_offset: Optional[bool] = False) -> Shipment:
+    def regenerate_rates(self, id: str) -> Shipment:
         """Regenerate Rates for a Shipment."""
         url = f"{self._instance_url(self._model_class, id)}/rerate"
-        wrapped_params = {"carbon_offset": with_carbon_offset}
 
-        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url)
 
         return convert_to_easypost_object(response=response)
 
@@ -93,13 +91,11 @@ class ShipmentService(BaseService):
     def buy(
         self,
         id: str,
-        with_carbon_offset: Optional[bool] = False,
         end_shipper_id: Optional[str] = None,
         **params,
     ) -> Shipment:
         """Buy a Shipment."""
         url = f"{self._instance_url(self._model_class, id)}/buy"
-        params["carbon_offset"] = with_carbon_offset
         if end_shipper_id:
             params["end_shipper_id"] = end_shipper_id
 
