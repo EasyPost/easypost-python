@@ -34,15 +34,6 @@ class BatchService(BaseService):
         """Retrieve a Batch."""
         return self._retrieve_resource(self._model_class, id)
 
-    def create_and_buy(self, **params) -> Batch:
-        """Create and buy a Batch in a single call."""
-        url = f"{self._class_url(self._model_class)}/create_and_buy"
-        wrapped_params = {self._snakecase_name(self._model_class): params}
-
-        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
-
-        return convert_to_easypost_object(response=response)
-
     def buy(self, id: str, **params) -> Batch:
         """Buy a Batch."""
         url = f"{self._instance_url(self._model_class, id)}/buy"

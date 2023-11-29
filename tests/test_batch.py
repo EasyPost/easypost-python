@@ -38,20 +38,6 @@ def test_batch_all(page_size, test_client):
 
 
 @pytest.mark.vcr()
-def test_batch_create_and_buy(one_call_buy_shipment, test_client):
-    batch = test_client.batch.create_and_buy(
-        shipments=[
-            one_call_buy_shipment,
-            one_call_buy_shipment,
-        ],
-    )
-
-    assert isinstance(batch, Batch)
-    assert str.startswith(batch.id, "batch_")
-    assert batch.num_shipments == 2
-
-
-@pytest.mark.vcr()
 def test_batch_buy(one_call_buy_shipment, test_client, synchronous_sleep_seconds):
     function_name = inspect.stack()[0][3]
     shipment_data = one_call_buy_shipment
