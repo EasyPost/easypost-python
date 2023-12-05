@@ -15,7 +15,7 @@ DEV_REQUIREMENTS = [
     "urllib3==1.*",  # TODO: Pinned because vcrpy did a dumb and didn't pin urllib3
     "flake8==5.*",  # TODO: flake8 v6 requires Python 3.8.1+
     "isort==5.*",
-    "mypy==1.7.*",
+    "mypy==1.4.*",  # TODO: mypy v1.5 requires Python 3.8+
     "pdoc==13.*",  # TODO: pdoc v14 requires Python 3.8+
     "pytest-cov==4.*",
     "pytest-vcr==1.*",
