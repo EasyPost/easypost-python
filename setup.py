@@ -11,20 +11,19 @@ REQUIREMENTS = [
 DEV_REQUIREMENTS = [
     "bandit==1.7.5",
     "black==23.*",
-    "build==0.10.*",
+    "build==1.0.*",
     "urllib3==1.*",  # TODO: Pinned because vcrpy did a dumb and didn't pin urllib3
     "flake8==5.*",  # TODO: flake8 v6 requires Python 3.8.1+
     "isort==5.*",
-    "mypy==1.3.*",
-    "pdoc==13.*",
+    "mypy==1.7.*",
+    "pdoc==13.*",  # TODO: pdoc v14 requires Python 3.8+
     "pytest-cov==4.*",
     "pytest-vcr==1.*",
     "pytest==7.*",
     "twine==4.*",
     "types-requests",
     "types-urllib3",
-    "vcrpy==4.*",
-    "wheel==0.40.*",
+    "vcrpy==4.*",  # TODO: vcrpy v5 requires Python 3.8+
 ]
 
 with open("README.md", encoding="utf-8") as f:
@@ -69,6 +68,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
         "License :: OSI Approved :: MIT License",
