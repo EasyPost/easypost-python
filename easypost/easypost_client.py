@@ -13,7 +13,6 @@ from easypost.services import (
     AddressService,
     ApiKeyService,
     BatchService,
-    BetaCarrierMetadataService,
     BetaRateService,
     BetaReferralCustomerService,
     BillingService,
@@ -57,7 +56,6 @@ class EasyPostClient:
         self.address = AddressService(self)
         self.api_keys = ApiKeyService(self)
         self.batch = BatchService(self)
-        self.beta_carrier_metadata = BetaCarrierMetadataService(self)
         self.beta_rate = BetaRateService(self)
         self.beta_referral_customer = BetaReferralCustomerService(self)
         self.billing = BillingService(self)

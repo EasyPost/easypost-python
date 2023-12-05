@@ -2,7 +2,6 @@
 from easypost.services.address_service import AddressService
 from easypost.services.api_key_service import ApiKeyService
 from easypost.services.batch_service import BatchService
-from easypost.services.beta_carrier_metadata_service import BetaCarrierMetadataService
 from easypost.services.beta_rate_service import BetaRateService
 from easypost.services.beta_referral_customer_service import BetaReferralCustomerService
 from easypost.services.billing_service import BillingService

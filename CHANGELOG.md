@@ -2,8 +2,9 @@
 
 ## Next major release
 
-- Removed `withCarbonOffset` parameter from `create`, `buy`, and `regenerateRates` functions of the Shipment service as EasyPost now offers Carbon Neutral shipments by default for free
-- Removed the undocumented `createAndBuy` function from the `Batch` service. The proper usage is to create a batch first and buy it separately
+- Removes `withCarbonOffset` parameter from `create`, `buy`, and `regenerateRates` functions of the Shipment service as EasyPost now offers Carbon Neutral shipments by default for free
+- Removes the undocumented `createAndBuy` function from the `Batch` service. The proper usage is to create a batch first and buy it separately
+- Removes the `beta_carrier_metadata` service as it is deprecated, please use the `carrier_metadata` GA service instead
 
 ## v8.2.1 (2023-10-30)
 
