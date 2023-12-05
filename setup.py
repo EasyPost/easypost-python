@@ -11,7 +11,7 @@ REQUIREMENTS = [
 DEV_REQUIREMENTS = [
     "bandit==1.7.5",
     "black==23.*",
-    "build==1.0.*; python_version >= 3.8",  # TODO: remove python pin when 3.7 is dropped
+    "build==1.0.*;python_version>='3.8'",  # TODO: remove python pin when 3.7 is dropped
     "urllib3==1.*",  # TODO: Pinned because vcrpy did a dumb and didn't pin urllib3
     "flake8==5.*",  # TODO: flake8 v6 requires Python 3.8.1+
     "isort==5.*",
