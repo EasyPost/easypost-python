@@ -1,6 +1,6 @@
 # flake8: noqa
 # Library version
-VERSION = "8.2.1"
+VERSION = "9.0.0"
 VERSION_INFO = [str(number) for number in VERSION.split(".")]
 
 # Client defaults

@@ -2,11 +2,42 @@
 
 Use the following guide to assist in the upgrade process of the `easypost-python` library between major versions.
 
+- [Upgrading from 8.x to 9.0](#upgrading-from-8x-to-90)
 - [Upgrading from 7.x to 8.0](#upgrading-from-7x-to-80)
 - [Upgrading from 6.x to 7.0](#upgrading-from-6x-to-70)
 - [Upgrading from 5.x to 6.0](#upgrading-from-5x-to-60)
 
+## Upgrading from 8.x to 9.0
+
+### 9.0 High Impact Changes
+
+- [Carbon Offset Removed](#90-carbon-offset-removed)
+
+### 9.0 Low Impact Changes
+
+- [Create and Buy Batch Function Removed](#90-create-and-buy-batch-function-removed)
+
+### 9.0 Carbon Offset Removed
+
+*Likelihood of Impact: **High***
+
+EasyPost now offers Carbon Neutral shipments by default for free! Because of this, there is no longer a need to specify if you want to offset the carbon footprint of a shipment.
+
+The `with_carbon_offset` parameter of the `create`, `buy`, and `regenerate_rates` shipment functions has been removed.
+
+This is a high-impact change for those using `EndShippers`, as the signature for the `create` and `buy` shipment functions have changed. You will need to inspect these callsites to ensure that the EndShipper parameter is being passed in the correct place.
+
+### 9.0 Create and Buy Batch Function Removed
+
+*Likelihood of Impact: **Low***
+
+The `create_and_buy` batch endpoint has been deprecated, and the `create_and_buy` Batch service function has been removed.
+
+The correct procedure is to first create a batch and then purchase it with two separate API calls.
+
 ## Upgrading from 7.x to 8.0
+
+**NOTICE:** v8 is deprecated.
 
 ### 8.0 High Impact Changes
 
@@ -23,7 +54,7 @@ Use the following guide to assist in the upgrade process of the `easypost-python
 - [Beta Namespace Changed](#80-beta-namespace-changed)
 - [Changed Function Parameter Order and Return Types](#80-changed-function-parameter-order-and-return-types)
 
-## 8.0 Updated Dependencies
+### 8.0 Updated Dependencies
 
 Likelihood of Impact: High
 
@@ -35,7 +66,7 @@ easypost-python now requires Python 3.7 or greater.
 
 All dependencies had minor version bumps.
 
-## 8.0 EasyPostClient
+### 8.0 EasyPostClient
 
 Likelihood of Impact: High
 
@@ -110,13 +141,13 @@ Occurances of `scanform` are now `scan_form` and `Scanform` are now `ScanForm` t
 
 The `primary_or_secondary` parameter name for billing functions is now called `priority` to match the documentation and API.
 
-## 8.0 Beta Namespace Changed
+### 8.0 Beta Namespace Changed
 
 Likelihood of Impact: Low
 
 Previously, the beta namespace was found at `easypost.beta.x` where `x` is the name of your model. Now, the beta namespace is simply prepended to the name of your service: `client.beta_x`. for instance, you can call `client.beta_referral_customer.add_payment_method()`.
 
-## 8.0 Changed Function Parameter Order and Return Types
+### 8.0 Changed Function Parameter Order and Return Types
 
 Likelihood of Impact: Low
 
@@ -137,7 +168,7 @@ Functions that previously returned `True` now do not return anything as there is
 
 - [Removal of `get_rates()` Shipment Method](#70-removal-of-getrates-shipment-method)
 
-## 7.0 Updating Dependencies
+### 7.0 Updating Dependencies
 
 Likelihood of Impact: High
 
@@ -149,7 +180,7 @@ easypost-python now requires Python 3.6 or greater and has dropped support for P
 
 All dependencies had minor version bumps.
 
-## 7.0 `shipment.lowest_rate()` Now Expects a List
+### 7.0 `shipment.lowest_rate()` Now Expects a List
 
 Previously the `shipment.lowest_rate()` function expected a comma separated string list of filter criteria (carriers and services). These params have been corrected to expect an actual list object.
 
@@ -161,7 +192,7 @@ shipment.lowest_rate(carriers="USPS,FedEx", services="...")
 shipment.lowest_rate(carriers=["USPS", "FedEx"], services=["..."])
 ```
 
-## 7.0 Removal of `get_rates()` Shipment Method
+### 7.0 Removal of `get_rates()` Shipment Method
 
 Likelihood of Impact: Medium
 
@@ -176,7 +207,7 @@ The HTTP method used for the `get_rates` endpoint at the API level has changed f
 - [Updating Dependencies](#60-updating-dependencies)
 - [JSON Encoded Bodies](#60-json-encoded-bodies)
 
-## 6.0 Updating Dependencies
+### 6.0 Updating Dependencies
 
 Likelihood of Impact: High
 
@@ -184,7 +215,7 @@ Likelihood of Impact: High
 
 Bumps the `requests` library from v1 to v2.
 
-## 6.0 JSON Encoded Bodies
+### 6.0 JSON Encoded Bodies
 
 Likelihood of Impact: High
 
