@@ -117,3 +117,34 @@ class UserService(BaseService):
         )
 
         return convert_to_easypost_object(response=response)
+
+    def all_children(self, **params) -> Dict[str, Any]:
+        """Retrieve a paginated list of children from the API."""
+        url = "/users/children"
+        response = Requestor(self._client).request(
+            method=RequestMethod.GET,
+            url=url,
+            params=params,
+            beta=True,
+        )  # TODO: Use GA endpoint
+
+        return convert_to_easypost_object(response=response)
+
+    def get_next_page_of_children(
+        self,
+        children: Dict[str, Any],
+        page_size: int,
+        optional_params: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        """Retrieve the next page of the list Children response."""
+        self._check_has_next_page(collection=children)
+
+        params = {
+            "before_id": children["children"][-1].id,
+            "page_size": page_size,
+        }
+
+        if optional_params:
+            params.update(optional_params)
+
+        return self.all_children(**params)
