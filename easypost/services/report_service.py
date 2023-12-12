@@ -25,12 +25,12 @@ class ReportService(BaseService):
 
     def create(self, **params) -> Report:
         """Create a Report."""
-        refund_type = params.pop("type")
+        report_type = params.pop("type")
 
-        if refund_type is None:
+        if report_type is None:
             raise MissingParameterError(MISSING_PARAMETER_ERROR.format("type"))
 
-        url = f"{self._class_url(self._model_class)}/{refund_type}"
+        url = f"{self._class_url(self._model_class)}/{report_type}"
 
         response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
 
