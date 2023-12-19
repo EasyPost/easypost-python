@@ -72,7 +72,7 @@ class ShipmentService(BaseService):
 
         return self.all(**params)
 
-    def regenerate_rates(self, id: str) -> Shipment:
+    def regenerate_rates(self, id: str) -> Dict[str, List[Rate]]:
         """Regenerate Rates for a Shipment."""
         url = f"{self._instance_url(self._model_class, id)}/rerate"
 
