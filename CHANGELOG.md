@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v9.0.1 (2023-12-20)
+
+- Corrects the return type of `regenerate_rates`
+
 ## v9.0.0 (2023-12-06)
 
 See our [Upgrade Guide](UPGRADE_GUIDE.md#upgrading-from-8x-to-90) for more details.
