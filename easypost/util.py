@@ -33,7 +33,7 @@ def get_lowest_object_rate(
     carriers: Optional[List[str]] = None,
     services: Optional[List[str]] = None,
     rates_key: str = "rates",
-):
+) -> Rate:
     """Gets the lowest rate of an EasyPost object such as a Shipment, Order, or Pickup."""
     carriers = carriers or []
     services = services or []
@@ -55,7 +55,7 @@ def get_lowest_object_rate(
     return lowest_rate
 
 
-def get_lowest_smart_rate(smart_rates: List[Rate], delivery_days: int, delivery_accuracy: str):
+def get_lowest_smart_rate(smart_rates: List[Rate], delivery_days: int, delivery_accuracy: str) -> Rate:
     """Get the lowest SmartRate from a list of SmartRates."""
     valid_delivery_accuracy_values = {
         "percentile_50",
