@@ -13,15 +13,23 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/beta/users/children?page_size=5
+    uri: https://api.easypost.com/v2/users/children?page_size=5
   response:
     body:
-      string: '{"children": [], "has_more": false}'
+      string: '{"children": [{"id": "user_484dd58db70a4f31b4bb862998cf0e04", "object":
+        "User", "parent_id": "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test
+        User", "phone_number": "<REDACTED>", "verified": true, "created_at": "2023-05-16T22:01:20Z"},
+        {"id": "user_14e894c0d541459395f4456e7cf4f175", "object": "User", "parent_id":
+        "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test User", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2023-09-27T22:05:26Z"}, {"id":
+        "user_f04df3dad13848339a7975d295d6629f", "object": "User", "parent_id": "user_0f6b83e3530b401cb1e8aeaa6a250d4d",
+        "name": "Test User", "phone_number": "<REDACTED>", "verified": true, "created_at":
+        "2023-11-30T19:23:22Z"}], "has_more": false}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '32'
+      - '673'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -34,31 +42,27 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       transfer-encoding:
       - chunked
-      vary:
-      - Origin
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 5639f0966570ef5ce78b064200916226
+      - 3c78c4046596fc50e799f2840005aa4e
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb43nuq
+      - bigweb36nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq b3de2c47ef
+      - intlb2nuq 2c48984abf
       - extlb2nuq 003ad9bca0
       x-runtime:
-      - '0.040394'
+      - '0.034301'
       x-version-label:
-      - easypost-202312062135-0aa664c8e3-master
+      - easypost-202401041812-437974c716-master
       x-xss-protection:
       - 1; mode=block
     status:

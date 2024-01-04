@@ -125,8 +125,7 @@ class UserService(BaseService):
             method=RequestMethod.GET,
             url=url,
             params=params,
-            beta=True,
-        )  # TODO: Use GA endpoint
+        )
 
         return convert_to_easypost_object(response=response)
 
