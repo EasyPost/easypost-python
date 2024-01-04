@@ -63,6 +63,12 @@
                         <li>
                                 <a class="function" href="#UserService.update_brand">update_brand</a>
                         </li>
+                        <li>
+                                <a class="function" href="#UserService.all_children">all_children</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#UserService.get_next_page_of_children">get_next_page_of_children</a>
+                        </li>
                 </ul>
 
             </li>
@@ -206,6 +212,36 @@
 </span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a>        <span class="p">)</span>
 </span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a>
 </span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span><span id="L-120"><a href="#L-120"><span class="linenos">120</span></a>
+</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a>    <span class="k">def</span> <span class="nf">all_children</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a paginated list of children from the API.&quot;&quot;&quot;</span>
+</span><span id="L-123"><a href="#L-123"><span class="linenos">123</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/users/children&quot;</span>
+</span><span id="L-124"><a href="#L-124"><span class="linenos">124</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+</span><span id="L-125"><a href="#L-125"><span class="linenos">125</span></a>            <span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span>
+</span><span id="L-126"><a href="#L-126"><span class="linenos">126</span></a>            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+</span><span id="L-127"><a href="#L-127"><span class="linenos">127</span></a>            <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+</span><span id="L-128"><a href="#L-128"><span class="linenos">128</span></a>        <span class="p">)</span>
+</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a>
+</span><span id="L-130"><a href="#L-130"><span class="linenos">130</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a>
+</span><span id="L-132"><a href="#L-132"><span class="linenos">132</span></a>    <span class="k">def</span> <span class="nf">get_next_page_of_children</span><span class="p">(</span>
+</span><span id="L-133"><a href="#L-133"><span class="linenos">133</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="L-134"><a href="#L-134"><span class="linenos">134</span></a>        <span class="n">children</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+</span><span id="L-135"><a href="#L-135"><span class="linenos">135</span></a>        <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="L-136"><a href="#L-136"><span class="linenos">136</span></a>        <span class="n">optional_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="L-137"><a href="#L-137"><span class="linenos">137</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span id="L-138"><a href="#L-138"><span class="linenos">138</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve the next page of the list Children response.&quot;&quot;&quot;</span>
+</span><span id="L-139"><a href="#L-139"><span class="linenos">139</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_check_has_next_page</span><span class="p">(</span><span class="n">collection</span><span class="o">=</span><span class="n">children</span><span class="p">)</span>
+</span><span id="L-140"><a href="#L-140"><span class="linenos">140</span></a>
+</span><span id="L-141"><a href="#L-141"><span class="linenos">141</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a>            <span class="s2">&quot;before_id&quot;</span><span class="p">:</span> <span class="n">children</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+</span><span id="L-143"><a href="#L-143"><span class="linenos">143</span></a>            <span class="s2">&quot;page_size&quot;</span><span class="p">:</span> <span class="n">page_size</span><span class="p">,</span>
+</span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a>        <span class="p">}</span>
+</span><span id="L-145"><a href="#L-145"><span class="linenos">145</span></a>
+</span><span id="L-146"><a href="#L-146"><span class="linenos">146</span></a>        <span class="k">if</span> <span class="n">optional_params</span><span class="p">:</span>
+</span><span id="L-147"><a href="#L-147"><span class="linenos">147</span></a>            <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">optional_params</span><span class="p">)</span>
+</span><span id="L-148"><a href="#L-148"><span class="linenos">148</span></a>
+</span><span id="L-149"><a href="#L-149"><span class="linenos">149</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_children</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -320,6 +356,36 @@
 </span><span id="UserService-118"><a href="#UserService-118"><span class="linenos">118</span></a>        <span class="p">)</span>
 </span><span id="UserService-119"><a href="#UserService-119"><span class="linenos">119</span></a>
 </span><span id="UserService-120"><a href="#UserService-120"><span class="linenos">120</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span><span id="UserService-121"><a href="#UserService-121"><span class="linenos">121</span></a>
+</span><span id="UserService-122"><a href="#UserService-122"><span class="linenos">122</span></a>    <span class="k">def</span> <span class="nf">all_children</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span id="UserService-123"><a href="#UserService-123"><span class="linenos">123</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a paginated list of children from the API.&quot;&quot;&quot;</span>
+</span><span id="UserService-124"><a href="#UserService-124"><span class="linenos">124</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/users/children&quot;</span>
+</span><span id="UserService-125"><a href="#UserService-125"><span class="linenos">125</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+</span><span id="UserService-126"><a href="#UserService-126"><span class="linenos">126</span></a>            <span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span>
+</span><span id="UserService-127"><a href="#UserService-127"><span class="linenos">127</span></a>            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+</span><span id="UserService-128"><a href="#UserService-128"><span class="linenos">128</span></a>            <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+</span><span id="UserService-129"><a href="#UserService-129"><span class="linenos">129</span></a>        <span class="p">)</span>
+</span><span id="UserService-130"><a href="#UserService-130"><span class="linenos">130</span></a>
+</span><span id="UserService-131"><a href="#UserService-131"><span class="linenos">131</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span><span id="UserService-132"><a href="#UserService-132"><span class="linenos">132</span></a>
+</span><span id="UserService-133"><a href="#UserService-133"><span class="linenos">133</span></a>    <span class="k">def</span> <span class="nf">get_next_page_of_children</span><span class="p">(</span>
+</span><span id="UserService-134"><a href="#UserService-134"><span class="linenos">134</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="UserService-135"><a href="#UserService-135"><span class="linenos">135</span></a>        <span class="n">children</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+</span><span id="UserService-136"><a href="#UserService-136"><span class="linenos">136</span></a>        <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="UserService-137"><a href="#UserService-137"><span class="linenos">137</span></a>        <span class="n">optional_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="UserService-138"><a href="#UserService-138"><span class="linenos">138</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span id="UserService-139"><a href="#UserService-139"><span class="linenos">139</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve the next page of the list Children response.&quot;&quot;&quot;</span>
+</span><span id="UserService-140"><a href="#UserService-140"><span class="linenos">140</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_check_has_next_page</span><span class="p">(</span><span class="n">collection</span><span class="o">=</span><span class="n">children</span><span class="p">)</span>
+</span><span id="UserService-141"><a href="#UserService-141"><span class="linenos">141</span></a>
+</span><span id="UserService-142"><a href="#UserService-142"><span class="linenos">142</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="UserService-143"><a href="#UserService-143"><span class="linenos">143</span></a>            <span class="s2">&quot;before_id&quot;</span><span class="p">:</span> <span class="n">children</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+</span><span id="UserService-144"><a href="#UserService-144"><span class="linenos">144</span></a>            <span class="s2">&quot;page_size&quot;</span><span class="p">:</span> <span class="n">page_size</span><span class="p">,</span>
+</span><span id="UserService-145"><a href="#UserService-145"><span class="linenos">145</span></a>        <span class="p">}</span>
+</span><span id="UserService-146"><a href="#UserService-146"><span class="linenos">146</span></a>
+</span><span id="UserService-147"><a href="#UserService-147"><span class="linenos">147</span></a>        <span class="k">if</span> <span class="n">optional_params</span><span class="p">:</span>
+</span><span id="UserService-148"><a href="#UserService-148"><span class="linenos">148</span></a>            <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">optional_params</span><span class="p">)</span>
+</span><span id="UserService-149"><a href="#UserService-149"><span class="linenos">149</span></a>
+</span><span id="UserService-150"><a href="#UserService-150"><span class="linenos">150</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_children</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -601,6 +667,72 @@
 
 
             <div class="docstring"><p>Update a User's Brand.</p>
+</div>
+
+
+                            </div>
+                            <div id="UserService.all_children" class="classattr">
+                                        <input id="UserService.all_children-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">all_children</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="o">**</span><span class="n">params</span></span><span class="return-annotation">) -> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>:</span></span>
+
+                <label class="view-source-button" for="UserService.all_children-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#UserService.all_children"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="UserService.all_children-122"><a href="#UserService.all_children-122"><span class="linenos">122</span></a>    <span class="k">def</span> <span class="nf">all_children</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span id="UserService.all_children-123"><a href="#UserService.all_children-123"><span class="linenos">123</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a paginated list of children from the API.&quot;&quot;&quot;</span>
+</span><span id="UserService.all_children-124"><a href="#UserService.all_children-124"><span class="linenos">124</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/users/children&quot;</span>
+</span><span id="UserService.all_children-125"><a href="#UserService.all_children-125"><span class="linenos">125</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+</span><span id="UserService.all_children-126"><a href="#UserService.all_children-126"><span class="linenos">126</span></a>            <span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span>
+</span><span id="UserService.all_children-127"><a href="#UserService.all_children-127"><span class="linenos">127</span></a>            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+</span><span id="UserService.all_children-128"><a href="#UserService.all_children-128"><span class="linenos">128</span></a>            <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+</span><span id="UserService.all_children-129"><a href="#UserService.all_children-129"><span class="linenos">129</span></a>        <span class="p">)</span>
+</span><span id="UserService.all_children-130"><a href="#UserService.all_children-130"><span class="linenos">130</span></a>
+</span><span id="UserService.all_children-131"><a href="#UserService.all_children-131"><span class="linenos">131</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retrieve a paginated list of children from the API.</p>
+</div>
+
+
+                            </div>
+                            <div id="UserService.get_next_page_of_children" class="classattr">
+                                        <input id="UserService.get_next_page_of_children-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_next_page_of_children</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">children</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>,</span><span class="param">	<span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">optional_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>:</span></span>
+
+                <label class="view-source-button" for="UserService.get_next_page_of_children-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#UserService.get_next_page_of_children"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="UserService.get_next_page_of_children-133"><a href="#UserService.get_next_page_of_children-133"><span class="linenos">133</span></a>    <span class="k">def</span> <span class="nf">get_next_page_of_children</span><span class="p">(</span>
+</span><span id="UserService.get_next_page_of_children-134"><a href="#UserService.get_next_page_of_children-134"><span class="linenos">134</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="UserService.get_next_page_of_children-135"><a href="#UserService.get_next_page_of_children-135"><span class="linenos">135</span></a>        <span class="n">children</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+</span><span id="UserService.get_next_page_of_children-136"><a href="#UserService.get_next_page_of_children-136"><span class="linenos">136</span></a>        <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="UserService.get_next_page_of_children-137"><a href="#UserService.get_next_page_of_children-137"><span class="linenos">137</span></a>        <span class="n">optional_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="UserService.get_next_page_of_children-138"><a href="#UserService.get_next_page_of_children-138"><span class="linenos">138</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span id="UserService.get_next_page_of_children-139"><a href="#UserService.get_next_page_of_children-139"><span class="linenos">139</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve the next page of the list Children response.&quot;&quot;&quot;</span>
+</span><span id="UserService.get_next_page_of_children-140"><a href="#UserService.get_next_page_of_children-140"><span class="linenos">140</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_check_has_next_page</span><span class="p">(</span><span class="n">collection</span><span class="o">=</span><span class="n">children</span><span class="p">)</span>
+</span><span id="UserService.get_next_page_of_children-141"><a href="#UserService.get_next_page_of_children-141"><span class="linenos">141</span></a>
+</span><span id="UserService.get_next_page_of_children-142"><a href="#UserService.get_next_page_of_children-142"><span class="linenos">142</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="UserService.get_next_page_of_children-143"><a href="#UserService.get_next_page_of_children-143"><span class="linenos">143</span></a>            <span class="s2">&quot;before_id&quot;</span><span class="p">:</span> <span class="n">children</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+</span><span id="UserService.get_next_page_of_children-144"><a href="#UserService.get_next_page_of_children-144"><span class="linenos">144</span></a>            <span class="s2">&quot;page_size&quot;</span><span class="p">:</span> <span class="n">page_size</span><span class="p">,</span>
+</span><span id="UserService.get_next_page_of_children-145"><a href="#UserService.get_next_page_of_children-145"><span class="linenos">145</span></a>        <span class="p">}</span>
+</span><span id="UserService.get_next_page_of_children-146"><a href="#UserService.get_next_page_of_children-146"><span class="linenos">146</span></a>
+</span><span id="UserService.get_next_page_of_children-147"><a href="#UserService.get_next_page_of_children-147"><span class="linenos">147</span></a>        <span class="k">if</span> <span class="n">optional_params</span><span class="p">:</span>
+</span><span id="UserService.get_next_page_of_children-148"><a href="#UserService.get_next_page_of_children-148"><span class="linenos">148</span></a>            <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">optional_params</span><span class="p">)</span>
+</span><span id="UserService.get_next_page_of_children-149"><a href="#UserService.get_next_page_of_children-149"><span class="linenos">149</span></a>
+</span><span id="UserService.get_next_page_of_children-150"><a href="#UserService.get_next_page_of_children-150"><span class="linenos">150</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_children</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retrieve the next page of the list Children response.</p>
 </div>
 
 
