@@ -4,6 +4,7 @@ from typing import (
     List,
     Optional,
 )
+from warnings import warn
 
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.error import Error
@@ -17,6 +18,11 @@ from easypost.resource import Resource
 class User(Resource):
     @classmethod
     def all_children(cls, api_key: Optional[str] = None, **params) -> Dict[str, Any]:
+        warn(
+            "This function is deprecated, please use `all_children` function in `user` class for GA accessibility",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         """Retrieve a paginated list of children from the API."""
         requestor = Requestor(local_api_key=api_key)
         url = "/users/children"
@@ -30,6 +36,12 @@ class User(Resource):
         page_size: int,
         api_key: Optional[str] = None,
     ) -> List["User"]:
+        warn(
+            "This function is deprecated, please use `get_next_page_of_children` function in"
+            "`user` class for GA accessibility",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         """Get next page of children."""
         requestor = Requestor(local_api_key=api_key)
         url = "/users/children"

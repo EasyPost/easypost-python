@@ -42,7 +42,7 @@ class Requestor:
             return {"id": param.id}
         elif isinstance(param, dict):
             data = {}
-            for (k, v) in param.items():
+            for k, v in param.items():
                 if isinstance(v, list):
                     data[k] = [cls._objects_to_ids(item) for item in v]  # type: ignore
                 else:
