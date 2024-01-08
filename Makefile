@@ -69,6 +69,12 @@ mypy:
 publish:
 	$(VIRTUAL_BIN)/twine upload dist/*
 
+## prep-release - Updates the CHANGELOG and version files in preparation for a release (Unix only)
+# version = The version to release
+# date = The date to release
+prep-release:
+	sh ./scripts/prep_release.sh ${version} ${date}
+
 ## release - Cuts a release for the project on GitHub (requires GitHub CLI)
 # tag = The associated tag title of the release
 release:
