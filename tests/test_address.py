@@ -19,17 +19,21 @@ def test_address_create(ca_address_1, test_client):
 
 @pytest.mark.vcr()
 def test_address_create_verify(incorrect_address, test_client):
-    """Test creating an address with the `verify` param.
-
-    We purposefully pass in slightly incorrect data to get the corrected address back once verified.
     """
-    incorrect_address["verify"] = True
-
+    Test creating an address with the `verify` param.
+    """
+    # Creating normally (without specifying "verify") will make the address, perform no verifications
     address = test_client.address.create(**incorrect_address)
 
     assert isinstance(address, Address)
-    assert str.startswith(address.id, "adr_")
-    assert address.street1 == "417 MONTGOMERY ST FL 5"
+    assert hasattr(address.verifications, "delivery") is False
+
+    # Creating with verify would make the address and perform verifications
+    incorrect_address["verify"] = True
+    address = test_client.address.create(**incorrect_address)
+
+    assert isinstance(address, Address)
+    assert address.verifications.delivery.success is False
 
 
 @pytest.mark.vcr()
@@ -50,17 +54,21 @@ def test_address_create_verify_strict(ca_address_1, test_client):
 
 @pytest.mark.vcr()
 def test_address_create_verify_array(incorrect_address, test_client):
-    """Test creating an address with the `verify` param as an array.
-
-    We purposefully pass in slightly incorrect data to get the corrected address back once verified.
     """
-    incorrect_address["verify"] = [True]
-
+    Test creating an address with the `verify` param as an array.
+    """
+    # Creating normally (without specifying "verify") will make the address, perform no verifications
     address = test_client.address.create(**incorrect_address)
 
     assert isinstance(address, Address)
-    assert str.startswith(address.id, "adr_")
-    assert address.street1 == "417 MONTGOMERY ST FL 5"
+    assert hasattr(address.verifications, "delivery") is False
+
+    # Creating with verify would make the address and perform verifications
+    incorrect_address["verify"] = [True]
+    address = test_client.address.create(**incorrect_address)
+
+    assert isinstance(address, Address)
+    assert address.verifications.delivery.success is False
 
 
 @pytest.mark.vcr()
