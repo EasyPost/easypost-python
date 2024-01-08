@@ -1,8 +1,8 @@
 interactions:
 - request:
-    body: '{"address": {"company": "EasyPost", "street1": "417 montgomery street",
-      "street2": "FL 5", "city": "San Francisco", "state": "CA", "zip": "94104", "country":
-      "US", "email": "test@example.com", "phone": "5555555555"}, "verify": [true]}'
+    body: '{"address": {"company": "EasyPost", "street1": "000 unknown street", "city":
+      "Not A City", "state": "ZZ", "zip": "00001", "country": "US", "email": "test@example.com",
+      "phone": "5555555555"}}'
     headers:
       Accept:
       - '*/*'
@@ -11,7 +11,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '234'
+      - '191'
       Content-Type:
       - application/json
       authorization:
@@ -22,31 +22,24 @@ interactions:
     uri: https://api.easypost.com/v2/addresses
   response:
     body:
-      string: '{"id": "adr_7857b92df0fb11eda67cac1f6bc7b362", "object": "Address",
-        "created_at": "2023-05-12T19:30:36+00:00", "updated_at": "2023-05-12T19:30:36+00:00",
-        "name": null, "company": "EASYPOST", "street1": "417 MONTGOMERY ST FL 5",
-        "street2": "", "city": "SAN FRANCISCO", "state": "CA", "zip": "94104-1129",
-        "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test",
-        "carrier_facility": null, "residential": false, "federal_tax_id": null, "state_tax_id":
-        null, "verifications": {"zip4": {"success": true, "errors": [{"code": "E.SECONDARY_INFORMATION.INVALID",
-        "field": "street2", "message": "Invalid secondary information(Apt/Suite#)",
-        "suggestion": null}], "details": null}, "delivery": {"success": true, "errors":
-        [{"code": "E.SECONDARY_INFORMATION.INVALID", "field": "street2", "message":
-        "Invalid secondary information(Apt/Suite#)", "suggestion": null}], "details":
-        {"latitude": 37.79342, "longitude": -122.40288, "time_zone": "America/Los_Angeles"}}}}'
+      string: '{"id": "adr_ae007a96ae6011ee9704ac1f6bc539ae", "object": "Address",
+        "created_at": "2024-01-08T20:01:15+00:00", "updated_at": "2024-01-08T20:01:15+00:00",
+        "name": null, "company": "EasyPost", "street1": "000 unknown street", "street2":
+        null, "city": "Not A City", "state": "ZZ", "zip": "00001", "country": "US",
+        "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {}}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '907'
+      - '453'
       content-type:
       - application/json; charset=utf-8
-      etag:
-      - W/"9ddf629be3716817f7b636f120d08876"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_7857b92df0fb11eda67cac1f6bc7b362
+      - /api/v2/addresses/adr_ae007a96ae6011ee9704ac1f6bc539ae
       pragma:
       - no-cache
       referrer-policy:
@@ -57,28 +50,104 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - fe8d8709645e93dce2cc315d0005fc3d
+      - d1c48c8c659c548bf022053300173795
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb7nuq
+      - bigweb38nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq a29e4ad05c
-      - intlb2wdc a29e4ad05c
-      - extlb4wdc 5ab12a3ed2
+      - intlb2nuq ab82b2e6e9
+      - extlb1nuq 003ad9bca0
       x-runtime:
-      - '0.041322'
+      - '0.036879'
       x-version-label:
-      - easypost-202305121849-b449e9bf47-master
+      - easypost-202401051829-4cf193bd35-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: '{"address": {"company": "EasyPost", "street1": "000 unknown street", "city":
+      "Not A City", "state": "ZZ", "zip": "00001", "country": "US", "email": "test@example.com",
+      "phone": "5555555555"}, "verify": [true]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '209'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/addresses
+  response:
+    body:
+      string: '{"id": "adr_ae0ec8bbae6011eebd28ac1f6bc539aa", "object": "Address",
+        "created_at": "2024-01-08T20:01:15+00:00", "updated_at": "2024-01-08T20:01:15+00:00",
+        "name": null, "company": "EasyPost", "street1": "000 unknown street", "street2":
+        null, "city": "Not A City", "state": "ZZ", "zip": "00001", "country": "US",
+        "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {"zip4": {"success": false, "errors": [{"code": "E.ADDRESS.NOT_FOUND", "field":
+        "address", "message": "Address not found", "suggestion": null}], "details":
+        null}, "delivery": {"success": false, "errors": [{"code": "E.ADDRESS.NOT_FOUND",
+        "field": "address", "message": "Address not found", "suggestion": null}],
+        "details": {}}}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '750'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      location:
+      - /api/v2/addresses/adr_ae0ec8bbae6011eebd28ac1f6bc539aa
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - d1c48c8c659c548bf0220533001737a6
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb41nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb1nuq ab82b2e6e9
+      - extlb1nuq 003ad9bca0
+      x-runtime:
+      - '0.055866'
+      x-version-label:
+      - easypost-202401051829-4cf193bd35-master
       x-xss-protection:
       - 1; mode=block
     status:
