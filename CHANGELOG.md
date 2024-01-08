@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next release
+## v9.1.0 (2024-01-08)
 
 - Adds `all_children` function to the User service for retrieving paginated lists of children
 - Adds `get_next_page_of_children` function to User service to get next paginated list of children
