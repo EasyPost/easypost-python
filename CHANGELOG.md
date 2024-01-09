@@ -1,14 +1,9 @@
 # CHANGELOG
 
-
-## v7.15.1 (2024-01-09)
+## v7.15.0 (2024-01-08)
 
 - Adds `all_children` function to the User class for retrieving paginated lists of children users, and removes the beta function
 - Adds `get_next_page_of_children` function to the User class for retrieving next paginated lists of children users, and removes the beta function
-
-## v7.15.0 (2024-01-08)
-
-**This release erroneously included code from v8.x.x and v9.x.x. Use v7.15.1 instead.**
 
 ## v7.14.1 (2023-10-30)
 
