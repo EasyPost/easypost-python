@@ -1,4 +1,4 @@
-VERSION = "7.15.0"
+VERSION = "7.15.1"
 
 numbers = [str(number) for number in VERSION.split(".")]
 VERSION_INFO = numbers
