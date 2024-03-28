@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds `refund` function in Insurance service for requesting a refund for a standalone insurance
+
 ## v9.1.0 (2024-01-08)
 
 - Adds `all_children` function to the User service for retrieving paginated lists of children

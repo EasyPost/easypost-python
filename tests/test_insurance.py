@@ -64,3 +64,16 @@ def test_insurance_get_next_page(page_size, test_client):
     except Exception as e:
         if e.message != NO_MORE_PAGES_ERROR:
             raise Exception(_TEST_FAILED_INTENTIONALLY_ERROR)
+
+
+@pytest.mark.vcr()
+def test_insurance_refund(test_client, basic_insurance):
+    insurance_data = basic_insurance
+    insurance_data["tracking_code"] = "EZ1000000001"
+
+    insurance = test_client.insurance.create(**insurance_data)
+    cancelled_insurance = test_client.insurance.refund(id=insurance.id)
+
+    assert isinstance(cancelled_insurance, Insurance)
+    assert str.startswith(cancelled_insurance.id, "ins_")
+    assert cancelled_insurance.status == "cancelled"
