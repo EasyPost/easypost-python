@@ -32,6 +32,8 @@ jobs:
           python-version: ${{ matrix.pythonversion }}
       - name: Install Dependencies
         run: make install
+      - name: Clear Cache For Tests
+        run: find . \( -name '__pycache__' -or -name '*.pyc' \) -delete
       - name: Run Tests
         run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 make coverage
       - name: Coveralls
