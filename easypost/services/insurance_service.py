@@ -58,7 +58,6 @@ class InsuranceService(BaseService):
         response = Requestor(self._client).request(
             method=RequestMethod.POST,
             url=url,
-            beta=True,  # Remove beta when endpoint is in GA.
         )
 
         return convert_to_easypost_object(response=response)
