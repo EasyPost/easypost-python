@@ -1,8 +1,7 @@
 from unittest.mock import patch
 
-import pytest
-
 import easypost
+import pytest
 from easypost.errors import InvalidObjectError
 
 
@@ -90,8 +89,10 @@ def test_billing_retrieve_payment_methods_no_billing_setup(mock_request, prod_cl
 
 @patch(
     "easypost.services.billing_service.BillingService.retrieve_payment_methods",
-    return_value={"primary_payment_method": {"id": "pm_123", "object": "CreditCard"},
-                  "secondary_payment_method": {"id": "pm_456", "object": "BankAccount"}},
+    return_value={
+        "primary_payment_method": {"id": "pm_123", "object": "CreditCard"},
+        "secondary_payment_method": {"id": "pm_456", "object": "BankAccount"},
+    },
 )
 def test_billing__get_payment_method_info_by_object_type(mock_request, prod_client):
     """Tests we can determine the payment method type/endpoint by object type."""
@@ -108,8 +109,10 @@ def test_billing__get_payment_method_info_by_object_type(mock_request, prod_clie
 
 @patch(
     "easypost.services.billing_service.BillingService.retrieve_payment_methods",
-    return_value={"primary_payment_method": {"id": "card_123", "object": None},
-                  "secondary_payment_method": {"id": "bank_123", "object": None}},
+    return_value={
+        "primary_payment_method": {"id": "card_123", "object": None},
+        "secondary_payment_method": {"id": "bank_123", "object": None},
+    },
 )
 def test_billing__get_payment_method_info_by_legacy_id_prefix(mock_request, prod_client):
     """Tests we can determine the payment method type/endpoint by legacy ID prefix."""
