@@ -77,3 +77,4 @@ def test_insurance_refund(test_client, basic_insurance):
     assert isinstance(cancelled_insurance, Insurance)
     assert str.startswith(cancelled_insurance.id, "ins_")
     assert cancelled_insurance.status == "cancelled"
+    assert cancelled_insurance.messages[0] == "Insurance was cancelled by the user."
