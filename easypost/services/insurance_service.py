@@ -4,7 +4,12 @@ from typing import (
     Optional,
 )
 
+from easypost.easypost_object import convert_to_easypost_object
 from easypost.models import Insurance
+from easypost.requestor import (
+    RequestMethod,
+    Requestor,
+)
 from easypost.services.base_service import BaseService
 
 
@@ -47,3 +52,12 @@ class InsuranceService(BaseService):
             params.update(optional_params)
 
         return self.all(**params)
+
+    def refund(self, id: str) -> Insurance:
+        url = f"/insurances/{id}/refund"
+        response = Requestor(self._client).request(
+            method=RequestMethod.POST,
+            url=url,
+        )
+
+        return convert_to_easypost_object(response=response)
