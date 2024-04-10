@@ -105,23 +105,3 @@ def test_billing__get_payment_method_info_by_object_type(mock_request, prod_clie
 
     assert endpoint == "/bank_accounts"
     assert payment_method_id == "pm_456"
-
-
-@patch(
-    "easypost.services.billing_service.BillingService.retrieve_payment_methods",
-    return_value={
-        "primary_payment_method": {"id": "card_123", "object": None},
-        "secondary_payment_method": {"id": "bank_123", "object": None},
-    },
-)
-def test_billing__get_payment_method_info_by_legacy_id_prefix(mock_request, prod_client):
-    """Tests we can determine the payment method type/endpoint by legacy ID prefix."""
-    endpoint, payment_method_id = prod_client.billing._get_payment_method_info(priority="primary")
-
-    assert endpoint == "/credit_cards"
-    assert payment_method_id == "card_123"
-
-    endpoint, payment_method_id = prod_client.billing._get_payment_method_info(priority="secondary")
-
-    assert endpoint == "/bank_accounts"
-    assert payment_method_id == "bank_123"

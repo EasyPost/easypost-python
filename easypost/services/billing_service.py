@@ -67,9 +67,9 @@ class BillingService(BaseService):
         if payment_method_to_use and payment_methods[payment_method_to_use]:
             payment_method_id = payment_methods[payment_method_to_use]["id"]
             payment_method_object_type = payment_methods[payment_method_to_use].get("object", None)
-            if payment_method_id.startswith("card_") or payment_method_object_type == "CreditCard":
+            if payment_method_object_type == "CreditCard":
                 endpoint = "/credit_cards"
-            elif payment_method_id.startswith("bank_") or payment_method_object_type == "BankAccount":
+            elif payment_method_object_type == "BankAccount":
                 endpoint = "/bank_accounts"
             else:
                 raise InvalidObjectError(message=INVALID_PAYMENT_METHOD_ERROR)
