@@ -24,26 +24,26 @@ def test_billing_fund_wallet(mock_request, mock_get_payment_info, prod_client):
 
 @patch(
     "easypost.services.billing_service.BillingService.retrieve_payment_methods",
-    return_value={"primary_payment_method": {"id": "card_123"}},
+    return_value={"primary_payment_method": {"id": "pm_123", "object": "CreditCard"}},
 )
 @patch("easypost.services.billing_service.Requestor.request", return_value={"mock": "response"})
 def test_billing_payment_method_delete_credit_card(mock_request, mock_payment_methods, prod_client):
     """Tests we make a valid call to delete a credit card."""
     prod_client.billing.delete_payment_method(priority="primary")
 
-    mock_request.assert_called_once_with(method=easypost.requestor.RequestMethod.DELETE, url="/credit_cards/card_123")
+    mock_request.assert_called_once_with(method=easypost.requestor.RequestMethod.DELETE, url="/credit_cards/pm_123")
 
 
 @patch(
     "easypost.services.billing_service.BillingService.retrieve_payment_methods",
-    return_value={"primary_payment_method": {"id": "bank_123"}},
+    return_value={"primary_payment_method": {"id": "pm_123", "object": "BankAccount"}},
 )
 @patch("easypost.services.billing_service.Requestor.request", return_value={"mock": "response"})
 def test_billing_payment_method_delete_bank_account(mock_request, mock_payment_methods, prod_client):
     """Tests we make a valid call to delete a bank account."""
     prod_client.billing.delete_payment_method(priority="primary")
 
-    mock_request.assert_called_once_with(method=easypost.requestor.RequestMethod.DELETE, url="/bank_accounts/bank_123")
+    mock_request.assert_called_once_with(method=easypost.requestor.RequestMethod.DELETE, url="/bank_accounts/pm_123")
 
 
 @patch(
@@ -85,3 +85,23 @@ def test_billing_retrieve_payment_methods_no_billing_setup(mock_request, prod_cl
 
     mock_request.assert_called_once()
     assert str(error.value) == "Billing has not been setup for this user. Please add a payment method."
+
+
+@patch(
+    "easypost.services.billing_service.BillingService.retrieve_payment_methods",
+    return_value={
+        "primary_payment_method": {"id": "pm_123", "object": "CreditCard"},
+        "secondary_payment_method": {"id": "pm_456", "object": "BankAccount"},
+    },
+)
+def test_billing__get_payment_method_info_by_object_type(mock_request, prod_client):
+    """Tests we can determine the payment method type/endpoint by object type."""
+    endpoint, payment_method_id = prod_client.billing._get_payment_method_info(priority="primary")
+
+    assert endpoint == "/credit_cards"
+    assert payment_method_id == "pm_123"
+
+    endpoint, payment_method_id = prod_client.billing._get_payment_method_info(priority="secondary")
+
+    assert endpoint == "/bank_accounts"
+    assert payment_method_id == "pm_456"
