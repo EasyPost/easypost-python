@@ -4,6 +4,7 @@ from typing import (
     List,
     Optional,
 )
+from warnings import warn
 
 from easypost.constant import _FILTERS_KEY
 from easypost.models import Tracker
@@ -61,7 +62,15 @@ class TrackerService(BaseService):
         return self.all(**params)
 
     def create_list(self, trackers: List[Dict[str, Any]]) -> None:
-        """Create a list of Trackers."""
+        """Create a list of Trackers.
+
+        NOTE: This function is deprecated, use the create function instead.
+        """
+        warn(
+            "This function is deprecated, use the create function instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         url = f"{self._class_url(self._model_class)}/create_list"
         wrapped_params = {"trackers": trackers}
 
