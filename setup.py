@@ -54,7 +54,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     project_urls={
-        "Docs": "https://www.easypost.com/docs/api",
+        "Docs": "https://docs.easypost.com",
         "Tracker": "https://github.com/EasyPost/easypost-python/issues",
         "Source": "https://github.com/EasyPost/easypost-python",
     },
