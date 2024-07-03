@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds new `create_ups` and `update_ups` functions under `carrier_account`
+  - Starting `2024-08-05`, UPS accounts can no longer be created or updated through the normal create and update functions and must use these UPS specific functions
+
 ## v9.2.0 (2024-04-10)
 
 - Fix payment method funding and deletion failures due to undetermined payment method type

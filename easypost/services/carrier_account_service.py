@@ -60,6 +60,23 @@ class CarrierAccountService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
+    def create_ups(self, **params) -> CarrierAccount:
+        """Create a UPS CarrierAccount which has its own custom workflow."""
+        url = "/ups_oauth_registrations"
+        wrapped_params = {"ups_oauth_registrations": params}
+
+        response = Requestor(self._client).request(
+            method=RequestMethod.POST,
+            url=url,
+            params=wrapped_params,
+        )
+
+        return convert_to_easypost_object(response=response)
+
+    def update_ups(self, id: str, **params) -> CarrierAccount:
+        """Update a UPS CarrierAccount which has its own custom workflow."""
+        return self._update_resource("UpsOauthRegistrations", id, **params)
+
     def _select_carrier_account_creation_endpoint(self, carrier_account_type: Optional[Any]) -> str:
         """Determines which API endpoint to use for the creation call."""
         if carrier_account_type in _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_WORKFLOWS:

@@ -35,6 +35,5 @@ _TEST_FAILED_INTENTIONALLY_ERROR = "Test failed intentionally."
 _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_WORKFLOWS = [
     "FedexAccount",
     "FedexSmartpostAccount",
-    "UpsAccount",
 ]
 _FILTERS_KEY = "filters"

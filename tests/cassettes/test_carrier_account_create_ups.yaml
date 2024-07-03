@@ -1,0 +1,69 @@
+interactions:
+- request:
+    body: '{"ups_oauth_registrations": {"type": "UpsAccount"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '51'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/ups_oauth_registrations
+  response:
+    body:
+      string: '{"error": {"code": "PARAMETER.REQUIRED", "message": "Missing required
+        parameter.", "errors": [{"field": "ups_oauth_registrations.account_number",
+        "message": "is required but missing"}]}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '177'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - cbf7748e6685bf59e2bc356000275a02
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb35nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb3nuq fa152d4755
+      - extlb1nuq fa152d4755
+      x-runtime:
+      - '0.043536'
+      x-version-label:
+      - easypost-202407031852-b015027e75-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 422
+      message: Unprocessable Entity
+version: 1
