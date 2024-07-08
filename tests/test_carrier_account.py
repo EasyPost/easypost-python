@@ -120,7 +120,10 @@ def test_carrier_account_create_ups(prod_client):
 
 
 @pytest.mark.vcr()
-@patch("easypost.services.carrier_account_service.CarrierAccountService.retrieve")
+@patch(
+    "easypost.services.carrier_account_service.CarrierAccountService.retrieve",
+    return_value={"type": "UpsAccount"},
+)
 def test_carrier_account_update_ups(mock_retrieve, prod_client):
     """Test updating a UPS Carrier Account.
 
