@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"ups_oauth_registrations": {"type": "UpsAccount"}}'
+    body: '{"ups_oauth_registrations": {"type": "UpsAccount", "account_number": 123}}'
     headers:
       Accept:
       - '*/*'
@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '51'
+      - '74'
       Content-Type:
       - application/json
       authorization:
@@ -20,14 +20,14 @@ interactions:
     uri: https://api.easypost.com/v2/ups_oauth_registrations
   response:
     body:
-      string: '{"error": {"code": "PARAMETER.REQUIRED", "message": "Missing required
-        parameter.", "errors": [{"field": "ups_oauth_registrations.account_number",
-        "message": "is required but missing"}]}}'
+      string: '{"error": {"code": "PARAMETER.INVALID_TYPE", "message": "Wrong parameter
+        type.", "errors": [{"field": "ups_oauth_registrations.account_number", "message":
+        "must be a string"}]}}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '177'
+      - '168'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -47,20 +47,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - cbf7748e6685bf59e2bc356000275a02
+      - b98ca9f3668c49a7e2cb1d1f001f7231
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb35nuq
+      - bigweb36nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb3nuq fa152d4755
-      - extlb1nuq fa152d4755
+      - intlb4nuq fa152d4755
+      - extlb2nuq fa152d4755
       x-runtime:
-      - '0.043536'
+      - '0.053482'
       x-version-label:
-      - easypost-202407031852-b015027e75-master
+      - easypost-202407081949-3228d5845b-master
       x-xss-protection:
       - 1; mode=block
     status:

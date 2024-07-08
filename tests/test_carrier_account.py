@@ -104,10 +104,11 @@ def test_carrier_account_create_ups(prod_client):
     """
     carrier_account = {
         "type": "UpsAccount",
+        "account_number": 123,
     }
 
     try:
-        prod_client.carrier_account.create_ups(**carrier_account)
+        prod_client.carrier_account.create(**carrier_account)
     except ApiError as error:
         assert error.http_status == 422
         assert any(
@@ -121,13 +122,14 @@ def test_carrier_account_update_ups(prod_client):
     """Test updating a UPS Carrier Account.
 
     We purposefully don't pass data here because real data is required for this endpoint
-    which we don't have in a test context, simply assert that we routed the request correctly.
+    which we don't have in a test context, simply assert that we sent the request correctly.
     """
     carrier_account = {
         "type": "UpsAccount",
+        "account_number": 123,
     }
 
     try:
-        prod_client.carrier_account.update_ups("ca_123", **carrier_account)
+        prod_client.carrier_account.update("ca_123", **carrier_account)
     except ApiError as error:
         assert error.http_status == 404

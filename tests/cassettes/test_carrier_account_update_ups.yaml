@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"ups_oauth_registrations": {"type": "UpsAccount"}}'
+    body: '{"ups_oauth_registrations": {"type": "UpsAccount", "account_number": 123}}'
     headers:
       Accept:
       - '*/*'
@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '51'
+      - '74'
       Content-Type:
       - application/json
       authorization:
@@ -48,20 +48,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - cbf774916685c061e2bc38b300282931
+      - b98ca9f4668c4b72e2cb215a00213aef
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb39nuq
+      - bigweb36nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
       - intlb4nuq fa152d4755
-      - extlb1nuq fa152d4755
+      - extlb2nuq fa152d4755
       x-runtime:
-      - '0.023543'
+      - '0.033617'
       x-version-label:
-      - easypost-202407031852-b015027e75-master
+      - easypost-202407081949-3228d5845b-master
       x-xss-protection:
       - 1; mode=block
     status:
