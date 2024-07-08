@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"ups_oauth_registrations": {"type": "UpsAccount", "account_number": 123}}'
+    body: '{"carrier_account": {"type": "UpsAccount", "account_number": 123}}'
     headers:
       Accept:
       - '*/*'
@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '74'
+      - '66'
       Content-Type:
       - application/json
       authorization:
@@ -17,7 +17,7 @@ interactions:
       user-agent:
       - <REDACTED>
     method: PATCH
-    uri: https://api.easypost.com/v2/ups_oauth_registrationses/ca_123
+    uri: https://api.easypost.com/v2/carrier_accounts/ca_123
   response:
     body:
       string: '{"error": {"code": "NOT_FOUND", "message": "The requested resource
@@ -39,8 +39,6 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       transfer-encoding:
       - chunked
-      vary:
-      - Accept
       x-backend:
       - easypost
       x-content-type-options:
@@ -48,18 +46,18 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - b98ca9f4668c4b72e2cb215a00213aef
+      - df6fc7b5668c5334e2cba540002749ac
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb36nuq
+      - bigweb34nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
       - intlb4nuq fa152d4755
-      - extlb2nuq fa152d4755
+      - extlb1nuq fa152d4755
       x-runtime:
-      - '0.033617'
+      - '0.052189'
       x-version-label:
       - easypost-202407081949-3228d5845b-master
       x-xss-protection:

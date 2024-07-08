@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 import pytest
 from easypost.errors.api.api_error import ApiError
 from easypost.models import CarrierAccount
@@ -118,11 +120,14 @@ def test_carrier_account_create_ups(prod_client):
 
 
 @pytest.mark.vcr()
-def test_carrier_account_update_ups(prod_client):
+@patch("easypost.services.carrier_account_service.CarrierAccountService.retrieve")
+def test_carrier_account_update_ups(mock_retrieve, prod_client):
     """Test updating a UPS Carrier Account.
 
     We purposefully don't pass data here because real data is required for this endpoint
     which we don't have in a test context, simply assert that we sent the request correctly.
+
+    This test will require someone to ensure the cassette looks the way we want (URL)
     """
     carrier_account = {
         "type": "UpsAccount",

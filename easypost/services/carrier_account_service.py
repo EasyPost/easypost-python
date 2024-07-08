@@ -52,10 +52,13 @@ class CarrierAccountService(BaseService):
 
     def update(self, id: str, **params) -> CarrierAccount:
         """Update a CarrierAccount."""
-        if params.get("type") in _UPS_OATH_CARRIER_ACCOUNT_TYPES:
+        carrier_account = self.retrieve(id)
+
+        if carrier_account.get("type") in _UPS_OATH_CARRIER_ACCOUNT_TYPES:
             class_name = "UpsOauthRegistrations"
         else:
             class_name = self._model_class
+
         return self._update_resource(class_name, id, **params)
 
     def delete(self, id: str) -> None:
