@@ -2,8 +2,8 @@
 
 ## Next Release
 
-- Adds new `create_ups` and `update_ups` functions under `carrier_account`
-  - Starting `2024-08-05`, UPS accounts can no longer be created or updated through the normal create and update functions and must use these UPS specific functions
+- Routes `UpsAccount`, `UpsMailInnovationsAccount`, and `UpsSurepostAccount` create/update requests to the new `/ups_oauth_registrations` endpoint
+  - Starting `2024-08-05`, UPS accounts will require a new payload to register or update. See [UPS OAuth 2.0 Update](https://support.easypost.com/hc/en-us/articles/26635027512717-UPS-OAuth-2-0-Update?utm_medium=email&_hsenc=p2ANqtz-96MmFtWICOzy9sKRbbcZSiMovZSrY3MSX1_bgY9N3f9yLVfWQdLhjAGq-SmNcOnDIS6GYhZ0OApjDBrGkKyLLMx1z6_TFOVp6-wllhEFQINrkuRuc&_hsmi=313130292&utm_content=313130292&utm_source=hs_email) for more details
 
 ## v9.2.0 (2024-04-10)
 
