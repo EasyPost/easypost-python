@@ -37,8 +37,13 @@ docs:
 flake8:
 	$(VIRTUAL_BIN)/flake8 $(PROJECT_NAME)/ $(TEST_DIR)/ --append-config examples/style_guides/python/.flake8
 
+## init-examples-submodule - Initialize the examples submodule
+init-examples-submodule:
+	git submodule init
+	git submodule update
+
 ## install - Install the project locally
-install: | update-examples-submodule
+install: | init-examples-submodule
 	$(PYTHON_BINARY) -m venv $(VIRTUAL_ENV)
 	$(VIRTUAL_BIN)/pip install -e ."[dev]"
 

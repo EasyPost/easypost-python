@@ -122,10 +122,12 @@ def test_carrier_account_update_ups(prod_client):
 
     carrier_account = prod_client.carrier_account.create(**params)
 
-    prod_client.carrier_account.update(carrier_account.id, account_number="987654321")
+    updated_carrier_account = prod_client.carrier_account.update(carrier_account.id, account_number="987654321")
 
-    assert isinstance(carrier_account, CarrierAccount)
-    assert str.startswith(carrier_account.id, "ca_")
-    assert carrier_account.type == "UpsAccount"
+    assert isinstance(updated_carrier_account, CarrierAccount)
+    assert str.startswith(updated_carrier_account.id, "ca_")
+    assert updated_carrier_account.type == "UpsAccount"
 
-    prod_client.carrier_account.delete(carrier_account.id)  # Delete the carrier account once it's done being tested.
+    prod_client.carrier_account.delete(
+        updated_carrier_account.id
+    )  # Delete the carrier account once it's done being tested.
