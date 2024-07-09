@@ -319,3 +319,13 @@ def test_retrieve_estimated_delivery_date(basic_shipment, planned_ship_date, tes
     rates = test_client.shipment.retrieve_estimated_delivery_date(shipment.id, planned_ship_date=planned_ship_date)
 
     assert all(entry.get("easypost_time_in_transit_data") for entry in rates)
+
+
+@pytest.mark.vcr()
+def test_shipment_recommend_ship_date(basic_shipment, desired_delivery_date, test_client):
+    """Test that we retrieve SmartRates when providing a shipment and desired delivery date."""
+    shipment = test_client.shipment.create(**basic_shipment)
+
+    rates = test_client.shipment.recommend_ship_date(shipment.id, desired_delivery_date=desired_delivery_date)
+
+    assert all(entry.get("easypost_time_in_transit_data") for entry in rates)

@@ -32,6 +32,7 @@ from easypost.services import (
     ReportService,
     ScanFormService,
     ShipmentService,
+    SmartRateService,
     TrackerService,
     UserService,
     WebhookService,
@@ -75,6 +76,7 @@ class EasyPostClient:
         self.report = ReportService(self)
         self.scan_form = ScanFormService(self)
         self.shipment = ShipmentService(self)
+        self.smartrate = SmartRateService(self)
         self.tracker = TrackerService(self)
         self.user = UserService(self)
         self.webhook = WebhookService(self)
