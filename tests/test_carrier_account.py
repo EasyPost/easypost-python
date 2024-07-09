@@ -1,5 +1,3 @@
-from unittest.mock import patch
-
 import pytest
 from easypost.errors.api.api_error import ApiError
 from easypost.models import CarrierAccount
@@ -124,7 +122,7 @@ def test_carrier_account_update_ups(prod_client):
 
     carrier_account = prod_client.carrier_account.create(**params)
 
-    updated_carrier_account = prod_client.carrier_account.update(carrier_account.id, account_number="987654321")
+    prod_client.carrier_account.update(carrier_account.id, account_number="987654321")
 
     assert isinstance(carrier_account, CarrierAccount)
     assert str.startswith(carrier_account.id, "ca_")
