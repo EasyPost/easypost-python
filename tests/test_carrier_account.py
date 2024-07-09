@@ -99,45 +99,35 @@ def test_carrier_account_create_with_custom_workflow(prod_client):
 
 @pytest.mark.vcr()
 def test_carrier_account_create_ups(prod_client):
-    """Test registering a UPS Carrier Account.
-
-    We purposefully don't pass data here because real data is required for this endpoint
-    which we don't have in a test context, simply assert the error matches when no data is passed.
-    """
-    carrier_account = {
+    """Test registering a UPS Carrier Account which uses a different URL and schema."""
+    params = {
         "type": "UpsAccount",
-        "account_number": 123,
+        "account_number": "123456789",
     }
 
-    try:
-        prod_client.carrier_account.create(**carrier_account)
-    except ApiError as error:
-        assert error.http_status == 422
-        assert any(
-            [error["field"] == "account_number" and error["message"] == "must be present and a string"]
-            for error in error.errors
-        )
+    carrier_account = prod_client.carrier_account.create(**params)
+
+    assert isinstance(carrier_account, CarrierAccount)
+    assert str.startswith(carrier_account.id, "ca_")
+    assert carrier_account.type == "UpsAccount"
+
+    prod_client.carrier_account.delete(carrier_account.id)  # Delete the carrier account once it's done being tested.
 
 
 @pytest.mark.vcr()
-@patch(
-    "easypost.services.carrier_account_service.CarrierAccountService.retrieve",
-    return_value={"type": "UpsAccount"},
-)
-def test_carrier_account_update_ups(mock_retrieve, prod_client):
-    """Test updating a UPS Carrier Account.
-
-    We purposefully don't pass data here because real data is required for this endpoint
-    which we don't have in a test context, simply assert that we sent the request correctly.
-
-    This test will require someone to ensure the cassette looks the way we want (URL)
-    """
-    carrier_account = {
+def test_carrier_account_update_ups(prod_client):
+    """Test updating a UPS Carrier Account which uses a different URL and schema."""
+    params = {
         "type": "UpsAccount",
-        "account_number": 123,
+        "account_number": "123456789",
     }
 
-    try:
-        prod_client.carrier_account.update("ca_123", **carrier_account)
-    except ApiError as error:
-        assert error.http_status == 404
+    carrier_account = prod_client.carrier_account.create(**params)
+
+    updated_carrier_account = prod_client.carrier_account.update(carrier_account.id, account_number="987654321")
+
+    assert isinstance(carrier_account, CarrierAccount)
+    assert str.startswith(carrier_account.id, "ca_")
+    assert carrier_account.type == "UpsAccount"
+
+    prod_client.carrier_account.delete(carrier_account.id)  # Delete the carrier account once it's done being tested.
