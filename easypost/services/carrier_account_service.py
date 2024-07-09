@@ -7,6 +7,7 @@ from typing import (
 
 from easypost.constant import (
     _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_WORKFLOWS,
+    _UPS_OAUTH_CARRIER_ACCOUNT_TYPES,
     MISSING_PARAMETER_ERROR,
 )
 from easypost.easypost_object import convert_to_easypost_object
@@ -32,7 +33,10 @@ class CarrierAccountService(BaseService):
             raise MissingParameterError(MISSING_PARAMETER_ERROR.format("type"))
 
         url = self._select_carrier_account_creation_endpoint(carrier_account_type=carrier_account_type)
-        wrapped_params = {self._snakecase_name(self._model_class): params}
+        if carrier_account_type in _UPS_OAUTH_CARRIER_ACCOUNT_TYPES:
+            wrapped_params = {"ups_oauth_registrations": params}
+        else:
+            wrapped_params = {self._snakecase_name(self._model_class): params}
 
         response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
@@ -48,7 +52,14 @@ class CarrierAccountService(BaseService):
 
     def update(self, id: str, **params) -> CarrierAccount:
         """Update a CarrierAccount."""
-        return self._update_resource(self._model_class, id, **params)
+        carrier_account = self.retrieve(id)
+
+        if carrier_account.get("type") in _UPS_OAUTH_CARRIER_ACCOUNT_TYPES:
+            class_name = "UpsOauthRegistrations"
+        else:
+            class_name = self._model_class
+
+        return self._update_resource(class_name, id, **params)
 
     def delete(self, id: str) -> None:
         """Delete a CarrierAccount."""
@@ -64,5 +75,7 @@ class CarrierAccountService(BaseService):
         """Determines which API endpoint to use for the creation call."""
         if carrier_account_type in _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_WORKFLOWS:
             return "/carrier_accounts/register"
+        elif carrier_account_type in _UPS_OAUTH_CARRIER_ACCOUNT_TYPES:
+            return "/ups_oauth_registrations"
 
         return "/carrier_accounts"

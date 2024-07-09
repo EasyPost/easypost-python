@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"carrier_account": {"type": "UpsAccount", "registration_data": {}}}'
+    body: '{"carrier_account": {"type": "FedexAccount", "registration_data": {}}}'
     headers:
       Accept:
       - '*/*'
@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '68'
+      - '70'
       Content-Type:
       - application/json
       authorization:
@@ -21,22 +21,29 @@ interactions:
   response:
     body:
       string: '{"error": {"code": "UNPROCESSABLE_ENTITY", "message": "The request
-        was understood, but cannot be processed.", "errors": [{"field": "account_number",
-        "message": "must be present and a string"}, {"field": "city", "message": "must
-        be present and a string"}, {"field": "company", "message": "must be present
-        and a string"}, {"field": "country", "message": "must be present and a string"},
-        {"field": "email", "message": "must be present and a string"}, {"field": "name",
-        "message": "must be present and a string"}, {"field": "phone", "message":
-        "must be present and a string"}, {"field": "postal_code", "message": "must
-        be present and a string"}, {"field": "state", "message": "must be present
-        and a string"}, {"field": "street1", "message": "must be present and a string"},
-        {"field": "title", "message": "must be present and a string"}, {"field": "website",
-        "message": "must be present and a string"}]}}'
+        was understood, but cannot be processed.", "errors": [{"field": "shipping_streets",
+        "message": "must be present and a string"}, {"field": "shipping_city", "message":
+        "must be present and a string"}, {"field": "shipping_state", "message": "must
+        be present and a string"}, {"field": "shipping_postal_code", "message": "must
+        be present and a string"}, {"field": "shipping_country_code", "message": "must
+        be present and a string"}, {"field": "corporate_first_name", "message": "must
+        be present and a string"}, {"field": "corporate_last_name", "message": "must
+        be present and a string"}, {"field": "corporate_job_title", "message": "must
+        be present and a string"}, {"field": "corporate_company_name", "message":
+        "must be present and a string"}, {"field": "corporate_phone_number", "message":
+        "must be present and a string"}, {"field": "corporate_email_address", "message":
+        "must be present and a string"}, {"field": "corporate_streets", "message":
+        "must be present and a string"}, {"field": "corporate_city", "message": "must
+        be present and a string"}, {"field": "corporate_state", "message": "must be
+        present and a string"}, {"field": "corporate_postal_code", "message": "must
+        be present and a string"}, {"field": "corporate_country_code", "message":
+        "must be present and a string"}, {"field": "account_number", "message": "must
+        be present and a string"}]}}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '846'
+      - '1347'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -56,21 +63,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - cdb1f665645ead1ce2aabe8300016878
+      - cbf774926685bfece2bc38790027cf8b
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb12nuq
+      - bigweb39nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq a29e4ad05c
-      - intlb1wdc a29e4ad05c
-      - extlb3wdc 5ab12a3ed2
+      - intlb3nuq fa152d4755
+      - extlb1nuq fa152d4755
       x-runtime:
-      - '0.033932'
+      - '0.042392'
       x-version-label:
-      - easypost-202305121849-b449e9bf47-master
+      - easypost-202407031852-b015027e75-master
       x-xss-protection:
       - 1; mode=block
     status:

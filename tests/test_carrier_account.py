@@ -75,13 +75,13 @@ def test_carrier_account_type(prod_client):
 
 @pytest.mark.vcr()
 def test_carrier_account_create_with_custom_workflow(prod_client):
-    """Test register a Carrier Account with custom registration such as FedEx or UPS.
+    """Test registering a Carrier Account with custom workflow.
 
     We purposefully don't pass data here because real data is required for this endpoint
     which we don't have in a test context, simply assert the error matches when no data is passed.
     """
     carrier_account = {
-        "type": "UpsAccount",
+        "type": "FedexAccount",
         "registration_data": {},
     }
 
@@ -93,3 +93,39 @@ def test_carrier_account_create_with_custom_workflow(prod_client):
             [error["field"] == "account_number" and error["message"] == "must be present and a string"]
             for error in error.errors
         )
+
+
+@pytest.mark.vcr()
+def test_carrier_account_create_ups(prod_client):
+    """Test registering a UPS Carrier Account which uses a different URL and schema."""
+    params = {
+        "type": "UpsAccount",
+        "account_number": "123456789",
+    }
+
+    carrier_account = prod_client.carrier_account.create(**params)
+
+    assert isinstance(carrier_account, CarrierAccount)
+    assert str.startswith(carrier_account.id, "ca_")
+    assert carrier_account.type == "UpsAccount"
+
+    prod_client.carrier_account.delete(carrier_account.id)  # Delete the carrier account once it's done being tested.
+
+
+@pytest.mark.vcr()
+def test_carrier_account_update_ups(prod_client):
+    """Test updating a UPS Carrier Account which uses a different URL and schema."""
+    params = {
+        "type": "UpsAccount",
+        "account_number": "123456789",
+    }
+
+    carrier_account = prod_client.carrier_account.create(**params)
+
+    prod_client.carrier_account.update(carrier_account.id, account_number="987654321")
+
+    assert isinstance(carrier_account, CarrierAccount)
+    assert str.startswith(carrier_account.id, "ca_")
+    assert carrier_account.type == "UpsAccount"
+
+    prod_client.carrier_account.delete(carrier_account.id)  # Delete the carrier account once it's done being tested.
