@@ -1,0 +1,90 @@
+interactions:
+- request:
+    body: '{"from_zip": "94107", "to_zip": "90277", "desired_delivery_date": "2024-07-16",
+      "carriers": ["USPS"]}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '101'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/smartrate/deliver_on
+  response:
+    body:
+      string: '{"carriers_without_tint_estimates": null, "desired_delivery_date":
+        "2024-07-16", "from_zip": "94107", "results": [{"carrier": "USPS", "easypost_time_in_transit_data":
+        {"days_in_transit": {"percentile_50": 2, "percentile_75": 2, "percentile_85":
+        2, "percentile_90": 3, "percentile_95": 3, "percentile_97": 4, "percentile_99":
+        7}, "delivery_date_confidence": 0.47, "estimated_transit_days": 1, "ship_on_date":
+        "2024-07-15"}, "service": "express"}, {"carrier": "USPS", "easypost_time_in_transit_data":
+        {"days_in_transit": {"percentile_50": 2, "percentile_75": 3, "percentile_85":
+        4, "percentile_90": 4, "percentile_95": 5, "percentile_97": 5, "percentile_99":
+        9}, "delivery_date_confidence": 0.21, "estimated_transit_days": 3, "ship_on_date":
+        "2024-07-13"}, "service": "groundadvantage"}, {"carrier": "USPS", "easypost_time_in_transit_data":
+        {"days_in_transit": {"percentile_50": 2, "percentile_75": 3, "percentile_85":
+        4, "percentile_90": 4, "percentile_95": 5, "percentile_97": 6, "percentile_99":
+        9}, "delivery_date_confidence": 0.25, "estimated_transit_days": 3, "ship_on_date":
+        "2024-07-13"}, "service": "librarymail"}, {"carrier": "USPS", "easypost_time_in_transit_data":
+        {"days_in_transit": {"percentile_50": 2, "percentile_75": 3, "percentile_85":
+        3, "percentile_90": 4, "percentile_95": 5, "percentile_97": 5, "percentile_99":
+        7}, "delivery_date_confidence": 0.24, "estimated_transit_days": 3, "ship_on_date":
+        "2024-07-13"}, "service": "mediamail"}, {"carrier": "USPS", "easypost_time_in_transit_data":
+        {"days_in_transit": {"percentile_50": 2, "percentile_75": 3, "percentile_85":
+        4, "percentile_90": 4, "percentile_95": 5, "percentile_97": 5, "percentile_99":
+        7}, "delivery_date_confidence": 0.19, "estimated_transit_days": 3, "ship_on_date":
+        "2024-07-13"}, "service": "priority"}], "saturday_delivery": null, "to_zip":
+        "90277"}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '1695'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 67540320668dabdee2ba0376002b9534
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb34nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb4nuq fa152d4755
+      - extlb1nuq fa152d4755
+      x-runtime:
+      - '0.073001'
+      x-version-label:
+      - easypost-202407092027-324ee50b5a-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -153,3 +153,13 @@ class ShipmentService(BaseService):
         response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=wrapped_params)
 
         return convert_to_easypost_object(response=response.get("rates", []))
+
+    def recommend_ship_date(self, id: str, **params) -> List[Dict[str, Any]]:
+        """Retrieve a recommended ship date for an existing Shipment via the Precision Shipping API,
+        based on a specific desired delivery date.
+        """
+        url = f"{self._instance_url(self._model_class, id)}/smartrate/precision_shipping"
+
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
+
+        return convert_to_easypost_object(response=response.get("rates", []))

@@ -344,4 +344,9 @@ def rma_form_options():
 
 @pytest.fixture
 def planned_ship_date():
-    return "2023-12-28"
+    return "2024-07-11"
+
+
+@pytest.fixture
+def desired_delivery_date():
+    return "2024-07-16"
