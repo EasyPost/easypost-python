@@ -29,7 +29,7 @@ class SmartRateService(BaseService):
 
     def recommend_ship_date(self, **params) -> List[Dict[str, Any]]:
         """Retrieve a recommended ship date for each carrier-service level combination via the
-        Smart Deliver On API, based on a specific ship date and origin-destination postal code pair.
+        Smart Deliver On API, based on a specific delivery date and origin-destination postal code pair.
         """
         url = "/smartrate/deliver_on"
 
