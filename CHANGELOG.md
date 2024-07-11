@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v9.3.0 (2024-07-12)
 
 - Adds new `shipment.recommend_ship_date`, `smartrate.recommend_ship_date`, and `smartrate.estimate_delivery_date` functions
 - Routes `UpsAccount`, `UpsMailInnovationsAccount`, and `UpsSurepostAccount` create/update requests to the new `/ups_oauth_registrations` endpoint
