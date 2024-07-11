@@ -18,7 +18,7 @@ def test_smartrate_estimate_delivery_date(
         "carriers": [usps],
     }
 
-    rates = test_client.smartrate.estimate_delivery_date(**params)
+    rates = test_client.smart_rate.estimate_delivery_date(**params)
 
     assert all(entry.get("easypost_time_in_transit_data") for entry in rates["results"])
 
@@ -40,6 +40,6 @@ def test_smartrate_recommend_ship_date(
         "carriers": [usps],
     }
 
-    rates = test_client.smartrate.recommend_ship_date(**params)
+    rates = test_client.smart_rate.recommend_ship_date(**params)
 
     assert all(entry.get("easypost_time_in_transit_data") for entry in rates["results"])

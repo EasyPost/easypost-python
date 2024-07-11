@@ -15,7 +15,7 @@ from easypost.services.base_service import BaseService
 class SmartRateService(BaseService):
     def __init__(self, client):
         self._client = client
-        self._model_class = "Smartrate"
+        self._model_class = "SmartRate"
 
     def estimate_delivery_date(self, **params) -> List[Dict[str, Any]]:
         """Retrieve the estimated delivery date of each carrier-service level combination via the
