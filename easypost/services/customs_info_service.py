@@ -1,11 +1,10 @@
-from easypost.models import CustomsInfo
+from easypost.models.customs_info import CustomsInfo
 from easypost.services.base_service import BaseService
 
 
 class CustomsInfoService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = CustomsInfo.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> CustomsInfo:
         """Create a CustomsInfo."""

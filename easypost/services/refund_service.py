@@ -4,14 +4,13 @@ from typing import (
     Optional,
 )
 
-from easypost.models import Refund
+from easypost.models.refund import Refund
 from easypost.services.base_service import BaseService
 
 
 class RefundService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = Refund.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> Refund:
         """Create a Shipment Refund."""

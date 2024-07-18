@@ -8,10 +8,8 @@ from easypost.errors import (
     FilteringError,
     InvalidParameterError,
 )
-from easypost.models import (
-    Rate,
-    Shipment,
-)
+from easypost.models.rate import Rate
+from easypost.models.shipment import Shipment
 from easypost.util import get_lowest_smart_rate
 
 

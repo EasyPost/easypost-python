@@ -5,7 +5,7 @@ from easypost.constant import (
     NO_MORE_PAGES_ERROR,
 )
 from easypost.errors import ApiError
-from easypost.models import Address
+from easypost.models.address import Address
 
 
 @pytest.mark.vcr()
@@ -26,13 +26,14 @@ def test_address_create_verify(incorrect_address, test_client):
     address = test_client.address.create(**incorrect_address)
 
     assert isinstance(address, Address)
-    assert hasattr(address.verifications, "delivery") is False
+    assert address.verifications.delivery is None
 
     # Creating with verify would make the address and perform verifications
     incorrect_address["verify"] = True
     address = test_client.address.create(**incorrect_address)
 
     assert isinstance(address, Address)
+    assert address.verifications.delivery is not None
     assert address.verifications.delivery.success is False
 
 
@@ -61,13 +62,14 @@ def test_address_create_verify_array(incorrect_address, test_client):
     address = test_client.address.create(**incorrect_address)
 
     assert isinstance(address, Address)
-    assert hasattr(address.verifications, "delivery") is False
+    assert address.verifications.delivery is None
 
     # Creating with verify would make the address and perform verifications
     incorrect_address["verify"] = [True]
     address = test_client.address.create(**incorrect_address)
 
     assert isinstance(address, Address)
+    assert address.verifications.delivery is not None
     assert address.verifications.delivery.success is False
 
 
@@ -94,10 +96,10 @@ def test_address_retrieve(ca_address_1, test_client):
 def test_address_all(page_size, test_client):
     addresses = test_client.address.all(page_size=page_size)
 
-    addresses_array = addresses["addresses"]
+    addresses_array = addresses.addresses
 
     assert len(addresses_array) <= page_size
-    assert addresses["has_more"] is not None
+    assert hasattr(addresses, "has_more")
     assert all(isinstance(address, Address) for address in addresses_array)
 
 

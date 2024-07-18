@@ -4,10 +4,8 @@ from typing import (
 )
 
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.models import (
-    Address,
-    EndShipper,
-)
+from easypost.models.address import Address
+from easypost.models.end_shipper import EndShipper
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -17,9 +15,7 @@ from easypost.services.base_service import BaseService
 
 class EndShipperService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = Address.__name__
-        self._service_class = EndShipper.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> Address:
         """Create an EndShipper."""

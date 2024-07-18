@@ -1,11 +1,10 @@
-from easypost.models import Parcel
+from easypost.models.parcel import Parcel
 from easypost.services.base_service import BaseService
 
 
 class ParcelService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = Parcel.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> Parcel:
         """Create a Parcel."""

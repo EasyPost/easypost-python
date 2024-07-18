@@ -13,7 +13,7 @@ from easypost.constant import (
 )
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.errors import ExternalApiError
-from easypost.models import User
+from easypost.models.user import User
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -23,8 +23,7 @@ from easypost.services.base_service import BaseService
 
 class ReferralCustomerService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = User.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> User:
         """Create a referral customer.

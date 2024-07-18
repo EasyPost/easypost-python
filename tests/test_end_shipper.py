@@ -1,5 +1,5 @@
 import pytest
-from easypost.models import EndShipper
+from easypost.models.end_shipper import EndShipper
 
 
 @pytest.mark.vcr()

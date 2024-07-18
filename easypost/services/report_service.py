@@ -10,7 +10,7 @@ from easypost.constant import (
 )
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.errors import MissingParameterError
-from easypost.models import Report
+from easypost.models.report import Report
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -20,8 +20,7 @@ from easypost.services.base_service import BaseService
 
 class ReportService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = Report.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> Report:
         """Create a Report."""

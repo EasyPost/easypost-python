@@ -1,5 +1,5 @@
 import pytest
-from easypost.models import Rate
+from easypost.models.rate import Rate
 
 
 @pytest.mark.vcr()

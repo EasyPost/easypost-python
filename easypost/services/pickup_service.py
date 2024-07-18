@@ -5,7 +5,7 @@ from typing import (
 )
 
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.models import Pickup
+from easypost.models.pickup import Pickup
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -15,8 +15,7 @@ from easypost.services.base_service import BaseService
 
 class PickupService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = Pickup.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> Pickup:
         """Create a Pickup."""

@@ -1,5 +1,5 @@
 import pytest
-from easypost.models import ApiKey
+from easypost.models.api_key import ApiKey
 
 
 @pytest.mark.vcr()

@@ -9,10 +9,8 @@ from easypost.constant import (
     NO_MORE_PAGES_ERROR,
 )
 from easypost.errors import ApiError
-from easypost.models import (
-    Event,
-    Payload,
-)
+from easypost.models.event import Event
+from easypost.models.payload import Payload
 from easypost.util import receive_event
 
 

@@ -1,5 +1,5 @@
 import pytest
-from easypost.models import CustomsInfo
+from easypost.models.customs_info import CustomsInfo
 
 
 @pytest.mark.vcr()

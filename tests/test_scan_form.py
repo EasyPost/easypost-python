@@ -4,7 +4,7 @@ from easypost.constant import (
     _TEST_FAILED_INTENTIONALLY_ERROR,
     NO_MORE_PAGES_ERROR,
 )
-from easypost.models import ScanForm
+from easypost.models.scan_form import ScanForm
 
 
 @pytest.mark.vcr()

@@ -7,10 +7,8 @@ from typing import (
 from warnings import warn
 
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.models import (
-    ApiKey,
-    User,
-)
+from easypost.models.api_key import ApiKey
+from easypost.models.user import User
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -20,8 +18,7 @@ from easypost.services.base_service import BaseService
 
 class UserService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = User.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> User:
         """Create a User."""

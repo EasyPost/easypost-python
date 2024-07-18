@@ -1,11 +1,10 @@
-from easypost.models import CustomsItem
+from easypost.models.customs_item import CustomsItem
 from easypost.services.base_service import BaseService
 
 
 class CustomsItemService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = CustomsItem.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> CustomsItem:
         """Create a CustomsItem."""

@@ -5,7 +5,7 @@ from easypost.constant import (
     NO_MORE_PAGES_ERROR,
 )
 from easypost.errors import FilteringError
-from easypost.models import Pickup
+from easypost.models.pickup import Pickup
 
 
 @pytest.mark.vcr()

@@ -4,10 +4,8 @@ from easypost.constant import (
     _TEST_FAILED_INTENTIONALLY_ERROR,
     NO_MORE_PAGES_ERROR,
 )
-from easypost.models import (
-    Brand,
-    User,
-)
+from easypost.models.brand import Brand
+from easypost.models.user import User
 
 
 @pytest.mark.vcr()

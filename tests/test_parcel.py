@@ -1,5 +1,5 @@
 import pytest
-from easypost.models import Parcel
+from easypost.models.parcel import Parcel
 
 
 @pytest.mark.vcr()

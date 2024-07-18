@@ -6,7 +6,7 @@ from typing import (
 )
 
 from easypost.constant import _FILTERS_KEY
-from easypost.models import Tracker
+from easypost.models.tracker import Tracker
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -16,8 +16,7 @@ from easypost.services.base_service import BaseService
 
 class TrackerService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = Tracker.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> Tracker:
         """Create a Tracker."""

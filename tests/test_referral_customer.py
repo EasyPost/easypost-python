@@ -7,7 +7,7 @@ from easypost.constant import (
     _TEST_FAILED_INTENTIONALLY_ERROR,
     NO_MORE_PAGES_ERROR,
 )
-from easypost.models import User
+from easypost.models.user import User
 
 
 REFERRAL_CUSTOMER_PROD_API_KEY = os.getenv("REFERRAL_CUSTOMER_PROD_API_KEY", "123")

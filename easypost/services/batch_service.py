@@ -4,82 +4,82 @@ from typing import (
     Optional,
 )
 
-from easypost.easypost_object import convert_to_easypost_object
-from easypost.models import Batch
-from easypost.requestor import (
-    RequestMethod,
-    Requestor,
+from easypost.http import HttpMethod
+from easypost.models.batch import (
+    Batch,
+    BatchCollection,
 )
 from easypost.services.base_service import BaseService
 
 
 class BatchService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = Batch.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> Batch:
         """Create a Batch."""
-        return self._create_resource(self._model_class, **params)
+        endpoint = "batches"
+        method = HttpMethod.POST
 
-    def all(self, **params) -> Dict[str, Any]:
+        return self.request(klass=Batch, method=method, endpoint=endpoint, params=params)
+
+    def all(self, **params) -> BatchCollection:
         """Retrieve a list of Batches."""
-        filters = {
-            "key": "batches",
-        }
+        endpoint = "batches"
+        method = HttpMethod.GET
 
-        return self._all_resources(self._model_class, filters, **params)
+        # TODO: Store the filters
+
+        return self.request(klass=BatchCollection, method=method, endpoint=endpoint, params=params)
 
     def retrieve(self, id: str) -> Batch:
         """Retrieve a Batch."""
-        return self._retrieve_resource(self._model_class, id)
+        endpoint = f"batches/{id}"
+        method = HttpMethod.GET
+
+        return self.request(klass=Batch, method=method, endpoint=endpoint)
 
     def buy(self, id: str, **params) -> Batch:
         """Buy a Batch."""
-        url = f"{self._instance_url(self._model_class, id)}/buy"
+        endpoint = f"batches/{id}/buy"
+        method = HttpMethod.POST
 
-        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
-
-        return convert_to_easypost_object(response=response)
+        return self.request(klass=Batch, method=method, endpoint=endpoint, params=params)
 
     def label(self, id: str, **params) -> Batch:
         """Create a Batch label."""
-        url = f"{self._instance_url(self._model_class, id)}/label"
+        endpoint = f"batches/{id}/label"
+        method = HttpMethod.POST
 
-        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
-
-        return convert_to_easypost_object(response=response)
+        return self.request(klass=Batch, method=method, endpoint=endpoint, params=params)
 
     def remove_shipments(self, id: str, **params) -> Batch:
         """Remove Shipments from a Batch."""
-        url = f"{self._instance_url(self._model_class, id)}/remove_shipments"
+        endpoint = f"batches/{id}/remove_shipments"
+        method = HttpMethod.POST
 
-        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
-
-        return convert_to_easypost_object(response=response)
+        return self.request(klass=Batch, method=method, endpoint=endpoint, params=params)
 
     def add_shipments(self, id: str, **params) -> Batch:
         """Add Shipments to a Batch."""
-        url = f"{self._instance_url(self._model_class, id)}/add_shipments"
+        endpoint = f"batches/{id}/add_shipments"
+        method = HttpMethod.POST
 
-        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
-
-        return convert_to_easypost_object(response=response)
+        return self.request(klass=Batch, method=method, endpoint=endpoint, params=params)
 
     def create_scan_form(self, id: str, **params) -> Batch:
         """Create a ScanForm for a Batch."""
-        url = f"{self._instance_url(self._model_class, id)}/scan_form"
+        endpoint = f"batches/{id}/scan_form"
+        method = HttpMethod.POST
 
-        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
-
-        return convert_to_easypost_object(response=response)
+        return self.request(klass=Batch, method=method, endpoint=endpoint, params=params)
 
     def get_next_page(
         self,
         batches: Dict[str, Any],
         page_size: int,
         optional_params: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+    ) -> BatchCollection:
         """
         Retrieve the next page of the list Batch response.
 

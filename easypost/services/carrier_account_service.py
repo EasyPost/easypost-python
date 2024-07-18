@@ -11,7 +11,7 @@ from easypost.constant import (
 )
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.errors import MissingParameterError
-from easypost.models import CarrierAccount
+from easypost.models.carrier_account import CarrierAccount
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -21,8 +21,7 @@ from easypost.services.base_service import BaseService
 
 class CarrierAccountService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = CarrierAccount.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> CarrierAccount:
         """Create a CarrierAccount."""

@@ -1,5 +1,5 @@
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.models import Order
+from easypost.models.order import Order
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -9,8 +9,7 @@ from easypost.services.base_service import BaseService
 
 class OrderService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = Order.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> Order:
         """Create an Order."""

@@ -5,7 +5,7 @@ from typing import (
 )
 
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.models import Insurance
+from easypost.models.insurance import Insurance
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -15,8 +15,7 @@ from easypost.services.base_service import BaseService
 
 class InsuranceService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = Insurance.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> Insurance:
         """Create an Insurance."""

@@ -15,7 +15,7 @@ from easypost.services.base_service import BaseService
 
 class CarrierMetadataService(BaseService):
     def __init__(self, client):
-        self._client = client
+        super().__init__(client=client)
 
     def retrieve(
         self,

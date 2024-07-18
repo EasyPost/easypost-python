@@ -3,7 +3,7 @@ import os
 import time
 
 import pytest
-from easypost.models import Batch
+from easypost.models.batch import Batch
 
 
 @pytest.mark.vcr()

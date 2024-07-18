@@ -7,7 +7,8 @@ from typing import (
 from easypost.constant import NO_USER_FOUND
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.errors import FilteringError
-from easypost.models import ApiKey
+from easypost.http import HttpMethod
+from easypost.models.api_key import ApiKey
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -17,16 +18,14 @@ from easypost.services.base_service import BaseService
 
 class ApiKeyService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = ApiKey.__name__
+        super().__init__(client=client)
 
     def all(self) -> Dict[str, Any]:
         """Retrieve a list of all API keys."""
-        url = "/api_keys"
+        endpoint = "api_keys"
+        method = HttpMethod.GET
 
-        response = Requestor(self._client).request(method=RequestMethod.GET, url=url)
-
-        return convert_to_easypost_object(response=response)
+        return self.request(klass=ApiKey, method=method, endpoint=endpoint)
 
     def retrieve_api_keys_for_user(self, id: str) -> List[ApiKey]:
         """Retrieve a list of API keys (works for the authenticated User or a child User)."""

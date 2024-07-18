@@ -10,7 +10,6 @@ from easypost.constant import (
 )
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.errors import InvalidObjectError
-from easypost.models import Billing
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -20,8 +19,7 @@ from easypost.services.base_service import BaseService
 
 class BillingService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = Billing.__name__
+        super().__init__(client=client)
 
     def fund_wallet(self, amount: str, priority: str = "primary") -> None:
         """Fund your EasyPost wallet by charging your primary or secondary payment method on file."""

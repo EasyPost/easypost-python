@@ -4,14 +4,13 @@ from typing import (
     Optional,
 )
 
-from easypost.models import ScanForm
+from easypost.models.scan_form import ScanForm
 from easypost.services.base_service import BaseService
 
 
 class ScanFormService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = ScanForm.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> ScanForm:
         """Create a ScanForm."""

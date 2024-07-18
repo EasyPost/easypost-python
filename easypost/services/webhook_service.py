@@ -3,14 +3,13 @@ from typing import (
     Dict,
 )
 
-from easypost.models import Webhook
+from easypost.models.webhook import Webhook
 from easypost.services.base_service import BaseService
 
 
 class WebhookService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = Webhook.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> Webhook:
         """Create a Webhook."""

@@ -7,10 +7,8 @@ from typing import (
 
 from easypost.constant import _FILTERS_KEY
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.models import (
-    Rate,
-    Shipment,
-)
+from easypost.models.rate import Rate
+from easypost.models.shipment import Shipment
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -21,8 +19,7 @@ from easypost.util import get_lowest_smart_rate
 
 class ShipmentService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = Shipment.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> Shipment:
         """Create a Shipment."""

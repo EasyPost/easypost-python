@@ -4,7 +4,7 @@ from easypost.constant import (
     _TEST_FAILED_INTENTIONALLY_ERROR,
     NO_MORE_PAGES_ERROR,
 )
-from easypost.models import Tracker
+from easypost.models.tracker import Tracker
 
 
 @pytest.mark.vcr()

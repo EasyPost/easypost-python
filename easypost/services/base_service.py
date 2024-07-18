@@ -1,4 +1,3 @@
-import re
 from typing import (
     Any,
     Dict,
@@ -9,8 +8,10 @@ from easypost.constant import (
     _FILTERS_KEY,
     NO_MORE_PAGES_ERROR,
 )
+from easypost.easypost_client import ApiVersion
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.errors import EndOfPaginationError
+from easypost.http import HttpMethod
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -20,24 +21,27 @@ from easypost.requestor import (
 class BaseService:
     """The base service that all other services inherit containing shared logic."""
 
-    def __init__(self, client):
-        self._client = client
+    def __init__(self, client: "EasyPostClient"):
+        self._client: "EasyPostClient" = client
 
-    def _snakecase_name(self, class_name: str) -> str:
-        """Return the class name as snake_case."""
-        return re.sub(r"(?<!^)(?=[A-Z])", "_", class_name).lower()
-
-    def _class_url(self, class_name: str) -> str:
-        """Generate a URL based on class name."""
-        transformed_class_name = self._snakecase_name(class_name)
-        if transformed_class_name[-1:] in ("s", "h"):
-            return f"/{transformed_class_name}es"
-        else:
-            return f"/{transformed_class_name}s"
-
-    def _instance_url(self, class_name: str, id: str) -> str:
-        """Generate an instance URL based on a class name and ID."""
-        return f"{self._class_url(class_name)}/{id}"
+    def request(
+        self,
+        klass: type,
+        method: HttpMethod,
+        endpoint: str,
+        params: Optional[Dict[str, Any]] = None,
+        root_key: Optional[str] = None,
+        override_api_version: Optional[ApiVersion] = None,
+    ) -> Any:
+        """Make a request to the EasyPost API."""
+        return self._client.request(
+            klass=klass,
+            method=method,
+            endpoint=endpoint,
+            params=params,
+            root_key=root_key,
+            override_api_version=override_api_version,
+        )
 
     def _create_resource(self, class_name: str, **params) -> Any:
         """Create an EasyPost object via the EasyPost API."""

@@ -5,10 +5,8 @@ from typing import (
 )
 
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.models import (
-    Event,
-    Payload,
-)
+from easypost.models.event import Event
+from easypost.models.payload import Payload
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -18,8 +16,7 @@ from easypost.services.base_service import BaseService
 
 class EventService(BaseService):
     def __init__(self, client):
-        self._client = client
-        self._model_class = Event.__name__
+        super().__init__(client=client)
 
     def create(self, **params) -> Event:
         """Create an Event."""

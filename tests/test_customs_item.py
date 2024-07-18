@@ -1,5 +1,5 @@
 import pytest
-from easypost.models import CustomsItem
+from easypost.models.customs_item import CustomsItem
 
 
 @pytest.mark.vcr()

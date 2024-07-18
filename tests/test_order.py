@@ -1,9 +1,7 @@
 import pytest
 from easypost.errors import FilteringError
-from easypost.models import (
-    Order,
-    Rate,
-)
+from easypost.models.order import Order
+from easypost.models.rate import Rate
 
 
 @pytest.mark.vcr()
