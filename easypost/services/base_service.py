@@ -42,47 +42,47 @@ class BaseService:
         """Generate an instance URL based on a class name and ID."""
         return f"{self._class_url(class_name)}/{id}"
 
-    def _create_resource(self, class_name: str, **params) -> Any:
+    def _create_resource(self, class_name: str, beta: bool = False, **params) -> Any:
         """Create an EasyPost object via the EasyPost API."""
         url = self._class_url(class_name)
         wrapped_params = {self._snakecase_name(class_name): params}
 
-        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params, beta=beta)
 
         return convert_to_easypost_object(response=response)
 
-    def _all_resources(self, class_name: str, filters: Optional[Dict[str, Any]] = None, **params) -> Any:
+    def _all_resources(self, class_name: str, filters: Optional[Dict[str, Any]] = None, beta: bool = False, **params) -> Any:
         """Retrieve a list of EasyPostObjects from the EasyPost API."""
         url = self._class_url(class_name)
-        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params, beta=beta)
 
         if filters:  # presence of filters indicates we are dealing with a paginated response
             response[_FILTERS_KEY] = filters  # Save the filters used to reference in potential get_next_page call
 
         return convert_to_easypost_object(response=response)
 
-    def _retrieve_resource(self, class_name: str, id: str) -> Any:
+    def _retrieve_resource(self, class_name: str, id: str, beta: bool = False) -> Any:
         """Retrieve an object from the EasyPost API."""
         url = self._instance_url(class_name, id)
 
-        response = Requestor(self._client).request(method=RequestMethod.GET, url=url)
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, beta=beta)
 
         return convert_to_easypost_object(response=response)
 
-    def _update_resource(self, class_name: str, id: str, method: RequestMethod = RequestMethod.PATCH, **params) -> Any:
+    def _update_resource(self, class_name: str, id: str, method: RequestMethod = RequestMethod.PATCH, beta: bool = False, **params) -> Any:
         """Update an EasyPost object via the EasyPost API."""
         url = self._instance_url(class_name, id)
         wrapped_params = {self._snakecase_name(class_name): params}
 
-        response = Requestor(self._client).request(method=method, url=url, params=wrapped_params)
+        response = Requestor(self._client).request(method=method, url=url, params=wrapped_params, beta=beta)
 
         return convert_to_easypost_object(response=response)
 
-    def _delete_resource(self, class_name: str, id: str) -> Any:
+    def _delete_resource(self, class_name: str, id: str, beta: bool = False) -> Any:
         """Delete an EasyPost object via the EasyPost API."""
         url = self._instance_url(class_name, id)
 
-        response = Requestor(self._client).request(method=RequestMethod.DELETE, url=url)
+        response = Requestor(self._client).request(method=RequestMethod.DELETE, url=url, beta=beta)
 
         return convert_to_easypost_object(response=response)
 

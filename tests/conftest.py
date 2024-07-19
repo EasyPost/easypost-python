@@ -10,8 +10,8 @@ from typing import (
 )
 
 import pytest
-from easypost.easypost_client import EasyPostClient
 
+from easypost.easypost_client import EasyPostClient
 
 EASYPOST_TEST_API_KEY = os.getenv("EASYPOST_TEST_API_KEY")
 EASYPOST_PROD_API_KEY = os.getenv("EASYPOST_PROD_API_KEY")
@@ -304,6 +304,13 @@ def basic_carrier_account():
 def basic_insurance():
     """This fixture will require you to append a `tracking_code` key with the shipment's tracking code."""
     return read_fixture_data()["insurances"]["basic"]
+
+
+@pytest.fixture
+def basic_claim():
+    """This fixture will require you to append a `tracking_code` key with the shipment's tracking code,
+    and a `amount` key with the insurance amount."""
+    return read_fixture_data()["claims"]["basic"]
 
 
 @pytest.fixture

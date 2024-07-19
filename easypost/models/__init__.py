@@ -5,6 +5,7 @@ from easypost.models.batch import Batch
 from easypost.models.billing import Billing
 from easypost.models.brand import Brand
 from easypost.models.carrier_account import CarrierAccount
+from easypost.models.claim import Claim
 from easypost.models.customs_info import CustomsInfo
 from easypost.models.customs_item import CustomsItem
 from easypost.models.end_shipper import EndShipper

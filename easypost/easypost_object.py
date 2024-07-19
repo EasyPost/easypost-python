@@ -18,6 +18,7 @@ EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP: Dict[str, Any] = {
     "brd": "Brand",
     "ca": "CarrierAccount",
     "cfrep": "Report",
+    "clm": "Claim",
     "cstinfo": "CustomsInfo",
     "cstitem": "CustomsItem",
     "es": "EndShipper",

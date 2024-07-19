@@ -1,0 +1,105 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/beta/claims?page_size=5
+  response:
+    body:
+      string: '{"claims": [{"approved_amount": null, "attachments": ["https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240718/1a9f84376e1a4afcba7fb4c60ffc9402.png",
+        "https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240718/7e58fa152dc7446e9dc6959d03d216fe.png",
+        "https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240718/1f3ba9cae53444579df05405310e8a97.png"],
+        "check_delivery_address": null, "contact_email": "test@example.com", "created_at":
+        "2024-07-18T21:41:13", "description": "Test description", "history": [{"status":
+        "submitted", "status_detail": "Claim was created.", "timestamp": "2024-07-18T21:41:13"}],
+        "id": "clm_097dd0b1b06d4cea92d5493c26c2b0a4", "insurance_amount": "100.00",
+        "insurance_id": "ins_8fa0759538ba4630a1bcd7d65a72a0fe", "mode": "test", "object":
+        "Claim", "payment_method": "easypost_wallet", "recipient_name": null, "requested_amount":
+        "100.00", "salvage_value": null, "shipment_id": "shp_f9dd8b8ad442489f9b7334d957892609",
+        "status": "submitted", "status_detail": "Claim was created.", "status_timestamp":
+        "2024-07-18T21:41:13", "tracking_code": "9400100110368063699336", "type":
+        "damage", "updated_at": "2024-07-18T21:41:13"}, {"approved_amount": null,
+        "attachments": ["https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240718/74b7dae47c5349a4876837984aade087.png",
+        "https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240718/295f8c97f6cb4a72a0b302296e5b08b5.png",
+        "https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240718/7034ce5274e948faa541e7aee1c90deb.png"],
+        "check_delivery_address": null, "contact_email": "test@example.com", "created_at":
+        "2024-07-18T21:36:31", "description": "Test description", "history": [{"status":
+        "submitted", "status_detail": "Claim was created.", "timestamp": "2024-07-18T21:36:31"}],
+        "id": "clm_097dd2d0c5f944f7b51924422f6341b7", "insurance_amount": "100.00",
+        "insurance_id": "ins_26eed360e3dc4b2095263f1af0435892", "mode": "test", "object":
+        "Claim", "payment_method": "easypost_wallet", "recipient_name": null, "requested_amount":
+        "100.00", "salvage_value": null, "shipment_id": "shp_100e485b59294ece94b66f0a6427f032",
+        "status": "submitted", "status_detail": "Claim was created.", "status_timestamp":
+        "2024-07-18T21:36:31", "tracking_code": "9400100110368063698216", "type":
+        "damage", "updated_at": "2024-07-18T21:36:31"}, {"approved_amount": null,
+        "attachments": ["https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240718/a169ac0ffa1d46dcb56118f0b5c02bcc.png",
+        "https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240718/d32b135079e944ceb558eb8a24151346.png",
+        "https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240718/f4712df4d9bc448b85d68d1c3fdd3fb4.png"],
+        "check_delivery_address": null, "contact_email": "test@example.com", "created_at":
+        "2024-07-18T21:25:33", "description": "Test description", "history": [{"status":
+        "submitted", "status_detail": "Claim was created.", "timestamp": "2024-07-18T21:25:33"}],
+        "id": "clm_097d7a0ce4274578896ea9b65a9f5d2b", "insurance_amount": "100.00",
+        "insurance_id": "ins_4ac7b08d2bd34ad28f017f72b04b820e", "mode": "test", "object":
+        "Claim", "payment_method": "easypost_wallet", "recipient_name": null, "requested_amount":
+        "100.00", "salvage_value": null, "shipment_id": "shp_be019d9828b84bbc8d33e211a55b1c08",
+        "status": "submitted", "status_detail": "Claim was created.", "status_timestamp":
+        "2024-07-18T21:25:33", "tracking_code": "9400100110368063695628", "type":
+        "damage", "updated_at": "2024-07-18T21:25:33"}], "has_more": false}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '3363'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      x-backend:
+      - easypost
+      x-canary:
+      - direct
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - bfd174a766998c03e789f5c1002f4d69
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb43nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb4nuq 4e1e840afe
+      - extlb2nuq fa152d4755
+      x-runtime:
+      - '0.044147'
+      x-version-label:
+      - easypost-202407182129-c0d97eb024-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
