@@ -51,7 +51,9 @@ class BaseService:
 
         return convert_to_easypost_object(response=response)
 
-    def _all_resources(self, class_name: str, filters: Optional[Dict[str, Any]] = None, beta: bool = False, **params) -> Any:
+    def _all_resources(
+        self, class_name: str, filters: Optional[Dict[str, Any]] = None, beta: bool = False, **params
+    ) -> Any:
         """Retrieve a list of EasyPostObjects from the EasyPost API."""
         url = self._class_url(class_name)
         response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params, beta=beta)
@@ -69,7 +71,9 @@ class BaseService:
 
         return convert_to_easypost_object(response=response)
 
-    def _update_resource(self, class_name: str, id: str, method: RequestMethod = RequestMethod.PATCH, beta: bool = False, **params) -> Any:
+    def _update_resource(
+        self, class_name: str, id: str, method: RequestMethod = RequestMethod.PATCH, beta: bool = False, **params
+    ) -> Any:
         """Update an EasyPost object via the EasyPost API."""
         url = self._instance_url(class_name, id)
         wrapped_params = {self._snakecase_name(class_name): params}
