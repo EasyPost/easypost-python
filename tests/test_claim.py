@@ -4,10 +4,7 @@ from easypost.constant import (
     _TEST_FAILED_INTENTIONALLY_ERROR,
     NO_MORE_PAGES_ERROR,
 )
-from easypost.models import (
-    Claim,
-    Shipment,
-)
+from easypost.models import Claim, Shipment
 
 
 def _prepare_insured_shipment(client, shipment_data, claim_amount) -> Shipment:
@@ -17,7 +14,6 @@ def _prepare_insured_shipment(client, shipment_data, claim_amount) -> Shipment:
     _ = client.shipment.insure(shipment.id, amount=claim_amount)
 
     return purchased_shipment
-
 
 @pytest.mark.vcr()
 def test_claim_create(full_shipment, basic_claim, test_client):
@@ -39,7 +35,7 @@ def test_claim_create(full_shipment, basic_claim, test_client):
 @pytest.mark.vcr()
 def test_claim_retrieve(full_shipment, basic_claim, test_client):
     claim_amount = "100.00"
-
+    
     insured_shipment = _prepare_insured_shipment(test_client, full_shipment, claim_amount)
 
     claim_data = basic_claim
@@ -82,3 +78,23 @@ def test_claim_get_next_page(page_size, test_client):
     except Exception as e:
         if e.message != NO_MORE_PAGES_ERROR:
             raise Exception(_TEST_FAILED_INTENTIONALLY_ERROR)
+
+
+@pytest.mark.vcr()
+def test_claim_cancel(test_client, full_shipment, basic_claim):
+    claim_amount = "100.00"
+
+    insured_shipment = _prepare_insured_shipment(test_client, full_shipment, claim_amount)
+
+    claim_data = basic_claim
+    claim_data["tracking_code"] = insured_shipment.tracking_code
+    claim_data["amount"] = claim_amount
+
+    claim = test_client.claim.create(**claim_data)
+    
+    cancelled_claim = test_client.claim.cancel(id=claim.id)
+
+    assert isinstance(cancelled_claim, Claim)
+    assert str.startswith(cancelled_claim.id, "clm_")
+    assert cancelled_claim.status == "cancelled"
+    assert cancelled_claim.messages[0] == "Insurance was cancelled by the user."

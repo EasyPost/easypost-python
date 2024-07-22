@@ -10,8 +10,8 @@ from typing import (
 )
 
 import pytest
-from easypost.easypost_client import EasyPostClient
 
+from easypost.easypost_client import EasyPostClient
 
 EASYPOST_TEST_API_KEY = os.getenv("EASYPOST_TEST_API_KEY")
 EASYPOST_PROD_API_KEY = os.getenv("EASYPOST_PROD_API_KEY")
