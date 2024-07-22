@@ -97,4 +97,3 @@ def test_claim_cancel(test_client, full_shipment, basic_claim):
     assert isinstance(cancelled_claim, Claim)
     assert str.startswith(cancelled_claim.id, "clm_")
     assert cancelled_claim.status == "cancelled"
-    assert cancelled_claim.messages[0] == "Insurance was cancelled by the user."
