@@ -307,6 +307,13 @@ def basic_insurance():
 
 
 @pytest.fixture
+def basic_claim():
+    """This fixture will require you to append a `tracking_code` key with the shipment's tracking code,
+    and a `amount` key with the insurance amount."""
+    return read_fixture_data()["claims"]["basic"]
+
+
+@pytest.fixture
 def basic_order():
     return read_fixture_data()["orders"]["basic"]
 
