@@ -22,7 +22,7 @@ class ClaimService(BaseService):
         """Create a Claim."""
         url = "/claims"
 
-        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params, beta=True)
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params, beta=False)
 
         return convert_to_easypost_object(response=response)
 
@@ -32,11 +32,11 @@ class ClaimService(BaseService):
             "key": "claims",
         }
 
-        return self._all_resources(class_name=self._model_class, filters=filters, beta=True, **params)
+        return self._all_resources(class_name=self._model_class, filters=filters, beta=False, **params)
 
     def retrieve(self, id: str) -> Claim:
         """Retrieve a Claim."""
-        return self._retrieve_resource(class_name=self._model_class, id=id, beta=True)
+        return self._retrieve_resource(class_name=self._model_class, id=id, beta=False)
 
     def get_next_page(
         self,
@@ -64,7 +64,7 @@ class ClaimService(BaseService):
         response = Requestor(self._client).request(
             method=RequestMethod.POST,
             url=url,
-            beta=True,
+            beta=False,
         )
 
         return convert_to_easypost_object(response=response)
