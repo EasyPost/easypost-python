@@ -139,7 +139,7 @@ class UserService(BaseService):
         self._check_has_next_page(collection=children)
 
         params = {
-            "before_id": children["children"][-1].id,
+            "after_id": children["children"][-1].id,
             "page_size": page_size,
         }
 

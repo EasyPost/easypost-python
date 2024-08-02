@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Fix `get_next_page_of_children` function for User service with correct filter key
+
 ## v9.4.0 (2024-07-24)
 
 - Adds new `Claim` service for filing claims on EasyPost shipments and insurances

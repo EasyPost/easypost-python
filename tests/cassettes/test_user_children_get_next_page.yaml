@@ -24,12 +24,18 @@ interactions:
         "<REDACTED>", "verified": true, "created_at": "2023-09-27T22:05:26Z"}, {"id":
         "user_f04df3dad13848339a7975d295d6629f", "object": "User", "parent_id": "user_0f6b83e3530b401cb1e8aeaa6a250d4d",
         "name": "Test User", "phone_number": "<REDACTED>", "verified": true, "created_at":
-        "2023-11-30T19:23:22Z"}], "has_more": false}'
+        "2023-11-30T19:23:22Z"}, {"id": "user_44d216445b2f4595a123a18084000d94", "object":
+        "User", "parent_id": "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test
+        User", "phone_number": "<REDACTED>", "verified": true, "created_at": "2024-07-26T18:36:54Z"},
+        {"id": "user_f3b7021a2d924bedb080d7caa00d753e", "object": "User", "parent_id":
+        "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test User", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2024-07-26T18:41:48Z"}], "has_more":
+        true}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '673'
+      - '1100'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -49,20 +55,95 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 3c78c4046596fc51e799f2850005aaa2
+      - 0af7a3d566abfc23e787564900271db7
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb41nuq
+      - bigweb36nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq 2c48984abf
-      - extlb2nuq 003ad9bca0
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       x-runtime:
-      - '0.046039'
+      - '0.028399'
       x-version-label:
-      - easypost-202401041812-437974c716-master
+      - easypost-202408012013-135f8f9b76-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/users/children?after_id=user_f3b7021a2d924bedb080d7caa00d753e&page_size=5
+  response:
+    body:
+      string: '{"children": [{"id": "user_327a26c77be24e24b165450e7c0de3b9", "object":
+        "User", "parent_id": "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test
+        User", "phone_number": "<REDACTED>", "verified": true, "created_at": "2024-07-26T19:08:21Z"},
+        {"id": "user_acfa6f7268d14e449edd1fe6f4ab64cc", "object": "User", "parent_id":
+        "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test User", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2024-07-29T17:41:32Z"}, {"id":
+        "user_4b066506d76940aeb28943506eb76941", "object": "User", "parent_id": "user_0f6b83e3530b401cb1e8aeaa6a250d4d",
+        "name": "Test User", "phone_number": "<REDACTED>", "verified": true, "created_at":
+        "2024-07-29T17:46:31Z"}, {"id": "user_48b7c8e5981647a8aee52aa1cb910280", "object":
+        "User", "parent_id": "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test
+        User", "phone_number": "<REDACTED>", "verified": true, "created_at": "2024-07-29T18:07:19Z"},
+        {"id": "user_dc18fb938f184bfd8f345d7fb1469130", "object": "User", "parent_id":
+        "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test User", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2024-07-29T21:45:16Z"}], "has_more":
+        true}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '1100'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 0af7a3d566abfc23e787564900271dd8
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb33nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb4nuq c0f5e722d1
+      - extlb2nuq fa152d4755
+      x-runtime:
+      - '0.032033'
+      x-version-label:
+      - easypost-202408012013-135f8f9b76-master
       x-xss-protection:
       - 1; mode=block
     status:
