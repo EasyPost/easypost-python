@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v9.4.1 (2024-08-09)
 
 - Fix `get_next_page_of_children` function for User service with correct filter key
 
