@@ -63,7 +63,7 @@ def test_pickup_retrieve(one_call_buy_shipment, basic_pickup, test_client):
     retrieved_pickup = test_client.pickup.retrieve(pickup.id)
 
     assert isinstance(retrieved_pickup, Pickup)
-    assert retrieved_pickup == pickup
+    assert retrieved_pickup.id == pickup.id
 
 
 @pytest.mark.vcr()

@@ -15,7 +15,7 @@ def test_beta_referral_customer_add_payment_method(referral_customer_prod_client
             priority="primary",
         )
 
-    assert str(error.value) == "Invalid Payment Gateway Reference."
+    assert str(error.value) == "Invalid connect integration."
 
 
 @pytest.mark.vcr()

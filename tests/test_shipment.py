@@ -204,7 +204,7 @@ def test_shipment_lowest_rate(full_shipment, test_client):
     # Test lowest rate with service filter (this rate is higher than the lowest but should filter)
     lowest_rate_service = shipment.lowest_rate(services=["Priority"])
     assert lowest_rate_service.service == "Priority"
-    assert lowest_rate_service.rate == "6.95"
+    assert lowest_rate_service.rate == "6.90"
     assert lowest_rate_service.carrier == "USPS"
 
     # Test lowest rate with carrier filter (should error due to bad carrier)

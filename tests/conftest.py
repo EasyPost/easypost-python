@@ -219,11 +219,6 @@ def report_date():
 
 
 @pytest.fixture
-def webhook_url():
-    return read_fixture_data()["webhook_url"]
-
-
-@pytest.fixture
 def ca_address_1():
     return read_fixture_data()["addresses"]["ca_address_1"]
 
@@ -269,7 +264,14 @@ def full_shipment():
 
 
 @pytest.fixture
-def one_call_buy_shipment(ca_address_1, ca_address_2, basic_parcel, usps_service, usps_carrier_account_id, usps):
+def one_call_buy_shipment(
+    ca_address_1,
+    ca_address_2,
+    basic_parcel,
+    usps_service,
+    usps_carrier_account_id,
+    usps,
+):
     return {
         "to_address": ca_address_1,
         "from_address": ca_address_2,
@@ -286,7 +288,7 @@ def basic_pickup():
     If you need to re-record cassettes, increment the date below and ensure it is one day in the future,
     USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
     """
-    pickup_date = "2023-12-17"
+    pickup_date = "2024-08-17"
 
     pickup_data = read_fixture_data()["pickups"]["basic"]
     pickup_data["min_datetime"] = pickup_date
@@ -335,6 +337,21 @@ def event_bytes():
 
 
 @pytest.fixture
+def webhook_hmac_signature():
+    return read_fixture_data()["webhook_hmac_signature"]
+
+
+@pytest.fixture
+def webhook_secret():
+    return read_fixture_data()["webhook_secret"]
+
+
+@pytest.fixture
+def webhook_url():
+    return read_fixture_data()["webhook_url"]
+
+
+@pytest.fixture
 def credit_card_details():
     """The credit card details below are for a valid proxy card usable
     for tests only and cannot be used for real transactions.
@@ -351,9 +368,9 @@ def rma_form_options():
 
 @pytest.fixture
 def planned_ship_date():
-    return "2024-07-11"
+    return "2024-08-15"
 
 
 @pytest.fixture
 def desired_delivery_date():
-    return "2024-07-16"
+    return "2024-08-18"

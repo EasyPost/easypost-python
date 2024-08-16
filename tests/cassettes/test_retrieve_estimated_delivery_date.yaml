@@ -26,346 +26,93 @@ interactions:
     uri: https://api.easypost.com/v2/shipments
   response:
     body:
-      string: '{"created_at": "2024-07-09T21:12:46Z", "is_return": false, "messages":
-        [{"carrier": "DHLExpress", "carrier_account_id": "ca_2b428229ad214147a2ec13c4faf18934",
-        "type": "rate_error", "message": "Unable to retrieve DHLExpress rates for
-        US domestic shipments."}, {"carrier": "AustraliaPost", "carrier_account_id":
-        "ca_3b84ac568d7444759b77d1f2f2c05d7a", "type": "rate_error", "message": "Unable
-        to retrieve AustraliaPost rates for non-AU origin address."}, {"carrier":
-        "ParcelForce", "carrier_account_id": "ca_a32ed104ca784c25b25f19d7c28191c3",
-        "type": "rate_error", "message": "Unable to retrieve ParcelForce rates for
-        non-GB origin address."}, {"carrier": "Canpar", "carrier_account_id": "ca_32c1bc2cb75e45f19cff9fd047204f6e",
-        "type": "rate_error", "message": "Unable to retrieve Canpar rates for non-CA
-        origin shipments."}, {"carrier": "LoomisExpress", "carrier_account_id": "ca_63fb7c3dd56c410085454c5a79bc545f",
-        "type": "rate_error", "message": "Unable to retrieve LoomisExpress rates for
-        non-CA origin address."}, {"carrier": "RoyalMail", "carrier_account_id": "ca_f80ce1217c0b4f9b82d566b88dc1a6bd",
-        "type": "rate_error", "message": "Unable to retrieve RoyalMail rates for non-GB
-        origin address."}, {"type": "rate_error", "carrier": "OnTrac", "message":
-        "credentials.account_number: Required"}, {"type": "rate_error", "carrier":
-        "LSO", "message": "credentials.username: Required"}, {"type": "rate_error",
-        "carrier": "LSO", "message": "credentials.password: Required"}, {"type": "rate_error",
-        "carrier": "Purolator", "message": "shipment.from_address.country: All shipments
-        must originate in Canada (CA)."}, {"type": "rate_error", "carrier": "Purolator",
-        "message": "shipment.return_address.country: All shipments must originate
-        in Canada (CA)."}, {"carrier": "CouriersPlease", "carrier_account_id": "ca_6c70860c1edd46c69394beee4e02765f",
-        "type": "rate_error", "message": "credentials.username: field required and
-        credentials.password: field required"}, {"carrier": "AmazonMws", "carrier_account_id":
-        "ca_96d47560a4e748149f7ecc9bbbbe69b4", "type": "rate_error", "message": "shipment.options.fulfiller_order_id:
-        Required and shipment.options.fulfiller_order_items: Required"}, {"carrier":
-        "CanadaPost", "carrier_account_id": "ca_c4d49f6f47c94dfcba93f761f79ad2d8",
-        "type": "rate_error", "message": "[''Unable to get rates for shipments originating
-        outside of Canada.'']"}, {"carrier": "LaserShipV2", "carrier_account_id":
-        "ca_6e70924a6c6248c2b73bc7c8949e8849", "type": "rate_error", "message": "shipment.options.dropoff_max_datetime:
-        field required"}, {"carrier": "LaserShip", "carrier_account_id": "ca_6d2f96c3dfce4c75bd13ee030410ae4d",
-        "type": "rate_error", "message": "No rates found. The shipment may be outside
-        of the service area, or you may need to provide your sort codes and rates
-        to EasyPost."}, {"carrier": "Veho", "carrier_account_id": "ca_e683eaf9405643a8823ef18b4e5f3742",
-        "type": "rate_error", "message": "shipment.to_address.zip: Can only ship/pickup
-        within Denver, Dallas-Fort Worth, or Chicago."}, {"carrier": "CourierExpress",
-        "carrier_account_id": "ca_f18d04c61d2546a68d7cd171960cb0b8", "type": "rate_error",
-        "message": "shipment.to_address: Courier Express only services the following
-        states: [''AL'', ''FL'', ''GA'', ''KY'', ''MS'', ''NC'', ''SC'', ''TN'', ''VA'']."},
-        {"carrier": "ColumbusLastMile", "carrier_account_id": "ca_a4524802c56348d1a274f879bbaf8f78",
-        "type": "rate_error", "message": "Not a valid destination postal code"}, {"carrier":
-        "Estafeta", "carrier_account_id": "ca_38a0fca99c294d4d9d789b3a4b660a4b", "type":
-        "rate_error", "message": "shipment.from_address.street1: street1 must have
-        the format ''<street type> <street name> <building number>'', shipment.from_address.street2:
-        street2 must have the format ''[<optional_inside_information>] Col. <colonia
-        name>'', shipment.from_address.country: Only domestic shipments are supported
-        for Estafeta, shipment.to_address.street1: street1 must have the format ''<street
-        type> <street name> <building number>'', shipment.to_address.street2: field
-        required, and shipment.to_address.country: Only domestic shipments are supported
-        for Estafeta"}, {"carrier": "UPS", "carrier_account_id": "ca_10677005f7e444c299088666025e3cdc",
-        "type": "rate_error", "message": "Invalid Credentials. Ups Account Number
-        is required"}, {"carrier": "DhlEcs", "carrier_account_id": "ca_0b612c9b7014401b9989db19953a24f9",
-        "type": "rate_error", "message": "credentials.pickup_id: value is not a valid
-        integer"}, {"type": "rate_error", "carrier": "GSO", "message": "the carrier
-        rejected the request as invalid"}, {"carrier": "Newgistics", "carrier_account_id":
-        "ca_3a1b3046cb7943898bea6428237e1e33", "type": "rate_error", "message": "No
-        rates found. The shipment may be outside of the service area, or you may need
-        to provide your rates to support."}, {"carrier": "AxlehireV3", "carrier_account_id":
-        "ca_a381c1bace794c158d59a58b0a94a2e2", "type": "rate_error", "message": "Forbidden.
-        Please check credentials and try again"}, {"carrier": "UPS", "carrier_account_id":
-        "ca_db930d5251ee4d2d8560a477b3bb1796", "type": "rate_error", "message": "Invalid
-        Access License number"}, {"carrier": "DHLeCommerce", "carrier_account_id":
-        "ca_bc906eccfedc4e46952feacf2d69d3dc", "type": "rate_error", "message": "the
-        carrier rejected the request as invalid"}, {"carrier": "FedExSmartPost", "carrier_account_id":
-        "ca_7d73446c9ded4b8fa67dee03f9f379b6", "type": "rate_error", "message": "FedEx
-        returned error: Authentication Failed"}, {"carrier": "DPDUK", "carrier_account_id":
-        "ca_fd242ecb9ce74e6ea771f25b800055b1", "type": "rate_error", "message": "Unauthorized"},
-        {"carrier": "OmniParcel", "carrier_account_id": "ca_2c5768cc85c5420cba30b3b1dd545fbb",
-        "type": "rate_error", "message": "No rates available."}], "mode": "production",
+      string: '{"created_at": "2024-08-15T19:54:16Z", "is_return": false, "messages":
+        [{"carrier": "UPS", "carrier_account_id": "ca_725c14e27c1544a6af0c90d4208f70d3",
+        "type": "rate_error", "message": "Invalid Access License number"}, {"carrier":
+        "UPS", "carrier_account_id": "ca_2b156a7d1fdb444c96fd53ecc409a6fa", "type":
+        "rate_error", "message": "Invalid Access License number"}, {"carrier": "UPS",
+        "carrier_account_id": "ca_bee3d0b00e4844f0bafe77518fecef83", "type": "rate_error",
+        "message": "Invalid Access License number"}, {"carrier": "UPS", "carrier_account_id":
+        "ca_4f4f19e3b533485296d62721584e096d", "type": "rate_error", "message": "Invalid
+        Access License number"}, {"carrier": "DhlEcs", "carrier_account_id": "ca_711d8c4f9be54801b984e5dc9f2b5a7c",
+        "type": "rate_error", "message": "Invalid credentials"}, {"carrier": "DhlEcs",
+        "carrier_account_id": "ca_99007e1aeb66421faf82676f1199481e", "type": "rate_error",
+        "message": "Invalid credentials"}, {"carrier": "DhlEcs", "carrier_account_id":
+        "ca_b1a0a1bc45844159812e0224d53948ea", "type": "rate_error", "message": "Invalid
+        credentials"}, {"carrier": "DhlEcs", "carrier_account_id": "ca_c3cbbd21bc97400bbbaed6d030909476",
+        "type": "rate_error", "message": "Invalid credentials"}, {"carrier": "DhlEcs",
+        "carrier_account_id": "ca_0d64fd488c1444cf9bc16f858703e28f", "type": "rate_error",
+        "message": "Invalid credentials"}, {"carrier": "DhlEcs", "carrier_account_id":
+        "ca_a5e4cb81d1b4481d812f4511ba8dfbb1", "type": "rate_error", "message": "Invalid
+        credentials"}, {"carrier": "DhlEcs", "carrier_account_id": "ca_c7b4cfaf671b4984b84023d77561394a",
+        "type": "rate_error", "message": "Invalid credentials"}], "mode": "test",
         "options": {"currency": "USD", "payment": {"type": "SENDER"}, "date_advance":
         0}, "reference": null, "status": "unknown", "tracking_code": null, "updated_at":
-        "2024-07-09T21:12:50Z", "batch_id": null, "batch_status": null, "batch_message":
-        null, "customs_info": null, "from_address": {"id": "adr_fd4f3f1d3e3711efbd243cecef1b359e",
-        "object": "Address", "created_at": "2024-07-09T21:12:46+00:00", "updated_at":
-        "2024-07-09T21:12:46+00:00", "name": "Jack Sparrow", "company": null, "street1":
+        "2024-08-15T19:54:16Z", "batch_id": null, "batch_status": null, "batch_message":
+        null, "customs_info": null, "from_address": {"id": "adr_26dcb71a5b4011ef800bac1f6bc53342",
+        "object": "Address", "created_at": "2024-08-15T19:54:15+00:00", "updated_at":
+        "2024-08-15T19:54:15+00:00", "name": "Jack Sparrow", "company": null, "street1":
         "388 Townsend St", "street2": "Apt 20", "city": "San Francisco", "state":
         "CA", "zip": "94107", "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>",
-        "mode": "production", "carrier_facility": null, "residential": null, "federal_tax_id":
+        "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
         null, "state_tax_id": null, "verifications": {}}, "insurance": null, "order_id":
-        null, "parcel": {"id": "prcl_2d03f3027b1047ffbf47420ae2575344", "object":
-        "Parcel", "created_at": "2024-07-09T21:12:46Z", "updated_at": "2024-07-09T21:12:46Z",
+        null, "parcel": {"id": "prcl_fb01a644466a4afd8244cf07f2a22533", "object":
+        "Parcel", "created_at": "2024-08-15T19:54:15Z", "updated_at": "2024-08-15T19:54:15Z",
         "length": 10.0, "width": 8.0, "height": 4.0, "predefined_package": null, "weight":
-        15.4, "mode": "production"}, "postage_label": null, "rates": [{"id": "rate_ba5762bf0ea04dc6bb716301630d06cb",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "Priority", "carrier": "UPSMailInnovations",
-        "rate": "0.01", "currency": "USD", "retail_rate": null, "retail_currency":
-        null, "list_rate": null, "list_currency": null, "billing_type": "carrier",
-        "delivery_days": null, "delivery_date": null, "delivery_date_guaranteed":
-        null, "est_delivery_days": null, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_942b62c9d6ea45578a344b365d7aa062"}, {"id": "rate_84bb9cf461084033ace344a1347f740f",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "ExpeditedMailInnovations", "carrier": "UPSMailInnovations",
-        "rate": "0.01", "currency": "USD", "retail_rate": null, "retail_currency":
-        null, "list_rate": null, "list_currency": null, "billing_type": "carrier",
-        "delivery_days": 3, "delivery_date": null, "delivery_date_guaranteed": null,
-        "est_delivery_days": 3, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_942b62c9d6ea45578a344b365d7aa062"}, {"id": "rate_5d31010a6be340e78db7fdbf72c46f61",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "DPD10:00", "carrier": "DPD", "rate": "0.01",
-        "currency": "EUR", "retail_rate": null, "retail_currency": null, "list_rate":
-        null, "list_currency": null, "billing_type": "carrier", "delivery_days": null,
-        "delivery_date": null, "delivery_date_guaranteed": null, "est_delivery_days":
-        null, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "carrier_account_id":
-        "ca_d8c3565dd56346d9a5e90bd56ba7c2fa"}, {"id": "rate_9a52fb4c641e4753bdfb08e5dd0c40ae",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "DPD12:00", "carrier": "DPD", "rate": "0.01",
-        "currency": "EUR", "retail_rate": null, "retail_currency": null, "list_rate":
-        null, "list_currency": null, "billing_type": "carrier", "delivery_days": null,
-        "delivery_date": null, "delivery_date_guaranteed": null, "est_delivery_days":
-        null, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "carrier_account_id":
-        "ca_d8c3565dd56346d9a5e90bd56ba7c2fa"}, {"id": "rate_1633e0e299b7446099bfd6a2b3e18a54",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "DPD18:00", "carrier": "DPD", "rate": "0.01",
-        "currency": "EUR", "retail_rate": null, "retail_currency": null, "list_rate":
-        null, "list_currency": null, "billing_type": "carrier", "delivery_days": null,
-        "delivery_date": null, "delivery_date_guaranteed": null, "est_delivery_days":
-        null, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "carrier_account_id":
-        "ca_d8c3565dd56346d9a5e90bd56ba7c2fa"}, {"id": "rate_79deb10aee744ecdb2baf96aed0f606b",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "DPD8:30", "carrier": "DPD", "rate": "0.01",
-        "currency": "EUR", "retail_rate": null, "retail_currency": null, "list_rate":
-        null, "list_currency": null, "billing_type": "carrier", "delivery_days": null,
-        "delivery_date": null, "delivery_date_guaranteed": null, "est_delivery_days":
-        null, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "carrier_account_id":
-        "ca_d8c3565dd56346d9a5e90bd56ba7c2fa"}, {"id": "rate_344b50e92a3d4bd98cc52c9952ea8b8d",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "DPDCLASSIC", "carrier": "DPD", "rate": "0.01",
-        "currency": "EUR", "retail_rate": null, "retail_currency": null, "list_rate":
-        null, "list_currency": null, "billing_type": "carrier", "delivery_days": null,
-        "delivery_date": null, "delivery_date_guaranteed": null, "est_delivery_days":
-        null, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "carrier_account_id":
-        "ca_d8c3565dd56346d9a5e90bd56ba7c2fa"}, {"id": "rate_6a11ea4ac9764eb49825b3cd39b6314d",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "DPDEXPRESS", "carrier": "DPD", "rate": "0.01",
-        "currency": "EUR", "retail_rate": null, "retail_currency": null, "list_rate":
-        null, "list_currency": null, "billing_type": "carrier", "delivery_days": null,
-        "delivery_date": null, "delivery_date_guaranteed": null, "est_delivery_days":
-        null, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "carrier_account_id":
-        "ca_d8c3565dd56346d9a5e90bd56ba7c2fa"}, {"id": "rate_8bd6ecea78854136851a8a644e21274f",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "DPDINTERNATIONALMAIL", "carrier": "DPD",
-        "rate": "0.01", "currency": "EUR", "retail_rate": null, "retail_currency":
-        null, "list_rate": null, "list_currency": null, "billing_type": "carrier",
-        "delivery_days": null, "delivery_date": null, "delivery_date_guaranteed":
-        null, "est_delivery_days": null, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_d8c3565dd56346d9a5e90bd56ba7c2fa"}, {"id": "rate_9fd0885297924bf2b26dbe7daf7feba1",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "DPDPARCELLETTER", "carrier": "DPD", "rate":
-        "0.01", "currency": "EUR", "retail_rate": null, "retail_currency": null, "list_rate":
-        null, "list_currency": null, "billing_type": "carrier", "delivery_days": null,
-        "delivery_date": null, "delivery_date_guaranteed": null, "est_delivery_days":
-        null, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "carrier_account_id":
-        "ca_d8c3565dd56346d9a5e90bd56ba7c2fa"}, {"id": "rate_2a79544c415c4d00a1af2a96a72df878",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "DPDPARCELLETTERPLUS", "carrier": "DPD",
-        "rate": "0.01", "currency": "EUR", "retail_rate": null, "retail_currency":
-        null, "list_rate": null, "list_currency": null, "billing_type": "carrier",
-        "delivery_days": null, "delivery_date": null, "delivery_date_guaranteed":
-        null, "est_delivery_days": null, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_d8c3565dd56346d9a5e90bd56ba7c2fa"}, {"id": "rate_1d7bd3576e1344a3848510ff9a18a101",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "Priority", "carrier": "USPS", "rate": "6.90",
-        "currency": "USD", "retail_rate": "9.80", "retail_currency": "USD", "list_rate":
-        "8.25", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
-        2, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
-        2, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "carrier_account_id":
-        "ca_4fcd9a658b494a979793bb899a40c5b5"}, {"id": "rate_dccbd26d62cc4d0ca639684bab520e4d",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "GroundAdvantage", "carrier": "USPS", "rate":
-        "5.93", "currency": "USD", "retail_rate": "8.45", "retail_currency": "USD",
-        "list_rate": "6.40", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
-        3, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
-        3, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "carrier_account_id":
-        "ca_4fcd9a658b494a979793bb899a40c5b5"}, {"id": "rate_f82d3cf02557475bb24077c59da86306",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "First", "carrier": "USPS", "rate": "5.93",
+        15.4, "mode": "test"}, "postage_label": null, "rates": [{"id": "rate_6ba4058596ba464998c219231835809b",
+        "object": "Rate", "created_at": "2024-08-15T19:54:16Z", "updated_at": "2024-08-15T19:54:16Z",
+        "mode": "test", "service": "GroundAdvantage", "carrier": "USPS", "rate": "5.93",
         "currency": "USD", "retail_rate": "8.45", "retail_currency": "USD", "list_rate":
         "6.40", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
         3, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
-        3, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "carrier_account_id":
-        "ca_4fcd9a658b494a979793bb899a40c5b5"}, {"id": "rate_3186cac8184f471bb480031dc1f3d91f",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "ParcelSelect", "carrier": "USPS", "rate":
-        "5.93", "currency": "USD", "retail_rate": "8.45", "retail_currency": "USD",
-        "list_rate": "6.40", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
-        3, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
-        3, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "carrier_account_id":
-        "ca_4fcd9a658b494a979793bb899a40c5b5"}, {"id": "rate_e50d56d7c99b4dc891cdc7f734b51518",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "Express", "carrier": "USPS", "rate": "33.10",
+        3, "shipment_id": "shp_bba7c1f23e4e40c7994b822bea6427bd", "carrier_account_id":
+        "ca_b25657e9896e4d63ac8151ac346ac41e"}, {"id": "rate_650c70ec766344eeb228417a7dfab3c6",
+        "object": "Rate", "created_at": "2024-08-15T19:54:16Z", "updated_at": "2024-08-15T19:54:16Z",
+        "mode": "test", "service": "Express", "carrier": "USPS", "rate": "33.10",
         "currency": "USD", "retail_rate": "37.90", "retail_currency": "USD", "list_rate":
         "33.10", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
+        1, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
+        1, "shipment_id": "shp_bba7c1f23e4e40c7994b822bea6427bd", "carrier_account_id":
+        "ca_b25657e9896e4d63ac8151ac346ac41e"}, {"id": "rate_c1486fc79edd4cd2a047c110034f8cd2",
+        "object": "Rate", "created_at": "2024-08-15T19:54:16Z", "updated_at": "2024-08-15T19:54:16Z",
+        "mode": "test", "service": "Priority", "carrier": "USPS", "rate": "6.90",
+        "currency": "USD", "retail_rate": "9.80", "retail_currency": "USD", "list_rate":
+        "8.25", "list_currency": "USD", "billing_type": "easypost", "delivery_days":
         2, "delivery_date": null, "delivery_date_guaranteed": false, "est_delivery_days":
-        2, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "carrier_account_id":
-        "ca_4fcd9a658b494a979793bb899a40c5b5"}, {"id": "rate_a9f2e062cda94213bc8376da3b799e5b",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "DHLParcelExpedited", "carrier": "DhlEcs",
-        "rate": "6.63", "currency": "USD", "retail_rate": null, "retail_currency":
-        null, "list_rate": null, "list_currency": null, "billing_type": "carrier",
-        "delivery_days": 5, "delivery_date": "2024-07-15T00:00:00Z", "delivery_date_guaranteed":
-        false, "est_delivery_days": 5, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_77415c3fbd754d65bb9298e9a69d7084"}, {"id": "rate_56bbfa74195f4ab18ca2c8166907e0c2",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "DHLParcelGround", "carrier": "DhlEcs", "rate":
-        "6.50", "currency": "USD", "retail_rate": null, "retail_currency": null, "list_rate":
-        null, "list_currency": null, "billing_type": "carrier", "delivery_days": 6,
-        "delivery_date": "2024-07-15T00:00:00Z", "delivery_date_guaranteed": false,
-        "est_delivery_days": 6, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_77415c3fbd754d65bb9298e9a69d7084"}, {"id": "rate_03eb6ee92bad42389f1764087abef25a",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "FIRST_OVERNIGHT", "carrier": "FedEx", "rate":
-        "144.42", "currency": "USD", "retail_rate": null, "retail_currency": null,
-        "list_rate": "144.42", "list_currency": "USD", "billing_type": "carrier",
-        "delivery_days": 1, "delivery_date": "2024-07-10T08:30:00Z", "delivery_date_guaranteed":
-        true, "est_delivery_days": 1, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_3bd616120603457fbed9deb1e425bbdc"}, {"id": "rate_9ef05b4ccc984e29941df09487cfdf4f",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "PRIORITY_OVERNIGHT", "carrier": "FedEx",
-        "rate": "108.07", "currency": "USD", "retail_rate": null, "retail_currency":
-        null, "list_rate": "108.07", "list_currency": "USD", "billing_type": "carrier",
-        "delivery_days": 1, "delivery_date": "2024-07-10T10:30:00Z", "delivery_date_guaranteed":
-        true, "est_delivery_days": 1, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_3bd616120603457fbed9deb1e425bbdc"}, {"id": "rate_c83e4f1b89cb49d8b8d332763b566436",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "STANDARD_OVERNIGHT", "carrier": "FedEx",
-        "rate": "98.79", "currency": "USD", "retail_rate": null, "retail_currency":
-        null, "list_rate": "98.79", "list_currency": "USD", "billing_type": "carrier",
-        "delivery_days": 1, "delivery_date": "2024-07-10T17:00:00Z", "delivery_date_guaranteed":
-        true, "est_delivery_days": 1, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_3bd616120603457fbed9deb1e425bbdc"}, {"id": "rate_1325891633c24c4793c68d75ca95d357",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "FEDEX_2_DAY_AM", "carrier": "FedEx", "rate":
-        "39.63", "currency": "USD", "retail_rate": null, "retail_currency": null,
-        "list_rate": "39.63", "list_currency": "USD", "billing_type": "carrier", "delivery_days":
-        2, "delivery_date": "2024-07-11T10:30:00Z", "delivery_date_guaranteed": true,
-        "est_delivery_days": 2, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_3bd616120603457fbed9deb1e425bbdc"}, {"id": "rate_84783b3078f9409185933d6d875eddb5",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "FEDEX_2_DAY", "carrier": "FedEx", "rate":
-        "33.39", "currency": "USD", "retail_rate": null, "retail_currency": null,
-        "list_rate": "33.39", "list_currency": "USD", "billing_type": "carrier", "delivery_days":
-        2, "delivery_date": "2024-07-11T17:00:00Z", "delivery_date_guaranteed": true,
-        "est_delivery_days": 2, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_3bd616120603457fbed9deb1e425bbdc"}, {"id": "rate_b42d417795ab40a4ab236ab3c84a852d",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "FEDEX_GROUND", "carrier": "FedEx", "rate":
-        "14.47", "currency": "USD", "retail_rate": null, "retail_currency": null,
-        "list_rate": "16.67", "list_currency": "USD", "billing_type": "carrier", "delivery_days":
-        2, "delivery_date": "2024-07-11T23:59:00Z", "delivery_date_guaranteed": true,
-        "est_delivery_days": 2, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_3bd616120603457fbed9deb1e425bbdc"}, {"id": "rate_004a106ea5f843758726f60efe2e53d5",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "FEDEX_EXPRESS_SAVER", "carrier": "FedEx",
-        "rate": "30.32", "currency": "USD", "retail_rate": null, "retail_currency":
-        null, "list_rate": "30.32", "list_currency": "USD", "billing_type": "carrier",
-        "delivery_days": 3, "delivery_date": "2024-07-12T17:00:00Z", "delivery_date_guaranteed":
-        true, "est_delivery_days": 3, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_3bd616120603457fbed9deb1e425bbdc"}, {"id": "rate_22350a8640904c209d922092328f37d0",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "NextDayAir", "carrier": "UPS", "rate": "89.07",
-        "currency": "USD", "retail_rate": "89.07", "retail_currency": "USD", "list_rate":
-        "102.19", "list_currency": "USD", "billing_type": "carrier", "delivery_days":
-        1, "delivery_date": "2024-07-10T10:30:00Z", "delivery_date_guaranteed": true,
-        "est_delivery_days": 1, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_754d3e2bce354edfb2e4a3fcc21bb02c"}, {"id": "rate_c7a1a85bbc5e404ca1fd25cc016140b5",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "2ndDayAir", "carrier": "UPS", "rate": "29.64",
-        "currency": "USD", "retail_rate": "29.64", "retail_currency": "USD", "list_rate":
-        "31.84", "list_currency": "USD", "billing_type": "carrier", "delivery_days":
-        2, "delivery_date": "2024-07-11T23:00:00Z", "delivery_date_guaranteed": false,
-        "est_delivery_days": 2, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_754d3e2bce354edfb2e4a3fcc21bb02c"}, {"id": "rate_31bbe38959144adc9fa413edb95a3f89",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "Ground", "carrier": "UPS", "rate": "14.88",
-        "currency": "USD", "retail_rate": "14.88", "retail_currency": "USD", "list_rate":
-        "15.85", "list_currency": "USD", "billing_type": "carrier", "delivery_days":
-        2, "delivery_date": "2024-07-11T23:00:00Z", "delivery_date_guaranteed": false,
-        "est_delivery_days": 2, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_754d3e2bce354edfb2e4a3fcc21bb02c"}, {"id": "rate_665b60c99e6b497999c041ffc56ef77b",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "3DaySelect", "carrier": "UPS", "rate": "22.60",
-        "currency": "USD", "retail_rate": "22.60", "retail_currency": "USD", "list_rate":
-        "25.10", "list_currency": "USD", "billing_type": "carrier", "delivery_days":
-        3, "delivery_date": "2024-07-12T23:00:00Z", "delivery_date_guaranteed": false,
-        "est_delivery_days": 3, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_754d3e2bce354edfb2e4a3fcc21bb02c"}, {"id": "rate_7eb346c3de754d30969679dda6fb7baf",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "NextDayAirSaver", "carrier": "UPS", "rate":
-        "83.84", "currency": "USD", "retail_rate": "83.84", "retail_currency": "USD",
-        "list_rate": "93.40", "list_currency": "USD", "billing_type": "carrier", "delivery_days":
-        1, "delivery_date": "2024-07-10T23:00:00Z", "delivery_date_guaranteed": true,
-        "est_delivery_days": 1, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_754d3e2bce354edfb2e4a3fcc21bb02c"}, {"id": "rate_fca3e79823304153b68a3cbaec5b6a4f",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "NextDayAirEarlyAM", "carrier": "UPS", "rate":
-        "124.09", "currency": "USD", "retail_rate": "124.09", "retail_currency": "USD",
-        "list_rate": "137.22", "list_currency": "USD", "billing_type": "carrier",
-        "delivery_days": 1, "delivery_date": "2024-07-10T08:00:00Z", "delivery_date_guaranteed":
-        true, "est_delivery_days": 1, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_754d3e2bce354edfb2e4a3fcc21bb02c"}, {"id": "rate_35d8410979014ded951649449d6f856a",
-        "object": "Rate", "created_at": "2024-07-09T21:12:50Z", "updated_at": "2024-07-09T21:12:50Z",
-        "mode": "production", "service": "2ndDayAirAM", "carrier": "UPS", "rate":
-        "33.57", "currency": "USD", "retail_rate": "33.57", "retail_currency": "USD",
-        "list_rate": "35.84", "list_currency": "USD", "billing_type": "carrier", "delivery_days":
-        2, "delivery_date": "2024-07-11T10:30:00Z", "delivery_date_guaranteed": true,
-        "est_delivery_days": 2, "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "carrier_account_id": "ca_754d3e2bce354edfb2e4a3fcc21bb02c"}], "refund_status":
-        null, "scan_form": null, "selected_rate": null, "tracker": null, "to_address":
-        {"id": "adr_fd4a8fa23e3711ef82cfac1f6bc539aa", "object": "Address", "created_at":
-        "2024-07-09T21:12:46+00:00", "updated_at": "2024-07-09T21:12:46+00:00", "name":
-        "Elizabeth Swan", "company": null, "street1": "179 N Harbor Dr", "street2":
-        null, "city": "Redondo Beach", "state": "CA", "zip": "90277", "country": "US",
-        "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "production", "carrier_facility":
+        2, "shipment_id": "shp_bba7c1f23e4e40c7994b822bea6427bd", "carrier_account_id":
+        "ca_b25657e9896e4d63ac8151ac346ac41e"}], "refund_status": null, "scan_form":
+        null, "selected_rate": null, "tracker": null, "to_address": {"id": "adr_26da02725b4011ef910bac1f6bc539ae",
+        "object": "Address", "created_at": "2024-08-15T19:54:15+00:00", "updated_at":
+        "2024-08-15T19:54:15+00:00", "name": "Elizabeth Swan", "company": null, "street1":
+        "179 N Harbor Dr", "street2": null, "city": "Redondo Beach", "state": "CA",
+        "zip": "90277", "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>",
+        "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
+        null, "state_tax_id": null, "verifications": {}}, "usps_zone": 4, "return_address":
+        {"id": "adr_26dcb71a5b4011ef800bac1f6bc53342", "object": "Address", "created_at":
+        "2024-08-15T19:54:15+00:00", "updated_at": "2024-08-15T19:54:15+00:00", "name":
+        "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
+        "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
         null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
-        {}}, "usps_zone": 4, "return_address": {"id": "adr_fd4f3f1d3e3711efbd243cecef1b359e",
-        "object": "Address", "created_at": "2024-07-09T21:12:46+00:00", "updated_at":
-        "2024-07-09T21:12:46+00:00", "name": "Jack Sparrow", "company": null, "street1":
-        "388 Townsend St", "street2": "Apt 20", "city": "San Francisco", "state":
-        "CA", "zip": "94107", "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>",
-        "mode": "production", "carrier_facility": null, "residential": null, "federal_tax_id":
-        null, "state_tax_id": null, "verifications": {}}, "buyer_address": {"id":
-        "adr_fd4a8fa23e3711ef82cfac1f6bc539aa", "object": "Address", "created_at":
-        "2024-07-09T21:12:46+00:00", "updated_at": "2024-07-09T21:12:46+00:00", "name":
-        "Elizabeth Swan", "company": null, "street1": "179 N Harbor Dr", "street2":
+        {}}, "buyer_address": {"id": "adr_26da02725b4011ef910bac1f6bc539ae", "object":
+        "Address", "created_at": "2024-08-15T19:54:15+00:00", "updated_at": "2024-08-15T19:54:15+00:00",
+        "name": "Elizabeth Swan", "company": null, "street1": "179 N Harbor Dr", "street2":
         null, "city": "Redondo Beach", "state": "CA", "zip": "90277", "country": "US",
-        "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "production", "carrier_facility":
+        "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
         null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
-        {}}, "forms": [], "fees": [], "id": "shp_29740ab2a50d45f2be97c7bae93d6852",
+        {}}, "forms": [], "fees": [], "id": "shp_bba7c1f23e4e40c7994b822bea6427bd",
         "object": "Shipment"}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '25921'
+      - '5804'
       content-type:
       - application/json; charset=utf-8
       expires:
       - '0'
       location:
-      - /api/v2/shipments/shp_29740ab2a50d45f2be97c7bae93d6852
+      - /api/v2/shipments/shp_bba7c1f23e4e40c7994b822bea6427bd
       pragma:
       - no-cache
       referrer-policy:
@@ -381,20 +128,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 1f7ff67a668da7cee2b9901200294bc0
+      - 62c1f5d866be5ce7e788626800176eca
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb41nuq
+      - bigweb39nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb3nuq fa152d4755
-      - extlb2nuq fa152d4755
+      - intlb4nuq c0f5e722d1
+      - extlb2nuq b6e1b5034c
       x-runtime:
-      - '4.074006'
+      - '0.996628'
       x-version-label:
-      - easypost-202407092027-324ee50b5a-master
+      - easypost-202408151917-1527448f18-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -414,338 +161,44 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/v2/shipments/shp_29740ab2a50d45f2be97c7bae93d6852/smartrate/delivery_date?planned_ship_date=2024-07-11
+    uri: https://api.easypost.com/v2/shipments/shp_bba7c1f23e4e40c7994b822bea6427bd/smartrate/delivery_date?planned_ship_date=2024-08-15
   response:
     body:
       string: '{"rates": [{"easypost_time_in_transit_data": {"days_in_transit": {"percentile_50":
-        4, "percentile_75": 4, "percentile_85": 5, "percentile_90": 5, "percentile_95":
-        6, "percentile_97": 6, "percentile_99": 7}, "easypost_estimated_delivery_date":
-        "2024-07-15", "planned_ship_date": "2024-07-11"}, "rate": {"carrier": "UPSMailInnovations",
-        "carrier_account_id": "ca_942b62c9d6ea45578a344b365d7aa062", "created_at":
-        "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date": null, "delivery_date_guaranteed":
-        false, "delivery_days": null, "est_delivery_days": null, "id": "rate_ba5762bf0ea04dc6bb716301630d06cb",
-        "list_currency": null, "list_rate": null, "mode": "production", "object":
-        "Rate", "rate": 0.01, "retail_currency": null, "retail_rate": null, "service":
-        "Priority", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "updated_at":
-        "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data": {"days_in_transit":
-        {"percentile_50": 4, "percentile_75": 5, "percentile_85": 5, "percentile_90":
-        6, "percentile_95": 6, "percentile_97": 7, "percentile_99": 8}, "easypost_estimated_delivery_date":
-        "2024-07-15", "planned_ship_date": "2024-07-11"}, "rate": {"carrier": "UPSMailInnovations",
-        "carrier_account_id": "ca_942b62c9d6ea45578a344b365d7aa062", "created_at":
-        "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date": null, "delivery_date_guaranteed":
-        false, "delivery_days": 3, "est_delivery_days": 3, "id": "rate_84bb9cf461084033ace344a1347f740f",
-        "list_currency": null, "list_rate": null, "mode": "production", "object":
-        "Rate", "rate": 0.01, "retail_currency": null, "retail_rate": null, "service":
-        "ExpeditedMailInnovations", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"error": "Carrier DPD and service DPD10:00 combination is not supported by
-        the Easypost Smartrate AI"}, "rate": {"carrier": "DPD", "carrier_account_id":
-        "ca_d8c3565dd56346d9a5e90bd56ba7c2fa", "created_at": "2024-07-09T21:12:50Z",
-        "currency": "EUR", "delivery_date": null, "delivery_date_guaranteed": false,
-        "delivery_days": null, "est_delivery_days": null, "id": "rate_5d31010a6be340e78db7fdbf72c46f61",
-        "list_currency": null, "list_rate": null, "mode": "production", "object":
-        "Rate", "rate": 0.01, "retail_currency": null, "retail_rate": null, "service":
-        "DPD10:00", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "updated_at":
-        "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data": {"error": "Carrier
-        DPD and service DPD12:00 combination is not supported by the Easypost Smartrate
-        AI"}, "rate": {"carrier": "DPD", "carrier_account_id": "ca_d8c3565dd56346d9a5e90bd56ba7c2fa",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "EUR", "delivery_date":
-        null, "delivery_date_guaranteed": false, "delivery_days": null, "est_delivery_days":
-        null, "id": "rate_9a52fb4c641e4753bdfb08e5dd0c40ae", "list_currency": null,
-        "list_rate": null, "mode": "production", "object": "Rate", "rate": 0.01, "retail_currency":
-        null, "retail_rate": null, "service": "DPD12:00", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"error": "Carrier DPD and service DPD18:00 combination is not supported by
-        the Easypost Smartrate AI"}, "rate": {"carrier": "DPD", "carrier_account_id":
-        "ca_d8c3565dd56346d9a5e90bd56ba7c2fa", "created_at": "2024-07-09T21:12:50Z",
-        "currency": "EUR", "delivery_date": null, "delivery_date_guaranteed": false,
-        "delivery_days": null, "est_delivery_days": null, "id": "rate_1633e0e299b7446099bfd6a2b3e18a54",
-        "list_currency": null, "list_rate": null, "mode": "production", "object":
-        "Rate", "rate": 0.01, "retail_currency": null, "retail_rate": null, "service":
-        "DPD18:00", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "updated_at":
-        "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data": {"error": "Carrier
-        DPD and service DPD8:30 combination is not supported by the Easypost Smartrate
-        AI"}, "rate": {"carrier": "DPD", "carrier_account_id": "ca_d8c3565dd56346d9a5e90bd56ba7c2fa",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "EUR", "delivery_date":
-        null, "delivery_date_guaranteed": false, "delivery_days": null, "est_delivery_days":
-        null, "id": "rate_79deb10aee744ecdb2baf96aed0f606b", "list_currency": null,
-        "list_rate": null, "mode": "production", "object": "Rate", "rate": 0.01, "retail_currency":
-        null, "retail_rate": null, "service": "DPD8:30", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"error": "Carrier DPD and service DPDCLASSIC combination is not supported
-        by the Easypost Smartrate AI"}, "rate": {"carrier": "DPD", "carrier_account_id":
-        "ca_d8c3565dd56346d9a5e90bd56ba7c2fa", "created_at": "2024-07-09T21:12:50Z",
-        "currency": "EUR", "delivery_date": null, "delivery_date_guaranteed": false,
-        "delivery_days": null, "est_delivery_days": null, "id": "rate_344b50e92a3d4bd98cc52c9952ea8b8d",
-        "list_currency": null, "list_rate": null, "mode": "production", "object":
-        "Rate", "rate": 0.01, "retail_currency": null, "retail_rate": null, "service":
-        "DPDCLASSIC", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "updated_at":
-        "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data": {"error": "Carrier
-        DPD and service DPDEXPRESS combination is not supported by the Easypost Smartrate
-        AI"}, "rate": {"carrier": "DPD", "carrier_account_id": "ca_d8c3565dd56346d9a5e90bd56ba7c2fa",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "EUR", "delivery_date":
-        null, "delivery_date_guaranteed": false, "delivery_days": null, "est_delivery_days":
-        null, "id": "rate_6a11ea4ac9764eb49825b3cd39b6314d", "list_currency": null,
-        "list_rate": null, "mode": "production", "object": "Rate", "rate": 0.01, "retail_currency":
-        null, "retail_rate": null, "service": "DPDEXPRESS", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"error": "Carrier DPD and service DPDINTERNATIONALMAIL combination is not
-        supported by the Easypost Smartrate AI"}, "rate": {"carrier": "DPD", "carrier_account_id":
-        "ca_d8c3565dd56346d9a5e90bd56ba7c2fa", "created_at": "2024-07-09T21:12:50Z",
-        "currency": "EUR", "delivery_date": null, "delivery_date_guaranteed": false,
-        "delivery_days": null, "est_delivery_days": null, "id": "rate_8bd6ecea78854136851a8a644e21274f",
-        "list_currency": null, "list_rate": null, "mode": "production", "object":
-        "Rate", "rate": 0.01, "retail_currency": null, "retail_rate": null, "service":
-        "DPDINTERNATIONALMAIL", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"error": "Carrier DPD and service DPDPARCELLETTER combination is not supported
-        by the Easypost Smartrate AI"}, "rate": {"carrier": "DPD", "carrier_account_id":
-        "ca_d8c3565dd56346d9a5e90bd56ba7c2fa", "created_at": "2024-07-09T21:12:50Z",
-        "currency": "EUR", "delivery_date": null, "delivery_date_guaranteed": false,
-        "delivery_days": null, "est_delivery_days": null, "id": "rate_9fd0885297924bf2b26dbe7daf7feba1",
-        "list_currency": null, "list_rate": null, "mode": "production", "object":
-        "Rate", "rate": 0.01, "retail_currency": null, "retail_rate": null, "service":
-        "DPDPARCELLETTER", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"error": "Carrier DPD and service DPDPARCELLETTERPLUS combination is not
-        supported by the Easypost Smartrate AI"}, "rate": {"carrier": "DPD", "carrier_account_id":
-        "ca_d8c3565dd56346d9a5e90bd56ba7c2fa", "created_at": "2024-07-09T21:12:50Z",
-        "currency": "EUR", "delivery_date": null, "delivery_date_guaranteed": false,
-        "delivery_days": null, "est_delivery_days": null, "id": "rate_2a79544c415c4d00a1af2a96a72df878",
-        "list_currency": null, "list_rate": null, "mode": "production", "object":
-        "Rate", "rate": 0.01, "retail_currency": null, "retail_rate": null, "service":
-        "DPDPARCELLETTERPLUS", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 4, "percentile_75": 4, "percentile_85":
-        4, "percentile_90": 4, "percentile_95": 5, "percentile_97": 5, "percentile_99":
-        7}, "easypost_estimated_delivery_date": "2024-07-15", "planned_ship_date":
-        "2024-07-11"}, "rate": {"carrier": "USPS", "carrier_account_id": "ca_4fcd9a658b494a979793bb899a40c5b5",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date":
-        null, "delivery_date_guaranteed": false, "delivery_days": 2, "est_delivery_days":
-        2, "id": "rate_1d7bd3576e1344a3848510ff9a18a101", "list_currency": "USD",
-        "list_rate": 8.25, "mode": "production", "object": "Rate", "rate": 6.9, "retail_currency":
-        "USD", "retail_rate": 9.8, "service": "Priority", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 4, "percentile_75": 4, "percentile_85":
-        4, "percentile_90": 4, "percentile_95": 5, "percentile_97": 5, "percentile_99":
-        8}, "easypost_estimated_delivery_date": "2024-07-15", "planned_ship_date":
-        "2024-07-11"}, "rate": {"carrier": "USPS", "carrier_account_id": "ca_4fcd9a658b494a979793bb899a40c5b5",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date":
-        null, "delivery_date_guaranteed": false, "delivery_days": 3, "est_delivery_days":
-        3, "id": "rate_dccbd26d62cc4d0ca639684bab520e4d", "list_currency": "USD",
-        "list_rate": 6.4, "mode": "production", "object": "Rate", "rate": 5.93, "retail_currency":
-        "USD", "retail_rate": 8.45, "service": "GroundAdvantage", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 4, "percentile_75": 4, "percentile_85":
-        4, "percentile_90": 4, "percentile_95": 5, "percentile_97": 5, "percentile_99":
-        8}, "easypost_estimated_delivery_date": "2024-07-15", "planned_ship_date":
-        "2024-07-11"}, "rate": {"carrier": "USPS", "carrier_account_id": "ca_4fcd9a658b494a979793bb899a40c5b5",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date":
-        null, "delivery_date_guaranteed": false, "delivery_days": 3, "est_delivery_days":
-        3, "id": "rate_f82d3cf02557475bb24077c59da86306", "list_currency": "USD",
-        "list_rate": 6.4, "mode": "production", "object": "Rate", "rate": 5.93, "retail_currency":
-        "USD", "retail_rate": 8.45, "service": "First", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 4, "percentile_75": 4, "percentile_85":
-        4, "percentile_90": 4, "percentile_95": 5, "percentile_97": 5, "percentile_99":
-        8}, "easypost_estimated_delivery_date": "2024-07-15", "planned_ship_date":
-        "2024-07-11"}, "rate": {"carrier": "USPS", "carrier_account_id": "ca_4fcd9a658b494a979793bb899a40c5b5",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date":
-        null, "delivery_date_guaranteed": false, "delivery_days": 3, "est_delivery_days":
-        3, "id": "rate_3186cac8184f471bb480031dc1f3d91f", "list_currency": "USD",
-        "list_rate": 6.4, "mode": "production", "object": "Rate", "rate": 5.93, "retail_currency":
-        "USD", "retail_rate": 8.45, "service": "ParcelSelect", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 1, "percentile_75": 2, "percentile_85":
-        4, "percentile_90": 4, "percentile_95": 4, "percentile_97": 5, "percentile_99":
-        6}, "easypost_estimated_delivery_date": "2024-07-12", "planned_ship_date":
-        "2024-07-11"}, "rate": {"carrier": "USPS", "carrier_account_id": "ca_4fcd9a658b494a979793bb899a40c5b5",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date":
-        null, "delivery_date_guaranteed": false, "delivery_days": 2, "est_delivery_days":
-        2, "id": "rate_e50d56d7c99b4dc891cdc7f734b51518", "list_currency": "USD",
-        "list_rate": 33.1, "mode": "production", "object": "Rate", "rate": 33.1, "retail_currency":
-        "USD", "retail_rate": 37.9, "service": "Express", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 4, "percentile_75": 4, "percentile_85":
-        5, "percentile_90": 5, "percentile_95": 5, "percentile_97": 6, "percentile_99":
-        7}, "easypost_estimated_delivery_date": "2024-07-15", "planned_ship_date":
-        "2024-07-11"}, "rate": {"carrier": "DhlEcs", "carrier_account_id": "ca_77415c3fbd754d65bb9298e9a69d7084",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date":
-        "2024-07-15T00:00:00Z", "delivery_date_guaranteed": false, "delivery_days":
-        5, "est_delivery_days": 5, "id": "rate_a9f2e062cda94213bc8376da3b799e5b",
-        "list_currency": null, "list_rate": null, "mode": "production", "object":
-        "Rate", "rate": 6.63, "retail_currency": null, "retail_rate": null, "service":
-        "DHLParcelExpedited", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 4, "percentile_75": 5, "percentile_85":
-        5, "percentile_90": 5, "percentile_95": 6, "percentile_97": 6, "percentile_99":
-        7}, "easypost_estimated_delivery_date": "2024-07-15", "planned_ship_date":
-        "2024-07-11"}, "rate": {"carrier": "DhlEcs", "carrier_account_id": "ca_77415c3fbd754d65bb9298e9a69d7084",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date":
-        "2024-07-15T00:00:00Z", "delivery_date_guaranteed": false, "delivery_days":
-        6, "est_delivery_days": 6, "id": "rate_56bbfa74195f4ab18ca2c8166907e0c2",
-        "list_currency": null, "list_rate": null, "mode": "production", "object":
-        "Rate", "rate": 6.5, "retail_currency": null, "retail_rate": null, "service":
-        "DHLParcelGround", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 1, "percentile_75": 1, "percentile_85":
-        1, "percentile_90": 1, "percentile_95": 1, "percentile_97": 4, "percentile_99":
-        4}, "easypost_estimated_delivery_date": "2024-07-12", "planned_ship_date":
-        "2024-07-11"}, "rate": {"carrier": "FedEx", "carrier_account_id": "ca_3bd616120603457fbed9deb1e425bbdc",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date":
-        "2024-07-10T08:30:00Z", "delivery_date_guaranteed": true, "delivery_days":
-        1, "est_delivery_days": 1, "id": "rate_03eb6ee92bad42389f1764087abef25a",
-        "list_currency": "USD", "list_rate": 144.42, "mode": "production", "object":
-        "Rate", "rate": 144.42, "retail_currency": null, "retail_rate": null, "service":
-        "FIRST_OVERNIGHT", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 1, "percentile_75": 1, "percentile_85":
-        1, "percentile_90": 1, "percentile_95": 4, "percentile_97": 4, "percentile_99":
-        4}, "easypost_estimated_delivery_date": "2024-07-12", "planned_ship_date":
-        "2024-07-11"}, "rate": {"carrier": "FedEx", "carrier_account_id": "ca_3bd616120603457fbed9deb1e425bbdc",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date":
-        "2024-07-10T10:30:00Z", "delivery_date_guaranteed": true, "delivery_days":
-        1, "est_delivery_days": 1, "id": "rate_9ef05b4ccc984e29941df09487cfdf4f",
-        "list_currency": "USD", "list_rate": 108.07, "mode": "production", "object":
-        "Rate", "rate": 108.07, "retail_currency": null, "retail_rate": null, "service":
-        "PRIORITY_OVERNIGHT", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 1, "percentile_75": 1, "percentile_85":
-        1, "percentile_90": 1, "percentile_95": 4, "percentile_97": 4, "percentile_99":
-        4}, "easypost_estimated_delivery_date": "2024-07-12", "planned_ship_date":
-        "2024-07-11"}, "rate": {"carrier": "FedEx", "carrier_account_id": "ca_3bd616120603457fbed9deb1e425bbdc",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date":
-        "2024-07-10T17:00:00Z", "delivery_date_guaranteed": true, "delivery_days":
-        1, "est_delivery_days": 1, "id": "rate_c83e4f1b89cb49d8b8d332763b566436",
-        "list_currency": "USD", "list_rate": 98.79, "mode": "production", "object":
-        "Rate", "rate": 98.79, "retail_currency": null, "retail_rate": null, "service":
-        "STANDARD_OVERNIGHT", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 4, "percentile_75": 4, "percentile_85":
-        4, "percentile_90": 4, "percentile_95": 4, "percentile_97": 4, "percentile_99":
-        5}, "easypost_estimated_delivery_date": "2024-07-15", "planned_ship_date":
-        "2024-07-11"}, "rate": {"carrier": "FedEx", "carrier_account_id": "ca_3bd616120603457fbed9deb1e425bbdc",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date":
-        "2024-07-11T10:30:00Z", "delivery_date_guaranteed": true, "delivery_days":
-        2, "est_delivery_days": 2, "id": "rate_1325891633c24c4793c68d75ca95d357",
-        "list_currency": "USD", "list_rate": 39.63, "mode": "production", "object":
-        "Rate", "rate": 39.63, "retail_currency": null, "retail_rate": null, "service":
-        "FEDEX_2_DAY_AM", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "updated_at":
-        "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data": {"days_in_transit":
-        {"percentile_50": 4, "percentile_75": 4, "percentile_85": 4, "percentile_90":
-        4, "percentile_95": 4, "percentile_97": 4, "percentile_99": 5}, "easypost_estimated_delivery_date":
-        "2024-07-15", "planned_ship_date": "2024-07-11"}, "rate": {"carrier": "FedEx",
-        "carrier_account_id": "ca_3bd616120603457fbed9deb1e425bbdc", "created_at":
-        "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date": "2024-07-11T17:00:00Z",
-        "delivery_date_guaranteed": true, "delivery_days": 2, "est_delivery_days":
-        2, "id": "rate_84783b3078f9409185933d6d875eddb5", "list_currency": "USD",
-        "list_rate": 33.39, "mode": "production", "object": "Rate", "rate": 33.39,
-        "retail_currency": null, "retail_rate": null, "service": "FEDEX_2_DAY", "shipment_id":
-        "shp_29740ab2a50d45f2be97c7bae93d6852", "updated_at": "2024-07-09T21:12:50Z"}},
-        {"easypost_time_in_transit_data": {"days_in_transit": {"percentile_50": 4,
-        "percentile_75": 4, "percentile_85": 4, "percentile_90": 4, "percentile_95":
-        5, "percentile_97": 5, "percentile_99": 5}, "easypost_estimated_delivery_date":
-        "2024-07-15", "planned_ship_date": "2024-07-11"}, "rate": {"carrier": "FedEx",
-        "carrier_account_id": "ca_3bd616120603457fbed9deb1e425bbdc", "created_at":
-        "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date": "2024-07-11T23:59:00Z",
-        "delivery_date_guaranteed": true, "delivery_days": 2, "est_delivery_days":
-        2, "id": "rate_b42d417795ab40a4ab236ab3c84a852d", "list_currency": "USD",
-        "list_rate": 16.67, "mode": "production", "object": "Rate", "rate": 14.47,
-        "retail_currency": null, "retail_rate": null, "service": "FEDEX_GROUND", "shipment_id":
-        "shp_29740ab2a50d45f2be97c7bae93d6852", "updated_at": "2024-07-09T21:12:50Z"}},
-        {"easypost_time_in_transit_data": {"days_in_transit": {"percentile_50": 4,
-        "percentile_75": 4, "percentile_85": 4, "percentile_90": 4, "percentile_95":
-        5, "percentile_97": 5, "percentile_99": 6}, "easypost_estimated_delivery_date":
-        "2024-07-15", "planned_ship_date": "2024-07-11"}, "rate": {"carrier": "FedEx",
-        "carrier_account_id": "ca_3bd616120603457fbed9deb1e425bbdc", "created_at":
-        "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date": "2024-07-12T17:00:00Z",
-        "delivery_date_guaranteed": true, "delivery_days": 3, "est_delivery_days":
-        3, "id": "rate_004a106ea5f843758726f60efe2e53d5", "list_currency": "USD",
-        "list_rate": 30.32, "mode": "production", "object": "Rate", "rate": 30.32,
-        "retail_currency": null, "retail_rate": null, "service": "FEDEX_EXPRESS_SAVER",
-        "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "updated_at": "2024-07-09T21:12:50Z"}},
+        4, "percentile_75": 4, "percentile_85": 4, "percentile_90": 4, "percentile_95":
+        5, "percentile_97": 6, "percentile_99": 8}, "easypost_estimated_delivery_date":
+        "2024-08-19", "planned_ship_date": "2024-08-15"}, "rate": {"carrier": "USPS",
+        "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e", "created_at":
+        "2024-08-15T19:54:16Z", "currency": "USD", "delivery_date": null, "delivery_date_guaranteed":
+        false, "delivery_days": 3, "est_delivery_days": 3, "id": "rate_6ba4058596ba464998c219231835809b",
+        "list_currency": "USD", "list_rate": 6.4, "mode": "test", "object": "Rate",
+        "rate": 5.93, "retail_currency": "USD", "retail_rate": 8.45, "service": "GroundAdvantage",
+        "shipment_id": "shp_bba7c1f23e4e40c7994b822bea6427bd", "updated_at": "2024-08-15T19:54:16Z"}},
         {"easypost_time_in_transit_data": {"days_in_transit": {"percentile_50": 1,
-        "percentile_75": 1, "percentile_85": 1, "percentile_90": 1, "percentile_95":
-        4, "percentile_97": 4, "percentile_99": 4}, "easypost_estimated_delivery_date":
-        "2024-07-12", "planned_ship_date": "2024-07-11"}, "rate": {"carrier": "UPS",
-        "carrier_account_id": "ca_754d3e2bce354edfb2e4a3fcc21bb02c", "created_at":
-        "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date": "2024-07-10T10:30:00Z",
-        "delivery_date_guaranteed": true, "delivery_days": 1, "est_delivery_days":
-        1, "id": "rate_22350a8640904c209d922092328f37d0", "list_currency": "USD",
-        "list_rate": 102.19, "mode": "production", "object": "Rate", "rate": 89.07,
-        "retail_currency": "USD", "retail_rate": 89.07, "service": "NextDayAir", "shipment_id":
-        "shp_29740ab2a50d45f2be97c7bae93d6852", "updated_at": "2024-07-09T21:12:50Z"}},
+        "percentile_75": 2, "percentile_85": 4, "percentile_90": 4, "percentile_95":
+        4, "percentile_97": 5, "percentile_99": 6}, "easypost_estimated_delivery_date":
+        "2024-08-16", "planned_ship_date": "2024-08-15"}, "rate": {"carrier": "USPS",
+        "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e", "created_at":
+        "2024-08-15T19:54:16Z", "currency": "USD", "delivery_date": null, "delivery_date_guaranteed":
+        false, "delivery_days": 1, "est_delivery_days": 1, "id": "rate_650c70ec766344eeb228417a7dfab3c6",
+        "list_currency": "USD", "list_rate": 33.1, "mode": "test", "object": "Rate",
+        "rate": 33.1, "retail_currency": "USD", "retail_rate": 37.9, "service": "Express",
+        "shipment_id": "shp_bba7c1f23e4e40c7994b822bea6427bd", "updated_at": "2024-08-15T19:54:16Z"}},
         {"easypost_time_in_transit_data": {"days_in_transit": {"percentile_50": 4,
         "percentile_75": 4, "percentile_85": 4, "percentile_90": 4, "percentile_95":
-        4, "percentile_97": 4, "percentile_99": 5}, "easypost_estimated_delivery_date":
-        "2024-07-15", "planned_ship_date": "2024-07-11"}, "rate": {"carrier": "UPS",
-        "carrier_account_id": "ca_754d3e2bce354edfb2e4a3fcc21bb02c", "created_at":
-        "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date": "2024-07-11T23:00:00Z",
-        "delivery_date_guaranteed": false, "delivery_days": 2, "est_delivery_days":
-        2, "id": "rate_c7a1a85bbc5e404ca1fd25cc016140b5", "list_currency": "USD",
-        "list_rate": 31.84, "mode": "production", "object": "Rate", "rate": 29.64,
-        "retail_currency": "USD", "retail_rate": 29.64, "service": "2ndDayAir", "shipment_id":
-        "shp_29740ab2a50d45f2be97c7bae93d6852", "updated_at": "2024-07-09T21:12:50Z"}},
-        {"easypost_time_in_transit_data": {"days_in_transit": {"percentile_50": 4,
-        "percentile_75": 4, "percentile_85": 4, "percentile_90": 4, "percentile_95":
-        5, "percentile_97": 5, "percentile_99": 5}, "easypost_estimated_delivery_date":
-        "2024-07-15", "planned_ship_date": "2024-07-11"}, "rate": {"carrier": "UPS",
-        "carrier_account_id": "ca_754d3e2bce354edfb2e4a3fcc21bb02c", "created_at":
-        "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date": "2024-07-11T23:00:00Z",
-        "delivery_date_guaranteed": false, "delivery_days": 2, "est_delivery_days":
-        2, "id": "rate_31bbe38959144adc9fa413edb95a3f89", "list_currency": "USD",
-        "list_rate": 15.85, "mode": "production", "object": "Rate", "rate": 14.88,
-        "retail_currency": "USD", "retail_rate": 14.88, "service": "Ground", "shipment_id":
-        "shp_29740ab2a50d45f2be97c7bae93d6852", "updated_at": "2024-07-09T21:12:50Z"}},
-        {"easypost_time_in_transit_data": {"days_in_transit": {"percentile_50": 4,
-        "percentile_75": 4, "percentile_85": 4, "percentile_90": 4, "percentile_95":
-        5, "percentile_97": 5, "percentile_99": 5}, "easypost_estimated_delivery_date":
-        "2024-07-15", "planned_ship_date": "2024-07-11"}, "rate": {"carrier": "UPS",
-        "carrier_account_id": "ca_754d3e2bce354edfb2e4a3fcc21bb02c", "created_at":
-        "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date": "2024-07-12T23:00:00Z",
-        "delivery_date_guaranteed": false, "delivery_days": 3, "est_delivery_days":
-        3, "id": "rate_665b60c99e6b497999c041ffc56ef77b", "list_currency": "USD",
-        "list_rate": 25.1, "mode": "production", "object": "Rate", "rate": 22.6, "retail_currency":
-        "USD", "retail_rate": 22.6, "service": "3DaySelect", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 1, "percentile_75": 1, "percentile_85":
-        1, "percentile_90": 1, "percentile_95": 4, "percentile_97": 4, "percentile_99":
-        4}, "easypost_estimated_delivery_date": "2024-07-12", "planned_ship_date":
-        "2024-07-11"}, "rate": {"carrier": "UPS", "carrier_account_id": "ca_754d3e2bce354edfb2e4a3fcc21bb02c",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date":
-        "2024-07-10T23:00:00Z", "delivery_date_guaranteed": true, "delivery_days":
-        1, "est_delivery_days": 1, "id": "rate_7eb346c3de754d30969679dda6fb7baf",
-        "list_currency": "USD", "list_rate": 93.4, "mode": "production", "object":
-        "Rate", "rate": 83.84, "retail_currency": "USD", "retail_rate": 83.84, "service":
-        "NextDayAirSaver", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 1, "percentile_75": 1, "percentile_85":
-        4, "percentile_90": 4, "percentile_95": 4, "percentile_97": 4, "percentile_99":
-        4}, "easypost_estimated_delivery_date": "2024-07-12", "planned_ship_date":
-        "2024-07-11"}, "rate": {"carrier": "UPS", "carrier_account_id": "ca_754d3e2bce354edfb2e4a3fcc21bb02c",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date":
-        "2024-07-10T08:00:00Z", "delivery_date_guaranteed": true, "delivery_days":
-        1, "est_delivery_days": 1, "id": "rate_fca3e79823304153b68a3cbaec5b6a4f",
-        "list_currency": "USD", "list_rate": 137.22, "mode": "production", "object":
-        "Rate", "rate": 124.09, "retail_currency": "USD", "retail_rate": 124.09, "service":
-        "NextDayAirEarlyAM", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852",
-        "updated_at": "2024-07-09T21:12:50Z"}}, {"easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 4, "percentile_75": 4, "percentile_85":
-        4, "percentile_90": 4, "percentile_95": 4, "percentile_97": 4, "percentile_99":
-        5}, "easypost_estimated_delivery_date": "2024-07-15", "planned_ship_date":
-        "2024-07-11"}, "rate": {"carrier": "UPS", "carrier_account_id": "ca_754d3e2bce354edfb2e4a3fcc21bb02c",
-        "created_at": "2024-07-09T21:12:50Z", "currency": "USD", "delivery_date":
-        "2024-07-11T10:30:00Z", "delivery_date_guaranteed": true, "delivery_days":
-        2, "est_delivery_days": 2, "id": "rate_35d8410979014ded951649449d6f856a",
-        "list_currency": "USD", "list_rate": 35.84, "mode": "production", "object":
-        "Rate", "rate": 33.57, "retail_currency": "USD", "retail_rate": 33.57, "service":
-        "2ndDayAirAM", "shipment_id": "shp_29740ab2a50d45f2be97c7bae93d6852", "updated_at":
-        "2024-07-09T21:12:50Z"}}]}'
+        5, "percentile_97": 6, "percentile_99": 8}, "easypost_estimated_delivery_date":
+        "2024-08-19", "planned_ship_date": "2024-08-15"}, "rate": {"carrier": "USPS",
+        "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e", "created_at":
+        "2024-08-15T19:54:16Z", "currency": "USD", "delivery_date": null, "delivery_date_guaranteed":
+        false, "delivery_days": 2, "est_delivery_days": 2, "id": "rate_c1486fc79edd4cd2a047c110034f8cd2",
+        "list_currency": "USD", "list_rate": 8.25, "mode": "test", "object": "Rate",
+        "rate": 6.9, "retail_currency": "USD", "retail_rate": 9.8, "service": "Priority",
+        "shipment_id": "shp_bba7c1f23e4e40c7994b822bea6427bd", "updated_at": "2024-08-15T19:54:16Z"}}]}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '24376'
+      - '2336'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -765,20 +218,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 1f7ff67a668da7d2e2b9901200294ecc
+      - 62c1f5d866be5ce9e788626800176fc4
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb36nuq
+      - bigweb39nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb3nuq fa152d4755
-      - extlb2nuq fa152d4755
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq b6e1b5034c
       x-runtime:
-      - '0.246798'
+      - '0.122978'
       x-version-label:
-      - easypost-202407092027-324ee50b5a-master
+      - easypost-202408151917-1527448f18-master
       x-xss-protection:
       - 1; mode=block
     status:

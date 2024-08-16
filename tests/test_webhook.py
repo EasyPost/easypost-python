@@ -63,11 +63,9 @@ def test_webhook_delete(webhook_url, test_client):
         assert False
 
 
-def test_validate_webhook(event_bytes):
-    webhook_secret = "sécret"
-    expected_hmac_signature = "hmac-sha256-hex=e93977c8ccb20363d51a62b3fe1fc402b7829be1152da9e88cf9e8d07115a46b"
+def test_validate_webhook(event_bytes, webhook_secret, webhook_hmac_signature):
     headers = {
-        "X-Hmac-Signature": expected_hmac_signature,
+        "X-Hmac-Signature": webhook_hmac_signature,
     }
 
     webhook_body = validate_webhook(
@@ -76,7 +74,8 @@ def test_validate_webhook(event_bytes):
         webhook_secret=webhook_secret,
     )
 
-    assert webhook_body["description"] == "batch.created"
+    assert webhook_body["description"] == "tracker.updated"
+    assert webhook_body["result"]["weight"] == 614.4  # Ensure we convert floats properly
 
 
 def test_validate_webhook_invalid_secret(event_bytes):

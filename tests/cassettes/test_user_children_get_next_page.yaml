@@ -16,26 +16,26 @@ interactions:
     uri: https://api.easypost.com/v2/users/children?page_size=5
   response:
     body:
-      string: '{"children": [{"id": "user_484dd58db70a4f31b4bb862998cf0e04", "object":
-        "User", "parent_id": "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test
-        User", "phone_number": "<REDACTED>", "verified": true, "created_at": "2023-05-16T22:01:20Z"},
-        {"id": "user_14e894c0d541459395f4456e7cf4f175", "object": "User", "parent_id":
-        "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test User", "phone_number":
-        "<REDACTED>", "verified": true, "created_at": "2023-09-27T22:05:26Z"}, {"id":
-        "user_f04df3dad13848339a7975d295d6629f", "object": "User", "parent_id": "user_0f6b83e3530b401cb1e8aeaa6a250d4d",
-        "name": "Test User", "phone_number": "<REDACTED>", "verified": true, "created_at":
-        "2023-11-30T19:23:22Z"}, {"id": "user_44d216445b2f4595a123a18084000d94", "object":
-        "User", "parent_id": "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test
-        User", "phone_number": "<REDACTED>", "verified": true, "created_at": "2024-07-26T18:36:54Z"},
-        {"id": "user_f3b7021a2d924bedb080d7caa00d753e", "object": "User", "parent_id":
-        "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test User", "phone_number":
-        "<REDACTED>", "verified": true, "created_at": "2024-07-26T18:41:48Z"}], "has_more":
-        true}'
+      string: '{"children": [{"id": "user_584be78af2f141e988b6c60dda9dd8fd", "object":
+        "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name": "Test
+        User2", "phone_number": "<REDACTED>", "verified": true, "created_at": "2023-12-11T17:13:38Z"},
+        {"id": "user_437e724f37de412db6df8821968d8d3c", "object": "User", "parent_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "name": "Test User2", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2023-12-11T17:13:43Z"}, {"id":
+        "user_2553102e90de43dea0b9fa7f8c8d7e33", "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2",
+        "name": "Child Account Name22", "phone_number": "<REDACTED>", "verified":
+        true, "created_at": "2024-01-04T19:56:21Z"}, {"id": "user_31754439d4524fbb8867d138de537e12",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Test User", "phone_number": "<REDACTED>", "verified": true, "created_at":
+        "2024-01-19T21:42:21Z"}, {"id": "user_d26377e80676431d88c17d8b140d365a", "object":
+        "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name": "Test
+        User", "phone_number": "<REDACTED>", "verified": true, "created_at": "2024-01-19T21:44:18Z"}],
+        "has_more": false}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '1100'
+      - '1114'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -55,82 +55,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 0af7a3d566abfc23e787564900271db7
-      x-frame-options:
-      - SAMEORIGIN
-      x-node:
-      - bigweb36nuq
-      x-permitted-cross-domain-policies:
-      - none
-      x-proxied:
-      - intlb3nuq c0f5e722d1
-      - extlb2nuq fa152d4755
-      x-runtime:
-      - '0.028399'
-      x-version-label:
-      - easypost-202408012013-135f8f9b76-master
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      authorization:
-      - <REDACTED>
-      user-agent:
-      - <REDACTED>
-    method: GET
-    uri: https://api.easypost.com/v2/users/children?after_id=user_f3b7021a2d924bedb080d7caa00d753e&page_size=5
-  response:
-    body:
-      string: '{"children": [{"id": "user_327a26c77be24e24b165450e7c0de3b9", "object":
-        "User", "parent_id": "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test
-        User", "phone_number": "<REDACTED>", "verified": true, "created_at": "2024-07-26T19:08:21Z"},
-        {"id": "user_acfa6f7268d14e449edd1fe6f4ab64cc", "object": "User", "parent_id":
-        "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test User", "phone_number":
-        "<REDACTED>", "verified": true, "created_at": "2024-07-29T17:41:32Z"}, {"id":
-        "user_4b066506d76940aeb28943506eb76941", "object": "User", "parent_id": "user_0f6b83e3530b401cb1e8aeaa6a250d4d",
-        "name": "Test User", "phone_number": "<REDACTED>", "verified": true, "created_at":
-        "2024-07-29T17:46:31Z"}, {"id": "user_48b7c8e5981647a8aee52aa1cb910280", "object":
-        "User", "parent_id": "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test
-        User", "phone_number": "<REDACTED>", "verified": true, "created_at": "2024-07-29T18:07:19Z"},
-        {"id": "user_dc18fb938f184bfd8f345d7fb1469130", "object": "User", "parent_id":
-        "user_0f6b83e3530b401cb1e8aeaa6a250d4d", "name": "Test User", "phone_number":
-        "<REDACTED>", "verified": true, "created_at": "2024-07-29T21:45:16Z"}], "has_more":
-        true}'
-    headers:
-      cache-control:
-      - private, no-cache, no-store
-      content-length:
-      - '1100'
-      content-type:
-      - application/json; charset=utf-8
-      expires:
-      - '0'
-      pragma:
-      - no-cache
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains; preload
-      transfer-encoding:
-      - chunked
-      x-backend:
-      - easypost
-      x-content-type-options:
-      - nosniff
-      x-download-options:
-      - noopen
-      x-ep-request-uuid:
-      - 0af7a3d566abfc23e787564900271dd8
+      - 62c1f5d866be5cf2e788659f00177866
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -139,11 +64,11 @@ interactions:
       - none
       x-proxied:
       - intlb4nuq c0f5e722d1
-      - extlb2nuq fa152d4755
+      - extlb2nuq b6e1b5034c
       x-runtime:
-      - '0.032033'
+      - '0.075461'
       x-version-label:
-      - easypost-202408012013-135f8f9b76-master
+      - easypost-202408151917-1527448f18-master
       x-xss-protection:
       - 1; mode=block
     status:
