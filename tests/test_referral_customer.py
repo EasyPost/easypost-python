@@ -94,13 +94,14 @@ def test_referral_customer_add_credit_card(partner_user_prod_client, credit_card
         cvc=credit_card_details["cvc"],
     )
 
-    assert str.startswith(added_credit_card.id, "card_")
+    assert str.startswith(added_credit_card.id, "pm_")
     assert added_credit_card.last4 == "6170"
 
 
 @patch("easypost.services.referral_customer_service.ReferralCustomerService._retrieve_easypost_stripe_api_key")
 @patch(
-    "easypost.services.referral_customer_service.ReferralCustomerService._create_stripe_token", side_effect=Exception()
+    "easypost.services.referral_customer_service.ReferralCustomerService._create_stripe_token",
+    side_effect=Exception(),
 )
 def test_referral_add_credit_card_error(
     mock_stripe_token,

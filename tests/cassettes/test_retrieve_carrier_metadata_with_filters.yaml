@@ -21,19 +21,19 @@ interactions:
         "human_readable": null, "max_weight": null, "name": "Card"}, {"carrier": "usps",
         "description": null, "dimensions": ["11.5in x 6.125in x 0.25in"], "human_readable":
         null, "max_weight": null, "name": "Letter"}, {"carrier": "usps", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "Flat"}, {"carrier": "usps", "description": null, "dimensions": ["12.5in x
-        9.5in"], "human_readable": null, "max_weight": null, "name": "FlatRateEnvelope"},
-        {"carrier": "usps", "description": null, "dimensions": ["15in x 9.5in"], "human_readable":
-        null, "max_weight": null, "name": "FlatRateLegalEnvelope"}, {"carrier": "usps",
-        "description": null, "dimensions": ["12.5in x 9.5in"], "human_readable": null,
-        "max_weight": null, "name": "FlatRatePaddedEnvelope"}, {"carrier": "usps",
-        "description": null, "dimensions": ["10in x 5in", "12.5in x 9.5in"], "human_readable":
-        null, "max_weight": null, "name": "FlatRateWindowEnvelope"}, {"carrier": "usps",
-        "description": null, "dimensions": ["12.5in x 9.5in"], "human_readable": null,
-        "max_weight": null, "name": "FlatRateCardboardEnvelope"}, {"carrier": "usps",
-        "description": null, "dimensions": ["10in x 6in"], "human_readable": null,
-        "max_weight": null, "name": "SmallFlatRateEnvelope"}, {"carrier": "usps",
+        null, "dimensions": ["11.5in x 6.125in x 0.75in"], "human_readable": null,
+        "max_weight": null, "name": "Flat"}, {"carrier": "usps", "description": null,
+        "dimensions": ["12.5in x 9.5in"], "human_readable": null, "max_weight": null,
+        "name": "FlatRateEnvelope"}, {"carrier": "usps", "description": null, "dimensions":
+        ["15in x 9.5in"], "human_readable": null, "max_weight": null, "name": "FlatRateLegalEnvelope"},
+        {"carrier": "usps", "description": null, "dimensions": ["12.5in x 9.5in"],
+        "human_readable": null, "max_weight": null, "name": "FlatRatePaddedEnvelope"},
+        {"carrier": "usps", "description": null, "dimensions": ["10in x 5in", "12.5in
+        x 9.5in"], "human_readable": null, "max_weight": null, "name": "FlatRateWindowEnvelope"},
+        {"carrier": "usps", "description": null, "dimensions": ["12.5in x 9.5in"],
+        "human_readable": null, "max_weight": null, "name": "FlatRateCardboardEnvelope"},
+        {"carrier": "usps", "description": null, "dimensions": ["10in x 6in"], "human_readable":
+        null, "max_weight": null, "name": "SmallFlatRateEnvelope"}, {"carrier": "usps",
         "description": null, "dimensions": ["Varies based on service level"], "human_readable":
         null, "max_weight": null, "name": "Parcel"}, {"carrier": "usps", "description":
         null, "dimensions": ["Varies based on service level"], "human_readable": null,
@@ -54,41 +54,43 @@ interactions:
         "usps", "description": null, "dimensions": [], "human_readable": null, "max_weight":
         null, "name": "HalfTrayBox"}, {"carrier": "usps", "description": null, "dimensions":
         [], "human_readable": null, "max_weight": null, "name": "PMODSack"}], "service_levels":
-        [{"carrier": "usps", "description": "1-5 business days", "dimensions": ["22in
-        x 18in x 15in"], "human_readable": null, "max_weight": 13.0, "name": "First"},
-        {"carrier": "usps", "description": "1-3 business days", "dimensions": ["Combined
-        Length and Girth < 108in"], "human_readable": null, "max_weight": 1120.0,
-        "name": "Priority"}, {"carrier": "usps", "description": "1-2 days", "dimensions":
-        ["Combined Length and Girth < 108in"], "human_readable": null, "max_weight":
-        1120.0, "name": "Express"}, {"carrier": "usps", "description": "2-8 business
-        days", "dimensions": ["Combined Length and Girth < 108in"], "human_readable":
-        null, "max_weight": 1120.0, "name": "ParcelSelect"}, {"carrier": "usps", "description":
+        [{"carrier": "usps", "description": "1-5 business days", "dimensions": ["Cards,
+        Letters and Flats only (no Parcels)", "See Predefined Packages (Card, Letter,
+        Flat) for details"], "human_readable": "First-Class Mail\u00ae", "max_weight":
+        13.0, "name": "First"}, {"carrier": "usps", "description": "1-3 business days",
+        "dimensions": ["Combined Length and Girth < 108in"], "human_readable": "Priority
+        Mail\u00ae", "max_weight": 1120.0, "name": "Priority"}, {"carrier": "usps",
+        "description": "1-2 days", "dimensions": ["Combined Length and Girth < 108in"],
+        "human_readable": "Priority Mail Express\u00ae", "max_weight": 1120.0, "name":
+        "Express"}, {"carrier": "usps", "description": "2-5 days", "dimensions": ["Combined
+        Length and Girth < 130in"], "human_readable": "USPS Ground Advantage\u00ae",
+        "max_weight": 70.0, "name": "GroundAdvantage"}, {"carrier": "usps", "description":
         "2-8 business days", "dimensions": ["Combined Length and Girth < 108in"],
-        "human_readable": null, "max_weight": 1120.0, "name": "LibraryMail"}, {"carrier":
-        "usps", "description": "2-8 business days", "dimensions": ["Combined Length
-        and Girth < 108in"], "human_readable": null, "max_weight": 1120.0, "name":
-        "MediaMail"}, {"carrier": "usps", "description": null, "dimensions": ["Must
-        be rectangular, otherwise an additional charge may apply."], "human_readable":
-        null, "max_weight": 15.994, "name": "FirstClassMailInternational"}, {"carrier":
-        "usps", "description": "7-21 days", "dimensions": ["Packages (Other Than Rolls):
-        Combined Length and Girth < 108in", "Rolls (Tubes): Length: min 4in; max 36
-        in. Length plus twice the diameter (combined): min 6.75 in; max 42in.", "Some
-        countries have specific prohibitions and restrictions"], "human_readable":
-        null, "max_weight": 64.0, "name": "FirstClassPackageInternationalService"},
-        {"carrier": "usps", "description": "6-10 business days", "dimensions": ["Combined
-        Length and Girth < 108in"], "human_readable": null, "max_weight": 1120.0,
+        "human_readable": "Library Mail\u00ae", "max_weight": 1120.0, "name": "LibraryMail"},
+        {"carrier": "usps", "description": "2-8 business days", "dimensions": ["Combined
+        Length and Girth < 108in"], "human_readable": "Media Mail\u00ae", "max_weight":
+        1120.0, "name": "MediaMail"}, {"carrier": "usps", "description": null, "dimensions":
+        ["Must be rectangular, otherwise an additional charge may apply."], "human_readable":
+        "First-Class Mail International\u00ae", "max_weight": 15.994, "name": "FirstClassMailInternational"},
+        {"carrier": "usps", "description": "7-21 days", "dimensions": ["Packages (Other
+        Than Rolls): Combined Length and Girth < 108in", "Rolls (Tubes): Length: min
+        4in; max 36 in. Length plus twice the diameter (combined): min 6.75 in; max
+        42in.", "Some countries have specific prohibitions and restrictions"], "human_readable":
+        "First-Class Package International Service\u00ae", "max_weight": 64.0, "name":
+        "FirstClassPackageInternationalService"}, {"carrier": "usps", "description":
+        "6-10 business days", "dimensions": ["Combined Length and Girth < 108in"],
+        "human_readable": "Priority Mail International\u00ae", "max_weight": 1120.0,
         "name": "PriorityMailInternational"}, {"carrier": "usps", "description": "3-5
         business days", "dimensions": ["Combined Length and Girth < 108in"], "human_readable":
-        null, "max_weight": 1120.0, "name": "ExpressMailInternational"}]}]}'
+        "Priority Mail Express International\u00ae", "max_weight": 1120.0, "name":
+        "ExpressMailInternational"}]}]}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '4706'
+      - '5074'
       content-type:
       - application/json; charset=utf-8
-      etag:
-      - W/"80e36a02624b6fff828d65a412ac9604"
       expires:
       - '0'
       pragma:
@@ -101,25 +103,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 37beff0364777761e788ee030018f421
+      - 62c1f5da66be5c7be7885e28001703a0
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb5nuq
+      - bigweb43nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq a29e4ad05c
-      - extlb1nuq 5ab12a3ed2
+      - intlb4nuq c0f5e722d1
+      - extlb2nuq b6e1b5034c
       x-runtime:
-      - '0.028461'
+      - '0.037176'
       x-version-label:
-      - easypost-202305311544-49bde6df69-master
+      - easypost-202408151917-1527448f18-master
       x-xss-protection:
       - 1; mode=block
     status:

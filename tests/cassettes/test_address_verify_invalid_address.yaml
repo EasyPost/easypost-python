@@ -20,8 +20,8 @@ interactions:
     uri: https://api.easypost.com/v2/addresses
   response:
     body:
-      string: '{"id": "adr_7c8d2199f0fb11ed8e31ac1f6bc72124", "object": "Address",
-        "created_at": "2023-05-12T19:30:43+00:00", "updated_at": "2023-05-12T19:30:43+00:00",
+      string: '{"id": "adr_ce9728675b3f11efb53aac1f6bc539aa", "object": "Address",
+        "created_at": "2024-08-15T19:51:47+00:00", "updated_at": "2024-08-15T19:51:47+00:00",
         "name": null, "company": null, "street1": "invalid", "street2": null, "city":
         null, "state": null, "zip": null, "country": "US", "phone": "<REDACTED>",
         "email": "<REDACTED>", "mode": "test", "carrier_facility": null, "residential":
@@ -33,12 +33,10 @@ interactions:
       - '403'
       content-type:
       - application/json; charset=utf-8
-      etag:
-      - W/"ba83aca1454e0558f215c3d63669f85c"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_7c8d2199f0fb11ed8e31ac1f6bc72124
+      - /api/v2/addresses/adr_ce9728675b3f11efb53aac1f6bc539aa
       pragma:
       - no-cache
       referrer-policy:
@@ -54,20 +52,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 4eb6f00e645e93e3e2cc317b0005d43b
+      - 62c1f5d766be5c53e7885dc20016db18
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb6nuq
+      - bigweb42nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq a29e4ad05c
-      - extlb1nuq 5ab12a3ed2
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq b6e1b5034c
       x-runtime:
-      - '0.034440'
+      - '0.041345'
       x-version-label:
-      - easypost-202305121849-b449e9bf47-master
+      - easypost-202408151917-1527448f18-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -87,7 +85,7 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/v2/addresses/adr_7c8d2199f0fb11ed8e31ac1f6bc72124/verify
+    uri: https://api.easypost.com/v2/addresses/adr_ce9728675b3f11efb53aac1f6bc539aa/verify
   response:
     body:
       string: '{"error": {"code": "ADDRESS.VERIFY.FAILURE", "message": "Unable to
@@ -118,20 +116,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 4eb6f00e645e93e3e2cc317b0005d449
+      - 62c1f5d766be5c53e7885dc20016db34
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb2nuq
+      - bigweb33nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq a29e4ad05c
-      - extlb1nuq 5ab12a3ed2
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq b6e1b5034c
       x-runtime:
-      - '0.032914'
+      - '0.039869'
       x-version-label:
-      - easypost-202305121849-b449e9bf47-master
+      - easypost-202408151917-1527448f18-master
       x-xss-protection:
       - 1; mode=block
     status:

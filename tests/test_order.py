@@ -56,13 +56,13 @@ def test_order_lowest_rate(basic_order, test_client):
     # Test lowest rate with no filters
     lowest_rate = order.lowest_rate()
     assert lowest_rate.service == "GroundAdvantage"
-    assert lowest_rate.rate == "11.33"
+    assert lowest_rate.rate == "11.40"
     assert lowest_rate.carrier == "USPS"
 
     # Test lowest rate with service filter (this rate is higher than the lowest but should filter)
     lowest_rate_service = order.lowest_rate(services=["Priority"])
     assert lowest_rate_service.service == "Priority"
-    assert lowest_rate_service.rate == "13.79"
+    assert lowest_rate_service.rate == "14.48"
     assert lowest_rate_service.carrier == "USPS"
 
     # Test lowest rate with carrier filter (should error due to bad carrier)

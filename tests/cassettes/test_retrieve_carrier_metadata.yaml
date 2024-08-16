@@ -16,7 +16,10 @@ interactions:
     uri: https://api.easypost.com/v2/metadata/carriers
   response:
     body:
-      string: '{"carriers": [{"human_readable": "Amazon MWS", "name": "amazonmws",
+      string: '{"carriers": [{"human_readable": "Accurate", "name": "accurate", "predefined_packages":
+        [], "service_levels": [{"carrier": "accurate", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "Route"}], "shipment_options":
+        [], "supported_features": []}, {"human_readable": "Amazon MWS", "name": "amazonmws",
         "predefined_packages": [], "service_levels": [{"carrier": "amazonmws", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
         "UPS Rates"}, {"carrier": "amazonmws", "description": null, "dimensions":
@@ -232,7 +235,9 @@ interactions:
         "ePAQ Standard International Surface Air Lift", "max_weight": null, "name":
         "ePAQStandardISAL"}, {"carrier": "asendiausa", "description": null, "dimensions":
         [], "human_readable": "ePaq Select PMEI Non-Presort", "max_weight": null,
-        "name": "ePaqSelectPMEINonPresort"}], "shipment_options": [], "supported_features":
+        "name": "ePaqSelectPMEINonPresort"}, {"carrier": "asendiausa", "description":
+        null, "dimensions": [], "human_readable": "ePAQ Select DDP DG", "max_weight":
+        null, "name": "ePAQSelectDDPDG"}], "shipment_options": [], "supported_features":
         []}, {"human_readable": "Australia Post", "name": "australiapost", "predefined_packages":
         [{"carrier": "australiapost", "description": null, "dimensions": [], "human_readable":
         "Carton", "max_weight": null, "name": "CARTON"}, {"carrier": "australiapost",
@@ -260,138 +265,242 @@ interactions:
         "description": "Specific service availability is determined by your AustraliaPost
         account.", "dimensions": [], "human_readable": "Commercial", "max_weight":
         null, "name": "Commercial"}], "shipment_options": [], "supported_features":
-        [{"carrier": "australiapost", "description": null, "name": "labels", "supported":
-        true}, {"carrier": "australiapost", "description": null, "name": "orders",
-        "supported": true}, {"carrier": "australiapost", "description": null, "name":
-        "pickups", "supported": false}, {"carrier": "australiapost", "description":
-        null, "name": "refunds", "supported": true}, {"carrier": "australiapost",
-        "description": "Domestic only.", "name": "returns", "supported": true}, {"carrier":
-        "australiapost", "description": null, "name": "scanforms", "supported": true},
-        {"carrier": "australiapost", "description": null, "name": "rating", "supported":
-        false}, {"carrier": "australiapost", "description": null, "name": "tracking",
+        [{"carrier": "australiapost", "description": null, "name": "bill_on_delivery",
         "supported": false}, {"carrier": "australiapost", "description": "Not available
         with Print as You Go.", "name": "bill_on_label_purchase", "supported": true},
-        {"carrier": "australiapost", "description": null, "name": "bill_on_delivery",
-        "supported": false}, {"carrier": "australiapost", "description": null, "name":
-        "bill_on_scan", "supported": false}, {"carrier": "australiapost", "description":
-        "Daily manifesting when using Print as You Go.", "name": "bill_on_manifest",
-        "supported": true}, {"carrier": "australiapost", "description": null, "name":
-        "commercial_invoices", "supported": null}, {"carrier": "australiapost", "description":
-        null, "name": "delivers_to_po_box", "supported": null}, {"carrier": "australiapost",
-        "description": null, "name": "sort_codes", "supported": false}, {"carrier":
-        "australiapost", "description": null, "name": "test_environment", "supported":
-        true}]}, {"human_readable": "AxlehireV3", "name": "axlehirev3", "predefined_packages":
-        [], "service_levels": [{"carrier": "axlehirev3", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "AxleHireDelivery"}],
-        "shipment_options": [], "supported_features": []}, {"human_readable": "Better
-        Trucks", "name": "bettertrucks", "predefined_packages": [], "service_levels":
-        [{"carrier": "bettertrucks", "description": null, "dimensions": [], "human_readable":
-        "Next Day", "max_weight": null, "name": "NEXT_DAY"}, {"carrier": "bettertrucks",
-        "description": null, "dimensions": [], "human_readable": "Express", "max_weight":
-        null, "name": "EXPRESS"}], "shipment_options": [], "supported_features": []},
-        {"human_readable": "Canada Post", "name": "canadapost", "predefined_packages":
-        [], "service_levels": [{"carrier": "canadapost", "description": null, "dimensions":
-        [], "human_readable": "Delivered Tonight", "max_weight": null, "name": "DeliveredTonight"},
-        {"carrier": "canadapost", "description": null, "dimensions": [], "human_readable":
-        "Regular Parcel", "max_weight": null, "name": "RegularParcel"}, {"carrier":
-        "canadapost", "description": null, "dimensions": [], "human_readable": "Expedited
+        {"carrier": "australiapost", "description": "Daily manifesting when using
+        Print as You Go.", "name": "bill_on_manifest", "supported": true}, {"carrier":
+        "australiapost", "description": null, "name": "bill_on_scan", "supported":
+        false}, {"carrier": "australiapost", "description": null, "name": "commercial_invoices",
+        "supported": null}, {"carrier": "australiapost", "description": null, "name":
+        "delivers_to_po_box", "supported": null}, {"carrier": "australiapost", "description":
+        null, "name": "labels", "supported": true}, {"carrier": "australiapost", "description":
+        null, "name": "orders", "supported": true}, {"carrier": "australiapost", "description":
+        null, "name": "pickups", "supported": false}, {"carrier": "australiapost",
+        "description": null, "name": "rating", "supported": true}, {"carrier": "australiapost",
+        "description": null, "name": "refunds", "supported": true}, {"carrier": "australiapost",
+        "description": "Domestic only.", "name": "returns", "supported": true}, {"carrier":
+        "australiapost", "description": null, "name": "scanforms", "supported": true},
+        {"carrier": "australiapost", "description": null, "name": "sort_codes", "supported":
+        false}, {"carrier": "australiapost", "description": null, "name": "test_environment",
+        "supported": true}]}, {"human_readable": "Better Trucks", "name": "bettertrucks",
+        "predefined_packages": [], "service_levels": [{"carrier": "bettertrucks",
+        "description": null, "dimensions": [], "human_readable": "Next Day", "max_weight":
+        null, "name": "NEXT_DAY"}, {"carrier": "bettertrucks", "description": null,
+        "dimensions": [], "human_readable": "Express", "max_weight": null, "name":
+        "EXPRESS"}], "shipment_options": [], "supported_features": []}, {"human_readable":
+        "Bluestreak", "name": "bluestreak", "predefined_packages": [], "service_levels":
+        [{"carrier": "bluestreak", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "N5"}], "shipment_options": [], "supported_features":
+        []}, {"human_readable": "Canada Post", "name": "canadapost", "predefined_packages":
+        [], "service_levels": [{"carrier": "canadapost", "description": "Up to 3 days
+        for local delivery, up to 6 days for regional delivery and up to 10 days for
+        national delivery", "dimensions": [], "human_readable": "Regular Parcel",
+        "max_weight": null, "name": "RegularParcel"}, {"carrier": "canadapost", "description":
+        "Up to 2 days for local delivery, up to 4 days for regional delivery and up
+        to 8 days for national delivery", "dimensions": [], "human_readable": "Expedited
         Parcel", "max_weight": null, "name": "ExpeditedParcel"}, {"carrier": "canadapost",
-        "description": null, "dimensions": [], "human_readable": "Xpresspost", "max_weight":
-        null, "name": "Xpresspost"}, {"carrier": "canadapost", "description": null,
-        "dimensions": [], "human_readable": "Xpresspost Certified", "max_weight":
-        null, "name": "XpresspostCertified"}, {"carrier": "canadapost", "description":
-        null, "dimensions": [], "human_readable": "Priority", "max_weight": null,
-        "name": "Priority"}, {"carrier": "canadapost", "description": null, "dimensions":
-        [], "human_readable": "Library Books", "max_weight": null, "name": "LibraryBooks"},
-        {"carrier": "canadapost", "description": null, "dimensions": [], "human_readable":
-        "Expedited Parcel USA", "max_weight": null, "name": "ExpeditedParcelUSA"},
-        {"carrier": "canadapost", "description": null, "dimensions": [], "human_readable":
-        "Priority Worldwide Envelope USA", "max_weight": null, "name": "PriorityWorldwideEnvelopeUSA"},
-        {"carrier": "canadapost", "description": null, "dimensions": [], "human_readable":
-        "Priority Worldwide Pak USA", "max_weight": null, "name": "PriorityWorldwidePakUSA"},
-        {"carrier": "canadapost", "description": null, "dimensions": [], "human_readable":
-        "Priority Worldwide Parcel USA", "max_weight": null, "name": "PriorityWorldwideParcelUSA"},
-        {"carrier": "canadapost", "description": null, "dimensions": [], "human_readable":
-        "Small Packet USA Air", "max_weight": null, "name": "SmallPacketUSAAir"},
-        {"carrier": "canadapost", "description": null, "dimensions": [], "human_readable":
-        "Tracked Packet USA", "max_weight": null, "name": "TrackedPacketUSA"}, {"carrier":
-        "canadapost", "description": null, "dimensions": [], "human_readable": "Tracked
-        Packet USA LVM", "max_weight": null, "name": "TrackedPacketUSALVM"}, {"carrier":
-        "canadapost", "description": null, "dimensions": [], "human_readable": "Xpresspost
+        "description": "Next-day and 2-day delivery", "dimensions": [], "human_readable":
+        "Xpresspost", "max_weight": null, "name": "Xpresspost"}, {"carrier": "canadapost",
+        "description": "Next-day delivery with signature", "dimensions": [], "human_readable":
+        "Priority", "max_weight": null, "name": "Priority"}, {"carrier": "canadapost",
+        "description": "Delivery in as little as 4 business days for larger parcels",
+        "dimensions": [], "human_readable": "Expedited Parcel USA", "max_weight":
+        null, "name": "ExpeditedParcelUSA"}, {"carrier": "canadapost", "description":
+        "Delivery in as little as 5 business days for small and lightweight items",
+        "dimensions": [], "human_readable": "Small Packet USA Air", "max_weight":
+        null, "name": "SmallPacketUSAAir"}, {"carrier": "canadapost", "description":
+        "Delivery in as little as 4 business days for small and lightweight items",
+        "dimensions": [], "human_readable": "Tracked Packet USA", "max_weight": null,
+        "name": "TrackedPacketUSA"}, {"carrier": "canadapost", "description": null,
+        "dimensions": [], "human_readable": "Tracked Packet USA LVM", "max_weight":
+        null, "name": "TrackedPacketUSALVM"}, {"carrier": "canadapost", "description":
+        "Delivery in 2 and 3 business days", "dimensions": [], "human_readable": "Xpresspost
         USA", "max_weight": null, "name": "XpresspostUSA"}, {"carrier": "canadapost",
-        "description": null, "dimensions": [], "human_readable": "Xpresspost International",
-        "max_weight": null, "name": "XpresspostInternational"}, {"carrier": "canadapost",
-        "description": null, "dimensions": [], "human_readable": "International Parcel
-        Air", "max_weight": null, "name": "InternationalParcelAir"}, {"carrier": "canadapost",
-        "description": null, "dimensions": [], "human_readable": "International Parcel
-        Surface", "max_weight": null, "name": "InternationalParcelSurface"}, {"carrier":
-        "canadapost", "description": null, "dimensions": [], "human_readable": "Priority
-        Worldwide Envelope Intl", "max_weight": null, "name": "PriorityWorldwideEnvelopeIntl"},
-        {"carrier": "canadapost", "description": null, "dimensions": [], "human_readable":
-        "Priority Worldwide Pak Intl", "max_weight": null, "name": "PriorityWorldwidePakIntl"},
-        {"carrier": "canadapost", "description": null, "dimensions": [], "human_readable":
-        "Priority Worldwide Parcel Intl", "max_weight": null, "name": "PriorityWorldwideParcelIntl"},
-        {"carrier": "canadapost", "description": null, "dimensions": [], "human_readable":
-        "Small Packet International Air", "max_weight": null, "name": "SmallPacketInternationalAir"},
-        {"carrier": "canadapost", "description": null, "dimensions": [], "human_readable":
-        "Small Packet International Surface", "max_weight": null, "name": "SmallPacketInternationalSurface"},
-        {"carrier": "canadapost", "description": null, "dimensions": [], "human_readable":
-        "Tracked Packet International", "max_weight": null, "name": "TrackedPacketInternational"}],
-        "shipment_options": [], "supported_features": [{"carrier": "canadapost", "description":
-        null, "name": "labels", "supported": true}, {"carrier": "canadapost", "description":
-        null, "name": "orders", "supported": false}, {"carrier": "canadapost", "description":
-        null, "name": "pickups", "supported": true}, {"carrier": "canadapost", "description":
-        null, "name": "refunds", "supported": true}, {"carrier": "canadapost", "description":
-        null, "name": "returns", "supported": true}, {"carrier": "canadapost", "description":
-        null, "name": "scanforms", "supported": true}, {"carrier": "canadapost", "description":
-        null, "name": "rating", "supported": false}, {"carrier": "canadapost", "description":
-        null, "name": "tracking", "supported": false}, {"carrier": "canadapost", "description":
-        null, "name": "bill_on_label_purchase", "supported": false}, {"carrier": "canadapost",
-        "description": null, "name": "bill_on_delivery", "supported": true}, {"carrier":
-        "canadapost", "description": null, "name": "bill_on_scan", "supported": false},
+        "description": "Delivery in as little as 4 business days", "dimensions": [],
+        "human_readable": "Xpresspost International", "max_weight": null, "name":
+        "XpresspostInternational"}, {"carrier": "canadapost", "description": "Delivery
+        in as little as 6 business days for larger parcels", "dimensions": [], "human_readable":
+        "International Parcel Air", "max_weight": null, "name": "InternationalParcelAir"},
+        {"carrier": "canadapost", "description": "Delivery in 1 month and up to 3
+        months", "dimensions": [], "human_readable": "International Parcel Surface",
+        "max_weight": null, "name": "InternationalParcelSurface"}, {"carrier": "canadapost",
+        "description": "Delivery in as little as 6 business days for small and lightweight
+        items", "dimensions": [], "human_readable": "Small Packet International Air",
+        "max_weight": null, "name": "SmallPacketInternationalAir"}, {"carrier": "canadapost",
+        "description": "Delivery in 1 month and up to 3 months for small and lightweight
+        items", "dimensions": [], "human_readable": "Small Packet International Surface",
+        "max_weight": null, "name": "SmallPacketInternationalSurface"}, {"carrier":
+        "canadapost", "description": "Delivery in as little as 6 business days", "dimensions":
+        [], "human_readable": "Tracked Packet International", "max_weight": null,
+        "name": "TrackedPacketInternational"}, {"carrier": "canadapost", "description":
+        "Up to 3 days for local delivery, up to 6 days for regional delivery and up
+        to 10 days for national delivery", "dimensions": [], "human_readable": "Expedited
+        Parcel Plus", "max_weight": null, "name": "ExpeditedParcelPlus"}], "shipment_options":
+        [], "supported_features": [{"carrier": "canadapost", "description": null,
+        "name": "bill_on_delivery", "supported": true}, {"carrier": "canadapost",
+        "description": null, "name": "bill_on_label_purchase", "supported": false},
         {"carrier": "canadapost", "description": null, "name": "bill_on_manifest",
         "supported": true}, {"carrier": "canadapost", "description": null, "name":
-        "commercial_invoices", "supported": true}, {"carrier": "canadapost", "description":
-        null, "name": "delivers_to_po_box", "supported": null}, {"carrier": "canadapost",
-        "description": null, "name": "sort_codes", "supported": false}, {"carrier":
-        "canadapost", "description": null, "name": "test_environment", "supported":
-        true}]}, {"human_readable": "Canpar", "name": "canpar", "predefined_packages":
-        [], "service_levels": [{"carrier": "canpar", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "Ground"}, {"carrier":
-        "canpar", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "SelectLetter"}, {"carrier": "canpar", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "SelectPak"},
+        "bill_on_scan", "supported": false}, {"carrier": "canadapost", "description":
+        null, "name": "commercial_invoices", "supported": true}, {"carrier": "canadapost",
+        "description": null, "name": "delivers_to_po_box", "supported": null}, {"carrier":
+        "canadapost", "description": null, "name": "labels", "supported": true}, {"carrier":
+        "canadapost", "description": null, "name": "orders", "supported": false},
+        {"carrier": "canadapost", "description": null, "name": "pickups", "supported":
+        true}, {"carrier": "canadapost", "description": null, "name": "rating", "supported":
+        true}, {"carrier": "canadapost", "description": null, "name": "refunds", "supported":
+        true}, {"carrier": "canadapost", "description": null, "name": "returns", "supported":
+        true}, {"carrier": "canadapost", "description": null, "name": "scanforms",
+        "supported": true}, {"carrier": "canadapost", "description": null, "name":
+        "sort_codes", "supported": false}, {"carrier": "canadapost", "description":
+        null, "name": "test_environment", "supported": true}]}, {"human_readable":
+        "Canpar", "name": "canpar", "predefined_packages": [], "service_levels": [{"carrier":
+        "canpar", "description": null, "dimensions": [], "human_readable": "Ground",
+        "max_weight": null, "name": "Ground"}, {"carrier": "canpar", "description":
+        null, "dimensions": [], "human_readable": "USA", "max_weight": null, "name":
+        "USA"}, {"carrier": "canpar", "description": null, "dimensions": [], "human_readable":
+        "Select Letter", "max_weight": null, "name": "SelectLetter"}, {"carrier":
+        "canpar", "description": null, "dimensions": [], "human_readable": "Select
+        Pak", "max_weight": null, "name": "SelectPak"}, {"carrier": "canpar", "description":
+        null, "dimensions": [], "human_readable": "Select", "max_weight": null, "name":
+        "Select"}, {"carrier": "canpar", "description": null, "dimensions": [], "human_readable":
+        "Overnight Letter", "max_weight": null, "name": "OvernightLetter"}, {"carrier":
+        "canpar", "description": null, "dimensions": [], "human_readable": "Overnight
+        Pak", "max_weight": null, "name": "OvernightPak"}, {"carrier": "canpar", "description":
+        null, "dimensions": [], "human_readable": "Overnight", "max_weight": null,
+        "name": "Overnight"}, {"carrier": "canpar", "description": null, "dimensions":
+        [], "human_readable": "USA Letter", "max_weight": null, "name": "USALetter"},
         {"carrier": "canpar", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "Select"}, {"carrier": "canpar", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "OvernightLetter"}, {"carrier": "canpar", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "OvernightPak"}, {"carrier":
-        "canpar", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "Overnight"}, {"carrier": "canpar", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "SelectUSA"}, {"carrier":
-        "canpar", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "USAPak"}, {"carrier": "canpar", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "USALetter"}, {"carrier":
-        "canpar", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "USA"}, {"carrier": "canpar", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "International"}],
-        "shipment_options": [], "supported_features": []}, {"human_readable": "CDL
-        Last Mile Solutions", "name": "cdllastmilesolutions", "predefined_packages":
+        "USA Pak", "max_weight": null, "name": "USAPak"}, {"carrier": "canpar", "description":
+        null, "dimensions": [], "human_readable": "Select USA", "max_weight": null,
+        "name": "SelectUSA"}, {"carrier": "canpar", "description": null, "dimensions":
+        [], "human_readable": "International", "max_weight": null, "name": "International"}],
+        "shipment_options": [{"carrier": "canpar", "deprecated": false, "description":
+        null, "human_readable": "Additional Handling", "name": "additional_handling",
+        "type": "boolean"}, {"carrier": "canpar", "deprecated": false, "description":
+        null, "human_readable": "Carrier Insurance Amount", "name": "carrier_insurance_amount",
+        "type": "float"}, {"carrier": "canpar", "deprecated": false, "description":
+        null, "human_readable": "Handling Instructions", "name": "handling_instructions",
+        "type": "string"}, {"carrier": "canpar", "deprecated": false, "description":
+        null, "human_readable": "Label Format", "name": "label_format", "type": "string"},
+        {"carrier": "canpar", "deprecated": false, "description": null, "human_readable":
+        "Label Size", "name": "label_size", "type": "string"}, {"carrier": "canpar",
+        "deprecated": false, "description": null, "human_readable": "Delivery Confirmation",
+        "name": "delivery_confirmation", "type": "string"}, {"carrier": "canpar",
+        "deprecated": false, "description": null, "human_readable": "Cod Amount",
+        "name": "cod_amount", "type": "string"}, {"carrier": "canpar", "deprecated":
+        false, "description": null, "human_readable": "Cod Method", "name": "cod_method",
+        "type": "string"}, {"carrier": "canpar", "deprecated": true, "description":
+        null, "human_readable": "Date Advance", "name": "date_advance", "type": "integer"},
+        {"carrier": "canpar", "deprecated": false, "description": null, "human_readable":
+        "Billing Ref", "name": "billing_ref", "type": "string"}], "supported_features":
+        [{"carrier": "canpar", "description": null, "name": "bill_on_delivery", "supported":
+        null}, {"carrier": "canpar", "description": null, "name": "bill_on_label_purchase",
+        "supported": null}, {"carrier": "canpar", "description": null, "name": "bill_on_manifest",
+        "supported": null}, {"carrier": "canpar", "description": null, "name": "bill_on_scan",
+        "supported": null}, {"carrier": "canpar", "description": null, "name": "commercial_invoices",
+        "supported": false}, {"carrier": "canpar", "description": null, "name": "delivers_to_po_box",
+        "supported": false}, {"carrier": "canpar", "description": null, "name": "labels",
+        "supported": true}, {"carrier": "canpar", "description": null, "name": "orders",
+        "supported": false}, {"carrier": "canpar", "description": null, "name": "pickups",
+        "supported": true}, {"carrier": "canpar", "description": null, "name": "rating",
+        "supported": true}, {"carrier": "canpar", "description": null, "name": "refunds",
+        "supported": true}, {"carrier": "canpar", "description": "Subject to regular
+        pricing.", "name": "returns", "supported": false}, {"carrier": "canpar", "description":
+        null, "name": "scanforms", "supported": true}, {"carrier": "canpar", "description":
+        null, "name": "sort_codes", "supported": false}, {"carrier": "canpar", "description":
+        null, "name": "test_environment", "supported": true}]}, {"human_readable":
+        "CDL Last Mile Solutions", "name": "cdllastmilesolutions", "predefined_packages":
         [], "service_levels": [{"carrier": "cdllastmilesolutions", "description":
+        null, "dimensions": [], "human_readable": "DISTRIBUTION", "max_weight": null,
+        "name": "DISTRIBUTION"}, {"carrier": "cdllastmilesolutions", "description":
+        null, "dimensions": [], "human_readable": "Same Day", "max_weight": null,
+        "name": "Same Day"}], "shipment_options": [{"carrier": "cdllastmilesolutions",
+        "deprecated": false, "description": null, "human_readable": "Delivery Max
+        Datetime", "name": "delivery_max_datetime", "type": "datetime"}, {"carrier":
+        "cdllastmilesolutions", "deprecated": false, "description": null, "human_readable":
+        "Delivery Min Datetime", "name": "delivery_min_datetime", "type": "datetime"},
+        {"carrier": "cdllastmilesolutions", "deprecated": false, "description": null,
+        "human_readable": "Handling Instructions", "name": "handling_instructions",
+        "type": "string"}, {"carrier": "cdllastmilesolutions", "deprecated": false,
+        "description": null, "human_readable": "Invoice Number", "name": "invoice_number",
+        "type": "string"}, {"carrier": "cdllastmilesolutions", "deprecated": false,
+        "description": null, "human_readable": "Label Format", "name": "label_format",
+        "type": "string"}, {"carrier": "cdllastmilesolutions", "deprecated": false,
+        "description": null, "human_readable": "Pickup Max Datetime", "name": "pickup_max_datetime",
+        "type": "datetime"}, {"carrier": "cdllastmilesolutions", "deprecated": false,
+        "description": null, "human_readable": "Pickup Min Datetime", "name": "pickup_min_datetime",
+        "type": "datetime"}, {"carrier": "cdllastmilesolutions", "deprecated": true,
+        "description": null, "human_readable": "Print Custom 1", "name": "print_custom_1",
+        "type": "string"}, {"carrier": "cdllastmilesolutions", "deprecated": true,
+        "description": null, "human_readable": "Print Custom 1 Barcode", "name": "print_custom_1_barcode",
+        "type": "boolean"}, {"carrier": "cdllastmilesolutions", "deprecated": true,
+        "description": null, "human_readable": "Print Custom 2", "name": "print_custom_2",
+        "type": "string"}, {"carrier": "cdllastmilesolutions", "deprecated": true,
+        "description": null, "human_readable": "Print Custom 2 Barcode", "name": "print_custom_2_barcode",
+        "type": "boolean"}], "supported_features": [{"carrier": "cdllastmilesolutions",
+        "description": null, "name": "bill_on_delivery", "supported": null}, {"carrier":
+        "cdllastmilesolutions", "description": null, "name": "bill_on_label_purchase",
+        "supported": null}, {"carrier": "cdllastmilesolutions", "description": null,
+        "name": "bill_on_manifest", "supported": null}, {"carrier": "cdllastmilesolutions",
+        "description": null, "name": "bill_on_scan", "supported": null}, {"carrier":
+        "cdllastmilesolutions", "description": null, "name": "commercial_invoices",
+        "supported": false}, {"carrier": "cdllastmilesolutions", "description": null,
+        "name": "delivers_to_po_box", "supported": null}, {"carrier": "cdllastmilesolutions",
+        "description": null, "name": "labels", "supported": true}, {"carrier": "cdllastmilesolutions",
+        "description": null, "name": "orders", "supported": false}, {"carrier": "cdllastmilesolutions",
+        "description": null, "name": "pickups", "supported": true}, {"carrier": "cdllastmilesolutions",
+        "description": null, "name": "rating", "supported": true}, {"carrier": "cdllastmilesolutions",
+        "description": null, "name": "refunds", "supported": false}, {"carrier": "cdllastmilesolutions",
+        "description": null, "name": "returns", "supported": false}, {"carrier": "cdllastmilesolutions",
+        "description": null, "name": "scanforms", "supported": false}, {"carrier":
+        "cdllastmilesolutions", "description": null, "name": "sort_codes", "supported":
+        true}, {"carrier": "cdllastmilesolutions", "description": null, "name": "test_environment",
+        "supported": null}]}, {"human_readable": "Chronopost", "name": "chronopost",
+        "predefined_packages": [], "service_levels": [], "shipment_options": [], "supported_features":
+        []}, {"human_readable": "Cirro E-Commerce", "name": "cirroecommerce", "predefined_packages":
+        [], "service_levels": [{"carrier": "cirroecommerce", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "CADOECOEA
+        (CA Domestic Economy East)"}, {"carrier": "cirroecommerce", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "DISTRIBUTION"}, {"carrier": "cdllastmilesolutions", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "Same
-        Day"}], "shipment_options": [], "supported_features": []}, {"human_readable":
-        "Chronopost", "name": "chronopost", "predefined_packages": [], "service_levels":
-        [], "shipment_options": [], "supported_features": []}, {"human_readable":
-        "CloudSort", "name": "cloudsort", "predefined_packages": [], "service_levels":
-        [], "shipment_options": [], "supported_features": []}, {"human_readable":
-        "Courier Express", "name": "courierexpress", "predefined_packages": [], "service_levels":
-        [{"carrier": "courierexpress", "description": null, "dimensions": [], "human_readable":
-        "Basic Parcel", "max_weight": null, "name": "BASIC_PARCEL"}], "shipment_options":
-        [], "supported_features": []}, {"human_readable": "Couriers Please", "name":
-        "couriersplease", "predefined_packages": [], "service_levels": [{"carrier":
-        "couriersplease", "description": null, "dimensions": [], "human_readable":
+        "CADOECOWE (CA Domestic Economy West)"}, {"carrier": "cirroecommerce", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "CAECOCE (US to CA Economy)"}, {"carrier": "cirroecommerce", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "CAECONE (US to CA Economy)"}, {"carrier": "cirroecommerce", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "CAECOWE (US to CA Economy)"}, {"carrier": "cirroecommerce", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "ECOCE (Economy Central)"}, {"carrier": "cirroecommerce", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "ECOEA
+        (Economy East)"}, {"carrier": "cirroecommerce", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "ECONE (Economy Northeast)"},
+        {"carrier": "cirroecommerce", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "ECOSO (Economy South)"}, {"carrier": "cirroecommerce",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "ECOWE (Economy West)"}, {"carrier": "cirroecommerce", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "EUECOWE (US to Europe Economy)"}, {"carrier": "cirroecommerce", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "EXPBNE (Expedited Northeast)"}, {"carrier": "cirroecommerce", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "EXPWE (Expedited West)"}, {"carrier": "cirroecommerce", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "REGCE
+        (Regional Central)"}, {"carrier": "cirroecommerce", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "REGEA (Regional East)"},
+        {"carrier": "cirroecommerce", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "REGNE (Regional Northeast)"}, {"carrier":
+        "cirroecommerce", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "REGSO (Regional South)"}, {"carrier": "cirroecommerce",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "REGWE (Regional West)"}], "shipment_options": [], "supported_features":
+        []}, {"human_readable": "Courier Express", "name": "courierexpress", "predefined_packages":
+        [], "service_levels": [{"carrier": "courierexpress", "description": null,
+        "dimensions": [], "human_readable": "Basic Parcel", "max_weight": null, "name":
+        "BASIC_PARCEL"}], "shipment_options": [], "supported_features": []}, {"human_readable":
+        "Couriers Please", "name": "couriersplease", "predefined_packages": [], "service_levels":
+        [{"carrier": "couriersplease", "description": null, "dimensions": [], "human_readable":
         "Road Express", "max_weight": null, "name": "RoadExpress"}, {"carrier": "couriersplease",
         "description": null, "dimensions": [], "human_readable": "Agg Exp Authority
         To Leave P10", "max_weight": null, "name": "AggExpAtlP10"}, {"carrier": "couriersplease",
@@ -478,8 +587,6 @@ interactions:
         "couriersplease", "description": null, "dimensions": [], "human_readable":
         "500 Gram Parcel Authority To Leave", "max_weight": null, "name": "500GramParcelATL"},
         {"carrier": "couriersplease", "description": null, "dimensions": [], "human_readable":
-        "1 Kilogram Parcel", "max_weight": null, "name": "1KgParcel"}, {"carrier":
-        "couriersplease", "description": null, "dimensions": [], "human_readable":
         "10 Kilogram Parcel", "max_weight": null, "name": "10KgParcel"}, {"carrier":
         "couriersplease", "description": null, "dimensions": [], "human_readable":
         "10 Kilogram Parcel Authority To Leave", "max_weight": null, "name": "10KgParcelATL"},
@@ -498,12 +605,8 @@ interactions:
         {"carrier": "couriersplease", "description": null, "dimensions": [], "human_readable":
         "2 Kilogram Parcel Authority To Leave", "max_weight": null, "name": "2KgParcelATL"},
         {"carrier": "couriersplease", "description": null, "dimensions": [], "human_readable":
-        "3 Kilogram Parcel", "max_weight": null, "name": "3KgParcel"}, {"carrier":
-        "couriersplease", "description": null, "dimensions": [], "human_readable":
         "3 Kilogram Parcel Authority To Leave", "max_weight": null, "name": "3KgParcelATL"},
         {"carrier": "couriersplease", "description": null, "dimensions": [], "human_readable":
-        "5 Kilogram Parcel", "max_weight": null, "name": "5KgParcel"}, {"carrier":
-        "couriersplease", "description": null, "dimensions": [], "human_readable":
         "5 Kilogram Parcel Authority To Leave", "max_weight": null, "name": "5Kg Parcel
         ATL"}, {"carrier": "couriersplease", "description": null, "dimensions": [],
         "human_readable": "Australian City Express Signature", "max_weight": null,
@@ -546,14 +649,27 @@ interactions:
         "International Express", "max_weight": null, "name": "InternationalExpress"},
         {"carrier": "couriersplease", "description": null, "dimensions": [], "human_readable":
         "500gm Parcel", "max_weight": null, "name": "500gmParcel"}, {"carrier": "couriersplease",
-        "description": null, "dimensions": [], "human_readable": "1 Kilogram Parcel",
-        "max_weight": null, "name": "1kgParcel"}, {"carrier": "couriersplease", "description":
-        null, "dimensions": [], "human_readable": "3 Kilogram Parcel", "max_weight":
-        null, "name": "3kgParcel"}, {"carrier": "couriersplease", "description": null,
-        "dimensions": [], "human_readable": "5 Kilogram Parcel", "max_weight": null,
-        "name": "5kgParcel"}], "shipment_options": [], "supported_features": []},
-        {"human_readable": "DAI Post", "name": "daipost", "predefined_packages": [],
-        "service_levels": [{"carrier": "daipost", "description": null, "dimensions":
+        "description": null, "dimensions": [], "human_readable": "1kg Parcel", "max_weight":
+        null, "name": "1KgParcel"}, {"carrier": "couriersplease", "description": null,
+        "dimensions": [], "human_readable": "3kg Parcel", "max_weight": null, "name":
+        "3KgParcel"}, {"carrier": "couriersplease", "description": null, "dimensions":
+        [], "human_readable": "5kg Parcel", "max_weight": null, "name": "5KgParcel"}],
+        "shipment_options": [], "supported_features": []}, {"human_readable": "CSLogistics",
+        "name": "cslogistics", "predefined_packages": [], "service_levels": [{"carrier":
+        "cslogistics", "description": null, "dimensions": [], "human_readable": null,
+        "max_weight": null, "name": "Distribution"}, {"carrier": "cslogistics", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "ASAP"}, {"carrier": "cslogistics", "description": null, "dimensions": [],
+        "human_readable": null, "max_weight": null, "name": "Freight Priority"}, {"carrier":
+        "cslogistics", "description": null, "dimensions": [], "human_readable": null,
+        "max_weight": null, "name": "Freight Regular"}, {"carrier": "cslogistics",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "Priority"}, {"carrier": "cslogistics", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "Regular"},
+        {"carrier": "cslogistics", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "Scheduled"}], "shipment_options": [], "supported_features":
+        []}, {"human_readable": "DAI Post", "name": "daipost", "predefined_packages":
+        [], "service_levels": [{"carrier": "daipost", "description": null, "dimensions":
         [], "human_readable": "Parcel Epacket", "max_weight": null, "name": "ParcelMax"},
         {"carrier": "daipost", "description": null, "dimensions": [], "human_readable":
         "International Economy", "max_weight": null, "name": "InternationalEconomy"},
@@ -562,91 +678,148 @@ interactions:
         {"carrier": "daipost", "description": null, "dimensions": [], "human_readable":
         "International Express", "max_weight": null, "name": "InternationalExpress"},
         {"carrier": "daipost", "description": null, "dimensions": [], "human_readable":
-        "Domestic Tracked", "max_weight": null, "name": "DomesticTracked"}], "shipment_options":
-        [], "supported_features": []}, {"human_readable": "DeliverIt", "name": "deliverit",
+        "Domestic Tracked", "max_weight": null, "name": "DomesticTracked"}, {"carrier":
+        "daipost", "description": null, "dimensions": [], "human_readable": "Parcel
+        Right", "max_weight": null, "name": "ParcelRight"}], "shipment_options": [],
+        "supported_features": []}, {"human_readable": "Deliver-It", "name": "deliverit",
         "predefined_packages": [], "service_levels": [{"carrier": "deliverit", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "Afternoon"}, {"carrier": "deliverit", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "Early-It"}, {"carrier":
+        "Saturday"}, {"carrier": "deliverit", "description": null, "dimensions": [],
+        "human_readable": null, "max_weight": null, "name": "Economy"}, {"carrier":
         "deliverit", "description": null, "dimensions": [], "human_readable": null,
-        "max_weight": null, "name": "Economy"}, {"carrier": "deliverit", "description":
+        "max_weight": null, "name": "Noon-It"}, {"carrier": "deliverit", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "Noon-It"}, {"carrier": "deliverit", "description": null, "dimensions": [],
-        "human_readable": null, "max_weight": null, "name": "Saturday"}], "shipment_options":
-        [], "supported_features": []}, {"human_readable": "Deutsche Post", "name":
-        "deutschepost", "predefined_packages": [], "service_levels": [{"carrier":
-        "deutschepost", "description": null, "dimensions": [], "human_readable": null,
-        "max_weight": null, "name": "PacketPlus"}], "shipment_options": [], "supported_features":
-        []}, {"human_readable": "Deutsche Post UK", "name": "deutschepostuk", "predefined_packages":
-        [], "service_levels": [{"carrier": "deutschepostuk", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "PriorityPacketPlus"},
-        {"carrier": "deutschepostuk", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "PriorityPacket"}, {"carrier": "deutschepostuk",
+        "Early-It"}, {"carrier": "deliverit", "description": null, "dimensions": [],
+        "human_readable": null, "max_weight": null, "name": "Afternoon"}], "shipment_options":
+        [], "supported_features": [{"carrier": "deliverit", "description": null, "name":
+        "bill_on_delivery", "supported": true}, {"carrier": "deliverit", "description":
+        null, "name": "bill_on_label_purchase", "supported": false}, {"carrier": "deliverit",
+        "description": null, "name": "bill_on_manifest", "supported": false}, {"carrier":
+        "deliverit", "description": null, "name": "bill_on_scan", "supported": false},
+        {"carrier": "deliverit", "description": null, "name": "commercial_invoices",
+        "supported": false}, {"carrier": "deliverit", "description": null, "name":
+        "labels", "supported": true}, {"carrier": "deliverit", "description": null,
+        "name": "orders", "supported": false}, {"carrier": "deliverit", "description":
+        null, "name": "pickups", "supported": false}, {"carrier": "deliverit", "description":
+        null, "name": "rating", "supported": true}, {"carrier": "deliverit", "description":
+        null, "name": "refunds", "supported": true}, {"carrier": "deliverit", "description":
+        null, "name": "returns", "supported": false}, {"carrier": "deliverit", "description":
+        null, "name": "scanforms", "supported": false}, {"carrier": "deliverit", "description":
+        null, "name": "sort_codes", "supported": false}, {"carrier": "deliverit",
+        "description": null, "name": "test_environment", "supported": false}]}, {"human_readable":
+        "Deutsche Post", "name": "deutschepost", "predefined_packages": [], "service_levels":
+        [{"carrier": "deutschepost", "description": null, "dimensions": [], "human_readable":
+        "Packet Plus", "max_weight": null, "name": "PacketPlus"}], "shipment_options":
+        [{"carrier": "deutschepost", "deprecated": false, "description": null, "human_readable":
+        "Additional Handling", "name": "additional_handling", "type": "boolean"},
+        {"carrier": "deutschepost", "deprecated": true, "description": null, "human_readable":
+        "Bill Third Party Account", "name": "bill_third_party_account", "type": "string"},
+        {"carrier": "deutschepost", "deprecated": false, "description": null, "human_readable":
+        "Carrier Insurance Amount", "name": "carrier_insurance_amount", "type": "float"},
+        {"carrier": "deutschepost", "deprecated": false, "description": null, "human_readable":
+        "Cod Amount", "name": "cod_amount", "type": "string"}, {"carrier": "deutschepost",
+        "deprecated": false, "description": null, "human_readable": "Cod Method",
+        "name": "cod_method", "type": "string"}, {"carrier": "deutschepost", "deprecated":
+        false, "description": null, "human_readable": "Cost Center", "name": "cost_center",
+        "type": "string"}, {"carrier": "deutschepost", "deprecated": true, "description":
+        null, "human_readable": "Delivered Duty Paid", "name": "delivered_duty_paid",
+        "type": "boolean"}, {"carrier": "deutschepost", "deprecated": false, "description":
+        null, "human_readable": "Delivery Confirmation", "name": "delivery_confirmation",
+        "type": "string"}, {"carrier": "deutschepost", "deprecated": false, "description":
+        null, "human_readable": "Handling Instructions", "name": "handling_instructions",
+        "type": "string"}, {"carrier": "deutschepost", "deprecated": false, "description":
+        null, "human_readable": "Invoice Number", "name": "invoice_number", "type":
+        "string"}, {"carrier": "deutschepost", "deprecated": false, "description":
+        null, "human_readable": "Label Date", "name": "label_date", "type": "datetime"},
+        {"carrier": "deutschepost", "deprecated": false, "description": null, "human_readable":
+        "Label Format", "name": "label_format", "type": "string"}, {"carrier": "deutschepost",
+        "deprecated": false, "description": null, "human_readable": "Label Size",
+        "name": "label_size", "type": "string"}, {"carrier": "deutschepost", "deprecated":
+        true, "description": null, "human_readable": "Print Custom 1", "name": "print_custom_1",
+        "type": "string"}, {"carrier": "deutschepost", "deprecated": true, "description":
+        null, "human_readable": "Print Custom 2", "name": "print_custom_2", "type":
+        "string"}, {"carrier": "deutschepost", "deprecated": false, "description":
+        null, "human_readable": "Return Service", "name": "return_service", "type":
+        "string"}], "supported_features": [{"carrier": "deutschepost", "description":
+        null, "name": "bill_on_delivery", "supported": null}, {"carrier": "deutschepost",
+        "description": null, "name": "bill_on_label_purchase", "supported": null},
+        {"carrier": "deutschepost", "description": null, "name": "bill_on_manifest",
+        "supported": null}, {"carrier": "deutschepost", "description": null, "name":
+        "bill_on_scan", "supported": null}, {"carrier": "deutschepost", "description":
+        null, "name": "commercial_invoices", "supported": false}, {"carrier": "deutschepost",
+        "description": null, "name": "delivers_to_po_box", "supported": false}, {"carrier":
+        "deutschepost", "description": null, "name": "labels", "supported": true},
+        {"carrier": "deutschepost", "description": null, "name": "orders", "supported":
+        false}, {"carrier": "deutschepost", "description": null, "name": "pickups",
+        "supported": false}, {"carrier": "deutschepost", "description": null, "name":
+        "rating", "supported": true}, {"carrier": "deutschepost", "description": null,
+        "name": "refunds", "supported": false}, {"carrier": "deutschepost", "description":
+        null, "name": "returns", "supported": true}, {"carrier": "deutschepost", "description":
+        null, "name": "scanforms", "supported": false}, {"carrier": "deutschepost",
+        "description": null, "name": "sort_codes", "supported": false}, {"carrier":
+        "deutschepost", "description": null, "name": "test_environment", "supported":
+        false}]}, {"human_readable": "Deutsche Post UK", "name": "deutschepostuk",
+        "predefined_packages": [], "service_levels": [{"carrier": "deutschepostuk",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "PriorityPacketTracked"}, {"carrier": "deutschepostuk", "description":
+        null, "name": "PriorityPacketPlus"}, {"carrier": "deutschepostuk", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "BusinessMailRegistered"}, {"carrier": "deutschepostuk", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "StandardPacket"},
+        "PriorityPacket"}, {"carrier": "deutschepostuk", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "PriorityPacketTracked"},
         {"carrier": "deutschepostuk", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "BusinessMailStandard"}], "shipment_options":
-        [], "supported_features": []}, {"human_readable": "DHL eCommerce Asia", "name":
-        "dhlecommerceasia", "predefined_packages": [], "service_levels": [{"carrier":
-        "dhlecommerceasia", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "Packet"}, {"carrier": "dhlecommerceasia",
+        null, "max_weight": null, "name": "BusinessMailRegistered"}, {"carrier": "deutschepostuk",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "PacketPlus"}, {"carrier": "dhlecommerceasia", "description":
+        null, "name": "StandardPacket"}, {"carrier": "deutschepostuk", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "ParcelDirect"}, {"carrier": "dhlecommerceasia", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "ParcelDirectExpedited"}],
-        "shipment_options": [], "supported_features": []}, {"human_readable": "DHL
-        eCommerce Solutions", "name": "dhlecommercesolutions", "predefined_packages":
-        [], "service_levels": [{"carrier": "dhlecommercesolutions", "description":
+        "BusinessMailStandard"}], "shipment_options": [], "supported_features": []},
+        {"human_readable": "DHL eCommerce Solutions", "name": "dhlecommercesolutions",
+        "predefined_packages": [], "service_levels": [{"carrier": "dhlecommercesolutions",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "DHLParcelExpedited"}, {"carrier": "dhlecommercesolutions",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "DHLParcelExpeditedMax"}, {"carrier": "dhlecommercesolutions",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "DHLParcelGround"}, {"carrier": "dhlecommercesolutions", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "DHLParcelExpedited"}, {"carrier": "dhlecommercesolutions", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "DHLParcelExpeditedMax"}, {"carrier": "dhlecommercesolutions", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "DHLParcelGround"}, {"carrier": "dhlecommercesolutions", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "DHLBPMExpedited"},
+        "DHLBPMExpedited"}, {"carrier": "dhlecommercesolutions", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "DHLBPMGround"},
         {"carrier": "dhlecommercesolutions", "description": null, "dimensions": [],
-        "human_readable": null, "max_weight": null, "name": "DHLBPMGround"}, {"carrier":
-        "dhlecommercesolutions", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "DHLParcelInternationalDirect"}, {"carrier":
-        "dhlecommercesolutions", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "DHLParcelInternationalStandard"}, {"carrier":
-        "dhlecommercesolutions", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "DHLPacketInternational"}, {"carrier": "dhlecommercesolutions",
+        "human_readable": null, "max_weight": null, "name": "DHLParcelInternationalDirect"},
+        {"carrier": "dhlecommercesolutions", "description": null, "dimensions": [],
+        "human_readable": null, "max_weight": null, "name": "DHLParcelInternationalStandard"},
+        {"carrier": "dhlecommercesolutions", "description": null, "dimensions": [],
+        "human_readable": null, "max_weight": null, "name": "DHLPacketInternational"},
+        {"carrier": "dhlecommercesolutions", "description": null, "dimensions": [],
+        "human_readable": null, "max_weight": null, "name": "DHLParcelInternationalDirectPriority"},
+        {"carrier": "dhlecommercesolutions", "description": null, "dimensions": [],
+        "human_readable": null, "max_weight": null, "name": "DHLParcelInternationalDirectStandard"}],
+        "shipment_options": [], "supported_features": []}, {"human_readable": "DHL
+        Express", "name": "dhlexpress", "predefined_packages": [{"carrier": "dhlexpress",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "DHLParcelInternationalDirectPriority"}, {"carrier": "dhlecommercesolutions",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "DHLParcelInternationalDirectStandard"}], "shipment_options":
-        [], "supported_features": []}, {"human_readable": "DHL Express", "name": "dhlexpress",
-        "predefined_packages": [{"carrier": "dhlexpress", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "JumboDocument"},
+        null, "name": "JumboDocument"}, {"carrier": "dhlexpress", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "JumboParcel"},
         {"carrier": "dhlexpress", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "JumboParcel"}, {"carrier": "dhlexpress",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "Document"}, {"carrier": "dhlexpress", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "DHLFlyer"},
-        {"carrier": "dhlexpress", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "Domestic"}, {"carrier": "dhlexpress", "description":
+        null, "max_weight": null, "name": "Document"}, {"carrier": "dhlexpress", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "ExpressDocument"}, {"carrier": "dhlexpress", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "DHLExpressEnvelope"},
-        {"carrier": "dhlexpress", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "JumboBox"}, {"carrier": "dhlexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "JumboJuniorDocument"}, {"carrier": "dhlexpress", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "JuniorJumboBox"},
-        {"carrier": "dhlexpress", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "JumboJuniorParcel"}, {"carrier": "dhlexpress",
+        "DHLFlyer"}, {"carrier": "dhlexpress", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "Domestic"}, {"carrier":
+        "dhlexpress", "description": null, "dimensions": [], "human_readable": null,
+        "max_weight": null, "name": "ExpressDocument"}, {"carrier": "dhlexpress",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "OtherDHLPackaging"}, {"carrier": "dhlexpress", "description":
+        null, "name": "DHLExpressEnvelope"}, {"carrier": "dhlexpress", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "Parcel"}, {"carrier": "dhlexpress", "description": null, "dimensions": [],
-        "human_readable": null, "max_weight": null, "name": "YourPackaging"}], "service_levels":
-        [{"carrier": "dhlexpress", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "BreakBulkEconomy"}, {"carrier": "dhlexpress",
+        "JumboBox"}, {"carrier": "dhlexpress", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "JumboJuniorDocument"},
+        {"carrier": "dhlexpress", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "JuniorJumboBox"}, {"carrier": "dhlexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "JumboJuniorParcel"}, {"carrier": "dhlexpress", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "OtherDHLPackaging"}, {"carrier": "dhlexpress", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "Parcel"}, {"carrier":
+        "dhlexpress", "description": null, "dimensions": [], "human_readable": null,
+        "max_weight": null, "name": "YourPackaging"}], "service_levels": [{"carrier":
+        "dhlexpress", "description": null, "dimensions": [], "human_readable": null,
+        "max_weight": null, "name": "BreakBulkEconomy"}, {"carrier": "dhlexpress",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
         null, "name": "BreakBulkExpress"}, {"carrier": "dhlexpress", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
@@ -710,104 +883,133 @@ interactions:
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
         "PaketInternational"}, {"carrier": "dhlpaket", "description": null, "dimensions":
         [], "human_readable": null, "max_weight": null, "name": "Retoure"}], "shipment_options":
-        [], "supported_features": []}, {"human_readable": "DHL SmartMail", "name":
-        "dhlsmartmail", "predefined_packages": [], "service_levels": [], "shipment_options":
-        [], "supported_features": []}, {"human_readable": "DPD", "name": "dpd", "predefined_packages":
-        [], "service_levels": [{"carrier": "dpd", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "DPDCLASSIC"}, {"carrier":
+        [], "supported_features": []}, {"human_readable": "DoorDash", "name": "doordash",
+        "predefined_packages": [], "service_levels": [{"carrier": "doordash", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "Standard"}], "shipment_options": [], "supported_features": [{"carrier": "doordash",
+        "description": null, "name": "labels", "supported": null}, {"carrier": "doordash",
+        "description": null, "name": "rating", "supported": true}, {"carrier": "doordash",
+        "description": null, "name": "refunds", "supported": null}]}, {"human_readable":
+        "DPD", "name": "dpd", "predefined_packages": [], "service_levels": [{"carrier":
         "dpd", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "DPD8:30"}, {"carrier": "dpd", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "DPD10:00"}, {"carrier":
+        null, "name": "DPDCLASSIC"}, {"carrier": "dpd", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "DPD8:30"}, {"carrier":
         "dpd", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "DPD12:00"}, {"carrier": "dpd", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "DPD18:00"}, {"carrier":
+        null, "name": "DPD10:00"}, {"carrier": "dpd", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "DPD12:00"}, {"carrier":
         "dpd", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "DPDEXPRESS"}, {"carrier": "dpd", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "DPDPARCELLETTER"},
+        null, "name": "DPD18:00"}, {"carrier": "dpd", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "DPDEXPRESS"}, {"carrier":
+        "dpd", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "DPDPARCELLETTER"}, {"carrier": "dpd", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "DPDPARCELLETTERPLUS"},
         {"carrier": "dpd", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "DPDPARCELLETTERPLUS"}, {"carrier": "dpd",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "DPDINTERNATIONALMAIL"}], "shipment_options": [], "supported_features":
-        []}, {"human_readable": "DPDUK", "name": "dpduk", "predefined_packages": [{"carrier":
+        null, "max_weight": null, "name": "DPDINTERNATIONALMAIL"}], "shipment_options":
+        [], "supported_features": []}, {"human_readable": "DPD NL", "name": "dpdnl",
+        "predefined_packages": [], "service_levels": [{"carrier": "dpdnl", "description":
+        null, "dimensions": [], "human_readable": "DPDNL Classic", "max_weight": null,
+        "name": "DPDNL_CLASSIC"}, {"carrier": "dpdnl", "description": null, "dimensions":
+        [], "human_readable": "Express 10", "max_weight": null, "name": "EXPRESS_10"},
+        {"carrier": "dpdnl", "description": null, "dimensions": [], "human_readable":
+        "Express 12", "max_weight": null, "name": "EXPRESS_12"}, {"carrier": "dpdnl",
+        "description": null, "dimensions": [], "human_readable": "Express 18", "max_weight":
+        null, "name": "EXPRESS_18"}, {"carrier": "dpdnl", "description": null, "dimensions":
+        [], "human_readable": "International Express", "max_weight": null, "name":
+        "INTERNATIONAL_EXPRESS"}, {"carrier": "dpdnl", "description": null, "dimensions":
+        [], "human_readable": "DPDNL B2C Home", "max_weight": null, "name": "DPDNL_HOME"},
+        {"carrier": "dpdnl", "description": null, "dimensions": [], "human_readable":
+        "DPDNL B2C Shop", "max_weight": null, "name": "DPDNL_TO_SHOP"}], "shipment_options":
+        [], "supported_features": [{"carrier": "dpdnl", "description": null, "name":
+        "commercial_invoices", "supported": false}, {"carrier": "dpdnl", "description":
+        null, "name": "labels", "supported": true}, {"carrier": "dpdnl", "description":
+        null, "name": "orders", "supported": false}, {"carrier": "dpdnl", "description":
+        null, "name": "pickups", "supported": false}, {"carrier": "dpdnl", "description":
+        null, "name": "rating", "supported": true}, {"carrier": "dpdnl", "description":
+        null, "name": "refunds", "supported": true}, {"carrier": "dpdnl", "description":
+        null, "name": "returns", "supported": false}, {"carrier": "dpdnl", "description":
+        null, "name": "scanforms", "supported": false}, {"carrier": "dpdnl", "description":
+        null, "name": "sort_codes", "supported": false}, {"carrier": "dpdnl", "description":
+        null, "name": "test_environment", "supported": true}]}, {"human_readable":
+        "DPD UK", "name": "dpduk", "predefined_packages": [{"carrier": "dpduk", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "Parcel"}, {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "Pallet"}, {"carrier": "dpduk", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "ExpressPak"}, {"carrier": "dpduk", "description": null, "dimensions": [],
+        "human_readable": null, "max_weight": null, "name": "FreightParcel"}, {"carrier":
         "dpduk", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "Parcel"}, {"carrier": "dpduk", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "Pallet"}, {"carrier":
-        "dpduk", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "ExpressPak"}, {"carrier": "dpduk", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "FreightParcel"},
-        {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "Freight"}], "service_levels": [{"carrier":
-        "dpduk", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "AirExpressInternationalAir"}, {"carrier": "dpduk", "description":
+        null, "name": "Freight"}], "service_levels": [{"carrier": "dpduk", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
         "AirClassicInternationalAir"}, {"carrier": "dpduk", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "ParcelSunday"}, {"carrier":
-        "dpduk", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "FreightParcelSunday"}, {"carrier": "dpduk", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "PalletSunday"}, {"carrier": "dpduk", "description": null, "dimensions": [],
-        "human_readable": null, "max_weight": null, "name": "PalletDpdClassic"}, {"carrier":
-        "dpduk", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "ExpresspakDpdClassic"}, {"carrier": "dpduk", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "ExpresspakSunday"}, {"carrier": "dpduk", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "ParcelDpdClassic"},
+        [], "human_readable": null, "max_weight": null, "name": "AirExpressInternationalAir"},
         {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "ParcelDpdTwoDay"}, {"carrier": "dpduk",
+        null, "max_weight": null, "name": "ExpresspakDpd10:30"}, {"carrier": "dpduk",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "ParcelDpdNextDay"}, {"carrier": "dpduk", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "ParcelDpd12"},
+        null, "name": "ExpresspakDpd12:00"}, {"carrier": "dpduk", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "ExpresspakDpdClassic"},
         {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "ParcelDpd10"}, {"carrier": "dpduk", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "ParcelReturnToShop"}, {"carrier": "dpduk", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "ParcelSaturday"},
-        {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "ParcelSaturday12"}, {"carrier": "dpduk",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "ParcelSaturday10"}, {"carrier": "dpduk", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "ParcelSunday12"},
-        {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "FreightParcelDpdClassic"}, {"carrier":
-        "dpduk", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "FreightParcelSunday12"}, {"carrier": "dpduk", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "ExpresspakDpdNextDay"}, {"carrier": "dpduk", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "ExpresspakDpd12"},
-        {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "ExpresspakDpd10"}, {"carrier": "dpduk",
+        null, "max_weight": null, "name": "ExpresspakDpdNextDay"}, {"carrier": "dpduk",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
         null, "name": "ExpresspakSaturday"}, {"carrier": "dpduk", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "ExpresspakSaturday12"},
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "ExpresspakSaturday10:30"},
         {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "ExpresspakSaturday10"}, {"carrier": "dpduk",
+        null, "max_weight": null, "name": "ExpresspakSaturday12:00"}, {"carrier":
+        "dpduk", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "ExpresspakSunday"}, {"carrier": "dpduk", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "ExpresspakSunday12:00"},
+        {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "FreightParcelDpd10:30"}, {"carrier": "dpduk",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "ExpresspakSunday12"}, {"carrier": "dpduk", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "PalletSunday12"},
-        {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "PalletDpdTwoDay"}, {"carrier": "dpduk",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "PalletDpdNextDay"}, {"carrier": "dpduk", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "PalletDpd12"},
-        {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "PalletDpd10"}, {"carrier": "dpduk", "description":
+        null, "name": "FreightParcelDpd12:00"}, {"carrier": "dpduk", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "PalletSaturday"}, {"carrier": "dpduk", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "PalletSaturday12"},
+        "FreightParcelDpdClassic"}, {"carrier": "dpduk", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "FreightParcelDpdNextDay"},
         {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "PalletSaturday10"}, {"carrier": "dpduk",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "FreightParcelDpdTwoDay"}, {"carrier": "dpduk", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "FreightParcelDpdNextDay"}, {"carrier": "dpduk", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "FreightParcelDpd12"},
-        {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "FreightParcelDpd10"}, {"carrier": "dpduk",
+        null, "max_weight": null, "name": "FreightParcelDpdTwoDay"}, {"carrier": "dpduk",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
         null, "name": "FreightParcelSaturday"}, {"carrier": "dpduk", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "FreightParcelSaturday12"}, {"carrier": "dpduk", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "FreightParcelSaturday10"}],
+        "FreightParcelSaturday10:30"}, {"carrier": "dpduk", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "FreightParcelSaturday12:00"},
+        {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "FreightParcelSunday"}, {"carrier": "dpduk",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "FreightParcelSunday12:00"}, {"carrier": "dpduk", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "PalletDpd10:30"}, {"carrier": "dpduk", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "PalletDpd12:00"},
+        {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "PalletDpdClassic"}, {"carrier": "dpduk",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "PalletDpdNextDay"}, {"carrier": "dpduk", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "PalletDpdTwoDay"},
+        {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "PalletSaturday"}, {"carrier": "dpduk",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "PalletSaturday10:30"}, {"carrier": "dpduk", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "PalletSaturday12:00"}, {"carrier": "dpduk", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "PalletSunday"}, {"carrier":
+        "dpduk", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "PalletSunday12:00"}, {"carrier": "dpduk", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "ParcelDpd10:30"},
+        {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "ParcelDpd12:00"}, {"carrier": "dpduk",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "ParcelDpdClassic"}, {"carrier": "dpduk", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "ParcelDpdNextDay"},
+        {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "ParcelDpdTwoDay"}, {"carrier": "dpduk",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "ParcelReturnToShop"}, {"carrier": "dpduk", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "ParcelSaturday"},
+        {"carrier": "dpduk", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "ParcelSaturday10:30"}, {"carrier": "dpduk",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "ParcelSaturday12:00"}, {"carrier": "dpduk", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "ParcelSunday"}, {"carrier": "dpduk", "description": null, "dimensions": [],
+        "human_readable": null, "max_weight": null, "name": "ParcelSunday12:00"}],
         "shipment_options": [], "supported_features": []}, {"human_readable": "ePostGlobal",
         "name": "epostglobal", "predefined_packages": [], "service_levels": [{"carrier":
         "epostglobal", "description": null, "dimensions": [], "human_readable": null,
@@ -839,75 +1041,143 @@ interactions:
         "PriorityParcelDeliveryConfirmationDDU"}, {"carrier": "epostglobal", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
         "ePacketService"}], "shipment_options": [], "supported_features": []}, {"human_readable":
-        "Estafeta", "name": "estafeta", "predefined_packages": [{"carrier": "estafeta",
+        "EPostGlobalV2", "name": "epostglobalv2", "predefined_packages": [], "service_levels":
+        [{"carrier": "epostglobalv2", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "CourierService"}, {"carrier": "epostglobalv2",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "ENVELOPE"}, {"carrier": "estafeta", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "PARCEL"}], "service_levels":
-        [{"carrier": "estafeta", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "NextDayBy930"}, {"carrier": "estafeta",
+        null, "name": "CourierServiceDutiesPaid"}, {"carrier": "epostglobalv2", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "DomesticPriorityParcel"}, {"carrier": "epostglobalv2", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "DomesticeDGE"},
+        {"carrier": "epostglobalv2", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "EconomyParcel"}, {"carrier": "epostglobalv2",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "NextDayBy1130"}, {"carrier": "estafeta", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "NextDay"},
-        {"carrier": "estafeta", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "Ground"}, {"carrier": "estafeta", "description":
+        null, "name": "ExpeditedParcelWithDeliveryConfirmationDutiesPaid"}, {"carrier":
+        "epostglobalv2", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "ExpeditedWithDC"}, {"carrier": "epostglobalv2",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "FirstClassParcelsInternational"}, {"carrier": "epostglobalv2",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "IPA"}, {"carrier": "epostglobalv2", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "ISAL"}, {"carrier":
+        "epostglobalv2", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "PMEI"}, {"carrier": "epostglobalv2", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "TwoDay"}, {"carrier": "estafeta", "description": null, "dimensions": [],
-        "human_readable": null, "max_weight": null, "name": "LTL"}], "shipment_options":
-        [], "supported_features": []}, {"human_readable": "Evri", "name": "evri",
-        "predefined_packages": [], "service_levels": [{"carrier": "evri", "description":
+        "PMEIDDP"}, {"carrier": "epostglobalv2", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "PMIPresortService"},
+        {"carrier": "epostglobalv2", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "PMIServiceDutyPaid"}, {"carrier": "epostglobalv2",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "PriorityPacketDDU"}, {"carrier": "epostglobalv2", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "Courier2Home"}, {"carrier": "evri", "description": null, "dimensions": [],
-        "human_readable": null, "max_weight": null, "name": "Courier2HomeNextDay"},
-        {"carrier": "evri", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "Shop2Home"}, {"carrier": "evri", "description":
+        "PriorityParcelNoDeliveryConfirmation"}, {"carrier": "epostglobalv2", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "Shop2HomeNextDay"}, {"carrier": "evri", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "Shop2Shop"}, {"carrier":
+        "PriorityParcelNoDeliveryConfirmationDutiesPaid"}, {"carrier": "epostglobalv2",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "PriorityParcelWithDeliveryConfirmation"}, {"carrier": "epostglobalv2",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "PriorityParcelWithDeliveryConfirmationDutiesPaid"}, {"carrier":
+        "epostglobalv2", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "ePacket"}, {"carrier": "epostglobalv2",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "ePacketDDP"}], "shipment_options": [], "supported_features":
+        [{"carrier": "epostglobalv2", "description": null, "name": "labels", "supported":
+        null}, {"carrier": "epostglobalv2", "description": null, "name": "rating",
+        "supported": true}, {"carrier": "epostglobalv2", "description": null, "name":
+        "refunds", "supported": null}]}, {"human_readable": "Estafeta", "name": "estafeta",
+        "predefined_packages": [{"carrier": "estafeta", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "ENVELOPE"}, {"carrier":
+        "estafeta", "description": null, "dimensions": [], "human_readable": null,
+        "max_weight": null, "name": "PARCEL"}], "service_levels": [{"carrier": "estafeta",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "11:30"}, {"carrier": "estafeta", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "12:30"}, {"carrier":
+        "estafeta", "description": null, "dimensions": [], "human_readable": null,
+        "max_weight": null, "name": "Dia Sig."}, {"carrier": "estafeta", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "2 Dias"}, {"carrier": "estafeta", "description": null, "dimensions": [],
+        "human_readable": null, "max_weight": null, "name": "Terrestre"}, {"carrier":
+        "estafeta", "description": null, "dimensions": [], "human_readable": null,
+        "max_weight": null, "name": "LTL"}], "shipment_options": [], "supported_features":
+        []}, {"human_readable": "Evri", "name": "evri", "predefined_packages": [],
+        "service_levels": [{"carrier": "evri", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "Courier2Home"}, {"carrier":
         "evri", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "Shop2ShopNextDay"}], "shipment_options": [], "supported_features":
-        []}, {"human_readable": "Fastway", "name": "fastway", "predefined_packages":
-        [{"carrier": "fastway", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "Parcel"}, {"carrier": "fastway", "description":
+        null, "name": "Courier2HomeNextDay"}, {"carrier": "evri", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "Shop2Home"},
+        {"carrier": "evri", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "Shop2HomeNextDay"}, {"carrier": "evri",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "Shop2Shop"}, {"carrier": "evri", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "Shop2ShopNextDay"},
+        {"carrier": "evri", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "Courier2Shop"}, {"carrier": "evri", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "Courier2ShopNextDay"}, {"carrier": "evri", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "International Delivery"},
+        {"carrier": "evri", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "Commercial"}, {"carrier": "evri", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "DDP Courier"}, {"carrier": "evri", "description": null, "dimensions": [],
+        "human_readable": null, "max_weight": null, "name": "DDU Courier"}, {"carrier":
+        "evri", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "DDU Shop"}, {"carrier": "evri", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "Postal"}], "shipment_options":
+        [], "supported_features": []}, {"human_readable": "Fastway", "name": "fastway",
+        "predefined_packages": [{"carrier": "fastway", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "Parcel"}, {"carrier":
+        "fastway", "description": "(Satchel)", "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "A2"}, {"carrier": "fastway", "description":
         "(Satchel)", "dimensions": [], "human_readable": null, "max_weight": null,
-        "name": "A2"}, {"carrier": "fastway", "description": "(Satchel)", "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "A3"}, {"carrier":
-        "fastway", "description": "(Satchel, not available in Australia)", "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "A4"}, {"carrier":
-        "fastway", "description": "(Satchel, not available in South Africa)", "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "A5"}, {"carrier":
+        "name": "A3"}, {"carrier": "fastway", "description": "(Satchel, not available
+        in Australia)", "dimensions": [], "human_readable": null, "max_weight": null,
+        "name": "A4"}, {"carrier": "fastway", "description": "(Satchel, not available
+        in South Africa)", "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "A5"}, {"carrier": "fastway", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "BOXSML"}, {"carrier":
         "fastway", "description": null, "dimensions": [], "human_readable": null,
-        "max_weight": null, "name": "BOXSML"}, {"carrier": "fastway", "description":
+        "max_weight": null, "name": "BOXMED"}, {"carrier": "fastway", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "BOXMED"}, {"carrier": "fastway", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "BOXLRG"}], "service_levels": [{"carrier":
-        "fastway", "description": null, "dimensions": [], "human_readable": null,
-        "max_weight": null, "name": "Parcel"}, {"carrier": "fastway", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "Satchel"}], "shipment_options": [], "supported_features": []}, {"human_readable":
-        "FedEx", "name": "fedex", "predefined_packages": [{"carrier": "fedex", "description":
-        "Up to approximately 60 pages", "dimensions": ["9.5in x 12.5in"], "human_readable":
-        null, "max_weight": 8.0, "name": "FedExEnvelope"}, {"carrier": "fedex", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "FedExBox"}, {"carrier": "fedex", "description": null, "dimensions": ["12in
-        x 15.5in"], "human_readable": null, "max_weight": 88.0, "name": "FedExPak"},
-        {"carrier": "fedex", "description": "Triangular box for plans, posters, fabric
-        rolls, charts and blueprints", "dimensions": ["38in x 6in x 6in x 6in"], "human_readable":
-        null, "max_weight": 320.0, "name": "FedExTube"}, {"carrier": "fedex", "description":
-        "To qualify for the flat rate, weight cannot exceed 10 kg", "dimensions":
-        ["15.81in x 12.94in x 10.19in"], "human_readable": null, "max_weight": 352.0,
-        "name": "FedEx10kgBox"}, {"carrier": "fedex", "description": "To qualify for
-        the flat rate, weight cannot exceed 25 kg.", "dimensions": ["21.56in x 16.56in
-        x 13.19in"], "human_readable": null, "max_weight": 880.0, "name": "FedEx25kgBox"},
-        {"carrier": "fedex", "description": null, "dimensions": ["12.25in x 10.9in
-        x 1.5in", "8.75in x 2.63in x 11.25in"], "human_readable": null, "max_weight":
-        320.0, "name": "FedExSmallBox"}, {"carrier": "fedex", "description": null,
-        "dimensions": ["13.25in x 11.5in x 2.38in", "8.75in x 4.38in x 11.25in"],
-        "human_readable": null, "max_weight": 320.0, "name": "FedExMediumBox"}, {"carrier":
-        "fedex", "description": null, "dimensions": ["17.88in x 12.38in x 3in", "8.75in
-        x 7.75in x 11.25in"], "human_readable": null, "max_weight": 320.0, "name":
-        "FedExLargeBox"}, {"carrier": "fedex", "description": null, "dimensions":
+        "BOXLRG"}], "service_levels": [{"carrier": "fastway", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "Parcel"},
+        {"carrier": "fastway", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "Satchel"}], "shipment_options": [], "supported_features":
+        []}, {"human_readable": "FedEx", "name": "fedex", "predefined_packages": [{"carrier":
+        "fedex", "description": "Up to approximately 60 pages", "dimensions": ["9.5in
+        x 12.5in"], "human_readable": null, "max_weight": 160.0, "name": "FedExEnvelope"},
+        {"carrier": "fedex", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "FedExBox"}, {"carrier": "fedex", "description":
+        null, "dimensions": ["12in x 15.5in"], "human_readable": null, "max_weight":
+        800.0, "name": "FedExPak"}, {"carrier": "fedex", "description": "Triangular
+        box for plans, posters, fabric rolls, charts and blueprints", "dimensions":
+        ["38in x 6in x 6in x 6in"], "human_readable": null, "max_weight": 800.0, "name":
+        "FedExTube"}, {"carrier": "fedex", "description": "To qualify for the flat
+        rate, weight cannot exceed 10 kg", "dimensions": ["15.81in x 12.94in x 10.19in"],
+        "human_readable": null, "max_weight": 352.0, "name": "FedEx10kgBox"}, {"carrier":
+        "fedex", "description": "To qualify for the flat rate, weight cannot exceed
+        25 kg.", "dimensions": ["21.56in x 16.56in x 13.19in"], "human_readable":
+        null, "max_weight": 880.0, "name": "FedEx25kgBox"}, {"carrier": "fedex", "description":
+        "Maximum weight allowed is based on pricing option: 50 lbs (800 oz) for domestic
+        Express One Rate shipments, 20 lbs (320 oz) for domestic weight-based Express
+        shipments, 40 lbs (640 oz) for international weight-based Express shipments.",
+        "dimensions": ["12.25in x 10.9in x 1.5in", "8.75in x 2.63in x 11.25in"], "human_readable":
+        null, "max_weight": 800.0, "name": "FedExSmallBox"}, {"carrier": "fedex",
+        "description": "Maximum weight allowed is based on pricing option: 50 lbs
+        (800 oz) for domestic Express One Rate shipments, 20 lbs (320 oz) for domestic
+        weight-based Express shipments, 40 lbs (640 oz) for international weight-based
+        Express shipments.", "dimensions": ["13.25in x 11.5in x 2.38in", "8.75in x
+        4.38in x 11.25in"], "human_readable": null, "max_weight": 800.0, "name": "FedExMediumBox"},
+        {"carrier": "fedex", "description": "Maximum weight allowed is based on pricing
+        option: 50 lbs (800 oz) for domestic Express One Rate shipments, 20 lbs (320
+        oz) for domestic weight-based Express shipments, 40 lbs (640 oz) for international
+        weight-based Express shipments.", "dimensions": ["17.88in x 12.38in x 3in",
+        "8.75in x 7.75in x 11.25in"], "human_readable": null, "max_weight": 800.0,
+        "name": "FedExLargeBox"}, {"carrier": "fedex", "description": "Maximum weight
+        allowed is based on pricing option: 50 lbs (800 oz) for domestic Express One
+        Rate shipments, 20 lbs (320 oz) for domestic weight-based Express shipments,
+        40 lbs (640 oz) for international weight-based Express shipments.", "dimensions":
         ["11.88in x 10.75in x 11in", "15.25in x 14.13in x 6in"], "human_readable":
-        null, "max_weight": 320.0, "name": "FedExExtraLargeBox"}], "service_levels":
+        null, "max_weight": 800.0, "name": "FedExExtraLargeBox"}], "service_levels":
         [{"carrier": "fedex", "description": "2 business days by 4:30pm, Saturday
         delivery", "dimensions": null, "human_readable": "FedEx 2 Day", "max_weight":
         null, "name": "FEDEX_2_DAY"}, {"carrier": "fedex", "description": "2 business
@@ -935,107 +1205,164 @@ interactions:
         the next business day, Saturday delivery", "dimensions": null, "human_readable":
         "FedEx Priority Overnight", "max_weight": null, "name": "PRIORITY_OVERNIGHT"},
         {"carrier": "fedex", "description": "2-7 business days; Sunday Delivery to
-        select markets", "dimensions": null, "human_readable": "FedEx Smart Post",
-        "max_weight": null, "name": "SMART_POST"}, {"carrier": "fedex", "description":
-        "By 4:30pm the next business day", "dimensions": null, "human_readable": "FedEx
-        Standard Overnight", "max_weight": null, "name": "STANDARD_OVERNIGHT"}], "shipment_options":
-        [], "supported_features": []}, {"human_readable": "FedEx Cross Border", "name":
-        "fedexcrossborder", "predefined_packages": [], "service_levels": [{"carrier":
-        "fedexcrossborder", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "CBEC"}, {"carrier": "fedexcrossborder",
+        select markets", "dimensions": null, "human_readable": "FedEx Ground Economy
+        (formerly FedEx SmartPost)", "max_weight": null, "name": "SMART_POST"}, {"carrier":
+        "fedex", "description": "By 4:30pm the next business day", "dimensions": null,
+        "human_readable": "FedEx Standard Overnight", "max_weight": null, "name":
+        "STANDARD_OVERNIGHT"}], "shipment_options": [], "supported_features": []},
+        {"human_readable": "FedEx Cross Border", "name": "fedexcrossborder", "predefined_packages":
+        [], "service_levels": [{"carrier": "fedexcrossborder", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "CBEC"},
+        {"carrier": "fedexcrossborder", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "CBECL"}, {"carrier": "fedexcrossborder",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "CBECL"}, {"carrier": "fedexcrossborder", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "CBECP"}],
+        null, "name": "CBECP"}], "shipment_options": [], "supported_features": []},
+        {"human_readable": "FedEx Ground Economy", "name": "fedexgroundeconomy", "predefined_packages":
+        [], "service_levels": [{"carrier": "fedexgroundeconomy", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "SMART_POST"}],
         "shipment_options": [], "supported_features": []}, {"human_readable": "FedEx
-        Mailview", "name": "fedexmailview", "predefined_packages": [], "service_levels":
-        [], "shipment_options": [], "supported_features": []}, {"human_readable":
-        "FedEx SmartPost", "name": "fedexsmartpost", "predefined_packages": [], "service_levels":
+        SmartPost", "name": "fedexsmartpost", "predefined_packages": [], "service_levels":
         [{"carrier": "fedexsmartpost", "description": null, "dimensions": [], "human_readable":
         null, "max_weight": null, "name": "SMART_POST"}], "shipment_options": [],
-        "supported_features": []}, {"human_readable": "FirstMile", "name": "firstmile",
-        "predefined_packages": [], "service_levels": [{"carrier": "firstmile", "description":
+        "supported_features": []}, {"human_readable": "First Choice", "name": "firstchoice",
+        "predefined_packages": [], "service_levels": [{"carrier": "firstchoice", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "XParcelGround"}, {"carrier": "firstmile", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "XParcelExpedited"},
-        {"carrier": "firstmile", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "XParcelExpeditedPlus"}, {"carrier": "firstmile",
+        "ST"}], "shipment_options": [], "supported_features": [{"carrier": "firstchoice",
+        "description": null, "name": "labels", "supported": null}]}, {"human_readable":
+        "First Mile", "name": "firstmile", "predefined_packages": [], "service_levels":
+        [{"carrier": "firstmile", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "XParcelPriority"}, {"carrier": "firstmile",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "XParcelPriority"}, {"carrier": "firstmile", "description":
+        null, "name": "XParcelExpedited"}, {"carrier": "firstmile", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "XParcelReturns"}], "shipment_options": [], "supported_features": []}, {"human_readable":
-        "GSO", "name": "gso", "predefined_packages": [], "service_levels": [{"carrier":
-        "gso", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "EarlyPriorityOvernight"}, {"carrier": "gso", "description":
+        "XParcelReturns"}, {"carrier": "firstmile", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "XParcelGround"},
+        {"carrier": "firstmile", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "XParcelExpeditedPlus"}], "shipment_options":
+        [], "supported_features": [{"carrier": "firstmile", "description": null, "name":
+        "labels", "supported": true}, {"carrier": "firstmile", "description": null,
+        "name": "orders", "supported": false}, {"carrier": "firstmile", "description":
+        null, "name": "pickups", "supported": false}, {"carrier": "firstmile", "description":
+        null, "name": "rating", "supported": true}, {"carrier": "firstmile", "description":
+        null, "name": "refunds", "supported": true}, {"carrier": "firstmile", "description":
+        null, "name": "returns", "supported": true}, {"carrier": "firstmile", "description":
+        null, "name": "scanforms", "supported": false}, {"carrier": "firstmile", "description":
+        null, "name": "test_environment", "supported": true}]}, {"human_readable":
+        "Flexport", "name": "flexport", "predefined_packages": [], "service_levels":
+        [{"carrier": "flexport", "description": null, "dimensions": [], "human_readable":
+        "Standard", "max_weight": null, "name": "Standard"}, {"carrier": "flexport",
+        "description": null, "dimensions": [], "human_readable": "Expedited", "max_weight":
+        null, "name": "Expedited"}], "shipment_options": [], "supported_features":
+        [{"carrier": "flexport", "description": null, "name": "bill_on_delivery",
+        "supported": false}, {"carrier": "flexport", "description": null, "name":
+        "bill_on_label_purchase", "supported": false}, {"carrier": "flexport", "description":
+        null, "name": "bill_on_manifest", "supported": false}, {"carrier": "flexport",
+        "description": null, "name": "bill_on_scan", "supported": true}, {"carrier":
+        "flexport", "description": null, "name": "commercial_invoices", "supported":
+        false}, {"carrier": "flexport", "description": null, "name": "delivers_to_po_box",
+        "supported": false}, {"carrier": "flexport", "description": null, "name":
+        "labels", "supported": true}, {"carrier": "flexport", "description": null,
+        "name": "orders", "supported": false}, {"carrier": "flexport", "description":
+        null, "name": "pickups", "supported": false}, {"carrier": "flexport", "description":
+        null, "name": "rating", "supported": true}, {"carrier": "flexport", "description":
+        null, "name": "refunds", "supported": false}, {"carrier": "flexport", "description":
+        null, "name": "returns", "supported": false}, {"carrier": "flexport", "description":
+        null, "name": "scanforms", "supported": false}, {"carrier": "flexport", "description":
+        null, "name": "sort_codes", "supported": false}, {"carrier": "flexport", "description":
+        null, "name": "test_environment", "supported": false}]}, {"human_readable":
+        "Gio", "name": "gio", "predefined_packages": [], "service_levels": [{"carrier":
+        "gio", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "scheduled"}], "shipment_options": [], "supported_features":
+        []}, {"human_readable": "GLS", "name": "gls", "predefined_packages": [], "service_levels":
+        [{"carrier": "gls", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "CaliforniaParcelService"}, {"carrier":
+        "gls", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "EarlyPriorityOvernight"}, {"carrier": "gls", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "PriorityOvernight"}, {"carrier": "gso", "description": null, "dimensions":
+        "EarlySaturdayService"}, {"carrier": "gls", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "Ground"}, {"carrier":
+        "gls", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "Overnight"}, {"carrier": "gls", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "PriorityOvernight"},
+        {"carrier": "gls", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "SaturdayDeliveryService"}], "shipment_options":
+        [], "supported_features": []}, {"human_readable": "GSO", "name": "gso", "predefined_packages":
+        [], "service_levels": [{"carrier": "gso", "description": null, "dimensions":
         [], "human_readable": null, "max_weight": null, "name": "CaliforniaParcelService"},
         {"carrier": "gso", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "SaturdayDeliveryService"}, {"carrier":
-        "gso", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "max_weight": null, "name": "EarlyPriorityOvernight"}, {"carrier": "gso",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
         null, "name": "EarlySaturdayService"}, {"carrier": "gso", "description": null,
         "dimensions": [], "human_readable": null, "max_weight": null, "name": "Ground"},
         {"carrier": "gso", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "Overnight"}], "shipment_options": [], "supported_features":
-        []}, {"human_readable": "Hailify", "name": "hailify", "predefined_packages":
-        [], "service_levels": [{"carrier": "hailify", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "Xpress"}], "shipment_options":
-        [], "supported_features": []}, {"human_readable": "Interlink Express", "name":
-        "interlinkexpress", "predefined_packages": [{"carrier": "interlinkexpress",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "Parcel"}, {"carrier": "interlinkexpress", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "Pallet"},
-        {"carrier": "interlinkexpress", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "ExpressPak"}, {"carrier": "interlinkexpress",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "FreightParcel"}, {"carrier": "interlinkexpress", "description":
+        null, "max_weight": null, "name": "Overnight"}, {"carrier": "gso", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "Freight"}], "service_levels": [{"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkAirClassicInternationalAir"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkAirExpressInternationalAir"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak1By10:30"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak1By12"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak1NextDay"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak1Saturday"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak1SaturdayBy10:30"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak1SaturdayBy12"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak1Sunday"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak1SundayBy12"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak5By10"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak5By10:30"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak5By12"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak5NextDay"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak5Saturday"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak5SaturdayBy10"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak5SaturdayBy10:30"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak5SaturdayBy12"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak5Sunday"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkExpresspak5SundayBy12"}, {"carrier": "interlinkexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InterlinkFreightBy10"}, {"carrier": "interlinkexpress", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "InterlinkFreightBy12"},
-        {"carrier": "interlinkexpress", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "InterlinkFreightNextDay"}, {"carrier":
+        "PriorityOvernight"}, {"carrier": "gso", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "SaturdayDeliveryService"}],
+        "shipment_options": [], "supported_features": []}, {"human_readable": "Hailify",
+        "name": "hailify", "predefined_packages": [], "service_levels": [{"carrier":
+        "hailify", "description": null, "dimensions": [], "human_readable": null,
+        "max_weight": null, "name": "Xpress"}], "shipment_options": [], "supported_features":
+        []}, {"human_readable": "Henry", "name": "henry", "predefined_packages": [],
+        "service_levels": [{"carrier": "henry", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "Distribution"}],
+        "shipment_options": [], "supported_features": []}, {"human_readable": "Interlink
+        Express", "name": "interlinkexpress", "predefined_packages": [{"carrier":
         "interlinkexpress", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "Parcel"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "Pallet"}, {"carrier": "interlinkexpress", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "ExpressPak"},
+        {"carrier": "interlinkexpress", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "FreightParcel"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "Freight"}], "service_levels": [{"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkAirClassicInternationalAir"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkAirExpressInternationalAir"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak1By10:30"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak1By12"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak1NextDay"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak1Saturday"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak1SaturdayBy10:30"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak1SaturdayBy12"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak1Sunday"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak1SundayBy12"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak5By10"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak5By10:30"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak5By12"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak5NextDay"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak5Saturday"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak5SaturdayBy10"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak5SaturdayBy10:30"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak5SaturdayBy12"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak5Sunday"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkExpresspak5SundayBy12"}, {"carrier": "interlinkexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "InterlinkFreightBy10"}, {"carrier": "interlinkexpress", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "InterlinkFreightBy12"}, {"carrier": "interlinkexpress", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "InterlinkFreightNextDay"},
+        {"carrier": "interlinkexpress", "description": null, "dimensions": [], "human_readable":
         null, "max_weight": null, "name": "InterlinkFreightSaturday"}, {"carrier":
         "interlinkexpress", "description": null, "dimensions": [], "human_readable":
         null, "max_weight": null, "name": "InterlinkFreightSaturdayBy10"}, {"carrier":
@@ -1075,9 +1402,20 @@ interactions:
         null, "max_weight": null, "name": "InterlinkParcelTwoDay"}, {"carrier": "interlinkexpress",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
         null, "name": "InterlinkPickupParcelDpdEuropeByRoad"}], "shipment_options":
-        [], "supported_features": []}, {"human_readable": "JP Post", "name": "jppost",
-        "predefined_packages": [], "service_levels": [], "shipment_options": [], "supported_features":
-        []}, {"human_readable": "Kuroneko Yamato", "name": "kuronekoyamato", "predefined_packages":
+        [], "supported_features": []}, {"human_readable": "Jet", "name": "jet", "predefined_packages":
+        [], "service_levels": [{"carrier": "jet", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "Distribution"}],
+        "shipment_options": [], "supported_features": []}, {"human_readable": "Jitsu",
+        "name": "jitsu", "predefined_packages": [], "service_levels": [{"carrier":
+        "jitsu", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "AxleHireDelivery"}], "shipment_options": [], "supported_features":
+        [{"carrier": "jitsu", "description": null, "name": "labels", "supported":
+        null}, {"carrier": "jitsu", "description": null, "name": "pickups", "supported":
+        null}, {"carrier": "jitsu", "description": null, "name": "rating", "supported":
+        true}, {"carrier": "jitsu", "description": null, "name": "scanforms", "supported":
+        null}]}, {"human_readable": "JP Post", "name": "jppost", "predefined_packages":
+        [], "service_levels": [], "shipment_options": [], "supported_features": []},
+        {"human_readable": "Kuroneko Yamato", "name": "kuronekoyamato", "predefined_packages":
         [], "service_levels": [], "shipment_options": [], "supported_features": []},
         {"human_readable": "La Poste", "name": "laposte", "predefined_packages": [],
         "service_levels": [], "shipment_options": [], "supported_features": []}, {"human_readable":
@@ -1099,205 +1437,259 @@ interactions:
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
         "LoomisExpress1200"}, {"carrier": "loomisexpress", "description": null, "dimensions":
         [], "human_readable": null, "max_weight": null, "name": "LoomisExpress900"}],
-        "shipment_options": [], "supported_features": []}, {"human_readable": "LSO",
-        "name": "lso", "predefined_packages": [], "service_levels": [{"carrier": "lso",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "GroundEarly"}, {"carrier": "lso", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "GroundBasic"}, {"carrier":
-        "lso", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "PriorityBasic"}, {"carrier": "lso", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "PriorityEarly"},
-        {"carrier": "lso", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "PrioritySaturday"}, {"carrier": "lso",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "Priority2ndDay"}, {"carrier": "lso", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "SameDay"}], "shipment_options":
-        [], "supported_features": []}, {"human_readable": "Maergo", "name": "maergo",
-        "predefined_packages": [], "service_levels": [{"carrier": "maergo", "description":
+        "shipment_options": [], "supported_features": [{"carrier": "loomisexpress",
+        "description": null, "name": "labels", "supported": null}, {"carrier": "loomisexpress",
+        "description": null, "name": "pickups", "supported": null}, {"carrier": "loomisexpress",
+        "description": null, "name": "rating", "supported": true}, {"carrier": "loomisexpress",
+        "description": null, "name": "scanforms", "supported": null}, {"carrier":
+        "loomisexpress", "description": null, "name": "test_environment", "supported":
+        null}]}, {"human_readable": "LSO", "name": "lso", "predefined_packages": [],
+        "service_levels": [{"carrier": "lso", "description": null, "dimensions": null,
+        "human_readable": "Early Next Day by 8:30 a.m.", "max_weight": null, "name":
+        "PriorityEarly"}, {"carrier": "lso", "description": null, "dimensions": null,
+        "human_readable": "Priority Next Day by 10:30 a.m.", "max_weight": null, "name":
+        "PriorityBasic"}, {"carrier": "lso", "description": null, "dimensions": null,
+        "human_readable": "Priority 2nd Business Day", "max_weight": null, "name":
+        "Priority2ndDay"}, {"carrier": "lso", "description": null, "dimensions": null,
+        "human_readable": "Economy Next Day by 3 p.m.", "max_weight": null, "name":
+        "GroundEarly"}, {"carrier": "lso", "description": null, "dimensions": null,
+        "human_readable": "Ground Basic in 1-3 business days", "max_weight": null,
+        "name": "GroundBasic"}, {"carrier": "lso", "description": null, "dimensions":
+        null, "human_readable": "eCommerce", "max_weight": null, "name": "ECommerce"}],
+        "shipment_options": [{"carrier": "lso", "deprecated": false, "description":
+        null, "human_readable": "Delivery Confirmation", "name": "delivery_confirmation",
+        "type": "string"}, {"carrier": "lso", "deprecated": false, "description":
+        null, "human_readable": "Saturday Delivery", "name": "saturday_delivery",
+        "type": "boolean"}, {"carrier": "lso", "deprecated": true, "description":
+        null, "human_readable": "Date Advance", "name": "date_advance", "type": "integer"},
+        {"carrier": "lso", "deprecated": true, "description": null, "human_readable":
+        "Declared Value", "name": "declared_value", "type": "float"}, {"carrier":
+        "lso", "deprecated": false, "description": null, "human_readable": "Label
+        Format", "name": "label_format", "type": "string"}, {"carrier": "lso", "deprecated":
+        false, "description": null, "human_readable": "Label Size", "name": "label_size",
+        "type": "string"}, {"carrier": "lso", "deprecated": true, "description": null,
+        "human_readable": "Print Custom 1", "name": "print_custom_1", "type": "string"},
+        {"carrier": "lso", "deprecated": true, "description": null, "human_readable":
+        "Print Custom 2", "name": "print_custom_2", "type": "string"}, {"carrier":
+        "lso", "deprecated": true, "description": null, "human_readable": "Print Custom
+        3", "name": "print_custom_3", "type": "string"}], "supported_features": [{"carrier":
+        "lso", "description": null, "name": "bill_on_delivery", "supported": false},
+        {"carrier": "lso", "description": null, "name": "bill_on_label_purchase",
+        "supported": false}, {"carrier": "lso", "description": null, "name": "bill_on_manifest",
+        "supported": false}, {"carrier": "lso", "description": null, "name": "bill_on_scan",
+        "supported": true}, {"carrier": "lso", "description": null, "name": "commercial_invoices",
+        "supported": false}, {"carrier": "lso", "description": null, "name": "delivers_to_po_box",
+        "supported": false}, {"carrier": "lso", "description": null, "name": "labels",
+        "supported": true}, {"carrier": "lso", "description": null, "name": "orders",
+        "supported": false}, {"carrier": "lso", "description": null, "name": "pickups",
+        "supported": true}, {"carrier": "lso", "description": null, "name": "rating",
+        "supported": true}, {"carrier": "lso", "description": null, "name": "refunds",
+        "supported": false}, {"carrier": "lso", "description": null, "name": "returns",
+        "supported": false}, {"carrier": "lso", "description": null, "name": "scanforms",
+        "supported": false}, {"carrier": "lso", "description": null, "name": "sort_codes",
+        "supported": false}, {"carrier": "lso", "description": null, "name": "test_environment",
+        "supported": true}]}, {"human_readable": "Maersk", "name": "maersk", "predefined_packages":
+        [], "service_levels": [{"carrier": "maersk", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "Maersk-3-Day"}],
+        "shipment_options": [], "supported_features": []}, {"human_readable": "OnTracV3",
+        "name": "ontracv3", "predefined_packages": [{"carrier": "ontracv3", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "Standard"}], "shipment_options": [], "supported_features": []}, {"human_readable":
-        "Newgistics", "name": "newgistics", "predefined_packages": [], "service_levels":
-        [{"carrier": "newgistics", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "ParcelSelect"}, {"carrier": "newgistics",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "ParcelSelectLightweight"}, {"carrier": "newgistics", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "Ground"}, {"carrier": "newgistics", "description": null, "dimensions": [],
-        "human_readable": null, "max_weight": null, "name": "Express"}, {"carrier":
-        "newgistics", "description": null, "dimensions": [], "human_readable": null,
-        "max_weight": null, "name": "FirstClassMail"}, {"carrier": "newgistics", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "PriorityMail"}, {"carrier": "newgistics", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "BoundPrintedMatter"}],
-        "shipment_options": [], "supported_features": []}, {"human_readable": "Ontrac",
-        "name": "ontrac", "predefined_packages": [{"carrier": "ontrac", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "Letter"}], "service_levels": [{"carrier": "ontrac", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "Sunrise"},
-        {"carrier": "ontrac", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "Gold"}, {"carrier": "ontrac", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "OnTracGround"}, {"carrier": "ontrac", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "SameDay"}, {"carrier":
-        "ontrac", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "PalletizedFreight"}], "shipment_options": [], "supported_features":
+        "Letter"}], "service_levels": [{"carrier": "ontracv3", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "GRND"},
+        {"carrier": "ontracv3", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "Next_Day"}], "shipment_options": [], "supported_features":
         []}, {"human_readable": "Optima", "name": "optima", "predefined_packages":
         [], "service_levels": [{"carrier": "optima", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "NxtDay"}], "shipment_options":
-        [], "supported_features": []}, {"human_readable": "OSM Worldwide", "name":
-        "osmworldwide", "predefined_packages": [{"carrier": "osmworldwide", "description":
+        ["Maximum length: 48in", "Maximum width: 32in", "Maximum height: 32in"], "human_readable":
+        null, "max_weight": 800.0, "name": "NxtDay"}], "shipment_options": [], "supported_features":
+        []}, {"human_readable": "OSM Worldwide", "name": "osmworldwide", "predefined_packages":
+        [{"carrier": "osmworldwide", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "parcel"}, {"carrier": "osmworldwide", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "parcel"}, {"carrier": "osmworldwide", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "irregularparcel"},
+        "irregularparcel"}, {"carrier": "osmworldwide", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "softpack"}], "service_levels":
+        [{"carrier": "osmworldwide", "description": null, "dimensions": [], "human_readable":
+        "Priority", "max_weight": null, "name": "Priority"}, {"carrier": "osmworldwide",
+        "description": null, "dimensions": [], "human_readable": "BPM", "max_weight":
+        null, "name": "BPM"}, {"carrier": "osmworldwide", "description": null, "dimensions":
+        [], "human_readable": "Parcel Select", "max_weight": null, "name": "ParcelSelect"},
         {"carrier": "osmworldwide", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "softpack"}], "service_levels": [{"carrier":
-        "osmworldwide", "description": null, "dimensions": [], "human_readable": "First",
-        "max_weight": null, "name": "First"}, {"carrier": "osmworldwide", "description":
-        null, "dimensions": [], "human_readable": "Parcel Select Lightweight", "max_weight":
-        null, "name": "ParcelSelectLightweight"}, {"carrier": "osmworldwide", "description":
-        null, "dimensions": [], "human_readable": "Priority", "max_weight": null,
-        "name": "Priority"}, {"carrier": "osmworldwide", "description": null, "dimensions":
-        [], "human_readable": "BPM", "max_weight": null, "name": "BPM"}, {"carrier":
+        "Media Mail", "max_weight": null, "name": "MediaMail"}, {"carrier": "osmworldwide",
+        "description": null, "dimensions": [], "human_readable": "Marketing Parcel",
+        "max_weight": null, "name": "MarketingParcel"}, {"carrier": "osmworldwide",
+        "description": null, "dimensions": [], "human_readable": "Marketing Parcel
+        Tracked", "max_weight": null, "name": "MarketingParcelTracked"}, {"carrier":
         "osmworldwide", "description": null, "dimensions": [], "human_readable": "Parcel
-        Select", "max_weight": null, "name": "ParcelSelect"}, {"carrier": "osmworldwide",
-        "description": null, "dimensions": [], "human_readable": "Media Mail", "max_weight":
-        null, "name": "MediaMail"}, {"carrier": "osmworldwide", "description": null,
-        "dimensions": [], "human_readable": "Marketing Parcel", "max_weight": null,
-        "name": "MarketingParcel"}, {"carrier": "osmworldwide", "description": null,
-        "dimensions": [], "human_readable": "Marketing Parcel Tracked", "max_weight":
-        null, "name": "MarketingParcelTracked"}], "shipment_options": [], "supported_features":
-        [{"carrier": "osmworldwide", "description": null, "name": "labels", "supported":
-        true}, {"carrier": "osmworldwide", "description": null, "name": "orders",
-        "supported": false}, {"carrier": "osmworldwide", "description": null, "name":
-        "pickups", "supported": false}, {"carrier": "osmworldwide", "description":
-        null, "name": "refunds", "supported": false}, {"carrier": "osmworldwide",
+        Select Hazardous Material", "max_weight": null, "name": "ParcelSelectHazardousMaterial"},
+        {"carrier": "osmworldwide", "description": null, "dimensions": [], "human_readable":
+        "USPS Ground Advantage", "max_weight": null, "name": "USPSGroundAdvantage"},
+        {"carrier": "osmworldwide", "description": null, "dimensions": [], "human_readable":
+        "USPS Ground Advantage Lightweight", "max_weight": null, "name": "USPSGroundAdvantageLightweight"},
+        {"carrier": "osmworldwide", "description": null, "dimensions": [], "human_readable":
+        "USPS Ground Advantage Hazmat", "max_weight": null, "name": "USPSGroundAdvantageHazmat"},
+        {"carrier": "osmworldwide", "description": null, "dimensions": [], "human_readable":
+        "USPS Ground Advantage Hazmat Signature", "max_weight": null, "name": "USPSGroundAdvantageHazmatSignature"},
+        {"carrier": "osmworldwide", "description": null, "dimensions": [], "human_readable":
+        "USPS Ground Advantage Lightweight Hazmat", "max_weight": null, "name": "USPSGroundAdvantageLightweightHazmat"},
+        {"carrier": "osmworldwide", "description": null, "dimensions": [], "human_readable":
+        "USPS Ground Advantage Lightweight Hazmat Signature", "max_weight": null,
+        "name": "USPSGroundAdvantageLightweightHazmatSignature"}, {"carrier": "osmworldwide",
+        "description": null, "dimensions": [], "human_readable": "Parcel Select Hazmat
+        Signature", "max_weight": null, "name": "ParcelSelectHazmatSignature"}], "shipment_options":
+        [], "supported_features": [{"carrier": "osmworldwide", "description": null,
+        "name": "labels", "supported": true}, {"carrier": "osmworldwide", "description":
+        null, "name": "orders", "supported": false}, {"carrier": "osmworldwide", "description":
+        null, "name": "pickups", "supported": false}, {"carrier": "osmworldwide",
+        "description": null, "name": "rating", "supported": true}, {"carrier": "osmworldwide",
+        "description": null, "name": "refunds", "supported": false}, {"carrier": "osmworldwide",
         "description": null, "name": "returns", "supported": false}, {"carrier": "osmworldwide",
         "description": "Manifesting", "name": "scanforms", "supported": true}, {"carrier":
-        "osmworldwide", "description": null, "name": "rating", "supported": false},
-        {"carrier": "osmworldwide", "description": null, "name": "tracking", "supported":
-        false}, {"carrier": "osmworldwide", "description": null, "name": "sort_codes",
+        "osmworldwide", "description": null, "name": "sort_codes", "supported": true}]},
+        {"human_readable": "Pandion", "name": "pandion", "predefined_packages": [],
+        "service_levels": [{"carrier": "pandion", "description": null, "dimensions":
+        [], "human_readable": "Pandion Express", "max_weight": null, "name": "Pandion
+        Express"}], "shipment_options": [], "supported_features": [{"carrier": "pandion",
+        "description": null, "name": "bill_on_delivery", "supported": false}, {"carrier":
+        "pandion", "description": null, "name": "bill_on_label_purchase", "supported":
+        false}, {"carrier": "pandion", "description": null, "name": "bill_on_manifest",
+        "supported": true}, {"carrier": "pandion", "description": null, "name": "bill_on_scan",
+        "supported": true}, {"carrier": "pandion", "description": null, "name": "commercial_invoices",
+        "supported": false}, {"carrier": "pandion", "description": null, "name": "delivers_to_po_box",
+        "supported": false}, {"carrier": "pandion", "description": null, "name": "labels",
+        "supported": true}, {"carrier": "pandion", "description": null, "name": "orders",
+        "supported": false}, {"carrier": "pandion", "description": null, "name": "pickups",
+        "supported": false}, {"carrier": "pandion", "description": null, "name": "rating",
+        "supported": true}, {"carrier": "pandion", "description": null, "name": "refunds",
+        "supported": false}, {"carrier": "pandion", "description": null, "name": "returns",
+        "supported": true}, {"carrier": "pandion", "description": null, "name": "scanforms",
+        "supported": true}, {"carrier": "pandion", "description": null, "name": "sort_codes",
+        "supported": false}, {"carrier": "pandion", "description": null, "name": "test_environment",
         "supported": true}]}, {"human_readable": "Parcelforce", "name": "parcelforce",
         "predefined_packages": [], "service_levels": [{"carrier": "parcelforce", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "Express9"}, {"carrier": "parcelforce", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "Express9Secure"},
+        "europrioritybusiness"}, {"carrier": "parcelforce", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "europriorityhome"},
         {"carrier": "parcelforce", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "Express9CourierPack"}, {"carrier": "parcelforce",
+        null, "max_weight": null, "name": "express10"}, {"carrier": "parcelforce",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "Express10"}, {"carrier": "parcelforce", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "Express10Secure"},
-        {"carrier": "parcelforce", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "Express10Exchange"}, {"carrier": "parcelforce",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "Express10SecureExchange"}, {"carrier": "parcelforce", "description":
+        null, "name": "express10CourierPack"}, {"carrier": "parcelforce", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "Express10CourierPack"}, {"carrier": "parcelforce", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "ExpressAM"}, {"carrier":
+        "express10Exchange"}, {"carrier": "parcelforce", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "express10Secure"},
+        {"carrier": "parcelforce", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "express10SecureExchange"}, {"carrier":
         "parcelforce", "description": null, "dimensions": [], "human_readable": null,
-        "max_weight": null, "name": "ExpressAMSecure"}, {"carrier": "parcelforce",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "ExpressAMExchange"}, {"carrier": "parcelforce", "description":
+        "max_weight": null, "name": "express24"}, {"carrier": "parcelforce", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "ExpressAMSecureExchange"}, {"carrier": "parcelforce", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "ExpressAMCourierPack"},
+        "express24CourierPack"}, {"carrier": "parcelforce", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "express24Exchange"},
         {"carrier": "parcelforce", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "ExpressPM"}, {"carrier": "parcelforce",
+        null, "max_weight": null, "name": "express24large"}, {"carrier": "parcelforce",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "ExpressPMSecure"}, {"carrier": "parcelforce", "description":
+        null, "name": "express24Secure"}, {"carrier": "parcelforce", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "Express24"}, {"carrier": "parcelforce", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "Express24Large"},
+        "express24SecureExchange"}, {"carrier": "parcelforce", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "express48"},
         {"carrier": "parcelforce", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "Express24Secure"}, {"carrier": "parcelforce",
+        null, "max_weight": null, "name": "express48large"}, {"carrier": "parcelforce",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "Express24Exchange"}, {"carrier": "parcelforce", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "Express24SecureExchange"}, {"carrier": "parcelforce", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "Express24CourierPack"},
+        null, "name": "express9"}, {"carrier": "parcelforce", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "express9CourierPack"},
         {"carrier": "parcelforce", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "Express48"}, {"carrier": "parcelforce",
+        null, "max_weight": null, "name": "express9Secure"}, {"carrier": "parcelforce",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "Express48Large"}, {"carrier": "parcelforce", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "ParcelRiderPlus"}, {"carrier": "parcelforce", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "GlobalBulkDirect"},
+        null, "name": "expressAM"}, {"carrier": "parcelforce", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "expressAMCourierPack"},
         {"carrier": "parcelforce", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "GlobalExpress"}, {"carrier": "parcelforce",
+        null, "max_weight": null, "name": "expressAMExchange"}, {"carrier": "parcelforce",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "GlobalExpressEnvelopeDelivery"}, {"carrier": "parcelforce",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "GlobalExpressPackDelivery"}, {"carrier": "parcelforce", "description":
+        null, "name": "expressAMSecure"}, {"carrier": "parcelforce", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "GlobalValue"}, {"carrier": "parcelforce", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "GlobalPriority"},
+        "expressAMSecureExchange"}, {"carrier": "parcelforce", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "expressPM"},
         {"carrier": "parcelforce", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "GlobalPriorityReturns"}, {"carrier": "parcelforce",
+        null, "max_weight": null, "name": "expressPMSecure"}, {"carrier": "parcelforce",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "EuroPriorityHome"}, {"carrier": "parcelforce", "description":
+        null, "name": "globalBulkDirect"}, {"carrier": "parcelforce", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "EuroPriorityBusiness"}, {"carrier": "parcelforce", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "IrelandExpress"}],
-        "shipment_options": [], "supported_features": []}, {"human_readable": "PARCLL",
-        "name": "parcll", "predefined_packages": [], "service_levels": [{"carrier":
+        "globalexpress"}, {"carrier": "parcelforce", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "globalexpressEnvelopeDelivery"},
+        {"carrier": "parcelforce", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "globalexpressPackDelivery"}, {"carrier":
+        "parcelforce", "description": null, "dimensions": [], "human_readable": null,
+        "max_weight": null, "name": "globalpriority"}, {"carrier": "parcelforce",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "globalpriorityReturns"}, {"carrier": "parcelforce", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "globalvalue"}, {"carrier": "parcelforce", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "irelandexpress"},
+        {"carrier": "parcelforce", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "ParcelRiderPlus"}], "shipment_options":
+        [], "supported_features": []}, {"human_readable": "PARCLL", "name": "parcll",
+        "predefined_packages": [], "service_levels": [{"carrier": "parcll", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "CADOECOEA (CA Domestic Economy East)"}, {"carrier": "parcll", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "CADOECOWE (CA Domestic Economy West)"}, {"carrier": "parcll", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "CAECOCE (US to CA Economy)"}, {"carrier": "parcll", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "CAECONE
+        (US to CA Economy)"}, {"carrier": "parcll", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "CAECOWE (US to CA
+        Economy)"}, {"carrier": "parcll", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "ECOCE (Economy Central)"}, {"carrier":
         "parcll", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "ECOWE (Economy West)"}, {"carrier": "parcll", "description":
+        null, "name": "ECOEA (Economy East)"}, {"carrier": "parcll", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "ECOCE (Economy Central)"}, {"carrier": "parcll", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "ECONE (Economy Northeast)"},
+        "ECONE (Economy Northeast)"}, {"carrier": "parcll", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "ECOSO (Economy South)"},
         {"carrier": "parcll", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "ECOEA (Economy East)"}, {"carrier": "parcll",
+        null, "max_weight": null, "name": "ECOWE (Economy West)"}, {"carrier": "parcll",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "ECOSO (Economy South)"}, {"carrier": "parcll", "description":
+        null, "name": "EUECOWE (US to Europe Economy)"}, {"carrier": "parcll", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "EXPWE (Expedited West)"}, {"carrier": "parcll", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "EXPBNE (Expedited
-        Northeast)"}, {"carrier": "parcll", "description": null, "dimensions": [],
-        "human_readable": null, "max_weight": null, "name": "REGWE (Regional West)"},
+        "EXPBNE (Expedited Northeast)"}, {"carrier": "parcll", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "EXPWE
+        (Expedited West)"}, {"carrier": "parcll", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "REGCE (Regional Central)"},
         {"carrier": "parcll", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "REGCE (Regional Central)"}, {"carrier":
-        "parcll", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "max_weight": null, "name": "REGEA (Regional East)"}, {"carrier": "parcll",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
         null, "name": "REGNE (Regional Northeast)"}, {"carrier": "parcll", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "REGEA (Regional East)"}, {"carrier": "parcll", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "REGSO (Regional South)"},
-        {"carrier": "parcll", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "CAECOWE (US to CA Economy)"}, {"carrier":
-        "parcll", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "CAECOCE (US to CA Economy)"}, {"carrier": "parcll", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "CAECONE (US to CA Economy)"}, {"carrier": "parcll", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "EUECOWE
-        (US to Europe Economy)"}], "shipment_options": [], "supported_features": []},
-        {"human_readable": "Passport", "name": "passportglobal", "predefined_packages":
-        [], "service_levels": [], "shipment_options": [], "supported_features": []},
-        {"human_readable": "PostNL", "name": "postnl", "predefined_packages": [],
-        "service_levels": [], "shipment_options": [], "supported_features": []}, {"human_readable":
-        "Purolator", "name": "purolator", "predefined_packages": [{"carrier": "purolator",
-        "description": null, "dimensions": [], "human_readable": "CustomerPackaging",
-        "max_weight": null, "name": "CUSTOMERPACKAGING"}, {"carrier": "purolator",
-        "description": null, "dimensions": [], "human_readable": "ExpressPack", "max_weight":
-        null, "name": "EXPRESSPACK"}, {"carrier": "purolator", "description": null,
-        "dimensions": [], "human_readable": "ExpressBox", "max_weight": null, "name":
-        "EXPRESSBOX"}, {"carrier": "purolator", "description": null, "dimensions":
-        [], "human_readable": "ExpressEnvelope", "max_weight": null, "name": "EXPRESSENVELOPE"}],
-        "service_levels": [{"carrier": "purolator", "description": null, "dimensions":
-        [], "human_readable": "Purolator Express", "max_weight": null, "name": "PurolatorExpress"},
+        "REGSO (Regional South)"}, {"carrier": "parcll", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "REGWE (Regional West)"}],
+        "shipment_options": [], "supported_features": []}, {"human_readable": "Passport",
+        "name": "passportglobal", "predefined_packages": [], "service_levels": [],
+        "shipment_options": [], "supported_features": []}, {"human_readable": "PostNL",
+        "name": "postnl", "predefined_packages": [], "service_levels": [], "shipment_options":
+        [], "supported_features": []}, {"human_readable": "Purolator", "name": "purolator",
+        "predefined_packages": [{"carrier": "purolator", "description": null, "dimensions":
+        [], "human_readable": "CustomerPackaging", "max_weight": null, "name": "CUSTOMERPACKAGING"},
         {"carrier": "purolator", "description": null, "dimensions": [], "human_readable":
-        "Purolator Express 12PM", "max_weight": null, "name": "PurolatorExpress12PM"},
-        {"carrier": "purolator", "description": null, "dimensions": [], "human_readable":
-        "Purolator Express Pack 12PM", "max_weight": null, "name": "PurolatorExpressPack12PM"},
-        {"carrier": "purolator", "description": null, "dimensions": [], "human_readable":
-        "Purolator Express Box 12PM", "max_weight": null, "name": "PurolatorExpressBox12PM"},
-        {"carrier": "purolator", "description": null, "dimensions": [], "human_readable":
-        "Purolator Express Envelope 12PM", "max_weight": null, "name": "PurolatorExpressEnvelope12PM"},
-        {"carrier": "purolator", "description": null, "dimensions": [], "human_readable":
-        "Purolator Express 10:30AM", "max_weight": null, "name": "PurolatorExpress1030AM"},
-        {"carrier": "purolator", "description": null, "dimensions": [], "human_readable":
-        "Purolator Express 9AM", "max_weight": null, "name": "PurolatorExpress9AM"},
-        {"carrier": "purolator", "description": null, "dimensions": [], "human_readable":
-        "Purolator Express Box", "max_weight": null, "name": "PurolatorExpressBox"},
-        {"carrier": "purolator", "description": null, "dimensions": [], "human_readable":
-        "Purolator Express Box 10:30AM", "max_weight": null, "name": "PurolatorExpressBox1030AM"},
+        "ExpressPack", "max_weight": null, "name": "EXPRESSPACK"}, {"carrier": "purolator",
+        "description": null, "dimensions": [], "human_readable": "ExpressBox", "max_weight":
+        null, "name": "EXPRESSBOX"}, {"carrier": "purolator", "description": null,
+        "dimensions": [], "human_readable": "ExpressEnvelope", "max_weight": null,
+        "name": "EXPRESSENVELOPE"}], "service_levels": [{"carrier": "purolator", "description":
+        null, "dimensions": [], "human_readable": "Purolator Express", "max_weight":
+        null, "name": "PurolatorExpress"}, {"carrier": "purolator", "description":
+        null, "dimensions": [], "human_readable": "Purolator Express 12PM", "max_weight":
+        null, "name": "PurolatorExpress12PM"}, {"carrier": "purolator", "description":
+        null, "dimensions": [], "human_readable": "Purolator Express Pack 12PM", "max_weight":
+        null, "name": "PurolatorExpressPack12PM"}, {"carrier": "purolator", "description":
+        null, "dimensions": [], "human_readable": "Purolator Express Box 12PM", "max_weight":
+        null, "name": "PurolatorExpressBox12PM"}, {"carrier": "purolator", "description":
+        null, "dimensions": [], "human_readable": "Purolator Express Envelope 12PM",
+        "max_weight": null, "name": "PurolatorExpressEnvelope12PM"}, {"carrier": "purolator",
+        "description": null, "dimensions": [], "human_readable": "Purolator Express
+        10:30AM", "max_weight": null, "name": "PurolatorExpress1030AM"}, {"carrier":
+        "purolator", "description": null, "dimensions": [], "human_readable": "Purolator
+        Express 9AM", "max_weight": null, "name": "PurolatorExpress9AM"}, {"carrier":
+        "purolator", "description": null, "dimensions": [], "human_readable": "Purolator
+        Express Box", "max_weight": null, "name": "PurolatorExpressBox"}, {"carrier":
+        "purolator", "description": null, "dimensions": [], "human_readable": "Purolator
+        Express Box 10:30AM", "max_weight": null, "name": "PurolatorExpressBox1030AM"},
         {"carrier": "purolator", "description": null, "dimensions": [], "human_readable":
         "Purolator Express Box 9AM", "max_weight": null, "name": "PurolatorExpressBox9AM"},
         {"carrier": "purolator", "description": null, "dimensions": [], "human_readable":
@@ -1411,21 +1803,23 @@ interactions:
         {"carrier": "purolator", "description": null, "dimensions": [], "human_readable":
         "Purolator Quick Ship Box", "max_weight": null, "name": "PurolatorQuickShipBox"}],
         "shipment_options": [], "supported_features": [{"carrier": "purolator", "description":
-        null, "name": "labels", "supported": true}, {"carrier": "purolator", "description":
-        null, "name": "orders", "supported": true}, {"carrier": "purolator", "description":
-        null, "name": "pickups", "supported": true}, {"carrier": "purolator", "description":
-        "Purolator bills at the end of the day for all labels created that day. You
-        cannot refund a label after the end of the day it was created.", "name": "refunds",
-        "supported": true}, {"carrier": "purolator", "description": null, "name":
-        "returns", "supported": true}, {"carrier": "purolator", "description": null,
-        "name": "scanforms", "supported": true}, {"carrier": "purolator", "description":
-        null, "name": "rating", "supported": false}, {"carrier": "purolator", "description":
-        null, "name": "tracking", "supported": false}, {"carrier": "purolator", "description":
         null, "name": "bill_on_delivery", "supported": true}, {"carrier": "purolator",
         "description": null, "name": "commercial_invoices", "supported": true}, {"carrier":
+        "purolator", "description": null, "name": "labels", "supported": true}, {"carrier":
+        "purolator", "description": null, "name": "orders", "supported": true}, {"carrier":
+        "purolator", "description": null, "name": "pickups", "supported": true}, {"carrier":
+        "purolator", "description": null, "name": "rating", "supported": true}, {"carrier":
+        "purolator", "description": "Purolator bills at the end of the day for all
+        labels created that day. You cannot refund a label after the end of the day
+        it was created.", "name": "refunds", "supported": true}, {"carrier": "purolator",
+        "description": null, "name": "returns", "supported": true}, {"carrier": "purolator",
+        "description": null, "name": "scanforms", "supported": true}, {"carrier":
         "purolator", "description": null, "name": "sort_codes", "supported": false},
         {"carrier": "purolator", "description": null, "name": "test_environment",
-        "supported": true}]}, {"human_readable": "Royal Mail", "name": "royalmail",
+        "supported": true}]}, {"human_readable": "Quick", "name": "quick", "predefined_packages":
+        [], "service_levels": [{"carrier": "quick", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "Routed"}], "shipment_options":
+        [], "supported_features": []}, {"human_readable": "Royal Mail", "name": "royalmail",
         "predefined_packages": [{"carrier": "royalmail", "description": null, "dimensions":
         [], "human_readable": null, "max_weight": null, "name": "LARGELETTER"}, {"carrier":
         "royalmail", "description": null, "dimensions": [], "human_readable": null,
@@ -1515,26 +1909,25 @@ interactions:
         "name": "print_custom_2", "type": "string"}, {"carrier": "royalmail", "deprecated":
         false, "description": null, "human_readable": "Saturday Delivery", "name":
         "saturday_delivery", "type": "boolean"}], "supported_features": [{"carrier":
-        "royalmail", "description": null, "name": "labels", "supported": true}, {"carrier":
-        "royalmail", "description": null, "name": "orders", "supported": false}, {"carrier":
-        "royalmail", "description": null, "name": "pickups", "supported": false},
-        {"carrier": "royalmail", "description": null, "name": "refunds", "supported":
+        "royalmail", "description": null, "name": "bill_on_delivery", "supported":
+        false}, {"carrier": "royalmail", "description": null, "name": "bill_on_label_purchase",
+        "supported": false}, {"carrier": "royalmail", "description": null, "name":
+        "bill_on_manifest", "supported": true}, {"carrier": "royalmail", "description":
+        null, "name": "bill_on_scan", "supported": false}, {"carrier": "royalmail",
+        "description": null, "name": "commercial_invoices", "supported": false}, {"carrier":
+        "royalmail", "description": null, "name": "delivers_to_po_box", "supported":
+        true}, {"carrier": "royalmail", "description": null, "name": "labels", "supported":
+        true}, {"carrier": "royalmail", "description": null, "name": "orders", "supported":
+        false}, {"carrier": "royalmail", "description": null, "name": "pickups", "supported":
+        false}, {"carrier": "royalmail", "description": null, "name": "rating", "supported":
+        true}, {"carrier": "royalmail", "description": null, "name": "refunds", "supported":
         true}, {"carrier": "royalmail", "description": null, "name": "returns", "supported":
         true}, {"carrier": "royalmail", "description": null, "name": "scanforms",
         "supported": true}, {"carrier": "royalmail", "description": null, "name":
-        "rating", "supported": false}, {"carrier": "royalmail", "description": null,
-        "name": "tracking", "supported": false}, {"carrier": "royalmail", "description":
-        null, "name": "bill_on_label_purchase", "supported": false}, {"carrier": "royalmail",
-        "description": null, "name": "bill_on_delivery", "supported": false}, {"carrier":
-        "royalmail", "description": null, "name": "bill_on_scan", "supported": false},
-        {"carrier": "royalmail", "description": null, "name": "bill_on_manifest",
-        "supported": true}, {"carrier": "royalmail", "description": null, "name":
-        "commercial_invoices", "supported": false}, {"carrier": "royalmail", "description":
-        null, "name": "delivers_to_po_box", "supported": true}, {"carrier": "royalmail",
-        "description": null, "name": "sort_codes", "supported": true}, {"carrier":
-        "royalmail", "description": null, "name": "test_environment", "supported":
-        true}]}, {"human_readable": "SEKO OmniParcel", "name": "sekoomniparcel", "predefined_packages":
-        [{"carrier": "sekoomniparcel", "description": null, "dimensions": [], "human_readable":
+        "sort_codes", "supported": true}, {"carrier": "royalmail", "description":
+        null, "name": "test_environment", "supported": true}]}, {"human_readable":
+        "SEKO OmniParcel", "name": "sekoomniparcel", "predefined_packages": [{"carrier":
+        "sekoomniparcel", "description": null, "dimensions": [], "human_readable":
         null, "max_weight": null, "name": "Bag"}, {"carrier": "sekoomniparcel", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
         "Box"}, {"carrier": "sekoomniparcel", "description": null, "dimensions": [],
@@ -1563,54 +1956,107 @@ interactions:
         [], "service_levels": [{"carrier": "sendle", "description": null, "dimensions":
         [], "human_readable": "Standard", "max_weight": null, "name": "Standard"},
         {"carrier": "sendle", "description": null, "dimensions": [], "human_readable":
-        "Express", "max_weight": null, "name": "Express"}], "shipment_options": [],
-        "supported_features": []}, {"human_readable": "SF Express", "name": "sfexpress",
-        "predefined_packages": [], "service_levels": [{"carrier": "sfexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InternationalStandardExpressDoc"}, {"carrier": "sfexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InternationalStandardExpressParcel"}, {"carrier": "sfexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InternationalEconomyExpressPilot"}, {"carrier": "sfexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InternationalEconomyExpressDoc"}, {"carrier": "sfexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "InternationalEconomyExpressParcel"}, {"carrier": "sfexpress", "description":
-        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "DomesticExpress"}, {"carrier": "sfexpress", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "DomesticStandard"},
+        "Express", "max_weight": null, "name": "Express"}, {"carrier": "sendle", "description":
+        null, "dimensions": [], "human_readable": "Saver", "max_weight": null, "name":
+        "Saver"}, {"carrier": "sendle", "description": null, "dimensions": [], "human_readable":
+        "Two-Day", "max_weight": null, "name": "Two-Day"}, {"carrier": "sendle", "description":
+        null, "dimensions": [], "human_readable": "Three-Day", "max_weight": null,
+        "name": "Three-Day"}], "shipment_options": [], "supported_features": []},
+        {"human_readable": "SF Express", "name": "sfexpress", "predefined_packages":
+        [], "service_levels": [{"carrier": "sfexpress", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "InternationalStandardExpressDoc"},
         {"carrier": "sfexpress", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "DomesticIntraCity"}, {"carrier": "sfexpress",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "StandardExpress"}, {"carrier": "sfexpress", "description":
+        null, "max_weight": null, "name": "InternationalStandardExpressParcel"}, {"carrier":
+        "sfexpress", "description": null, "dimensions": [], "human_readable": null,
+        "max_weight": null, "name": "InternationalEconomyExpressPilot"}, {"carrier":
+        "sfexpress", "description": null, "dimensions": [], "human_readable": null,
+        "max_weight": null, "name": "InternationalEconomyExpressDoc"}, {"carrier":
+        "sfexpress", "description": null, "dimensions": [], "human_readable": null,
+        "max_weight": null, "name": "InternationalEconomyExpressParcel"}, {"carrier":
+        "sfexpress", "description": null, "dimensions": [], "human_readable": null,
+        "max_weight": null, "name": "DomesticExpress"}, {"carrier": "sfexpress", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "EconomyExpress"}], "shipment_options": [], "supported_features": []}, {"human_readable":
-        "SmartKargo", "name": "smartkargo", "predefined_packages": [], "service_levels":
-        [{"carrier": "smartkargo", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "EPR"}], "shipment_options": [], "supported_features":
-        []}, {"human_readable": "Sonic", "name": "sonic", "predefined_packages": [],
-        "service_levels": [{"carrier": "sonic", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "NEXTDAY"}, {"carrier":
-        "sonic", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "SAMEDAY"}], "shipment_options": [], "supported_features": []},
-        {"human_readable": "Spee-Dee", "name": "speedee", "predefined_packages": [],
-        "service_levels": [{"carrier": "speedee", "description": null, "dimensions":
+        "DomesticStandard"}, {"carrier": "sfexpress", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "DomesticIntraCity"},
+        {"carrier": "sfexpress", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "StandardExpress"}, {"carrier": "sfexpress",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "EconomyExpress"}], "shipment_options": [], "supported_features":
+        []}, {"human_readable": "SmartKargo", "name": "smartkargo", "predefined_packages":
+        [], "service_levels": [{"carrier": "smartkargo", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "EPR"}, {"carrier":
+        "smartkargo", "description": null, "dimensions": [], "human_readable": null,
+        "max_weight": null, "name": "EPS"}, {"carrier": "smartkargo", "description":
+        null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
+        "EST"}, {"carrier": "smartkargo", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "EXP"}], "shipment_options": [], "supported_features":
+        [{"carrier": "smartkargo", "description": null, "name": "labels", "supported":
+        null}, {"carrier": "smartkargo", "description": null, "name": "rating", "supported":
+        true}, {"carrier": "smartkargo", "description": null, "name": "refunds", "supported":
+        null}, {"carrier": "smartkargo", "description": null, "name": "test_environment",
+        "supported": null}]}, {"human_readable": "Sonic", "name": "sonic", "predefined_packages":
+        [], "service_levels": [{"carrier": "sonic", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "SAMEDAY"}], "shipment_options":
+        [], "supported_features": [{"carrier": "sonic", "description": null, "name":
+        "bill_on_delivery", "supported": true}, {"carrier": "sonic", "description":
+        null, "name": "bill_on_label_purchase", "supported": false}, {"carrier": "sonic",
+        "description": null, "name": "bill_on_manifest", "supported": false}, {"carrier":
+        "sonic", "description": null, "name": "bill_on_scan", "supported": false},
+        {"carrier": "sonic", "description": null, "name": "commercial_invoices", "supported":
+        false}, {"carrier": "sonic", "description": null, "name": "labels", "supported":
+        true}, {"carrier": "sonic", "description": null, "name": "orders", "supported":
+        false}, {"carrier": "sonic", "description": null, "name": "pickups", "supported":
+        false}, {"carrier": "sonic", "description": null, "name": "rating", "supported":
+        true}, {"carrier": "sonic", "description": null, "name": "refunds", "supported":
+        true}, {"carrier": "sonic", "description": null, "name": "returns", "supported":
+        false}, {"carrier": "sonic", "description": null, "name": "scanforms", "supported":
+        false}, {"carrier": "sonic", "description": null, "name": "sort_codes", "supported":
+        false}, {"carrier": "sonic", "description": null, "name": "test_environment",
+        "supported": false}]}, {"human_readable": "Spee-Dee", "name": "speedee", "predefined_packages":
+        [], "service_levels": [{"carrier": "speedee", "description": null, "dimensions":
         [], "human_readable": null, "max_weight": null, "name": "SpeeDeeDelivery"}],
-        "shipment_options": [], "supported_features": []}, {"human_readable": "Swyft",
-        "name": "swyft", "predefined_packages": [], "service_levels": [{"carrier":
+        "shipment_options": [], "supported_features": []}, {"human_readable": "SpeedX",
+        "name": "speedx", "predefined_packages": [], "service_levels": [{"carrier":
+        "speedx", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "DGD"}, {"carrier": "speedx", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "D2A"}, {"carrier":
+        "speedx", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "DZS"}], "shipment_options": [], "supported_features": [{"carrier":
+        "speedx", "description": null, "name": "labels", "supported": null}, {"carrier":
+        "speedx", "description": null, "name": "rating", "supported": true}, {"carrier":
+        "speedx", "description": null, "name": "refunds", "supported": null}]}, {"human_readable":
+        "Swyft", "name": "swyft", "predefined_packages": [], "service_levels": [{"carrier":
         "swyft", "description": null, "dimensions": [], "human_readable": null, "max_weight":
         null, "name": "NEXTDAY"}, {"carrier": "swyft", "description": null, "dimensions":
         [], "human_readable": null, "max_weight": null, "name": "SAMEDAY"}], "shipment_options":
-        [], "supported_features": []}, {"human_readable": "TForce Logistics", "name":
-        "tforce", "predefined_packages": [], "service_levels": [{"carrier": "tforce",
-        "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "NextDay"}, {"carrier": "tforce", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "Return"}], "shipment_options":
-        [], "supported_features": []}, {"human_readable": "Toll", "name": "toll",
-        "predefined_packages": [], "service_levels": [{"carrier": "toll", "description":
+        [], "supported_features": [{"carrier": "swyft", "description": null, "name":
+        "bill_on_delivery", "supported": true}, {"carrier": "swyft", "description":
+        null, "name": "bill_on_label_purchase", "supported": false}, {"carrier": "swyft",
+        "description": null, "name": "bill_on_manifest", "supported": false}, {"carrier":
+        "swyft", "description": null, "name": "bill_on_scan", "supported": false},
+        {"carrier": "swyft", "description": null, "name": "commercial_invoices", "supported":
+        false}, {"carrier": "swyft", "description": null, "name": "labels", "supported":
+        false}, {"carrier": "swyft", "description": null, "name": "orders", "supported":
+        false}, {"carrier": "swyft", "description": null, "name": "pickups", "supported":
+        false}, {"carrier": "swyft", "description": null, "name": "rating", "supported":
+        true}, {"carrier": "swyft", "description": null, "name": "refunds", "supported":
+        true}, {"carrier": "swyft", "description": null, "name": "returns", "supported":
+        false}, {"carrier": "swyft", "description": null, "name": "scanforms", "supported":
+        false}, {"carrier": "swyft", "description": null, "name": "sort_codes", "supported":
+        false}, {"carrier": "swyft", "description": null, "name": "test_environment",
+        "supported": false}]}, {"human_readable": "TCC", "name": "tcc", "predefined_packages":
+        [], "service_levels": [{"carrier": "tcc", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "Smith Drug Same Day"}],
+        "shipment_options": [], "supported_features": []}, {"human_readable": "TForce
+        Logistics", "name": "tforce", "predefined_packages": [], "service_levels":
+        [{"carrier": "tforce", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "NextDay"}, {"carrier": "tforce", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "IPEC Direct"}, {"carrier": "toll", "description": null, "dimensions": [],
-        "human_readable": null, "max_weight": null, "name": "IPEC Fashion"}, {"carrier":
+        "Return"}], "shipment_options": [], "supported_features": []}, {"human_readable":
+        "Toll", "name": "toll", "predefined_packages": [], "service_levels": [{"carrier":
+        "toll", "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "IPEC Direct"}, {"carrier": "toll", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "IPEC Fashion"}, {"carrier":
         "toll", "description": null, "dimensions": [], "human_readable": null, "max_weight":
         null, "name": "IPEC Local"}, {"carrier": "toll", "description": null, "dimensions":
         [], "human_readable": null, "max_weight": null, "name": "IPEC Priority"},
@@ -1671,35 +2117,47 @@ interactions:
         [], "service_levels": [], "shipment_options": [], "supported_features": []},
         {"human_readable": "UPS Mail Innovations", "name": "upsmailinnovations", "predefined_packages":
         [], "service_levels": [{"carrier": "upsmailinnovations", "description": null,
-        "dimensions": [], "human_readable": null, "max_weight": null, "name": "EconomyMailInnovations"},
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "BPMFlats"},
         {"carrier": "upsmailinnovations", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "ExpeditedMailInnovations"}, {"carrier":
-        "upsmailinnovations", "description": null, "dimensions": [], "human_readable":
-        null, "max_weight": null, "name": "First"}, {"carrier": "upsmailinnovations",
+        null, "max_weight": null, "name": "BPMParcels"}, {"carrier": "upsmailinnovations",
         "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "Priority"}, {"carrier": "upsmailinnovations", "description":
+        null, "name": "EconomyMailInnovations"}, {"carrier": "upsmailinnovations",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "ExpeditedMailInnovations"}, {"carrier": "upsmailinnovations",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "First"}, {"carrier": "upsmailinnovations", "description": null,
+        "dimensions": [], "human_readable": null, "max_weight": null, "name": "MarketingParcels"},
+        {"carrier": "upsmailinnovations", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "MediaMail"}, {"carrier": "upsmailinnovations",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "ParcelSelect"}, {"carrier": "upsmailinnovations", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "PriorityMailInnovations"}, {"carrier": "upsmailinnovations", "description":
+        "ParcelSelectLightweight-Irreg"}, {"carrier": "upsmailinnovations", "description":
         null, "dimensions": [], "human_readable": null, "max_weight": null, "name":
-        "SingleReturns"}], "shipment_options": [], "supported_features": []}, {"human_readable":
-        "USPS", "name": "usps", "predefined_packages": [{"carrier": "usps", "description":
-        null, "dimensions": ["6in x 4.5in x 0.016in"], "human_readable": null, "max_weight":
-        null, "name": "Card"}, {"carrier": "usps", "description": null, "dimensions":
-        ["11.5in x 6.125in x 0.25in"], "human_readable": null, "max_weight": null,
-        "name": "Letter"}, {"carrier": "usps", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "Flat"}, {"carrier":
-        "usps", "description": null, "dimensions": ["12.5in x 9.5in"], "human_readable":
-        null, "max_weight": null, "name": "FlatRateEnvelope"}, {"carrier": "usps",
-        "description": null, "dimensions": ["15in x 9.5in"], "human_readable": null,
-        "max_weight": null, "name": "FlatRateLegalEnvelope"}, {"carrier": "usps",
-        "description": null, "dimensions": ["12.5in x 9.5in"], "human_readable": null,
-        "max_weight": null, "name": "FlatRatePaddedEnvelope"}, {"carrier": "usps",
-        "description": null, "dimensions": ["10in x 5in", "12.5in x 9.5in"], "human_readable":
-        null, "max_weight": null, "name": "FlatRateWindowEnvelope"}, {"carrier": "usps",
-        "description": null, "dimensions": ["12.5in x 9.5in"], "human_readable": null,
-        "max_weight": null, "name": "FlatRateCardboardEnvelope"}, {"carrier": "usps",
-        "description": null, "dimensions": ["10in x 6in"], "human_readable": null,
-        "max_weight": null, "name": "SmallFlatRateEnvelope"}, {"carrier": "usps",
+        "Priority"}, {"carrier": "upsmailinnovations", "description": null, "dimensions":
+        [], "human_readable": null, "max_weight": null, "name": "PriorityMailInnovations"},
+        {"carrier": "upsmailinnovations", "description": null, "dimensions": [], "human_readable":
+        null, "max_weight": null, "name": "SingleReturns"}, {"carrier": "upsmailinnovations",
+        "description": null, "dimensions": [], "human_readable": null, "max_weight":
+        null, "name": "StandardFlats"}], "shipment_options": [], "supported_features":
+        []}, {"human_readable": "USPS", "name": "usps", "predefined_packages": [{"carrier":
+        "usps", "description": null, "dimensions": ["6in x 4.5in x 0.016in"], "human_readable":
+        null, "max_weight": null, "name": "Card"}, {"carrier": "usps", "description":
+        null, "dimensions": ["11.5in x 6.125in x 0.25in"], "human_readable": null,
+        "max_weight": null, "name": "Letter"}, {"carrier": "usps", "description":
+        null, "dimensions": ["11.5in x 6.125in x 0.75in"], "human_readable": null,
+        "max_weight": null, "name": "Flat"}, {"carrier": "usps", "description": null,
+        "dimensions": ["12.5in x 9.5in"], "human_readable": null, "max_weight": null,
+        "name": "FlatRateEnvelope"}, {"carrier": "usps", "description": null, "dimensions":
+        ["15in x 9.5in"], "human_readable": null, "max_weight": null, "name": "FlatRateLegalEnvelope"},
+        {"carrier": "usps", "description": null, "dimensions": ["12.5in x 9.5in"],
+        "human_readable": null, "max_weight": null, "name": "FlatRatePaddedEnvelope"},
+        {"carrier": "usps", "description": null, "dimensions": ["10in x 5in", "12.5in
+        x 9.5in"], "human_readable": null, "max_weight": null, "name": "FlatRateWindowEnvelope"},
+        {"carrier": "usps", "description": null, "dimensions": ["12.5in x 9.5in"],
+        "human_readable": null, "max_weight": null, "name": "FlatRateCardboardEnvelope"},
+        {"carrier": "usps", "description": null, "dimensions": ["10in x 6in"], "human_readable":
+        null, "max_weight": null, "name": "SmallFlatRateEnvelope"}, {"carrier": "usps",
         "description": null, "dimensions": ["Varies based on service level"], "human_readable":
         null, "max_weight": null, "name": "Parcel"}, {"carrier": "usps", "description":
         null, "dimensions": ["Varies based on service level"], "human_readable": null,
@@ -1720,61 +2178,66 @@ interactions:
         "usps", "description": null, "dimensions": [], "human_readable": null, "max_weight":
         null, "name": "HalfTrayBox"}, {"carrier": "usps", "description": null, "dimensions":
         [], "human_readable": null, "max_weight": null, "name": "PMODSack"}], "service_levels":
-        [{"carrier": "usps", "description": "1-5 business days", "dimensions": ["22in
-        x 18in x 15in"], "human_readable": null, "max_weight": 13.0, "name": "First"},
-        {"carrier": "usps", "description": "1-3 business days", "dimensions": ["Combined
-        Length and Girth < 108in"], "human_readable": null, "max_weight": 1120.0,
-        "name": "Priority"}, {"carrier": "usps", "description": "1-2 days", "dimensions":
-        ["Combined Length and Girth < 108in"], "human_readable": null, "max_weight":
-        1120.0, "name": "Express"}, {"carrier": "usps", "description": "2-8 business
-        days", "dimensions": ["Combined Length and Girth < 108in"], "human_readable":
-        null, "max_weight": 1120.0, "name": "ParcelSelect"}, {"carrier": "usps", "description":
+        [{"carrier": "usps", "description": "1-5 business days", "dimensions": ["Cards,
+        Letters and Flats only (no Parcels)", "See Predefined Packages (Card, Letter,
+        Flat) for details"], "human_readable": "First-Class Mail\u00ae", "max_weight":
+        13.0, "name": "First"}, {"carrier": "usps", "description": "1-3 business days",
+        "dimensions": ["Combined Length and Girth < 108in"], "human_readable": "Priority
+        Mail\u00ae", "max_weight": 1120.0, "name": "Priority"}, {"carrier": "usps",
+        "description": "1-2 days", "dimensions": ["Combined Length and Girth < 108in"],
+        "human_readable": "Priority Mail Express\u00ae", "max_weight": 1120.0, "name":
+        "Express"}, {"carrier": "usps", "description": "2-5 days", "dimensions": ["Combined
+        Length and Girth < 130in"], "human_readable": "USPS Ground Advantage\u00ae",
+        "max_weight": 70.0, "name": "GroundAdvantage"}, {"carrier": "usps", "description":
         "2-8 business days", "dimensions": ["Combined Length and Girth < 108in"],
-        "human_readable": null, "max_weight": 1120.0, "name": "LibraryMail"}, {"carrier":
-        "usps", "description": "2-8 business days", "dimensions": ["Combined Length
-        and Girth < 108in"], "human_readable": null, "max_weight": 1120.0, "name":
-        "MediaMail"}, {"carrier": "usps", "description": null, "dimensions": ["Must
-        be rectangular, otherwise an additional charge may apply."], "human_readable":
-        null, "max_weight": 15.994, "name": "FirstClassMailInternational"}, {"carrier":
-        "usps", "description": "7-21 days", "dimensions": ["Packages (Other Than Rolls):
-        Combined Length and Girth < 108in", "Rolls (Tubes): Length: min 4in; max 36
-        in. Length plus twice the diameter (combined): min 6.75 in; max 42in.", "Some
-        countries have specific prohibitions and restrictions"], "human_readable":
-        null, "max_weight": 64.0, "name": "FirstClassPackageInternationalService"},
-        {"carrier": "usps", "description": "6-10 business days", "dimensions": ["Combined
-        Length and Girth < 108in"], "human_readable": null, "max_weight": 1120.0,
+        "human_readable": "Library Mail\u00ae", "max_weight": 1120.0, "name": "LibraryMail"},
+        {"carrier": "usps", "description": "2-8 business days", "dimensions": ["Combined
+        Length and Girth < 108in"], "human_readable": "Media Mail\u00ae", "max_weight":
+        1120.0, "name": "MediaMail"}, {"carrier": "usps", "description": null, "dimensions":
+        ["Must be rectangular, otherwise an additional charge may apply."], "human_readable":
+        "First-Class Mail International\u00ae", "max_weight": 15.994, "name": "FirstClassMailInternational"},
+        {"carrier": "usps", "description": "7-21 days", "dimensions": ["Packages (Other
+        Than Rolls): Combined Length and Girth < 108in", "Rolls (Tubes): Length: min
+        4in; max 36 in. Length plus twice the diameter (combined): min 6.75 in; max
+        42in.", "Some countries have specific prohibitions and restrictions"], "human_readable":
+        "First-Class Package International Service\u00ae", "max_weight": 64.0, "name":
+        "FirstClassPackageInternationalService"}, {"carrier": "usps", "description":
+        "6-10 business days", "dimensions": ["Combined Length and Girth < 108in"],
+        "human_readable": "Priority Mail International\u00ae", "max_weight": 1120.0,
         "name": "PriorityMailInternational"}, {"carrier": "usps", "description": "3-5
         business days", "dimensions": ["Combined Length and Girth < 108in"], "human_readable":
-        null, "max_weight": 1120.0, "name": "ExpressMailInternational"}], "shipment_options":
-        [], "supported_features": [{"carrier": "usps", "description": null, "name":
-        "bill_on_delivery", "supported": null}, {"carrier": "usps", "description":
-        null, "name": "bill_on_label_purchase", "supported": null}, {"carrier": "usps",
-        "description": null, "name": "commercial_invoices", "supported": null}, {"carrier":
-        "usps", "description": null, "name": "delivers_to_po_box", "supported": null},
-        {"carrier": "usps", "description": null, "name": "labels", "supported": null},
-        {"carrier": "usps", "description": null, "name": "pickups", "supported": null},
-        {"carrier": "usps", "description": null, "name": "rating", "supported": false},
-        {"carrier": "usps", "description": null, "name": "refunds", "supported": null},
-        {"carrier": "usps", "description": null, "name": "returns", "supported": null},
-        {"carrier": "usps", "description": null, "name": "scanforms", "supported":
-        null}, {"carrier": "usps", "description": null, "name": "test_environment",
-        "supported": null}, {"carrier": "usps", "description": null, "name": "tracking",
-        "supported": false}]}, {"human_readable": "Veho", "name": "veho", "predefined_packages":
+        "Priority Mail Express International\u00ae", "max_weight": 1120.0, "name":
+        "ExpressMailInternational"}], "shipment_options": [], "supported_features":
+        [{"carrier": "usps", "description": null, "name": "bill_on_delivery", "supported":
+        null}, {"carrier": "usps", "description": null, "name": "bill_on_label_purchase",
+        "supported": null}, {"carrier": "usps", "description": null, "name": "commercial_invoices",
+        "supported": null}, {"carrier": "usps", "description": null, "name": "delivers_to_po_box",
+        "supported": null}, {"carrier": "usps", "description": null, "name": "labels",
+        "supported": null}, {"carrier": "usps", "description": null, "name": "pickups",
+        "supported": null}, {"carrier": "usps", "description": null, "name": "rating",
+        "supported": true}, {"carrier": "usps", "description": null, "name": "refunds",
+        "supported": null}, {"carrier": "usps", "description": null, "name": "returns",
+        "supported": null}, {"carrier": "usps", "description": null, "name": "scanforms",
+        "supported": null}, {"carrier": "usps", "description": null, "name": "test_environment",
+        "supported": null}]}, {"human_readable": "Veho", "name": "veho", "predefined_packages":
         [], "service_levels": [{"carrier": "veho", "description": null, "dimensions":
-        [], "human_readable": null, "max_weight": null, "name": "nextDay"}, {"carrier":
-        "veho", "description": null, "dimensions": [], "human_readable": null, "max_weight":
-        null, "name": "sameDay"}], "shipment_options": [], "supported_features": []},
-        {"human_readable": "Yanwen", "name": "yanwen", "predefined_packages": [],
-        "service_levels": [], "shipment_options": [], "supported_features": []}]}'
+        null, "human_readable": "Next Day", "max_weight": 800.0, "name": "nextDay"},
+        {"carrier": "veho", "description": null, "dimensions": null, "human_readable":
+        "Same Day", "max_weight": 800.0, "name": "sameDay"}], "shipment_options":
+        [], "supported_features": [{"carrier": "veho", "description": null, "name":
+        "labels", "supported": null}, {"carrier": "veho", "description": null, "name":
+        "pickups", "supported": null}, {"carrier": "veho", "description": null, "name":
+        "rating", "supported": true}, {"carrier": "veho", "description": null, "name":
+        "test_environment", "supported": null}]}, {"human_readable": "Yanwen", "name":
+        "yanwen", "predefined_packages": [], "service_levels": [], "shipment_options":
+        [], "supported_features": []}]}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '130177'
+      - '165173'
       content-type:
       - application/json; charset=utf-8
-      etag:
-      - W/"c2966a8b0aa68f29f2cfb0f6930cbabf"
       expires:
       - '0'
       pragma:
@@ -1792,20 +2255,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 37beff0364777761e788ee020018f3d6
+      - 62c1f5d766be5c7be7885e2700170333
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb3nuq
+      - bigweb33nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq a29e4ad05c
-      - extlb1nuq 5ab12a3ed2
+      - intlb4nuq c0f5e722d1
+      - extlb2nuq b6e1b5034c
       x-runtime:
-      - '0.181185'
+      - '0.080152'
       x-version-label:
-      - easypost-202305311544-49bde6df69-master
+      - easypost-202408151917-1527448f18-master
       x-xss-protection:
       - 1; mode=block
     status:

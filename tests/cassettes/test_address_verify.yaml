@@ -22,8 +22,8 @@ interactions:
     uri: https://api.easypost.com/v2/addresses
   response:
     body:
-      string: '{"id": "adr_7c5de6e9f0fb11eda8d9ac1f6bc7bdc6", "object": "Address",
-        "created_at": "2023-05-12T19:30:43+00:00", "updated_at": "2023-05-12T19:30:43+00:00",
+      string: '{"id": "adr_ce5993385b3f11ef83673cecef1b359e", "object": "Address",
+        "created_at": "2024-08-15T19:51:47+00:00", "updated_at": "2024-08-15T19:51:47+00:00",
         "name": "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
         "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
         "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
@@ -36,12 +36,10 @@ interactions:
       - '461'
       content-type:
       - application/json; charset=utf-8
-      etag:
-      - W/"044c35dcbccc26be7ff50080c2ea6864"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_7c5de6e9f0fb11eda8d9ac1f6bc7bdc6
+      - /api/v2/addresses/adr_ce5993385b3f11ef83673cecef1b359e
       pragma:
       - no-cache
       referrer-policy:
@@ -57,20 +55,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 4eb6f00c645e93e3e2cc31790005d41e
+      - 62c1f5dd66be5c53e7885dc10016dab8
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb2nuq
+      - bigweb40nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq a29e4ad05c
-      - extlb1nuq 5ab12a3ed2
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq b6e1b5034c
       x-runtime:
-      - '0.047591'
+      - '0.048450'
       x-version-label:
-      - easypost-202305121849-b449e9bf47-master
+      - easypost-202408151917-1527448f18-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -90,11 +88,11 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/v2/addresses/adr_7c5de6e9f0fb11eda8d9ac1f6bc7bdc6/verify
+    uri: https://api.easypost.com/v2/addresses/adr_ce5993385b3f11ef83673cecef1b359e/verify
   response:
     body:
-      string: '{"address": {"id": "adr_7c71d8d3f0fb11edb623ac1f6bc7b362", "object":
-        "Address", "created_at": "2023-05-12T19:30:43+00:00", "updated_at": "2023-05-12T19:30:43+00:00",
+      string: '{"address": {"id": "adr_ce6f49295b3f11ef83713cecef1b359e", "object":
+        "Address", "created_at": "2024-08-15T19:51:47+00:00", "updated_at": "2024-08-15T19:51:47+00:00",
         "name": "JACK SPARROW", "company": null, "street1": "388 TOWNSEND ST APT 20",
         "street2": "", "city": "SAN FRANCISCO", "state": "CA", "zip": "94107-1670",
         "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test",
@@ -109,12 +107,10 @@ interactions:
       - '658'
       content-type:
       - application/json; charset=utf-8
-      etag:
-      - W/"fe16dfde6b818167414d10465e2a862d"
       expires:
       - '0'
       location:
-      - /api/v2/addresses/adr_7c71d8d3f0fb11edb623ac1f6bc7b362
+      - /api/v2/addresses/adr_ce6f49295b3f11ef83713cecef1b359e
       pragma:
       - no-cache
       referrer-policy:
@@ -125,25 +121,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 4eb6f00c645e93e3e2cc31790005d42b
+      - 62c1f5dd66be5c53e7885dc10016dad2
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb4nuq
+      - bigweb43nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb2nuq a29e4ad05c
-      - extlb1nuq 5ab12a3ed2
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq b6e1b5034c
       x-runtime:
-      - '0.054298'
+      - '0.067688'
       x-version-label:
-      - easypost-202305121849-b449e9bf47-master
+      - easypost-202408151917-1527448f18-master
       x-xss-protection:
       - 1; mode=block
     status:

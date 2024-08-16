@@ -17,22 +17,38 @@ interactions:
   response:
     body:
       string: '{"id": "user_54356a6b96c940d8913961a3c7b909f2", "object": "User", "parent_id":
-        null, "name": "EasyPost Python Client Library Tests", "phone_number": "<REDACTED>",
-        "verified": true, "created_at": "2017-03-01T03:01:34Z", "default_carbon_offset":
-        false, "has_elevate_access": false, "balance": "0.00000", "price_per_shipment":
-        "0.00000", "recharge_amount": "100.00", "secondary_recharge_amount": "100.00",
-        "recharge_threshold": "0.00", "has_billing_method": false, "cc_fee_rate":
-        "0.03", "default_insurance_amount": null, "insurance_fee_rate": "0.01", "insurance_fee_minimum":
-        "1.00", "email": "<REDACTED>", "children": []}'
+        null, "name": "New Name", "phone_number": "<REDACTED>", "verified": true,
+        "created_at": "2017-03-01T03:01:34Z", "default_carbon_offset": false, "has_elevate_access":
+        false, "balance": "0.00000", "price_per_shipment": "0.00000", "recharge_amount":
+        "100.00", "secondary_recharge_amount": "100.00", "recharge_threshold": "0.00",
+        "has_billing_method": false, "cc_fee_rate": "0.03", "default_insurance_amount":
+        null, "insurance_fee_rate": "0.01", "insurance_fee_minimum": "1.00", "email":
+        "<REDACTED>", "children": [{"id": "user_584be78af2f141e988b6c60dda9dd8fd",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Test User2", "phone_number": "8005550100", "verified": true, "created_at":
+        "2023-12-11T17:13:38Z", "default_carbon_offset": false, "has_elevate_access":
+        false, "children": []}, {"id": "user_437e724f37de412db6df8821968d8d3c", "object":
+        "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name": "Test
+        User2", "phone_number": "8005550100", "verified": true, "created_at": "2023-12-11T17:13:43Z",
+        "default_carbon_offset": false, "has_elevate_access": false, "children": []},
+        {"id": "user_2553102e90de43dea0b9fa7f8c8d7e33", "object": "User", "parent_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "name": "Child Account Name22", "phone_number":
+        "8005550100", "verified": true, "created_at": "2024-01-04T19:56:21Z", "default_carbon_offset":
+        false, "has_elevate_access": false, "children": []}, {"id": "user_31754439d4524fbb8867d138de537e12",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Test User", "phone_number": "8005550100", "verified": true, "created_at":
+        "2024-01-19T21:42:21Z", "default_carbon_offset": false, "has_elevate_access":
+        false, "children": []}, {"id": "user_d26377e80676431d88c17d8b140d365a", "object":
+        "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name": "Test
+        User", "phone_number": "8005550100", "verified": true, "created_at": "2024-01-19T21:44:18Z",
+        "default_carbon_offset": false, "has_elevate_access": false, "children": []}]}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '601'
+      - '2010'
       content-type:
       - application/json; charset=utf-8
-      etag:
-      - W/"37fad0de2fa69ce547baa7b7ecd8f745"
       expires:
       - '0'
       pragma:
@@ -50,20 +66,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - de846e066463b6c6e787407f002d8b2e
+      - 62c1f5db66be5cefe788658300177593
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb11nuq
+      - bigweb36nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb1nuq a29e4ad05c
-      - extlb1nuq 5ab12a3ed2
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq b6e1b5034c
       x-runtime:
-      - '0.036515'
+      - '0.112963'
       x-version-label:
-      - easypost-202305161623-0a285b6b1b-master
+      - easypost-202408151917-1527448f18-master
       x-xss-protection:
       - 1; mode=block
     status:

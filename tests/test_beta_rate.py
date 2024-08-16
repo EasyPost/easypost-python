@@ -17,4 +17,4 @@ def test_beta_get_lowest_stateless_rate(basic_shipment, test_client):
 
     lowest_stateless_rate = get_lowest_stateless_rate(stateless_rates)
 
-    assert lowest_stateless_rate["service"] == "First"
+    assert lowest_stateless_rate["service"] == "GroundAdvantage"
