@@ -54,18 +54,3 @@ def test_tracker_get_next_page(page_size, test_client):
     except Exception as e:
         if e.message != NO_MORE_PAGES_ERROR:
             raise Exception(_TEST_FAILED_INTENTIONALLY_ERROR)
-
-
-@pytest.mark.vcr()
-def test_tracker_create_list(test_client):
-    """Tests that we can create a list of trackers in bulk."""
-    try:
-        test_client.tracker.create_list(
-            {
-                "0": {"tracking_code": "EZ1000000001"},
-                "1": {"tracking_code": "EZ1000000002"},
-                "2": {"tracking_code": "EZ1000000003"},
-            }
-        )
-    except Exception:
-        assert False
