@@ -1,17 +1,11 @@
 from typing import (
     Any,
     Dict,
-    List,
     Optional,
 )
-from warnings import warn
 
 from easypost.constant import _FILTERS_KEY
 from easypost.models import Tracker
-from easypost.requestor import (
-    RequestMethod,
-    Requestor,
-)
 from easypost.services.base_service import BaseService
 
 
@@ -60,18 +54,3 @@ class TrackerService(BaseService):
             params.update(optional_params)
 
         return self.all(**params)
-
-    def create_list(self, trackers: List[Dict[str, Any]]) -> None:
-        """Create a list of Trackers.
-
-        NOTE: This function is deprecated, use the create function instead.
-        """
-        warn(
-            "This function is deprecated, use the create function instead.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        url = f"{self._class_url(self._model_class)}/create_list"
-        wrapped_params = {"trackers": trackers}
-
-        Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
