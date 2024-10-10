@@ -20,9 +20,6 @@ DEV_REQUIREMENTS = [
     "pytest-cov==4.*",
     "pytest-vcr==1.*",
     "pytest==7.*",
-    "twine==5.*;python_version>='3.8'",  # TODO: remove python pin when 3.7 is dropped
-    "types-requests",
-    "types-urllib3",
     "vcrpy==4.*",  # TODO: vcrpy v5 requires Python 3.8+
 ]
 

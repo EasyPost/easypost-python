@@ -68,7 +68,7 @@ lint-fix: black isort
 
 ## mypy - Run mypy type checking on the project
 mypy:
-	$(VIRTUAL_BIN)/mypy $(PROJECT_NAME)/ $(TEST_DIR)/ --config-file examples/style_guides/python/pyproject.toml
+	$(VIRTUAL_BIN)/mypy $(PROJECT_NAME)/ $(TEST_DIR)/ --config-file examples/style_guides/python/pyproject.toml --install-types --non-interactive
 
 ## publish - Publish the project to PyPI
 publish:
