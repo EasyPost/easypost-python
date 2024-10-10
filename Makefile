@@ -70,10 +70,6 @@ lint-fix: black isort
 mypy:
 	$(VIRTUAL_BIN)/mypy $(PROJECT_NAME)/ $(TEST_DIR)/ --config-file examples/style_guides/python/pyproject.toml --install-types --non-interactive
 
-## publish - Publish the project to PyPI
-publish:
-	$(VIRTUAL_BIN)/twine upload dist/*
-
 ## release - Cuts a release for the project on GitHub (requires GitHub CLI)
 # tag = The associated tag title of the release
 # target = Target branch or full commit SHA
@@ -88,4 +84,4 @@ scan:
 test:
 	$(VIRTUAL_BIN)/pytest
 
-.PHONY: help black black-check build clean coverage docs flake8 install isort isort-check lint lint-fix mypy publish release scan test
+.PHONY: help black black-check build clean coverage docs flake8 install isort isort-check lint lint-fix mypy release scan test
