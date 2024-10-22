@@ -1,3 +1,7 @@
+import inspect
+import os
+import time
+
 import pytest
 from easypost.errors.api.api_error import ApiError
 from easypost.models import CarrierAccount
@@ -130,4 +134,45 @@ def test_carrier_account_update_ups(prod_client):
 
     prod_client.carrier_account.delete(
         updated_carrier_account.id
+    )  # Delete the carrier account once it's done being tested.
+
+
+@pytest.mark.vcr()
+def test_carrier_account_create_amazon_shipping(prod_client):
+    """Test registering an Amazon Shipping Carrier Account which uses a different URL and schema."""
+    params = {
+        "type": "AmazonShippingAccount",
+        "selling_partner_id": 123456,
+        "description": "Test Amazon Shipping Account",
+        "reference": "Test reference id",
+    }
+
+    carrier_account = prod_client.carrier_account.create(**params)
+
+    assert isinstance(carrier_account, CarrierAccount)
+    assert str.startswith(carrier_account.id, "ca_")
+    assert carrier_account.type == "AmazonShippingAccount"
+
+    prod_client.carrier_account.delete(carrier_account.id)  # Delete the carrier account once it's done being tested.
+
+
+@pytest.mark.vcr()
+def test_carrier_account_update_amazon_shipping(prod_client, synchronous_sleep_seconds):
+    """Test updating an Amazon Shipping Carrier Account which uses a different URL and schema."""
+    function_name = inspect.stack()[0][3]
+    params = {
+        "type": "AmazonShippingAccount",
+    }
+
+    amazon_shipping_account = prod_client.carrier_account.create(**params)
+    if not os.path.exists(os.path.join("tests", "cassettes", f"{function_name}.yaml")):
+        time.sleep(synchronous_sleep_seconds)  # Wait enough time for updating the carrier account
+    updated_amazon_shipping_account = prod_client.carrier_account.update(amazon_shipping_account.id)
+
+    assert isinstance(updated_amazon_shipping_account, CarrierAccount)
+    assert str.startswith(updated_amazon_shipping_account.id, "ca_")
+    assert amazon_shipping_account.updated_at != updated_amazon_shipping_account.updated_at
+
+    prod_client.carrier_account.delete(
+        amazon_shipping_account.id
     )  # Delete the carrier account once it's done being tested.
