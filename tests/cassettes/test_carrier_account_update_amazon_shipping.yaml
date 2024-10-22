@@ -1,0 +1,268 @@
+interactions:
+- request:
+    body: '{"carrier_account_oauth_registrations": {"type": "AmazonShippingAccount"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '74'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/carrier_accounts/register_oauth
+  response:
+    body:
+      string: '{"id": "ca_102f186f791648b692501b0c6b8971a4", "object": "CarrierAccount",
+        "type": "AmazonShippingAccount", "clone": false, "created_at": "2024-10-21T21:55:03Z",
+        "updated_at": "2024-10-21T21:55:03Z", "description": null, "reference": null,
+        "billing_type": "carrier", "readable": "Amazon Shipping", "logo": null, "fields":
+        [], "credentials": {}, "test_credentials": {}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '1432'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 6c7e76b86716cdb7e7874d4300480c14
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb42nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb4nuq b6e1b5034c
+      - extlb2nuq 99aac35317
+      x-runtime:
+      - '0.080434'
+      x-version-label:
+      - easypost-202410212124-540267707a-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/carrier_accounts/ca_102f186f791648b692501b0c6b8971a4
+  response:
+    body:
+      string: '{"id": "ca_102f186f791648b692501b0c6b8971a4", "object": "CarrierAccount",
+        "type": "AmazonShippingAccount", "clone": false, "created_at": "2024-10-21T21:55:03Z",
+        "updated_at": "2024-10-21T21:55:03Z", "description": null, "reference": null,
+        "billing_type": "carrier", "readable": "Amazon Shipping", "logo": null, "fields":
+        [], "credentials": {}, "test_credentials": {}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '1432'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 6c7e76b86716cdbce7874d430048118f
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb42nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb4nuq b6e1b5034c
+      - extlb2nuq 99aac35317
+      x-runtime:
+      - '0.033679'
+      x-version-label:
+      - easypost-202410212124-540267707a-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: PATCH
+    uri: https://api.easypost.com/v2/carrier_accounts/register_oauth/ca_102f186f791648b692501b0c6b8971a4
+  response:
+    body:
+      string: '{"id": "ca_102f186f791648b692501b0c6b8971a4", "object": "CarrierAccount",
+        "type": "AmazonShippingAccount", "clone": false, "created_at": "2024-10-21T21:55:03Z",
+        "updated_at": "2024-10-21T21:55:08Z", "description": null, "reference": null,
+        "billing_type": "carrier", "readable": "Amazon Shipping", "logo": null, "fields":
+        [], "credentials": {}, "test_credentials": {}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '1440'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 6c7e76b86716cdbce7874d43004811bd
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb36nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb4nuq b6e1b5034c
+      - extlb2nuq 99aac35317
+      x-runtime:
+      - '0.066719'
+      x-version-label:
+      - easypost-202410212124-540267707a-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: DELETE
+    uri: https://api.easypost.com/v2/carrier_accounts/ca_102f186f791648b692501b0c6b8971a4
+  response:
+    body:
+      string: '{}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '2'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 6c7e76b86716cdbde7874d4300481200
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb53nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb3nuq b6e1b5034c
+      - extlb2nuq 99aac35317
+      x-runtime:
+      - '0.063692'
+      x-version-label:
+      - easypost-202410212124-540267707a-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

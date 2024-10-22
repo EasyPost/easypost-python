@@ -36,6 +36,9 @@ _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_WORKFLOWS = [
     "FedexAccount",
     "FedexSmartpostAccount",
 ]
+_CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_OAUTH = [
+    "AmazonShippingAccount",
+]
 _UPS_OAUTH_CARRIER_ACCOUNT_TYPES = [
     "UpsAccount",
     "UpsMailInnovationsAccount",

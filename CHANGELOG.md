@@ -16,6 +16,7 @@
 
 - Adds `tracking_codes` as a parameter of the `all` method on the TrackerService
 - Removes the deprecated `create_list` tracker endpoint function as it is no longer available via API
+- Routes `AmazonShippingAccount` create/update requests to the new `/register_oauth` endpoint
 
 ## v9.4.1 (2024-08-09)
 
