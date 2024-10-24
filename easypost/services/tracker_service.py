@@ -23,6 +23,7 @@ class TrackerService(BaseService):
         filters = {
             "key": "trackers",
             "tracking_code": params.get("tracking_code"),
+            "tracking_codes": params.get("tracking_codes"),
             "carrier": params.get("carrier"),
         }
 

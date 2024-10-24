@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## Next Release
+## v9.5.0 (2024-10-24)
 
+- Adds `tracking_codes` as a parameter of the `all` method on the TrackerService
 - Removes the deprecated `create_list` tracker endpoint function as it is no longer available via API
 
 ## v9.4.1 (2024-08-09)
