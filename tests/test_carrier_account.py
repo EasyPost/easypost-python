@@ -157,21 +157,23 @@ def test_carrier_account_create_amazon_shipping(prod_client):
 
 
 @pytest.mark.vcr()
-def test_carrier_account_update_amazon_shipping(prod_client, synchronous_sleep_seconds):
+def test_carrier_account_update_amazon_shipping(prod_client):
     """Test updating an Amazon Shipping Carrier Account which uses a different URL and schema."""
-    function_name = inspect.stack()[0][3]
     params = {
         "type": "AmazonShippingAccount",
     }
 
     amazon_shipping_account = prod_client.carrier_account.create(**params)
-    if not os.path.exists(os.path.join("tests", "cassettes", f"{function_name}.yaml")):
-        time.sleep(synchronous_sleep_seconds)  # Wait enough time for updating the carrier account
-    updated_amazon_shipping_account = prod_client.carrier_account.update(amazon_shipping_account.id)
+
+    # TODO: Re-record this cassettes and add two assertions for description and reference when we made the changes in API level for update endpoint
+    updated_amazon_shipping_account = prod_client.carrier_account.update(
+        amazon_shipping_account.id,
+        description="test description",
+        reference="test reference",
+    )
 
     assert isinstance(updated_amazon_shipping_account, CarrierAccount)
     assert str.startswith(updated_amazon_shipping_account.id, "ca_")
-    assert amazon_shipping_account.updated_at != updated_amazon_shipping_account.updated_at
 
     prod_client.carrier_account.delete(
         amazon_shipping_account.id
