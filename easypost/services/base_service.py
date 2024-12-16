@@ -85,6 +85,7 @@ class BaseService:
         """Update an EasyPost object via the EasyPost API."""
         url = self._instance_url(class_name, id)
         wrapped_params = {self._snakecase_name(class_name): params}
+
         response = Requestor(self._client).request(method=method, url=url, params=wrapped_params, beta=beta)
 
         return convert_to_easypost_object(response=response)

@@ -61,7 +61,7 @@ class CarrierAccountService(BaseService):
             response = Requestor(self._client).request(
                 method=RequestMethod.PATCH,
                 url=f"/carrier_accounts/register_oauth/{id}",
-                params={},
+                params={"carrier_account_oauth_registrations": params},
             )
             return convert_to_easypost_object(response=response)
         else:
