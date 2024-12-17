@@ -1,7 +1,3 @@
-import inspect
-import os
-import time
-
 import pytest
 from easypost.errors.api.api_error import ApiError
 from easypost.models import CarrierAccount
@@ -165,7 +161,8 @@ def test_carrier_account_update_amazon_shipping(prod_client):
 
     amazon_shipping_account = prod_client.carrier_account.create(**params)
 
-    # TODO: Re-record this cassettes and add two assertions for description and reference when we made the changes in API level for update endpoint
+    # TODO: Re-record this cassettes and add two assertions for description
+    # and reference when we made the changes in API level for update endpoint
     updated_amazon_shipping_account = prod_client.carrier_account.update(
         amazon_shipping_account.id,
         description="test description",
