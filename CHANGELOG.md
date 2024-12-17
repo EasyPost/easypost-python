@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Routes `AmazonShippingAccount` create/update requests to the new `/register_oauth` endpoint
+
 ## v9.5.0 (2024-10-24)
 
 - Adds `tracking_codes` as a parameter of the `all` method on the TrackerService

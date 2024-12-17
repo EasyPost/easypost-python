@@ -6,6 +6,7 @@ from typing import (
 )
 
 from easypost.constant import (
+    _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_OAUTH,
     _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_WORKFLOWS,
     _UPS_OAUTH_CARRIER_ACCOUNT_TYPES,
     MISSING_PARAMETER_ERROR,
@@ -35,6 +36,8 @@ class CarrierAccountService(BaseService):
         url = self._select_carrier_account_creation_endpoint(carrier_account_type=carrier_account_type)
         if carrier_account_type in _UPS_OAUTH_CARRIER_ACCOUNT_TYPES:
             wrapped_params = {"ups_oauth_registrations": params}
+        elif carrier_account_type in _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_OAUTH:
+            wrapped_params = {"carrier_account_oauth_registrations": params}
         else:
             wrapped_params = {self._snakecase_name(self._model_class): params}
 
@@ -56,6 +59,13 @@ class CarrierAccountService(BaseService):
 
         if carrier_account.get("type") in _UPS_OAUTH_CARRIER_ACCOUNT_TYPES:
             class_name = "UpsOauthRegistrations"
+        elif carrier_account.get("type") in _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_OAUTH:
+            response = Requestor(self._client).request(
+                method=RequestMethod.PATCH,
+                url=f"/carrier_accounts/register_oauth/{id}",
+                params={"carrier_account_oauth_registrations": params},
+            )
+            return convert_to_easypost_object(response=response)
         else:
             class_name = self._model_class
 
@@ -77,5 +87,7 @@ class CarrierAccountService(BaseService):
             return "/carrier_accounts/register"
         elif carrier_account_type in _UPS_OAUTH_CARRIER_ACCOUNT_TYPES:
             return "/ups_oauth_registrations"
+        elif carrier_account_type in _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_OAUTH:
+            return "/carrier_accounts/register_oauth"
 
         return "/carrier_accounts"
