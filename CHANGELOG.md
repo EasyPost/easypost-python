@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds the following functions to assist ReferralCustomers add credit cards and bank accounts:
+  - `BetaReferralCustomerService.retrieve_credit_card_client_secret`
+  - `BetaReferralCustomerService.retrieve_bank_account_client_secret`
+  - `ReferralCustomerService.add_credit_card_from_stripe`
+  - `ReferralCustomerService.add_bank_account_from_stripe`
+
 ## v9.5.0 (2024-10-24)
 
 - Adds `tracking_codes` as a parameter of the `all` method on the TrackerService
