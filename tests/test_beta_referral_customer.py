@@ -43,16 +43,16 @@ def test_beta_referral_customer_refund_by_payment_log(referral_customer_prod_cli
 
 
 @pytest.mark.vcr()
-def test_beta_referral_customer_retrieve_credit_card_client_secret(referral_customer_prod_client):
+def test_beta_referral_customer_create_credit_card_client_secret(referral_customer_prod_client):
     """This test requires a referral customer's production API key via REFERRAL_CUSTOMER_PROD_API_KEY."""
-    response = referral_customer_prod_client.beta_referral_customer.retrieve_credit_card_client_secret()
+    response = referral_customer_prod_client.beta_referral_customer.create_credit_card_client_secret()
 
     assert str.startswith(response.client_secret, "seti_")
 
 
 @pytest.mark.vcr()
-def test_beta_referral_customer_retrieve_bank_account_client_secret(referral_customer_prod_client):
+def test_beta_referral_customer_create_bank_account_client_secret(referral_customer_prod_client):
     """This test requires a referral customer's production API key via REFERRAL_CUSTOMER_PROD_API_KEY."""
-    response = referral_customer_prod_client.beta_referral_customer.retrieve_bank_account_client_secret()
+    response = referral_customer_prod_client.beta_referral_customer.create_bank_account_client_secret()
 
     assert str.startswith(response.client_secret, "fcsess_client_secret_")
