@@ -1,0 +1,69 @@
+interactions:
+- request:
+    body: '{"credit_card": {"payment_method_id": "pm_0Pn6bQDqT4huGUvd0CjpRerH", "priority":
+      "primary"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '92'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/credit_cards
+  response:
+    body:
+      string: '{"error": {"code": "CREDIT_CARD.NOT_FOUND", "message": "Stripe::PaymentMethod
+        does not exist for the specified reference_id", "errors": []}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '134'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 327fc0ad677d76bee2b7da9200097934
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb34nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb4nuq 51d74985a2
+      - extlb2nuq 99aac35317
+      x-runtime:
+      - '0.426801'
+      x-version-label:
+      - easypost-202501062233-3c9302ef23-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 404
+      message: Not Found
+version: 1

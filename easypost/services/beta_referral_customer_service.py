@@ -24,7 +24,7 @@ class BetaReferralCustomerService(BaseService):
         EasyPost, we will associate your Stripe payment method with either your primary
         or secondary EasyPost payment method.
         """
-        wrapped_params = {
+        params = {
             "payment_method": {
                 "stripe_customer_id": stripe_customer_id,
                 "payment_method_reference": payment_method_reference,
@@ -35,7 +35,7 @@ class BetaReferralCustomerService(BaseService):
         response = Requestor(self._client).request(
             method=RequestMethod.POST,
             url="/referral_customers/payment_method",
-            params=wrapped_params,
+            params=params,
             beta=True,
         )
 
@@ -43,12 +43,12 @@ class BetaReferralCustomerService(BaseService):
 
     def refund_by_amount(self, refund_amount: int) -> dict[str, Any]:
         """Refund a ReferralCustomer wallet by specifying an amount."""
-        wrapped_params = {"refund_amount": refund_amount}
+        params = {"refund_amount": refund_amount}
 
         response = Requestor(self._client).request(
             method=RequestMethod.POST,
             url="/referral_customers/refunds",
-            params=wrapped_params,
+            params=params,
             beta=True,
         )
 
@@ -56,12 +56,37 @@ class BetaReferralCustomerService(BaseService):
 
     def refund_by_payment_log(self, payment_log_id: str) -> dict[str, Any]:
         """Refund a ReferralCustomer wallet by specifying a payment log ID to completely refund."""
-        wrapped_params = {"payment_log_id": payment_log_id}
+        params = {"payment_log_id": payment_log_id}
 
         response = Requestor(self._client).request(
             method=RequestMethod.POST,
             url="/referral_customers/refunds",
-            params=wrapped_params,
+            params=params,
+            beta=True,
+        )
+
+        return convert_to_easypost_object(response=response)
+
+    def retrieve_credit_card_client_secret(self) -> Dict[str, Any]:
+        """Retrieves a client secret to use with Stripe when adding a credit card."""
+        response = Requestor(self._client).request(
+            method=RequestMethod.POST,
+            url="/setup_intents",
+            beta=True,
+        )
+
+        return convert_to_easypost_object(response=response)
+
+    def retrieve_bank_account_client_secret(
+        self, return_url: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """Retrieves a client secret to use with Stripe when adding a bank account."""
+        params = {"return_url": return_url}
+
+        response = Requestor(self._client).request(
+            method=RequestMethod.POST,
+            url="/financial_connections_sessions",
+            params=params if return_url else None,
             beta=True,
         )
 
