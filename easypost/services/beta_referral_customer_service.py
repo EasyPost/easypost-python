@@ -67,8 +67,8 @@ class BetaReferralCustomerService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def retrieve_credit_card_client_secret(self) -> Dict[str, Any]:
-        """Retrieves a client secret to use with Stripe when adding a credit card."""
+    def create_credit_card_client_secret(self) -> Dict[str, Any]:
+        """Creates a client secret to use with Stripe when adding a credit card."""
         response = Requestor(self._client).request(
             method=RequestMethod.POST,
             url="/setup_intents",
@@ -77,10 +77,10 @@ class BetaReferralCustomerService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def retrieve_bank_account_client_secret(
+    def create_bank_account_client_secret(
         self, return_url: Optional[str] = None
     ) -> Dict[str, Any]:
-        """Retrieves a client secret to use with Stripe when adding a bank account."""
+        """Creates a client secret to use with Stripe when adding a bank account."""
         params = {"return_url": return_url}
 
         response = Requestor(self._client).request(
