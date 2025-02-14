@@ -1,6 +1,7 @@
 interactions:
 - request:
-    body: '{"webhook": {"url": "http://example.com"}}'
+    body: '{"webhook": {"url": "http://example.com", "params": {"webhook_secret":
+      "s\u00e9cret"}}}'
     headers:
       Accept:
       - '*/*'
@@ -9,7 +10,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '42'
+      - '87'
       Content-Type:
       - application/json
       authorization:
@@ -20,8 +21,8 @@ interactions:
     uri: https://api.easypost.com/v2/webhooks
   response:
     body:
-      string: '{"id": "hook_2d6400825b4011efbc7c119ee916485a", "object": "Webhook",
-        "mode": "test", "url": "http://example.com", "created_at": "2024-08-15T19:54:27Z",
+      string: '{"id": "hook_4bb2d37aeaff11efab531f670556be6e", "object": "Webhook",
+        "mode": "test", "url": "http://example.com", "created_at": "2025-02-14T18:12:48Z",
         "disabled_at": null}'
     headers:
       cache-control:
@@ -42,27 +43,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62c1f5d966be5cf2e78865a0001778b0
+      - a17ffd3467af879fe78740000059c5dc
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb43nuq
+      - bigweb58nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb4nuq c0f5e722d1
-      - extlb2nuq b6e1b5034c
+      - intlb3nuq 51d74985a2
+      - extlb1nuq 99aac35317
       x-runtime:
-      - '0.126613'
+      - '0.148259'
       x-version-label:
-      - easypost-202408151917-1527448f18-master
+      - easypost-202502132348-e5a3dc472b-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -84,7 +83,7 @@ interactions:
       user-agent:
       - <REDACTED>
     method: DELETE
-    uri: https://api.easypost.com/v2/webhooks/hook_2d6400825b4011efbc7c119ee916485a
+    uri: https://api.easypost.com/v2/webhooks/hook_4bb2d37aeaff11efab531f670556be6e
   response:
     body:
       string: '{}'
@@ -112,20 +111,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62c1f5d966be5cf3e78865a0001778f4
+      - a17ffd3267af87a0e78740180059c632
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb39nuq
+      - bigweb33nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb3nuq c0f5e722d1
-      - extlb2nuq b6e1b5034c
+      - intlb4nuq 51d74985a2
+      - extlb1nuq 99aac35317
       x-runtime:
-      - '0.397231'
+      - '0.284460'
       x-version-label:
-      - easypost-202408151917-1527448f18-master
+      - easypost-202502132348-e5a3dc472b-master
       x-xss-protection:
       - 1; mode=block
     status:

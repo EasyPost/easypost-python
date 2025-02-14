@@ -20,8 +20,8 @@ interactions:
     uri: https://api.easypost.com/v2/webhooks
   response:
     body:
-      string: '{"id": "hook_2e96c0205b4011efaa5e4f8e947e652b", "object": "Webhook",
-        "mode": "test", "url": "http://example.com", "created_at": "2024-08-15T19:54:29Z",
+      string: '{"id": "hook_4c3b5178eaff11ef8e003d5bcc679766", "object": "Webhook",
+        "mode": "test", "url": "http://example.com", "created_at": "2025-02-14T18:12:49Z",
         "disabled_at": null}'
     headers:
       cache-control:
@@ -42,34 +42,32 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62c1f5d966be5cf4e78865a300177ade
+      - a17ffd3967af87a0e78740190059c6d4
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb43nuq
+      - bigweb41nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb4nuq c0f5e722d1
-      - extlb2nuq b6e1b5034c
+      - intlb3nuq 51d74985a2
+      - extlb1nuq 99aac35317
       x-runtime:
-      - '0.147174'
+      - '0.115492'
       x-version-label:
-      - easypost-202408151917-1527448f18-master
+      - easypost-202502132348-e5a3dc472b-master
       x-xss-protection:
       - 1; mode=block
     status:
       code: 201
       message: Created
 - request:
-    body: '{"webhook": {}}'
+    body: '{"webhook": {"params": {"webhook_secret": "s\u00e9cret"}}}'
     headers:
       Accept:
       - '*/*'
@@ -78,7 +76,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '15'
+      - '58'
       Content-Type:
       - application/json
       authorization:
@@ -86,11 +84,11 @@ interactions:
       user-agent:
       - <REDACTED>
     method: PATCH
-    uri: https://api.easypost.com/v2/webhooks/hook_2e96c0205b4011efaa5e4f8e947e652b
+    uri: https://api.easypost.com/v2/webhooks/hook_4c3b5178eaff11ef8e003d5bcc679766
   response:
     body:
-      string: '{"id": "hook_2e96c0205b4011efaa5e4f8e947e652b", "object": "Webhook",
-        "mode": "test", "url": "http://example.com", "created_at": "2024-08-15T19:54:29Z",
+      string: '{"id": "hook_4c3b5178eaff11ef8e003d5bcc679766", "object": "Webhook",
+        "mode": "test", "url": "http://example.com", "created_at": "2025-02-14T18:12:49Z",
         "disabled_at": null}'
     headers:
       cache-control:
@@ -116,20 +114,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62c1f5d966be5cf5e78865a300177b13
+      - a17ffd3667af87a1e787401a0059c736
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb42nuq
+      - bigweb41nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb3nuq c0f5e722d1
-      - extlb2nuq b6e1b5034c
+      - intlb4nuq 51d74985a2
+      - extlb1nuq 99aac35317
       x-runtime:
-      - '0.553461'
+      - '0.425372'
       x-version-label:
-      - easypost-202408151917-1527448f18-master
+      - easypost-202502132348-e5a3dc472b-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -151,7 +149,7 @@ interactions:
       user-agent:
       - <REDACTED>
     method: DELETE
-    uri: https://api.easypost.com/v2/webhooks/hook_2e96c0205b4011efaa5e4f8e947e652b
+    uri: https://api.easypost.com/v2/webhooks/hook_4c3b5178eaff11ef8e003d5bcc679766
   response:
     body:
       string: '{}'
@@ -179,20 +177,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62c1f5d966be5cf5e78865a300177bc0
+      - a17ffd3867af87a1e787401b0059c7dc
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb34nuq
+      - bigweb53nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb3nuq c0f5e722d1
-      - extlb2nuq b6e1b5034c
+      - intlb4nuq 51d74985a2
+      - extlb1nuq 99aac35317
       x-runtime:
-      - '0.447202'
+      - '0.287960'
       x-version-label:
-      - easypost-202408151917-1527448f18-master
+      - easypost-202502132348-e5a3dc472b-master
       x-xss-protection:
       - 1; mode=block
     status:

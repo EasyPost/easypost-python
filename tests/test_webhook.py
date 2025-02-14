@@ -5,8 +5,8 @@ from easypost.util import validate_webhook
 
 
 @pytest.mark.vcr()
-def test_webhook_create(webhook_url, test_client):
-    webhook = test_client.webhook.create(url=webhook_url)
+def test_webhook_create(webhook_url, webhook_secret, test_client):
+    webhook = test_client.webhook.create(url=webhook_url, params={"webhook_secret": webhook_secret})
 
     assert isinstance(webhook, Webhook)
     assert str.startswith(webhook.id, "hook_")
@@ -42,9 +42,9 @@ def test_webhook_all(page_size, test_client):
 
 
 @pytest.mark.vcr()
-def test_webhook_update(webhook_url, test_client):
+def test_webhook_update(webhook_url, webhook_secret, test_client):
     webhook = test_client.webhook.create(url=webhook_url)
-    test_client.webhook.update(webhook.id)
+    test_client.webhook.update(webhook.id, params={"webhook_secret": webhook_secret})
 
     assert isinstance(webhook, Webhook)
 
