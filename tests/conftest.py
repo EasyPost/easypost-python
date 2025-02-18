@@ -45,7 +45,7 @@ def pytest_sessionfinish(session, exitstatus):
 
 
 @pytest.fixture(autouse=True)
-def check_expired_cassettes(expiration_days: int = 180, throw_error: bool = False):
+def check_expired_cassettes(expiration_days: int = 365, throw_error: bool = False):
     """Checks for expired cassettes and throws errors if they are too old and must be re-recorded."""
     test_name = os.environ.get("PYTEST_CURRENT_TEST").split(":")[-1].split(" ")[0]  # type: ignore
     cassette_filepath = os.path.join("tests", "cassettes", f"{test_name}.yaml")
