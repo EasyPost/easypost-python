@@ -338,17 +338,22 @@ def event_bytes():
 
 @pytest.fixture
 def webhook_hmac_signature():
-    return read_fixture_data()["webhook_hmac_signature"]
+    return read_fixture_data()["webhooks"]["hmac_signature"]
 
 
 @pytest.fixture
 def webhook_secret():
-    return read_fixture_data()["webhook_secret"]
+    return read_fixture_data()["webhooks"]["secret"]
 
 
 @pytest.fixture
 def webhook_url():
-    return read_fixture_data()["webhook_url"]
+    return read_fixture_data()["webhooks"]["url"]
+
+
+@pytest.fixture
+def webhook_custom_headers():
+    return read_fixture_data()["webhooks"]["custom_headers"]
 
 
 @pytest.fixture

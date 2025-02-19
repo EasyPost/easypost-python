@@ -5,12 +5,18 @@ from easypost.util import validate_webhook
 
 
 @pytest.mark.vcr()
-def test_webhook_create(webhook_url, webhook_secret, test_client):
-    webhook = test_client.webhook.create(url=webhook_url, params={"webhook_secret": webhook_secret})
+def test_webhook_create(webhook_url, webhook_secret, webhook_custom_headers, test_client):
+    webhook = test_client.webhook.create(
+        url=webhook_url,
+        webhook_secret=webhook_secret,
+        custom_headers=webhook_custom_headers,
+    )
 
     assert isinstance(webhook, Webhook)
     assert str.startswith(webhook.id, "hook_")
     assert webhook.url == webhook_url
+    assert webhook.custom_headers[0]["name"] == "test"
+    assert webhook.custom_headers[0]["value"] == "header"
 
     test_client.webhook.delete(
         webhook.id
@@ -42,11 +48,17 @@ def test_webhook_all(page_size, test_client):
 
 
 @pytest.mark.vcr()
-def test_webhook_update(webhook_url, webhook_secret, test_client):
+def test_webhook_update(webhook_url, webhook_secret, webhook_custom_headers, test_client):
     webhook = test_client.webhook.create(url=webhook_url)
-    test_client.webhook.update(webhook.id, params={"webhook_secret": webhook_secret})
+    updated_webhook = test_client.webhook.update(
+        webhook.id,
+        webhook_secret=webhook_secret,
+        custom_headers=webhook_custom_headers,
+    )
 
-    assert isinstance(webhook, Webhook)
+    assert isinstance(updated_webhook, Webhook)
+    assert updated_webhook.custom_headers[0]["name"] == "test"
+    assert updated_webhook.custom_headers[0]["value"] == "header"
 
     test_client.webhook.delete(
         webhook.id

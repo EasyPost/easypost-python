@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Fixes the payload wrapping for updating a webhook
+
 ## v9.5.0 (2024-10-24)
 
 - Adds `tracking_codes` as a parameter of the `all` method on the TrackerService

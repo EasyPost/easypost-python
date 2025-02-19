@@ -3,7 +3,12 @@ from typing import (
     Dict,
 )
 
+from easypost.easypost_object import convert_to_easypost_object
 from easypost.models import Webhook
+from easypost.requestor import (
+    RequestMethod,
+    Requestor,
+)
 from easypost.services.base_service import BaseService
 
 
@@ -26,7 +31,11 @@ class WebhookService(BaseService):
 
     def update(self, id: str, **params) -> Webhook:
         """Update a Webhook."""
-        return self._update_resource(self._model_class, id, **params)
+        url = self._instance_url(self._model_class, id)
+
+        response = Requestor(self._client).request(method=RequestMethod.PATCH, url=url, params=params)
+
+        return convert_to_easypost_object(response=response)
 
     def delete(self, id: str) -> None:
         """Delete a Webhook."""
