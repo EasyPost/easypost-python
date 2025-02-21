@@ -19,6 +19,28 @@ def test_error(test_client):
         )
 
 
+@pytest.mark.vcr()
+def test_error_alternative_format(test_client, basic_claim, full_shipment):
+    """Tests that we assign properties of an error correctly when returned via the alternative format.
+
+    NOTE: Claims (among other things) uses the alternative errors format.
+    """
+    try:
+        claim_data = basic_claim
+        claim_data["tracking_code"] = "123"  # Intentionally pass a bad tracking code
+
+        test_client.claim.create(**claim_data)
+    except ApiError as error:
+        assert error.http_status == 404
+        assert error.code == "NOT_FOUND"
+        assert error.message == "The requested resource could not be found."
+        assert error.errors[0] == "No eligible insurance found with provided tracking code."
+        assert (
+            error.http_body
+            == '{"error": {"code": "NOT_FOUND", "errors": ["No eligible insurance found with provided tracking code."], "message": "The requested resource could not be found."}}'  # noqa
+        )
+
+
 def test_error_no_json():
     """Tests if we don't have valid JSON that we don't set the JSON body of an error."""
     error = ApiError(message="", http_body="bad json")
@@ -55,7 +77,11 @@ def test_error_bad_format_message():
     message_data = {
         "errors": ["Bad format 1", "Bad format 2"],
         "bad_data": [
-            {"first_message": "Bad format 3", "second_message": "Bad format 4", "thrid_message": "Bad format 5"}
+            {
+                "first_message": "Bad format 3",
+                "second_message": "Bad format 4",
+                "thrid_message": "Bad format 5",
+            }
         ],
     }
 
