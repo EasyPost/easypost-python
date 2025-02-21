@@ -1,6 +1,7 @@
 interactions:
 - request:
-    body: '{"webhook": {"url": "http://example.com"}}'
+    body: '{"webhook": {"url": "http://example.com", "webhook_secret": "s\u00e9cret",
+      "custom_headers": [{"name": "test", "value": "header"}]}}'
     headers:
       Accept:
       - '*/*'
@@ -9,7 +10,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '42'
+      - '132'
       Content-Type:
       - application/json
       authorization:
@@ -20,14 +21,14 @@ interactions:
     uri: https://api.easypost.com/v2/webhooks
   response:
     body:
-      string: '{"id": "hook_2d6400825b4011efbc7c119ee916485a", "object": "Webhook",
-        "mode": "test", "url": "http://example.com", "created_at": "2024-08-15T19:54:27Z",
-        "disabled_at": null}'
+      string: '{"id": "hook_5086302eeeef11ef883e4736f95f329e", "object": "Webhook",
+        "mode": "test", "url": "http://example.com", "created_at": "2025-02-19T18:28:29Z",
+        "disabled_at": null, "custom_headers": [{"name": "test", "value": "header"}]}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '161'
+      - '213'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -42,27 +43,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62c1f5d966be5cf2e78865a0001778b0
+      - 3c3ed33567b622cce2b8e5f1000336bc
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb43nuq
+      - bigweb40nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb4nuq c0f5e722d1
-      - extlb2nuq b6e1b5034c
+      - intlb3nuq 51d74985a2
+      - extlb2nuq 99aac35317
       x-runtime:
-      - '0.126613'
+      - '0.367575'
       x-version-label:
-      - easypost-202408151917-1527448f18-master
+      - easypost-202502191732-9cdc8ea15b-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -84,7 +83,7 @@ interactions:
       user-agent:
       - <REDACTED>
     method: DELETE
-    uri: https://api.easypost.com/v2/webhooks/hook_2d6400825b4011efbc7c119ee916485a
+    uri: https://api.easypost.com/v2/webhooks/hook_5086302eeeef11ef883e4736f95f329e
   response:
     body:
       string: '{}'
@@ -112,20 +111,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62c1f5d966be5cf3e78865a0001778f4
+      - 3c3ed33367b622cde2b8e5f200033741
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb39nuq
+      - bigweb59nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb3nuq c0f5e722d1
-      - extlb2nuq b6e1b5034c
+      - intlb3nuq 51d74985a2
+      - extlb2nuq 99aac35317
       x-runtime:
-      - '0.397231'
+      - '0.286270'
       x-version-label:
-      - easypost-202408151917-1527448f18-master
+      - easypost-202502191732-9cdc8ea15b-master
       x-xss-protection:
       - 1; mode=block
     status:
