@@ -72,18 +72,18 @@
 
                         <label class="view-source-button" for="mod-easypost_client-view-source"><span>View Source</span></label>
 
-                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">  1</span></a><span class="kn">from</span> <span class="nn">easypost.constant</span> <span class="kn">import</span> <span class="p">(</span>
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">  1</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">easypost.constant</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
 </span><span id="L-2"><a href="#L-2"><span class="linenos">  2</span></a>    <span class="n">API_BASE</span><span class="p">,</span>
 </span><span id="L-3"><a href="#L-3"><span class="linenos">  3</span></a>    <span class="n">API_VERSION</span><span class="p">,</span>
 </span><span id="L-4"><a href="#L-4"><span class="linenos">  4</span></a>    <span class="n">INVALID_REQUESTS_VERSION_ERROR</span><span class="p">,</span>
 </span><span id="L-5"><a href="#L-5"><span class="linenos">  5</span></a>    <span class="n">SUPPORT_EMAIL</span><span class="p">,</span>
 </span><span id="L-6"><a href="#L-6"><span class="linenos">  6</span></a>    <span class="n">TIMEOUT</span><span class="p">,</span>
 </span><span id="L-7"><a href="#L-7"><span class="linenos">  7</span></a><span class="p">)</span>
-</span><span id="L-8"><a href="#L-8"><span class="linenos">  8</span></a><span class="kn">from</span> <span class="nn">easypost.hooks</span> <span class="kn">import</span> <span class="p">(</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos">  8</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">easypost.hooks</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
 </span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a>    <span class="n">RequestHook</span><span class="p">,</span>
 </span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a>    <span class="n">ResponseHook</span><span class="p">,</span>
 </span><span id="L-11"><a href="#L-11"><span class="linenos"> 11</span></a><span class="p">)</span>
-</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a><span class="kn">from</span> <span class="nn">easypost.services</span> <span class="kn">import</span> <span class="p">(</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">easypost.services</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
 </span><span id="L-13"><a href="#L-13"><span class="linenos"> 13</span></a>    <span class="n">AddressService</span><span class="p">,</span>
 </span><span id="L-14"><a href="#L-14"><span class="linenos"> 14</span></a>    <span class="n">ApiKeyService</span><span class="p">,</span>
 </span><span id="L-15"><a href="#L-15"><span class="linenos"> 15</span></a>    <span class="n">BatchService</span><span class="p">,</span>
@@ -114,10 +114,10 @@
 </span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a><span class="p">)</span>
 </span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a>
 </span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a>
-</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a><span class="k">class</span> <span class="nc">EasyPostClient</span><span class="p">:</span>
+</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a><span class="k">class</span><span class="w"> </span><span class="nc">EasyPostClient</span><span class="p">:</span>
 </span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A client object used to authenticate and configure all HTTP calls to the EasyPost API.&quot;&quot;&quot;</span>
 </span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a>
-</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
 </span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a>        <span class="bp">self</span><span class="p">,</span>
 </span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a>        <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 </span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a>        <span class="n">api_base</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">API_BASE</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">API_VERSION</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -164,14 +164,14 @@
 </span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a>        <span class="c1"># use urlfetch as request_lib on google app engine, otherwise use requests</span>
 </span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_request_lib</span> <span class="o">=</span> <span class="kc">None</span>
 </span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a>        <span class="k">try</span><span class="p">:</span>
-</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a>            <span class="kn">from</span> <span class="nn">google.appengine.api</span> <span class="kn">import</span> <span class="n">urlfetch</span>  <span class="c1"># type: ignore</span>
+</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a>            <span class="kn">from</span><span class="w"> </span><span class="nn">google.appengine.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">urlfetch</span>  <span class="c1"># type: ignore</span>
 </span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a>
 </span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_request_lib</span> <span class="o">=</span> <span class="s2">&quot;urlfetch&quot;</span>
 </span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>            <span class="c1"># use the GAE application-wide &quot;deadline&quot; (or its default)</span>
 </span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>            <span class="n">timeout</span> <span class="o">=</span> <span class="n">urlfetch</span><span class="o">.</span><span class="n">get_default_fetch_deadline</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span>
 </span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
 </span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>            <span class="k">try</span><span class="p">:</span>
-</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>                <span class="kn">import</span> <span class="nn">requests</span>
+</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>                <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 </span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>
 </span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">_request_lib</span> <span class="o">=</span> <span class="s2">&quot;requests&quot;</span>
 </span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">_requests_session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
@@ -192,19 +192,19 @@
 </span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a>                <span class="k">if</span> <span class="n">major_version</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
 </span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a>                    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">INVALID_REQUESTS_VERSION_ERROR</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">SUPPORT_EMAIL</span><span class="p">))</span>
 </span><span id="L-120"><a href="#L-120"><span class="linenos">120</span></a>
-</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a>    <span class="k">def</span> <span class="nf">subscribe_to_request_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">subscribe_to_request_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
 </span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Subscribe functions to run when a request occurs.&quot;&quot;&quot;</span>
 </span><span id="L-123"><a href="#L-123"><span class="linenos">123</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_request_hook</span> <span class="o">+=</span> <span class="n">function</span>
 </span><span id="L-124"><a href="#L-124"><span class="linenos">124</span></a>
-</span><span id="L-125"><a href="#L-125"><span class="linenos">125</span></a>    <span class="k">def</span> <span class="nf">unsubscribe_from_request_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+</span><span id="L-125"><a href="#L-125"><span class="linenos">125</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">unsubscribe_from_request_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
 </span><span id="L-126"><a href="#L-126"><span class="linenos">126</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Unsubscribe functions from running when a request occurs.&quot;&quot;&quot;</span>
 </span><span id="L-127"><a href="#L-127"><span class="linenos">127</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_request_hook</span> <span class="o">-=</span> <span class="n">function</span>
 </span><span id="L-128"><a href="#L-128"><span class="linenos">128</span></a>
-</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a>    <span class="k">def</span> <span class="nf">subscribe_to_response_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">subscribe_to_response_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
 </span><span id="L-130"><a href="#L-130"><span class="linenos">130</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Subscribe functions to run when a response occurs.&quot;&quot;&quot;</span>
 </span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_response_hook</span> <span class="o">+=</span> <span class="n">function</span>
 </span><span id="L-132"><a href="#L-132"><span class="linenos">132</span></a>
-</span><span id="L-133"><a href="#L-133"><span class="linenos">133</span></a>    <span class="k">def</span> <span class="nf">unsubscribe_from_response_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+</span><span id="L-133"><a href="#L-133"><span class="linenos">133</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">unsubscribe_from_response_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
 </span><span id="L-134"><a href="#L-134"><span class="linenos">134</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Unsubscribe functions from running when a response occurs.&quot;&quot;&quot;</span>
 </span><span id="L-135"><a href="#L-135"><span class="linenos">135</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_response_hook</span> <span class="o">-=</span> <span class="n">function</span>
 </span></pre></div>
@@ -222,10 +222,10 @@
 
     </div>
     <a class="headerlink" href="#EasyPostClient"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="EasyPostClient-44"><a href="#EasyPostClient-44"><span class="linenos"> 44</span></a><span class="k">class</span> <span class="nc">EasyPostClient</span><span class="p">:</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="EasyPostClient-44"><a href="#EasyPostClient-44"><span class="linenos"> 44</span></a><span class="k">class</span><span class="w"> </span><span class="nc">EasyPostClient</span><span class="p">:</span>
 </span><span id="EasyPostClient-45"><a href="#EasyPostClient-45"><span class="linenos"> 45</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A client object used to authenticate and configure all HTTP calls to the EasyPost API.&quot;&quot;&quot;</span>
 </span><span id="EasyPostClient-46"><a href="#EasyPostClient-46"><span class="linenos"> 46</span></a>
-</span><span id="EasyPostClient-47"><a href="#EasyPostClient-47"><span class="linenos"> 47</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+</span><span id="EasyPostClient-47"><a href="#EasyPostClient-47"><span class="linenos"> 47</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
 </span><span id="EasyPostClient-48"><a href="#EasyPostClient-48"><span class="linenos"> 48</span></a>        <span class="bp">self</span><span class="p">,</span>
 </span><span id="EasyPostClient-49"><a href="#EasyPostClient-49"><span class="linenos"> 49</span></a>        <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 </span><span id="EasyPostClient-50"><a href="#EasyPostClient-50"><span class="linenos"> 50</span></a>        <span class="n">api_base</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">API_BASE</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">API_VERSION</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -272,14 +272,14 @@
 </span><span id="EasyPostClient-91"><a href="#EasyPostClient-91"><span class="linenos"> 91</span></a>        <span class="c1"># use urlfetch as request_lib on google app engine, otherwise use requests</span>
 </span><span id="EasyPostClient-92"><a href="#EasyPostClient-92"><span class="linenos"> 92</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_request_lib</span> <span class="o">=</span> <span class="kc">None</span>
 </span><span id="EasyPostClient-93"><a href="#EasyPostClient-93"><span class="linenos"> 93</span></a>        <span class="k">try</span><span class="p">:</span>
-</span><span id="EasyPostClient-94"><a href="#EasyPostClient-94"><span class="linenos"> 94</span></a>            <span class="kn">from</span> <span class="nn">google.appengine.api</span> <span class="kn">import</span> <span class="n">urlfetch</span>  <span class="c1"># type: ignore</span>
+</span><span id="EasyPostClient-94"><a href="#EasyPostClient-94"><span class="linenos"> 94</span></a>            <span class="kn">from</span><span class="w"> </span><span class="nn">google.appengine.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">urlfetch</span>  <span class="c1"># type: ignore</span>
 </span><span id="EasyPostClient-95"><a href="#EasyPostClient-95"><span class="linenos"> 95</span></a>
 </span><span id="EasyPostClient-96"><a href="#EasyPostClient-96"><span class="linenos"> 96</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_request_lib</span> <span class="o">=</span> <span class="s2">&quot;urlfetch&quot;</span>
 </span><span id="EasyPostClient-97"><a href="#EasyPostClient-97"><span class="linenos"> 97</span></a>            <span class="c1"># use the GAE application-wide &quot;deadline&quot; (or its default)</span>
 </span><span id="EasyPostClient-98"><a href="#EasyPostClient-98"><span class="linenos"> 98</span></a>            <span class="n">timeout</span> <span class="o">=</span> <span class="n">urlfetch</span><span class="o">.</span><span class="n">get_default_fetch_deadline</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span>
 </span><span id="EasyPostClient-99"><a href="#EasyPostClient-99"><span class="linenos"> 99</span></a>        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
 </span><span id="EasyPostClient-100"><a href="#EasyPostClient-100"><span class="linenos">100</span></a>            <span class="k">try</span><span class="p">:</span>
-</span><span id="EasyPostClient-101"><a href="#EasyPostClient-101"><span class="linenos">101</span></a>                <span class="kn">import</span> <span class="nn">requests</span>
+</span><span id="EasyPostClient-101"><a href="#EasyPostClient-101"><span class="linenos">101</span></a>                <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 </span><span id="EasyPostClient-102"><a href="#EasyPostClient-102"><span class="linenos">102</span></a>
 </span><span id="EasyPostClient-103"><a href="#EasyPostClient-103"><span class="linenos">103</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">_request_lib</span> <span class="o">=</span> <span class="s2">&quot;requests&quot;</span>
 </span><span id="EasyPostClient-104"><a href="#EasyPostClient-104"><span class="linenos">104</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">_requests_session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
@@ -300,19 +300,19 @@
 </span><span id="EasyPostClient-119"><a href="#EasyPostClient-119"><span class="linenos">119</span></a>                <span class="k">if</span> <span class="n">major_version</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
 </span><span id="EasyPostClient-120"><a href="#EasyPostClient-120"><span class="linenos">120</span></a>                    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">INVALID_REQUESTS_VERSION_ERROR</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">SUPPORT_EMAIL</span><span class="p">))</span>
 </span><span id="EasyPostClient-121"><a href="#EasyPostClient-121"><span class="linenos">121</span></a>
-</span><span id="EasyPostClient-122"><a href="#EasyPostClient-122"><span class="linenos">122</span></a>    <span class="k">def</span> <span class="nf">subscribe_to_request_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+</span><span id="EasyPostClient-122"><a href="#EasyPostClient-122"><span class="linenos">122</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">subscribe_to_request_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
 </span><span id="EasyPostClient-123"><a href="#EasyPostClient-123"><span class="linenos">123</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Subscribe functions to run when a request occurs.&quot;&quot;&quot;</span>
 </span><span id="EasyPostClient-124"><a href="#EasyPostClient-124"><span class="linenos">124</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_request_hook</span> <span class="o">+=</span> <span class="n">function</span>
 </span><span id="EasyPostClient-125"><a href="#EasyPostClient-125"><span class="linenos">125</span></a>
-</span><span id="EasyPostClient-126"><a href="#EasyPostClient-126"><span class="linenos">126</span></a>    <span class="k">def</span> <span class="nf">unsubscribe_from_request_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+</span><span id="EasyPostClient-126"><a href="#EasyPostClient-126"><span class="linenos">126</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">unsubscribe_from_request_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
 </span><span id="EasyPostClient-127"><a href="#EasyPostClient-127"><span class="linenos">127</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Unsubscribe functions from running when a request occurs.&quot;&quot;&quot;</span>
 </span><span id="EasyPostClient-128"><a href="#EasyPostClient-128"><span class="linenos">128</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_request_hook</span> <span class="o">-=</span> <span class="n">function</span>
 </span><span id="EasyPostClient-129"><a href="#EasyPostClient-129"><span class="linenos">129</span></a>
-</span><span id="EasyPostClient-130"><a href="#EasyPostClient-130"><span class="linenos">130</span></a>    <span class="k">def</span> <span class="nf">subscribe_to_response_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+</span><span id="EasyPostClient-130"><a href="#EasyPostClient-130"><span class="linenos">130</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">subscribe_to_response_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
 </span><span id="EasyPostClient-131"><a href="#EasyPostClient-131"><span class="linenos">131</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Subscribe functions to run when a response occurs.&quot;&quot;&quot;</span>
 </span><span id="EasyPostClient-132"><a href="#EasyPostClient-132"><span class="linenos">132</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_response_hook</span> <span class="o">+=</span> <span class="n">function</span>
 </span><span id="EasyPostClient-133"><a href="#EasyPostClient-133"><span class="linenos">133</span></a>
-</span><span id="EasyPostClient-134"><a href="#EasyPostClient-134"><span class="linenos">134</span></a>    <span class="k">def</span> <span class="nf">unsubscribe_from_response_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+</span><span id="EasyPostClient-134"><a href="#EasyPostClient-134"><span class="linenos">134</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">unsubscribe_from_response_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
 </span><span id="EasyPostClient-135"><a href="#EasyPostClient-135"><span class="linenos">135</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Unsubscribe functions from running when a response occurs.&quot;&quot;&quot;</span>
 </span><span id="EasyPostClient-136"><a href="#EasyPostClient-136"><span class="linenos">136</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_response_hook</span> <span class="o">-=</span> <span class="n">function</span>
 </span></pre></div>
@@ -332,7 +332,7 @@
 
     </div>
     <a class="headerlink" href="#EasyPostClient.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="EasyPostClient.__init__-47"><a href="#EasyPostClient.__init__-47"><span class="linenos"> 47</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="EasyPostClient.__init__-47"><a href="#EasyPostClient.__init__-47"><span class="linenos"> 47</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
 </span><span id="EasyPostClient.__init__-48"><a href="#EasyPostClient.__init__-48"><span class="linenos"> 48</span></a>        <span class="bp">self</span><span class="p">,</span>
 </span><span id="EasyPostClient.__init__-49"><a href="#EasyPostClient.__init__-49"><span class="linenos"> 49</span></a>        <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 </span><span id="EasyPostClient.__init__-50"><a href="#EasyPostClient.__init__-50"><span class="linenos"> 50</span></a>        <span class="n">api_base</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">API_BASE</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">API_VERSION</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -379,14 +379,14 @@
 </span><span id="EasyPostClient.__init__-91"><a href="#EasyPostClient.__init__-91"><span class="linenos"> 91</span></a>        <span class="c1"># use urlfetch as request_lib on google app engine, otherwise use requests</span>
 </span><span id="EasyPostClient.__init__-92"><a href="#EasyPostClient.__init__-92"><span class="linenos"> 92</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_request_lib</span> <span class="o">=</span> <span class="kc">None</span>
 </span><span id="EasyPostClient.__init__-93"><a href="#EasyPostClient.__init__-93"><span class="linenos"> 93</span></a>        <span class="k">try</span><span class="p">:</span>
-</span><span id="EasyPostClient.__init__-94"><a href="#EasyPostClient.__init__-94"><span class="linenos"> 94</span></a>            <span class="kn">from</span> <span class="nn">google.appengine.api</span> <span class="kn">import</span> <span class="n">urlfetch</span>  <span class="c1"># type: ignore</span>
+</span><span id="EasyPostClient.__init__-94"><a href="#EasyPostClient.__init__-94"><span class="linenos"> 94</span></a>            <span class="kn">from</span><span class="w"> </span><span class="nn">google.appengine.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">urlfetch</span>  <span class="c1"># type: ignore</span>
 </span><span id="EasyPostClient.__init__-95"><a href="#EasyPostClient.__init__-95"><span class="linenos"> 95</span></a>
 </span><span id="EasyPostClient.__init__-96"><a href="#EasyPostClient.__init__-96"><span class="linenos"> 96</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_request_lib</span> <span class="o">=</span> <span class="s2">&quot;urlfetch&quot;</span>
 </span><span id="EasyPostClient.__init__-97"><a href="#EasyPostClient.__init__-97"><span class="linenos"> 97</span></a>            <span class="c1"># use the GAE application-wide &quot;deadline&quot; (or its default)</span>
 </span><span id="EasyPostClient.__init__-98"><a href="#EasyPostClient.__init__-98"><span class="linenos"> 98</span></a>            <span class="n">timeout</span> <span class="o">=</span> <span class="n">urlfetch</span><span class="o">.</span><span class="n">get_default_fetch_deadline</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span>
 </span><span id="EasyPostClient.__init__-99"><a href="#EasyPostClient.__init__-99"><span class="linenos"> 99</span></a>        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
 </span><span id="EasyPostClient.__init__-100"><a href="#EasyPostClient.__init__-100"><span class="linenos">100</span></a>            <span class="k">try</span><span class="p">:</span>
-</span><span id="EasyPostClient.__init__-101"><a href="#EasyPostClient.__init__-101"><span class="linenos">101</span></a>                <span class="kn">import</span> <span class="nn">requests</span>
+</span><span id="EasyPostClient.__init__-101"><a href="#EasyPostClient.__init__-101"><span class="linenos">101</span></a>                <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 </span><span id="EasyPostClient.__init__-102"><a href="#EasyPostClient.__init__-102"><span class="linenos">102</span></a>
 </span><span id="EasyPostClient.__init__-103"><a href="#EasyPostClient.__init__-103"><span class="linenos">103</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">_request_lib</span> <span class="o">=</span> <span class="s2">&quot;requests&quot;</span>
 </span><span id="EasyPostClient.__init__-104"><a href="#EasyPostClient.__init__-104"><span class="linenos">104</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">_requests_session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
@@ -423,7 +423,7 @@
 
     </div>
     <a class="headerlink" href="#EasyPostClient.subscribe_to_request_hook"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="EasyPostClient.subscribe_to_request_hook-122"><a href="#EasyPostClient.subscribe_to_request_hook-122"><span class="linenos">122</span></a>    <span class="k">def</span> <span class="nf">subscribe_to_request_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="EasyPostClient.subscribe_to_request_hook-122"><a href="#EasyPostClient.subscribe_to_request_hook-122"><span class="linenos">122</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">subscribe_to_request_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
 </span><span id="EasyPostClient.subscribe_to_request_hook-123"><a href="#EasyPostClient.subscribe_to_request_hook-123"><span class="linenos">123</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Subscribe functions to run when a request occurs.&quot;&quot;&quot;</span>
 </span><span id="EasyPostClient.subscribe_to_request_hook-124"><a href="#EasyPostClient.subscribe_to_request_hook-124"><span class="linenos">124</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_request_hook</span> <span class="o">+=</span> <span class="n">function</span>
 </span></pre></div>
@@ -445,7 +445,7 @@
 
     </div>
     <a class="headerlink" href="#EasyPostClient.unsubscribe_from_request_hook"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="EasyPostClient.unsubscribe_from_request_hook-126"><a href="#EasyPostClient.unsubscribe_from_request_hook-126"><span class="linenos">126</span></a>    <span class="k">def</span> <span class="nf">unsubscribe_from_request_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="EasyPostClient.unsubscribe_from_request_hook-126"><a href="#EasyPostClient.unsubscribe_from_request_hook-126"><span class="linenos">126</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">unsubscribe_from_request_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
 </span><span id="EasyPostClient.unsubscribe_from_request_hook-127"><a href="#EasyPostClient.unsubscribe_from_request_hook-127"><span class="linenos">127</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Unsubscribe functions from running when a request occurs.&quot;&quot;&quot;</span>
 </span><span id="EasyPostClient.unsubscribe_from_request_hook-128"><a href="#EasyPostClient.unsubscribe_from_request_hook-128"><span class="linenos">128</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_request_hook</span> <span class="o">-=</span> <span class="n">function</span>
 </span></pre></div>
@@ -467,7 +467,7 @@
 
     </div>
     <a class="headerlink" href="#EasyPostClient.subscribe_to_response_hook"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="EasyPostClient.subscribe_to_response_hook-130"><a href="#EasyPostClient.subscribe_to_response_hook-130"><span class="linenos">130</span></a>    <span class="k">def</span> <span class="nf">subscribe_to_response_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="EasyPostClient.subscribe_to_response_hook-130"><a href="#EasyPostClient.subscribe_to_response_hook-130"><span class="linenos">130</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">subscribe_to_response_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
 </span><span id="EasyPostClient.subscribe_to_response_hook-131"><a href="#EasyPostClient.subscribe_to_response_hook-131"><span class="linenos">131</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Subscribe functions to run when a response occurs.&quot;&quot;&quot;</span>
 </span><span id="EasyPostClient.subscribe_to_response_hook-132"><a href="#EasyPostClient.subscribe_to_response_hook-132"><span class="linenos">132</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_response_hook</span> <span class="o">+=</span> <span class="n">function</span>
 </span></pre></div>
@@ -489,7 +489,7 @@
 
     </div>
     <a class="headerlink" href="#EasyPostClient.unsubscribe_from_response_hook"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="EasyPostClient.unsubscribe_from_response_hook-134"><a href="#EasyPostClient.unsubscribe_from_response_hook-134"><span class="linenos">134</span></a>    <span class="k">def</span> <span class="nf">unsubscribe_from_response_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="EasyPostClient.unsubscribe_from_response_hook-134"><a href="#EasyPostClient.unsubscribe_from_response_hook-134"><span class="linenos">134</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">unsubscribe_from_response_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
 </span><span id="EasyPostClient.unsubscribe_from_response_hook-135"><a href="#EasyPostClient.unsubscribe_from_response_hook-135"><span class="linenos">135</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Unsubscribe functions from running when a response occurs.&quot;&quot;&quot;</span>
 </span><span id="EasyPostClient.unsubscribe_from_response_hook-136"><a href="#EasyPostClient.unsubscribe_from_response_hook-136"><span class="linenos">136</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_response_hook</span> <span class="o">-=</span> <span class="n">function</span>
 </span></pre></div>
