@@ -20,7 +20,7 @@ def test_error(test_client):
 
 
 @pytest.mark.vcr()
-def test_error_alternative_format(test_client, basic_claim, full_shipment):
+def test_error_alternative_format(test_client, basic_claim):
     """Tests that we assign properties of an error correctly when returned via the alternative format.
 
     NOTE: Claims (among other things) uses the alternative errors format.
