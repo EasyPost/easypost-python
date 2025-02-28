@@ -1,0 +1,73 @@
+interactions:
+- request:
+    body: '{"type": "damage", "email_evidence_attachments": ["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAeUlEQVR42mP8//8/AwAI/AL+4Q7AIAAAAABJRU5ErkJggg=="],
+      "invoice_attachments": ["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAeUlEQVR42mP8//8/AwAI/AL+4Q7AIAAAAABJRU5ErkJggg=="],
+      "supporting_documentation_attachments": ["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAeUlEQVR42mP8//8/AwAI/AL+4Q7AIAAAAABJRU5ErkJggg=="],
+      "description": "Test description", "contact_email": "test@example.com", "tracking_code":
+      "123"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '579'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/claims
+  response:
+    body:
+      string: '{"error": {"code": "NOT_FOUND", "errors": ["No eligible insurance found
+        with provided tracking code."], "message": "The requested resource could not
+        be found."}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '156'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 764a527567b8c6c5e2b8e6320004ed95
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb41nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb4nuq 51d74985a2
+      - extlb1nuq 99aac35317
+      x-runtime:
+      - '0.032715'
+      x-version-label:
+      - easypost-202502211712-417f1a0f64-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 404
+      message: Not Found
+version: 1

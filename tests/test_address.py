@@ -22,7 +22,7 @@ def test_address_create_verify(incorrect_address, test_client):
     """
     Test creating an address with the `verify` param.
     """
-    # Creating normally (without specifying "verify") will make the address, perform no verifications
+    # Creating normally (without specifying "verify") will make the address and perform no verifications
     address = test_client.address.create(**incorrect_address)
 
     assert isinstance(address, Address)
@@ -33,7 +33,23 @@ def test_address_create_verify(incorrect_address, test_client):
     address = test_client.address.create(**incorrect_address)
 
     assert isinstance(address, Address)
+
+    # Delivery verification assertions
     assert address.verifications.delivery.success is False
+    # TODO: details is not deserializing correctly, related to the larger "double EasyPostObject" wrapping issue
+    # assert address.verifications.delivery.details == {}
+    assert address.verifications.delivery.errors[0].code == "E.ADDRESS.NOT_FOUND"
+    assert address.verifications.delivery.errors[0].field == "address"
+    assert address.verifications.delivery.errors[0].suggestion is None
+    assert address.verifications.delivery.errors[0].message == "Address not found"
+
+    # Zip4 verification assertions
+    assert address.verifications.zip4.success is False
+    assert address.verifications.zip4.details is None
+    assert address.verifications.zip4.errors[0].code == "E.ADDRESS.NOT_FOUND"
+    assert address.verifications.zip4.errors[0].field == "address"
+    assert address.verifications.zip4.errors[0].suggestion is None
+    assert address.verifications.zip4.errors[0].message == "Address not found"
 
 
 @pytest.mark.vcr()
