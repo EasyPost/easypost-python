@@ -1,16 +1,11 @@
 from typing import (
     Any,
     Dict,
-    List,
     Optional,
 )
-from warnings import warn
 
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.models import (
-    ApiKey,
-    User,
-)
+from easypost.models import User
 from easypost.requestor import (
     RequestMethod,
     Requestor,
@@ -66,45 +61,6 @@ class UserService(BaseService):
         )
 
         return convert_to_easypost_object(response=response)
-
-    def all_api_keys(self) -> Dict[str, Any]:
-        """Retrieve a list of all API keys."""
-        warn(
-            'This method is deprecated, use the "all" function of "api_keys" on the client instead.',
-            DeprecationWarning,
-            stacklevel=2,
-        )
-
-        url = "/api_keys"
-
-        response = Requestor(self._client).request(method=RequestMethod.GET, url=url)
-
-        return convert_to_easypost_object(response=response)
-
-    def api_keys(self, id: str) -> List[ApiKey]:
-        """Retrieve a list of API keys (works for the authenticated User or a child User)."""
-        warn(
-            'This method is deprecated, use the "retrieve_api_keys_for_user" function '
-            'of "api_keys" on the client instead.',
-            DeprecationWarning,
-            stacklevel=2,
-        )
-
-        api_keys = self.all_api_keys()
-        my_api_keys = []
-
-        if api_keys["id"] == id:
-            # This function was called on the authenticated user
-            my_api_keys = api_keys["keys"]
-        else:
-            # This function was called on a child user (authenticated as parent, only return
-            # this child user's details).
-            for child in api_keys["children"]:
-                if child.id == id:
-                    my_api_keys = child.keys
-                    break
-
-        return my_api_keys
 
     def update_brand(self, id: str, **params) -> User:
         """Update a User's Brand."""
