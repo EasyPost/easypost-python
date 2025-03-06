@@ -12,7 +12,7 @@ DEV_REQUIREMENTS = [
     "bandit==1.7.*",  # v1.8 requires Python 3.9
     "black==23.*",
     "build==1.2.*",
-    "flake8==6.*",
+    "flake8==5.*",  # v6 requires Python 3.9
     "isort==6.*",
     "mypy==1.15.*",
     "pdoc==14.*",  # v15 requires Python 3.9
