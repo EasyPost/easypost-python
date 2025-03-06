@@ -9,7 +9,7 @@ REQUIREMENTS = [
 ]
 
 DEV_REQUIREMENTS = [
-    "bandit==1.8.*",
+    "bandit==1.7.*",  # v1.8 requires Python 3.9
     "black==25.*",
     "build==1.2.*",
     "flake8==6.*",
