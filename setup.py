@@ -13,8 +13,8 @@ DEV_REQUIREMENTS = [
     "black==23.*",
     "build==1.2.*",
     "flake8==5.*",  # v6 requires Python 3.9
-    "isort==6.*",
-    "mypy==1.15.*",
+    "isort==5.*",  # v6 requires Python 3.9
+    "mypy==1.14.*",  # v1.15 requires Python 3.9
     "pdoc==14.*",  # v15 requires Python 3.9
     "pytest-cov==5.*",  # v6 requires Python 3.9
     "pytest-vcr==1.*",
