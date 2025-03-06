@@ -102,7 +102,7 @@ def get_lowest_stateless_rate(
         ):
             continue
 
-        if lowest_rate is None or float(rate.rate) < float(lowest_rate.rate):
+        if lowest_rate is None or float(rate["rate"]) < float(lowest_rate["rate"]):
             lowest_rate = rate
 
     if lowest_rate is None:
