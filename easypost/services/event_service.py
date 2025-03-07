@@ -1,6 +1,5 @@
 from typing import (
     Any,
-    Dict,
     Optional,
 )
 
@@ -25,7 +24,7 @@ class EventService(BaseService):
         """Create an Event."""
         return self._create_resource(self._model_class, **params)
 
-    def all(self, **params) -> Dict[str, Any]:
+    def all(self, **params) -> dict[str, Any]:
         """Retrieve a list of Events."""
         filters = {
             "key": "events",
@@ -37,7 +36,7 @@ class EventService(BaseService):
         """Retrieve an Event."""
         return self._retrieve_resource(self._model_class, id)
 
-    def retrieve_all_payloads(self, event_id: str, **params) -> Dict[str, Any]:
+    def retrieve_all_payloads(self, event_id: str, **params) -> dict[str, Any]:
         """Retrieve a list of Payloads for an Event."""
         url = f"{self._class_url(self._model_class)}/{event_id}/payloads"
 
@@ -55,10 +54,10 @@ class EventService(BaseService):
 
     def get_next_page(
         self,
-        events: Dict[str, Any],
+        events: dict[str, Any],
         page_size: int,
-        optional_params: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        optional_params: Optional[dict[str, Any]] = None,
+    ) -> dict[str, Any]:
         """Retrieve the next page of the list Events response."""
         self._check_has_next_page(collection=events)
 

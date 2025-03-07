@@ -1,7 +1,5 @@
 from typing import (
     Any,
-    Dict,
-    List,
     Optional,
 )
 
@@ -35,7 +33,7 @@ class ShipmentService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def all(self, **params) -> Dict[str, Any]:
+    def all(self, **params) -> dict[str, Any]:
         """Retrieve a list of Shipments."""
         filters = {
             "key": "shipments",
@@ -51,10 +49,10 @@ class ShipmentService(BaseService):
 
     def get_next_page(
         self,
-        shipments: Dict[str, Any],
+        shipments: dict[str, Any],
         page_size: int,
-        optional_params: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        optional_params: Optional[dict[str, Any]] = None,
+    ) -> dict[str, Any]:
         """Get next page of shipment collection."""
         self._check_has_next_page(collection=shipments)
 
@@ -72,7 +70,7 @@ class ShipmentService(BaseService):
 
         return self.all(**params)
 
-    def regenerate_rates(self, id: str) -> Dict[str, List[Rate]]:
+    def regenerate_rates(self, id: str) -> dict[str, list[Rate]]:
         """Regenerate Rates for a Shipment."""
         url = f"{self._instance_url(self._model_class, id)}/rerate"
 
@@ -80,7 +78,7 @@ class ShipmentService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def get_smart_rates(self, id: str) -> List[Rate]:
+    def get_smart_rates(self, id: str) -> list[Rate]:
         """Get SmartRates for a Shipment."""
         url = f"{self._instance_url(self._model_class, id)}/smartrate"
 
@@ -134,7 +132,7 @@ class ShipmentService(BaseService):
 
         return lowest_smart_rate
 
-    def generate_form(self, id: str, form_type: str, form_options: Optional[Dict[str, Any]] = {}) -> Shipment:
+    def generate_form(self, id: str, form_type: str, form_options: Optional[dict[str, Any]] = {}) -> Shipment:
         """Generate a form for a Shipment."""
         params = {"type": form_type}
         params.update(form_options)  # type: ignore
@@ -145,7 +143,7 @@ class ShipmentService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def retrieve_estimated_delivery_date(self, id: str, planned_ship_date: str) -> List[Dict[str, Any]]:
+    def retrieve_estimated_delivery_date(self, id: str, planned_ship_date: str) -> list[dict[str, Any]]:
         """Retrieves the estimated delivery date of each Rate via SmartRate."""
         url = f"{self._instance_url(self._model_class, id)}/smartrate/delivery_date"
         wrapped_params = {"planned_ship_date": planned_ship_date}
@@ -154,7 +152,7 @@ class ShipmentService(BaseService):
 
         return convert_to_easypost_object(response=response.get("rates", []))
 
-    def recommend_ship_date(self, id: str, desired_delivery_date: str) -> List[Dict[str, Any]]:
+    def recommend_ship_date(self, id: str, desired_delivery_date: str) -> list[dict[str, Any]]:
         """Retrieve a recommended ship date for an existing Shipment via the Precision Shipping API,
         based on a specific desired delivery date.
         """

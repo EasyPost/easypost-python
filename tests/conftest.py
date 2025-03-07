@@ -4,8 +4,6 @@ import os
 import warnings
 from typing import (
     Any,
-    Dict,
-    List,
     Tuple,
 )
 
@@ -19,8 +17,8 @@ PARTNER_USER_PROD_API_KEY = os.getenv("PARTNER_USER_PROD_API_KEY", "123")
 REFERRAL_CUSTOMER_PROD_API_KEY = os.getenv("REFERRAL_CUSTOMER_PROD_API_KEY", "123")
 
 SCRUBBED_STRING = "<REDACTED>"
-SCRUBBED_ARRAY: List = []
-SCRUBBED_DICT: Dict = {}
+SCRUBBED_ARRAY: list = []
+SCRUBBED_DICT: dict = {}
 
 
 def pytest_sessionstart(session):
@@ -98,7 +96,7 @@ def vcr_config():
     }
 
 
-def scrub_response_bodies(scrubbers: List[Tuple[str, Any]]) -> Any:
+def scrub_response_bodies(scrubbers: list[Tuple[str, Any]]) -> Any:
     """Scrub sensitive data from response bodies prior to recording the cassette."""
 
     def before_record_response(response: Any) -> Any:

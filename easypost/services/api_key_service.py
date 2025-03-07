@@ -1,7 +1,5 @@
 from typing import (
     Any,
-    Dict,
-    List,
 )
 
 from easypost.constant import NO_USER_FOUND
@@ -20,7 +18,7 @@ class ApiKeyService(BaseService):
         self._client = client
         self._model_class = ApiKey.__name__
 
-    def all(self) -> Dict[str, Any]:
+    def all(self) -> dict[str, Any]:
         """Retrieve a list of all API keys."""
         url = "/api_keys"
 
@@ -28,7 +26,7 @@ class ApiKeyService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def retrieve_api_keys_for_user(self, id: str) -> List[ApiKey]:
+    def retrieve_api_keys_for_user(self, id: str) -> list[ApiKey]:
         """Retrieve a list of API keys (works for the authenticated User or a child User)."""
         api_keys = self.all()
 

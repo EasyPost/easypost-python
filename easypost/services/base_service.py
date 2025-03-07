@@ -1,7 +1,6 @@
 import re
 from typing import (
     Any,
-    Dict,
     Optional,
 )
 
@@ -52,7 +51,11 @@ class BaseService:
         return convert_to_easypost_object(response=response)
 
     def _all_resources(
-        self, class_name: str, filters: Optional[Dict[str, Any]] = None, beta: bool = False, **params
+        self,
+        class_name: str,
+        filters: Optional[dict[str, Any]] = None,
+        beta: bool = False,
+        **params,
     ) -> Any:
         """Retrieve a list of EasyPostObjects from the EasyPost API."""
         url = self._class_url(class_name)
@@ -72,7 +75,12 @@ class BaseService:
         return convert_to_easypost_object(response=response)
 
     def _update_resource(
-        self, class_name: str, id: str, method: RequestMethod = RequestMethod.PATCH, beta: bool = False, **params
+        self,
+        class_name: str,
+        id: str,
+        method: RequestMethod = RequestMethod.PATCH,
+        beta: bool = False,
+        **params,
     ) -> Any:
         """Update an EasyPost object via the EasyPost API."""
         url = self._instance_url(class_name, id)
@@ -90,7 +98,7 @@ class BaseService:
 
         return convert_to_easypost_object(response=response)
 
-    def _check_has_next_page(self, collection: Dict[str, Any]) -> None:
+    def _check_has_next_page(self, collection: dict[str, Any]) -> None:
         """Raise exception if there is no next page of a collection."""
         if not collection.get("has_more", False):
             raise EndOfPaginationError(NO_MORE_PAGES_ERROR)

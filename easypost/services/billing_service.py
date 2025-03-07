@@ -1,7 +1,5 @@
 from typing import (
     Any,
-    Dict,
-    List,
 )
 
 from easypost.constant import (
@@ -40,7 +38,7 @@ class BillingService(BaseService):
 
         Requestor(self._client).request(method=RequestMethod.DELETE, url=url)
 
-    def retrieve_payment_methods(self, **params) -> Dict[str, Any]:
+    def retrieve_payment_methods(self, **params) -> dict[str, Any]:
         """Retrieve payment methods."""
         response = Requestor(self._client).request(
             method=RequestMethod.GET,
@@ -53,7 +51,7 @@ class BillingService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def _get_payment_method_info(self, priority: str = "primary") -> List[str]:
+    def _get_payment_method_info(self, priority: str = "primary") -> list[str]:
         """Get payment method info (type of the payment method and ID of the payment method)"""
         payment_methods = self.retrieve_payment_methods()
 

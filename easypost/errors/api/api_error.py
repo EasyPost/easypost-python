@@ -1,8 +1,6 @@
 import json
 from typing import (
     Any,
-    Dict,
-    List,
     Optional,
     Union,
 )
@@ -16,15 +14,15 @@ class ApiError(EasyPostError):
     def __init__(
         self,
         message: Union[
-            Dict[str, Any], list, str
+            dict[str, Any], list, str
         ],  # message should be a string but can sometimes incorrectly come back as a list or object
-        errors: Optional[List[str]] = None,
+        errors: Optional[list[str]] = None,
         code: Optional[str] = None,
         http_status: Optional[int] = None,
         http_body: Optional[Union[str, bytes]] = None,
     ):
         super().__init__(message)  # type: ignore
-        message_list: List[str] = []
+        message_list: list[str] = []
         self._traverse_json_element(message, message_list)
         self.message = ", ".join(message_list)
         self.errors = errors
@@ -54,8 +52,8 @@ class ApiError(EasyPostError):
 
     def _traverse_json_element(
         self,
-        error_message: Optional[Union[Dict[str, Any], list, str]],
-        messages_list: List[str],
+        error_message: Optional[Union[dict[str, Any], list, str]],
+        messages_list: list[str],
     ) -> None:
         """Recursively traverses a JSON object or array and extracts error messages
         as strings. Adds the extracted messages to the specified messages_list array.

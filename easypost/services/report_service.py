@@ -1,6 +1,5 @@
 from typing import (
     Any,
-    Dict,
     Optional,
 )
 
@@ -36,7 +35,7 @@ class ReportService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def all(self, **params) -> Dict[str, Any]:
+    def all(self, **params) -> dict[str, Any]:
         """Retrieve a list of Reports."""
         # Capture some of the parameters used for later reference
         filters = {
@@ -62,10 +61,10 @@ class ReportService(BaseService):
 
     def get_next_page(
         self,
-        reports: Dict[str, Any],
+        reports: dict[str, Any],
         page_size: Optional[int] = None,
-        optional_params: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        optional_params: Optional[dict[str, Any]] = None,
+    ) -> dict[str, Any]:
         """Retrieve the next page of the list Report response."""
         self._check_has_next_page(collection=reports)
 
