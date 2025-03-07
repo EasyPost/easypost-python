@@ -9,17 +9,17 @@ REQUIREMENTS = [
 ]
 
 DEV_REQUIREMENTS = [
-    "bandit==1.7.*",  # v1.8 requires Python 3.9
-    "black==23.*",
+    "bandit==1.8.*",
+    "black==25.*",
     "build==1.2.*",
-    "flake8==5.*",  # v6 requires Python 3.9
-    "isort==5.*",  # v6 requires Python 3.9
-    "mypy==1.14.*",  # v1.15 requires Python 3.9
-    "pdoc==14.*",  # v15 requires Python 3.9
-    "pytest-cov==5.*",  # v6 requires Python 3.9
+    "flake8==6.*",
+    "isort==6.*",
+    "mypy==1.15.*",
+    "pdoc==15.*",
+    "pytest-cov==6.*",
     "pytest-vcr==1.*",
     "pytest==8.*",
-    "vcrpy==6.*",  # v7 requires Python 3.9
+    "vcrpy==7.*",
 ]
 
 with open("README.md", encoding="utf-8") as f:
@@ -54,12 +54,11 @@ setup(
         "Tracker": "https://github.com/EasyPost/easypost-python/issues",
         "Source": "https://github.com/EasyPost/easypost-python",
     },
-    python_requires=">=3.8, <4",
+    python_requires=">=3.9, <4",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
