@@ -41,20 +41,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62c1f5d866be5cbee78861e70017461d
+      - 8e8eb62567c9fc1ae2b97b760018a860
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb38nuq
+      - bigweb58nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb4nuq c0f5e722d1
-      - extlb2nuq b6e1b5034c
+      - intlb4nuq 51d74985a2
+      - extlb1nuq 99aac35317
       x-runtime:
-      - '0.020497'
+      - '0.022642'
       x-version-label:
-      - easypost-202408151917-1527448f18-master
+      - easypost-202503061913-8f39069a2d-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -81,20 +81,16 @@ interactions:
     uri: https://api.stripe.com/v1/tokens?card%5Bexp_month%5D=05&card%5Bexp_year%5D=2028
   response:
     body:
-      string: '{"id": "tok_0Po9jmDqT4huGUvdGwBgHnel", "object": "token", "card": {"id":
-        "card_0Po9jmDqT4huGUvdbeP84aAV", "object": "card", "address_city": null, "address_country":
-        null, "address_line1": null, "address_line1_check": null, "address_line2":
-        null, "address_state": null, "address_zip": null, "address_zip_check": null,
-        "brand": "Visa", "country": "US", "cvc_check": "unchecked", "dynamic_last4":
-        null, "exp_month": 5, "exp_year": 2028, "funding": "credit", "last4": "6170",
-        "name": null, "networks": {"preferred": null}, "tokenization_method": null,
-        "wallet": null}, "client_ip": "<REDACTED>", "created": 1723751614, "livemode":
-        true, "type": "card", "used": false}'
+      string: '{"error": {"message": "This integration surface is unsupported for
+        publishable key tokenization. To enable this surface, please go to your dashboard
+        (https://dashboard.stripe.com/settings/integration). See https://support.stripe.com/questions/card-tokenization-restrictions-using-publishable-keys
+        for more details", "request_log_url": "https://dashboard.stripe.com/logs/req_h4qLymbw74w7cU?t=1741290522",
+        "type": "invalid_request_error"}}'
     headers:
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
-      - GET,HEAD,PUT,PATCH,POST,DELETE
+      - GET, HEAD, PUT, PATCH, POST, DELETE
       Access-Control-Allow-Origin:
       - '*'
       Access-Control-Expose-Headers:
@@ -107,27 +103,27 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '788'
+      - '458'
       Content-Security-Policy:
-      - report-uri https://q.stripe.com/csp-report?p=v1%2Ftokens; block-all-mixed-content;
-        default-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none';
-        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'
+      - base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none';
+        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; worker-src
+        'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=0Vy5Ta2pFgzW2Ya4hl8lPGzkEN1C3IyDpB204-q3EAArRvHI8ALkzEjhMEmUL0t__fht0crtWzoPxzs_
       Content-Type:
       - application/json
       Cross-Origin-Opener-Policy-Report-Only:
       - same-origin; report-to="coop"
       Date:
-      - Thu, 15 Aug 2024 19:53:34 GMT
+      - Thu, 06 Mar 2025 19:48:42 GMT
       Idempotency-Key:
-      - 4c2cef93-cd04-4374-8775-fc3ac2189515
+      - 4f8c8607-a9d0-4c8e-a5be-cd519b399771
       Original-Request:
-      - req_sONoccjCYMJSVm
+      - req_h4qLymbw74w7cU
       Report-To:
-      - '{"group":"coop","max_age":8640,"endpoints":[{"url":"https://q.stripe.com/coop-report?s=payins-bapi-srv"}],"include_subdomains":true}'
+      - '{"group":"coop","max_age":8640,"endpoints":[{"url":"https://q.stripe.com/coop-report"}],"include_subdomains":true}'
       Reporting-Endpoints:
-      - coop="https://q.stripe.com/coop-report?s=payins-bapi-srv"
+      - coop="https://q.stripe.com/coop-report"
       Request-Id:
-      - req_sONoccjCYMJSVm
+      - req_h4qLymbw74w7cU
       Server:
       - nginx
       Strict-Transport-Security:
@@ -138,18 +134,17 @@ interactions:
       - '2020-08-27'
       Vary:
       - Origin
-      X-Content-Type-Options:
-      - nosniff
       X-Stripe-Priority-Routing-Enabled:
       - 'true'
       X-Stripe-Routing-Context-Priority-Tier:
       - livemode-critical
+      X-Wc:
+      - AB
     status:
-      code: 200
-      message: OK
+      code: 400
+      message: Bad Request
 - request:
-    body: '{"credit_card": {"stripe_object_id": "tok_0Po9jmDqT4huGUvdGwBgHnel", "priority":
-      "primary"}}'
+    body: '{"credit_card": {"stripe_object_id": "", "priority": "primary"}}'
     headers:
       Accept:
       - '*/*'
@@ -158,7 +153,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '92'
+      - '64'
       Content-Type:
       - application/json
       authorization:
@@ -169,14 +164,13 @@ interactions:
     uri: https://api.easypost.com/v2/credit_cards
   response:
     body:
-      string: '{"id": "pm_1bc11ef87e774e81acf04d34f29b6209", "disabled_at": null,
-        "object": "CreditCard", "name": null, "last4": "6170", "exp_month": 5, "exp_year":
-        2028, "brand": "Visa", "requires_mandate_collection": false}'
+      string: '{"error": {"code": "BAD_REQUEST", "message": "One of payment_method_reference
+        or payment_method_id must be provided", "errors": []}}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '193'
+      - '126'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -196,23 +190,23 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62c1f5dd66be5cbfe78861e9001746e3
+      - 8e8eb62867c9fc1ae2b97b780018a8da
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb41nuq
+      - bigweb57nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb3nuq c0f5e722d1
-      - extlb2nuq b6e1b5034c
+      - intlb3nuq 51d74985a2
+      - extlb1nuq 99aac35317
       x-runtime:
-      - '3.079624'
+      - '0.078448'
       x-version-label:
-      - easypost-202408151917-1527448f18-master
+      - easypost-202503061913-8f39069a2d-master
       x-xss-protection:
       - 1; mode=block
     status:
-      code: 201
-      message: Created
+      code: 400
+      message: Bad Request
 version: 1

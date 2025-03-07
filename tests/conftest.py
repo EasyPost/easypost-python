@@ -288,7 +288,7 @@ def basic_pickup():
     If you need to re-record cassettes, increment the date below and ensure it is one day in the future,
     USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
     """
-    pickup_date = "2024-08-17"
+    pickup_date = "2025-03-08"
 
     pickup_data = read_fixture_data()["pickups"]["basic"]
     pickup_data["min_datetime"] = pickup_date
@@ -373,9 +373,9 @@ def rma_form_options():
 
 @pytest.fixture
 def planned_ship_date():
-    return "2024-08-15"
+    return "2025-03-08"
 
 
 @pytest.fixture
 def desired_delivery_date():
-    return "2024-08-18"
+    return "2025-03-08"

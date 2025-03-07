@@ -73,6 +73,7 @@ def test_referral_get_next_page(partner_user_prod_client, page_size):
             raise Exception(_TEST_FAILED_INTENTIONALLY_ERROR)
 
 
+@pytest.mark.skip("flow is deprecated, cannot easily be tested due to Stripe changes")
 # PyVCR is having troubles matching the body of the form-encoded data here, override the default
 @pytest.mark.vcr(
     match_on=[

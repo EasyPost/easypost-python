@@ -16,45 +16,29 @@ interactions:
     uri: https://api.easypost.com/v2/scan_forms?page_size=5
   response:
     body:
-      string: '{"scan_forms": [{"id": "sf_096c54c7ff404b06b6bab4b1087f3f52", "object":
-        "ScanForm", "created_at": "2024-08-15T19:52:07Z", "updated_at": "2024-08-15T19:52:07Z",
-        "tracking_codes": ["9400100105807075742053"], "address": {"id": "adr_d3f4ff695b3f11efb7f6ac1f6bc539aa",
-        "object": "Address", "created_at": "2024-08-15T19:51:56+00:00", "updated_at":
-        "2024-08-15T19:51:56+00:00", "name": "Elizabeth Swan", "company": null, "street1":
+      string: '{"scan_forms": [{"id": "sf_a1082a2498034042a96617a8d79ff0c4", "object":
+        "ScanForm", "created_at": "2025-03-06T19:47:39Z", "updated_at": "2025-03-06T19:47:39Z",
+        "tracking_codes": ["9400100208303109500638"], "address": {"id": "adr_d671882efac311ef846fac1f6bc53342",
+        "object": "Address", "created_at": "2025-03-06T19:47:29+00:00", "updated_at":
+        "2025-03-06T19:47:29+00:00", "name": "Elizabeth Swan", "company": null, "street1":
         "179 N Harbor Dr", "street2": null, "city": "Redondo Beach", "state": "CA",
         "zip": "90277", "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>",
         "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
         null, "state_tax_id": null, "verifications": {}}, "status": "created", "message":
-        null, "form_url": "https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20240815/e8bf289055f0394f158ca7c0edb6f5dfbf.pdf",
-        "form_file_type": null, "batch_id": "batch_180b18530ca245ab824169b73b26ae6f",
-        "confirmation": null}, {"id": "sf_3f668f1e39ae405db1363110e7bbe3aa", "object":
-        "ScanForm", "created_at": "2024-08-15T19:53:44Z", "updated_at": "2024-08-15T19:53:44Z",
-        "tracking_codes": ["9400100105807075742909"], "address": {"id": "adr_13606e4d5b4011ef98f0ac1f6bc539aa",
-        "object": "Address", "created_at": "2024-08-15T19:53:43+00:00", "updated_at":
-        "2024-08-15T19:53:43+00:00", "name": "Elizabeth Swan", "company": null, "street1":
-        "179 N Harbor Dr", "street2": null, "city": "Redondo Beach", "state": "CA",
-        "zip": "90277", "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>",
-        "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
-        null, "state_tax_id": null, "verifications": {}}, "status": "created", "message":
-        null, "form_url": "https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20240815/e83ec1b26066284098b743dd4ce2be4594.pdf",
-        "form_file_type": null, "batch_id": "batch_18fedb84574b4787a77b7f6a3db400ce",
-        "confirmation": null}, {"id": "sf_3a6b244afc324e9292a0d69ce3081fe7", "object":
-        "ScanForm", "created_at": "2024-08-15T19:53:46Z", "updated_at": "2024-08-15T19:53:46Z",
-        "tracking_codes": ["9400100105807075742923"], "address": {"id": "adr_1459438b5b4011ef995bac1f6bc539aa",
-        "object": "Address", "created_at": "2024-08-15T19:53:44+00:00", "updated_at":
-        "2024-08-15T19:53:44+00:00", "name": "Elizabeth Swan", "company": null, "street1":
-        "179 N Harbor Dr", "street2": null, "city": "Redondo Beach", "state": "CA",
-        "zip": "90277", "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>",
-        "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
-        null, "state_tax_id": null, "verifications": {}}, "status": "created", "message":
-        null, "form_url": "https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20240815/e8b848f4d480d349c6a40b3ea2c34450c2.pdf",
-        "form_file_type": null, "batch_id": "batch_fff5686dc3f646d3a28b3453f8fa7779",
-        "confirmation": null}], "has_more": false}'
+        null, "form_url": "https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20250306/e86b4473047e82445cb481f8060f4f2eec.pdf",
+        "form_file_type": null, "batch_id": "batch_79b95699e2644f198db68d1824c11497",
+        "confirmation": null}, {"id": "sf_83a81b98465f454489ad1591a897f1de", "object":
+        "ScanForm", "created_at": "2025-03-06T19:48:46Z", "updated_at": "2025-03-06T19:48:46Z",
+        "tracking_codes": [], "address": null, "status": "failed", "message": "Unable
+        to create manifest. USPS received too many requests in test mode, please slow
+        down and try again later", "form_url": null, "form_file_type": null, "batch_id":
+        "batch_05022d9288d947048a4f6196e6f2bf1e", "confirmation": null}], "has_more":
+        false}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '2751'
+      - '1361'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -69,25 +53,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62c1f5db66be5ccbe7886226001751cf
+      - 8e8eb62667c9fc1fe2b97bb40018ade5
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb39nuq
+      - bigweb32nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb4nuq c0f5e722d1
-      - extlb2nuq b6e1b5034c
+      - intlb4nuq 51d74985a2
+      - extlb1nuq 99aac35317
       x-runtime:
-      - '0.047345'
+      - '0.101271'
       x-version-label:
-      - easypost-202408151917-1527448f18-master
+      - easypost-202503061913-8f39069a2d-master
       x-xss-protection:
       - 1; mode=block
     status:
