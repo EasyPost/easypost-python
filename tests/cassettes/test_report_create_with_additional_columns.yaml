@@ -21,15 +21,16 @@ interactions:
     uri: https://api.easypost.com/v2/reports/shipment
   response:
     body:
-      string: '{"id": "shprep_898f903c09e44f39a78d2327e8a2804d", "object": "ShipmentReport",
-        "created_at": "2024-08-15T19:53:41Z", "updated_at": "2024-08-15T19:53:41Z",
-        "start_date": "2022-05-04", "end_date": "2022-05-04", "mode": "test", "status":
-        "new", "url": null, "url_expires_at": null, "include_children": false}'
+      string: '{"columns": "created_at,id,tracking_code,status,from_address_id,from_name,from_company,from_street1,from_street2,from_city,from_state,from_zip,from_country,from_residential,to_address_id,to_name,to_company,to_street1,to_street2,to_city,to_state,to_zip,to_country,to_residential,parcel_id,length,width,height,weight,predefined_package,postage_label_created_at,rate_id,service,carrier,rate,insured_value,is_return,refund_status,reference,label_fee,postage_fee,insurance_fee,options,usps_zone,from_name,from_company",
+        "created_at": "2025-03-06T19:48:44Z", "end_date": "2022-05-04", "id": "shprep_62cc578e63f945bf994b8a0513de565c",
+        "include_children": null, "mode": "test", "object": "ShipmentReport", "start_date":
+        "2022-05-04", "status": "new", "updated_at": null, "url": null, "url_expires_at":
+        null, "utc_offset": null}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '283'
+      - '795'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -49,20 +50,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62c1f5da66be5cc5e788620700174c75
+      - 8e8eb62967c9fc1ce2b97b950018ab11
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb41nuq
+      - bigweb38nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb4nuq c0f5e722d1
-      - extlb2nuq b6e1b5034c
+      - intlb4nuq 51d74985a2
+      - extlb1nuq 99aac35317
       x-runtime:
-      - '0.093903'
+      - '0.068570'
       x-version-label:
-      - easypost-202408151917-1527448f18-master
+      - easypost-202503061913-8f39069a2d-master
       x-xss-protection:
       - 1; mode=block
     status:

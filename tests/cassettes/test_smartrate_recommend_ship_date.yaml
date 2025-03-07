@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"from_zip": "94107", "to_zip": "90277", "desired_delivery_date": "2024-08-18",
+    body: '{"from_zip": "94107", "to_zip": "90277", "desired_delivery_date": "2025-03-08",
       "carriers": ["USPS"]}'
     headers:
       Accept:
@@ -22,33 +22,33 @@ interactions:
   response:
     body:
       string: '{"carriers_without_tint_estimates": null, "desired_delivery_date":
-        "2024-08-18", "from_zip": "94107", "results": [{"carrier": "USPS", "easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 1, "percentile_75": 3, "percentile_85":
-        3, "percentile_90": 4, "percentile_95": 4, "percentile_97": 5, "percentile_99":
-        7}, "delivery_date_confidence": 0.01, "estimated_transit_days": 2, "ship_on_date":
-        "2024-08-16"}, "service": "express"}, {"carrier": "USPS", "easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 4, "percentile_75": 4, "percentile_85":
-        4, "percentile_90": 4, "percentile_95": 5, "percentile_97": 6, "percentile_99":
-        8}, "delivery_date_confidence": 0.0, "estimated_transit_days": 3, "ship_on_date":
-        "2024-08-15"}, "service": "groundadvantage"}, {"carrier": "USPS", "easypost_time_in_transit_data":
+        "2025-03-08", "from_zip": "94107", "results": [{"carrier": "USPS", "easypost_time_in_transit_data":
         {"days_in_transit": {"percentile_50": 3, "percentile_75": 3, "percentile_85":
         4, "percentile_90": 4, "percentile_95": 5, "percentile_97": 6, "percentile_99":
-        8}, "delivery_date_confidence": 0.0, "estimated_transit_days": 2, "ship_on_date":
-        "2024-08-16"}, "service": "librarymail"}, {"carrier": "USPS", "easypost_time_in_transit_data":
+        8}, "delivery_date_confidence": 0.38, "estimated_transit_days": 1, "ship_on_date":
+        "2025-03-07"}, "service": "express"}, {"carrier": "USPS", "easypost_time_in_transit_data":
         {"days_in_transit": {"percentile_50": 4, "percentile_75": 4, "percentile_85":
-        4, "percentile_90": 4, "percentile_95": 5, "percentile_97": 6, "percentile_99":
-        8}, "delivery_date_confidence": 0.0, "estimated_transit_days": 3, "ship_on_date":
-        "2024-08-15"}, "service": "mediamail"}, {"carrier": "USPS", "easypost_time_in_transit_data":
-        {"days_in_transit": {"percentile_50": 4, "percentile_75": 4, "percentile_85":
-        4, "percentile_90": 4, "percentile_95": 5, "percentile_97": 6, "percentile_99":
-        8}, "delivery_date_confidence": 0.0, "estimated_transit_days": 3, "ship_on_date":
-        "2024-08-15"}, "service": "priority"}], "saturday_delivery": null, "to_zip":
+        5, "percentile_90": 5, "percentile_95": 6, "percentile_97": 7, "percentile_99":
+        10}, "delivery_date_confidence": 0.03, "estimated_transit_days": 1, "ship_on_date":
+        "2025-03-07"}, "service": "groundadvantage"}, {"carrier": "USPS", "easypost_time_in_transit_data":
+        {"days_in_transit": {"percentile_50": 3, "percentile_75": 4, "percentile_85":
+        5, "percentile_90": 5, "percentile_95": 6, "percentile_97": 7, "percentile_99":
+        8}, "delivery_date_confidence": 0.05, "estimated_transit_days": 1, "ship_on_date":
+        "2025-03-07"}, "service": "librarymail"}, {"carrier": "USPS", "easypost_time_in_transit_data":
+        {"days_in_transit": {"percentile_50": 3, "percentile_75": 4, "percentile_85":
+        5, "percentile_90": 5, "percentile_95": 6, "percentile_97": 7, "percentile_99":
+        10}, "delivery_date_confidence": 0.03, "estimated_transit_days": 1, "ship_on_date":
+        "2025-03-07"}, "service": "mediamail"}, {"carrier": "USPS", "easypost_time_in_transit_data":
+        {"days_in_transit": {"percentile_50": 3, "percentile_75": 4, "percentile_85":
+        5, "percentile_90": 5, "percentile_95": 6, "percentile_97": 7, "percentile_99":
+        10}, "delivery_date_confidence": 0.04, "estimated_transit_days": 1, "ship_on_date":
+        "2025-03-07"}, "service": "priority"}], "saturday_delivery": false, "to_zip":
         "90277"}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '1691'
+      - '1699'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -63,25 +63,27 @@ interactions:
       - chunked
       x-backend:
       - easypost
+      x-canary:
+      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62c1f5d866be5ceae788626b0017718f
+      - 6eaaf90067cb22e9e2aabd97000af3cf
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb40nuq
+      - bigweb43nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb3nuq c0f5e722d1
-      - extlb2nuq b6e1b5034c
+      - intlb4nuq 324e75def6
+      - extlb1nuq 99aac35317
       x-runtime:
-      - '0.050614'
+      - '0.068947'
       x-version-label:
-      - easypost-202408151917-1527448f18-master
+      - easypost-202503070040-19f686ce32-master
       x-xss-protection:
       - 1; mode=block
     status:

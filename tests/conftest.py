@@ -4,8 +4,6 @@ import os
 import warnings
 from typing import (
     Any,
-    Dict,
-    List,
     Tuple,
 )
 
@@ -19,8 +17,8 @@ PARTNER_USER_PROD_API_KEY = os.getenv("PARTNER_USER_PROD_API_KEY", "123")
 REFERRAL_CUSTOMER_PROD_API_KEY = os.getenv("REFERRAL_CUSTOMER_PROD_API_KEY", "123")
 
 SCRUBBED_STRING = "<REDACTED>"
-SCRUBBED_ARRAY: List = []
-SCRUBBED_DICT: Dict = {}
+SCRUBBED_ARRAY: list = []
+SCRUBBED_DICT: dict = {}
 
 
 def pytest_sessionstart(session):
@@ -98,7 +96,7 @@ def vcr_config():
     }
 
 
-def scrub_response_bodies(scrubbers: List[Tuple[str, Any]]) -> Any:
+def scrub_response_bodies(scrubbers: list[Tuple[str, Any]]) -> Any:
     """Scrub sensitive data from response bodies prior to recording the cassette."""
 
     def before_record_response(response: Any) -> Any:
@@ -288,7 +286,7 @@ def basic_pickup():
     If you need to re-record cassettes, increment the date below and ensure it is one day in the future,
     USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
     """
-    pickup_date = "2024-08-17"
+    pickup_date = "2025-03-08"
 
     pickup_data = read_fixture_data()["pickups"]["basic"]
     pickup_data["min_datetime"] = pickup_date
@@ -373,9 +371,9 @@ def rma_form_options():
 
 @pytest.fixture
 def planned_ship_date():
-    return "2024-08-15"
+    return "2025-03-08"
 
 
 @pytest.fixture
 def desired_delivery_date():
-    return "2024-08-18"
+    return "2025-03-08"

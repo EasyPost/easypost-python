@@ -1,7 +1,5 @@
 from typing import (
     Any,
-    Dict,
-    List,
     Optional,
 )
 
@@ -19,9 +17,9 @@ class CarrierMetadataService(BaseService):
 
     def retrieve(
         self,
-        carriers: Optional[List[str]] = None,
-        types: Optional[List[str]] = None,
-    ) -> List[Dict[str, Any]]:
+        carriers: Optional[list[str]] = None,
+        types: Optional[list[str]] = None,
+    ) -> list[dict[str, Any]]:
         """Get metadata for all carriers on the EasyPost platform or specify optional filters."""
         params = {
             "carriers": ",".join(carriers) if carriers else None,

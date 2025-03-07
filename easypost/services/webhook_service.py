@@ -1,6 +1,5 @@
 from typing import (
     Any,
-    Dict,
 )
 
 from easypost.easypost_object import convert_to_easypost_object
@@ -21,7 +20,7 @@ class WebhookService(BaseService):
         """Create a Webhook."""
         return self._create_resource(self._model_class, **params)
 
-    def all(self, **params) -> Dict[str, Any]:
+    def all(self, **params) -> dict[str, Any]:
         """Retrieve a list of Webhooks."""
         return self._all_resources(self._model_class, **params)
 

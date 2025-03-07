@@ -1,6 +1,5 @@
 from typing import (
     Any,
-    Dict,
 )
 
 from easypost.easypost_object import convert_to_easypost_object
@@ -17,7 +16,7 @@ class BetaReferralCustomerService(BaseService):
         stripe_customer_id: str,
         payment_method_reference: str,
         priority: str = "primary",
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Add a Stripe payment method to your EasyPost account.
 
         This endpoint uses a user's personal Stripe account. The `stripe_customer_id`
@@ -42,7 +41,7 @@ class BetaReferralCustomerService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def refund_by_amount(self, refund_amount: int) -> Dict[str, Any]:
+    def refund_by_amount(self, refund_amount: int) -> dict[str, Any]:
         """Refund a ReferralCustomer wallet by specifying an amount."""
         wrapped_params = {"refund_amount": refund_amount}
 
@@ -55,7 +54,7 @@ class BetaReferralCustomerService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def refund_by_payment_log(self, payment_log_id: str) -> Dict[str, Any]:
+    def refund_by_payment_log(self, payment_log_id: str) -> dict[str, Any]:
         """Refund a ReferralCustomer wallet by specifying a payment log ID to completely refund."""
         wrapped_params = {"payment_log_id": payment_log_id}
 

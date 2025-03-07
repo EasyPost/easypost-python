@@ -1,7 +1,5 @@
 from typing import (
     Any,
-    Dict,
-    List,
     Optional,
 )
 
@@ -42,7 +40,7 @@ class CarrierAccountService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def all(self, **params) -> Dict[str, Any]:
+    def all(self, **params) -> dict[str, Any]:
         """Retrieve a list of CarrierAccounts."""
         return self._all_resources(self._model_class, **params)
 
@@ -65,7 +63,7 @@ class CarrierAccountService(BaseService):
         """Delete a CarrierAccount."""
         self._delete_resource(self._model_class, id)
 
-    def types(self) -> List[Dict[str, Any]]:
+    def types(self) -> list[dict[str, Any]]:
         """Get the types of CarrierAccounts available to the User."""
         response = Requestor(self._client).request(method=RequestMethod.GET, url="/carrier_types")
 

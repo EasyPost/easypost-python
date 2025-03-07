@@ -1,6 +1,5 @@
 from typing import (
     Any,
-    Dict,
     Optional,
 )
 
@@ -26,7 +25,7 @@ class AddressService(BaseService):
     ) -> Address:
         """Create an Address."""
         url = self._class_url(self._model_class)
-        wrapped_params = {self._snakecase_name(self._model_class): params}  # type: Dict[str, Any]
+        wrapped_params = {self._snakecase_name(self._model_class): params}  # type: dict[str, Any]
 
         if verify:
             wrapped_params["verify"] = verify
@@ -37,7 +36,7 @@ class AddressService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def all(self, **params) -> Dict[str, Any]:
+    def all(self, **params) -> dict[str, Any]:
         """Retrieve a list of Addresses."""
         filters = {
             "key": "addresses",
@@ -68,10 +67,10 @@ class AddressService(BaseService):
 
     def get_next_page(
         self,
-        addresses: Dict[str, Any],
+        addresses: dict[str, Any],
         page_size: int,
-        optional_params: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        optional_params: Optional[dict[str, Any]] = None,
+    ) -> dict[str, Any]:
         """Retrieve the next page of the list Addresses response."""
         self._check_has_next_page(collection=addresses)
 

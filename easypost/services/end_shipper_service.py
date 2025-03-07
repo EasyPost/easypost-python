@@ -1,6 +1,5 @@
 from typing import (
     Any,
-    Dict,
 )
 
 from easypost.easypost_object import convert_to_easypost_object
@@ -30,7 +29,7 @@ class EndShipperService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def all(self, **params) -> Dict[str, Any]:
+    def all(self, **params) -> dict[str, Any]:
         """Retrieve a list of EndShippers."""
         return self._all_resources(self._service_class, **params)
 

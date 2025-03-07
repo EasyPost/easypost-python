@@ -7,8 +7,6 @@ from enum import Enum
 from json import JSONDecodeError
 from typing import (
     Any,
-    Dict,
-    List,
     Optional,
     Tuple,
     Union,
@@ -49,7 +47,7 @@ from easypost.errors import (
 )
 
 
-STATUS_CODE_TO_ERROR_MAPPING: Dict[int, Any] = {
+STATUS_CODE_TO_ERROR_MAPPING: dict[int, Any] = {
     400: BadRequestError,
     401: UnauthorizedError,
     402: PaymentError,
@@ -78,7 +76,7 @@ class Requestor:
         self._client = client
 
     @classmethod
-    def _objects_to_ids(cls, param: Dict[str, Any]) -> Dict[str, Any]:
+    def _objects_to_ids(cls, param: dict[str, Any]) -> dict[str, Any]:
         """If providing an object as a parameter to another object,
         only pass along the ID so the API will use the object reference correctly.
         """
@@ -97,10 +95,10 @@ class Requestor:
 
     @staticmethod
     def form_encode_params(
-        data: Dict[str, Any],
-        parent_keys: Optional[List[str]] = None,
-        parent_dict: Optional[Dict[str, Any]] = None,
-    ) -> Dict:
+        data: dict[str, Any],
+        parent_keys: Optional[list[str]] = None,
+        parent_dict: Optional[dict[str, Any]] = None,
+    ) -> dict:
         """Form-encode a multi-layer dictionary to a one-layer dictionary."""
         result = parent_dict or {}
         keys = parent_keys or []
@@ -116,7 +114,7 @@ class Requestor:
         return result
 
     @staticmethod
-    def _build_dict_key(keys: List[str]) -> str:
+    def _build_dict_key(keys: list[str]) -> str:
         """Build a dict key from a list of keys.
         Example: [code, number] -> code[number]
         """
@@ -131,9 +129,9 @@ class Requestor:
         self,
         method: RequestMethod,
         url: str,
-        params: Optional[Dict[str, Any]] = None,
+        params: Optional[dict[str, Any]] = None,
         beta: bool = False,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Make a request to the EasyPost API."""
         if params is None:
             params = {}
@@ -153,7 +151,7 @@ class Requestor:
         self,
         method: RequestMethod,
         url: str,
-        params: Optional[Dict[str, Any]] = None,
+        params: Optional[dict[str, Any]] = None,
         beta: bool = False,
     ) -> Tuple[str, int]:
         """Internal logic required to make a request to the EasyPost API."""
@@ -239,7 +237,7 @@ class Requestor:
 
         return http_body, http_status
 
-    def interpret_response(self, http_body: str, http_status: int) -> Dict[str, Any]:
+    def interpret_response(self, http_body: str, http_status: int) -> dict[str, Any]:
         """Interpret the response body we receive from the API."""
         if http_status == 204:
             # HTTP 204 does not have any response body and we can just return here
@@ -259,9 +257,9 @@ class Requestor:
         self,
         method: RequestMethod,
         abs_url: str,
-        headers: Dict[str, Any],
-        params: Dict[str, Any],
-    ) -> Tuple[str, int, Dict[str, Any]]:
+        headers: dict[str, Any],
+        params: dict[str, Any],
+    ) -> Tuple[str, int, dict[str, Any]]:
         """Make a request by using the `request` library."""
         if method in [RequestMethod.GET, RequestMethod.DELETE]:
             url_params = params
@@ -299,9 +297,9 @@ class Requestor:
         self,
         method: RequestMethod,
         abs_url: str,
-        headers: Dict[str, Any],
-        params: Dict[str, Any],
-    ) -> Tuple[str, int, Dict[str, Any]]:
+        headers: dict[str, Any],
+        params: dict[str, Any],
+    ) -> Tuple[str, int, dict[str, Any]]:
         """Make a request by using the `urlfetch` library."""
         fetch_args = {
             "method": method.value,
@@ -329,7 +327,7 @@ class Requestor:
 
         return result.content, result.status_code, result.headers
 
-    def handle_api_error(self, http_status: int, http_body: str, response: Dict[str, Any]) -> None:
+    def handle_api_error(self, http_status: int, http_body: str, response: dict[str, Any]) -> None:
         """Handles API errors returned from the EasyPost API."""
         try:
             error = response["error"]
@@ -357,7 +355,7 @@ class Requestor:
             return value.decode(encoding="utf-8")
         return value
 
-    def encode_url_params(self, params: Dict[str, Any], method: RequestMethod) -> Union[str, None]:
+    def encode_url_params(self, params: dict[str, Any], method: RequestMethod) -> Union[str, None]:
         """Encode params for a URL."""
         if method not in [RequestMethod.GET, RequestMethod.DELETE]:
             raise EasyPostError(INVALID_REQUEST_PARAMETERS_ERROR)
@@ -373,7 +371,7 @@ class Requestor:
 
         return urlencode(query=converted_params)
 
-    def add_params_to_url(self, url: str, params: Dict[str, Any], method: RequestMethod) -> str:
+    def add_params_to_url(self, url: str, params: dict[str, Any], method: RequestMethod) -> str:
         """Add params to the URL."""
         if method not in [RequestMethod.GET, RequestMethod.DELETE]:
             raise EasyPostError(INVALID_REQUEST_PARAMETERS_ERROR)

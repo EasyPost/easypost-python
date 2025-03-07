@@ -36,8 +36,7 @@ def test_address_create_verify(incorrect_address, test_client):
 
     # Delivery verification assertions
     assert address.verifications.delivery.success is False
-    # TODO: details is not deserializing correctly, related to the larger "double EasyPostObject" wrapping issue
-    # assert address.verifications.delivery.details == {}
+    assert address.verifications.delivery.details.to_dict() == {}
     assert address.verifications.delivery.errors[0].code == "E.ADDRESS.NOT_FOUND"
     assert address.verifications.delivery.errors[0].field == "address"
     assert address.verifications.delivery.errors[0].suggestion is None

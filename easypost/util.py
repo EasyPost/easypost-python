@@ -4,8 +4,6 @@ import json
 import unicodedata
 from typing import (
     Any,
-    Dict,
-    List,
     Optional,
     Union,
 )
@@ -29,9 +27,9 @@ from easypost.models.rate import Rate
 
 
 def get_lowest_object_rate(
-    easypost_object: Union[EasyPostObject, Dict[str, Any]],
-    carriers: Optional[List[str]] = None,
-    services: Optional[List[str]] = None,
+    easypost_object: Union[EasyPostObject, dict[str, Any]],
+    carriers: Optional[list[str]] = None,
+    services: Optional[list[str]] = None,
     rates_key: str = "rates",
 ) -> Rate:
     """Gets the lowest rate of an EasyPost object such as a Shipment, Order, or Pickup."""
@@ -55,7 +53,7 @@ def get_lowest_object_rate(
     return lowest_rate
 
 
-def get_lowest_smart_rate(smart_rates: List[Rate], delivery_days: int, delivery_accuracy: str) -> Rate:
+def get_lowest_smart_rate(smart_rates: list[Rate], delivery_days: int, delivery_accuracy: str) -> Rate:
     """Get the lowest SmartRate from a list of SmartRates."""
     valid_delivery_accuracy_values = {
         "percentile_50",
@@ -84,10 +82,10 @@ def get_lowest_smart_rate(smart_rates: List[Rate], delivery_days: int, delivery_
 
 
 def get_lowest_stateless_rate(
-    stateless_rates: List[Dict[str, Any]],
-    carriers: Optional[List[str]] = None,
-    services: Optional[List[str]] = None,
-) -> Dict[str, Any]:
+    stateless_rates: list[dict[str, Any]],
+    carriers: Optional[list[str]] = None,
+    services: Optional[list[str]] = None,
+) -> dict[str, Any]:
     """Get the lowest stateless rate."""
     carriers = carriers or []
     services = services or []
@@ -102,7 +100,7 @@ def get_lowest_stateless_rate(
         ):
             continue
 
-        if lowest_rate is None or float(rate.rate) < float(lowest_rate.rate):
+        if lowest_rate is None or float(rate["rate"]) < float(lowest_rate["rate"]):
             lowest_rate = rate
 
     if lowest_rate is None:
@@ -116,7 +114,7 @@ def receive_event(raw_input: str):
     return convert_to_easypost_object(response=json.loads(raw_input))
 
 
-def validate_webhook(event_body: bytes, headers: Dict[str, Any], webhook_secret: str) -> Dict[str, Any]:
+def validate_webhook(event_body: bytes, headers: dict[str, Any], webhook_secret: str) -> dict[str, Any]:
     """Validate a webhook by comparing the HMAC signature header sent from EasyPost to your shared secret.
     If the signatures do not match, an error will be raised signifying the webhook either did not originate
     from EasyPost or the secrets do not match. If the signatures do match, the `event_body` will be returned

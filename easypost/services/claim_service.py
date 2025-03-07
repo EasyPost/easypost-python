@@ -1,6 +1,5 @@
 from typing import (
     Any,
-    Dict,
     Optional,
 )
 
@@ -26,7 +25,7 @@ class ClaimService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def all(self, **params) -> Dict[str, Any]:
+    def all(self, **params) -> dict[str, Any]:
         """Retrieve a list of Claims."""
         filters = {
             "key": "claims",
@@ -40,10 +39,10 @@ class ClaimService(BaseService):
 
     def get_next_page(
         self,
-        claims: Dict[str, Any],
+        claims: dict[str, Any],
         page_size: int,
-        optional_params: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        optional_params: Optional[dict[str, Any]] = None,
+    ) -> dict[str, Any]:
         """Retrieve the next page of the list Claim response."""
         self._check_has_next_page(collection=claims)
 

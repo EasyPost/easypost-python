@@ -1,5 +1,4 @@
 from typing import (
-    List,
     Optional,
 )
 
@@ -9,7 +8,7 @@ from easypost.util import get_lowest_object_rate
 
 
 class Shipment(EasyPostObject):
-    def lowest_rate(self, carriers: Optional[List[str]] = None, services: Optional[List[str]] = None) -> Rate:
+    def lowest_rate(self, carriers: Optional[list[str]] = None, services: Optional[list[str]] = None) -> Rate:
         """Get the lowest rate of this shipment."""
         lowest_rate = get_lowest_object_rate(self, carriers, services)
 

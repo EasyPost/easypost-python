@@ -1,6 +1,5 @@
 from typing import (
     Any,
-    Dict,
     Optional,
 )
 
@@ -22,7 +21,7 @@ class BatchService(BaseService):
         """Create a Batch."""
         return self._create_resource(self._model_class, **params)
 
-    def all(self, **params) -> Dict[str, Any]:
+    def all(self, **params) -> dict[str, Any]:
         """Retrieve a list of Batches."""
         filters = {
             "key": "batches",
@@ -76,10 +75,10 @@ class BatchService(BaseService):
 
     def get_next_page(
         self,
-        batches: Dict[str, Any],
+        batches: dict[str, Any],
         page_size: int,
-        optional_params: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        optional_params: Optional[dict[str, Any]] = None,
+    ) -> dict[str, Any]:
         """
         Retrieve the next page of the list Batch response.
 

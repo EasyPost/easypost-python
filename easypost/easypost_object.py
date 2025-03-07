@@ -3,15 +3,13 @@ import json
 import re
 from typing import (
     Any,
-    Dict,
-    List,
     Optional,
 )
 
 from easypost.constant import NO_ATTRIBUTE_ERROR
 
 
-EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP: Dict[str, Any] = {
+EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP: dict[str, Any] = {
     "adr": "Address",
     "ak": "ApiKey",
     "batch": "Batch",
@@ -44,7 +42,7 @@ EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP: Dict[str, Any] = {
     "user": "User",
 }
 
-OBJECT_CLASS_NAME_OVERRIDES: Dict[str, Any] = {
+OBJECT_CLASS_NAME_OVERRIDES: dict[str, Any] = {
     "CashFlowReport": "Report",
     "PaymentLogReport": "Report",
     "RefundReport": "Report",
@@ -55,7 +53,7 @@ OBJECT_CLASS_NAME_OVERRIDES: Dict[str, Any] = {
 
 
 def convert_to_easypost_object(
-    response: Dict[str, Any],
+    response: dict[str, Any],
     parent: object = None,
     name: Optional[str] = None,
 ):
@@ -147,17 +145,17 @@ class EasyPostObject(object):
         setattr(self, k, v)
 
     @property
-    def keys(self) -> List[str]:
+    def keys(self) -> list[str]:
         return self._values.keys()
 
     @property
-    def values(self) -> List[Any]:
+    def values(self) -> list[Any]:
         return self._values.keys()
 
     @classmethod
     def construct_from(
         cls,
-        values: Dict[str, Any],
+        values: dict[str, Any],
         parent: object = None,
         name: Optional[str] = None,
     ) -> object:
@@ -167,7 +165,7 @@ class EasyPostObject(object):
 
         return instance
 
-    def convert_each_value(self, values: Dict[str, Any]) -> None:
+    def convert_each_value(self, values: dict[str, Any]) -> None:
         """Convert each value of a response into an EasyPostObject."""
         for k, v in sorted(values.items()):
             if k == "id" and self.id != v:
@@ -186,7 +184,12 @@ class EasyPostObject(object):
 
         json_string = json.dumps(obj=self.to_dict(), sort_keys=True, indent=2, cls=EasyPostObjectEncoder)
 
-        return "<%s%s at %s> JSON: %s" % (type(self).__name__, type_string, hex(id(self)), json_string)
+        return "<%s%s at %s> JSON: %s" % (
+            type(self).__name__,
+            type_string,
+            hex(id(self)),
+            json_string,
+        )
 
     def __str__(self) -> str:
         return self.to_json(indent=2)
@@ -200,7 +203,7 @@ class EasyPostObject(object):
         """Convert current object to json string."""
         return json.dumps(obj=self.to_dict(), sort_keys=True, indent=indent, cls=EasyPostObjectEncoder)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Convert current object to a dict."""
 
         def _serialize(o):

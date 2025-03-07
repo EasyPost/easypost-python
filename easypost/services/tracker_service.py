@@ -1,6 +1,5 @@
 from typing import (
     Any,
-    Dict,
     Optional,
 )
 
@@ -18,7 +17,7 @@ class TrackerService(BaseService):
         """Create a Tracker."""
         return self._create_resource(self._model_class, **params)
 
-    def all(self, **params) -> Dict[str, Any]:
+    def all(self, **params) -> dict[str, Any]:
         """Retrieve a list of Trackers."""
         filters = {
             "key": "trackers",
@@ -35,10 +34,10 @@ class TrackerService(BaseService):
 
     def get_next_page(
         self,
-        trackers: Dict[str, Any],
+        trackers: dict[str, Any],
         page_size: int,
-        optional_params: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        optional_params: Optional[dict[str, Any]] = None,
+    ) -> dict[str, Any]:
         """Retrieve the next page of the list Tracker response."""
         self._check_has_next_page(collection=trackers)
 

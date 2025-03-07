@@ -198,13 +198,13 @@ def test_shipment_lowest_rate(full_shipment, test_client):
     # Test lowest rate with no filters
     lowest_rate = shipment.lowest_rate()
     assert lowest_rate.service == "GroundAdvantage"
-    assert lowest_rate.rate == "5.93"
+    assert lowest_rate.rate == "6.07"
     assert lowest_rate.carrier == "USPS"
 
     # Test lowest rate with service filter (this rate is higher than the lowest but should filter)
     lowest_rate_service = shipment.lowest_rate(services=["Priority"])
     assert lowest_rate_service.service == "Priority"
-    assert lowest_rate_service.rate == "6.90"
+    assert lowest_rate_service.rate == "7.42"
     assert lowest_rate_service.carrier == "USPS"
 
     # Test lowest rate with carrier filter (should error due to bad carrier)
@@ -224,7 +224,7 @@ def test_shipment_lowest_smart_rate(basic_shipment, test_client):
         delivery_accuracy="percentile_90",
     )
     assert lowest_smart_rate_filters["service"] == "GroundAdvantage"
-    assert lowest_smart_rate_filters["rate"] == 5.93
+    assert lowest_smart_rate_filters["rate"] == 6.07
     assert lowest_smart_rate_filters["carrier"] == "USPS"
 
     # Test lowest smart_rate with invalid filters (should error due to strict delivery_days)
@@ -258,7 +258,7 @@ def test_shipment_get_lowest_smart_rate(basic_shipment, test_client):
         delivery_accuracy="percentile_90",
     )
     assert lowest_smart_rate_filters["service"] == "GroundAdvantage"
-    assert lowest_smart_rate_filters["rate"] == 5.93
+    assert lowest_smart_rate_filters["rate"] == 6.07
     assert lowest_smart_rate_filters["carrier"] == "USPS"
 
     # Test lowest smart_rate with invalid filters (should error due to strict delivery_days)
@@ -312,7 +312,7 @@ def test_shipment_buy_with_end_shipper_id(ca_address_1, basic_shipment, test_cli
 
 
 @pytest.mark.vcr()
-def test_retrieve_estimated_delivery_date(basic_shipment, planned_ship_date, test_client):
+def test_shipment_retrieve_estimated_delivery_date(basic_shipment, planned_ship_date, test_client):
     """Tests that we retrieve time-in-transit data for each of the Rates of a Shipment."""
     shipment = test_client.shipment.create(**basic_shipment)
 

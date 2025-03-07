@@ -16,9 +16,12 @@ interactions:
     uri: https://api.easypost.com/v2/carrier_types
   response:
     body:
-      string: '[{"object": "CarrierType", "type": "AccurateAccount", "readable": "Accurate",
-        "logo": null, "fields": []}, {"object": "CarrierType", "type": "AmazonMwsAccount",
-        "readable": "Amazon MWS", "logo": null, "fields": []}, {"object": "CarrierType",
+      string: '[{"object": "CarrierType", "type": "UpsAccount", "readable": "UPS",
+        "logo": null, "fields": []}, {"object": "CarrierType", "type": "UpsMailInnovationsAccount",
+        "readable": "UPS Mail Innovations", "logo": null, "fields": []}, {"object":
+        "CarrierType", "type": "AccurateAccount", "readable": "Accurate", "logo":
+        null, "fields": []}, {"object": "CarrierType", "type": "AmazonShippingAccount",
+        "readable": "Amazon Shipping", "logo": null, "fields": []}, {"object": "CarrierType",
         "type": "ApcAccount", "readable": "APC", "logo": null, "fields": []}, {"object":
         "CarrierType", "type": "AsendiaUsaAccount", "readable": "Asendia USA", "logo":
         null, "fields": []}, {"object": "CarrierType", "type": "AustraliaPostAccount",
@@ -39,10 +42,10 @@ interactions:
         "readable": "Deliver-It", "logo": null, "fields": []}, {"object": "CarrierType",
         "type": "DeutschePostUKAccount", "readable": "Deutsche Post UK", "logo": null,
         "fields": []}, {"object": "CarrierType", "type": "DhlEcsAccount", "readable":
-        "DHL eCommerce Solutions", "logo": null, "fields": []}, {"object": "CarrierType",
-        "type": "DhlExpressAccount", "readable": "DHL Express", "logo": null, "fields":
-        []}, {"object": "CarrierType", "type": "DhlPaketAccount", "readable": "DHL
-        Paket", "logo": null, "fields": []}, {"object": "CarrierType", "type": "DhlParcelAccount",
+        "DHL eCommerce", "logo": null, "fields": []}, {"object": "CarrierType", "type":
+        "DhlExpressAccount", "readable": "DHL Express", "logo": null, "fields": []},
+        {"object": "CarrierType", "type": "DhlPaketAccount", "readable": "DHL Paket",
+        "logo": null, "fields": []}, {"object": "CarrierType", "type": "DhlParcelAccount",
         "readable": "DHL Parcel", "logo": null, "fields": []}, {"object": "CarrierType",
         "type": "DoorDashAccount", "readable": "DoorDash", "logo": null, "fields":
         []}, {"object": "CarrierType", "type": "DouglasAccount", "readable": "Douglas",
@@ -50,15 +53,14 @@ interactions:
         "readable": "DPD", "logo": null, "fields": []}, {"object": "CarrierType",
         "type": "DpdUkAccount", "readable": "DPD UK", "logo": null, "fields": []},
         {"object": "CarrierType", "type": "DpdNlAccount", "readable": "DPD NL", "logo":
-        null, "fields": []}, {"object": "CarrierType", "type": "EPostGlobalV2Account",
-        "readable": "EPost Global V2", "logo": null, "fields": []}, {"object": "CarrierType",
-        "type": "EstafetaAccount", "readable": "Estafeta", "logo": null, "fields":
-        []}, {"object": "CarrierType", "type": "FedexAccount", "readable": "FedEx",
-        "logo": null, "fields": []}, {"object": "CarrierType", "type": "FedexCrossBorderAccount",
-        "readable": "FedEx Cross Border", "logo": null, "fields": []}, {"object":
-        "CarrierType", "type": "FedexMailviewAccount", "readable": "FedEx MailView",
-        "logo": null, "fields": []}, {"object": "CarrierType", "type": "FedexSmartpostAccount",
-        "readable": "FedEx SmartPost", "logo": null, "fields": []}, {"object": "CarrierType",
+        null, "fields": []}, {"object": "CarrierType", "type": "EstafetaAccount",
+        "readable": "Estafeta", "logo": null, "fields": []}, {"object": "CarrierType",
+        "type": "FedexAccount", "readable": "FedEx", "logo": null, "fields": []},
+        {"object": "CarrierType", "type": "FedexCrossBorderAccount", "readable": "FedEx
+        Cross Border", "logo": null, "fields": []}, {"object": "CarrierType", "type":
+        "FedexMailviewAccount", "readable": "FedEx MailView", "logo": null, "fields":
+        []}, {"object": "CarrierType", "type": "FedexSmartpostAccount", "readable":
+        "FedEx SmartPost", "logo": null, "fields": []}, {"object": "CarrierType",
         "type": "FirstChoiceAccount", "readable": "First Choice", "logo": null, "fields":
         []}, {"object": "CarrierType", "type": "FirstMileConciseAccount", "readable":
         "First Mile", "logo": null, "fields": []}, {"object": "CarrierType", "type":
@@ -77,50 +79,47 @@ interactions:
         "LaserShipV2", "logo": null, "fields": []}, {"object": "CarrierType", "type":
         "LoomisExpressAccount", "readable": "Loomis Express", "logo": null, "fields":
         []}, {"object": "CarrierType", "type": "LsoAccount", "readable": "LSO", "logo":
-        null, "fields": []}, {"object": "CarrierType", "type": "OmniParcelAccount",
+        null, "fields": []}, {"object": "CarrierType", "type": "MaerskAccount", "readable":
+        "Maersk", "logo": null, "fields": []}, {"object": "CarrierType", "type": "OmniParcelAccount",
         "readable": "OmniParcel", "logo": null, "fields": []}, {"object": "CarrierType",
         "type": "OntracAccount", "readable": "OnTrac", "logo": null, "fields": []},
         {"object": "CarrierType", "type": "OntracV3Account", "readable": "OnTrac V3",
         "logo": null, "fields": []}, {"object": "CarrierType", "type": "OptimaAccount",
         "readable": "Optima", "logo": null, "fields": []}, {"object": "CarrierType",
         "type": "OsmWorldwideAccount", "readable": "OSM Worldwide", "logo": null,
-        "fields": []}, {"object": "CarrierType", "type": "PandionAccount", "readable":
-        "Pandion", "logo": null, "fields": []}, {"object": "CarrierType", "type":
-        "ParcelForceAccount", "readable": "Parcel Force", "logo": null, "fields":
-        []}, {"object": "CarrierType", "type": "ParcllAccount", "readable": "Cirro
-        E-Commerce", "logo": null, "fields": []}, {"object": "CarrierType", "type":
-        "PassportGlobalAccount", "readable": "Passport Global", "logo": null, "fields":
-        []}, {"object": "CarrierType", "type": "PurolatorAccount", "readable": "Purolator",
-        "logo": null, "fields": []}, {"object": "CarrierType", "type": "QuickAccount",
-        "readable": "Quick", "logo": null, "fields": []}, {"object": "CarrierType",
-        "type": "RoyalMailAccount", "readable": "Royal Mail", "logo": null, "fields":
-        []}, {"object": "CarrierType", "type": "RRDonnelleyAccount", "readable": "ePost
-        Global", "logo": null, "fields": []}, {"object": "CarrierType", "type": "SendleAccount",
-        "readable": "Sendle", "logo": null, "fields": []}, {"object": "CarrierType",
-        "type": "SfExpressAccount", "readable": "SF Express", "logo": null, "fields":
-        []}, {"object": "CarrierType", "type": "SmartKargoAccount", "readable": "SmartKargo",
-        "logo": null, "fields": []}, {"object": "CarrierType", "type": "SonicAccount",
-        "readable": "Sonic", "logo": null, "fields": []}, {"object": "CarrierType",
+        "fields": []}, {"object": "CarrierType", "type": "ParcelForceAccount", "readable":
+        "Parcel Force", "logo": null, "fields": []}, {"object": "CarrierType", "type":
+        "ParcllAccount", "readable": "Cirro E-Commerce", "logo": null, "fields": []},
+        {"object": "CarrierType", "type": "PassportGlobalAccount", "readable": "Passport
+        Global", "logo": null, "fields": []}, {"object": "CarrierType", "type": "PurolatorAccount",
+        "readable": "Purolator", "logo": null, "fields": []}, {"object": "CarrierType",
+        "type": "QuickAccount", "readable": "Quick", "logo": null, "fields": []},
+        {"object": "CarrierType", "type": "RoverAccount", "readable": "Rover", "logo":
+        null, "fields": []}, {"object": "CarrierType", "type": "RoyalMailV3Account",
+        "readable": "Royal Mail V3", "logo": null, "fields": []}, {"object": "CarrierType",
+        "type": "RRDonnelleyAccount", "readable": "ePost Global", "logo": null, "fields":
+        []}, {"object": "CarrierType", "type": "SendleAccount", "readable": "Sendle",
+        "logo": null, "fields": []}, {"object": "CarrierType", "type": "SfExpressAccount",
+        "readable": "SF Express", "logo": null, "fields": []}, {"object": "CarrierType",
+        "type": "SmartKargoAccount", "readable": "SmartKargo", "logo": null, "fields":
+        []}, {"object": "CarrierType", "type": "SonicAccount", "readable": "Sonic",
+        "logo": null, "fields": []}, {"object": "CarrierType", "type": "SpeedXAccount",
+        "readable": "SpeedX", "logo": null, "fields": []}, {"object": "CarrierType",
         "type": "SpeedeeAccount", "readable": "Spee-Dee", "logo": null, "fields":
-        []}, {"object": "CarrierType", "type": "SwyftAccount", "readable": "Swyft",
-        "logo": null, "fields": []}, {"object": "CarrierType", "type": "TccAccount",
-        "readable": "Tcc", "logo": null, "fields": []}, {"object": "CarrierType",
-        "type": "TforceConciseAccount", "readable": "TForce", "logo": null, "fields":
-        []}, {"object": "CarrierType", "type": "TollAccount", "readable": "Toll",
-        "logo": null, "fields": []}, {"object": "CarrierType", "type": "UdsAccount",
-        "readable": "UDS", "logo": null, "fields": []}, {"object": "CarrierType",
-        "type": "UpsAccount", "readable": "UPS", "logo": null, "fields": []}, {"object":
-        "CarrierType", "type": "UpsIparcelAccount", "readable": "UPS i-Parcel", "logo":
-        null, "fields": []}, {"object": "CarrierType", "type": "UpsMailInnovationsAccount",
-        "readable": "UPS Mail Innovations", "logo": null, "fields": []}, {"object":
-        "CarrierType", "type": "UspsAccount", "readable": "USPS", "logo": null, "fields":
-        []}, {"object": "CarrierType", "type": "VehoAccount", "readable": "Veho",
-        "logo": null, "fields": []}]'
+        []}, {"object": "CarrierType", "type": "SwayAccount", "readable": "Sway",
+        "logo": null, "fields": []}, {"object": "CarrierType", "type": "SwyftAccount",
+        "readable": "Swyft", "logo": null, "fields": []}, {"object": "CarrierType",
+        "type": "TccAccount", "readable": "Tcc", "logo": null, "fields": []}, {"object":
+        "CarrierType", "type": "TforceConciseAccount", "readable": "TForce", "logo":
+        null, "fields": []}, {"object": "CarrierType", "type": "UdsAccount", "readable":
+        "UDS", "logo": null, "fields": []}, {"object": "CarrierType", "type": "UspsAccount",
+        "readable": "USPS", "logo": null, "fields": []}, {"object": "CarrierType",
+        "type": "VehoAccount", "readable": "Veho", "logo": null, "fields": []}]'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '41628'
+      - '42374'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -140,20 +139,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62c1f5d966be5c79e7885e230017015f
+      - 8e8eb62967c9fbebe2b97a8d00187174
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb41nuq
+      - bigweb42nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb4nuq c0f5e722d1
-      - extlb2nuq b6e1b5034c
+      - intlb3nuq 51d74985a2
+      - extlb1nuq 99aac35317
       x-runtime:
-      - '0.027471'
+      - '0.058157'
       x-version-label:
-      - easypost-202408151917-1527448f18-master
+      - easypost-202503061913-8f39069a2d-master
       x-xss-protection:
       - 1; mode=block
     status:

@@ -1,6 +1,5 @@
 from typing import (
     Any,
-    Dict,
     Optional,
 )
 
@@ -22,7 +21,7 @@ class PickupService(BaseService):
         """Create a Pickup."""
         return self._create_resource(self._model_class, **params)
 
-    def all(self, **params) -> Dict[str, Any]:
+    def all(self, **params) -> dict[str, Any]:
         """Retrieve a list of Pickups."""
         filters = {
             "key": "pickups",
@@ -36,10 +35,10 @@ class PickupService(BaseService):
 
     def get_next_page(
         self,
-        pickups: Dict[str, Any],
+        pickups: dict[str, Any],
         page_size: int,
-        optional_params: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        optional_params: Optional[dict[str, Any]] = None,
+    ) -> dict[str, Any]:
         """Retrieve the next page of the list Pickup response."""
         self._check_has_next_page(collection=pickups)
 

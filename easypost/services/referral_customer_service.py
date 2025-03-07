@@ -1,7 +1,6 @@
 from copy import deepcopy
 from typing import (
     Any,
-    Dict,
     Optional,
 )
 
@@ -59,7 +58,7 @@ class ReferralCustomerService(BaseService):
             params=wrapped_params,
         )
 
-    def all(self, **params) -> Dict[str, Any]:
+    def all(self, **params) -> dict[str, Any]:
         """Retrieve a list of referral customers.
 
         This function requires the Partner User's API key.
@@ -78,10 +77,10 @@ class ReferralCustomerService(BaseService):
 
     def get_next_page(
         self,
-        referral_customers: Dict[str, Any],
+        referral_customers: dict[str, Any],
         page_size: int,
-        optional_params: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        optional_params: Optional[dict[str, Any]] = None,
+    ) -> dict[str, Any]:
         """Retrieve next page of referral customers."""
         self._check_has_next_page(collection=referral_customers)
 
@@ -103,7 +102,7 @@ class ReferralCustomerService(BaseService):
         expiration_year: int,
         cvc: str,
         priority: str = "primary",
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Add credit card to a referral customer.
 
         This function requires the ReferralCustomer User's API key.
@@ -145,7 +144,7 @@ class ReferralCustomerService(BaseService):
         expiration_year: int,
         cvc: str,
         easypost_stripe_key: str,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Get credit card token from Stripe."""
         headers = {
             # This Stripe endpoint only accepts URL form encoded bodies
@@ -179,7 +178,7 @@ class ReferralCustomerService(BaseService):
         referral_api_key: str,
         stripe_object_id: str,
         priority: str = "primary",
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Submit Stripe credit card token to EasyPost."""
         params = {
             "credit_card": {

@@ -1,6 +1,5 @@
 from typing import (
     Any,
-    Dict,
     Optional,
 )
 
@@ -17,7 +16,7 @@ class ScanFormService(BaseService):
         """Create a ScanForm."""
         return self._create_resource(self._model_class, **params)
 
-    def all(self, **params) -> Dict[str, Any]:
+    def all(self, **params) -> dict[str, Any]:
         """Retrieve a list of ScanForms."""
         filters = {
             "key": "scan_forms",
@@ -31,10 +30,10 @@ class ScanFormService(BaseService):
 
     def get_next_page(
         self,
-        scan_forms: Dict[str, Any],
+        scan_forms: dict[str, Any],
         page_size: int,
-        optional_params: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+        optional_params: Optional[dict[str, Any]] = None,
+    ) -> dict[str, Any]:
         """Retrieve the next page of the list ScanForm response."""
         self._check_has_next_page(collection=scan_forms)
 

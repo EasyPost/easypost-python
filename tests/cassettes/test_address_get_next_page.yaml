@@ -16,23 +16,23 @@ interactions:
     uri: https://api.easypost.com/v2/addresses?page_size=5
   response:
     body:
-      string: '{"addresses": [{"id": "adr_cdba15145b3f11ef936dac1f6bc53342", "object":
-        "Address", "created_at": "2024-08-15T19:51:46+00:00", "updated_at": "2024-08-15T19:51:46+00:00",
+      string: '{"addresses": [{"id": "adr_d128ff74fac311efa7a7ac1f6bc539ae", "object":
+        "Address", "created_at": "2025-03-06T19:47:20+00:00", "updated_at": "2025-03-06T19:47:20+00:00",
         "name": "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
         "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
         "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
         null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
-        {}}, {"id": "adr_cd8fcb275b3f11ef9363ac1f6bc53342", "object": "Address", "created_at":
-        "2024-08-15T19:51:46+00:00", "updated_at": "2024-08-15T19:51:46+00:00", "name":
+        {}}, {"id": "adr_d10f7a27fac311efa796ac1f6bc539ae", "object": "Address", "created_at":
+        "2025-03-06T19:47:20+00:00", "updated_at": "2025-03-06T19:47:20+00:00", "name":
         "JACK SPARROW", "company": null, "street1": "388 TOWNSEND ST APT 20", "street2":
         null, "city": "SAN FRANCISCO", "state": "CA", "zip": "94107-1670", "country":
         "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
         null, "residential": true, "federal_tax_id": null, "state_tax_id": null, "verifications":
         {"zip4": {"success": true, "errors": [], "details": null}, "delivery": {"success":
         true, "errors": [], "details": {"latitude": 37.77551, "longitude": -122.39697,
-        "time_zone": "America/Los_Angeles"}}}}, {"id": "adr_cd5f77af5b3f11efb4baac1f6bc539aa",
-        "object": "Address", "created_at": "2024-08-15T19:51:45+00:00", "updated_at":
-        "2024-08-15T19:51:45+00:00", "name": null, "company": "EasyPost", "street1":
+        "time_zone": "America/Los_Angeles"}}}}, {"id": "adr_d0f2ba11fac311ef9cfd3cecef1b359e",
+        "object": "Address", "created_at": "2025-03-06T19:47:20+00:00", "updated_at":
+        "2025-03-06T19:47:20+00:00", "name": null, "company": "EasyPost", "street1":
         "000 unknown street", "street2": null, "city": "Not A City", "state": "ZZ",
         "zip": "00001", "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>",
         "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
@@ -40,15 +40,15 @@ interactions:
         [{"code": "E.ADDRESS.NOT_FOUND", "field": "address", "message": "Address not
         found", "suggestion": null}], "details": null}, "delivery": {"success": false,
         "errors": [{"code": "E.ADDRESS.NOT_FOUND", "field": "address", "message":
-        "Address not found", "suggestion": null}], "details": {}}}}, {"id": "adr_cd4cd5d85b3f11ef9344ac1f6bc53342",
-        "object": "Address", "created_at": "2024-08-15T19:51:45+00:00", "updated_at":
-        "2024-08-15T19:51:45+00:00", "name": null, "company": "EasyPost", "street1":
+        "Address not found", "suggestion": null}], "details": {}}}}, {"id": "adr_d0e54933fac311ef8140ac1f6bc53342",
+        "object": "Address", "created_at": "2025-03-06T19:47:20+00:00", "updated_at":
+        "2025-03-06T19:47:20+00:00", "name": null, "company": "EasyPost", "street1":
         "000 unknown street", "street2": null, "city": "Not A City", "state": "ZZ",
         "zip": "00001", "country": "US", "phone": "<REDACTED>", "email": "<REDACTED>",
         "mode": "test", "carrier_facility": null, "residential": null, "federal_tax_id":
-        null, "state_tax_id": null, "verifications": {}}, {"id": "adr_cd23a5615b3f11efa4bcac1f6bc539ae",
-        "object": "Address", "created_at": "2024-08-15T19:51:45+00:00", "updated_at":
-        "2024-08-15T19:51:45+00:00", "name": "JACK SPARROW", "company": null, "street1":
+        null, "state_tax_id": null, "verifications": {}}, {"id": "adr_d0ce4939fac311ef9ce63cecef1b359e",
+        "object": "Address", "created_at": "2025-03-06T19:47:20+00:00", "updated_at":
+        "2025-03-06T19:47:20+00:00", "name": "JACK SPARROW", "company": null, "street1":
         "388 TOWNSEND ST APT 20", "street2": null, "city": "SAN FRANCISCO", "state":
         "CA", "zip": "94107-1670", "country": "US", "phone": "<REDACTED>", "email":
         "<REDACTED>", "mode": "test", "carrier_facility": null, "residential": true,
@@ -80,7 +80,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62c1f5d966be5c53e7885dc00016da5b
+      - 4a484c0c67c9fbc8e2b9771400188c7c
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -88,12 +88,12 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb4nuq c0f5e722d1
-      - extlb2nuq b6e1b5034c
+      - intlb3nuq 51d74985a2
+      - extlb2nuq 99aac35317
       x-runtime:
-      - '0.036892'
+      - '0.039677'
       x-version-label:
-      - easypost-202408151917-1527448f18-master
+      - easypost-202503061913-8f39069a2d-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -113,11 +113,11 @@ interactions:
       user-agent:
       - <REDACTED>
     method: GET
-    uri: https://api.easypost.com/v2/addresses?before_id=adr_cd23a5615b3f11efa4bcac1f6bc539ae&page_size=5
+    uri: https://api.easypost.com/v2/addresses?before_id=adr_d0ce4939fac311ef9ce63cecef1b359e&page_size=5
   response:
     body:
-      string: '{"addresses": [{"id": "adr_ccf83e735b3f11ef932bac1f6bc53342", "object":
-        "Address", "created_at": "2024-08-15T19:51:45+00:00", "updated_at": "2024-08-15T19:51:45+00:00",
+      string: '{"addresses": [{"id": "adr_d0af7486fac311efa766ac1f6bc539ae", "object":
+        "Address", "created_at": "2025-03-06T19:47:19+00:00", "updated_at": "2025-03-06T19:47:19+00:00",
         "name": null, "company": "EasyPost", "street1": "000 unknown street", "street2":
         null, "city": "Not A City", "state": "ZZ", "zip": "00001", "country": "US",
         "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
@@ -126,27 +126,27 @@ interactions:
         "address", "message": "Address not found", "suggestion": null}], "details":
         null}, "delivery": {"success": false, "errors": [{"code": "E.ADDRESS.NOT_FOUND",
         "field": "address", "message": "Address not found", "suggestion": null}],
-        "details": {}}}}, {"id": "adr_cce4bfd75b3f11efb492ac1f6bc539aa", "object":
-        "Address", "created_at": "2024-08-15T19:51:45+00:00", "updated_at": "2024-08-15T19:51:45+00:00",
+        "details": {}}}}, {"id": "adr_d0a11741fac311ef811eac1f6bc53342", "object":
+        "Address", "created_at": "2025-03-06T19:47:19+00:00", "updated_at": "2025-03-06T19:47:19+00:00",
         "name": null, "company": "EasyPost", "street1": "000 unknown street", "street2":
         null, "city": "Not A City", "state": "ZZ", "zip": "00001", "country": "US",
         "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
         null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
-        {}}, {"id": "adr_ccb994c35b3f11efa49cac1f6bc539ae", "object": "Address", "created_at":
-        "2024-08-15T19:51:44+00:00", "updated_at": "2024-08-15T19:51:44+00:00", "name":
+        {}}, {"id": "adr_d08a1a4afac311ef9cc23cecef1b359e", "object": "Address", "created_at":
+        "2025-03-06T19:47:19+00:00", "updated_at": "2025-03-06T19:47:19+00:00", "name":
         "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
         "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
         "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
         null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
-        {}}, {"id": "adr_c59928c24ad411efbbdfac1f6bc53342", "object": "Address", "created_at":
-        "2024-07-25T22:25:18+00:00", "updated_at": "2024-07-25T22:25:18+00:00", "name":
-        "EasyPost", "company": null, "street1": "417 Montgomery Street", "street2":
-        "5th Floor", "city": "San Francisco", "state": "CA", "zip": "94104", "country":
+        {}}, {"id": "adr_fabb4013f08111efacb8ac1f6bc53342", "object": "Address", "created_at":
+        "2025-02-21T18:30:51+00:00", "updated_at": "2025-02-21T18:30:51+00:00", "name":
+        "Jack Sparrow", "company": null, "street1": "388 Townsend St", "street2":
+        "Apt 20", "city": "San Francisco", "state": "CA", "zip": "94107", "country":
         "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
         null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
-        {}}, {"id": "adr_c5968bd74ad411efbbddac1f6bc53342", "object": "Address", "created_at":
-        "2024-07-25T22:25:18+00:00", "updated_at": "2024-07-25T22:26:11+00:00", "name":
-        "DR. STEVE BRULE", "company": null, "street1": "179 N HARBOR DR", "street2":
+        {}}, {"id": "adr_fab8798ef08111ef8ca73cecef1b359e", "object": "Address", "created_at":
+        "2025-02-21T18:30:51+00:00", "updated_at": "2025-02-21T18:30:52+00:00", "name":
+        "ELIZABETH SWAN", "company": null, "street1": "179 N HARBOR DR", "street2":
         null, "city": "REDONDO BEACH", "state": "CA", "zip": "90277-2506", "country":
         "US", "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
         null, "residential": false, "federal_tax_id": null, "state_tax_id": null,
@@ -158,7 +158,7 @@ interactions:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '2822'
+      - '2804'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -178,20 +178,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 62c1f5d966be5c53e7885dc00016da7a
+      - 4a484c0c67c9fbc9e2b9771400188c94
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb39nuq
+      - bigweb38nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb3nuq c0f5e722d1
-      - extlb2nuq b6e1b5034c
+      - intlb3nuq 51d74985a2
+      - extlb2nuq 99aac35317
       x-runtime:
-      - '0.060739'
+      - '0.035805'
       x-version-label:
-      - easypost-202408151917-1527448f18-master
+      - easypost-202503061913-8f39069a2d-master
       x-xss-protection:
       - 1; mode=block
     status:
