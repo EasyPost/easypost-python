@@ -5,7 +5,6 @@ from typing import (
 )
 
 import requests
-
 from easypost.constant import (
     _FILTERS_KEY,
     SEND_STRIPE_DETAILS_ERROR,
@@ -70,13 +69,9 @@ class ReferralCustomerService(BaseService):
 
         url = "/referral_customers"
 
-        response = Requestor(self._client).request(
-            method=RequestMethod.GET, url=url, params=params
-        )
+        response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
-        response[_FILTERS_KEY] = (
-            filters  # Save the filters used to reference in potential get_next_page call
-        )
+        response[_FILTERS_KEY] = filters  # Save the filters used to reference in potential get_next_page call
 
         return convert_to_easypost_object(response=response)
 
@@ -107,7 +102,7 @@ class ReferralCustomerService(BaseService):
         expiration_year: int,
         cvc: str,
         priority: str = "primary",
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Add a credit card to EasyPost for a ReferralCustomer without needing a Stripe account.
 
         This function requires the ReferralCustomer User's API key.
@@ -138,7 +133,7 @@ class ReferralCustomerService(BaseService):
         referral_api_key: str,
         payment_method_id: str,
         priority: str = "primary",
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Add a credit card to EasyPost for a ReferralCustomer with a payment method ID from Stripe.
 
         This function requires the ReferralCustomer User's API key.
@@ -166,9 +161,9 @@ class ReferralCustomerService(BaseService):
         self,
         referral_api_key: str,
         financial_connections_id: str,
-        mandate_data: Dict[str, Any],
+        mandate_data: dict[str, Any],
         priority: str = "primary",
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Add a bank account to EasyPost for a ReferralCustomer.
 
         This function requires the ReferralCustomer User's API key.

@@ -1,5 +1,6 @@
 from typing import (
     Any,
+    Optional,
 )
 
 from easypost.easypost_object import convert_to_easypost_object
@@ -67,7 +68,7 @@ class BetaReferralCustomerService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def create_credit_card_client_secret(self) -> Dict[str, Any]:
+    def create_credit_card_client_secret(self) -> dict[str, Any]:
         """Creates a client secret to use with Stripe when adding a credit card."""
         response = Requestor(self._client).request(
             method=RequestMethod.POST,
@@ -77,9 +78,7 @@ class BetaReferralCustomerService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def create_bank_account_client_secret(
-        self, return_url: Optional[str] = None
-    ) -> Dict[str, Any]:
+    def create_bank_account_client_secret(self, return_url: Optional[str] = None) -> dict[str, Any]:
         """Creates a client secret to use with Stripe when adding a bank account."""
         params = {"return_url": return_url}
 
