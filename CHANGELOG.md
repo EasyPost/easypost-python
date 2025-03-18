@@ -3,6 +3,11 @@
 ## Next Release
 
 - Drops support for Python 3.7 and 3.8
+- Adds the following functions to assist ReferralCustomers add credit cards and bank accounts:
+  - `BetaReferralCustomerService.create_credit_card_client_secret`
+  - `BetaReferralCustomerService.create_bank_account_client_secret`
+  - `ReferralCustomerService.add_credit_card_from_stripe`
+  - `ReferralCustomerService.add_bank_account_from_stripe`
 - Fixes the payload wrapping for updating a webhook
 - Removes deprecated `user.all_api_keys` and `user.api_keys`, use `api_key.all` and `api_key.retrieve_api_keys_for_user` respectively
 - Bumps all dev dependencies
