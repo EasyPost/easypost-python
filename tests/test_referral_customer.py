@@ -127,7 +127,7 @@ def test_referral_add_credit_card_error(
 
 
 @pytest.mark.vcr()
-def test_referral_customer_add_credit_card_from_stripe(partner_user_prod_client, credit_card_details):
+def test_referral_customer_add_credit_card_from_stripe(partner_user_prod_client, credit_card_details, billing):
     """This test requires a referral customer's production API key via REFERRAL_CUSTOMER_PROD_API_KEY.
 
     We expect this test to fail because we don't have valid billing details to use. Assert the correct error.
@@ -135,15 +135,15 @@ def test_referral_customer_add_credit_card_from_stripe(partner_user_prod_client,
     with pytest.raises(ApiError) as error:
         partner_user_prod_client.referral_customer.add_credit_card_from_stripe(
             referral_api_key=REFERRAL_CUSTOMER_PROD_API_KEY,
-            payment_method_id="pm_0Pn6bQDqT4huGUvd0CjpRerH",
-            priority="primary",
+            payment_method_id=billing["payment_method_id"],
+            priority=billing["priority"],
         )
 
     assert str(error.value) == "Stripe::PaymentMethod does not exist for the specified reference_id"
 
 
 @pytest.mark.vcr()
-def test_referral_customer_add_bank_account_from_stripe(partner_user_prod_client, credit_card_details):
+def test_referral_customer_add_bank_account_from_stripe(partner_user_prod_client, credit_card_details, billing):
     """This test requires a referral customer's production API key via REFERRAL_CUSTOMER_PROD_API_KEY.
 
     We expect this test to fail because we don't have valid billing details to use. Assert the correct error.
@@ -151,13 +151,9 @@ def test_referral_customer_add_bank_account_from_stripe(partner_user_prod_client
     with pytest.raises(ApiError) as error:
         partner_user_prod_client.referral_customer.add_bank_account_from_stripe(
             referral_api_key=REFERRAL_CUSTOMER_PROD_API_KEY,
-            financial_connections_id="fca_0QAc7sDqT4huGUvdf6BahYa9",
-            mandate_data={
-                "ip_address": "127.0.0.1",
-                "user_agent": "Mozilla/5.0",
-                "accepted_at": 1722510730,
-            },
-            priority="primary",
+            financial_connections_id=billing["financial_connections_id"],
+            mandate_data=billing["mandate_data"],
+            priority=billing["priority"],
         )
 
     assert (

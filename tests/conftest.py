@@ -377,3 +377,8 @@ def planned_ship_date():
 @pytest.fixture
 def desired_delivery_date():
     return "2025-03-08"
+
+
+@pytest.fixture
+def billing():
+    return read_fixture_data()["billing"]
