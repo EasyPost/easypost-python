@@ -3,7 +3,7 @@ from easypost.errors.api.api_error import ApiError
 
 
 @pytest.mark.vcr()
-def test_beta_referral_customer_add_payment_method(referral_customer_prod_client):
+def test_beta_referral_customer_add_payment_method(referral_customer_prod_client, billing):
     """This test requires a referral customer's production API key via REFERRAL_CUSTOMER_PROD_API_KEY.
 
     We expect this test to fail because we don't have valid Stripe details to use. Assert the correct error.
@@ -12,7 +12,7 @@ def test_beta_referral_customer_add_payment_method(referral_customer_prod_client
         referral_customer_prod_client.beta_referral_customer.add_payment_method(
             stripe_customer_id="cus_123",
             payment_method_reference="ba_123",
-            priority="primary",
+            priority=billing["priority"],
         )
 
     assert str(error.value) == "Invalid connect integration."
