@@ -8,6 +8,7 @@
   - `BetaReferralCustomerService.create_bank_account_client_secret`
   - `ReferralCustomerService.add_credit_card_from_stripe`
   - `ReferralCustomerService.add_bank_account_from_stripe`
+- Routes `AmazonShippingAccount` create requests to the new `/register_oauth` endpoint
 - Fixes the payload wrapping for updating a webhook
 - Removes deprecated `user.all_api_keys` and `user.api_keys`, use `api_key.all` and `api_key.retrieve_api_keys_for_user` respectively
 - Bumps all dev dependencies

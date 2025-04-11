@@ -131,3 +131,19 @@ def test_carrier_account_update_ups(prod_client):
     prod_client.carrier_account.delete(
         updated_carrier_account.id
     )  # Delete the carrier account once it's done being tested.
+
+
+@pytest.mark.vcr()
+def test_carrier_account_create_amazon_shipping(prod_client):
+    """Test registering an Amazon Shipping Carrier Account which uses a different URL and schema."""
+    params = {
+        "type": "AmazonShippingAccount",
+    }
+
+    carrier_account = prod_client.carrier_account.create(**params)
+
+    assert isinstance(carrier_account, CarrierAccount)
+    assert str.startswith(carrier_account.id, "ca_")
+    assert carrier_account.type == "AmazonShippingAccount"
+
+    prod_client.carrier_account.delete(carrier_account.id)  # Delete the carrier account once it's done being tested.
