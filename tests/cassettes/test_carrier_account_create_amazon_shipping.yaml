@@ -1,8 +1,6 @@
 interactions:
 - request:
-    body: '{"carrier_account_oauth_registrations": {"type": "AmazonShippingAccount",
-      "selling_partner_id": 123456, "description": "Test Amazon Shipping Account",
-      "reference": "Test reference id"}}'
+    body: '{"carrier_account_oauth_registrations": {"type": "AmazonShippingAccount"}}'
     headers:
       Accept:
       - '*/*'
@@ -11,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '185'
+      - '74'
       Content-Type:
       - application/json
       authorization:
@@ -22,17 +20,16 @@ interactions:
     uri: https://api.easypost.com/v2/carrier_accounts/register_oauth
   response:
     body:
-      string: '{"id": "ca_42645bd4efec44d19990311923247889", "object": "CarrierAccount",
-        "type": "AmazonShippingAccount", "clone": false, "created_at": "2024-10-21T17:29:15Z",
-        "updated_at": "2024-10-21T17:29:15Z", "description": "Test Amazon Shipping
-        Account", "reference": "Test reference id", "billing_type": "carrier", "readable":
-        "Amazon Shipping", "logo": null, "fields": [], "credentials": {}, "test_credentials":
-        {}}'
+      string: '{"id": "ca_18bfc1a27cc349cfbf219cf0e754f917", "object": "CarrierAccount",
+        "type": "AmazonShippingAccount", "clone": false, "created_at": "2025-04-10T19:12:34Z",
+        "updated_at": "2025-04-10T19:12:34Z", "description": null, "reference": null,
+        "billing_type": "carrier", "readable": "Amazon Shipping", "logo": null, "fields":
+        [], "credentials": {}, "test_credentials": {}}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '1477'
+      - '1448'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -52,20 +49,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 5b98ae6c67168f6be786a35a006ad145
+      - 028443c067f81822e2bbac9c00135101
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb36nuq
+      - bigweb54nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb4nuq b6e1b5034c
+      - intlb3nuq 284c5d344a
       - extlb1nuq 99aac35317
       x-runtime:
-      - '0.111175'
+      - '0.225842'
       x-version-label:
-      - easypost-202410211500-2da9256a8e-master
+      - easypost-202504101604-e81adf64e4-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -87,7 +84,7 @@ interactions:
       user-agent:
       - <REDACTED>
     method: DELETE
-    uri: https://api.easypost.com/v2/carrier_accounts/ca_42645bd4efec44d19990311923247889
+    uri: https://api.easypost.com/v2/carrier_accounts/ca_18bfc1a27cc349cfbf219cf0e754f917
   response:
     body:
       string: '{}'
@@ -115,20 +112,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 5b98ae6c67168f6be786a35a006ad17a
+      - 028443c067f81822e2bbac9c00135164
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb36nuq
+      - bigweb35nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb3nuq b6e1b5034c
+      - intlb4nuq 284c5d344a
       - extlb1nuq 99aac35317
       x-runtime:
-      - '0.061416'
+      - '0.056642'
       x-version-label:
-      - easypost-202410211500-2da9256a8e-master
+      - easypost-202504101604-e81adf64e4-master
       x-xss-protection:
       - 1; mode=block
     status:

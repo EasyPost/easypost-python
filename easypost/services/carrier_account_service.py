@@ -57,13 +57,6 @@ class CarrierAccountService(BaseService):
 
         if carrier_account.get("type") in _UPS_OAUTH_CARRIER_ACCOUNT_TYPES:
             class_name = "UpsOauthRegistrations"
-        elif carrier_account.get("type") in _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_OAUTH:
-            response = Requestor(self._client).request(
-                method=RequestMethod.PATCH,
-                url=f"/carrier_accounts/register_oauth/{id}",
-                params={"carrier_account_oauth_registrations": params},
-            )
-            return convert_to_easypost_object(response=response)
         else:
             class_name = self._model_class
 

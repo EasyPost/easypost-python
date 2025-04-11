@@ -138,9 +138,6 @@ def test_carrier_account_create_amazon_shipping(prod_client):
     """Test registering an Amazon Shipping Carrier Account which uses a different URL and schema."""
     params = {
         "type": "AmazonShippingAccount",
-        "selling_partner_id": 123456,
-        "description": "Test Amazon Shipping Account",
-        "reference": "Test reference id",
     }
 
     carrier_account = prod_client.carrier_account.create(**params)
@@ -150,28 +147,3 @@ def test_carrier_account_create_amazon_shipping(prod_client):
     assert carrier_account.type == "AmazonShippingAccount"
 
     prod_client.carrier_account.delete(carrier_account.id)  # Delete the carrier account once it's done being tested.
-
-
-@pytest.mark.vcr()
-def test_carrier_account_update_amazon_shipping(prod_client):
-    """Test updating an Amazon Shipping Carrier Account which uses a different URL and schema."""
-    params = {
-        "type": "AmazonShippingAccount",
-    }
-
-    amazon_shipping_account = prod_client.carrier_account.create(**params)
-
-    # TODO: Re-record this cassettes and add two assertions for description
-    # and reference when we made the changes in API level for update endpoint
-    updated_amazon_shipping_account = prod_client.carrier_account.update(
-        amazon_shipping_account.id,
-        description="test description",
-        reference="test reference",
-    )
-
-    assert isinstance(updated_amazon_shipping_account, CarrierAccount)
-    assert str.startswith(updated_amazon_shipping_account.id, "ca_")
-
-    prod_client.carrier_account.delete(
-        amazon_shipping_account.id
-    )  # Delete the carrier account once it's done being tested.
