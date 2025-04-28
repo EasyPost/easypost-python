@@ -2,12 +2,40 @@
 
 Use the following guide to assist in the upgrade process of the `easypost-python` library between major versions.
 
+- [Upgrading from 9.x to 10.0](#upgrading-from-9x-to-100)
 - [Upgrading from 8.x to 9.0](#upgrading-from-8x-to-90)
 - [Upgrading from 7.x to 8.0](#upgrading-from-7x-to-80)
 - [Upgrading from 6.x to 7.0](#upgrading-from-6x-to-70)
 - [Upgrading from 5.x to 6.0](#upgrading-from-5x-to-60)
 
+## Upgrading from 9.x to 10.0
+
+### 10.0 High Impact Changes
+
+- [Updated Dependencies](#100-updated-dependencies)
+
+### 10.0 Medium Impact Changes
+
+- [Deprecations](#100-deprecations)
+
+### 10.0 Updated Dependencies
+
+**Python 3.9 Required**
+
+easypost-python now requires Python 3.9 or greater.
+
+### 10.0 Deprecations
+
+*Likelihood of Impact: **Medium***
+
+The following deprecated functions have been removed:
+
+- `user.all_api_keys` (use `api_key.all`)
+- `users.api_keys` (use `api_key.retrieve_api_keys_for_user`)
+
 ## Upgrading from 8.x to 9.0
+
+**NOTICE:** v9 is deprecated.
 
 ### 9.0 High Impact Changes
 
