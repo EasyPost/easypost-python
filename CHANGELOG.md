@@ -1,6 +1,8 @@
 # CHANGELOG
 
-## Next Release
+## v10.0.0 (2025-04-28)
+
+See our [Upgrade Guide](UPGRADE_GUIDE.md#upgrading-from-9x-to-100) for more details.
 
 - Drops support for Python 3.7 and 3.8
 - Adds the following functions to assist ReferralCustomers add credit cards and bank accounts:
