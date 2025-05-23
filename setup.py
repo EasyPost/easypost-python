@@ -3,7 +3,6 @@ from setuptools import (
     setup,
 )
 
-
 REQUIREMENTS = [
     "requests >= 2.4.3",
 ]
@@ -27,7 +26,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="easypost",
-    version="10.0.0",
+    version="10.0.1",
     description="EasyPost Shipping API Client Library for Python",
     author="EasyPost",
     author_email="support@easypost.com",
