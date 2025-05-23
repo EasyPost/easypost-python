@@ -3,6 +3,7 @@ from setuptools import (
     setup,
 )
 
+
 REQUIREMENTS = [
     "requests >= 2.4.3",
 ]
