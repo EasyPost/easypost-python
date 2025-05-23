@@ -1,6 +1,6 @@
 # flake8: noqa
 # Library version
-VERSION = "10.0.0"
+VERSION = "10.0.1"
 VERSION_INFO = [str(number) for number in VERSION.split(".")]
 
 # Client defaults
@@ -38,11 +38,8 @@ _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_WORKFLOWS = [
 ]
 _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_OAUTH = [
     "AmazonShippingAccount",
-]
-_UPS_OAUTH_CARRIER_ACCOUNT_TYPES = [
     "UpsAccount",
     "UpsMailInnovationsAccount",
     "UpsSurepostAccount",
 ]
 _FILTERS_KEY = "filters"
-_EXCLUDED_CLASS_NAMES = ["ups_oauth_registrations"]
