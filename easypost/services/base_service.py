@@ -5,7 +5,6 @@ from typing import (
 )
 
 from easypost.constant import (
-    _EXCLUDED_CLASS_NAMES,
     _FILTERS_KEY,
     NO_MORE_PAGES_ERROR,
 )
@@ -30,9 +29,7 @@ class BaseService:
     def _class_url(self, class_name: str) -> str:
         """Generate a URL based on class name."""
         transformed_class_name = self._snakecase_name(class_name)
-        if transformed_class_name in _EXCLUDED_CLASS_NAMES:
-            return f"/{transformed_class_name}"
-        elif transformed_class_name[-1:] in ("s", "h"):
+        if transformed_class_name[-1:] in ("s", "h"):
             return f"/{transformed_class_name}es"
         else:
             return f"/{transformed_class_name}s"

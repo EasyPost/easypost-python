@@ -1,6 +1,7 @@
 interactions:
 - request:
-    body: '{"ups_oauth_registrations": {"type": "UpsAccount", "account_number": "123456789"}}'
+    body: '{"carrier_account_oauth_registrations": {"type": "UpsAccount", "account_number":
+      "123456789"}}'
     headers:
       Accept:
       - '*/*'
@@ -9,7 +10,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '82'
+      - '94'
       Content-Type:
       - application/json
       authorization:
@@ -17,19 +18,19 @@ interactions:
       user-agent:
       - <REDACTED>
     method: POST
-    uri: https://api.easypost.com/v2/ups_oauth_registrations
+    uri: https://api.easypost.com/v2/carrier_accounts/register_oauth
   response:
     body:
-      string: '{"id": "ca_56b369117cb24365bab1014b845793d3", "object": "CarrierAccount",
-        "type": "UpsAccount", "clone": false, "created_at": "2025-03-06T19:47:55Z",
-        "updated_at": "2025-03-06T19:47:55Z", "description": null, "reference": null,
+      string: '{"id": "ca_6e690e7623ba4354b29d209fc19a725f", "object": "CarrierAccount",
+        "type": "UpsAccount", "clone": false, "created_at": "2025-05-23T19:13:53Z",
+        "updated_at": "2025-05-23T19:13:53Z", "description": null, "reference": null,
         "billing_type": "carrier", "readable": "UPS", "logo": null, "fields": [],
         "credentials": {}, "test_credentials": {}}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '1384'
+      - '1404'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -49,7 +50,7 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 8e8eb62a67c9fbebe2b97a900018723c
+      - 6be4a8f66830c8f1e787301d003e93e1
       x-frame-options:
       - SAMEORIGIN
       x-node:
@@ -57,84 +58,19 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb3nuq 51d74985a2
+      - intlb4nuq 668d3fc830
       - extlb1nuq 99aac35317
       x-runtime:
-      - '0.075599'
+      - '0.097712'
       x-version-label:
-      - easypost-202503061913-8f39069a2d-master
+      - easypost-202505231841-d89645a184-master
       x-xss-protection:
       - 1; mode=block
     status:
       code: 201
       message: Created
 - request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      authorization:
-      - <REDACTED>
-      user-agent:
-      - <REDACTED>
-    method: GET
-    uri: https://api.easypost.com/v2/carrier_accounts/ca_56b369117cb24365bab1014b845793d3
-  response:
-    body:
-      string: '{"id": "ca_56b369117cb24365bab1014b845793d3", "object": "CarrierAccount",
-        "type": "UpsAccount", "clone": false, "created_at": "2025-03-06T19:47:55Z",
-        "updated_at": "2025-03-06T19:47:55Z", "description": null, "reference": null,
-        "billing_type": "carrier", "readable": "UPS", "logo": null, "fields": [],
-        "credentials": {}, "test_credentials": {}}'
-    headers:
-      cache-control:
-      - private, no-cache, no-store
-      content-length:
-      - '1384'
-      content-type:
-      - application/json; charset=utf-8
-      expires:
-      - '0'
-      pragma:
-      - no-cache
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      strict-transport-security:
-      - max-age=31536000; includeSubDomains; preload
-      transfer-encoding:
-      - chunked
-      x-backend:
-      - easypost
-      x-content-type-options:
-      - nosniff
-      x-download-options:
-      - noopen
-      x-ep-request-uuid:
-      - 8e8eb62a67c9fbebe2b97a900018726a
-      x-frame-options:
-      - SAMEORIGIN
-      x-node:
-      - bigweb55nuq
-      x-permitted-cross-domain-policies:
-      - none
-      x-proxied:
-      - intlb3nuq 51d74985a2
-      - extlb1nuq 99aac35317
-      x-runtime:
-      - '0.181601'
-      x-version-label:
-      - easypost-202503061913-8f39069a2d-master
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"ups_oauth_registrations": {"account_number": "987654321"}}'
+    body: '{"carrier_account": {"account_number": "987654321"}}'
     headers:
       Accept:
       - '*/*'
@@ -143,7 +79,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '60'
+      - '52'
       Content-Type:
       - application/json
       authorization:
@@ -151,19 +87,19 @@ interactions:
       user-agent:
       - <REDACTED>
     method: PATCH
-    uri: https://api.easypost.com/v2/ups_oauth_registrations/ca_56b369117cb24365bab1014b845793d3
+    uri: https://api.easypost.com/v2/carrier_accounts/ca_6e690e7623ba4354b29d209fc19a725f
   response:
     body:
-      string: '{"id": "ca_56b369117cb24365bab1014b845793d3", "object": "CarrierAccount",
-        "type": "UpsAccount", "clone": false, "created_at": "2025-03-06T19:47:55Z",
-        "updated_at": "2025-03-06T19:47:56Z", "description": null, "reference": null,
+      string: '{"id": "ca_6e690e7623ba4354b29d209fc19a725f", "object": "CarrierAccount",
+        "type": "UpsAccount", "clone": false, "created_at": "2025-05-23T19:13:53Z",
+        "updated_at": "2025-05-23T19:13:54Z", "description": null, "reference": null,
         "billing_type": "carrier", "readable": "UPS", "logo": null, "fields": [],
         "credentials": {}, "test_credentials": {}}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '1388'
+      - '1404'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -183,20 +119,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 8e8eb62a67c9fbece2b97a90001872b1
+      - 6be4a8f66830c8f1e787301d003e9403
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb54nuq
+      - bigweb53nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb3nuq 51d74985a2
+      - intlb4nuq 668d3fc830
       - extlb1nuq 99aac35317
       x-runtime:
-      - '0.064679'
+      - '0.073912'
       x-version-label:
-      - easypost-202503061913-8f39069a2d-master
+      - easypost-202505231841-d89645a184-master
       x-xss-protection:
       - 1; mode=block
     status:
@@ -218,7 +154,7 @@ interactions:
       user-agent:
       - <REDACTED>
     method: DELETE
-    uri: https://api.easypost.com/v2/carrier_accounts/ca_56b369117cb24365bab1014b845793d3
+    uri: https://api.easypost.com/v2/carrier_accounts/ca_6e690e7623ba4354b29d209fc19a725f
   response:
     body:
       string: '{}'
@@ -246,20 +182,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 8e8eb62a67c9fbece2b97a90001872d2
+      - 6be4a8f66830c8f2e787301d003e941e
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb41nuq
+      - bigweb38nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb3nuq 51d74985a2
+      - intlb4nuq 668d3fc830
       - extlb1nuq 99aac35317
       x-runtime:
-      - '0.070166'
+      - '0.067810'
       x-version-label:
-      - easypost-202503061913-8f39069a2d-master
+      - easypost-202505231841-d89645a184-master
       x-xss-protection:
       - 1; mode=block
     status:
