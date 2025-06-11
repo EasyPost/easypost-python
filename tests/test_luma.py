@@ -9,7 +9,7 @@ def test_luma_get_promises(
     luma_deliver_by_date,
     test_client,
 ):
-    """Test that get promises from Luma."""
+    """Test that we get promises from Luma."""
     basic_shipment["ruleset_name"] = luma_ruleset_name
     basic_shipment["planned_ship_date"] = luma_planned_ship_date
     basic_shipment["deliver_by_date"] = luma_deliver_by_date
