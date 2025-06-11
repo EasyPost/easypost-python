@@ -161,3 +161,29 @@ class ShipmentService(BaseService):
         response = Requestor(self._client).request(method=RequestMethod.GET, url=url, params=params)
 
         return convert_to_easypost_object(response=response.get("rates", []))
+
+    def create_and_buy_luma(
+        self,
+        **params: dict[str, Any],
+    ) -> Shipment:
+        """Create and buy a Luma Shipment in one call."""
+        url = f"{self._class_url(self._model_class)}/luma"
+        wrapped_params = {
+            self._snakecase_name(self._model_class): params,
+        }
+
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
+
+        return convert_to_easypost_object(response=response)
+
+    def buy_luma(
+        self,
+        id: str,
+        **params: dict[str, Any],
+    ) -> Shipment:
+        """Buy a Shipment with Luma."""
+        url = f"{self._instance_url(self._model_class, id)}/luma"
+
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
+
+        return convert_to_easypost_object(response=response)

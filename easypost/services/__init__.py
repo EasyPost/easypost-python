@@ -13,6 +13,7 @@ from easypost.services.customs_item_service import CustomsItemService
 from easypost.services.end_shipper_service import EndShipperService
 from easypost.services.event_service import EventService
 from easypost.services.insurance_service import InsuranceService
+from easypost.services.luma_service import LumaService
 from easypost.services.order_service import OrderService
 from easypost.services.parcel_service import ParcelService
 from easypost.services.pickup_service import PickupService

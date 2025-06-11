@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds the following functions
+  - `shipment.create_and_buy_luma`
+  - `shipment.buy_luma`
+  - `luma.get_promises`
+
 ## v10.0.1 (2025-05-27)
 
 - Corrects the endpoint used for creating/updating UPS accounts

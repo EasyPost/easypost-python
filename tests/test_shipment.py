@@ -329,3 +329,42 @@ def test_shipment_recommend_ship_date(basic_shipment, desired_delivery_date, tes
     rates = test_client.shipment.recommend_ship_date(shipment.id, desired_delivery_date=desired_delivery_date)
 
     assert all(entry.get("easypost_time_in_transit_data") for entry in rates)
+
+
+@pytest.mark.vcr()
+def test_shipment_create_and_buy_luma(
+    one_call_buy_shipment,
+    luma_ruleset_name,
+    luma_planned_ship_date,
+    luma_deliver_by_date,
+    test_client,
+):
+    """Test that we create and buy a Shipment with Luma."""
+    del one_call_buy_shipment["service"]
+    one_call_buy_shipment["ruleset_name"] = luma_ruleset_name
+    one_call_buy_shipment["planned_ship_date"] = luma_planned_ship_date
+    one_call_buy_shipment["deliver_by_date"] = luma_deliver_by_date
+    shipment = test_client.shipment.create_and_buy_luma(**one_call_buy_shipment)
+
+    assert shipment.postage_label is not None
+
+
+@pytest.mark.vcr()
+def test_shipment_buy_luma(
+    basic_shipment,
+    luma_ruleset_name,
+    luma_planned_ship_date,
+    luma_deliver_by_date,
+    test_client,
+):
+    """Test that we buy a Shipment with Luma."""
+    shipment = test_client.shipment.create(**basic_shipment)
+
+    bought_shipment = test_client.shipment.buy_luma(
+        shipment.id,
+        ruleset_name=luma_ruleset_name,
+        planned_ship_date=luma_planned_ship_date,
+        deliver_by_date=luma_deliver_by_date,
+    )
+
+    assert bought_shipment.postage_label is not None

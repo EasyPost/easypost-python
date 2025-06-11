@@ -24,6 +24,7 @@ from easypost.services import (
     EndShipperService,
     EventService,
     InsuranceService,
+    LumaService,
     OrderService,
     ParcelService,
     PickupService,
@@ -69,6 +70,7 @@ class EasyPostClient:
         self.end_shipper = EndShipperService(self)
         self.event = EventService(self)
         self.insurance = InsuranceService(self)
+        self.luma = LumaService(self)
         self.order = OrderService(self)
         self.parcel = ParcelService(self)
         self.rate = RateService(self)
