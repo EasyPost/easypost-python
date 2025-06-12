@@ -386,14 +386,9 @@ def billing():
 
 @pytest.fixture
 def luma_ruleset_name():
-    return "required_deliver_by_date"
+    return "cheapest_delivery"
 
 
 @pytest.fixture
 def luma_planned_ship_date():
     return "2025-06-12"
-
-
-@pytest.fixture
-def luma_deliver_by_date():
-    return "2025-06-19"

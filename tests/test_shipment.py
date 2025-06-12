@@ -336,14 +336,12 @@ def test_shipment_create_and_buy_luma(
     one_call_buy_shipment,
     luma_ruleset_name,
     luma_planned_ship_date,
-    luma_deliver_by_date,
     test_client,
 ):
     """Test that we create and buy a Shipment with Luma."""
     del one_call_buy_shipment["service"]
     one_call_buy_shipment["ruleset_name"] = luma_ruleset_name
     one_call_buy_shipment["planned_ship_date"] = luma_planned_ship_date
-    one_call_buy_shipment["deliver_by_date"] = luma_deliver_by_date
     shipment = test_client.shipment.create_and_buy_luma(**one_call_buy_shipment)
 
     assert shipment.postage_label is not None
@@ -354,7 +352,6 @@ def test_shipment_buy_luma(
     basic_shipment,
     luma_ruleset_name,
     luma_planned_ship_date,
-    luma_deliver_by_date,
     test_client,
 ):
     """Test that we buy a Shipment with Luma."""
@@ -364,7 +361,6 @@ def test_shipment_buy_luma(
         shipment.id,
         ruleset_name=luma_ruleset_name,
         planned_ship_date=luma_planned_ship_date,
-        deliver_by_date=luma_deliver_by_date,
     )
 
     assert bought_shipment.postage_label is not None

@@ -6,8 +6,7 @@ interactions:
       "to_address": {"name": "Elizabeth Swan", "street1": "179 N Harbor Dr", "city":
       "Redondo Beach", "state": "CA", "zip": "90277", "country": "US", "email": "test@example.com",
       "phone": "5555555555"}, "parcel": {"length": 10, "width": 8, "height": 4, "weight":
-      15.4}, "ruleset_name": "required_deliver_by_date", "planned_ship_date": "2025-06-12",
-      "deliver_by_date": "2025-06-19"}}'
+      15.4}, "ruleset_name": "cheapest_delivery", "planned_ship_date": "2025-06-12"}}'
     headers:
       Accept:
       - '*/*'
@@ -16,7 +15,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '608'
+      - '568'
       Content-Type:
       - application/json
       authorization:
@@ -28,23 +27,22 @@ interactions:
   response:
     body:
       string: '{"luma_info": {"ai_results": [{"carrier": "USPS", "meets_ruleset_requirements":
-        true, "predicted_deliver_by_date": "2025-06-17", "predicted_deliver_days":
-        5, "rate_usd": "34.15", "service": "Express"}, {"carrier": "USPS", "meets_ruleset_requirements":
-        true, "predicted_deliver_by_date": "2025-06-17", "predicted_deliver_days":
-        5, "rate_usd": "7.42", "service": "Priority"}, {"carrier": "USPS", "meets_ruleset_requirements":
-        true, "predicted_deliver_by_date": "2025-06-17", "predicted_deliver_days":
-        5, "rate_usd": "6.07", "service": "GroundAdvantage"}], "matching_rule_idx":
+        true, "predicted_deliver_by_date": "2025-06-13", "predicted_deliver_days":
+        1, "rate_usd": "34.15", "service": "Express"}, {"carrier": "USPS", "meets_ruleset_requirements":
+        true, "predicted_deliver_by_date": "2025-06-14", "predicted_deliver_days":
+        2, "rate_usd": "7.42", "service": "Priority"}, {"carrier": "USPS", "meets_ruleset_requirements":
+        true, "predicted_deliver_by_date": "2025-06-15", "predicted_deliver_days":
+        3, "rate_usd": "6.07", "service": "GroundAdvantage"}], "matching_rule_idx":
         0, "ruleset_description": "Buy the cheapest rate that satisfies all of the
-        following:\nRule 0\n        - Deliver by user input day of deliver_by_date    -
-        Transit day confidence >= 90\nOtherwise buy the cheapest rate", "luma_selected_rate":
+        following:\nRule 0\n    \nOtherwise buy the cheapest rate", "luma_selected_rate":
         {"carrier": "USPS", "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e",
         "currency": "USD", "rate": "6.07", "service": "GroundAdvantage", "luma_predicted_deliver_by_date":
-        "2025-06-17"}}}'
+        "2025-06-15"}}}'
     headers:
       cache-control:
       - private, no-cache, no-store
       content-length:
-      - '957'
+      - '873'
       content-type:
       - application/json; charset=utf-8
       expires:
@@ -59,27 +57,25 @@ interactions:
       - chunked
       x-backend:
       - easypost
-      x-canary:
-      - direct
       x-content-type-options:
       - nosniff
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 09e6e0bc6849ee72e7798bac002ddaac
+      - 5b2f8478684b1565e2b983330062e725
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb32nuq
+      - bigweb35nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb4nuq 668d3fc830
-      - extlb2nuq 99aac35317
+      - intlb4nuq e8fe6f4ec2
+      - extlb1nuq 99aac35317
       x-runtime:
-      - '0.168261'
+      - '0.240840'
       x-version-label:
-      - easypost-202506112030-f8bf908411-master
+      - easypost-202506121430-906e96e2b9-master
       x-xss-protection:
       - 1; mode=block
     status:
