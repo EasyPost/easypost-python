@@ -382,3 +382,13 @@ def desired_delivery_date():
 @pytest.fixture
 def billing():
     return read_fixture_data()["billing"]
+
+
+@pytest.fixture
+def luma_ruleset_name():
+    return read_fixture_data()["luma"]["ruleset_name"]
+
+
+@pytest.fixture
+def luma_planned_ship_date():
+    return "2025-06-12"
