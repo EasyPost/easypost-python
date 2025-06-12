@@ -386,7 +386,7 @@ def billing():
 
 @pytest.fixture
 def luma_ruleset_name():
-    return "cheapest_delivery"
+    return read_fixture_data()["luma"]["ruleset_name"]
 
 
 @pytest.fixture

@@ -27,15 +27,15 @@ interactions:
   response:
     body:
       string: '{"luma_info": {"ai_results": [{"carrier": "USPS", "meets_ruleset_requirements":
-        true, "predicted_deliver_by_date": "2025-06-13", "predicted_deliver_days":
-        1, "rate_usd": "34.15", "service": "Express"}, {"carrier": "USPS", "meets_ruleset_requirements":
         true, "predicted_deliver_by_date": "2025-06-14", "predicted_deliver_days":
         2, "rate_usd": "7.42", "service": "Priority"}, {"carrier": "USPS", "meets_ruleset_requirements":
         true, "predicted_deliver_by_date": "2025-06-15", "predicted_deliver_days":
-        3, "rate_usd": "6.07", "service": "GroundAdvantage"}], "matching_rule_idx":
-        0, "ruleset_description": "Buy the cheapest rate that satisfies all of the
-        following:\nRule 0\n    \nOtherwise buy the cheapest rate", "luma_selected_rate":
-        {"carrier": "USPS", "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e",
+        3, "rate_usd": "6.07", "service": "GroundAdvantage"}, {"carrier": "USPS",
+        "meets_ruleset_requirements": true, "predicted_deliver_by_date": "2025-06-13",
+        "predicted_deliver_days": 1, "rate_usd": "34.15", "service": "Express"}],
+        "matching_rule_idx": 0, "ruleset_description": "Buy the cheapest rate that
+        satisfies all of the following:\nRule 0\n    \nOtherwise buy the cheapest
+        rate", "luma_selected_rate": {"carrier": "USPS", "carrier_account_id": "ca_b25657e9896e4d63ac8151ac346ac41e",
         "currency": "USD", "rate": "6.07", "service": "GroundAdvantage", "luma_predicted_deliver_by_date":
         "2025-06-15"}}}'
     headers:
@@ -62,20 +62,20 @@ interactions:
       x-download-options:
       - noopen
       x-ep-request-uuid:
-      - 5b2f8478684b1565e2b983330062e725
+      - 5b2f8478684b38fee2bb2938008b45a8
       x-frame-options:
       - SAMEORIGIN
       x-node:
-      - bigweb35nuq
+      - bigweb33nuq
       x-permitted-cross-domain-policies:
       - none
       x-proxied:
-      - intlb4nuq e8fe6f4ec2
+      - intlb3nuq e8fe6f4ec2
       - extlb1nuq 99aac35317
       x-runtime:
-      - '0.240840'
+      - '0.276214'
       x-version-label:
-      - easypost-202506121430-906e96e2b9-master
+      - easypost-202506122002-4fcd94d6be-master
       x-xss-protection:
       - 1; mode=block
     status:
