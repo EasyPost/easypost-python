@@ -25,6 +25,9 @@ class TrackerService(BaseService):
             "tracking_codes": params.get("tracking_codes"),
             "carrier": params.get("carrier"),
         }
+        # Make Ruby on Rails happy with proper URL encoding
+        if params.get("tracking_codes"):
+            params["tracking_codes[]"] = params.pop("tracking_codes")
 
         return self._all_resources(self._model_class, filters, **params)
 
