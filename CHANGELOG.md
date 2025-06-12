@@ -5,7 +5,7 @@
 - Adds the following functions
   - `shipment.create_and_buy_luma`
   - `shipment.buy_luma`
-  - `luma.recommend_service`
+  - `luma.get_promise`
 - Fixes `tracking_codes` filter when retrieving all tracking codes
 
 ## v10.0.1 (2025-05-27)
