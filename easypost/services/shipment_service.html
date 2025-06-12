@@ -78,6 +78,12 @@
                         <li>
                                 <a class="function" href="#ShipmentService.recommend_ship_date">recommend_ship_date</a>
                         </li>
+                        <li>
+                                <a class="function" href="#ShipmentService.create_and_buy_luma">create_and_buy_luma</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#ShipmentService.buy_luma">buy_luma</a>
+                        </li>
                 </ul>
 
             </li>
@@ -265,6 +271,32 @@
 </span><span id="L-161"><a href="#L-161"><span class="linenos">161</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="L-162"><a href="#L-162"><span class="linenos">162</span></a>
 </span><span id="L-163"><a href="#L-163"><span class="linenos">163</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;rates&quot;</span><span class="p">,</span> <span class="p">[]))</span>
+</span><span id="L-164"><a href="#L-164"><span class="linenos">164</span></a>
+</span><span id="L-165"><a href="#L-165"><span class="linenos">165</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">create_and_buy_luma</span><span class="p">(</span>
+</span><span id="L-166"><a href="#L-166"><span class="linenos">166</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="L-167"><a href="#L-167"><span class="linenos">167</span></a>        <span class="o">**</span><span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+</span><span id="L-168"><a href="#L-168"><span class="linenos">168</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Shipment</span><span class="p">:</span>
+</span><span id="L-169"><a href="#L-169"><span class="linenos">169</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Create and buy a Luma Shipment in one call.&quot;&quot;&quot;</span>
+</span><span id="L-170"><a href="#L-170"><span class="linenos">170</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_class_url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">)</span><span class="si">}</span><span class="s2">/luma&quot;</span>
+</span><span id="L-171"><a href="#L-171"><span class="linenos">171</span></a>        <span class="n">wrapped_params</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="L-172"><a href="#L-172"><span class="linenos">172</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_snakecase_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">):</span> <span class="n">params</span><span class="p">,</span>
+</span><span id="L-173"><a href="#L-173"><span class="linenos">173</span></a>        <span class="p">}</span>
+</span><span id="L-174"><a href="#L-174"><span class="linenos">174</span></a>
+</span><span id="L-175"><a href="#L-175"><span class="linenos">175</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">wrapped_params</span><span class="p">)</span>
+</span><span id="L-176"><a href="#L-176"><span class="linenos">176</span></a>
+</span><span id="L-177"><a href="#L-177"><span class="linenos">177</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span><span id="L-178"><a href="#L-178"><span class="linenos">178</span></a>
+</span><span id="L-179"><a href="#L-179"><span class="linenos">179</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">buy_luma</span><span class="p">(</span>
+</span><span id="L-180"><a href="#L-180"><span class="linenos">180</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="L-181"><a href="#L-181"><span class="linenos">181</span></a>        <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="L-182"><a href="#L-182"><span class="linenos">182</span></a>        <span class="o">**</span><span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+</span><span id="L-183"><a href="#L-183"><span class="linenos">183</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Shipment</span><span class="p">:</span>
+</span><span id="L-184"><a href="#L-184"><span class="linenos">184</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Buy a Shipment with Luma.&quot;&quot;&quot;</span>
+</span><span id="L-185"><a href="#L-185"><span class="linenos">185</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_instance_url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">,</span><span class="w"> </span><span class="nb">id</span><span class="p">)</span><span class="si">}</span><span class="s2">/luma&quot;</span>
+</span><span id="L-186"><a href="#L-186"><span class="linenos">186</span></a>
+</span><span id="L-187"><a href="#L-187"><span class="linenos">187</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="L-188"><a href="#L-188"><span class="linenos">188</span></a>
+</span><span id="L-189"><a href="#L-189"><span class="linenos">189</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -424,6 +456,32 @@
 </span><span id="ShipmentService-162"><a href="#ShipmentService-162"><span class="linenos">162</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="ShipmentService-163"><a href="#ShipmentService-163"><span class="linenos">163</span></a>
 </span><span id="ShipmentService-164"><a href="#ShipmentService-164"><span class="linenos">164</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;rates&quot;</span><span class="p">,</span> <span class="p">[]))</span>
+</span><span id="ShipmentService-165"><a href="#ShipmentService-165"><span class="linenos">165</span></a>
+</span><span id="ShipmentService-166"><a href="#ShipmentService-166"><span class="linenos">166</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">create_and_buy_luma</span><span class="p">(</span>
+</span><span id="ShipmentService-167"><a href="#ShipmentService-167"><span class="linenos">167</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="ShipmentService-168"><a href="#ShipmentService-168"><span class="linenos">168</span></a>        <span class="o">**</span><span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+</span><span id="ShipmentService-169"><a href="#ShipmentService-169"><span class="linenos">169</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Shipment</span><span class="p">:</span>
+</span><span id="ShipmentService-170"><a href="#ShipmentService-170"><span class="linenos">170</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Create and buy a Luma Shipment in one call.&quot;&quot;&quot;</span>
+</span><span id="ShipmentService-171"><a href="#ShipmentService-171"><span class="linenos">171</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_class_url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">)</span><span class="si">}</span><span class="s2">/luma&quot;</span>
+</span><span id="ShipmentService-172"><a href="#ShipmentService-172"><span class="linenos">172</span></a>        <span class="n">wrapped_params</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="ShipmentService-173"><a href="#ShipmentService-173"><span class="linenos">173</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_snakecase_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">):</span> <span class="n">params</span><span class="p">,</span>
+</span><span id="ShipmentService-174"><a href="#ShipmentService-174"><span class="linenos">174</span></a>        <span class="p">}</span>
+</span><span id="ShipmentService-175"><a href="#ShipmentService-175"><span class="linenos">175</span></a>
+</span><span id="ShipmentService-176"><a href="#ShipmentService-176"><span class="linenos">176</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">wrapped_params</span><span class="p">)</span>
+</span><span id="ShipmentService-177"><a href="#ShipmentService-177"><span class="linenos">177</span></a>
+</span><span id="ShipmentService-178"><a href="#ShipmentService-178"><span class="linenos">178</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span><span id="ShipmentService-179"><a href="#ShipmentService-179"><span class="linenos">179</span></a>
+</span><span id="ShipmentService-180"><a href="#ShipmentService-180"><span class="linenos">180</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">buy_luma</span><span class="p">(</span>
+</span><span id="ShipmentService-181"><a href="#ShipmentService-181"><span class="linenos">181</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="ShipmentService-182"><a href="#ShipmentService-182"><span class="linenos">182</span></a>        <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="ShipmentService-183"><a href="#ShipmentService-183"><span class="linenos">183</span></a>        <span class="o">**</span><span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+</span><span id="ShipmentService-184"><a href="#ShipmentService-184"><span class="linenos">184</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Shipment</span><span class="p">:</span>
+</span><span id="ShipmentService-185"><a href="#ShipmentService-185"><span class="linenos">185</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Buy a Shipment with Luma.&quot;&quot;&quot;</span>
+</span><span id="ShipmentService-186"><a href="#ShipmentService-186"><span class="linenos">186</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_instance_url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">,</span><span class="w"> </span><span class="nb">id</span><span class="p">)</span><span class="si">}</span><span class="s2">/luma&quot;</span>
+</span><span id="ShipmentService-187"><a href="#ShipmentService-187"><span class="linenos">187</span></a>
+</span><span id="ShipmentService-188"><a href="#ShipmentService-188"><span class="linenos">188</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="ShipmentService-189"><a href="#ShipmentService-189"><span class="linenos">189</span></a>
+</span><span id="ShipmentService-190"><a href="#ShipmentService-190"><span class="linenos">190</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -839,6 +897,68 @@
 
             <div class="docstring"><p>Retrieve a recommended ship date for an existing Shipment via the Precision Shipping API,
 based on a specific desired delivery date.</p>
+</div>
+
+
+                            </div>
+                            <div id="ShipmentService.create_and_buy_luma" class="classattr">
+                                        <input id="ShipmentService.create_and_buy_luma-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">create_and_buy_luma</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="o">**</span><span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span></span><span class="return-annotation">) -> <span class="n"><a href="../models/shipment.html#Shipment">easypost.models.shipment.Shipment</a></span>:</span></span>
+
+                <label class="view-source-button" for="ShipmentService.create_and_buy_luma-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#ShipmentService.create_and_buy_luma"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="ShipmentService.create_and_buy_luma-166"><a href="#ShipmentService.create_and_buy_luma-166"><span class="linenos">166</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">create_and_buy_luma</span><span class="p">(</span>
+</span><span id="ShipmentService.create_and_buy_luma-167"><a href="#ShipmentService.create_and_buy_luma-167"><span class="linenos">167</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="ShipmentService.create_and_buy_luma-168"><a href="#ShipmentService.create_and_buy_luma-168"><span class="linenos">168</span></a>        <span class="o">**</span><span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+</span><span id="ShipmentService.create_and_buy_luma-169"><a href="#ShipmentService.create_and_buy_luma-169"><span class="linenos">169</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Shipment</span><span class="p">:</span>
+</span><span id="ShipmentService.create_and_buy_luma-170"><a href="#ShipmentService.create_and_buy_luma-170"><span class="linenos">170</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Create and buy a Luma Shipment in one call.&quot;&quot;&quot;</span>
+</span><span id="ShipmentService.create_and_buy_luma-171"><a href="#ShipmentService.create_and_buy_luma-171"><span class="linenos">171</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_class_url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">)</span><span class="si">}</span><span class="s2">/luma&quot;</span>
+</span><span id="ShipmentService.create_and_buy_luma-172"><a href="#ShipmentService.create_and_buy_luma-172"><span class="linenos">172</span></a>        <span class="n">wrapped_params</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="ShipmentService.create_and_buy_luma-173"><a href="#ShipmentService.create_and_buy_luma-173"><span class="linenos">173</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_snakecase_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">):</span> <span class="n">params</span><span class="p">,</span>
+</span><span id="ShipmentService.create_and_buy_luma-174"><a href="#ShipmentService.create_and_buy_luma-174"><span class="linenos">174</span></a>        <span class="p">}</span>
+</span><span id="ShipmentService.create_and_buy_luma-175"><a href="#ShipmentService.create_and_buy_luma-175"><span class="linenos">175</span></a>
+</span><span id="ShipmentService.create_and_buy_luma-176"><a href="#ShipmentService.create_and_buy_luma-176"><span class="linenos">176</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">wrapped_params</span><span class="p">)</span>
+</span><span id="ShipmentService.create_and_buy_luma-177"><a href="#ShipmentService.create_and_buy_luma-177"><span class="linenos">177</span></a>
+</span><span id="ShipmentService.create_and_buy_luma-178"><a href="#ShipmentService.create_and_buy_luma-178"><span class="linenos">178</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Create and buy a Luma Shipment in one call.</p>
+</div>
+
+
+                            </div>
+                            <div id="ShipmentService.buy_luma" class="classattr">
+                                        <input id="ShipmentService.buy_luma-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">buy_luma</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>,</span><span class="param">	<span class="o">**</span><span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span></span><span class="return-annotation">) -> <span class="n"><a href="../models/shipment.html#Shipment">easypost.models.shipment.Shipment</a></span>:</span></span>
+
+                <label class="view-source-button" for="ShipmentService.buy_luma-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#ShipmentService.buy_luma"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="ShipmentService.buy_luma-180"><a href="#ShipmentService.buy_luma-180"><span class="linenos">180</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">buy_luma</span><span class="p">(</span>
+</span><span id="ShipmentService.buy_luma-181"><a href="#ShipmentService.buy_luma-181"><span class="linenos">181</span></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="ShipmentService.buy_luma-182"><a href="#ShipmentService.buy_luma-182"><span class="linenos">182</span></a>        <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="ShipmentService.buy_luma-183"><a href="#ShipmentService.buy_luma-183"><span class="linenos">183</span></a>        <span class="o">**</span><span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+</span><span id="ShipmentService.buy_luma-184"><a href="#ShipmentService.buy_luma-184"><span class="linenos">184</span></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Shipment</span><span class="p">:</span>
+</span><span id="ShipmentService.buy_luma-185"><a href="#ShipmentService.buy_luma-185"><span class="linenos">185</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Buy a Shipment with Luma.&quot;&quot;&quot;</span>
+</span><span id="ShipmentService.buy_luma-186"><a href="#ShipmentService.buy_luma-186"><span class="linenos">186</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_instance_url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">,</span><span class="w"> </span><span class="nb">id</span><span class="p">)</span><span class="si">}</span><span class="s2">/luma&quot;</span>
+</span><span id="ShipmentService.buy_luma-187"><a href="#ShipmentService.buy_luma-187"><span class="linenos">187</span></a>
+</span><span id="ShipmentService.buy_luma-188"><a href="#ShipmentService.buy_luma-188"><span class="linenos">188</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="ShipmentService.buy_luma-189"><a href="#ShipmentService.buy_luma-189"><span class="linenos">189</span></a>
+</span><span id="ShipmentService.buy_luma-190"><a href="#ShipmentService.buy_luma-190"><span class="linenos">190</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Buy a Shipment with Luma.</p>
 </div>
 
 
