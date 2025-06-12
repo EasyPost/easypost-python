@@ -18,11 +18,11 @@ class LumaService(BaseService):
         self._client = client
         self._model_class = "Luma"
 
-    def get_promises(
+    def recommend_service(
         self,
         **params: dict[str, Any],
     ) -> Shipment:
-        """Get Luma promises on what rates meet your criteria."""
+        """Get service recommendations from Luma that meet your criteria."""
         url = "/luma/promise"
         wrapped_params = {
             self._snakecase_name("Shipment"): params,
