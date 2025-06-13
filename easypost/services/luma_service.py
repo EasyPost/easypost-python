@@ -30,4 +30,4 @@ class LumaService(BaseService):
 
         response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 
-        return convert_to_easypost_object(response=response)
+        return convert_to_easypost_object(response=response.get("luma_info", {}))
