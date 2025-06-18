@@ -27,7 +27,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="easypost",
-    version="10.0.1",
+    version="10.1.0",
     description="EasyPost Shipping API Client Library for Python",
     author="EasyPost",
     author_email="support@easypost.com",
