@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v10.1.0 (2025-06-18)
 
 - Adds the following functions
   - `shipment.create_and_buy_luma`
