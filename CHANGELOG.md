@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds `UspsShipAccount` support to the create carrier method
+
 ## v10.1.0 (2025-06-18)
 
 - Adds the following functions

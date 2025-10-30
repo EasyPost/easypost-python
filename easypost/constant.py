@@ -41,5 +41,6 @@ _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_OAUTH = [
     "UpsAccount",
     "UpsMailInnovationsAccount",
     "UpsSurepostAccount",
+    "UspsShipAccount",
 ]
 _FILTERS_KEY = "filters"
