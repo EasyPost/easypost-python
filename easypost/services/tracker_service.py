@@ -6,7 +6,10 @@ from typing import (
 from easypost.constant import _FILTERS_KEY
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.models import Tracker
-from easypost.requestor import RequestMethod, Requestor
+from easypost.requestor import (
+    RequestMethod,
+    Requestor,
+)
 from easypost.services.base_service import BaseService
 
 
