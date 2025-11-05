@@ -4,7 +4,9 @@ from typing import (
 )
 
 from easypost.constant import _FILTERS_KEY
+from easypost.easypost_object import convert_to_easypost_object
 from easypost.models import Tracker
+from easypost.requestor import RequestMethod, Requestor
 from easypost.services.base_service import BaseService
 
 
@@ -30,6 +32,14 @@ class TrackerService(BaseService):
             params["tracking_codes[]"] = params.pop("tracking_codes")
 
         return self._all_resources(self._model_class, filters, **params)
+
+    def retrieve_batch(self, **params) -> Tracker:
+        """Retrieve a batch of Trackers."""
+        url = "/trackers/batch"
+
+        response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=params)
+
+        return convert_to_easypost_object(response=response)
 
     def retrieve(self, id: str) -> Tracker:
         """Retrieve a Tracker."""
