@@ -39,6 +39,17 @@ def test_tracker_all(page_size, test_client):
 
 
 @pytest.mark.vcr()
+def test_tracker_retrieve_batch(page_size, test_client):
+    tracker = test_client.tracker.create(tracking_code="EZ1000000001")
+
+    trackers = test_client.tracker.retrieve_batch(tracking_codes=[tracker.tracking_code])
+
+    trackers_array = trackers["trackers"]
+
+    assert all(isinstance(tracker, Tracker) for tracker in trackers_array)
+
+
+@pytest.mark.vcr()
 def test_tracker_get_next_page(page_size, test_client):
     try:
         first_page = test_client.tracker.all(page_size=page_size)

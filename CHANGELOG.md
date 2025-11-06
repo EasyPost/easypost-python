@@ -3,6 +3,7 @@
 ## Next Release
 
 - Adds `UspsShipAccount` support to the create carrier method
+- Adds `tracker.retrieve_batch` function
 
 ## v10.1.0 (2025-06-18)
 
