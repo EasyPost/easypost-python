@@ -1,0 +1,82 @@
+interactions:
+- request:
+    body: '{"address": {"company": "EasyPost", "street1": "000 unknown street", "city":
+      "Not A City", "state": "ZZ", "zip": "00001", "country": "US", "email": "test@example.com",
+      "phone": "5555555555"}, "verify": true, "verify_carrier": "UPS"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '232'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/addresses
+  response:
+    body:
+      string: '{"id": "adr_6bbec015bb5011f082233cecef1b359e", "object": "Address",
+        "created_at": "2025-11-06T20:37:32Z", "updated_at": "2025-11-06T20:37:32Z",
+        "name": null, "company": "EASYPOST", "street1": "000 UNKNOWN STREET", "street2":
+        "", "city": "NOT A CITY", "state": "ZZ", "zip": "00001", "country": "US",
+        "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {"zip4": {"success": true, "errors": [{"code": "E.ADDRESS.NOT_FOUND", "field":
+        "address", "message": "Address not found", "suggestion": null}], "details":
+        null}, "delivery": {"success": true, "errors": [{"code": "E.ADDRESS.NOT_FOUND",
+        "field": "address", "message": "Address not found", "suggestion": null}],
+        "details": {"latitude": null, "longitude": null, "time_zone": null}}, "verify_carrier":
+        "ups"}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '808'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      location:
+      - /api/v2/addresses/adr_6bbec015bb5011f082233cecef1b359e
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - bcd43725690d070be2b85def014ed69a
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb66nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb4nuq c0061e0a2e
+      - extlb2nuq cbbd141214
+      x-runtime:
+      - '0.837269'
+      x-version-label:
+      - easypost-202511061930-711db047b0-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1

@@ -1,9 +1,10 @@
 # CHANGELOG
 
-## Next Release
+## v10.2.0 (2025-11-10)
 
 - Adds `UspsShipAccount` support to the create carrier method
 - Adds `tracker.retrieve_batch` function
+- Adds `verify_carrier` address param
 
 ## v10.1.0 (2025-06-18)
 
