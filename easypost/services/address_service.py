@@ -51,10 +51,13 @@ class AddressService(BaseService):
         """Retrieve an Address."""
         return self._retrieve_resource(self._model_class, id)
 
-    def create_and_verify(self, **params) -> Address:
+    def create_and_verify(self, verify_carrier: Optional[str] = None, **params) -> Address:
         """Create and verify an Address in one call."""
         url = f"{self._class_url('address')}/create_and_verify"
-        wrapped_params = {self._snakecase_name(self._model_class): params}
+        wrapped_params = {self._snakecase_name(self._model_class): params}  # type: dict[str, Any]
+
+        if verify_carrier:
+            wrapped_params["verify_carrier"] = verify_carrier
 
         response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 

@@ -169,3 +169,15 @@ def test_address_create_verify_carrier(incorrect_address, test_client):
 
     assert address.verifications.delivery.errors[0].message == "Address not found"
     assert address.verifications.zip4.errors[0].message == "Address not found"
+
+
+@pytest.mark.vcr()
+def test_address_create_and_verify_carrier(incorrect_address, test_client):
+    """Test creating and verifying an address with the `verify_carrier` param."""
+    incorrect_address["verify_carrier"] = "UPS"
+    address = test_client.address.create_and_verify(**incorrect_address)
+
+    assert isinstance(address, Address)
+
+    assert address.verifications.delivery.errors[0].message == "Address not found"
+    assert address.verifications.zip4.errors[0].message == "Address not found"
