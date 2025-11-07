@@ -21,6 +21,7 @@ class AddressService(BaseService):
         self,
         verify: Optional[bool] = None,
         verify_strict: Optional[bool] = None,
+        verify_carrier: Optional[str] = None,
         **params,
     ) -> Address:
         """Create an Address."""
@@ -31,6 +32,8 @@ class AddressService(BaseService):
             wrapped_params["verify"] = verify
         if verify_strict:
             wrapped_params["verify_strict"] = verify_strict
+        if verify_carrier:
+            wrapped_params["verify_carrier"] = verify_carrier
 
         response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
 

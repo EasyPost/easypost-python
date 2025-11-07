@@ -1,4 +1,5 @@
 import pytest
+
 from easypost.constant import (
     _FILTERS_KEY,
     _TEST_FAILED_INTENTIONALLY_ERROR,
@@ -155,3 +156,16 @@ def test_address_verify_invalid_address(test_client):
         test_client.address.verify(address.id)
 
     assert str(error.value) == "Unable to verify address."
+
+
+@pytest.mark.vcr()
+def test_address_create_verify_carrier(incorrect_address, test_client):
+    """Test creating an address with the `verify_carrier` param."""
+    incorrect_address["verify"] = True
+    incorrect_address["verify_carrier"] = "UPS"
+    address = test_client.address.create(**incorrect_address)
+
+    assert isinstance(address, Address)
+
+    assert address.verifications.delivery.errors[0].message == "Address not found"
+    assert address.verifications.zip4.errors[0].message == "Address not found"
