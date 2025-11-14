@@ -15,17 +15,17 @@ REFERRAL_CUSTOMER_PROD_API_KEY = os.getenv("REFERRAL_CUSTOMER_PROD_API_KEY", "12
 
 
 @pytest.mark.vcr()
-def test_referral_customer_create(partner_user_prod_client):
+def test_referral_customer_create(partner_user_prod_client, referral_user):
     """This test requires a partner customer's production API key via PARTNER_USER_PROD_API_KEY."""
     created_referral_customer = partner_user_prod_client.referral_customer.create(
-        name="test test",
-        email="test@test.com",
-        phone="8888888888",
+        name=referral_user["name"],
+        email=referral_user["email"],
+        phone=referral_user["phone"],
     )
 
     assert isinstance(created_referral_customer, User)
     assert str.startswith(created_referral_customer.id, "user_")
-    assert created_referral_customer.name == "test test"
+    assert created_referral_customer.name == "Test Referral"
 
 
 @pytest.mark.vcr()
