@@ -392,3 +392,8 @@ def luma_ruleset_name():
 @pytest.fixture
 def luma_planned_ship_date():
     return "2025-06-12"
+
+
+@pytest.fixture
+def referral_user():
+    return read_fixture_data()["users"]["referral"]

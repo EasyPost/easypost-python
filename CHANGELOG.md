@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds the following functions:
+  - `embeddable.create_session`
+  - `customer_portal.create_account_link`
+
 ## v10.2.0 (2025-11-10)
 
 - Adds `UspsShipAccount` support to the create carrier method

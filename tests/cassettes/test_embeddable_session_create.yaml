@@ -1,0 +1,143 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/users/children
+  response:
+    body:
+      string: '{"children": [{"id": "user_584be78af2f141e988b6c60dda9dd8fd", "object":
+        "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name": "Test
+        User2", "phone_number": "<REDACTED>", "verified": true, "created_at": "2023-12-11T17:13:38Z"},
+        {"id": "user_437e724f37de412db6df8821968d8d3c", "object": "User", "parent_id":
+        "user_54356a6b96c940d8913961a3c7b909f2", "name": "Test User2", "phone_number":
+        "<REDACTED>", "verified": true, "created_at": "2023-12-11T17:13:43Z"}, {"id":
+        "user_2553102e90de43dea0b9fa7f8c8d7e33", "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2",
+        "name": "Child Account Name22", "phone_number": "<REDACTED>", "verified":
+        true, "created_at": "2024-01-04T19:56:21Z"}, {"id": "user_31754439d4524fbb8867d138de537e12",
+        "object": "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name":
+        "Test User", "phone_number": "<REDACTED>", "verified": true, "created_at":
+        "2024-01-19T21:42:21Z"}, {"id": "user_d26377e80676431d88c17d8b140d365a", "object":
+        "User", "parent_id": "user_54356a6b96c940d8913961a3c7b909f2", "name": "Test
+        User", "phone_number": "<REDACTED>", "verified": true, "created_at": "2024-01-19T21:44:18Z"}],
+        "has_more": false}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '1114'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 7265c2fe6917a363e786c4e3010cde14
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb34nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb5nuq c0061e0a2e
+      - extlb1nuq cbbd141214
+      x-runtime:
+      - '0.085273'
+      x-version-label:
+      - easypost-202511141214-a539f53042-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"origin_host": "https://example.com", "user_id": "user_584be78af2f141e988b6c60dda9dd8fd"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '90'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/embeddables/session
+  response:
+    body:
+      string: '{"object": "EmbeddablesSession", "session_id": "5iL-W-NePFb0FU_n",
+        "expires_at": "2025-11-14T22:02:15Z", "created_at": "2025-11-14T21:47:15Z"}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '135'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 7265c2fc6917a363e786c4e4010cde8f
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb65nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb3nuq c0061e0a2e
+      - extlb1nuq cbbd141214
+      x-runtime:
+      - '0.141938'
+      x-version-label:
+      - easypost-202511141214-a539f53042-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+version: 1

@@ -8,8 +8,10 @@ from easypost.services.billing_service import BillingService
 from easypost.services.carrier_account_service import CarrierAccountService
 from easypost.services.carrier_metadata_service import CarrierMetadataService
 from easypost.services.claim_service import ClaimService
+from easypost.services.customer_portal_service import CustomerPortalService
 from easypost.services.customs_info_service import CustomsInfoService
 from easypost.services.customs_item_service import CustomsItemService
+from easypost.services.embeddable_service import EmbeddableService
 from easypost.services.end_shipper_service import EndShipperService
 from easypost.services.event_service import EventService
 from easypost.services.insurance_service import InsuranceService
