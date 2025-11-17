@@ -19,8 +19,10 @@ from easypost.services import (
     CarrierAccountService,
     CarrierMetadataService,
     ClaimService,
+    CustomerPortalService,
     CustomsInfoService,
     CustomsItemService,
+    EmbeddableService,
     EndShipperService,
     EventService,
     InsuranceService,
@@ -65,8 +67,10 @@ class EasyPostClient:
         self.carrier_account = CarrierAccountService(self)
         self.carrier_metadata = CarrierMetadataService(self)
         self.claim = ClaimService(self)
+        self.customer_portal = CustomerPortalService(self)
         self.customs_info = CustomsInfoService(self)
         self.customs_item = CustomsItemService(self)
+        self.embeddable = EmbeddableService(self)
         self.end_shipper = EndShipperService(self)
         self.event = EventService(self)
         self.insurance = InsuranceService(self)
