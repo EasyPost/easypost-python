@@ -1,26 +1,26 @@
 name: release
 
 on:
-  release:
-    types: [published]
-  workflow_dispatch:
+    release:
+        types: [published]
+    workflow_dispatch:
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
-      - name: Build package
-        run: make install build
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_KEY }}
-      - name: Upload assets to release
-        uses: AButler/upload-release-assets@v3.0.1
-        with:
-          files: 'dist/*'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
+            - uses: actions/setup-python@v6
+              with:
+                  python-version: "3.14"
+            - name: Build package
+              run: make install build
+            - name: Publish to PyPI
+              uses: pypa/gh-action-pypi-publish@release/v1
+              with:
+                  password: ${{ secrets.PYPI_API_KEY }}
+            - name: Upload assets to release
+              uses: AButler/upload-release-assets@v3.0.1
+              with:
+                  files: "dist/*"
+                  repo-token: ${{ secrets.GITHUB_TOKEN }}
