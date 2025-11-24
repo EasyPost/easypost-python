@@ -1,4 +1,4 @@
-name: "CI"
+name: 'CI'
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
-          python-version: "3.14"
+          python-version: '3.14'
       - name: Install Dependencies
         run: make install
       - name: Lint
@@ -23,7 +23,7 @@ jobs:
     strategy:
       matrix:
         # vcrpy is not compatible with Python 3.14 yet so we cannot test against it
-        pythonversion: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        pythonversion: ['3.9', '3.10', '3.11', '3.12', '3.13']
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
@@ -38,7 +38,7 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: "./coverage.lcov"
+          path-to-lcov: './coverage.lcov'
       - name: Run security analysis
         run: make scan
   docs:
@@ -48,7 +48,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
-          python-version: "3.14"
+          python-version: '3.14'
       - name: Install Dependencies
         run: make install
       - name: Generate Docs
