@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v10.3.0 (2025-11-24)
 
 - Adds the following functions:
   - `embeddable.create_session`
