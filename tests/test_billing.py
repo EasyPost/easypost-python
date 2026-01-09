@@ -1,7 +1,8 @@
 from unittest.mock import patch
 
-import easypost
 import pytest
+
+import easypost
 from easypost.errors import InvalidObjectError
 
 

@@ -5,6 +5,7 @@ from typing import (
 )
 
 import requests
+
 from easypost.constant import (
     _FILTERS_KEY,
     SEND_STRIPE_DETAILS_ERROR,

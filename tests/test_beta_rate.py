@@ -1,4 +1,5 @@
 import pytest
+
 from easypost.util import get_lowest_stateless_rate
 
 

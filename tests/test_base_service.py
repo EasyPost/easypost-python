@@ -1,6 +1,7 @@
 from unittest.mock import patch
 
 import pytest
+
 from easypost.constant import NO_MORE_PAGES_ERROR
 from easypost.errors import EndOfPaginationError
 

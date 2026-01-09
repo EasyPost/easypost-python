@@ -3,6 +3,7 @@ import os
 import time
 
 import pytest
+
 from easypost.constant import (
     _FILTERS_KEY,
     _TEST_FAILED_INTENTIONALLY_ERROR,

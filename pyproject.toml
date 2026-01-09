@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "easypost"
+description = "EasyPost Shipping API Client Library for Python"
+version = "10.3.0"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "EasyPost", email = "support@easypost.com" }]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development :: Libraries",
+]
+dependencies = ["requests >= 2.4.3"]
+optional-dependencies = { dev = [
+    "bandit == 1.8.*",
+    "black == 25.*",
+    "build == 1.2.*",
+    "flake8 == 6.*",
+    "Flake8-pyproject == 1.2.*",
+    "isort == 6.*",
+    "mypy == 1.15.*",
+    "pdoc == 15.*",
+    "pytest-cov == 6.*",
+    "pytest-vcr == 1.*",
+    "pytest == 8.*",
+    "vcrpy == 7.*",
+] }
+
+[project.urls]
+Docs = "https://docs.easypost.com"
+Tracker = "https://github.com/EasyPost/easypost-python/issues"
+Source = "https://github.com/EasyPost/easypost-python"
+
+[tool.setuptools.packages.find]
+exclude = ["docs", "examples", "tests"]
+
+[tool.setuptools.package-data]
+easypost = ["py.typed"]
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120
+indent = 4
+force_grid_wrap = 2
+multi_line_output = 3
+sections = "FUTURE,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+lines_after_imports = 2
+include_trailing_comma = true
+use_parentheses = true
+
+[tool.flake8]
+max-line-length = 120
+extend-ignore = ["E203", "F821"]
+per-file-ignores = "__init__.py:F401"
