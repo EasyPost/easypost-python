@@ -1,4 +1,5 @@
 import pytest
+
 from easypost.errors import FilteringError
 from easypost.models import (
     Order,

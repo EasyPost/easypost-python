@@ -10,11 +10,11 @@ help:
 
 ## black - Runs the Black Python formatter against the project
 black:
-	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/ --config examples/style_guides/python/pyproject.toml
+	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/
 
 ## black-check - Checks if the project is formatted correctly against the Black rules
 black-check:
-	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/ --config examples/style_guides/python/pyproject.toml --check
+	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/ --check
 
 ## build - Builds the project in preparation for release
 build:
@@ -35,7 +35,7 @@ docs:
 
 ## flake8 - Lint the project with flake8
 flake8:
-	$(VIRTUAL_BIN)/flake8 $(PROJECT_NAME)/ $(TEST_DIR)/ --append-config examples/style_guides/python/.flake8
+	$(VIRTUAL_BIN)/flake8 $(PROJECT_NAME)/ $(TEST_DIR)/
 
 ## init-examples-submodule - Initialize the examples submodule
 init-examples-submodule:
@@ -54,11 +54,11 @@ update-examples-submodule:
 
 ## isort - Sorts imports throughout the project
 isort:
-	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/ --settings-file examples/style_guides/python/pyproject.toml
+	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/
 
 ## isort-check - Checks that imports throughout the project are sorted correctly
 isort-check:
-	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/ --settings-file examples/style_guides/python/pyproject.toml --check-only
+	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/ --check-only
 
 ## lint - Run linters on the project
 lint: black-check isort-check flake8 mypy scan
@@ -68,7 +68,7 @@ lint-fix: black isort
 
 ## mypy - Run mypy type checking on the project
 mypy:
-	$(VIRTUAL_BIN)/mypy $(PROJECT_NAME)/ $(TEST_DIR)/ --config-file examples/style_guides/python/pyproject.toml --install-types --non-interactive
+	$(VIRTUAL_BIN)/mypy $(PROJECT_NAME)/ $(TEST_DIR)/ --install-types --non-interactive
 
 ## release - Cuts a release for the project on GitHub (requires GitHub CLI)
 # tag = The associated tag title of the release
