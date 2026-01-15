@@ -27,16 +27,13 @@ classifiers = [
 dependencies = ["requests >= 2.4.3"]
 optional-dependencies = { dev = [
     "bandit == 1.8.*",
-    "black == 25.*",
     "build == 1.2.*",
-    "flake8 == 6.*",
-    "Flake8-pyproject == 1.2.*",
-    "isort == 6.*",
     "mypy == 1.15.*",
     "pdoc == 15.*",
+    "pytest == 8.*",
     "pytest-cov == 6.*",
     "pytest-vcr == 1.*",
-    "pytest == 8.*",
+    "ruff == 0.14.*",
     "vcrpy == 7.*",
 ] }
 
@@ -51,21 +48,5 @@ exclude = ["docs", "examples", "tests"]
 [tool.setuptools.package-data]
 easypost = ["py.typed"]
 
-[tool.black]
+[tool.ruff]
 line-length = 120
-
-[tool.isort]
-profile = "black"
-line_length = 120
-indent = 4
-force_grid_wrap = 2
-multi_line_output = 3
-sections = "FUTURE,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
-lines_after_imports = 2
-include_trailing_comma = true
-use_parentheses = true
-
-[tool.flake8]
-max-line-length = 120
-extend-ignore = ["E203", "F821"]
-per-file-ignores = "__init__.py:F401"

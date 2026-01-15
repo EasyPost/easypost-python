@@ -12,7 +12,7 @@ def test_request_hooks(basic_parcel, test_client):
         assert kwargs.get("path") == "https://api.easypost.com/v2/parcels"
         assert "parcel" in kwargs.get("request_body")
         assert "Authorization" in kwargs.get("headers")
-        assert type(kwargs.get("request_timestamp")) == datetime.datetime
+        assert isinstance(kwargs.get("request_timestamp"), datetime.datetime)
         assert uuid.UUID(str(kwargs.get("request_uuid")))
 
     """Test that we fire a RequestHook prior to making an HTTP request."""

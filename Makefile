@@ -8,14 +8,6 @@ TEST_DIR := tests
 help:
 	@cat Makefile | grep '^## ' --color=never | cut -c4- | sed -e "`printf 's/ - /\t- /;'`" | column -s "`printf '\t'`" -t
 
-## black - Runs the Black Python formatter against the project
-black:
-	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/
-
-## black-check - Checks if the project is formatted correctly against the Black rules
-black-check:
-	$(VIRTUAL_BIN)/black $(PROJECT_NAME)/ $(TEST_DIR)/ --check
-
 ## build - Builds the project in preparation for release
 build:
 	$(VIRTUAL_BIN)/python -m build
@@ -33,10 +25,6 @@ coverage:
 docs:
 	$(VIRTUAL_BIN)/pdoc $(PROJECT_NAME) -o docs
 
-## flake8 - Lint the project with flake8
-flake8:
-	$(VIRTUAL_BIN)/flake8 $(PROJECT_NAME)/ $(TEST_DIR)/
-
 ## init-examples-submodule - Initialize the examples submodule
 init-examples-submodule:
 	git submodule init
@@ -52,19 +40,15 @@ update-examples-submodule:
 	git submodule init
 	git submodule update --remote
 
-## isort - Sorts imports throughout the project
-isort:
-	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/
+## lint - Lints the project
+lint:
+	$(VIRTUAL_BIN)/ruff check $(PROJECT_NAME)/ $(TEST_DIR)/
+	$(VIRTUAL_BIN)/ruff format --check $(PROJECT_NAME)/ $(TEST_DIR)/
 
-## isort-check - Checks that imports throughout the project are sorted correctly
-isort-check:
-	$(VIRTUAL_BIN)/isort $(PROJECT_NAME)/ $(TEST_DIR)/ --check-only
-
-## lint - Run linters on the project
-lint: black-check isort-check flake8 mypy scan
-
-## lint-fix - Runs all formatting tools against the project
-lint-fix: black isort
+## lint-fix - Fixes lint issues
+lint-fix:
+	$(VIRTUAL_BIN)/ruff check --fix $(PROJECT_NAME)/ $(TEST_DIR)/
+	$(VIRTUAL_BIN)/ruff format $(PROJECT_NAME)/ $(TEST_DIR)/
 
 ## mypy - Run mypy type checking on the project
 mypy:
@@ -84,4 +68,4 @@ scan:
 test:
 	$(VIRTUAL_BIN)/pytest
 
-.PHONY: help black black-check build clean coverage docs flake8 install isort isort-check lint lint-fix mypy release scan test
+.PHONY: help build clean coverage docs install lint lint-fix mypy release scan test
