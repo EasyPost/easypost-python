@@ -8,7 +8,6 @@ from typing import (
 
 from easypost.constant import NO_ATTRIBUTE_ERROR
 
-
 EASYPOST_OBJECT_ID_PREFIX_TO_CLASS_NAME_MAP: dict[str, Any] = {
     "adr": "Address",
     "ak": "ApiKey",
