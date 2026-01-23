@@ -11,7 +11,6 @@ from easypost.constant import (
 from easypost.errors.api.api_error import ApiError
 from easypost.models import User
 
-
 REFERRAL_CUSTOMER_PROD_API_KEY = os.getenv("REFERRAL_CUSTOMER_PROD_API_KEY", "123")
 
 

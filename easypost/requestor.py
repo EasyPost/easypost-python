@@ -47,7 +47,6 @@ from easypost.errors import (
     UnknownApiError,
 )
 
-
 STATUS_CODE_TO_ERROR_MAPPING: dict[int, Any] = {
     400: BadRequestError,
     401: UnauthorizedError,
