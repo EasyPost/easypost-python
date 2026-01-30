@@ -9,12 +9,13 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
+      - uses: extractions/setup-just@v3
       - uses: actions/setup-python@v6
         with:
           python-version: '3.14'
       - name: Build package
-        run: make install build
+        run: just install build
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
