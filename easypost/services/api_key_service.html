@@ -37,10 +37,22 @@
                                 <a class="function" href="#ApiKeyService.__init__">ApiKeyService</a>
                         </li>
                         <li>
+                                <a class="function" href="#ApiKeyService.retrieve_api_keys_for_user">retrieve_api_keys_for_user</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#ApiKeyService.all">all</a>
                         </li>
                         <li>
-                                <a class="function" href="#ApiKeyService.retrieve_api_keys_for_user">retrieve_api_keys_for_user</a>
+                                <a class="function" href="#ApiKeyService.create">create</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#ApiKeyService.delete">delete</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#ApiKeyService.enable">enable</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#ApiKeyService.disable">disable</a>
                         </li>
                 </ul>
 
@@ -66,49 +78,73 @@
 
                         <label class="view-source-button" for="mod-api_key_service-view-source"><span>View Source</span></label>
 
-                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-</span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a>    <span class="n">Any</span><span class="p">,</span>
-</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="p">)</span>
-</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a>
-</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">easypost.constant</span><span class="w"> </span><span class="kn">import</span> <span class="n">NO_USER_FOUND</span>
-</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">easypost.easypost_object</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_to_easypost_object</span>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">easypost.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">FilteringError</span>
-</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">easypost.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ApiKey</span>
-</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">easypost.requestor</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a>    <span class="n">RequestMethod</span><span class="p">,</span>
-</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>    <span class="n">Requestor</span><span class="p">,</span>
-</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="p">)</span>
-</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">easypost.services.base_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseService</span>
-</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a>
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+</span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a>
+</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">easypost.constant</span><span class="w"> </span><span class="kn">import</span> <span class="n">NO_USER_FOUND</span>
+</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">easypost.easypost_object</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_to_easypost_object</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">easypost.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">FilteringError</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">easypost.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ApiKey</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">easypost.requestor</span><span class="w"> </span><span class="kn">import</span> <span class="n">RequestMethod</span><span class="p">,</span> <span class="n">Requestor</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">easypost.services.base_service</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseService</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a><span class="k">class</span><span class="w"> </span><span class="nc">ApiKeyService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">):</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">client</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span> <span class="o">=</span> <span class="n">ApiKey</span><span class="o">.</span><span class="vm">__name__</span>
 </span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>
-</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a><span class="k">class</span><span class="w"> </span><span class="nc">ApiKeyService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
-</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">):</span>
-</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">client</span>
-</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span> <span class="o">=</span> <span class="n">ApiKey</span><span class="o">.</span><span class="vm">__name__</span>
-</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>
-</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a list of all API keys.&quot;&quot;&quot;</span>
-</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/api_keys&quot;</span>
-</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a>
-</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
-</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>
-</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
-</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>
-</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">retrieve_api_keys_for_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ApiKey</span><span class="p">]:</span>
-</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a list of API keys (works for the authenticated User or a child User).&quot;&quot;&quot;</span>
-</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a>        <span class="n">api_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
-</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a>
-</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a>        <span class="k">if</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
-</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a>            <span class="c1"># This function was called on the authenticated user</span>
-</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a>            <span class="k">return</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;keys&quot;</span><span class="p">]</span>
-</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a>
-</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a>        <span class="c1"># This function was called on a child user (authenticated as parent, only return</span>
-</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a>        <span class="c1"># this child user&#39;s details).</span>
-</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a>        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]:</span>
-</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a>            <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
-</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a>                <span class="k">return</span> <span class="n">child</span><span class="o">.</span><span class="n">keys</span>
-</span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a>
-</span><span id="L-43"><a href="#L-43"><span class="linenos">43</span></a>        <span class="k">raise</span> <span class="n">FilteringError</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">NO_USER_FOUND</span><span class="p">)</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">retrieve_api_keys_for_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ApiKey</span><span class="p">]:</span>
+</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a list of API keys (works for the authenticated User or a child User).&quot;&quot;&quot;</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>        <span class="n">api_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>
+</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>        <span class="k">if</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
+</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a>            <span class="c1"># This function was called on the authenticated user</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a>            <span class="k">return</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;keys&quot;</span><span class="p">]</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a>
+</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a>        <span class="c1"># This function was called on a child user (authenticated as parent, only return</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a>        <span class="c1"># this child user&#39;s details).</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]:</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>            <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>                <span class="k">return</span> <span class="n">child</span><span class="o">.</span><span class="n">keys</span>
+</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a>
+</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a>        <span class="k">raise</span> <span class="n">FilteringError</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">NO_USER_FOUND</span><span class="p">)</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a>
+</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a list of all API keys.&quot;&quot;&quot;</span>
+</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/api_keys&quot;</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a>
+</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a>
+</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a>
+</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ApiKey</span><span class="p">:</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an API key for a child or referral customer user.&quot;&quot;&quot;</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/api_keys&quot;</span>
+</span><span id="L-43"><a href="#L-43"><span class="linenos">43</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="n">mode</span><span class="p">}</span>
+</span><span id="L-44"><a href="#L-44"><span class="linenos">44</span></a>
+</span><span id="L-45"><a href="#L-45"><span class="linenos">45</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="L-46"><a href="#L-46"><span class="linenos">46</span></a>
+</span><span id="L-47"><a href="#L-47"><span class="linenos">47</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span><span id="L-48"><a href="#L-48"><span class="linenos">48</span></a>
+</span><span id="L-49"><a href="#L-49"><span class="linenos">49</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="L-50"><a href="#L-50"><span class="linenos">50</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete an API key for a child or referral customer user.&quot;&quot;&quot;</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos">51</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_delete_resource</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos">52</span></a>
+</span><span id="L-53"><a href="#L-53"><span class="linenos">53</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">enable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ApiKey</span><span class="p">:</span>
+</span><span id="L-54"><a href="#L-54"><span class="linenos">54</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Enable a child or referral customer API key.&quot;&quot;&quot;</span>
+</span><span id="L-55"><a href="#L-55"><span class="linenos">55</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/api_keys/</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">/enable&quot;</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos">56</span></a>
+</span><span id="L-57"><a href="#L-57"><span class="linenos">57</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+</span><span id="L-58"><a href="#L-58"><span class="linenos">58</span></a>
+</span><span id="L-59"><a href="#L-59"><span class="linenos">59</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos">60</span></a>
+</span><span id="L-61"><a href="#L-61"><span class="linenos">61</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">disable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ApiKey</span><span class="p">:</span>
+</span><span id="L-62"><a href="#L-62"><span class="linenos">62</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Disable a child or referral customer API key.&quot;&quot;&quot;</span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos">63</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/api_keys/</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">/disable&quot;</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos">64</span></a>
+</span><span id="L-65"><a href="#L-65"><span class="linenos">65</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+</span><span id="L-66"><a href="#L-66"><span class="linenos">66</span></a>
+</span><span id="L-67"><a href="#L-67"><span class="linenos">67</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -124,34 +160,63 @@
 
     </div>
     <a class="headerlink" href="#ApiKeyService"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="ApiKeyService-17"><a href="#ApiKeyService-17"><span class="linenos">17</span></a><span class="k">class</span><span class="w"> </span><span class="nc">ApiKeyService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
-</span><span id="ApiKeyService-18"><a href="#ApiKeyService-18"><span class="linenos">18</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">):</span>
-</span><span id="ApiKeyService-19"><a href="#ApiKeyService-19"><span class="linenos">19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">client</span>
-</span><span id="ApiKeyService-20"><a href="#ApiKeyService-20"><span class="linenos">20</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span> <span class="o">=</span> <span class="n">ApiKey</span><span class="o">.</span><span class="vm">__name__</span>
-</span><span id="ApiKeyService-21"><a href="#ApiKeyService-21"><span class="linenos">21</span></a>
-</span><span id="ApiKeyService-22"><a href="#ApiKeyService-22"><span class="linenos">22</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-</span><span id="ApiKeyService-23"><a href="#ApiKeyService-23"><span class="linenos">23</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a list of all API keys.&quot;&quot;&quot;</span>
-</span><span id="ApiKeyService-24"><a href="#ApiKeyService-24"><span class="linenos">24</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/api_keys&quot;</span>
-</span><span id="ApiKeyService-25"><a href="#ApiKeyService-25"><span class="linenos">25</span></a>
-</span><span id="ApiKeyService-26"><a href="#ApiKeyService-26"><span class="linenos">26</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
-</span><span id="ApiKeyService-27"><a href="#ApiKeyService-27"><span class="linenos">27</span></a>
-</span><span id="ApiKeyService-28"><a href="#ApiKeyService-28"><span class="linenos">28</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
-</span><span id="ApiKeyService-29"><a href="#ApiKeyService-29"><span class="linenos">29</span></a>
-</span><span id="ApiKeyService-30"><a href="#ApiKeyService-30"><span class="linenos">30</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">retrieve_api_keys_for_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ApiKey</span><span class="p">]:</span>
-</span><span id="ApiKeyService-31"><a href="#ApiKeyService-31"><span class="linenos">31</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a list of API keys (works for the authenticated User or a child User).&quot;&quot;&quot;</span>
-</span><span id="ApiKeyService-32"><a href="#ApiKeyService-32"><span class="linenos">32</span></a>        <span class="n">api_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
-</span><span id="ApiKeyService-33"><a href="#ApiKeyService-33"><span class="linenos">33</span></a>
-</span><span id="ApiKeyService-34"><a href="#ApiKeyService-34"><span class="linenos">34</span></a>        <span class="k">if</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
-</span><span id="ApiKeyService-35"><a href="#ApiKeyService-35"><span class="linenos">35</span></a>            <span class="c1"># This function was called on the authenticated user</span>
-</span><span id="ApiKeyService-36"><a href="#ApiKeyService-36"><span class="linenos">36</span></a>            <span class="k">return</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;keys&quot;</span><span class="p">]</span>
-</span><span id="ApiKeyService-37"><a href="#ApiKeyService-37"><span class="linenos">37</span></a>
-</span><span id="ApiKeyService-38"><a href="#ApiKeyService-38"><span class="linenos">38</span></a>        <span class="c1"># This function was called on a child user (authenticated as parent, only return</span>
-</span><span id="ApiKeyService-39"><a href="#ApiKeyService-39"><span class="linenos">39</span></a>        <span class="c1"># this child user&#39;s details).</span>
-</span><span id="ApiKeyService-40"><a href="#ApiKeyService-40"><span class="linenos">40</span></a>        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]:</span>
-</span><span id="ApiKeyService-41"><a href="#ApiKeyService-41"><span class="linenos">41</span></a>            <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
-</span><span id="ApiKeyService-42"><a href="#ApiKeyService-42"><span class="linenos">42</span></a>                <span class="k">return</span> <span class="n">child</span><span class="o">.</span><span class="n">keys</span>
-</span><span id="ApiKeyService-43"><a href="#ApiKeyService-43"><span class="linenos">43</span></a>
-</span><span id="ApiKeyService-44"><a href="#ApiKeyService-44"><span class="linenos">44</span></a>        <span class="k">raise</span> <span class="n">FilteringError</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">NO_USER_FOUND</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="ApiKeyService-12"><a href="#ApiKeyService-12"><span class="linenos">12</span></a><span class="k">class</span><span class="w"> </span><span class="nc">ApiKeyService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
+</span><span id="ApiKeyService-13"><a href="#ApiKeyService-13"><span class="linenos">13</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">):</span>
+</span><span id="ApiKeyService-14"><a href="#ApiKeyService-14"><span class="linenos">14</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">client</span>
+</span><span id="ApiKeyService-15"><a href="#ApiKeyService-15"><span class="linenos">15</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span> <span class="o">=</span> <span class="n">ApiKey</span><span class="o">.</span><span class="vm">__name__</span>
+</span><span id="ApiKeyService-16"><a href="#ApiKeyService-16"><span class="linenos">16</span></a>
+</span><span id="ApiKeyService-17"><a href="#ApiKeyService-17"><span class="linenos">17</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">retrieve_api_keys_for_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ApiKey</span><span class="p">]:</span>
+</span><span id="ApiKeyService-18"><a href="#ApiKeyService-18"><span class="linenos">18</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a list of API keys (works for the authenticated User or a child User).&quot;&quot;&quot;</span>
+</span><span id="ApiKeyService-19"><a href="#ApiKeyService-19"><span class="linenos">19</span></a>        <span class="n">api_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span id="ApiKeyService-20"><a href="#ApiKeyService-20"><span class="linenos">20</span></a>
+</span><span id="ApiKeyService-21"><a href="#ApiKeyService-21"><span class="linenos">21</span></a>        <span class="k">if</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
+</span><span id="ApiKeyService-22"><a href="#ApiKeyService-22"><span class="linenos">22</span></a>            <span class="c1"># This function was called on the authenticated user</span>
+</span><span id="ApiKeyService-23"><a href="#ApiKeyService-23"><span class="linenos">23</span></a>            <span class="k">return</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;keys&quot;</span><span class="p">]</span>
+</span><span id="ApiKeyService-24"><a href="#ApiKeyService-24"><span class="linenos">24</span></a>
+</span><span id="ApiKeyService-25"><a href="#ApiKeyService-25"><span class="linenos">25</span></a>        <span class="c1"># This function was called on a child user (authenticated as parent, only return</span>
+</span><span id="ApiKeyService-26"><a href="#ApiKeyService-26"><span class="linenos">26</span></a>        <span class="c1"># this child user&#39;s details).</span>
+</span><span id="ApiKeyService-27"><a href="#ApiKeyService-27"><span class="linenos">27</span></a>        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]:</span>
+</span><span id="ApiKeyService-28"><a href="#ApiKeyService-28"><span class="linenos">28</span></a>            <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
+</span><span id="ApiKeyService-29"><a href="#ApiKeyService-29"><span class="linenos">29</span></a>                <span class="k">return</span> <span class="n">child</span><span class="o">.</span><span class="n">keys</span>
+</span><span id="ApiKeyService-30"><a href="#ApiKeyService-30"><span class="linenos">30</span></a>
+</span><span id="ApiKeyService-31"><a href="#ApiKeyService-31"><span class="linenos">31</span></a>        <span class="k">raise</span> <span class="n">FilteringError</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">NO_USER_FOUND</span><span class="p">)</span>
+</span><span id="ApiKeyService-32"><a href="#ApiKeyService-32"><span class="linenos">32</span></a>
+</span><span id="ApiKeyService-33"><a href="#ApiKeyService-33"><span class="linenos">33</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span id="ApiKeyService-34"><a href="#ApiKeyService-34"><span class="linenos">34</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a list of all API keys.&quot;&quot;&quot;</span>
+</span><span id="ApiKeyService-35"><a href="#ApiKeyService-35"><span class="linenos">35</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/api_keys&quot;</span>
+</span><span id="ApiKeyService-36"><a href="#ApiKeyService-36"><span class="linenos">36</span></a>
+</span><span id="ApiKeyService-37"><a href="#ApiKeyService-37"><span class="linenos">37</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+</span><span id="ApiKeyService-38"><a href="#ApiKeyService-38"><span class="linenos">38</span></a>
+</span><span id="ApiKeyService-39"><a href="#ApiKeyService-39"><span class="linenos">39</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span><span id="ApiKeyService-40"><a href="#ApiKeyService-40"><span class="linenos">40</span></a>
+</span><span id="ApiKeyService-41"><a href="#ApiKeyService-41"><span class="linenos">41</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ApiKey</span><span class="p">:</span>
+</span><span id="ApiKeyService-42"><a href="#ApiKeyService-42"><span class="linenos">42</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an API key for a child or referral customer user.&quot;&quot;&quot;</span>
+</span><span id="ApiKeyService-43"><a href="#ApiKeyService-43"><span class="linenos">43</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/api_keys&quot;</span>
+</span><span id="ApiKeyService-44"><a href="#ApiKeyService-44"><span class="linenos">44</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="n">mode</span><span class="p">}</span>
+</span><span id="ApiKeyService-45"><a href="#ApiKeyService-45"><span class="linenos">45</span></a>
+</span><span id="ApiKeyService-46"><a href="#ApiKeyService-46"><span class="linenos">46</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="ApiKeyService-47"><a href="#ApiKeyService-47"><span class="linenos">47</span></a>
+</span><span id="ApiKeyService-48"><a href="#ApiKeyService-48"><span class="linenos">48</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span><span id="ApiKeyService-49"><a href="#ApiKeyService-49"><span class="linenos">49</span></a>
+</span><span id="ApiKeyService-50"><a href="#ApiKeyService-50"><span class="linenos">50</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="ApiKeyService-51"><a href="#ApiKeyService-51"><span class="linenos">51</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete an API key for a child or referral customer user.&quot;&quot;&quot;</span>
+</span><span id="ApiKeyService-52"><a href="#ApiKeyService-52"><span class="linenos">52</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_delete_resource</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+</span><span id="ApiKeyService-53"><a href="#ApiKeyService-53"><span class="linenos">53</span></a>
+</span><span id="ApiKeyService-54"><a href="#ApiKeyService-54"><span class="linenos">54</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">enable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ApiKey</span><span class="p">:</span>
+</span><span id="ApiKeyService-55"><a href="#ApiKeyService-55"><span class="linenos">55</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Enable a child or referral customer API key.&quot;&quot;&quot;</span>
+</span><span id="ApiKeyService-56"><a href="#ApiKeyService-56"><span class="linenos">56</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/api_keys/</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">/enable&quot;</span>
+</span><span id="ApiKeyService-57"><a href="#ApiKeyService-57"><span class="linenos">57</span></a>
+</span><span id="ApiKeyService-58"><a href="#ApiKeyService-58"><span class="linenos">58</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+</span><span id="ApiKeyService-59"><a href="#ApiKeyService-59"><span class="linenos">59</span></a>
+</span><span id="ApiKeyService-60"><a href="#ApiKeyService-60"><span class="linenos">60</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span><span id="ApiKeyService-61"><a href="#ApiKeyService-61"><span class="linenos">61</span></a>
+</span><span id="ApiKeyService-62"><a href="#ApiKeyService-62"><span class="linenos">62</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">disable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ApiKey</span><span class="p">:</span>
+</span><span id="ApiKeyService-63"><a href="#ApiKeyService-63"><span class="linenos">63</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Disable a child or referral customer API key.&quot;&quot;&quot;</span>
+</span><span id="ApiKeyService-64"><a href="#ApiKeyService-64"><span class="linenos">64</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/api_keys/</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">/disable&quot;</span>
+</span><span id="ApiKeyService-65"><a href="#ApiKeyService-65"><span class="linenos">65</span></a>
+</span><span id="ApiKeyService-66"><a href="#ApiKeyService-66"><span class="linenos">66</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+</span><span id="ApiKeyService-67"><a href="#ApiKeyService-67"><span class="linenos">67</span></a>
+</span><span id="ApiKeyService-68"><a href="#ApiKeyService-68"><span class="linenos">68</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -169,39 +234,13 @@
 
     </div>
     <a class="headerlink" href="#ApiKeyService.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="ApiKeyService.__init__-18"><a href="#ApiKeyService.__init__-18"><span class="linenos">18</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">):</span>
-</span><span id="ApiKeyService.__init__-19"><a href="#ApiKeyService.__init__-19"><span class="linenos">19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">client</span>
-</span><span id="ApiKeyService.__init__-20"><a href="#ApiKeyService.__init__-20"><span class="linenos">20</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span> <span class="o">=</span> <span class="n">ApiKey</span><span class="o">.</span><span class="vm">__name__</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="ApiKeyService.__init__-13"><a href="#ApiKeyService.__init__-13"><span class="linenos">13</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">):</span>
+</span><span id="ApiKeyService.__init__-14"><a href="#ApiKeyService.__init__-14"><span class="linenos">14</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">client</span>
+</span><span id="ApiKeyService.__init__-15"><a href="#ApiKeyService.__init__-15"><span class="linenos">15</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span> <span class="o">=</span> <span class="n">ApiKey</span><span class="o">.</span><span class="vm">__name__</span>
 </span></pre></div>
 
 
     
-
-                            </div>
-                            <div id="ApiKeyService.all" class="classattr">
-                                        <input id="ApiKeyService.all-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
-<div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">all</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span>:</span></span>
-
-                <label class="view-source-button" for="ApiKeyService.all-view-source"><span>View Source</span></label>
-
-    </div>
-    <a class="headerlink" href="#ApiKeyService.all"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="ApiKeyService.all-22"><a href="#ApiKeyService.all-22"><span class="linenos">22</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-</span><span id="ApiKeyService.all-23"><a href="#ApiKeyService.all-23"><span class="linenos">23</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a list of all API keys.&quot;&quot;&quot;</span>
-</span><span id="ApiKeyService.all-24"><a href="#ApiKeyService.all-24"><span class="linenos">24</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/api_keys&quot;</span>
-</span><span id="ApiKeyService.all-25"><a href="#ApiKeyService.all-25"><span class="linenos">25</span></a>
-</span><span id="ApiKeyService.all-26"><a href="#ApiKeyService.all-26"><span class="linenos">26</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
-</span><span id="ApiKeyService.all-27"><a href="#ApiKeyService.all-27"><span class="linenos">27</span></a>
-</span><span id="ApiKeyService.all-28"><a href="#ApiKeyService.all-28"><span class="linenos">28</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
-</span></pre></div>
-
-
-            <div class="docstring"><p>Retrieve a list of all API keys.</p>
-</div>
-
 
                             </div>
                             <div id="ApiKeyService.retrieve_api_keys_for_user" class="classattr">
@@ -215,25 +254,152 @@
 
     </div>
     <a class="headerlink" href="#ApiKeyService.retrieve_api_keys_for_user"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="ApiKeyService.retrieve_api_keys_for_user-30"><a href="#ApiKeyService.retrieve_api_keys_for_user-30"><span class="linenos">30</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">retrieve_api_keys_for_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ApiKey</span><span class="p">]:</span>
-</span><span id="ApiKeyService.retrieve_api_keys_for_user-31"><a href="#ApiKeyService.retrieve_api_keys_for_user-31"><span class="linenos">31</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a list of API keys (works for the authenticated User or a child User).&quot;&quot;&quot;</span>
-</span><span id="ApiKeyService.retrieve_api_keys_for_user-32"><a href="#ApiKeyService.retrieve_api_keys_for_user-32"><span class="linenos">32</span></a>        <span class="n">api_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
-</span><span id="ApiKeyService.retrieve_api_keys_for_user-33"><a href="#ApiKeyService.retrieve_api_keys_for_user-33"><span class="linenos">33</span></a>
-</span><span id="ApiKeyService.retrieve_api_keys_for_user-34"><a href="#ApiKeyService.retrieve_api_keys_for_user-34"><span class="linenos">34</span></a>        <span class="k">if</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
-</span><span id="ApiKeyService.retrieve_api_keys_for_user-35"><a href="#ApiKeyService.retrieve_api_keys_for_user-35"><span class="linenos">35</span></a>            <span class="c1"># This function was called on the authenticated user</span>
-</span><span id="ApiKeyService.retrieve_api_keys_for_user-36"><a href="#ApiKeyService.retrieve_api_keys_for_user-36"><span class="linenos">36</span></a>            <span class="k">return</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;keys&quot;</span><span class="p">]</span>
-</span><span id="ApiKeyService.retrieve_api_keys_for_user-37"><a href="#ApiKeyService.retrieve_api_keys_for_user-37"><span class="linenos">37</span></a>
-</span><span id="ApiKeyService.retrieve_api_keys_for_user-38"><a href="#ApiKeyService.retrieve_api_keys_for_user-38"><span class="linenos">38</span></a>        <span class="c1"># This function was called on a child user (authenticated as parent, only return</span>
-</span><span id="ApiKeyService.retrieve_api_keys_for_user-39"><a href="#ApiKeyService.retrieve_api_keys_for_user-39"><span class="linenos">39</span></a>        <span class="c1"># this child user&#39;s details).</span>
-</span><span id="ApiKeyService.retrieve_api_keys_for_user-40"><a href="#ApiKeyService.retrieve_api_keys_for_user-40"><span class="linenos">40</span></a>        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]:</span>
-</span><span id="ApiKeyService.retrieve_api_keys_for_user-41"><a href="#ApiKeyService.retrieve_api_keys_for_user-41"><span class="linenos">41</span></a>            <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
-</span><span id="ApiKeyService.retrieve_api_keys_for_user-42"><a href="#ApiKeyService.retrieve_api_keys_for_user-42"><span class="linenos">42</span></a>                <span class="k">return</span> <span class="n">child</span><span class="o">.</span><span class="n">keys</span>
-</span><span id="ApiKeyService.retrieve_api_keys_for_user-43"><a href="#ApiKeyService.retrieve_api_keys_for_user-43"><span class="linenos">43</span></a>
-</span><span id="ApiKeyService.retrieve_api_keys_for_user-44"><a href="#ApiKeyService.retrieve_api_keys_for_user-44"><span class="linenos">44</span></a>        <span class="k">raise</span> <span class="n">FilteringError</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">NO_USER_FOUND</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="ApiKeyService.retrieve_api_keys_for_user-17"><a href="#ApiKeyService.retrieve_api_keys_for_user-17"><span class="linenos">17</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">retrieve_api_keys_for_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ApiKey</span><span class="p">]:</span>
+</span><span id="ApiKeyService.retrieve_api_keys_for_user-18"><a href="#ApiKeyService.retrieve_api_keys_for_user-18"><span class="linenos">18</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a list of API keys (works for the authenticated User or a child User).&quot;&quot;&quot;</span>
+</span><span id="ApiKeyService.retrieve_api_keys_for_user-19"><a href="#ApiKeyService.retrieve_api_keys_for_user-19"><span class="linenos">19</span></a>        <span class="n">api_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span id="ApiKeyService.retrieve_api_keys_for_user-20"><a href="#ApiKeyService.retrieve_api_keys_for_user-20"><span class="linenos">20</span></a>
+</span><span id="ApiKeyService.retrieve_api_keys_for_user-21"><a href="#ApiKeyService.retrieve_api_keys_for_user-21"><span class="linenos">21</span></a>        <span class="k">if</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
+</span><span id="ApiKeyService.retrieve_api_keys_for_user-22"><a href="#ApiKeyService.retrieve_api_keys_for_user-22"><span class="linenos">22</span></a>            <span class="c1"># This function was called on the authenticated user</span>
+</span><span id="ApiKeyService.retrieve_api_keys_for_user-23"><a href="#ApiKeyService.retrieve_api_keys_for_user-23"><span class="linenos">23</span></a>            <span class="k">return</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;keys&quot;</span><span class="p">]</span>
+</span><span id="ApiKeyService.retrieve_api_keys_for_user-24"><a href="#ApiKeyService.retrieve_api_keys_for_user-24"><span class="linenos">24</span></a>
+</span><span id="ApiKeyService.retrieve_api_keys_for_user-25"><a href="#ApiKeyService.retrieve_api_keys_for_user-25"><span class="linenos">25</span></a>        <span class="c1"># This function was called on a child user (authenticated as parent, only return</span>
+</span><span id="ApiKeyService.retrieve_api_keys_for_user-26"><a href="#ApiKeyService.retrieve_api_keys_for_user-26"><span class="linenos">26</span></a>        <span class="c1"># this child user&#39;s details).</span>
+</span><span id="ApiKeyService.retrieve_api_keys_for_user-27"><a href="#ApiKeyService.retrieve_api_keys_for_user-27"><span class="linenos">27</span></a>        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">api_keys</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]:</span>
+</span><span id="ApiKeyService.retrieve_api_keys_for_user-28"><a href="#ApiKeyService.retrieve_api_keys_for_user-28"><span class="linenos">28</span></a>            <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="nb">id</span><span class="p">:</span>
+</span><span id="ApiKeyService.retrieve_api_keys_for_user-29"><a href="#ApiKeyService.retrieve_api_keys_for_user-29"><span class="linenos">29</span></a>                <span class="k">return</span> <span class="n">child</span><span class="o">.</span><span class="n">keys</span>
+</span><span id="ApiKeyService.retrieve_api_keys_for_user-30"><a href="#ApiKeyService.retrieve_api_keys_for_user-30"><span class="linenos">30</span></a>
+</span><span id="ApiKeyService.retrieve_api_keys_for_user-31"><a href="#ApiKeyService.retrieve_api_keys_for_user-31"><span class="linenos">31</span></a>        <span class="k">raise</span> <span class="n">FilteringError</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">NO_USER_FOUND</span><span class="p">)</span>
 </span></pre></div>
 
 
             <div class="docstring"><p>Retrieve a list of API keys (works for the authenticated User or a child User).</p>
+</div>
+
+
+                            </div>
+                            <div id="ApiKeyService.all" class="classattr">
+                                        <input id="ApiKeyService.all-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">all</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span>:</span></span>
+
+                <label class="view-source-button" for="ApiKeyService.all-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#ApiKeyService.all"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="ApiKeyService.all-33"><a href="#ApiKeyService.all-33"><span class="linenos">33</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span id="ApiKeyService.all-34"><a href="#ApiKeyService.all-34"><span class="linenos">34</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve a list of all API keys.&quot;&quot;&quot;</span>
+</span><span id="ApiKeyService.all-35"><a href="#ApiKeyService.all-35"><span class="linenos">35</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/api_keys&quot;</span>
+</span><span id="ApiKeyService.all-36"><a href="#ApiKeyService.all-36"><span class="linenos">36</span></a>
+</span><span id="ApiKeyService.all-37"><a href="#ApiKeyService.all-37"><span class="linenos">37</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+</span><span id="ApiKeyService.all-38"><a href="#ApiKeyService.all-38"><span class="linenos">38</span></a>
+</span><span id="ApiKeyService.all-39"><a href="#ApiKeyService.all-39"><span class="linenos">39</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retrieve a list of all API keys.</p>
+</div>
+
+
+                            </div>
+                            <div id="ApiKeyService.create" class="classattr">
+                                        <input id="ApiKeyService.create-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">create</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">mode</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="n"><a href="../models/api_key.html#ApiKey">easypost.models.api_key.ApiKey</a></span>:</span></span>
+
+                <label class="view-source-button" for="ApiKeyService.create-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#ApiKeyService.create"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="ApiKeyService.create-41"><a href="#ApiKeyService.create-41"><span class="linenos">41</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ApiKey</span><span class="p">:</span>
+</span><span id="ApiKeyService.create-42"><a href="#ApiKeyService.create-42"><span class="linenos">42</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an API key for a child or referral customer user.&quot;&quot;&quot;</span>
+</span><span id="ApiKeyService.create-43"><a href="#ApiKeyService.create-43"><span class="linenos">43</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/api_keys&quot;</span>
+</span><span id="ApiKeyService.create-44"><a href="#ApiKeyService.create-44"><span class="linenos">44</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="n">mode</span><span class="p">}</span>
+</span><span id="ApiKeyService.create-45"><a href="#ApiKeyService.create-45"><span class="linenos">45</span></a>
+</span><span id="ApiKeyService.create-46"><a href="#ApiKeyService.create-46"><span class="linenos">46</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="ApiKeyService.create-47"><a href="#ApiKeyService.create-47"><span class="linenos">47</span></a>
+</span><span id="ApiKeyService.create-48"><a href="#ApiKeyService.create-48"><span class="linenos">48</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Create an API key for a child or referral customer user.</p>
+</div>
+
+
+                            </div>
+                            <div id="ApiKeyService.delete" class="classattr">
+                                        <input id="ApiKeyService.delete-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">delete</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+                <label class="view-source-button" for="ApiKeyService.delete-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#ApiKeyService.delete"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="ApiKeyService.delete-50"><a href="#ApiKeyService.delete-50"><span class="linenos">50</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="ApiKeyService.delete-51"><a href="#ApiKeyService.delete-51"><span class="linenos">51</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete an API key for a child or referral customer user.&quot;&quot;&quot;</span>
+</span><span id="ApiKeyService.delete-52"><a href="#ApiKeyService.delete-52"><span class="linenos">52</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_delete_resource</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_class</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Delete an API key for a child or referral customer user.</p>
+</div>
+
+
+                            </div>
+                            <div id="ApiKeyService.enable" class="classattr">
+                                        <input id="ApiKeyService.enable-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">enable</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="n"><a href="../models/api_key.html#ApiKey">easypost.models.api_key.ApiKey</a></span>:</span></span>
+
+                <label class="view-source-button" for="ApiKeyService.enable-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#ApiKeyService.enable"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="ApiKeyService.enable-54"><a href="#ApiKeyService.enable-54"><span class="linenos">54</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">enable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ApiKey</span><span class="p">:</span>
+</span><span id="ApiKeyService.enable-55"><a href="#ApiKeyService.enable-55"><span class="linenos">55</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Enable a child or referral customer API key.&quot;&quot;&quot;</span>
+</span><span id="ApiKeyService.enable-56"><a href="#ApiKeyService.enable-56"><span class="linenos">56</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/api_keys/</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">/enable&quot;</span>
+</span><span id="ApiKeyService.enable-57"><a href="#ApiKeyService.enable-57"><span class="linenos">57</span></a>
+</span><span id="ApiKeyService.enable-58"><a href="#ApiKeyService.enable-58"><span class="linenos">58</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+</span><span id="ApiKeyService.enable-59"><a href="#ApiKeyService.enable-59"><span class="linenos">59</span></a>
+</span><span id="ApiKeyService.enable-60"><a href="#ApiKeyService.enable-60"><span class="linenos">60</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Enable a child or referral customer API key.</p>
+</div>
+
+
+                            </div>
+                            <div id="ApiKeyService.disable" class="classattr">
+                                        <input id="ApiKeyService.disable-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">disable</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="n"><a href="../models/api_key.html#ApiKey">easypost.models.api_key.ApiKey</a></span>:</span></span>
+
+                <label class="view-source-button" for="ApiKeyService.disable-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#ApiKeyService.disable"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="ApiKeyService.disable-62"><a href="#ApiKeyService.disable-62"><span class="linenos">62</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">disable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ApiKey</span><span class="p">:</span>
+</span><span id="ApiKeyService.disable-63"><a href="#ApiKeyService.disable-63"><span class="linenos">63</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Disable a child or referral customer API key.&quot;&quot;&quot;</span>
+</span><span id="ApiKeyService.disable-64"><a href="#ApiKeyService.disable-64"><span class="linenos">64</span></a>        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/api_keys/</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">/disable&quot;</span>
+</span><span id="ApiKeyService.disable-65"><a href="#ApiKeyService.disable-65"><span class="linenos">65</span></a>
+</span><span id="ApiKeyService.disable-66"><a href="#ApiKeyService.disable-66"><span class="linenos">66</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">Requestor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">)</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+</span><span id="ApiKeyService.disable-67"><a href="#ApiKeyService.disable-67"><span class="linenos">67</span></a>
+</span><span id="ApiKeyService.disable-68"><a href="#ApiKeyService.disable-68"><span class="linenos">68</span></a>        <span class="k">return</span> <span class="n">convert_to_easypost_object</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Disable a child or referral customer API key.</p>
 </div>
 
 
