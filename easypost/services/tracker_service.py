@@ -1,15 +1,9 @@
-from typing import (
-    Any,
-    Optional,
-)
+from typing import Any, Optional
 
 from easypost.constant import _FILTERS_KEY
 from easypost.easypost_object import convert_to_easypost_object
 from easypost.models import Tracker
-from easypost.requestor import (
-    RequestMethod,
-    Requestor,
-)
+from easypost.requestor import RequestMethod, Requestor
 from easypost.services.base_service import BaseService
 
 
@@ -70,3 +64,7 @@ class TrackerService(BaseService):
             params.update(optional_params)
 
         return self.all(**params)
+
+    def delete(self, id: str) -> None:
+        """Delete a Tracker."""
+        self._delete_resource(self._model_class, id)

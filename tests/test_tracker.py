@@ -66,3 +66,11 @@ def test_tracker_get_next_page(page_size, test_client):
     except Exception as e:
         if e.message != NO_MORE_PAGES_ERROR:
             raise Exception(_TEST_FAILED_INTENTIONALLY_ERROR)
+
+
+@pytest.mark.vcr()
+def test_tracker_delete(test_client):
+    tracker = test_client.tracker.create(tracking_code="EZ1000000001")
+
+    # Nothing gets returned here, simply ensure no error gets raised
+    test_client.tracker.delete(tracker.id)
