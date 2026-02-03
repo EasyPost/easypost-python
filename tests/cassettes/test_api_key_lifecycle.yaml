@@ -1,0 +1,257 @@
+interactions:
+- request:
+    body: '{"mode": "production"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '22'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/api_keys
+  response:
+    body:
+      string: '{"object": "ApiKey", "key": "<REDACTED>", "mode": "production", "created_at":
+        "2026-02-02T21:31:26Z", "active": true, "id": "ak_e87ac0a105ea4760a5df59a757230365"}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '199'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 2e56ccf3698117aee2bb247402d1e34b
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb57nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb4nuq d9379ca146
+      - extlb2nuq cbbd141214
+      x-runtime:
+      - '0.111460'
+      x-version-label:
+      - easypost-202602022023-e2aafa4ad5-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/api_keys/ak_e87ac0a105ea4760a5df59a757230365/disable
+  response:
+    body:
+      string: '{"object": "ApiKey", "key": "<REDACTED>", "mode": "production", "created_at":
+        "2026-02-02T21:31:26Z", "active": false, "id": "ak_e87ac0a105ea4760a5df59a757230365"}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '200'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 2e56cced698117aee2bb247502d1e3ae
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb53nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb4nuq d9379ca146
+      - extlb2nuq cbbd141214
+      x-runtime:
+      - '0.125884'
+      x-version-label:
+      - easypost-202602022023-e2aafa4ad5-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/api_keys/ak_e87ac0a105ea4760a5df59a757230365/enable
+  response:
+    body:
+      string: '{"object": "ApiKey", "key": "<REDACTED>", "mode": "production", "created_at":
+        "2026-02-02T21:31:26Z", "active": true, "id": "ak_e87ac0a105ea4760a5df59a757230365"}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '199'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 2e56ccee698117afe2bb247602d1e40f
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb42nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb6nuq d9379ca146
+      - extlb2nuq cbbd141214
+      x-runtime:
+      - '0.120192'
+      x-version-label:
+      - easypost-202602022023-e2aafa4ad5-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: DELETE
+    uri: https://api.easypost.com/v2/api_keys/ak_e87ac0a105ea4760a5df59a757230365
+  response:
+    body:
+      string: ''
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 2e56ccf1698117afe2bb247702d1e476
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb42nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb4nuq d9379ca146
+      - extlb2nuq cbbd141214
+      x-runtime:
+      - '0.105366'
+      x-version-label:
+      - easypost-202602022023-e2aafa4ad5-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 204
+      message: No Content
+version: 1
