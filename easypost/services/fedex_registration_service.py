@@ -2,8 +2,6 @@ import uuid
 from typing import Any
 
 from easypost.easypost_object import convert_to_easypost_object
-from easypost.models.fedex_account_validation_response import FedExAccountValidationResponse
-from easypost.models.fedex_request_pin_response import FedExRequestPinResponse
 from easypost.requestor import RequestMethod, Requestor
 from easypost.services.base_service import BaseService
 
@@ -12,16 +10,8 @@ class FedExRegistrationService(BaseService):
     def __init__(self, client):
         self._client = client
 
-    def register_address(self, fedex_account_number: str, **params) -> FedExAccountValidationResponse:
-        """Register the billing address for a FedEx account.
-
-        Args:
-            fedex_account_number: The FedEx account number.
-            params: Map of parameters.
-
-        Returns:
-            FedExAccountValidationResponse object with next steps (PIN or invoice validation).
-        """
+    def register_address(self, fedex_account_number: str, **params) -> dict[str, Any]:
+        """Register the billing address for a FedEx account."""
         wrapped_params = self._wrap_address_validation(params)
         url = f"/fedex_registrations/{fedex_account_number}/address"
 
@@ -29,16 +19,8 @@ class FedExRegistrationService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def request_pin(self, fedex_account_number: str, pin_method_option: str) -> FedExRequestPinResponse:
-        """Request a PIN for FedEx account verification.
-
-        Args:
-            fedex_account_number: The FedEx account number.
-            pin_method_option: The PIN delivery method: "SMS", "CALL", or "EMAIL".
-
-        Returns:
-            FedExRequestPinResponse object confirming PIN was sent.
-        """
+    def request_pin(self, fedex_account_number: str, pin_method_option: str) -> dict[str, Any]:
+        """Request a PIN for FedEx account verification."""
         wrapped_params = {"pin_method": {"option": pin_method_option}}
         url = f"/fedex_registrations/{fedex_account_number}/pin"
 
@@ -46,16 +28,8 @@ class FedExRegistrationService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def validate_pin(self, fedex_account_number: str, **params) -> FedExAccountValidationResponse:
-        """Validate the PIN entered by the user for FedEx account verification.
-
-        Args:
-            fedex_account_number: The FedEx account number.
-            params: Map of parameters.
-
-        Returns:
-            FedExAccountValidationResponse object.
-        """
+    def validate_pin(self, fedex_account_number: str, **params) -> dict[str, Any]:
+        """Validate the PIN entered by the user for FedEx account verification."""
         wrapped_params = self._wrap_pin_validation(params)
         url = f"/fedex_registrations/{fedex_account_number}/pin/validate"
 
@@ -63,16 +37,8 @@ class FedExRegistrationService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def submit_invoice(self, fedex_account_number: str, **params) -> FedExAccountValidationResponse:
-        """Submit invoice information to complete FedEx account registration.
-
-        Args:
-            fedex_account_number: The FedEx account number.
-            params: Map of parameters.
-
-        Returns:
-            FedExAccountValidationResponse object.
-        """
+    def submit_invoice(self, fedex_account_number: str, **params) -> dict[str, Any]:
+        """Submit invoice information to complete FedEx account registration."""
         wrapped_params = self._wrap_invoice_validation(params)
         url = f"/fedex_registrations/{fedex_account_number}/invoice"
 
@@ -83,12 +49,6 @@ class FedExRegistrationService(BaseService):
     def _wrap_address_validation(self, params: dict[str, Any]) -> dict[str, Any]:
         """Wraps address validation parameters and ensures the "name" field exists.
         If not present, generates a UUID (with hyphens removed) as the name.
-
-        Args:
-            params: The original parameters map.
-
-        Returns:
-            A new map with properly wrapped address_validation and easypost_details.
         """
         wrapped_params = {}
 
@@ -105,12 +65,6 @@ class FedExRegistrationService(BaseService):
     def _wrap_pin_validation(self, params: dict[str, Any]) -> dict[str, Any]:
         """Wraps PIN validation parameters and ensures the "name" field exists.
         If not present, generates a UUID (with hyphens removed) as the name.
-
-        Args:
-            params: The original parameters map.
-
-        Returns:
-            A new map with properly wrapped pin_validation and easypost_details.
         """
         wrapped_params = {}
 
@@ -127,12 +81,6 @@ class FedExRegistrationService(BaseService):
     def _wrap_invoice_validation(self, params: dict[str, Any]) -> dict[str, Any]:
         """Wraps invoice validation parameters and ensures the "name" field exists.
         If not present, generates a UUID (with hyphens removed) as the name.
-
-        Args:
-            params: The original parameters map.
-
-        Returns:
-            A new map with properly wrapped invoice_validation and easypost_details.
         """
         wrapped_params = {}
 
@@ -150,9 +98,6 @@ class FedExRegistrationService(BaseService):
         """Ensures the "name" field exists in the provided map.
         If not present, generates a UUID (with hyphens removed) as the name.
         This follows the pattern used in the web UI implementation.
-
-        Args:
-            mapping: The map to ensure the "name" field in.
         """
         if "name" not in mapping or mapping["name"] is None:
             mapping["name"] = str(uuid.uuid4()).replace("-", "")
