@@ -10,6 +10,8 @@ from easypost.models.customs_info import CustomsInfo
 from easypost.models.customs_item import CustomsItem
 from easypost.models.end_shipper import EndShipper
 from easypost.models.event import Event
+from easypost.models.fedex_account_validation_response import FedExAccountValidationResponse
+from easypost.models.fedex_request_pin_response import FedExRequestPinResponse
 from easypost.models.insurance import Insurance
 from easypost.models.order import Order
 from easypost.models.parcel import Parcel

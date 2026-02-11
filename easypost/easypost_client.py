@@ -25,6 +25,7 @@ from easypost.services import (
     EmbeddableService,
     EndShipperService,
     EventService,
+    FedExRegistrationService,
     InsuranceService,
     LumaService,
     OrderService,
@@ -66,6 +67,7 @@ class EasyPostClient:
         self.billing = BillingService(self)
         self.carrier_account = CarrierAccountService(self)
         self.carrier_metadata = CarrierMetadataService(self)
+        self.fedex_registration = FedExRegistrationService(self)
         self.claim = ClaimService(self)
         self.customer_portal = CustomerPortalService(self)
         self.customs_info = CustomsInfoService(self)
