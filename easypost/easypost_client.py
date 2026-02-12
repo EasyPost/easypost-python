@@ -1,3 +1,5 @@
+from typing import Any
+
 from easypost.constant import (
     API_BASE,
     API_VERSION,
@@ -5,7 +7,9 @@ from easypost.constant import (
     SUPPORT_EMAIL,
     TIMEOUT,
 )
+from easypost.easypost_object import convert_to_easypost_object
 from easypost.hooks import RequestHook, ResponseHook
+from easypost.requestor import RequestMethod, Requestor
 from easypost.services import (
     AddressService,
     ApiKeyService,
@@ -138,3 +142,14 @@ class EasyPostClient:
     def unsubscribe_from_response_hook(self, function):
         """Unsubscribe functions from running when a response occurs."""
         self._response_hook -= function
+
+    def make_api_call(self, method: RequestMethod, endpoint: str, params: dict[str, Any]) -> dict[str, Any]:
+        """Make an API call to the EasyPost API.
+
+        This public, generic interface is useful for making arbitrary API calls to the EasyPost API that
+        are not yet supported by the client library's services. When possible, the service for your use case
+        should be used instead as it provides a more convenient and higher-level interface depending on the endpoint.
+        """
+        response = Requestor(self).request(method=method, url=endpoint, params=params)
+
+        return convert_to_easypost_object(response=response)
