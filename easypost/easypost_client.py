@@ -5,10 +5,7 @@ from easypost.constant import (
     SUPPORT_EMAIL,
     TIMEOUT,
 )
-from easypost.hooks import (
-    RequestHook,
-    ResponseHook,
-)
+from easypost.hooks import RequestHook, ResponseHook
 from easypost.services import (
     AddressService,
     ApiKeyService,
@@ -25,6 +22,7 @@ from easypost.services import (
     EmbeddableService,
     EndShipperService,
     EventService,
+    FedExRegistrationService,
     InsuranceService,
     LumaService,
     OrderService,
@@ -73,6 +71,7 @@ class EasyPostClient:
         self.embeddable = EmbeddableService(self)
         self.end_shipper = EndShipperService(self)
         self.event = EventService(self)
+        self.fedex_registration = FedExRegistrationService(self)
         self.insurance = InsuranceService(self)
         self.luma = LumaService(self)
         self.order = OrderService(self)
