@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v10.5.1 (2026-02-24)
+
+- Corrects the return type of `carrier_account.all()` (closes #386)
+
 ## v10.5.0 (2026-02-20)
 
 - Adds the following functions:

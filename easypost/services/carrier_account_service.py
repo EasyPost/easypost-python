@@ -40,7 +40,7 @@ class CarrierAccountService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def all(self, **params) -> dict[str, Any]:
+    def all(self, **params) -> list[dict[str, Any]]:
         """Retrieve a list of CarrierAccounts."""
         return self._all_resources(self._model_class, **params)
 
