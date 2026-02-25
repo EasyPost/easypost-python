@@ -1,0 +1,74 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/addresses?page_size=1
+  response:
+    body:
+      string: '{"addresses": [{"id": "adr_b532f4f1bc0311f0b86eac1f6bc539aa", "object":
+        "Address", "created_at": "2025-11-07T18:00:55Z", "updated_at": "2025-11-07T18:00:55Z",
+        "name": null, "company": "EASYPOST", "street1": "000 UNKNOWN STREET", "street2":
+        null, "city": "NOT A CITY", "state": "ZZ", "zip": "00001", "country": "US",
+        "phone": "<REDACTED>", "email": "<REDACTED>", "mode": "test", "carrier_facility":
+        null, "residential": null, "federal_tax_id": null, "state_tax_id": null, "verifications":
+        {"zip4": {"success": true, "errors": [{"code": "E.ADDRESS.NOT_FOUND", "field":
+        "address", "message": "Address not found", "suggestion": null}], "details":
+        null}, "delivery": {"success": true, "errors": [{"code": "E.ADDRESS.NOT_FOUND",
+        "field": "address", "message": "Address not found", "suggestion": null}],
+        "details": {"latitude": null, "longitude": null, "time_zone": null}}, "verify_carrier":
+        "ups"}}], "has_more": true}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '842'
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - f785caeb698e03c9e786b0840112d88f
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - bigweb56nuq
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb3nuq 0dcc3a6efb
+      - extlb2nuq c01291cd8f
+      x-runtime:
+      - '0.061229'
+      x-version-label:
+      - easypost-202602121634-14fe075b27-master
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
