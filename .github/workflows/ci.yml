@@ -35,12 +35,11 @@ jobs:
         run: just install
       - name: Run Tests
         run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 just coverage
-      - name: Coveralls
+      - name: Coverage
         if: github.ref == 'refs/heads/master'
-        uses: coverallsapp/github-action@master
+        uses: codecov/codecov-action@v5
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: './coverage.lcov'
+          token: ${{ secrets.CODECOV_TOKEN }}
       - name: Run security analysis
         run: just scan
   docs:
