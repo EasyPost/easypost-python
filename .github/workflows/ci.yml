@@ -12,6 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: extractions/setup-just@v3
+      - uses: astral-sh/setup-uv@v7
       - uses: actions/setup-python@v6
         with:
           python-version: '3.14'
@@ -28,6 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: extractions/setup-just@v3
+      - uses: astral-sh/setup-uv@v7
       - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.pythonversion }}
@@ -48,6 +50,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: extractions/setup-just@v3
+      - uses: astral-sh/setup-uv@v7
       - uses: actions/setup-python@v6
         with:
           python-version: '3.14'
