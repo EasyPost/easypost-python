@@ -1,5 +1,4 @@
-PYTHON_BINARY := "python3"
-VIRTUAL_ENV := "venv"
+VIRTUAL_ENV := ".venv"
 VIRTUAL_BIN := VIRTUAL_ENV / "bin"
 PROJECT_NAME := "easypost"
 TEST_DIR := "tests"
@@ -29,8 +28,8 @@ init-examples-submodule:
 
 # Install the project locally (dev mode)
 install: init-examples-submodule
-    {{PYTHON_BINARY}} -m venv {{VIRTUAL_ENV}}
-    {{VIRTUAL_BIN}}/pip install -e ."[dev]"
+    uv venv
+    uv pip install -e '.[dev]'
 
 # Update the examples submodule
 update-examples-submodule:
