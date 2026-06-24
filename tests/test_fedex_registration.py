@@ -44,6 +44,10 @@ def test_register_address(prod_client, monkeypatch):
 def test_request_pin(prod_client, monkeypatch):
     """Tests requesting a pin."""
     fedex_account_number = "123456789"
+    easypost_details = {"carrier_account_id": "ca_123"}
+    params = {
+        "easypost_details": easypost_details,
+    }
 
     json_response = {"message": "sent secured Pin"}
 
@@ -52,7 +56,7 @@ def test_request_pin(prod_client, monkeypatch):
 
     monkeypatch.setattr("easypost.services.fedex_registration_service.Requestor", mock_requestor)
 
-    response = prod_client.fedex_registration.request_pin(fedex_account_number, "SMS")
+    response = prod_client.fedex_registration.request_pin(fedex_account_number, "SMS", **params)
     assert isinstance(response, EasyPostObject)
     assert response.message == "sent secured Pin"
 
