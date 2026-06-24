@@ -44,9 +44,8 @@ def test_register_address(prod_client, monkeypatch):
 def test_request_pin(prod_client, monkeypatch):
     """Tests requesting a pin."""
     fedex_account_number = "123456789"
-    easypost_details = {"carrier_account_id": "ca_123"}
     params = {
-        "easypost_details": easypost_details,
+        "easypost_details": {"carrier_account_id": "ca_123"},
     }
 
     json_response = {"message": "sent secured Pin"}

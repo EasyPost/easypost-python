@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v10.7.0 (2026-06-25)
+
+- Adds `params` to `request_pin` ensuring users can pass `easypost_details` to the call.
+
 ## v10.6.0 (2026-02-25)
 
 - Adds generic `make_api_call` function
