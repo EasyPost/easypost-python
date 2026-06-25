@@ -19,9 +19,10 @@ class FedExRegistrationService(BaseService):
 
         return convert_to_easypost_object(response=response)
 
-    def request_pin(self, fedex_account_number: str, pin_method_option: str) -> dict[str, Any]:
+    def request_pin(self, fedex_account_number: str, pin_method_option: str, **params) -> dict[str, Any]:
         """Request a PIN for FedEx account verification."""
-        wrapped_params = {"pin_method": {"option": pin_method_option}}
+        wrapped_params = self._wrap_pin_validation(params)
+        wrapped_params["pin_method"] = {"option": pin_method_option}
         url = f"/fedex_registrations/{fedex_account_number}/pin"
 
         response = Requestor(self._client).request(method=RequestMethod.POST, url=url, params=wrapped_params)
