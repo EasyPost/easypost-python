@@ -222,9 +222,11 @@ class ReferralCustomerService(BaseService):
         form_encoded_params = Requestor.form_encode_params(credit_card_dict)
         url = "https://api.stripe.com/v1/tokens"
 
+        # Card details must travel in the form-encoded request body, never in the URL,
+        # so they cannot end up in access logs, proxy logs, or Referer headers.
         stripe_response = requests.post(
             url,
-            params=form_encoded_params,
+            data=form_encoded_params,
             headers=headers,
             auth=requests.auth.HTTPBasicAuth(easypost_stripe_key, ""),
             timeout=TIMEOUT,
