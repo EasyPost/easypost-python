@@ -5,7 +5,7 @@ TEST_DIR := "tests"
 
 # Build the project for release
 build:
-    {{VIRTUAL_BIN}}/python -m build
+    uv build
 
 # Clean the project
 clean:

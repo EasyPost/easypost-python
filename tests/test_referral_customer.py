@@ -1,5 +1,4 @@
 import os
-from unittest.mock import patch
 
 import pytest
 
@@ -74,58 +73,6 @@ def test_referral_get_next_page(partner_user_prod_client, page_size):
             raise Exception(_TEST_FAILED_INTENTIONALLY_ERROR)
 
 
-@pytest.mark.skip("flow is deprecated, cannot easily be tested due to Stripe changes")
-# PyVCR is having troubles matching the body of the form-encoded data here, override the default
-@pytest.mark.vcr(
-    match_on=[
-        "headers",
-        "method",
-        "query",
-        "uri",
-    ]
-)
-def test_referral_customer_add_credit_card(partner_user_prod_client, credit_card_details):
-    """This test requires a partner customer's production API key via PARTNER_USER_PROD_API_KEY
-    as well as one of that customer's referral's production API keys via REFERRAL_CUSTOMER_PROD_API_KEY.
-    """
-    added_credit_card = partner_user_prod_client.referral_customer.add_credit_card(
-        referral_api_key=REFERRAL_CUSTOMER_PROD_API_KEY,
-        number=credit_card_details["number"],
-        expiration_month=credit_card_details["expiration_month"],
-        expiration_year=credit_card_details["expiration_year"],
-        cvc=credit_card_details["cvc"],
-    )
-
-    assert str.startswith(added_credit_card.id, "pm_")
-    assert added_credit_card.last4 == "6170"
-
-
-@patch("easypost.services.referral_customer_service.ReferralCustomerService._retrieve_easypost_stripe_api_key")
-@patch(
-    "easypost.services.referral_customer_service.ReferralCustomerService._create_stripe_token",
-    side_effect=Exception(),
-)
-def test_referral_add_credit_card_error(
-    mock_stripe_token,
-    mock_easypost_key,
-    credit_card_details,
-    partner_user_prod_client,
-):
-    """This test requires a partner customer's production API key via PARTNER_USER_PROD_API_KEY
-    as well as one of that customer's referral's production API keys via REFERRAL_CUSTOMER_PROD_API_KEY.
-    """
-    with pytest.raises(Exception) as error:
-        _ = partner_user_prod_client.referral_customer.add_credit_card(
-            referral_api_key=REFERRAL_CUSTOMER_PROD_API_KEY,
-            number=credit_card_details["number"],
-            expiration_month=credit_card_details["expiration_month"],
-            expiration_year=credit_card_details["expiration_year"],
-            cvc=credit_card_details["cvc"],
-        )
-
-    assert str(error.value) == "Could not send card details to Stripe, please try again later."
-
-
 @pytest.mark.vcr()
 def test_referral_customer_add_credit_card_from_stripe(partner_user_prod_client, credit_card_details, billing):
     """This test requires a referral customer's production API key via REFERRAL_CUSTOMER_PROD_API_KEY.
@@ -159,3 +106,12 @@ def test_referral_customer_add_bank_account_from_stripe(partner_user_prod_client
     assert (
         str(error.value) == "account_holder_name must be present when creating a Financial Connections payment method"
     )
+
+
+@pytest.mark.vcr()
+def test_referral_customer_retrieve_easypost_stripe_api_key(partner_user_prod_client):
+    """This test requires a partner customer's production API key via PARTNER_USER_PROD_API_KEY."""
+    public_key = partner_user_prod_client.referral_customer.retrieve_easypost_stripe_api_key()
+
+    assert isinstance(public_key, str)
+    assert public_key.startswith("pk_")

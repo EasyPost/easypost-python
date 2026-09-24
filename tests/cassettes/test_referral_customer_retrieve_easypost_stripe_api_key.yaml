@@ -1,0 +1,67 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: GET
+    uri: https://api.easypost.com/v2/partners/stripe_public_key
+  response:
+    body:
+      string: '{"public_key": "pk_x3JSr5eOVWNTLRej8cZDde9VQ0AT5"}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '49'
+      content-type:
+      - application/json; charset=utf-8
+      easypost-api-version:
+      - '2015-01-01'
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - EasyPost-Api-Version
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 91d0a0fa6ab4301ce2b97bb400af2fd1
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - web103azw
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb3azw f29267e751
+      - extlb2azw 07fb4d8f06
+      x-runtime:
+      - '0.029468'
+      x-version-label:
+      - easypost-202609231716-41b3efb4ec-main
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
