@@ -1,0 +1,78 @@
+interactions:
+- request:
+    body: '{"carrier_account": {"type": "FedexDefaultAccount", "registration_data":
+      {}}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '77'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/carrier_accounts/open
+  response:
+    body:
+      string: '{"error": {"code": "UNPROCESSABLE_ENTITY", "message": "The request
+        was understood, but cannot be processed.", "errors": [{"field": "name", "message":
+        "is missing"}, {"field": "street1", "message": "is missing"}, {"field": "city",
+        "message": "is missing"}, {"field": "state", "message": "is missing"}, {"field":
+        "postal_code", "message": "is missing"}, {"field": "country", "message": "is
+        missing"}, {"field": "phone", "message": "is missing"}, {"field": "email",
+        "message": "is missing"}]}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '453'
+      content-type:
+      - application/json; charset=utf-8
+      easypost-api-version:
+      - '2015-01-01'
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - EasyPost-Api-Version
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 97548db56ad131cee2ba1496005e01b6
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - web107azw
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb3azw f29267e751
+      - extlb1azw ff4cfe6eb5
+      x-runtime:
+      - '0.027957'
+      x-version-label:
+      - easypost-202610151849-c381b11f6c-main
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 422
+      message: Unprocessable Entity
+version: 1

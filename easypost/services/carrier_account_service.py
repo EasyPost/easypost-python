@@ -4,8 +4,7 @@ from typing import (
 )
 
 from easypost.constant import (
-    _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_OAUTH,
-    _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_WORKFLOWS,
+    _CARRIER_ACCOUNT_CREATE_ENDPOINT_TYPES,
     MISSING_PARAMETER_ERROR,
 )
 from easypost.easypost_object import convert_to_easypost_object
@@ -31,7 +30,7 @@ class CarrierAccountService(BaseService):
             raise MissingParameterError(MISSING_PARAMETER_ERROR.format("type"))
 
         url = self._select_carrier_account_creation_endpoint(carrier_account_type=carrier_account_type)
-        if carrier_account_type in _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_OAUTH:
+        if url == "/carrier_accounts/register_oauth":
             wrapped_params = {"carrier_account_oauth_registrations": params}
         else:
             wrapped_params = {self._snakecase_name(self._model_class): params}
@@ -64,9 +63,8 @@ class CarrierAccountService(BaseService):
 
     def _select_carrier_account_creation_endpoint(self, carrier_account_type: Optional[Any]) -> str:
         """Determines which API endpoint to use for the creation call."""
-        if carrier_account_type in _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_WORKFLOWS:
-            return "/carrier_accounts/register"
-        elif carrier_account_type in _CARRIER_ACCOUNT_TYPES_WITH_CUSTOM_OAUTH:
-            return "/carrier_accounts/register_oauth"
+        for endpoint, carrier_account_types in _CARRIER_ACCOUNT_CREATE_ENDPOINT_TYPES.items():
+            if carrier_account_type in carrier_account_types:
+                return endpoint
 
         return "/carrier_accounts"

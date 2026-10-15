@@ -1,0 +1,143 @@
+interactions:
+- request:
+    body: '{"carrier_account": {"type": "VehoWalletAccount", "registration_data":
+      {}}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '75'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/carrier_accounts/open
+  response:
+    body:
+      string: '{"id": "ca_25a8211bea34436cb296a2a769497f0b", "object": "CarrierAccount",
+        "type": "VehoWalletAccount", "clone": false, "created_at": "2026-10-15T20:04:32Z",
+        "updated_at": "2026-10-15T20:04:32Z", "description": "Veho Account", "reference":
+        null, "billing_type": "easypost", "readable": "Veho", "logo": null, "fields":
+        [], "credentials": {}, "test_credentials": {}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '583'
+      content-type:
+      - application/json; charset=utf-8
+      easypost-api-version:
+      - '2015-01-01'
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - EasyPost-Api-Version
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - cb7ede836ad131d0e2ba149c005e0501
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - web124azw
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb3azw f29267e751
+      - extlb1azw ff4cfe6eb5
+      x-runtime:
+      - '0.091164'
+      x-version-label:
+      - easypost-202610151849-c381b11f6c-main
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: DELETE
+    uri: https://api.easypost.com/v2/carrier_accounts/ca_25a8211bea34436cb296a2a769497f0b
+  response:
+    body:
+      string: '{}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '2'
+      content-type:
+      - application/json; charset=utf-8
+      easypost-api-version:
+      - '2015-01-01'
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - EasyPost-Api-Version
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 7ff0b0756ad131d0e2ba149d005c472c
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - web113azw
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2azw f29267e751
+      - extlb2azw ff4cfe6eb5
+      x-runtime:
+      - '0.071861'
+      x-version-label:
+      - easypost-202610151849-c381b11f6c-main
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

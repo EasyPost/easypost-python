@@ -1,0 +1,74 @@
+interactions:
+- request:
+    body: '{"carrier_account": {"type": "FedexAccount", "registration_data": {}}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '70'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/carrier_accounts/register
+  response:
+    body:
+      string: '{"error": {"code": "GONE", "message": "The requested resource is no
+        longer available at the server and no forwarding address is known.", "errors":
+        [{"message": "FedEx account registrations must use the multi-factor authentication
+        (MFA) registration workflow. See: https://support.easypost.com/hc/en-us/articles/35262738410253-FedEx-Multi-Factor-Authentication"}]}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '357'
+      content-type:
+      - application/json; charset=utf-8
+      easypost-api-version:
+      - '2015-01-01'
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - EasyPost-Api-Version
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - aebfacaf6ad131d0e2ba149e0058abce
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - web107azw
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb4azw f29267e751
+      - extlb3azw ff4cfe6eb5
+      x-runtime:
+      - '0.042922'
+      x-version-label:
+      - easypost-202610151849-c381b11f6c-main
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 410
+      message: Gone
+version: 1
