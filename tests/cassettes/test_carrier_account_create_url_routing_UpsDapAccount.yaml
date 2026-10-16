@@ -1,0 +1,73 @@
+interactions:
+- request:
+    body: '{"carrier_account": {"type": "UpsDapAccount", "registration_data": {}}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '71'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/carrier_accounts/open
+  response:
+    body:
+      string: '{"error": {"code": "PARAMETER.REQUIRED", "message": "Missing required
+        parameter.", "errors": [{"field": "postal_code", "message": "is required but
+        missing"}]}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '150'
+      content-type:
+      - application/json; charset=utf-8
+      easypost-api-version:
+      - '2015-01-01'
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - EasyPost-Api-Version
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 97548db66ad131cfe2ba1499005e033b
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - web127azw
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb3azw f29267e751
+      - extlb1azw ff4cfe6eb5
+      x-runtime:
+      - '0.058331'
+      x-version-label:
+      - easypost-202610151849-c381b11f6c-main
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 422
+      message: Unprocessable Entity
+version: 1

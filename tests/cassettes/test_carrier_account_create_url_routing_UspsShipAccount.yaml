@@ -1,0 +1,142 @@
+interactions:
+- request:
+    body: '{"carrier_account_oauth_registrations": {"type": "UspsShipAccount"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '68'
+      Content-Type:
+      - application/json
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: POST
+    uri: https://api.easypost.com/v2/carrier_accounts/register_oauth
+  response:
+    body:
+      string: '{"id": "ca_fa253fbe72144d0dbe6817fc99d0c136", "object": "CarrierAccount",
+        "type": "UspsShipAccount", "clone": false, "created_at": "2026-10-15T20:04:33Z",
+        "updated_at": "2026-10-15T20:04:33Z", "description": null, "reference": null,
+        "billing_type": "carrier", "readable": "Usps Ship", "logo": null, "fields":
+        [], "credentials": {}, "test_credentials": {}}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '2561'
+      content-type:
+      - application/json; charset=utf-8
+      easypost-api-version:
+      - '2015-01-01'
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - EasyPost-Api-Version
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - 97548db46ad131d1e2ba14bc005e092a
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - web115azw
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2azw f29267e751
+      - extlb1azw ff4cfe6eb5
+      x-runtime:
+      - '0.105050'
+      x-version-label:
+      - easypost-202610151849-c381b11f6c-main
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      authorization:
+      - <REDACTED>
+      user-agent:
+      - <REDACTED>
+    method: DELETE
+    uri: https://api.easypost.com/v2/carrier_accounts/ca_fa253fbe72144d0dbe6817fc99d0c136
+  response:
+    body:
+      string: '{}'
+    headers:
+      cache-control:
+      - private, no-cache, no-store
+      content-length:
+      - '2'
+      content-type:
+      - application/json; charset=utf-8
+      easypost-api-version:
+      - '2015-01-01'
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      vary:
+      - EasyPost-Api-Version
+      x-backend:
+      - easypost
+      x-content-type-options:
+      - nosniff
+      x-download-options:
+      - noopen
+      x-ep-request-uuid:
+      - add87ec36ad131d1e2ba14d80058afe8
+      x-frame-options:
+      - SAMEORIGIN
+      x-node:
+      - web127azw
+      x-permitted-cross-domain-policies:
+      - none
+      x-proxied:
+      - intlb2azw f29267e751
+      - extlb3azw ff4cfe6eb5
+      x-runtime:
+      - '0.086817'
+      x-version-label:
+      - easypost-202610151849-c381b11f6c-main
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
