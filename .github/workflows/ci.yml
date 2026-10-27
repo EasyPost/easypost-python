@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
       - uses: extractions/setup-just@v3
@@ -21,7 +21,7 @@ jobs:
       - name: Lint
         run: just lint
   run-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         # vcrpy is not compatible with Python 3.14 yet so we cannot test against it
@@ -46,7 +46,7 @@ jobs:
         run: just scan
   docs:
     if: github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
       - uses: extractions/setup-just@v3
