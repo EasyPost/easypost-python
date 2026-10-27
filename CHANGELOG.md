@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v10.8.0 (2026-10-27)
 
 - Removes the deprecated, unusable `add_credit_card` function
   - Stripe has disabled the ability to pass plain credit card details over the wire and now requires using [Stripe.js/Elements/Checkout](https://support.stripe.com/questions/card-tokenization-restrictions-using-publishable-keys). Follow the [Decentralized (EasyPost-Manage Billing) Guide](https://docs.easypost.com/guides/get-started-with-forge/easypost-managed-billing-guide#referralcustomer-billing-management) for more details on the new flow to use.
