@@ -1,7 +1,6 @@
 import datetime
 import json
 import platform
-import time
 import uuid
 from enum import Enum
 from json import JSONDecodeError
@@ -9,16 +8,13 @@ from typing import (
     Any,
     Optional,
     Tuple,
-    Union,
 )
-from urllib.parse import urlencode
 
 import requests
 
 from easypost.constant import (
     API_VERSION,
     COMMUNICATION_ERROR,
-    INVALID_REQUEST_LIB_ERROR,
     INVALID_REQUEST_METHOD_ERROR,
     INVALID_REQUEST_PARAMETERS_ERROR,
     INVALID_RESPONSE_BODY_ERROR,
@@ -212,16 +208,9 @@ class Requestor:
             request_uuid=request_uuid,
         )
 
-        if self._client._request_lib == "urlfetch":
-            http_body, http_status, http_headers = self.urlfetch_request(
-                method=method, abs_url=abs_url, headers=headers, params=params
-            )
-        elif self._client._request_lib == "requests":
-            http_body, http_status, http_headers = self.requests_request(
-                method=method, abs_url=abs_url, headers=headers, params=params
-            )
-        else:
-            raise EasyPostError(INVALID_REQUEST_LIB_ERROR.format(self._client._request_lib, SUPPORT_EMAIL))
+        http_body, http_status, http_headers = self.requests_request(
+            method=method, abs_url=abs_url, headers=headers, params=params
+        )
 
         response_timestamp = datetime.datetime.now(datetime.timezone.utc)
         self._client._response_hook(
@@ -293,40 +282,6 @@ class Requestor:
 
         return http_body, http_status, http_headers
 
-    def urlfetch_request(
-        self,
-        method: RequestMethod,
-        abs_url: str,
-        headers: dict[str, Any],
-        params: dict[str, Any],
-    ) -> Tuple[str, int, dict[str, Any]]:
-        """Make a request by using the `urlfetch` library."""
-        fetch_args = {
-            "method": method.value,
-            "headers": headers,
-            "validate_certificate": False,
-            "deadline": self._client.timeout,
-        }
-
-        if method in [RequestMethod.GET, RequestMethod.DELETE]:
-            # GET/DELETE requests use query params
-            fetch_args["url"] = self.add_params_to_url(url=abs_url, params=params, method=method)
-        elif method in [RequestMethod.POST, RequestMethod.PUT]:
-            fetch_args["url"] = abs_url
-            # POST/PUT requests use body params
-            fetch_args["payload"] = json.dumps(params, default=self._utf8)
-        else:
-            raise EasyPostError(INVALID_REQUEST_METHOD_ERROR.format(method, SUPPORT_EMAIL))
-
-        try:
-            from google.appengine.api import urlfetch  # type: ignore
-
-            result = urlfetch.fetch(**fetch_args)  # type: ignore
-        except Exception as e:
-            raise HttpError(COMMUNICATION_ERROR.format(SUPPORT_EMAIL, e))
-
-        return result.content, result.status_code, result.headers
-
     def handle_api_error(self, http_status: int, http_body: str, response: dict[str, Any]) -> None:
         """Handles API errors returned from the EasyPost API."""
         try:
@@ -348,37 +303,3 @@ class Requestor:
             http_status=http_status,
             http_body=http_body,
         )
-
-    def _utf8(self, value: Union[str, bytes]) -> str:
-        # Python3's str(bytestring) returns "b'bytestring'" so we use .decode instead
-        if isinstance(value, bytes):
-            return value.decode(encoding="utf-8")
-        return value
-
-    def encode_url_params(self, params: dict[str, Any], method: RequestMethod) -> Union[str, None]:
-        """Encode params for a URL."""
-        if method not in [RequestMethod.GET, RequestMethod.DELETE]:
-            raise EasyPostError(INVALID_REQUEST_PARAMETERS_ERROR)
-
-        converted_params = []
-
-        for key, value in sorted(params.items()):
-            if value is None:
-                continue  # Don't add Nones to the query
-            elif isinstance(value, datetime.datetime):
-                value = int(time.mktime(value.timetuple()))  # to UTC timestamp
-            converted_params.append((key, value))
-
-        return urlencode(query=converted_params)
-
-    def add_params_to_url(self, url: str, params: dict[str, Any], method: RequestMethod) -> str:
-        """Add params to the URL."""
-        if method not in [RequestMethod.GET, RequestMethod.DELETE]:
-            raise EasyPostError(INVALID_REQUEST_PARAMETERS_ERROR)
-
-        encoded_params = self.encode_url_params(params=params, method=method)
-
-        if encoded_params:
-            return "%s?%s" % (url, encoded_params)
-
-        return url

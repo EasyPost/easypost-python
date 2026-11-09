@@ -21,27 +21,6 @@ SCRUBBED_ARRAY: list = []
 SCRUBBED_DICT: dict = {}
 
 
-def pytest_sessionstart(session):
-    """This is for local unit testing with google appengine, otherwise you get a
-    'No api proxy found for service "urlfetch"' response.
-    """
-    try:
-        from google.appengine.ext import testbed  # type: ignore
-
-        session.appengine_testbed = testbed.Testbed()  # type: ignore
-        session.appengine_testbed.activate()  # type: ignore
-        session.appengine_testbed.init_urlfetch_stub()  # type: ignore
-    except ImportError:
-        # if the import fails then we're not using the appengine sdk, so just
-        # keep going without initializing the testbed stub
-        pass
-
-
-def pytest_sessionfinish(session, exitstatus):
-    if hasattr(session, "appengine_testbed"):
-        session.appengine_testbed.deactivate()  # type: ignore
-
-
 @pytest.fixture(autouse=True)
 def check_expired_cassettes(expiration_days: int = 365, throw_error: bool = False):
     """Checks for expired cassettes and throws errors if they are too old and must be re-recorded."""

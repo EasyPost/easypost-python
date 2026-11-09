@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Removes the legacy Google App Engine `urlfetch` transport; all requests now use `requests`
+
 ## v10.8.0 (2026-10-27)
 
 - Removes the deprecated, unusable `add_credit_card` function

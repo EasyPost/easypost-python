@@ -14,7 +14,6 @@ TIMEOUT = 60
 COMMUNICATION_ERROR = "Unexpected error communicating with EasyPost. If this problem persists please let us know at {}. Original error: {}"
 INVALID_DELIVER_ACCURACY_ERROR = "Invalid delivery_accuracy value, must be one of: {}"
 INVALID_PAYMENT_METHOD_ERROR = "The chosen payment method is not valid. Please try again."
-INVALID_REQUEST_LIB_ERROR = "Bug discovered: invalid request_lib: {}. Please report to {}."
 INVALID_REQUEST_METHOD_ERROR = "Bug discovered: invalid request method: {}. Please report to {}."
 INVALID_REQUEST_PARAMETERS_ERROR = "Only GET and DELETE requests support parameters."
 INVALID_REQUESTS_VERSION_ERROR = 'EasyPost requires an up to date requests library. Update requests via "pip install -U requests" or contact us at {}.'

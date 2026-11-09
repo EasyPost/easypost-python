@@ -96,36 +96,26 @@ class EasyPostClient:
         self._request_hook = RequestHook()
         self._response_hook = ResponseHook()
 
-        # use urlfetch as request_lib on google app engine, otherwise use requests
-        self._request_lib = None
         try:
-            from google.appengine.api import urlfetch  # type: ignore
+            import requests
 
-            self._request_lib = "urlfetch"
-            # use the GAE application-wide "deadline" (or its default)
-            timeout = urlfetch.get_default_fetch_deadline() or self.timeout
-        except ImportError:
-            try:
-                import requests
+            self._requests_session = requests.Session()
+            requests_http_adapter = requests.adapters.HTTPAdapter(max_retries=3)
+            self._requests_session.mount(
+                prefix=self.api_base.split(f"/{API_VERSION}")[0],
+                adapter=requests_http_adapter,
+            )
+        except Exception:
+            raise ImportError(INVALID_REQUESTS_VERSION_ERROR.format(SUPPORT_EMAIL))
 
-                self._request_lib = "requests"
-                self._requests_session = requests.Session()
-                requests_http_adapter = requests.adapters.HTTPAdapter(max_retries=3)
-                self._requests_session.mount(
-                    prefix=self.api_base.split(f"/{API_VERSION}")[0],
-                    adapter=requests_http_adapter,
-                )
-            except Exception:
+        try:
+            requests_version = requests.__version__
+            major_version, _, _ = [int(i) for i in requests_version.split(".")]
+        except Exception:
+            raise ImportError(INVALID_REQUESTS_VERSION_ERROR.format(SUPPORT_EMAIL))
+        else:
+            if major_version < 1:
                 raise ImportError(INVALID_REQUESTS_VERSION_ERROR.format(SUPPORT_EMAIL))
-
-            try:
-                requests_version = requests.__version__
-                major_version, _, _ = [int(i) for i in requests_version.split(".")]
-            except Exception:
-                raise ImportError(INVALID_REQUESTS_VERSION_ERROR.format(SUPPORT_EMAIL))
-            else:
-                if major_version < 1:
-                    raise ImportError(INVALID_REQUESTS_VERSION_ERROR.format(SUPPORT_EMAIL))
 
     def subscribe_to_request_hook(self, function):
         """Subscribe functions to run when a request occurs."""
