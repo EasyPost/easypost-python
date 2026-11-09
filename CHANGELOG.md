@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v10.9.0 (2026-11-09)
 
 - Removes the legacy Google App Engine `urlfetch` transport; all requests now use `requests`
 
